@@ -1,0 +1,22 @@
+# deps
+node_modules/
+
+# env & secrets
+.env
+.env.*
+!.env.example
+
+# runtime data
+apps/server/data/
+backups/
+
+# build output
+apps/client/dist/
+*.tsbuildinfo
+
+# logs
+*.log
+
+# OS noise
+.DS_Store
+Thumbs.db

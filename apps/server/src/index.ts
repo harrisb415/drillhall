@@ -1,0 +1,82 @@
+import fs from "node:fs";
+import path from "node:path";
+import { loadAllPacks } from "@comptia/content";
+import { createApp } from "./app";
+import { createDb } from "./db";
+import { pendingMigrations } from "./db/migration-check";
+import { createAuth } from "./lib/auth";
+import { env, REPO_ROOT, SERVER_ROOT } from "./lib/env";
+import { createLogger } from "./lib/logger";
+import { seedCerts } from "./modules/certs/content";
+import { createEmailProvider } from "./modules/notifications/providers/email";
+
+const logger = createLogger();
+
+if (env.isProd && env.authSecretIsFallback) {
+  logger.fatal("BETTER_AUTH_SECRET is not set — refusing to start in production. See SECRETS.md.");
+  process.exit(1);
+}
+if (env.authSecretIsFallback) {
+  logger.warn("BETTER_AUTH_SECRET not set — using an insecure dev-only fallback.");
+}
+
+fs.mkdirSync(path.dirname(env.databaseFile), { recursive: true });
+const { db, sqlite } = createDb(env.databaseFile);
+
+const pending = pendingMigrations(sqlite);
+if (pending.length > 0) {
+  logger.fatal({ pending }, "Database has pending migrations — run `npm run db:migrate` first.");
+  process.exit(1);
+}
+
+let packs;
+try {
+  packs = loadAllPacks();
+} catch (err) {
+  logger.fatal(err, "Content pack validation failed — fix the pack (see `npm run validate`).");
+  process.exit(1);
+}
+const content = seedCerts(db, packs);
+logger.info(
+  { certs: packs.map((p) => `${p.code} (${p.quiz.length} questions, ${p.flashcards.length} cards)`) },
+  "content packs loaded",
+);
+
+const rootPkg = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "package.json"), "utf8")) as {
+  version: string;
+};
+
+const sendEmail = createEmailProvider({ apiKey: env.resendApiKey, from: env.emailFrom, logger });
+const auth = createAuth({
+  db,
+  secret: env.authSecret,
+  baseURL: env.baseURL,
+  trustedOrigins: env.trustedOrigins,
+  google: env.google,
+  sendEmail,
+});
+
+const clientDist = path.resolve(SERVER_ROOT, "../client/dist");
+const app = createApp({
+  db,
+  sqlite,
+  auth,
+  content,
+  logger,
+  meta: { name: "CompTIA Prep", version: rootPkg.version, googleEnabled: env.google !== null },
+  clientDist,
+});
+
+app.listen(env.port, () => {
+  logger.info(
+    {
+      port: env.port,
+      baseURL: env.baseURL,
+      db: env.databaseFile,
+      google: env.google !== null,
+      resend: !!env.resendApiKey,
+      static: fs.existsSync(clientDist),
+    },
+    `server listening on http://localhost:${env.port}`,
+  );
+});

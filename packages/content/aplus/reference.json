@@ -1,0 +1,132 @@
+[
+  {
+    "id": "common-ports",
+    "title": "Common TCP/UDP Ports",
+    "description": "The port numbers Core 1 expects you to know cold.",
+    "columns": ["Port", "Protocol", "Service", "Notes"],
+    "rows": [
+      ["20/21", "TCP", "FTP", "20 data, 21 control; unencrypted"],
+      ["22", "TCP", "SSH / SFTP", "Encrypted remote shell and file transfer"],
+      ["23", "TCP", "Telnet", "Unencrypted remote shell — legacy, avoid"],
+      ["25", "TCP", "SMTP", "Server-to-server mail delivery"],
+      ["53", "TCP/UDP", "DNS", "Queries UDP; zone transfers and large replies TCP"],
+      ["67/68", "UDP", "DHCP", "67 server, 68 client"],
+      ["80", "TCP", "HTTP", "Unencrypted web"],
+      ["110", "TCP", "POP3", "Mail retrieval, downloads and deletes"],
+      ["137-139", "TCP/UDP", "NetBIOS", "Legacy Windows name/session services"],
+      ["143", "TCP", "IMAP", "Mail retrieval, server-side folders"],
+      ["161/162", "UDP", "SNMP", "161 agent queries, 162 traps"],
+      ["389", "TCP/UDP", "LDAP", "Directory services (Active Directory)"],
+      ["443", "TCP", "HTTPS", "TLS-encrypted web"],
+      ["445", "TCP", "SMB/CIFS", "Windows file and printer sharing"],
+      ["3389", "TCP/UDP", "RDP", "Remote Desktop"]
+    ]
+  },
+  {
+    "id": "wifi-standards",
+    "title": "Wi-Fi Standards (802.11)",
+    "columns": ["Standard", "Marketing name", "Band", "Max theoretical speed"],
+    "rows": [
+      ["802.11a", "—", "5 GHz", "54 Mbps"],
+      ["802.11b", "—", "2.4 GHz", "11 Mbps"],
+      ["802.11g", "—", "2.4 GHz", "54 Mbps"],
+      ["802.11n", "Wi-Fi 4", "2.4 + 5 GHz", "600 Mbps"],
+      ["802.11ac", "Wi-Fi 5", "5 GHz", "~3.5 Gbps"],
+      ["802.11ax", "Wi-Fi 6 / 6E", "2.4 + 5 (+6E: 6) GHz", "~9.6 Gbps"]
+    ]
+  },
+  {
+    "id": "cable-types",
+    "title": "Network Cable Types",
+    "columns": ["Cable", "Max speed", "Notes"],
+    "rows": [
+      ["Cat 5e", "1 Gbps @ 100 m", "100 MHz; minimum for gigabit"],
+      ["Cat 6", "10 Gbps @ 55 m, 1 Gbps @ 100 m", "250 MHz"],
+      ["Cat 6a", "10 Gbps @ 100 m", "500 MHz; thicker, shielded common"],
+      ["Coax RG-6", "Varies (DOCSIS)", "Cable TV/internet; F-type connector"],
+      ["Multimode fiber", "Up to ~100 Gbps, short haul", "LED/VCSEL source; orange/aqua jackets"],
+      ["Single-mode fiber", "Long haul, highest capacity", "Laser source; yellow jacket"],
+      ["Plenum-rated", "Same as base category", "Fire-safe jacket required in air-handling spaces"]
+    ]
+  },
+  {
+    "id": "ram-types",
+    "title": "RAM Generations",
+    "columns": ["Type", "Desktop pins", "Voltage", "Typical speeds"],
+    "rows": [
+      ["DDR3", "240", "1.5 V (1.35 V DDR3L)", "1066–1866 MT/s"],
+      ["DDR4", "288", "1.2 V", "2133–3200 MT/s"],
+      ["DDR5", "288 (different key)", "1.1 V", "4800+ MT/s"],
+      ["SODIMM", "260 (DDR4) / 262 (DDR5)", "Matches generation", "Laptop form factor"]
+    ]
+  },
+  {
+    "id": "storage-types",
+    "title": "Storage Interfaces & Form Factors",
+    "columns": ["Type", "Interface", "Typical speed", "Form factor"],
+    "rows": [
+      ["HDD 5400/7200 RPM", "SATA III", "80–160 MB/s", "3.5\" desktop, 2.5\" laptop"],
+      ["SATA SSD", "SATA III (6 Gb/s)", "~550 MB/s", "2.5\" or M.2 SATA"],
+      ["NVMe SSD Gen3", "PCIe 3.0 x4", "~3,500 MB/s", "M.2 2280"],
+      ["NVMe SSD Gen4", "PCIe 4.0 x4", "~7,000 MB/s", "M.2 2280"],
+      ["microSD", "SD bus", "Varies by class", "Removable flash"]
+    ]
+  },
+  {
+    "id": "video-connectors",
+    "title": "Video Connectors",
+    "columns": ["Connector", "Signal", "Notes"],
+    "rows": [
+      ["VGA (DE-15)", "Analog", "Legacy; degrades at high resolution"],
+      ["DVI-D / DVI-I", "Digital / Digital+Analog", "Single or dual link; no audio"],
+      ["HDMI", "Digital", "Video + audio; most common consumer port"],
+      ["DisplayPort", "Digital", "Video + audio; daisy-chaining (MST); locking tab"],
+      ["USB-C (DP Alt Mode)", "Digital", "Carries DisplayPort over USB-C; one-cable docks"]
+    ]
+  },
+  {
+    "id": "cloud-models",
+    "title": "Cloud Service Models",
+    "columns": ["Model", "You manage", "Provider manages", "Example"],
+    "rows": [
+      ["IaaS", "OS, runtime, apps, data", "Compute, storage, network", "EC2, Azure VMs"],
+      ["PaaS", "Apps and data", "OS, runtime, scaling", "Heroku, App Service"],
+      ["SaaS", "Just your usage/config", "Everything", "Microsoft 365, Gmail"]
+    ]
+  },
+  {
+    "id": "troubleshooting-methodology",
+    "title": "Troubleshooting Methodology",
+    "description": "CompTIA's six steps, in order. Know the order — it gets tested.",
+    "columns": ["Step", "Action"],
+    "rows": [
+      ["1", "Identify the problem (question the user, determine what changed, back up)"],
+      ["2", "Establish a theory of probable cause (question the obvious)"],
+      ["3", "Test the theory to determine the cause"],
+      ["4", "Establish a plan of action and implement the solution"],
+      ["5", "Verify full system functionality and implement preventive measures"],
+      ["6", "Document findings, actions, and outcomes"]
+    ]
+  },
+  {
+    "id": "raid-levels",
+    "title": "RAID Levels",
+    "columns": ["Level", "Min disks", "Survives", "Description"],
+    "rows": [
+      ["RAID 0", "2", "Nothing", "Striping only — speed, full capacity, any disk loss kills the array"],
+      ["RAID 1", "2", "1 disk", "Mirroring — half capacity, simple redundancy"],
+      ["RAID 5", "3", "1 disk", "Striping with distributed parity — good capacity/redundancy balance"],
+      ["RAID 10", "4", "1 per mirror pair", "Stripe of mirrors — fast and redundant, half capacity"]
+    ]
+  },
+  {
+    "id": "motherboard-form-factors",
+    "title": "Motherboard Form Factors",
+    "columns": ["Form factor", "Size", "Notes"],
+    "rows": [
+      ["ATX", "305 × 244 mm", "Full size; most expansion slots"],
+      ["Micro-ATX", "244 × 244 mm", "Fewer slots; fits most cases"],
+      ["Mini-ITX", "170 × 170 mm", "Single expansion slot; SFF builds"]
+    ]
+  }
+]

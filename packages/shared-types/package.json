@@ -1,0 +1,17 @@
+{
+  "name": "@comptia/shared-types",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@comptia/content": "*"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* Design tokens — the single place look-and-feel lives (spec §1). */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+:root {
+  --background: #f6f7f9;
+  --foreground: #171a20;
+  --card: #ffffff;
+  --card-foreground: #171a20;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --secondary: #edeff3;
+  --secondary-foreground: #171a20;
+  --muted: #edeff3;
+  --muted-foreground: #66707f;
+  --accent: #eef2ff;
+  --accent-foreground: #3730a3;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #16a34a;
+  --success-foreground: #ffffff;
+  --border: #e2e5ea;
+  --input: #d5d9e0;
+  --ring: #6366f1;
+  --radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0e1015;
+    --foreground: #e7e9ef;
+    --card: #171a21;
+    --card-foreground: #e7e9ef;
+    --primary: #6366f1;
+    --primary-foreground: #ffffff;
+    --secondary: #20242e;
+    --secondary-foreground: #e7e9ef;
+    --muted: #20242e;
+    --muted-foreground: #8a92a3;
+    --accent: #252a40;
+    --accent-foreground: #c7d2fe;
+    --destructive: #ef4444;
+    --destructive-foreground: #ffffff;
+    --success: #22c55e;
+    --success-foreground: #052e16;
+    --border: #272c37;
+    --input: #343b49;
+    --ring: #818cf8;
+  }
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}

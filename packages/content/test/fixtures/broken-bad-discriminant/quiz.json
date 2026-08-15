@@ -1,0 +1,11 @@
+[
+  {
+    "id": "q1",
+    "type": "multiple-choice",
+    "domainCode": "1.0",
+    "prompt": "This type value is not in the discriminated union",
+    "choices": ["A", "B"],
+    "answerIndex": 0,
+    "explanation": "Should fail validation."
+  }
+]

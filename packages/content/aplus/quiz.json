@@ -1,0 +1,369 @@
+[
+  {
+    "id": "aplus-mc-001",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician is upgrading the memory in a laptop. Which memory form factor should they purchase?",
+    "choices": ["DIMM", "SODIMM", "SIMM", "C-RIMM"],
+    "answerIndex": 1,
+    "explanation": "Laptops use SODIMM (Small Outline DIMM) modules — physically shorter than the full-size DIMMs used in desktops."
+  },
+  {
+    "id": "aplus-mc-002",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user's phone battery drains rapidly and the device is warm even when idle. What should the technician check FIRST?",
+    "choices": [
+      "Replace the battery immediately",
+      "Per-app battery usage for a misbehaving app",
+      "Enable airplane mode permanently",
+      "Factory reset the device"
+    ],
+    "answerIndex": 1,
+    "explanation": "A warm, draining phone at idle usually means an app is keeping the CPU or radios awake. Battery usage stats identify the culprit before any hardware or destructive step."
+  },
+  {
+    "id": "aplus-mc-003",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which connector is proprietary to Apple mobile devices?",
+    "choices": ["USB-C", "micro-USB", "Lightning", "Thunderbolt"],
+    "answerIndex": 2,
+    "explanation": "Lightning is Apple's proprietary connector, used on iPhones before the USB-C transition. Thunderbolt is an Intel/Apple port standard, not a phone connector."
+  },
+  {
+    "id": "aplus-mc-004",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A laptop display is extremely dim but barely visible when a flashlight is shined on it. What has MOST likely failed?",
+    "choices": ["The digitizer", "The backlight", "The GPU", "The display cable"],
+    "answerIndex": 1,
+    "explanation": "An image that exists but is only visible under external light means the panel is drawing but not illuminated — a failed backlight (or its inverter on older CCFL panels)."
+  },
+  {
+    "id": "aplus-mc-005",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which display technology lights each pixel individually, producing true blacks without a backlight?",
+    "choices": ["TN LCD", "IPS LCD", "VA LCD", "OLED"],
+    "answerIndex": 3,
+    "explanation": "OLED pixels are emissive — each one produces its own light and can turn fully off. All LCD types filter a shared backlight."
+  },
+  {
+    "id": "aplus-mc-006",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user wants their tablet to use their phone's cellular data over a wireless connection. Which feature should they enable on the phone?",
+    "choices": ["NFC", "Bluetooth pairing", "Mobile hotspot", "Airplane mode"],
+    "answerIndex": 2,
+    "explanation": "A mobile hotspot broadcasts the phone's cellular connection as a Wi-Fi network that other devices can join. Tethering over USB would require a cable."
+  },
+  {
+    "id": "aplus-mc-007",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which port does RDP use?",
+    "choices": ["22", "443", "3389", "445"],
+    "answerIndex": 2,
+    "explanation": "Remote Desktop Protocol uses TCP 3389. Port 22 is SSH, 443 is HTTPS, 445 is SMB."
+  },
+  {
+    "id": "aplus-mc-008",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which service translates a hostname like example.com into an IP address?",
+    "choices": ["DHCP", "DNS", "NAT", "SNMP"],
+    "answerIndex": 1,
+    "explanation": "DNS resolves names to addresses. DHCP hands out IP configuration, NAT rewrites addresses at a boundary, SNMP monitors devices."
+  },
+  {
+    "id": "aplus-mc-009",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A workstation has the IP address 169.254.31.9 and cannot reach the internet. What does this address indicate?",
+    "choices": [
+      "The default gateway is misconfigured",
+      "The workstation failed to contact a DHCP server",
+      "DNS resolution is failing",
+      "The subnet mask is wrong"
+    ],
+    "answerIndex": 1,
+    "explanation": "169.254.0.0/16 is the APIPA range — a client self-assigns from it when no DHCP server responds. Check the DHCP server and the physical/link connection."
+  },
+  {
+    "id": "aplus-mc-010",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which device forwards traffic between two different IP networks?",
+    "choices": ["Hub", "Switch", "Access point", "Router"],
+    "answerIndex": 3,
+    "explanation": "Routing between networks is a router's job. Switches forward frames within a LAN; APs bridge wireless clients onto that LAN; hubs just repeat signals."
+  },
+  {
+    "id": "aplus-mc-011",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is an advantage of the 5 GHz Wi-Fi band over 2.4 GHz?",
+    "choices": [
+      "Better penetration through walls",
+      "Longer range",
+      "More non-overlapping channels and less interference",
+      "Compatibility with older devices"
+    ],
+    "answerIndex": 2,
+    "explanation": "5 GHz offers many more non-overlapping channels and a less crowded spectrum, at the cost of range and wall penetration — those favor 2.4 GHz."
+  },
+  {
+    "id": "aplus-mc-012",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which DNS record type maps a hostname to an IPv4 address?",
+    "choices": ["AAAA", "MX", "A", "CNAME"],
+    "answerIndex": 2,
+    "explanation": "A records map names to IPv4 addresses. AAAA is IPv6, MX designates mail servers, CNAME aliases one name to another."
+  },
+  {
+    "id": "aplus-mc-013",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which characteristic describes UDP?",
+    "choices": [
+      "Guarantees ordered delivery",
+      "Establishes a connection with a three-way handshake",
+      "Connectionless with minimal overhead",
+      "Retransmits lost segments automatically"
+    ],
+    "answerIndex": 2,
+    "explanation": "UDP is connectionless, best-effort transport — no handshake, no retransmission, no ordering. That low overhead suits streaming, VoIP, and DNS lookups."
+  },
+  {
+    "id": "aplus-mc-014",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which storage option provides the LOWEST latency and highest throughput?",
+    "choices": ["7200 RPM SATA HDD", "SATA III SSD", "NVMe PCIe Gen4 SSD", "USB 3.0 external SSD"],
+    "answerIndex": 2,
+    "explanation": "NVMe drives talk directly over PCIe lanes with deep command queues — Gen4 x4 reaches ~7,000 MB/s, versus ~550 MB/s for anything on the SATA III bus."
+  },
+  {
+    "id": "aplus-mc-015",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which RAID level mirrors data across two disks with no striping?",
+    "choices": ["RAID 0", "RAID 1", "RAID 5", "RAID 10"],
+    "answerIndex": 1,
+    "explanation": "RAID 1 writes identical data to both disks — half the capacity, survives one disk failure. RAID 0 stripes with no redundancy; 5 uses parity; 10 combines mirroring and striping."
+  },
+  {
+    "id": "aplus-mc-016",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the minimum number of disks required for RAID 5?",
+    "choices": ["2", "3", "4", "5"],
+    "answerIndex": 1,
+    "explanation": "RAID 5 stripes data plus distributed parity, which requires at least three disks. It tolerates one disk failure."
+  },
+  {
+    "id": "aplus-mc-017",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the purpose of ECC memory?",
+    "choices": [
+      "Increase memory clock speed",
+      "Reduce power consumption",
+      "Detect and correct single-bit memory errors",
+      "Double the effective capacity"
+    ],
+    "answerIndex": 2,
+    "explanation": "ECC adds check bits that let the controller detect and fix single-bit errors in flight — essential in servers where silent corruption is unacceptable."
+  },
+  {
+    "id": "aplus-mc-018",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which power supply connector provides main power to the motherboard?",
+    "choices": ["4-pin Molex", "24-pin ATX", "8-pin EPS", "6+2-pin PCIe"],
+    "answerIndex": 1,
+    "explanation": "The 24-pin ATX connector is the motherboard's main power feed. EPS (4/8-pin) powers the CPU, PCIe connectors power graphics cards, Molex is legacy peripheral power."
+  },
+  {
+    "id": "aplus-mc-019",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Into which expansion slot should a modern discrete graphics card be installed?",
+    "choices": ["PCIe x1", "PCIe x16", "PCI", "M.2"],
+    "answerIndex": 1,
+    "explanation": "Graphics cards use the PCIe x16 slot for maximum lane bandwidth. x1 slots serve low-bandwidth cards; M.2 is for SSDs and wireless modules."
+  },
+  {
+    "id": "aplus-mc-020",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which statement about DDR5 compared to DDR4 is TRUE?",
+    "choices": [
+      "DDR5 modules fit in DDR4 slots",
+      "DDR5 runs at higher data rates and lower voltage",
+      "DDR5 requires more voltage than DDR4",
+      "DDR5 removed the need for memory channels"
+    ],
+    "answerIndex": 1,
+    "explanation": "DDR5 starts around 4800 MT/s at 1.1 V (DDR4: up to ~3200 MT/s at 1.2 V) and moves power management onto the module. The keying is different — the generations are not interchangeable."
+  },
+  {
+    "id": "aplus-mc-021",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company rents virtual machines, storage, and networking from a provider but manages the operating systems and applications itself. Which model is this?",
+    "choices": ["SaaS", "PaaS", "IaaS", "DaaS"],
+    "answerIndex": 2,
+    "explanation": "Infrastructure as a Service supplies the raw compute/storage/network; everything from the OS up is the customer's responsibility. PaaS would also manage the OS and runtime; SaaS is the finished app."
+  },
+  {
+    "id": "aplus-mc-022",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Microsoft 365's hosted email and Office apps are an example of which cloud model?",
+    "choices": ["IaaS", "PaaS", "SaaS", "Private cloud"],
+    "answerIndex": 2,
+    "explanation": "Software as a Service — users consume a complete application; the provider runs everything beneath it."
+  },
+  {
+    "id": "aplus-mc-023",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which hypervisor type runs directly on server hardware without a host operating system?",
+    "choices": ["Type 1", "Type 2", "Container runtime", "Emulator"],
+    "answerIndex": 0,
+    "explanation": "Type 1 (bare-metal) hypervisors like ESXi, Hyper-V, and Proxmox run directly on the hardware. Type 2 hypervisors (VirtualBox, VMware Workstation) run as applications on a host OS."
+  },
+  {
+    "id": "aplus-mc-024",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which cloud characteristic describes capacity automatically scaling up during a traffic spike and back down afterward?",
+    "choices": ["High availability", "Rapid elasticity", "Metered utilization", "Resource pooling"],
+    "answerIndex": 1,
+    "explanation": "Rapid elasticity is the automatic grow-and-shrink of resources with demand. Metered utilization is the pay-per-use billing that usually accompanies it."
+  },
+  {
+    "id": "aplus-mc-025",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "How do containers differ from virtual machines?",
+    "choices": [
+      "Containers include a full guest operating system",
+      "Containers share the host OS kernel and isolate at the process level",
+      "Containers require a Type 1 hypervisor",
+      "Containers cannot be used in production"
+    ],
+    "answerIndex": 1,
+    "explanation": "Containers virtualize at the OS level — all containers share the host kernel, making them far lighter and faster to start than VMs, which each boot a full guest OS."
+  },
+  {
+    "id": "aplus-mc-026",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "According to the CompTIA troubleshooting methodology, what is the FIRST step?",
+    "choices": [
+      "Establish a theory of probable cause",
+      "Identify the problem",
+      "Document findings",
+      "Establish a plan of action"
+    ],
+    "answerIndex": 1,
+    "explanation": "Identify the problem first — gather information from the user, determine what changed, and back up before making changes. Theory, testing, plan, verification, and documentation follow."
+  },
+  {
+    "id": "aplus-mc-027",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician has established a theory that a bad RAM stick is causing crashes. Per the methodology, what comes NEXT?",
+    "choices": [
+      "Document the findings",
+      "Replace the RAM immediately",
+      "Test the theory to determine the cause",
+      "Verify full system functionality"
+    ],
+    "answerIndex": 2,
+    "explanation": "Step 3 is testing the theory (e.g., run memtest, swap sticks one at a time). Only once confirmed do you build and implement the plan of action."
+  },
+  {
+    "id": "aplus-mc-028",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A desktop shuts down under gaming load. CPU temperature reads 95°C at idle. What is the MOST likely cause?",
+    "choices": [
+      "Failing power supply",
+      "Heatsink not making proper contact with the CPU",
+      "Corrupt graphics driver",
+      "Failing hard drive"
+    ],
+    "answerIndex": 1,
+    "explanation": "95°C at idle points to a cooling failure — a misseated heatsink, dried thermal paste, or a dead fan. Thermal shutdowns under load are the protective response."
+  },
+  {
+    "id": "aplus-mc-029",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A drive reports a SMART error. What should the technician do FIRST?",
+    "choices": [
+      "Run a full format",
+      "Back up the data immediately",
+      "Defragment the drive",
+      "Update the storage driver"
+    ],
+    "answerIndex": 1,
+    "explanation": "SMART warnings mean failure is likely. Protect the data first — back it up — then plan drive replacement. Formatting or defragmenting adds stress and destroys evidence."
+  },
+  {
+    "id": "aplus-mc-030",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A PC powers on with spinning fans, but the monitor shows no signal and the board emits a repeating beep pattern. What does the beep MOST likely indicate?",
+    "choices": [
+      "The OS failed to boot",
+      "A hardware fault detected during POST",
+      "The monitor is in power-saving mode",
+      "A corrupted user profile"
+    ],
+    "answerIndex": 1,
+    "explanation": "Beep codes come from POST, before the OS or video initialize — commonly memory or graphics faults. Look up the pattern for that BIOS vendor and reseat the indicated component."
+  },
+  {
+    "id": "aplus-mc-031",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laser printer produces a black vertical streak in the same position on every page. Which component is MOST likely at fault?",
+    "choices": ["Fuser assembly", "Imaging drum", "Pickup rollers", "Duplex unit"],
+    "answerIndex": 1,
+    "explanation": "A repeating vertical mark is classic drum damage or debris on the drum (often integrated with the toner cartridge). Fuser problems typically smear or fail to bond toner; pickup rollers cause feed issues."
+  },
+  {
+    "id": "aplus-mc-032",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Users on 2.4 GHz Wi-Fi report intermittent drops. A scan shows nearby APs on channels 3, 6, and 9. What should the technician do?",
+    "choices": [
+      "Move all APs to channel 11 together",
+      "Set APs to the non-overlapping channels 1, 6, and 11",
+      "Increase transmit power to maximum",
+      "Disable 5 GHz on all APs"
+    ],
+    "answerIndex": 1,
+    "explanation": "In 2.4 GHz only channels 1, 6, and 11 don't overlap. APs on 3 and 9 bleed into neighbors and cause the interference; putting everything on one channel or raising power makes contention worse."
+  },
+  {
+    "id": "aplus-mc-033",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation intermittently reboots, and inspection shows several motherboard capacitors with bulging tops. What is the appropriate fix?",
+    "choices": [
+      "Update the BIOS",
+      "Replace the motherboard",
+      "Reinstall the operating system",
+      "Add more case fans"
+    ],
+    "answerIndex": 1,
+    "explanation": "Bulging or leaking capacitors are physically failing and cause instability that only worsens. Board-level component replacement isn't field-serviceable — replace the motherboard."
+  }
+]

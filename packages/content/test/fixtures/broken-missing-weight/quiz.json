@@ -1,0 +1,11 @@
+[
+  {
+    "id": "q1",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Pick A",
+    "choices": ["A", "B"],
+    "answerIndex": 0,
+    "explanation": "A is correct."
+  }
+]

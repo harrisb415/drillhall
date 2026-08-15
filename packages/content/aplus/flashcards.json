@@ -1,0 +1,242 @@
+[
+  {
+    "id": "aplus-fc-001",
+    "domainCode": "1.0",
+    "front": "What RAM form factor do laptops use?",
+    "back": "SODIMM (Small Outline DIMM) — physically shorter than desktop DIMMs. DDR4 SODIMMs have 260 pins, DDR5 SODIMMs have 262."
+  },
+  {
+    "id": "aplus-fc-002",
+    "domainCode": "1.0",
+    "front": "Compare TN, IPS, and VA LCD panel types.",
+    "back": "TN: fastest response, cheapest, worst color/viewing angles. IPS: best color accuracy and viewing angles, slower response. VA: best contrast, middle ground on the rest."
+  },
+  {
+    "id": "aplus-fc-003",
+    "domainCode": "1.0",
+    "front": "What advantage does OLED have over LCD?",
+    "back": "Each pixel emits its own light, so blacks are true black (pixel off), contrast is effectively infinite, and no backlight is needed — thinner panels, better power efficiency on dark content."
+  },
+  {
+    "id": "aplus-fc-004",
+    "domainCode": "1.0",
+    "front": "What is a digitizer in a mobile device display?",
+    "back": "The layer that converts touch/stylus input into digital signals the OS can use. A cracked glass with working touch = digitizer intact; touch dead with intact image = digitizer failed."
+  },
+  {
+    "id": "aplus-fc-005",
+    "domainCode": "1.0",
+    "front": "Difference between USB tethering and a mobile hotspot?",
+    "back": "Both share the phone's cellular data. Tethering shares it over a USB cable to one device; a hotspot broadcasts Wi-Fi so multiple devices can connect."
+  },
+  {
+    "id": "aplus-fc-006",
+    "domainCode": "1.0",
+    "front": "Name the three common mobile device connectors.",
+    "back": "USB-C (reversible, current standard), Lightning (Apple proprietary, pre-USB-C iPhones), micro-USB (older Android/accessories)."
+  },
+  {
+    "id": "aplus-fc-007",
+    "domainCode": "1.0",
+    "front": "What does airplane mode do?",
+    "back": "Disables all radios: cellular, Wi-Fi, Bluetooth, and NFC. Wi-Fi and Bluetooth can usually be re-enabled individually while cellular stays off."
+  },
+  {
+    "id": "aplus-fc-008",
+    "domainCode": "1.0",
+    "front": "What is NFC and what is it used for?",
+    "back": "Near-Field Communication — very short range (~4 cm) radio. Used for contactless payments (Apple Pay/Google Pay), transit cards, and quick device pairing."
+  },
+  {
+    "id": "aplus-fc-009",
+    "domainCode": "2.0",
+    "front": "What does DHCP do, and what are the four steps of a lease?",
+    "back": "Automatically assigns IP configuration (address, mask, gateway, DNS). DORA: Discover, Offer, Request, Acknowledge."
+  },
+  {
+    "id": "aplus-fc-010",
+    "domainCode": "2.0",
+    "front": "What does DNS do?",
+    "back": "Resolves human-readable names (example.com) to IP addresses. Key records: A (IPv4), AAAA (IPv6), MX (mail), CNAME (alias), TXT (verification/SPF)."
+  },
+  {
+    "id": "aplus-fc-011",
+    "domainCode": "2.0",
+    "front": "A device has the address 169.254.20.7. What does that tell you?",
+    "back": "It's an APIPA/link-local address — the client failed to reach a DHCP server and self-assigned. It can only talk to the local segment. Investigate DHCP or the connection."
+  },
+  {
+    "id": "aplus-fc-012",
+    "domainCode": "2.0",
+    "front": "Router vs switch vs access point — one-line roles.",
+    "back": "Router: forwards traffic between networks (and to the internet). Switch: connects wired devices within a LAN using MAC addresses. AP: bridges wireless clients onto the wired LAN."
+  },
+  {
+    "id": "aplus-fc-013",
+    "domainCode": "2.0",
+    "front": "2.4 GHz vs 5 GHz Wi-Fi trade-offs?",
+    "back": "2.4 GHz: longer range, better wall penetration, only 3 non-overlapping channels (1/6/11), crowded. 5 GHz: faster, many more channels, less interference, shorter range."
+  },
+  {
+    "id": "aplus-fc-014",
+    "domainCode": "2.0",
+    "front": "What is a VLAN?",
+    "back": "A virtual LAN — logically segments one physical switch into multiple isolated broadcast domains (e.g., voice vs data, guest vs corporate) without separate hardware."
+  },
+  {
+    "id": "aplus-fc-015",
+    "domainCode": "2.0",
+    "front": "What is a VPN?",
+    "back": "An encrypted tunnel over an untrusted network (usually the internet) that makes a remote device appear to be on the private network. Protects traffic on public Wi-Fi and enables remote access to internal resources."
+  },
+  {
+    "id": "aplus-fc-016",
+    "domainCode": "2.0",
+    "front": "TCP vs UDP?",
+    "back": "TCP: connection-oriented, three-way handshake, guaranteed ordered delivery (web, email, file transfer). UDP: connectionless, no delivery guarantee, lower overhead (streaming, VoIP, DNS queries, gaming)."
+  },
+  {
+    "id": "aplus-fc-017",
+    "domainCode": "3.0",
+    "front": "DDR4 vs DDR5 — key differences?",
+    "back": "DDR5: higher data rates (4800 MT/s+ vs DDR4's typical 2133–3200), lower voltage (1.1 V vs 1.2 V), on-module power management (PMIC), two independent 32-bit subchannels per module. Slots are not compatible."
+  },
+  {
+    "id": "aplus-fc-018",
+    "domainCode": "3.0",
+    "front": "What is ECC RAM and where is it used?",
+    "back": "Error-Correcting Code memory — detects and corrects single-bit memory errors on the fly. Used in servers and workstations where silent data corruption is unacceptable. Requires motherboard/CPU support."
+  },
+  {
+    "id": "aplus-fc-019",
+    "domainCode": "3.0",
+    "front": "Max throughput of SATA III?",
+    "back": "6 Gb/s (about 600 MB/s usable). This is why SATA SSDs plateau around 550 MB/s regardless of brand."
+  },
+  {
+    "id": "aplus-fc-020",
+    "domainCode": "3.0",
+    "front": "What is NVMe and why is it faster than SATA?",
+    "back": "Non-Volatile Memory Express — a protocol that lets SSDs talk directly over PCIe lanes instead of the SATA bus, with far deeper command queues. Gen4 x4 drives reach ~7,000 MB/s vs SATA's ~550 MB/s."
+  },
+  {
+    "id": "aplus-fc-021",
+    "domainCode": "3.0",
+    "front": "What is M.2?",
+    "back": "A compact expansion form factor (a slot on the board, no cables). Common size 2280 = 22 mm wide, 80 mm long. An M.2 slot can carry SATA or NVMe/PCIe signals — the drive and slot keying must match."
+  },
+  {
+    "id": "aplus-fc-022",
+    "domainCode": "3.0",
+    "front": "RAID 0, 1, 5, 10 in one line each.",
+    "back": "0: striping, speed, no redundancy — one disk dies, all data lost. 1: mirroring, survives one disk. 5: striping + parity (min 3 disks), survives one disk. 10: mirrored stripes (min 4), fast + survives one disk per mirror pair."
+  },
+  {
+    "id": "aplus-fc-023",
+    "domainCode": "3.0",
+    "front": "LGA vs PGA CPU sockets?",
+    "back": "LGA (Land Grid Array): pins in the socket, flat pads on the CPU — modern Intel and AMD AM5. PGA (Pin Grid Array): pins on the CPU — AMD through AM4."
+  },
+  {
+    "id": "aplus-fc-024",
+    "domainCode": "3.0",
+    "front": "What is a TPM?",
+    "back": "Trusted Platform Module — a dedicated crypto chip (or firmware equivalent) that stores keys and platform measurements. Backs BitLocker drive encryption, Secure Boot attestation, and Windows 11's hardware requirement."
+  },
+  {
+    "id": "aplus-fc-025",
+    "domainCode": "4.0",
+    "front": "IaaS vs PaaS vs SaaS?",
+    "back": "IaaS: provider gives you VMs/storage/network, you manage OS and up (EC2). PaaS: provider manages runtime, you deploy code (Heroku, App Service). SaaS: finished application you just use (Microsoft 365, Gmail)."
+  },
+  {
+    "id": "aplus-fc-026",
+    "domainCode": "4.0",
+    "front": "Public vs private vs hybrid cloud?",
+    "back": "Public: shared provider infrastructure (AWS/Azure/GCP). Private: dedicated to one organization, on-prem or hosted. Hybrid: both connected, workloads move between them."
+  },
+  {
+    "id": "aplus-fc-027",
+    "domainCode": "4.0",
+    "front": "Type 1 vs Type 2 hypervisor?",
+    "back": "Type 1 (bare metal): runs directly on hardware — ESXi, Hyper-V, Proxmox. Type 2 (hosted): runs as an app on a normal OS — VirtualBox, VMware Workstation."
+  },
+  {
+    "id": "aplus-fc-028",
+    "domainCode": "4.0",
+    "front": "VM vs container?",
+    "back": "A VM virtualizes hardware and runs a full guest OS per instance. Containers share the host kernel and isolate at the process level — much lighter, faster to start, but same-OS only."
+  },
+  {
+    "id": "aplus-fc-029",
+    "domainCode": "4.0",
+    "front": "What is rapid elasticity in cloud computing?",
+    "back": "Capacity scales up and down automatically with demand — you get more instances during a spike and shed them after, paying only for what ran."
+  },
+  {
+    "id": "aplus-fc-030",
+    "domainCode": "4.0",
+    "front": "What is metered utilization?",
+    "back": "Pay-as-you-go: the provider measures exactly what you consume (compute-hours, GB stored, requests) and bills on that measurement rather than a flat fee."
+  },
+  {
+    "id": "aplus-fc-031",
+    "domainCode": "4.0",
+    "front": "What is VDI?",
+    "back": "Virtual Desktop Infrastructure — users' desktop OSes run as VMs in the data center/cloud, streamed to thin clients. Centralizes data and management; the endpoint holds nothing."
+  },
+  {
+    "id": "aplus-fc-032",
+    "domainCode": "4.0",
+    "front": "Why use a VM as a sandbox or test environment?",
+    "back": "Snapshots and isolation: you can detonate suspicious files or test risky changes, then roll back to a clean snapshot in seconds. Nothing touches the host OS."
+  },
+  {
+    "id": "aplus-fc-033",
+    "domainCode": "5.0",
+    "front": "List the six steps of the CompTIA troubleshooting methodology.",
+    "back": "1) Identify the problem. 2) Establish a theory of probable cause. 3) Test the theory. 4) Establish a plan of action and implement it. 5) Verify full functionality and implement preventive measures. 6) Document findings, actions, and outcomes."
+  },
+  {
+    "id": "aplus-fc-034",
+    "domainCode": "5.0",
+    "front": "What is SMART and what should you do when it warns?",
+    "back": "Self-Monitoring, Analysis and Reporting Technology — drives track their own health metrics (reallocated sectors, pending sectors). On a SMART warning: back up immediately and plan drive replacement; failure is likely."
+  },
+  {
+    "id": "aplus-fc-035",
+    "domainCode": "5.0",
+    "front": "What is POST and what does a beep code mean?",
+    "back": "Power-On Self-Test — firmware hardware check before boot. Beep codes (or debug LEDs) signal a failure detected before video initializes: commonly RAM, GPU, or CPU. Codes vary by BIOS vendor — check the board manual."
+  },
+  {
+    "id": "aplus-fc-036",
+    "domainCode": "5.0",
+    "front": "PC powers on (fans spin) but no display. First checks?",
+    "back": "Monitor power and input source; cable seated at both ends; correct output port (GPU, not motherboard, when a dedicated GPU is installed). Then reseat RAM and GPU, listen for beep codes, try one RAM stick at a time."
+  },
+  {
+    "id": "aplus-fc-037",
+    "domainCode": "5.0",
+    "front": "What do swollen/distended capacitors on a motherboard indicate?",
+    "back": "Failing capacitors — bulged or leaking tops. Cause random reboots, failure to POST, instability. The board (or PSU, if there) needs replacement; it will only get worse."
+  },
+  {
+    "id": "aplus-fc-038",
+    "domainCode": "5.0",
+    "front": "System shuts down or throttles under load. Likely cause and fixes?",
+    "back": "Overheating. Check: dust-clogged heatsinks/filters (clean with compressed air), failed or misseated fans, dried-out thermal paste (repaste), blocked airflow, ambient temperature. Verify temps in firmware or monitoring software."
+  },
+  {
+    "id": "aplus-fc-039",
+    "domainCode": "5.0",
+    "front": "Users report intermittent Wi-Fi drops on 2.4 GHz in a dense office. Likely fix?",
+    "back": "Co-channel interference — neighboring APs overlapping. Move APs to the non-overlapping channels (1, 6, 11), reduce power so cells don't overlap, or move clients to 5 GHz."
+  },
+  {
+    "id": "aplus-fc-040",
+    "domainCode": "5.0",
+    "front": "Laser printer prints with a repeating vertical line/streak. Likely cause?",
+    "back": "A scratched or dirty imaging drum (or a failing toner cartridge if the drum is integrated). Repeating defects at a fixed interval correspond to one roller's circumference — replace that component."
+  }
+]
