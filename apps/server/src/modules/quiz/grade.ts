@@ -19,8 +19,36 @@ function shuffleAvoidingIdentity(items: string[]): string[] {
   return out;
 }
 
-/** Strips answers/explanations; pre-shuffles order items and match rights. */
-export function toPublicQuestion(q: QuizQuestion): QuizQuestionPublic {
+/**
+ * How one question was arranged on screen: the shuffled order of an `order`
+ * question's items, or of a `match` question's right column.
+ *
+ * Exams persist this so a reload redisplays the exact same arrangement.
+ * Rescrambling a question you were partway through is disorienting at best,
+ * and during a timed sitting it destroys work.
+ */
+export interface QuestionLayout {
+  items?: string[];
+  rights?: string[];
+}
+
+export function buildLayout(q: QuizQuestion): QuestionLayout {
+  switch (q.type) {
+    case "order":
+      return { items: shuffleAvoidingIdentity(q.items) };
+    case "match":
+      return { rights: shuffleAvoidingIdentity(q.pairs.map((p) => p.right)) };
+    default:
+      return {};
+  }
+}
+
+/**
+ * Strips answers and explanations. Pass a `layout` to reuse a previously
+ * served arrangement; omit it to shuffle fresh (practice mode, which never
+ * resumes a session).
+ */
+export function toPublicQuestion(q: QuizQuestion, layout?: QuestionLayout): QuizQuestionPublic {
   switch (q.type) {
     case "mc":
       return { id: q.id, domainCode: q.domainCode, type: "mc", prompt: q.prompt, choices: q.choices };
@@ -30,7 +58,7 @@ export function toPublicQuestion(q: QuizQuestion): QuizQuestionPublic {
         domainCode: q.domainCode,
         type: "order",
         prompt: q.prompt,
-        items: shuffleAvoidingIdentity(q.items),
+        items: layout?.items ?? shuffleAvoidingIdentity(q.items),
       };
     case "match":
       return {
@@ -39,7 +67,7 @@ export function toPublicQuestion(q: QuizQuestion): QuizQuestionPublic {
         type: "match",
         prompt: q.prompt,
         lefts: q.pairs.map((p) => p.left),
-        rights: shuffleAvoidingIdentity(q.pairs.map((p) => p.right)),
+        rights: layout?.rights ?? shuffleAvoidingIdentity(q.pairs.map((p) => p.right)),
       };
     case "terminal":
       return { id: q.id, domainCode: q.domainCode, type: "terminal", prompt: q.prompt };

@@ -78,6 +78,8 @@ export const quizSessions = sqliteTable(
     expiresAt: integer("expires_at", { mode: "timestamp_ms" }),
     /** JSON {questionId: number[]} display order for mc choices */
     choiceOrders: text("choice_orders"),
+    /** JSON {questionId: {items?, rights?}} so a resume redisplays identically */
+    layouts: text("layouts"),
     /** JSON string[] of question ids the candidate flagged for review */
     flagged: text("flagged"),
     scaledScore: integer("scaled_score"),

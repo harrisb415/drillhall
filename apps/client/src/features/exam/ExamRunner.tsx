@@ -29,6 +29,7 @@ export function ExamRunner() {
   const flag = useFlagExamQuestion();
   const submit = useSubmitExam(cert.id);
   const [confirming, setConfirming] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
 
   const doSubmit = useCallback(() => {
     if (!session || submit.isPending) return;
@@ -41,24 +42,63 @@ export function ExamRunner() {
 
   const answeredCount = Object.keys(answers).length;
   const isFlagged = flagged.has(question.id);
+  // Naming the blank ones beats counting them: "the 3 you left blank" reads as
+  // an accusation when you can't tell which 3 it means.
+  const unansweredNumbers = session.questions
+    .map((q, i) => (answers[q.id] ? null : i + 1))
+    .filter((n): n is number => n !== null);
 
+  /**
+   * Optimistic, but never dishonest. The palette marks a question answered the
+   * moment you act, so if a save fails we must put it back and say so — a
+   * question that looks answered but was never received is the worst outcome
+   * here, because you only discover it after the clock is gone.
+   */
   function submitAnswer(answer: AttemptAnswer) {
-    if (!session) return;
-    setAnswer(question!.id, answer);
-    record.mutate({ sessionId: session.sessionId, questionId: question!.id, answer });
+    if (!session || !question) return;
+    const questionId = question.id;
+    const previous = answers[questionId] ?? null;
+    setAnswer(questionId, answer);
+    setSaveError(null);
+    record.mutate(
+      { sessionId: session.sessionId, questionId, answer },
+      {
+        onError: (err) => {
+          setAnswer(questionId, previous);
+          setSaveError(
+            `That answer was NOT saved (${(err as Error).message}). Try again — it is not recorded.`,
+          );
+        },
+      },
+    );
   }
 
   function clearAnswer() {
-    if (!session) return;
-    setAnswer(question!.id, null);
-    record.mutate({ sessionId: session.sessionId, questionId: question!.id, answer: null });
+    if (!session || !question) return;
+    const questionId = question.id;
+    const previous = answers[questionId] ?? null;
+    setAnswer(questionId, null);
+    setSaveError(null);
+    record.mutate(
+      { sessionId: session.sessionId, questionId, answer: null },
+      {
+        onError: (err) => {
+          setAnswer(questionId, previous);
+          setSaveError(`Couldn't clear that answer (${(err as Error).message}).`);
+        },
+      },
+    );
   }
 
   function toggleFlag() {
-    if (!session) return;
+    if (!session || !question) return;
+    const questionId = question.id;
     const nextFlag = !isFlagged;
-    setFlag(question!.id, nextFlag);
-    flag.mutate({ sessionId: session.sessionId, questionId: question!.id, flagged: nextFlag });
+    setFlag(questionId, nextFlag);
+    flag.mutate(
+      { sessionId: session.sessionId, questionId, flagged: nextFlag },
+      { onError: () => setFlag(questionId, !nextFlag) },
+    );
   }
 
   // `given` only — never `answer`, so the views show the selection without
@@ -83,6 +123,22 @@ export function ExamRunner() {
           </Button>
         </div>
       </div>
+
+      {saveError && (
+        <div
+          role="alert"
+          className="flex items-start justify-between gap-3 rounded-md border border-destructive bg-destructive/10 p-3 text-sm text-destructive"
+        >
+          <span>{saveError}</span>
+          <button
+            type="button"
+            onClick={() => setSaveError(null)}
+            className="shrink-0 font-medium underline underline-offset-2"
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
 
       {/* question palette — answered / flagged / current at a glance */}
       <div className="flex flex-wrap gap-1.5">
@@ -114,6 +170,10 @@ export function ExamRunner() {
           );
         })}
       </div>
+      <p className="text-xs text-muted-foreground">
+        Filled = answered · red dot = flagged
+        {unansweredNumbers.length > 0 && ` · still blank: ${unansweredNumbers.join(", ")}`}
+      </p>
 
       <Card>
         <CardHeader>
@@ -149,7 +209,7 @@ export function ExamRunner() {
               given={given}
               busy={false}
               onSubmit={submitAnswer}
-              submitLabel="Save order"
+              autoSubmit
             />
           )}
           {question.type === "match" && (
@@ -159,7 +219,7 @@ export function ExamRunner() {
               given={given}
               busy={false}
               onSubmit={submitAnswer}
-              submitLabel="Save matches"
+              autoSubmit
             />
           )}
           {question.type === "terminal" && (
@@ -207,10 +267,18 @@ export function ExamRunner() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                {answeredCount} of {session.questions.length} answered
-                {answeredCount < session.questions.length &&
-                  ` — the ${session.questions.length - answeredCount} you left blank count as incorrect.`}
+                You answered {answeredCount} of {session.questions.length}.
               </p>
+              {unansweredNumbers.length > 0 && (
+                <p className="text-sm text-muted-foreground">
+                  {unansweredNumbers.length === 1 ? "Question" : "Questions"}{" "}
+                  <span className="font-medium text-foreground">
+                    {unansweredNumbers.join(", ")}
+                  </span>{" "}
+                  {unansweredNumbers.length === 1 ? "is" : "are"} still blank and will be marked
+                  incorrect.
+                </p>
+              )}
               <div className="flex justify-end gap-2">
                 <Button variant="ghost" onClick={() => setConfirming(false)}>
                   Keep working

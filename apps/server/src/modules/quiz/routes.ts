@@ -75,7 +75,8 @@ export function quizRoutes(deps: ApiDeps): Router {
       const response: StartSessionResponse = {
         sessionId: session.id,
         certId: body.certId,
-        questions: chosen.map(toPublicQuestion),
+        // Practice shuffles fresh at delivery; these sessions are never resumed.
+        questions: chosen.map((q) => toPublicQuestion(q)),
       };
       res.json(response);
     }),

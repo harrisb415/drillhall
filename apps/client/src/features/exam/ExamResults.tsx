@@ -106,7 +106,10 @@ export function ExamResults() {
   if (!result) return null;
   const mins = Math.floor(result.timeSpentSeconds / 60);
   const secs = result.timeSpentSeconds % 60;
-  const shown = result.review.filter((r) => (filter === "wrong" ? !r.correct : true));
+  // Number each item by its real position in the exam, not its position in the
+  // filtered list — "#1" has to mean the question you saw first.
+  const numbered = result.review.map((item, i) => ({ item, number: i + 1 }));
+  const shown = numbered.filter(({ item }) => (filter === "wrong" ? !item.correct : true));
   const wrongCount = result.review.filter((r) => !r.correct).length;
 
   return (
@@ -189,7 +192,7 @@ export function ExamResults() {
               Nothing missed — a clean sweep.
             </p>
           )}
-          {shown.map((item, i) => (
+          {shown.map(({ item, number }) => (
             <div
               key={item.questionId}
               className={cn(
@@ -202,7 +205,7 @@ export function ExamResults() {
                   {item.correct ? "Correct" : item.answered ? "Incorrect" : "Unanswered"}
                 </Badge>
                 <Badge variant="outline">{item.domainCode}</Badge>
-                <span className="text-xs text-muted-foreground">#{i + 1}</span>
+                <span className="text-xs text-muted-foreground">Question {number}</span>
               </div>
               <p className="font-medium">{item.prompt}</p>
               <div className="mt-3 space-y-2 text-sm">

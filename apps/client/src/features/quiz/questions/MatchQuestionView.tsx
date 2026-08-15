@@ -12,6 +12,7 @@ export function MatchQuestionView({
   busy,
   onSubmit,
   submitLabel = "Submit matches",
+  autoSubmit = false,
 }: QuestionViewProps<Extract<QuizQuestionPublic, { type: "match" }>>) {
   const picked = currentAnswer({ answer, given });
 
@@ -36,12 +37,17 @@ export function MatchQuestionView({
     picked?.type !== "match" ||
     question.lefts.some((l, i) => picked.pairs[l] !== rights[i]);
 
+  function pairsFor(order: string[]) {
+    return Object.fromEntries(question.lefts.map((left, i) => [left, order[i]!]));
+  }
+
   function onDragEnd(result: DropResult) {
     if (!result.destination || locked) return;
     const next = [...rights];
     const [moved] = next.splice(result.source.index, 1);
     next.splice(result.destination.index, 0, moved!);
     setRights(next);
+    if (autoSubmit) onSubmit({ type: "match", pairs: pairsFor(next) });
   }
 
   function rowCorrect(i: number): boolean | null {
@@ -103,20 +109,22 @@ export function MatchQuestionView({
           </Droppable>
         </DragDropContext>
       </div>
-      {!answer && (
-        <Button
-          className="mt-4"
-          disabled={busy || !dirty}
-          onClick={() =>
-            onSubmit({
-              type: "match",
-              pairs: Object.fromEntries(question.lefts.map((left, i) => [left, rights[i]!])),
-            })
-          }
-        >
-          {dirty ? submitLabel : "Matches saved"}
-        </Button>
-      )}
+      {!answer &&
+        (autoSubmit ? (
+          <p className="mt-4 text-xs text-muted-foreground">
+            {picked?.type === "match"
+              ? "Saved — these pairings are recorded. Drag again to change them."
+              : "Your pairings are recorded automatically as you drag."}
+          </p>
+        ) : (
+          <Button
+            className="mt-4"
+            disabled={busy || !dirty}
+            onClick={() => onSubmit({ type: "match", pairs: pairsFor(rights) })}
+          >
+            {dirty ? submitLabel : "Matches saved"}
+          </Button>
+        ))}
     </div>
   );
 }

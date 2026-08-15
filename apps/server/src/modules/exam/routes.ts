@@ -14,7 +14,14 @@ import type {
 import { quizAttempts, quizSessions } from "../../db/schema";
 import { h } from "../../lib/handler";
 import { computeReadiness, type AttemptLite } from "../analytics/readiness";
-import { AnswerTypeMismatchError, grade, solutionFor, toPublicQuestion } from "../quiz/grade";
+import {
+  AnswerTypeMismatchError,
+  buildLayout,
+  grade,
+  solutionFor,
+  toPublicQuestion,
+  type QuestionLayout,
+} from "../quiz/grade";
 import type { ApiDeps } from "../shared";
 import { examModes, findExamMode } from "./modes";
 import { buildChoiceOrders, selectExamQuestions } from "./select";
@@ -185,6 +192,9 @@ export function examRoutes(deps: ApiDeps): Router {
       const timeLimitSeconds = Math.max(60, Math.round(questions.length * secondsPerQuestion));
       const now = new Date();
       const choiceOrders = buildChoiceOrders(questions);
+      const layouts: Record<string, QuestionLayout> = Object.fromEntries(
+        questions.map((q) => [q.id, buildLayout(q)]),
+      );
 
       const session = deps.db
         .insert(quizSessions)
@@ -199,6 +209,7 @@ export function examRoutes(deps: ApiDeps): Router {
           timeLimitSeconds,
           expiresAt: new Date(now.getTime() + timeLimitSeconds * 1000),
           choiceOrders: JSON.stringify(choiceOrders),
+          layouts: JSON.stringify(layouts),
           flagged: JSON.stringify([]),
         })
         .returning()
@@ -208,7 +219,9 @@ export function examRoutes(deps: ApiDeps): Router {
         sessionId: session.id,
         certId: body.certId,
         examMode: mode.id,
-        questions: questions.map((q) => applyChoiceOrder(toPublicQuestion(q), choiceOrders)),
+        questions: questions.map((q) =>
+          applyChoiceOrder(toPublicQuestion(q, layouts[q.id]), choiceOrders),
+        ),
         answers: {},
         flagged: [],
         secondsRemaining: timeLimitSeconds,
@@ -248,6 +261,7 @@ export function examRoutes(deps: ApiDeps): Router {
       const questionIds = JSON.parse(session.questionIds) as string[];
       const byId = deps.content.questionsByCertId.get(session.certId)!;
       const choiceOrders = JSON.parse(session.choiceOrders ?? "{}") as Record<string, number[]>;
+      const layouts = JSON.parse(session.layouts ?? "{}") as Record<string, QuestionLayout>;
       const attempts = deps.db
         .select()
         .from(quizAttempts)
@@ -266,7 +280,7 @@ export function examRoutes(deps: ApiDeps): Router {
         questions: questionIds
           .map((id) => byId.get(id))
           .filter((q): q is QuizQuestion => !!q)
-          .map((q) => applyChoiceOrder(toPublicQuestion(q), choiceOrders)),
+          .map((q) => applyChoiceOrder(toPublicQuestion(q, layouts[q.id]), choiceOrders)),
         answers,
         flagged: JSON.parse(session.flagged ?? "[]"),
         secondsRemaining: session.expiresAt
