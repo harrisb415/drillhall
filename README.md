@@ -2,8 +2,10 @@
 
 Self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express + better-sqlite3 server, Better Auth (email/password + Google), content shipped as validated data packs.
 
-**Status: Phase 1 complete** (see `comptia-platform-build-spec.md` §13 for the phase plan):
-single cert (A+ Core 1), auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
+**Status: Phases 1–2 complete** (see `comptia-platform-build-spec.md` §13 for the phase plan).
+
+- **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
+- **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
 
 ## Quickstart (dev)
 
@@ -49,7 +51,27 @@ packages/shared-types  API DTOs shared client↔server
 
 ## Adding content
 
-Edit `packages/content/aplus/*.json`, then `npm run validate`. A new cert = a new folder with `cert.json`, `domains.json`, `flashcards.json`, `quiz.json`, `reference.json` — zero component changes (engines render whatever pack is loaded; multi-cert UI lands in Phase 2).
+Edit `packages/content/<pack>/*.json`, then `npm run validate`. A new cert = a new folder with `cert.json`, `domains.json`, `flashcards.json`, `quiz.json`, `reference.json` — **zero code changes**. The server seeds it on boot (matching rows by `code`, so ids stay stable) and it appears in the cert switcher. `aplus-core2` was added exactly this way.
+
+Question types (one `QuizQuestionSchema` discriminated union, all graded server-side):
+
+| Type | Shape | Client |
+|---|---|---|
+| `mc` | `choices[]` + `answerIndex` | radio-style buttons |
+| `order` | `items[]` in correct order | `@hello-pangea/dnd`, server shuffles before sending |
+| `match` | `pairs[]` of `{left, right}` | `@hello-pangea/dnd`, server shuffles the rights |
+| `terminal` | `expected[]` acceptable commands | `xterm.js`, case/whitespace-insensitive match |
+
+Answers and explanations never reach the client until after grading.
+
+## Readiness scoring
+
+Two distinct weightings (spec §7), in `modules/analytics/readiness.ts`:
+
+1. **Recency weighting** — a domain's mastery is an exponentially decayed average (0.85 per step, most recent 30 attempts), so yesterday's answers count more than last month's.
+2. **Exam weighting** — overall readiness is `Σ(domain mastery × official exam weight)`.
+
+Untouched domains contribute 0 to overall readiness (unstudied material genuinely means you aren't ready) while showing "no data" per-domain rather than a misleading 0%.
 
 ## Auth notes
 

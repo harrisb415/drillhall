@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { and, desc, eq, isNotNull, sql } from "drizzle-orm";
+import { and, desc, eq, isNotNull } from "drizzle-orm";
 import type { DashboardStats } from "@comptia/shared-types";
 import { flashcardProgress, quizAttempts, quizSessions } from "../../db/schema";
 import { h } from "../../lib/handler";
+import { computeReadiness, type AttemptLite } from "../analytics/readiness";
 import type { ApiDeps } from "../shared";
 
 export function dashboardRoutes(deps: ApiDeps): Router {
@@ -19,35 +20,30 @@ export function dashboardRoutes(deps: ApiDeps): Router {
       }
       const userId = req.user!.id;
 
-      const fc = deps.db
-        .select({
-          known: sql<number>`coalesce(sum(case when ${flashcardProgress.status} = 'known' then 1 else 0 end), 0)`,
-          learning: sql<number>`coalesce(sum(case when ${flashcardProgress.status} = 'learning' then 1 else 0 end), 0)`,
-        })
+      const progressRows = deps.db
+        .select({ status: flashcardProgress.status })
         .from(flashcardProgress)
         .where(and(eq(flashcardProgress.userId, userId), eq(flashcardProgress.certId, certId)))
-        .get();
+        .all();
 
-      const totals = deps.db
-        .select({
-          attempts: sql<number>`count(*)`,
-          correct: sql<number>`coalesce(sum(${quizAttempts.correct}), 0)`,
-        })
-        .from(quizAttempts)
-        .where(and(eq(quizAttempts.userId, userId), eq(quizAttempts.certId, certId)))
-        .get();
-
-      const byDomain = deps.db
+      const attemptRows = deps.db
         .select({
           domainCode: quizAttempts.domainCode,
-          attempts: sql<number>`count(*)`,
-          correct: sql<number>`coalesce(sum(${quizAttempts.correct}), 0)`,
+          correct: quizAttempts.correct,
+          answeredAt: quizAttempts.answeredAt,
         })
         .from(quizAttempts)
         .where(and(eq(quizAttempts.userId, userId), eq(quizAttempts.certId, certId)))
-        .groupBy(quizAttempts.domainCode)
         .all();
-      const domainRows = new Map(byDomain.map((r) => [r.domainCode, r]));
+
+      const byDomain = new Map<string, AttemptLite[]>();
+      for (const a of attemptRows) {
+        const list = byDomain.get(a.domainCode);
+        if (list) list.push(a);
+        else byDomain.set(a.domainCode, [a]);
+      }
+      const readiness = computeReadiness(pack.domains, byDomain);
+      const masteryByCode = new Map(readiness.perDomain.map((d) => [d.code, d.mastery]));
 
       const recent = deps.db
         .select()
@@ -63,29 +59,33 @@ export function dashboardRoutes(deps: ApiDeps): Router {
         .limit(5)
         .all();
 
-      const attempts = totals?.attempts ?? 0;
-      const correct = totals?.correct ?? 0;
+      const attempts = attemptRows.length;
+      const correct = attemptRows.filter((a) => a.correct).length;
       const response: DashboardStats = {
         flashcards: {
           total: pack.flashcards.length,
-          known: fc?.known ?? 0,
-          learning: fc?.learning ?? 0,
+          known: progressRows.filter((r) => r.status === "known").length,
+          learning: progressRows.filter((r) => r.status === "learning").length,
         },
         quiz: {
           attempts,
           correct,
           accuracy: attempts > 0 ? Math.round((correct / attempts) * 100) : null,
+          readiness: readiness.overall,
           perDomain: pack.domains.map((d) => {
-            const row = domainRows.get(d.code);
-            const dAttempts = row?.attempts ?? 0;
-            const dCorrect = row?.correct ?? 0;
+            const domainAttempts = byDomain.get(d.code) ?? [];
+            const dCorrect = domainAttempts.filter((a) => a.correct).length;
             return {
               code: d.code,
               name: d.name,
               weight: d.weight,
-              attempts: dAttempts,
+              attempts: domainAttempts.length,
               correct: dCorrect,
-              accuracy: dAttempts > 0 ? Math.round((dCorrect / dAttempts) * 100) : null,
+              accuracy:
+                domainAttempts.length > 0
+                  ? Math.round((dCorrect / domainAttempts.length) * 100)
+                  : null,
+              mastery: masteryByCode.get(d.code) ?? null,
             };
           }),
         },

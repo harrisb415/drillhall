@@ -37,10 +37,11 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
     const stack = createTestStack();
     const { cookie } = await signUp(stack.app);
 
-    // certs
+    // certs — both packs seeded, engines stay cert-agnostic
     const certsRes = await request(stack.app).get("/api/certs").set("Cookie", cookie);
     expect(certsRes.status).toBe(200);
-    expect(certsRes.body).toHaveLength(1);
+    expect(certsRes.body).toHaveLength(2);
+    expect(certsRes.body.map((c: { code: string }) => c.code)).toEqual(["aplus", "aplus-core2"]);
     const cert = certsRes.body[0];
     expect(cert.code).toBe("aplus");
     expect(cert.domains).toHaveLength(5);
@@ -73,11 +74,11 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
     expect(refRes.status).toBe(200);
     expect(refRes.body.groups.length).toBeGreaterThanOrEqual(5);
 
-    // quiz session
+    // quiz session (mc-only so a blanket choice-0 answer is valid for every question)
     const startRes = await request(stack.app)
       .post("/api/quiz/sessions")
       .set("Cookie", cookie)
-      .send({ certId: cert.id, count: 5 });
+      .send({ certId: cert.id, count: 5, types: ["mc"] });
     expect(startRes.status).toBe(200);
     const session = startRes.body as StartSessionResponse;
     expect(session.questions).toHaveLength(5);
@@ -93,10 +94,15 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
       const attempt = await request(stack.app)
         .post("/api/quiz/attempts")
         .set("Cookie", cookie)
-        .send({ sessionId: session.sessionId, questionId: q.id, choiceIndex: 0 });
+        .send({
+          sessionId: session.sessionId,
+          questionId: q.id,
+          answer: { type: "mc", choiceIndex: 0 },
+        });
       expect(attempt.status).toBe(200);
       expect(typeof attempt.body.correct).toBe("boolean");
-      expect(typeof attempt.body.answerIndex).toBe("number");
+      expect(attempt.body.solution.type).toBe("mc");
+      expect(typeof attempt.body.solution.answerIndex).toBe("number");
       expect(attempt.body.explanation.length).toBeGreaterThan(0);
       if (attempt.body.correct) correctCount++;
     }
@@ -105,7 +111,11 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
     const dupe = await request(stack.app)
       .post("/api/quiz/attempts")
       .set("Cookie", cookie)
-      .send({ sessionId: session.sessionId, questionId: session.questions[0]!.id, choiceIndex: 1 });
+      .send({
+        sessionId: session.sessionId,
+        questionId: session.questions[0]!.id,
+        answer: { type: "mc", choiceIndex: 1 },
+      });
     expect(dupe.status).toBe(409);
 
     // complete
@@ -121,7 +131,11 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
     const late = await request(stack.app)
       .post("/api/quiz/attempts")
       .set("Cookie", cookie)
-      .send({ sessionId: session.sessionId, questionId: session.questions[1]!.id, choiceIndex: 0 });
+      .send({
+        sessionId: session.sessionId,
+        questionId: session.questions[1]!.id,
+        answer: { type: "mc", choiceIndex: 0 },
+      });
     expect(late.status).toBe(400);
 
     // dashboard reflects everything
@@ -135,6 +149,10 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
     expect(dash.quiz.correct).toBe(correctCount);
     expect(dash.recentSessions).toHaveLength(1);
     expect(dash.quiz.perDomain).toHaveLength(5);
+    // readiness present and consistent with having attempts
+    expect(typeof dash.quiz.readiness).toBe("number");
+    const touched = dash.quiz.perDomain.filter((d) => d.attempts > 0);
+    for (const d of touched) expect(typeof d.mastery).toBe("number");
   });
 
   it("keeps users' data separate", async () => {
@@ -155,7 +173,7 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
       .send({
         sessionId: start.body.sessionId,
         questionId: start.body.questions[0].id,
-        choiceIndex: 0,
+        answer: { type: "mc", choiceIndex: 0 },
       });
     expect(res.status).toBe(404);
   });

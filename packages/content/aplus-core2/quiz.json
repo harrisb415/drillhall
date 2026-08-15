@@ -1,0 +1,339 @@
+[
+  {
+    "id": "core2-mc-001",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user needs BitLocker and the ability to join a domain. Which Windows edition is the MINIMUM that supports both?",
+    "choices": ["Windows Home", "Windows Pro", "Windows Pro for Workstations", "Windows Enterprise"],
+    "answerIndex": 1,
+    "explanation": "Pro is the lowest edition with BitLocker, domain join, Group Policy, and RDP hosting. Home lacks all four; Pro for Workstations and Enterprise add capacity and management features beyond what's asked."
+  },
+  {
+    "id": "core2-mc-002",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which file system should a 128 GB flash drive use to store 8 GB video files and work in both Windows and macOS?",
+    "choices": ["FAT32", "NTFS", "exFAT", "ext4"],
+    "answerIndex": 2,
+    "explanation": "exFAT combines cross-platform support with no 4 GB file-size limit. FAT32 caps files at 4 GB; NTFS is read-only on macOS by default; ext4 is Linux."
+  },
+  {
+    "id": "core2-mc-003",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which tool creates, deletes, and resizes partitions in Windows?",
+    "choices": ["Device Manager", "Disk Management", "Event Viewer", "msconfig"],
+    "answerIndex": 1,
+    "explanation": "Disk Management (diskmgmt.msc) handles partitions and volumes. diskpart is its command-line equivalent."
+  },
+  {
+    "id": "core2-mc-004",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Linux command lists the contents of the current directory?",
+    "choices": ["pwd", "ls", "cd", "cat"],
+    "answerIndex": 1,
+    "explanation": "ls lists directory contents. pwd prints the working directory path, cd changes directory, cat prints file contents."
+  },
+  {
+    "id": "core2-mc-005",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What is the purpose of User Account Control (UAC)?",
+    "choices": [
+      "Encrypt user files",
+      "Prompt for consent before system-level changes",
+      "Manage user login passwords",
+      "Block all software installation"
+    ],
+    "answerIndex": 1,
+    "explanation": "UAC interrupts actions that modify system state with a consent or credential prompt, preventing silent privilege elevation."
+  },
+  {
+    "id": "core2-mc-006",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A remote worker needs their office PC's desktop from home. The office PC must act as the host. Which edition/feature combination works?",
+    "choices": [
+      "Windows Home with Remote Desktop",
+      "Windows Pro with Remote Desktop",
+      "Any edition with Event Viewer",
+      "Windows Home with Disk Management"
+    ],
+    "answerIndex": 1,
+    "explanation": "Hosting an RDP session requires Pro or higher. Home can only be the connecting client."
+  },
+  {
+    "id": "core2-mc-007",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which wireless security protocol is currently the strongest?",
+    "choices": ["WEP", "WPA", "WPA2", "WPA3"],
+    "answerIndex": 3,
+    "explanation": "WPA3 (SAE handshake) resists offline dictionary attacks. WPA2/AES remains acceptable; WPA/TKIP is deprecated; WEP is broken."
+  },
+  {
+    "id": "core2-mc-008",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An email claiming to be from the CEO asks the finance director to wire funds urgently. What attack is this?",
+    "choices": ["Vishing", "Whaling / spear phishing", "Shoulder surfing", "Evil twin"],
+    "answerIndex": 1,
+    "explanation": "A targeted phish aimed at a specific senior individual is spear phishing (whaling when the target is an executive). Vishing is by phone; evil twin is a rogue Wi-Fi AP."
+  },
+  {
+    "id": "core2-mc-009",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which combination is an example of multifactor authentication?",
+    "choices": [
+      "Password and a PIN",
+      "Password and an authenticator-app code",
+      "Two different passwords",
+      "PIN and a security question"
+    ],
+    "answerIndex": 1,
+    "explanation": "Password (something you know) + authenticator code (something you have) crosses two factor types. Password+PIN and PIN+security question are all 'something you know'."
+  },
+  {
+    "id": "core2-mc-010",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "New hires get access only to the systems their role requires. Which principle is this?",
+    "choices": ["Zero trust", "Least privilege", "Defense in depth", "Acceptable use"],
+    "answerIndex": 1,
+    "explanation": "Least privilege grants the minimum access needed for the job. It limits how much damage a compromised or malicious account can do."
+  },
+  {
+    "id": "core2-mc-011",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A company laptop is stolen from a car. Which control renders the data on its drive unreadable?",
+    "choices": ["A strong Windows password", "BitLocker full-disk encryption", "A BIOS boot password", "NTFS permissions"],
+    "answerIndex": 1,
+    "explanation": "Full-disk encryption protects data at rest even if the drive is removed and read elsewhere. Passwords and NTFS permissions are bypassed by mounting the disk on another system."
+  },
+  {
+    "id": "core2-mc-012",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Malware that encrypts a user's files and demands payment for the key is called:",
+    "choices": ["Spyware", "Ransomware", "Rootkit", "Worm"],
+    "answerIndex": 1,
+    "explanation": "Ransomware encrypts data and extorts payment. Defense: offline/tested backups, patched systems, user training — paying is discouraged and often fruitless."
+  },
+  {
+    "id": "core2-mc-013",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Per the CompTIA malware removal procedure, what should be done FIRST?",
+    "choices": [
+      "Quarantine the infected system",
+      "Investigate and verify malware symptoms",
+      "Disable System Restore",
+      "Educate the end user"
+    ],
+    "answerIndex": 1,
+    "explanation": "Verify it's actually malware before acting. Then quarantine, disable System Restore, remediate, schedule scans/updates, re-enable System Restore with a new restore point, and educate the user — in that order."
+  },
+  {
+    "id": "core2-mc-014",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Why is System Restore disabled during malware removal?",
+    "choices": [
+      "It slows down scanning",
+      "Restore points may contain the infection and reinfect the system",
+      "It locks the registry",
+      "Anti-malware tools can't run while it's on"
+    ],
+    "answerIndex": 1,
+    "explanation": "Existing restore points can preserve infected files; restoring one later would undo the cleanup. Disable, clean, then re-enable and create a fresh point."
+  },
+  {
+    "id": "core2-mc-015",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A PC blue-screens on boot immediately after a graphics driver update. What is the BEST first fix?",
+    "choices": [
+      "Reinstall Windows",
+      "Boot Safe Mode and roll back the driver",
+      "Replace the graphics card",
+      "Run a disk defragment"
+    ],
+    "answerIndex": 1,
+    "explanation": "Safe Mode loads a minimal driver set, letting you use Device Manager → Roll Back Driver. Reinstalls and hardware swaps come only after cheaper reversals fail."
+  },
+  {
+    "id": "core2-mc-016",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Windows takes minutes to reach a usable desktop. Which tool shows and disables autostarting programs?",
+    "choices": ["Task Manager → Startup", "Disk Management", "Device Manager", "Credential Manager"],
+    "answerIndex": 0,
+    "explanation": "Task Manager's Startup tab lists autoruns with an impact rating and a disable button (msconfig points there on modern Windows)."
+  },
+  {
+    "id": "core2-mc-017",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Every browser on a PC redirects searches to an unknown site. The MOST likely cause is:",
+    "choices": [
+      "A failing hard drive",
+      "Malware (browser hijacker)",
+      "An expired TLS certificate",
+      "A DNS server outage"
+    ],
+    "answerIndex": 1,
+    "explanation": "Cross-browser redirects point at a hijacker: malicious extensions, altered proxy settings, or a modified hosts file. Follow the malware removal procedure."
+  },
+  {
+    "id": "core2-mc-018",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which log shows the faulting module when a desktop application keeps crashing?",
+    "choices": [
+      "Event Viewer → Application log",
+      "Event Viewer → Security log",
+      "Task Scheduler history",
+      "Disk Management status"
+    ],
+    "answerIndex": 0,
+    "explanation": "Application Error events in the Application log record the crashing executable and faulting module. The Security log is for auditing/logon events."
+  },
+  {
+    "id": "core2-mc-019",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Illegal content is found on a workstation during a repair. After reporting through proper channels, what must the technician maintain?",
+    "choices": ["A backup schedule", "Chain of custody", "An SDS", "The user's privacy by deleting it"],
+    "answerIndex": 1,
+    "explanation": "Document and preserve the evidence with an unbroken, recorded chain of custody. Deleting or copying it destroys evidence; that decision belongs to security/legal."
+  },
+  {
+    "id": "core2-mc-020",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which precaution protects components while installing RAM?",
+    "choices": [
+      "Working on carpet for cushioning",
+      "Wearing an anti-static wrist strap",
+      "Leaving the PSU switched on for grounding",
+      "Holding modules by their gold contacts"
+    ],
+    "answerIndex": 1,
+    "explanation": "A wrist strap bonded to the chassis equalizes potential and prevents ESD. Power off and unplug, avoid carpet, and handle modules by the edges."
+  },
+  {
+    "id": "core2-mc-021",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A backup runs a full copy Sunday and backs up only that day's changes each weekday. Restoring Thursday's state needs Sunday's full plus every backup since. Which scheme is this?",
+    "choices": ["Differential", "Incremental", "Synthetic full", "Mirror"],
+    "answerIndex": 1,
+    "explanation": "Incremental captures changes since the last backup of any type, so restores chain through every increment. Differential would need only the full plus Thursday's single differential."
+  },
+  {
+    "id": "core2-mc-022",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What does the 3-2-1 backup rule require?",
+    "choices": [
+      "3 backups per day, 2 verified, 1 archived",
+      "3 copies of data, 2 media types, 1 off-site",
+      "3 media types, 2 copies, 1 cloud provider",
+      "3 restore tests, 2 admins, 1 schedule"
+    ],
+    "answerIndex": 1,
+    "explanation": "Three total copies, on two different kinds of media, with one kept off-site — protecting against device failure, site disaster, and single-medium faults at once."
+  },
+  {
+    "id": "core2-mc-023",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An angry user berates a technician about a recurring problem. What should the technician do FIRST?",
+    "choices": [
+      "Explain it isn't IT's fault",
+      "Listen fully without interrupting",
+      "Escalate the ticket immediately",
+      "Ask them to calm down"
+    ],
+    "answerIndex": 1,
+    "explanation": "Let the user vent and actually listen — it de-escalates and surfaces details. Defensiveness, interruption, and 'calm down' all escalate."
+  },
+  {
+    "id": "core2-mc-024",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Before a scheduled server change, which change-management element ensures you can recover if it goes wrong?",
+    "choices": ["Risk analysis", "End-user notification", "Rollback plan", "Approval sign-off"],
+    "answerIndex": 2,
+    "explanation": "The rollback plan defines exactly how to return to the pre-change state. The other elements matter, but they don't get you back to working."
+  },
+  {
+    "id": "core2-order-001",
+    "type": "order",
+    "domainCode": "3.0",
+    "prompt": "Place the seven steps of the CompTIA malware removal procedure in the correct order.",
+    "items": [
+      "Investigate and verify malware symptoms",
+      "Quarantine infected systems",
+      "Disable System Restore in Windows",
+      "Remediate: update anti-malware, then scan and remove",
+      "Schedule scans and run updates",
+      "Enable System Restore and create a restore point",
+      "Educate the end user"
+    ],
+    "explanation": "Verify first, isolate, disable System Restore so cleanup can't be undone into an infected point, remediate, set up ongoing protection, re-enable System Restore with a clean point, and finish with user education."
+  },
+  {
+    "id": "core2-match-001",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each Windows tool to its purpose.",
+    "pairs": [
+      { "left": "Device Manager", "right": "Manage hardware and driver installations" },
+      { "left": "Event Viewer", "right": "Review system and application logs" },
+      { "left": "Disk Management", "right": "Create and resize partitions and volumes" },
+      { "left": "Task Manager", "right": "Monitor processes and disable startup items" }
+    ],
+    "explanation": "devmgmt.msc for hardware/drivers, eventvwr for logs, diskmgmt.msc for storage layout, and Task Manager for live processes, performance, and autoruns."
+  },
+  {
+    "id": "core2-match-002",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each social-engineering attack to its description.",
+    "pairs": [
+      { "left": "Phishing", "right": "Mass fraudulent email harvesting credentials" },
+      { "left": "Tailgating", "right": "Following an authorized person through a secure door" },
+      { "left": "Shoulder surfing", "right": "Observing a screen or keypad to steal information" },
+      { "left": "Evil twin", "right": "Rogue Wi-Fi access point imitating a legitimate one" }
+    ],
+    "explanation": "Phishing arrives in the inbox, tailgating exploits held-open doors, shoulder surfing exploits sight lines, and an evil twin lures devices onto an attacker-controlled network."
+  },
+  {
+    "id": "core2-term-001",
+    "type": "terminal",
+    "domainCode": "3.0",
+    "prompt": "After a DNS change, a user's browser still resolves the old address. Type the Windows command that clears the DNS resolver cache.",
+    "expected": ["ipconfig /flushdns"],
+    "explanation": "ipconfig /flushdns empties the local resolver cache so the next lookup queries DNS fresh. /displaydns shows the cache; /release and /renew handle DHCP leases instead."
+  },
+  {
+    "id": "core2-term-002",
+    "type": "terminal",
+    "domainCode": "1.0",
+    "prompt": "Windows system files are suspected corrupt. Type the command that scans and repairs protected system files.",
+    "expected": ["sfc /scannow"],
+    "explanation": "System File Checker verifies and repairs protected OS files from the component store. If SFC can't repair, DISM /Online /Cleanup-Image /RestoreHealth repairs the store itself."
+  },
+  {
+    "id": "core2-term-003",
+    "type": "terminal",
+    "domainCode": "1.0",
+    "prompt": "A new Group Policy must take effect on a domain PC immediately. Type the command that forces a policy refresh.",
+    "expected": ["gpupdate /force"],
+    "explanation": "gpupdate /force reapplies all policies rather than waiting for the background refresh interval. gpresult /r reports which policies applied."
+  }
+]

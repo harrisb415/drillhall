@@ -7,9 +7,10 @@ import { CONTENT_ROOT, listPackDirs, loadPackDir } from "../src/loader";
 const FIXTURES = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "fixtures");
 
 describe("shipped content packs", () => {
-  it("discovers at least the aplus pack", () => {
+  it("discovers both shipped packs", () => {
     const dirs = listPackDirs().map((d) => path.basename(d));
     expect(dirs).toContain("aplus");
+    expect(dirs).toContain("aplus-core2");
   });
 
   it("every shipped pack passes the schema", () => {
@@ -25,6 +26,16 @@ describe("shipped content packs", () => {
     expect(pack.flashcards.length).toBeGreaterThanOrEqual(30);
     expect(pack.quiz.length).toBeGreaterThanOrEqual(25);
     expect(pack.reference.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("both packs contain every PBQ type", () => {
+    for (const dir of ["aplus", "aplus-core2"]) {
+      const pack = CertPackSchema.parse(loadPackDir(path.join(CONTENT_ROOT, dir)));
+      const types = new Set(pack.quiz.map((q) => q.type));
+      for (const t of ["mc", "order", "match", "terminal"]) {
+        expect(types.has(t as never), `${dir} missing ${t}`).toBe(true);
+      }
+    }
   });
 });
 

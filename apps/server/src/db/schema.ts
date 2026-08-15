@@ -85,7 +85,10 @@ export const quizAttempts = sqliteTable(
     questionId: text("question_id").notNull(),
     /** denormalized from the content pack so dashboard aggregation is one GROUP BY */
     domainCode: text("domain_code").notNull(),
+    /** mc answers only; PBQ answers live in `answer` */
     choiceIndex: integer("choice_index"),
+    /** the submitted AttemptAnswer as JSON (all question types) */
+    answer: text("answer"),
     correct: integer("correct", { mode: "boolean" }).notNull(),
     answeredAt: integer("answered_at", { mode: "timestamp_ms" }).notNull(),
   },

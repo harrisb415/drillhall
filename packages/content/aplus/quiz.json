@@ -365,5 +365,41 @@
     ],
     "answerIndex": 1,
     "explanation": "Bulging or leaking capacitors are physically failing and cause instability that only worsens. Board-level component replacement isn't field-serviceable — replace the motherboard."
+  },
+  {
+    "id": "aplus-order-001",
+    "type": "order",
+    "domainCode": "5.0",
+    "prompt": "Place the six steps of the CompTIA troubleshooting methodology in the correct order.",
+    "items": [
+      "Identify the problem",
+      "Establish a theory of probable cause",
+      "Test the theory to determine the cause",
+      "Establish a plan of action and implement the solution",
+      "Verify full system functionality and implement preventive measures",
+      "Document findings, actions, and outcomes"
+    ],
+    "explanation": "Gather information first, hypothesize, prove the hypothesis, then plan and fix, confirm everything works (and prevent recurrence), and always document last."
+  },
+  {
+    "id": "aplus-match-001",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each port number to its service.",
+    "pairs": [
+      { "left": "22", "right": "SSH" },
+      { "left": "53", "right": "DNS" },
+      { "left": "443", "right": "HTTPS" },
+      { "left": "3389", "right": "RDP" }
+    ],
+    "explanation": "22 carries encrypted SSH/SFTP, 53 serves DNS lookups, 443 is TLS-encrypted web traffic, and 3389 is Remote Desktop."
+  },
+  {
+    "id": "aplus-term-001",
+    "type": "terminal",
+    "domainCode": "5.0",
+    "prompt": "You suspect the local TCP/IP stack is broken. Type the command that tests the IPv4 loopback address.",
+    "expected": ["ping 127.0.0.1", "ping localhost"],
+    "explanation": "Pinging 127.0.0.1 (or localhost) exercises the local stack without touching the network — if this fails, the problem is the OS networking stack, not cabling or DHCP."
   }
 ]

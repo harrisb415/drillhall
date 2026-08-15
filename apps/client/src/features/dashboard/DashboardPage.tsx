@@ -32,7 +32,18 @@ export function DashboardPage() {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="pb-2">
+            <CardDescription>Readiness</CardDescription>
+            <CardTitle className="text-3xl">
+              {data.quiz.readiness !== null ? `${data.quiz.readiness}%` : "—"}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-xs text-muted-foreground">
+            recency-weighted mastery × exam weights
+          </CardContent>
+        </Card>
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Quiz accuracy</CardDescription>
@@ -74,7 +85,8 @@ export function DashboardPage() {
         <CardHeader>
           <CardTitle>Domains</CardTitle>
           <CardDescription>
-            Accuracy by exam domain — weights match the official exam breakdown.
+            Recency-weighted mastery per exam domain — recent answers count more than old ones.
+            Weight badges match the official exam breakdown.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -86,14 +98,16 @@ export function DashboardPage() {
                 </span>
                 <span className="flex shrink-0 items-center gap-2">
                   <Badge variant="secondary">{d.weight}%</Badge>
-                  <span className="w-20 text-right text-muted-foreground">
-                    {d.accuracy !== null ? `${d.accuracy}% (${d.attempts})` : "no data"}
+                  <span className="w-36 text-right text-muted-foreground">
+                    {d.mastery !== null
+                      ? `${d.mastery}% mastery · ${d.attempts} answered`
+                      : "no data"}
                   </span>
                 </span>
               </div>
               <Progress
-                value={d.accuracy ?? 0}
-                barClassName={d.accuracy === null ? "bg-muted" : undefined}
+                value={d.mastery ?? 0}
+                barClassName={d.mastery === null ? "bg-muted" : undefined}
               />
             </div>
           ))}

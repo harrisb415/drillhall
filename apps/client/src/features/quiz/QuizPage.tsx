@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import type { AttemptAnswer } from "@comptia/shared-types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,8 +10,19 @@ import { useCompleteSession, useStartSession, useSubmitAttempt } from "@/lib/api
 import { useCert } from "@/lib/cert-context";
 import { cn } from "@/lib/utils";
 import { useQuizStore } from "@/stores/quiz";
+import { McQuestionView } from "./questions/McQuestionView";
+import { MatchQuestionView } from "./questions/MatchQuestionView";
+import { OrderQuestionView } from "./questions/OrderQuestionView";
+import { TerminalQuestionView } from "./questions/TerminalQuestionView";
 
 const COUNT_OPTIONS = [5, 10, 20];
+
+const TYPE_LABELS: Record<string, string> = {
+  mc: "Multiple choice",
+  order: "Ordering",
+  match: "Matching",
+  terminal: "Terminal",
+};
 
 function SetupPhase() {
   const cert = useCert();
@@ -28,7 +40,8 @@ function SetupPhase() {
       <CardHeader>
         <CardTitle>New quiz</CardTitle>
         <CardDescription>
-          Multiple-choice questions from the {cert.name} pool. Answers are graded as you go.
+          Questions from the {cert.name} pool — multiple choice plus performance-based (ordering,
+          matching, terminal). Graded as you go.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -94,13 +107,15 @@ function PlayingPhase() {
   const answeredCount = Object.keys(answers).length;
   const isLast = index === questions.length - 1;
 
-  function choose(choiceIndex: number) {
+  function submitAnswer(given: AttemptAnswer) {
     if (answer || submit.isPending || sessionId === null || !question) return;
     submit.mutate(
-      { sessionId, questionId: question.id, choiceIndex },
-      { onSuccess: (result) => record(question.id, choiceIndex, result) },
+      { sessionId, questionId: question.id, answer: given },
+      { onSuccess: (result) => record(question.id, given, result) },
     );
   }
+
+  const viewProps = { answer, busy: submit.isPending, onSubmit: submitAnswer };
 
   return (
     <div className="space-y-4">
@@ -108,10 +123,13 @@ function PlayingPhase() {
         <span>
           Question {index + 1} of {questions.length}
         </span>
-        <Badge variant="accent">
-          {question.domainCode} ·{" "}
-          {cert.domains.find((d) => d.code === question.domainCode)?.name ?? ""}
-        </Badge>
+        <span className="flex items-center gap-2">
+          <Badge variant="secondary">{TYPE_LABELS[question.type]}</Badge>
+          <Badge variant="accent">
+            {question.domainCode} ·{" "}
+            {cert.domains.find((d) => d.code === question.domainCode)?.name ?? ""}
+          </Badge>
+        </span>
       </div>
       <Progress value={(answeredCount / questions.length) * 100} />
 
@@ -119,42 +137,43 @@ function PlayingPhase() {
         <CardHeader>
           <CardTitle className="text-lg leading-relaxed">{question.prompt}</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-2">
-          {question.choices.map((choice, i) => {
-            const isChosen = answer?.choiceIndex === i;
-            const isCorrectChoice = answer && answer.answerIndex === i;
-            return (
-              <button
-                key={i}
-                type="button"
-                onClick={() => choose(i)}
-                disabled={!!answer || submit.isPending}
-                className={cn(
-                  "flex w-full items-start gap-3 rounded-md border p-3 text-left text-sm transition-colors",
-                  !answer && "border-border bg-card hover:border-ring/60 hover:bg-accent/50",
-                  answer && isCorrectChoice && "border-success bg-success/10",
-                  answer && isChosen && !isCorrectChoice && "border-destructive bg-destructive/10",
-                  answer && !isChosen && !isCorrectChoice && "border-border opacity-60",
-                )}
-              >
-                <span className="mt-0.5 font-mono text-xs text-muted-foreground">
-                  {String.fromCharCode(65 + i)}
-                </span>
-                <span>{choice}</span>
-              </button>
-            );
-          })}
+        <CardContent>
+          {question.type === "mc" && <McQuestionView question={question} {...viewProps} />}
+          {question.type === "order" && <OrderQuestionView question={question} {...viewProps} />}
+          {question.type === "match" && <MatchQuestionView question={question} {...viewProps} />}
+          {question.type === "terminal" && (
+            <TerminalQuestionView question={question} {...viewProps} />
+          )}
         </CardContent>
       </Card>
 
       {answer && (
         <Card className={answer.correct ? "border-success" : "border-destructive"}>
-          <CardContent className="space-y-1 p-4 text-sm">
+          <CardContent className="space-y-2 p-4 text-sm">
             <div className={cn("font-semibold", answer.correct ? "text-success" : "text-destructive")}>
-              {answer.correct
-                ? "Correct"
-                : `Incorrect — the answer is ${String.fromCharCode(65 + answer.answerIndex)}`}
+              {answer.correct ? "Correct" : "Incorrect"}
             </div>
+            {!answer.correct && answer.solution.type === "order" && (
+              <ol className="list-decimal space-y-1 pl-5 text-muted-foreground">
+                {answer.solution.order.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ol>
+            )}
+            {!answer.correct && answer.solution.type === "match" && (
+              <ul className="space-y-1 text-muted-foreground">
+                {answer.solution.pairs.map((p) => (
+                  <li key={p.left}>
+                    <span className="font-medium text-foreground">{p.left}</span> — {p.right}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {answer.solution.type === "terminal" && (
+              <p className="font-mono text-xs text-muted-foreground">
+                Expected: {answer.solution.expected.join("  or  ")}
+              </p>
+            )}
             <p className="text-muted-foreground">{answer.explanation}</p>
           </CardContent>
         </Card>

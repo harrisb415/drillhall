@@ -3,7 +3,6 @@ import { and, desc, eq, isNotNull } from "drizzle-orm";
 import { z } from "zod";
 import type {
   AttemptResponse,
-  QuizQuestionPublic,
   RecentSession,
   SessionSummary,
   StartSessionResponse,
@@ -11,27 +10,29 @@ import type {
 import { quizAttempts, quizSessions } from "../../db/schema";
 import { h } from "../../lib/handler";
 import type { ApiDeps } from "../shared";
+import { AnswerTypeMismatchError, grade, shuffle, solutionFor, toPublicQuestion } from "./grade";
+
+const QUESTION_TYPES = ["mc", "order", "match", "terminal"] as const;
 
 const StartBody = z.object({
   certId: z.number().int(),
   domainCodes: z.array(z.string()).optional(),
+  types: z.array(z.enum(QUESTION_TYPES)).optional(),
   count: z.number().int().min(1).max(50).default(10),
 });
+
+const AnswerSchema = z.discriminatedUnion("type", [
+  z.object({ type: z.literal("mc"), choiceIndex: z.number().int().min(0) }),
+  z.object({ type: z.literal("order"), order: z.array(z.string()).min(2).max(50) }),
+  z.object({ type: z.literal("match"), pairs: z.record(z.string().max(500)) }),
+  z.object({ type: z.literal("terminal"), command: z.string().min(1).max(500) }),
+]);
 
 const AttemptBody = z.object({
   sessionId: z.number().int(),
   questionId: z.string().min(1),
-  choiceIndex: z.number().int().min(0),
+  answer: AnswerSchema,
 });
-
-function shuffle<T>(input: T[]): T[] {
-  const arr = [...input];
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j]!, arr[i]!];
-  }
-  return arr;
-}
 
 export function quizRoutes(deps: ApiDeps): Router {
   const router = Router();
@@ -40,18 +41,22 @@ export function quizRoutes(deps: ApiDeps): Router {
     "/quiz/sessions",
     h((req, res) => {
       const body = StartBody.parse(req.body);
-      const mcById = deps.content.mcByCertId.get(body.certId);
-      if (!mcById) {
+      const questionsById = deps.content.questionsByCertId.get(body.certId);
+      if (!questionsById) {
         res.status(404).json({ error: "Unknown cert" });
         return;
       }
-      let pool = [...mcById.values()];
+      let pool = [...questionsById.values()];
       if (body.domainCodes && body.domainCodes.length > 0) {
         const wanted = new Set(body.domainCodes);
         pool = pool.filter((q) => wanted.has(q.domainCode));
       }
+      if (body.types && body.types.length > 0) {
+        const wanted = new Set<string>(body.types);
+        pool = pool.filter((q) => wanted.has(q.type));
+      }
       if (pool.length === 0) {
-        res.status(400).json({ error: "No questions match the selected domains" });
+        res.status(400).json({ error: "No questions match the selected filters" });
         return;
       }
       const chosen = shuffle(pool).slice(0, body.count);
@@ -67,17 +72,10 @@ export function quizRoutes(deps: ApiDeps): Router {
         .returning()
         .get();
 
-      const questions: QuizQuestionPublic[] = chosen.map((q) => ({
-        id: q.id,
-        domainCode: q.domainCode,
-        type: "mc",
-        prompt: q.prompt,
-        choices: q.choices,
-      }));
       const response: StartSessionResponse = {
         sessionId: session.id,
         certId: body.certId,
-        questions,
+        questions: chosen.map(toPublicQuestion),
       };
       res.json(response);
     }),
@@ -105,12 +103,16 @@ export function quizRoutes(deps: ApiDeps): Router {
         res.status(400).json({ error: "Question is not part of this session" });
         return;
       }
-      const question = deps.content.mcByCertId.get(session.certId)?.get(body.questionId);
+      const question = deps.content.questionsByCertId.get(session.certId)?.get(body.questionId);
       if (!question) {
         res.status(404).json({ error: "Unknown question" });
         return;
       }
-      if (body.choiceIndex >= question.choices.length) {
+      if (
+        body.answer.type === "mc" &&
+        question.type === "mc" &&
+        body.answer.choiceIndex >= question.choices.length
+      ) {
         res.status(400).json({ error: "choiceIndex out of range" });
         return;
       }
@@ -126,7 +128,17 @@ export function quizRoutes(deps: ApiDeps): Router {
         return;
       }
 
-      const correct = body.choiceIndex === question.answerIndex;
+      let correct: boolean;
+      try {
+        correct = grade(question, body.answer);
+      } catch (err) {
+        if (err instanceof AnswerTypeMismatchError) {
+          res.status(400).json({ error: err.message });
+          return;
+        }
+        throw err;
+      }
+
       deps.db
         .insert(quizAttempts)
         .values({
@@ -135,7 +147,8 @@ export function quizRoutes(deps: ApiDeps): Router {
           certId: session.certId,
           questionId: question.id,
           domainCode: question.domainCode,
-          choiceIndex: body.choiceIndex,
+          choiceIndex: body.answer.type === "mc" ? body.answer.choiceIndex : null,
+          answer: JSON.stringify(body.answer),
           correct,
           answeredAt: new Date(),
         })
@@ -143,8 +156,8 @@ export function quizRoutes(deps: ApiDeps): Router {
 
       const response: AttemptResponse = {
         correct,
-        answerIndex: question.answerIndex,
         explanation: question.explanation,
+        solution: solutionFor(question),
       };
       res.json(response);
     }),

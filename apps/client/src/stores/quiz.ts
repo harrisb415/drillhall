@@ -1,12 +1,13 @@
 import { create } from "zustand";
 import type {
+  AttemptAnswer,
   AttemptResponse,
   QuizQuestionPublic,
   SessionSummary,
   StartSessionResponse,
 } from "@comptia/shared-types";
 
-export type AnswerRecord = AttemptResponse & { choiceIndex: number };
+export type AnswerRecord = AttemptResponse & { given: AttemptAnswer };
 
 interface QuizState {
   phase: "setup" | "playing" | "summary";
@@ -16,7 +17,7 @@ interface QuizState {
   answers: Record<string, AnswerRecord>;
   summary: SessionSummary | null;
   begin: (session: StartSessionResponse) => void;
-  record: (questionId: string, choiceIndex: number, result: AttemptResponse) => void;
+  record: (questionId: string, given: AttemptAnswer, result: AttemptResponse) => void;
   advance: () => void;
   finish: (summary: SessionSummary) => void;
   reset: () => void;
@@ -38,8 +39,8 @@ export const useQuizStore = create<QuizState>((set) => ({
       answers: {},
       summary: null,
     }),
-  record: (questionId, choiceIndex, result) =>
-    set((s) => ({ answers: { ...s.answers, [questionId]: { ...result, choiceIndex } } })),
+  record: (questionId, given, result) =>
+    set((s) => ({ answers: { ...s.answers, [questionId]: { ...result, given } } })),
   advance: () => set((s) => ({ index: Math.min(s.index + 1, s.questions.length - 1) })),
   finish: (summary) => set({ phase: "summary", summary }),
   reset: () =>

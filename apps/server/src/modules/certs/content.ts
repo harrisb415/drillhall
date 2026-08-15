@@ -1,5 +1,5 @@
 import { and, eq } from "drizzle-orm";
-import type { CertPack, McQuestion } from "@comptia/content";
+import type { CertPack, QuizQuestion } from "@comptia/content";
 import type { Db } from "../../db";
 import { certDomains, certs } from "../../db/schema";
 
@@ -8,7 +8,7 @@ export interface ContentIndex {
   packs: CertPack[];
   byCertId: Map<number, CertPack>;
   certIdByCode: Map<string, number>;
-  mcByCertId: Map<number, Map<string, McQuestion>>;
+  questionsByCertId: Map<number, Map<string, QuizQuestion>>;
 }
 
 /**
@@ -20,7 +20,7 @@ export function seedCerts(db: Db, packs: CertPack[]): ContentIndex {
     packs,
     byCertId: new Map(),
     certIdByCode: new Map(),
-    mcByCertId: new Map(),
+    questionsByCertId: new Map(),
   };
 
   for (const pack of packs) {
@@ -61,10 +61,7 @@ export function seedCerts(db: Db, packs: CertPack[]): ContentIndex {
 
     index.byCertId.set(certId, pack);
     index.certIdByCode.set(pack.code, certId);
-    index.mcByCertId.set(
-      certId,
-      new Map(pack.quiz.filter((q): q is McQuestion => q.type === "mc").map((q) => [q.id, q])),
-    );
+    index.questionsByCertId.set(certId, new Map(pack.quiz.map((q) => [q.id, q])));
   }
 
   return index;

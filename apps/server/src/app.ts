@@ -64,15 +64,36 @@ export function createApp(deps: AppDeps): Express {
   app.get("/api/meta", (_req, res) => res.json(deps.meta));
 
   // Auth: rate-limited, and mounted BEFORE express.json() — Better Auth reads the body itself.
-  const authLimiter = rateLimit({
+  //
+  // Two limits, because one number can't serve both jobs. The client's session
+  // hook polls get-session several times a minute, so a single strict budget
+  // locks out an ordinary studying user long before it inconveniences an
+  // attacker. Credential endpoints — the only brute-forceable ones — keep a
+  // tight budget; session reads get a generous one.
+  const limiterOpts = {
     windowMs: 15 * 60 * 1000,
-    limit: 100,
-    standardHeaders: "draft-8",
+    standardHeaders: "draft-8" as const,
     legacyHeaders: false,
     skip: () => deps.disableRateLimit === true,
+  };
+  const credentialLimiter = rateLimit({
+    ...limiterOpts,
+    limit: 20,
+    message: { error: "Too many sign-in attempts — try again later" },
+  });
+  const sessionLimiter = rateLimit({
+    ...limiterOpts,
+    limit: 1000,
     message: { error: "Too many auth requests — try again later" },
   });
-  app.all("/api/auth/*", authLimiter, toNodeHandler(deps.auth));
+  const CREDENTIAL_PATHS = /^\/api\/auth\/(sign-in|sign-up|forget-password|reset-password)/;
+  app.all("/api/auth/*", (req, res, next) => {
+    const limiter = CREDENTIAL_PATHS.test(req.originalUrl.split("?")[0]!)
+      ? credentialLimiter
+      : sessionLimiter;
+    limiter(req, res, next);
+  });
+  app.all("/api/auth/*", toNodeHandler(deps.auth));
 
   app.use(express.json());
 

@@ -42,18 +42,35 @@ export interface ReferenceResponse {
 }
 
 // ---- quiz ----
-/** A question as sent to the client: no answer, no explanation. */
-export interface QuizQuestionPublic {
-  id: string;
-  domainCode: string;
-  type: "mc";
-  prompt: string;
-  choices: string[];
-}
+export type QuizQuestionType = "mc" | "order" | "match" | "terminal";
+
+/**
+ * A question as sent to the client: no answers, no explanation.
+ * `order` items and `match` rights arrive pre-shuffled by the server.
+ */
+export type QuizQuestionPublic =
+  | { id: string; domainCode: string; type: "mc"; prompt: string; choices: string[] }
+  | { id: string; domainCode: string; type: "order"; prompt: string; items: string[] }
+  | { id: string; domainCode: string; type: "match"; prompt: string; lefts: string[]; rights: string[] }
+  | { id: string; domainCode: string; type: "terminal"; prompt: string };
+
+export type AttemptAnswer =
+  | { type: "mc"; choiceIndex: number }
+  | { type: "order"; order: string[] }
+  | { type: "match"; pairs: Record<string, string> }
+  | { type: "terminal"; command: string };
+
+/** The correct answer, revealed after grading. */
+export type Solution =
+  | { type: "mc"; answerIndex: number }
+  | { type: "order"; order: string[] }
+  | { type: "match"; pairs: { left: string; right: string }[] }
+  | { type: "terminal"; expected: string[] };
 
 export interface StartSessionRequest {
   certId: number;
   domainCodes?: string[];
+  types?: QuizQuestionType[];
   count?: number;
 }
 
@@ -66,13 +83,13 @@ export interface StartSessionResponse {
 export interface AttemptRequest {
   sessionId: number;
   questionId: string;
-  choiceIndex: number;
+  answer: AttemptAnswer;
 }
 
 export interface AttemptResponse {
   correct: boolean;
-  answerIndex: number;
   explanation: string;
+  solution: Solution;
 }
 
 export interface DomainScore {
@@ -108,8 +125,10 @@ export interface DashboardDomainStat {
   weight: number;
   attempts: number;
   correct: number;
-  /** percent 0-100, null when no attempts yet */
+  /** raw percent 0-100, null when no attempts yet */
   accuracy: number | null;
+  /** recency-weighted mastery, percent 0-100, null when no attempts yet (spec §7) */
+  mastery: number | null;
 }
 
 export interface DashboardStats {
@@ -118,6 +137,8 @@ export interface DashboardStats {
     attempts: number;
     correct: number;
     accuracy: number | null;
+    /** Σ(domain mastery × exam weight), percent 0-100; null until any attempt exists */
+    readiness: number | null;
     perDomain: DashboardDomainStat[];
   };
   recentSessions: RecentSession[];

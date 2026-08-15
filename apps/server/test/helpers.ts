@@ -9,7 +9,7 @@ import { createApp } from "../src/app";
 import { MIGRATIONS_DIR } from "../src/db/migration-check";
 import * as schema from "../src/db/schema";
 import { createAuth } from "../src/lib/auth";
-import { seedCerts } from "../src/modules/certs/content";
+import { seedCerts, type ContentIndex } from "../src/modules/certs/content";
 import type { EmailMessage } from "../src/modules/notifications/providers/email";
 
 export interface TestStack {
@@ -18,11 +18,14 @@ export interface TestStack {
   sqlite: Database.Database;
   auth: ReturnType<typeof createAuth>;
   emails: EmailMessage[];
+  content: ContentIndex;
   certId: number;
 }
 
 export function createTestStack(opts?: {
   google?: { clientId: string; clientSecret: string };
+  /** Most suites hammer the auth endpoints; only the rate-limit suite wants them live. */
+  rateLimit?: boolean;
 }): TestStack {
   const sqlite = new Database(":memory:");
   sqlite.pragma("foreign_keys = ON");
@@ -52,10 +55,10 @@ export function createTestStack(opts?: {
     logger: pino({ level: "silent" }),
     meta: { name: "test", version: "0.0.0-test", googleEnabled: !!opts?.google },
     clientDist: null,
-    disableRateLimit: true,
+    disableRateLimit: opts?.rateLimit !== true,
   });
 
-  return { app, db, sqlite, auth, emails, certId };
+  return { app, db, sqlite, auth, emails, content, certId };
 }
 
 export async function signUp(

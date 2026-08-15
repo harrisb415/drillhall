@@ -1,0 +1,134 @@
+[
+  {
+    "id": "windows-editions",
+    "title": "Windows Editions",
+    "columns": ["Edition", "Key differentiators"],
+    "rows": [
+      ["Home", "Consumer baseline; RDP client only, no BitLocker, no domain join"],
+      ["Pro", "BitLocker, RDP host, domain/Azure AD join, Group Policy, Hyper-V"],
+      ["Pro for Workstations", "Pro plus ReFS, persistent memory, 4 CPUs / 6 TB RAM"],
+      ["Enterprise", "Volume licensing; AppLocker, advanced management/telemetry controls"]
+    ]
+  },
+  {
+    "id": "file-systems",
+    "title": "File Systems",
+    "columns": ["File system", "Max file size", "Best for"],
+    "rows": [
+      ["NTFS", "16 EB (practical)", "Windows system/data drives — permissions, EFS, journaling"],
+      ["FAT32", "4 GB", "Maximum compatibility, small flash drives"],
+      ["exFAT", "16 EB", "Large flash drives shared between Windows and macOS"],
+      ["ext4", "16 TB", "Linux default"],
+      ["APFS", "8 EB", "macOS default — snapshots, native encryption"]
+    ]
+  },
+  {
+    "id": "windows-commands",
+    "title": "Windows Command Line",
+    "description": "The commands Core 2 expects you to recognize and type.",
+    "columns": ["Command", "Purpose"],
+    "rows": [
+      ["ipconfig /all", "Full IP configuration including MAC and DHCP/DNS servers"],
+      ["ipconfig /flushdns", "Clear the DNS resolver cache"],
+      ["ipconfig /release + /renew", "Drop and reacquire the DHCP lease"],
+      ["ping <host>", "ICMP reachability test"],
+      ["tracert <host>", "Hop-by-hop route to a destination"],
+      ["nslookup <name>", "Query DNS directly"],
+      ["netstat -ano", "Open connections and listening ports with PIDs"],
+      ["sfc /scannow", "Scan and repair protected system files"],
+      ["chkdsk /f", "Check the file system and fix errors (locks the volume)"],
+      ["DISM /Online /Cleanup-Image /RestoreHealth", "Repair the Windows component store"],
+      ["gpupdate /force", "Reapply Group Policy immediately"],
+      ["gpresult /r", "Show which policies applied to the machine/user"],
+      ["shutdown /r /t 0", "Restart immediately"],
+      ["winver", "Show the Windows version/build"],
+      ["diskpart", "Command-line partition management"]
+    ]
+  },
+  {
+    "id": "linux-commands",
+    "title": "Linux Command Line",
+    "columns": ["Command", "Purpose"],
+    "rows": [
+      ["ls / ls -la", "List directory contents (long form incl. hidden)"],
+      ["pwd", "Print the current directory"],
+      ["cd <dir>", "Change directory"],
+      ["cp / mv / rm", "Copy, move/rename, delete"],
+      ["cat <file>", "Print file contents"],
+      ["grep <pattern>", "Search text for a pattern"],
+      ["chmod / chown", "Change permissions / ownership"],
+      ["sudo <cmd>", "Run a command with elevated privileges"],
+      ["apt / yum / dnf", "Package management (Debian / RHEL families)"],
+      ["ps aux, top", "Running processes / live monitor"],
+      ["df -h / du -sh", "Disk free space / directory usage"],
+      ["ip a (ifconfig)", "Show network interfaces and addresses"]
+    ]
+  },
+  {
+    "id": "malware-types",
+    "title": "Malware Types",
+    "columns": ["Type", "Behavior", "Primary defense"],
+    "rows": [
+      ["Virus", "Attaches to files, spreads when run", "Anti-malware, don't run unknown files"],
+      ["Worm", "Self-propagates across networks", "Patching, firewalls, segmentation"],
+      ["Trojan", "Malicious payload disguised as legit software", "Official install sources only"],
+      ["Ransomware", "Encrypts data, demands payment", "Offline + tested backups, patching"],
+      ["Spyware / keylogger", "Steals input, credentials, and activity", "Anti-malware, MFA"],
+      ["Rootkit", "Hides deep with admin rights, survives reboots", "Boot-time/offline scans, reimage"],
+      ["Cryptominer", "Steals CPU/GPU for mining", "Anti-malware, watch for heat/slowness"]
+    ]
+  },
+  {
+    "id": "social-engineering",
+    "title": "Social Engineering Attacks",
+    "columns": ["Attack", "Description"],
+    "rows": [
+      ["Phishing", "Mass fraudulent email harvesting credentials or delivering malware"],
+      ["Spear phishing", "Phishing tailored to a specific person or organization"],
+      ["Whaling", "Spear phishing aimed at executives"],
+      ["Vishing", "Voice-call fraud (fake support, fake bank)"],
+      ["Smishing", "SMS-based phishing"],
+      ["Tailgating / piggybacking", "Following someone through a controlled door"],
+      ["Shoulder surfing", "Observing screens or keypads for secrets"],
+      ["Dumpster diving", "Recovering sensitive info from trash"],
+      ["Evil twin", "Rogue Wi-Fi AP imitating a legitimate SSID"]
+    ]
+  },
+  {
+    "id": "wireless-security",
+    "title": "Wireless Security Protocols",
+    "columns": ["Protocol", "Encryption", "Verdict"],
+    "rows": [
+      ["WEP", "RC4, broken IVs", "Never use"],
+      ["WPA", "TKIP", "Deprecated — transitional fix for WEP hardware"],
+      ["WPA2", "AES-CCMP", "Still acceptable; personal (PSK) and enterprise (802.1X)"],
+      ["WPA3", "AES with SAE handshake", "Current best — resists offline dictionary attacks"]
+    ]
+  },
+  {
+    "id": "backup-types",
+    "title": "Backup Types & 3-2-1",
+    "columns": ["Scheme", "What it copies", "Restore path"],
+    "rows": [
+      ["Full", "Everything, every run", "The one full backup"],
+      ["Incremental", "Changes since the last backup of any type", "Full + every increment since"],
+      ["Differential", "Changes since the last full", "Full + the latest differential"],
+      ["3-2-1 rule", "3 copies, 2 media types, 1 off-site", "Test restores regularly"]
+    ]
+  },
+  {
+    "id": "malware-removal-steps",
+    "title": "Malware Removal Procedure",
+    "description": "The official seven steps, in order — tested directly on the exam.",
+    "columns": ["Step", "Action"],
+    "rows": [
+      ["1", "Investigate and verify malware symptoms"],
+      ["2", "Quarantine infected systems"],
+      ["3", "Disable System Restore in Windows"],
+      ["4", "Remediate: update anti-malware software, then scan and remove"],
+      ["5", "Schedule scans and run updates"],
+      ["6", "Enable System Restore and create a restore point"],
+      ["7", "Educate the end user"]
+    ]
+  }
+]

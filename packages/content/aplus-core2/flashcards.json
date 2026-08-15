@@ -1,0 +1,194 @@
+[
+  {
+    "id": "core2-fc-001",
+    "domainCode": "1.0",
+    "front": "Which features does Windows Pro have that Home lacks?",
+    "back": "BitLocker drive encryption, acting as a Remote Desktop host, joining an Active Directory domain, and Group Policy management. Home can be an RDP client but not a host."
+  },
+  {
+    "id": "core2-fc-002",
+    "domainCode": "1.0",
+    "front": "NTFS vs FAT32 vs exFAT?",
+    "back": "NTFS: Windows default — permissions, encryption, journaling, huge files. FAT32: universal compatibility but 4 GB max file size. exFAT: FAT32's compatibility without the 4 GB limit — the choice for large flash drives used across OSes."
+  },
+  {
+    "id": "core2-fc-003",
+    "domainCode": "1.0",
+    "front": "What does UAC do?",
+    "back": "User Account Control prompts for consent (or admin credentials) before actions that change system state, so malware can't silently elevate — even when the user is an administrator."
+  },
+  {
+    "id": "core2-fc-004",
+    "domainCode": "1.0",
+    "front": "Name the key built-in Windows management consoles and their jobs.",
+    "back": "Device Manager (drivers/hardware), Disk Management (partitions/volumes), Event Viewer (system and app logs), Task Manager (processes, startup, performance), Services (background services), Task Scheduler (automated jobs)."
+  },
+  {
+    "id": "core2-fc-005",
+    "domainCode": "1.0",
+    "front": "What is the Windows Registry and which tool edits it?",
+    "back": "The hierarchical database of OS and application settings (hives like HKLM, HKCU). Edited with regedit — export a backup of a key before changing it."
+  },
+  {
+    "id": "core2-fc-006",
+    "domainCode": "1.0",
+    "front": "Basic Linux file commands: ls, cp, mv, rm, chmod?",
+    "back": "ls lists directory contents, cp copies, mv moves/renames, rm deletes, chmod changes permissions (e.g. chmod 644 file). sudo runs a command with elevated privileges."
+  },
+  {
+    "id": "core2-fc-007",
+    "domainCode": "1.0",
+    "front": "What are Time Machine and Keychain on macOS?",
+    "back": "Time Machine is the built-in incremental backup to an external/network disk. Keychain is the system credential store for passwords and certificates."
+  },
+  {
+    "id": "core2-fc-008",
+    "domainCode": "1.0",
+    "front": "When would you use a Windows 'in-place upgrade' vs a clean install?",
+    "back": "In-place upgrade keeps apps, settings, and files (run setup from within Windows) — least disruption. Clean install wipes the disk — for corrupted systems, hardware handoffs, or edition/architecture changes."
+  },
+  {
+    "id": "core2-fc-009",
+    "domainCode": "2.0",
+    "front": "Name the common malware types.",
+    "back": "Virus (attaches to files), worm (self-spreads over networks), trojan (disguised as legit software), ransomware (encrypts data for payment), spyware/keylogger (steals input and data), rootkit (hides deep with admin rights), cryptominer (steals compute)."
+  },
+  {
+    "id": "core2-fc-010",
+    "domainCode": "2.0",
+    "front": "Phishing vs spear phishing vs whaling vs vishing/smishing?",
+    "back": "Phishing: mass fraudulent email. Spear phishing: targeted at a specific person/org. Whaling: targets executives. Vishing: by phone call. Smishing: by SMS."
+  },
+  {
+    "id": "core2-fc-011",
+    "domainCode": "2.0",
+    "front": "What is multifactor authentication (MFA)?",
+    "back": "Authentication using two or more different factor types: something you know (password), have (phone/authenticator/token), or are (biometric). Two passwords are not MFA — same factor type."
+  },
+  {
+    "id": "core2-fc-012",
+    "domainCode": "2.0",
+    "front": "Principle of least privilege?",
+    "back": "Every account gets only the access required for its job, nothing more. Users run as standard users; admin rights are separate accounts used only when needed. Limits the blast radius of compromise."
+  },
+  {
+    "id": "core2-fc-013",
+    "domainCode": "2.0",
+    "front": "Rank wireless security protocols weakest to strongest.",
+    "back": "WEP (broken, never use) → WPA/TKIP (deprecated) → WPA2/AES-CCMP (still common, fine) → WPA3/SAE (current best — resists offline dictionary attacks)."
+  },
+  {
+    "id": "core2-fc-014",
+    "domainCode": "2.0",
+    "front": "BitLocker vs EFS?",
+    "back": "BitLocker encrypts the entire volume (keys usually sealed in the TPM) — protects a lost/stolen machine. EFS encrypts individual files/folders per user. BitLocker is the default answer for laptop theft scenarios."
+  },
+  {
+    "id": "core2-fc-015",
+    "domainCode": "2.0",
+    "front": "Tailgating, shoulder surfing, dumpster diving — and the defenses?",
+    "back": "Tailgating: following someone through a secure door → mantraps, badge-per-person policy. Shoulder surfing: watching a screen/keypad → privacy filters, awareness. Dumpster diving: recovering discarded info → shredding."
+  },
+  {
+    "id": "core2-fc-016",
+    "domainCode": "2.0",
+    "front": "Key mobile device security controls?",
+    "back": "Screen lock (PIN/biometric), full-device encryption, remote wipe via MDM, OS updates, app-store-only installs, and locator services. For BYOD: MDM profiles separate work data."
+  },
+  {
+    "id": "core2-fc-017",
+    "domainCode": "3.0",
+    "front": "List the 7 steps of the CompTIA malware removal procedure.",
+    "back": "1) Investigate and verify malware symptoms. 2) Quarantine infected systems. 3) Disable System Restore in Windows. 4) Remediate: update anti-malware, scan and remove. 5) Schedule scans and run updates. 6) Enable System Restore and create a restore point. 7) Educate the end user."
+  },
+  {
+    "id": "core2-fc-018",
+    "domainCode": "3.0",
+    "front": "What is Safe Mode and when do you use it?",
+    "back": "Windows boots with minimal drivers and services (via WinRE → Startup Settings). Use it when a driver, service, or malware prevents normal boot or removal — the offending component usually isn't loaded there."
+  },
+  {
+    "id": "core2-fc-019",
+    "domainCode": "3.0",
+    "front": "A BSOD appears right after a driver update. Fix?",
+    "back": "Boot Safe Mode → Device Manager → Roll Back Driver. If unbootable, use WinRE (System Restore to the pre-update point, or Startup Repair). The stop code and faulting module name the culprit."
+  },
+  {
+    "id": "core2-fc-020",
+    "domainCode": "3.0",
+    "front": "Browser homepage changed, constant redirects and pop-ups. Diagnosis?",
+    "back": "Browser hijacker / adware. Follow the malware removal steps; also reset browser settings, remove rogue extensions and proxy settings, and check the hosts file."
+  },
+  {
+    "id": "core2-fc-021",
+    "domainCode": "3.0",
+    "front": "Windows is sluggish at startup. What do you check?",
+    "back": "Task Manager → Startup tab (disable heavy autoruns), background processes hogging CPU/RAM/disk, malware scan, free disk space, pending updates. On HDDs, consider an SSD upgrade."
+  },
+  {
+    "id": "core2-fc-022",
+    "domainCode": "3.0",
+    "front": "Which tool shows why an application crashed?",
+    "back": "Event Viewer → Windows Logs → Application: look for Error events from the app or 'Application Error'/.NET entries at the crash time, which include the faulting module."
+  },
+  {
+    "id": "core2-fc-023",
+    "domainCode": "3.0",
+    "front": "What is WinRE and how do you reach it?",
+    "back": "The Windows Recovery Environment: Startup Repair, System Restore, command prompt, reset, and Startup Settings (Safe Mode). Reach it via Settings → Recovery → Advanced startup, Shift+Restart, or automatically after failed boots."
+  },
+  {
+    "id": "core2-fc-024",
+    "domainCode": "3.0",
+    "front": "Mobile device: apps crash and the OS is unstable after an update. First steps?",
+    "back": "Restart the device, update the apps, clear the misbehaving app's cache/data, check free storage. Escalate to backing up and factory-resetting only after the simple steps fail."
+  },
+  {
+    "id": "core2-fc-025",
+    "domainCode": "4.0",
+    "front": "What belongs in a good ticket?",
+    "back": "User and device info, clear problem description in the user's words, steps already tried, severity/impact, and ongoing progress notes — so the next tech can pick it up cold."
+  },
+  {
+    "id": "core2-fc-026",
+    "domainCode": "4.0",
+    "front": "What is chain of custody?",
+    "back": "The documented, unbroken record of who collected, handled, and stored evidence and when. Required for prohibited-content incidents so evidence stands up to scrutiny — document, secure, and hand off formally."
+  },
+  {
+    "id": "core2-fc-027",
+    "domainCode": "4.0",
+    "front": "ESD precautions when working inside a PC?",
+    "back": "Anti-static wrist strap connected to the chassis, anti-static mat/bags for components, touch bare metal before handling parts, unplug power, don't work on carpet. Never open a PSU or CRT — capacitors hold lethal charge."
+  },
+  {
+    "id": "core2-fc-028",
+    "domainCode": "4.0",
+    "front": "Full vs incremental vs differential backup?",
+    "back": "Full: everything, every time. Incremental: only changes since the last backup of any kind — smallest/fastest, longest restore chain. Differential: changes since the last full — restore needs just full + latest differential."
+  },
+  {
+    "id": "core2-fc-029",
+    "domainCode": "4.0",
+    "front": "What is the 3-2-1 backup rule?",
+    "back": "3 copies of the data, on 2 different media types, with 1 copy off-site. Test restores — an unverified backup is a hope, not a backup."
+  },
+  {
+    "id": "core2-fc-030",
+    "domainCode": "4.0",
+    "front": "Core elements of change management?",
+    "back": "Documented request and purpose, scope, risk analysis, approval, scheduled window, rollback plan, end-user notification, and post-change documentation."
+  },
+  {
+    "id": "core2-fc-031",
+    "domainCode": "4.0",
+    "front": "What is an SDS?",
+    "back": "Safety Data Sheet — documents a chemical product's hazards, safe handling, first aid, and disposal (e.g., for cleaning solvents, toner). Consult it for any spill or exposure."
+  },
+  {
+    "id": "core2-fc-032",
+    "domainCode": "4.0",
+    "front": "Professional communication basics with a frustrated user?",
+    "back": "Listen without interrupting, stay calm and avoid being defensive, don't use jargon, set honest expectations for the fix and timeline, follow up. Never argue or minimize the problem."
+  }
+]
