@@ -1,27 +1,32 @@
 import { useEffect, useRef } from "react";
 import { Terminal } from "@xterm/xterm";
 import "@xterm/xterm/css/xterm.css";
-import type { AttemptAnswer, QuizQuestionPublic } from "@comptia/shared-types";
-import type { AnswerRecord } from "@/stores/quiz";
+import type { QuizQuestionPublic } from "@comptia/shared-types";
+import { currentAnswer, type QuestionViewProps } from "./types";
+
+const PROMPT = "C:\\> ";
 
 export function TerminalQuestionView({
   question,
   answer,
+  given,
   busy,
   onSubmit,
-}: {
-  question: Extract<QuizQuestionPublic, { type: "terminal" }>;
-  answer: AnswerRecord | undefined;
-  busy: boolean;
-  onSubmit: (answer: AttemptAnswer) => void;
-}) {
+}: QuestionViewProps<Extract<QuizQuestionPublic, { type: "terminal" }>>) {
   const containerRef = useRef<HTMLDivElement>(null);
   const termRef = useRef<Terminal | null>(null);
   const bufferRef = useRef("");
   const lockedRef = useRef(false);
   const onSubmitRef = useRef(onSubmit);
   onSubmitRef.current = onSubmit;
-  lockedRef.current = !!answer || busy;
+
+  // Grading locks the terminal; an exam leaves it open so the command can be
+  // retyped right up until submission.
+  const graded = !!answer;
+  lockedRef.current = graded || busy;
+
+  const picked = currentAnswer({ answer, given });
+  const priorCommand = picked?.type === "terminal" ? picked.command : null;
 
   useEffect(() => {
     const term = new Terminal({
@@ -33,10 +38,12 @@ export function TerminalQuestionView({
       theme: { background: "#0d1117", foreground: "#e6edf3", cursor: "#e6edf3" },
     });
     term.open(containerRef.current!);
-    term.write("C:\\> ");
+    term.write(PROMPT);
+    // Restore what was typed before, so revisiting a question in an exam shows it.
+    if (priorCommand) term.write(priorCommand);
+    bufferRef.current = priorCommand ?? "";
     term.focus();
     termRef.current = term;
-    bufferRef.current = "";
 
     const sub = term.onData((data) => {
       if (lockedRef.current) return;
@@ -64,16 +71,18 @@ export function TerminalQuestionView({
       term.dispose();
       termRef.current = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [question.id]);
 
-  const resultShownRef = useRef(false);
+  // Report the verdict only once grading actually exists.
+  const shownRef = useRef(false);
   useEffect(() => {
     if (!answer) {
-      resultShownRef.current = false;
+      shownRef.current = false;
       return;
     }
-    if (termRef.current && !resultShownRef.current) {
-      resultShownRef.current = true;
+    if (termRef.current && !shownRef.current) {
+      shownRef.current = true;
       termRef.current.write(
         answer.correct
           ? "\x1b[32mCommand accepted.\x1b[0m\r\n"
@@ -82,13 +91,24 @@ export function TerminalQuestionView({
     }
   }, [answer]);
 
+  // In an exam, acknowledge the save and re-prompt so it can be changed.
+  const lastRecorded = useRef<string | null>(null);
+  useEffect(() => {
+    if (graded || !priorCommand || !termRef.current) return;
+    if (lastRecorded.current === priorCommand) return;
+    lastRecorded.current = priorCommand;
+    bufferRef.current = "";
+    termRef.current.write(`\x1b[90mrecorded\x1b[0m\r\n${PROMPT}`);
+  }, [priorCommand, graded]);
+
   return (
     <div>
       <div className="overflow-x-auto rounded-md border border-border bg-[#0d1117] p-2">
         <div ref={containerRef} />
       </div>
       <p className="mt-2 text-xs text-muted-foreground">
-        Type the command and press Enter to submit. Case and extra spaces don't matter.
+        Type the command and press Enter{graded ? "." : " — you can retype to change it."} Case and
+        extra spaces don't matter.
       </p>
     </div>
   );

@@ -64,11 +64,30 @@ export const ReferenceGroupSchema = z.object({
   rows: z.array(z.array(z.string())).min(1),
 });
 
+/**
+ * Cert-specific exam facts. The *modes* (full / half / drill / PBQ / weak)
+ * are behavior and live in the server's exam module — a new pack declares
+ * these four numbers and inherits every mode.
+ */
+export const ExamConfigSchema = z.object({
+  /** Real exam length, e.g. 90 for A+. */
+  questionCount: z.number().int().min(1),
+  /** Real time limit in minutes. */
+  minutes: z.number().int().min(1),
+  /** Official pass mark on the scaled range (675 Core 1, 700 Core 2). */
+  passingScaledScore: z.number().int(),
+  /** Raw percent treated as the pass line; anchors the scaled-score curve. */
+  passingRawPercent: z.number().min(1).max(100),
+  scaledMin: z.number().int().default(100),
+  scaledMax: z.number().int().default(900),
+});
+
 export const CertPackSchema = z
   .object({
     code: z.string().min(1),
     name: z.string().min(1),
     version: z.string().min(1),
+    exam: ExamConfigSchema,
     domains: z.array(DomainSchema).min(1),
     flashcards: z.array(FlashcardSchema).min(1),
     quiz: z.array(QuizQuestionSchema).min(1),
@@ -130,6 +149,7 @@ export const CertPackSchema = z
     });
   });
 
+export type ExamConfig = z.infer<typeof ExamConfigSchema>;
 export type CertDomain = z.infer<typeof DomainSchema>;
 export type Flashcard = z.infer<typeof FlashcardSchema>;
 export type McQuestion = z.infer<typeof McQuestionSchema>;
@@ -137,5 +157,6 @@ export type OrderQuestion = z.infer<typeof OrderQuestionSchema>;
 export type MatchQuestion = z.infer<typeof MatchQuestionSchema>;
 export type TerminalQuestion = z.infer<typeof TerminalQuestionSchema>;
 export type QuizQuestion = z.infer<typeof QuizQuestionSchema>;
+export type QuizQuestionType = QuizQuestion["type"];
 export type ReferenceGroup = z.infer<typeof ReferenceGroupSchema>;
 export type CertPack = z.infer<typeof CertPackSchema>;

@@ -1,5 +1,13 @@
 {
   "code": "aplus-core2",
   "name": "CompTIA A+ Core 2",
-  "version": "220-1102"
+  "version": "220-1102",
+  "exam": {
+    "questionCount": 90,
+    "minutes": 90,
+    "passingScaledScore": 700,
+    "passingRawPercent": 75,
+    "scaledMin": 100,
+    "scaledMax": 900
+  }
 }

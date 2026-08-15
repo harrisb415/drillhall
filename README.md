@@ -7,6 +7,7 @@ Self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
 - **Phase 3** — public marketing homepage at `/` (dashboard moved to `/dashboard`), password reset flow, friendly auth errors, password visibility toggle, return-to-destination after login, verification-email resend.
+- **Exam simulator** (Phase 2 addendum) — five randomized, timed exam types with server-authoritative timing and CompTIA-style scaled scoring. See below.
 
 ## Quickstart (dev)
 
@@ -64,6 +65,28 @@ Question types (one `QuizQuestionSchema` discriminated union, all graded server-
 | `terminal` | `expected[]` acceptable commands | `xterm.js`, case/whitespace-insensitive match |
 
 Answers and explanations never reach the client until after grading.
+
+## Exam simulator
+
+Modelled on the real thing: up to 90 questions in 90 minutes, scaled 100–900, pass at 675 (Core 1) / 700 (Core 2), performance-based questions first, free navigation with flag-for-review, and **no feedback until you submit**.
+
+| Type | Draw |
+|---|---|
+| Full mock | Full length, blueprint-weighted |
+| Half mock | Half length, same weighting |
+| Domain drill | 20q from domains you choose |
+| PBQ gauntlet | Performance-based questions only |
+| Weak areas | Weighted toward your lowest recency-weighted mastery |
+
+Each cert declares only four numbers (`exam` in `cert.json`); the modes are derived, so a new pack inherits all five.
+
+**Randomization.** Every attempt draws a fresh weighted sample, deprioritizes questions from your last three exams, and shuffles multiple-choice option order so a repeat sighting can't be answered from position memory. The shuffle is stored per session and mapped back at grading time. Note that novelty is bounded by pool size: a bank barely larger than the exam yields nearly the same questions each sitting.
+
+**Timing is server-authoritative.** The deadline lives in the database; answers are rejected after it and a reload resumes with the correct remaining time rather than restarting the clock. Unanswered questions count as incorrect, as they would on the real exam.
+
+**Scaled scoring is an approximation and says so.** CompTIA doesn't publish the raw→scaled curve, so this uses a two-segment linear map anchored on the official pass mark. The pass/fail verdict is exact against the configured raw threshold; only the displayed number is modelled.
+
+Exam answers flow into the same `quiz_attempts` table as practice, so readiness and per-domain mastery absorb them automatically. Exam results are shown *beside* readiness on the dashboard, not blended into it.
 
 ## Readiness scoring
 

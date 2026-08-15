@@ -134,6 +134,105 @@ export interface RecentSession {
   score: number | null;
 }
 
+// ---- exam ----
+export type ExamModeId = "full" | "half" | "domain" | "pbq" | "weak";
+
+export interface ExamModeDto {
+  id: ExamModeId;
+  name: string;
+  description: string;
+  questionCount: number;
+  minutes: number;
+  picksDomains: boolean;
+  /** questionCount clamped to what the pack can actually supply */
+  availableQuestions: number;
+}
+
+export interface ExamOptionsDto {
+  certId: number;
+  passingScaledScore: number;
+  passingRawPercent: number;
+  scaledMin: number;
+  scaledMax: number;
+  /** the real exam's length, for honesty when the pool is smaller */
+  officialQuestionCount: number;
+  officialMinutes: number;
+  modes: ExamModeDto[];
+}
+
+export interface StartExamRequest {
+  certId: number;
+  examMode: ExamModeId;
+  domainCodes?: string[];
+}
+
+/** Live exam state — never carries answers, grading, or explanations. */
+export interface ExamSessionDto {
+  sessionId: number;
+  certId: number;
+  examMode: ExamModeId;
+  questions: QuizQuestionPublic[];
+  /** questionId -> the answer already recorded, so a reload restores them */
+  answers: Record<string, AttemptAnswer>;
+  flagged: string[];
+  secondsRemaining: number;
+  timeLimitSeconds: number;
+  expiresAt: number;
+  submitted: boolean;
+}
+
+export interface ExamAttemptRequest {
+  sessionId: number;
+  questionId: string;
+  /** null clears the answer (leaves the question unanswered) */
+  answer: AttemptAnswer | null;
+}
+
+export interface ExamReviewItem {
+  questionId: string;
+  domainCode: string;
+  prompt: string;
+  type: QuizQuestionType;
+  correct: boolean;
+  answered: boolean;
+  given: AttemptAnswer | null;
+  solution: Solution;
+  explanation: string;
+  /** display order used during the exam, so review shows what you saw */
+  choices?: string[];
+}
+
+export interface ExamResultDto {
+  sessionId: number;
+  certId: number;
+  examMode: ExamModeId;
+  total: number;
+  answered: number;
+  correct: number;
+  /** raw percent 0-100 */
+  score: number;
+  scaledScore: number;
+  passingScaledScore: number;
+  passed: boolean;
+  timeSpentSeconds: number;
+  timeLimitSeconds: number;
+  expired: boolean;
+  perDomain: DomainScore[];
+  review: ExamReviewItem[];
+}
+
+export interface ExamHistoryItem {
+  sessionId: number;
+  examMode: ExamModeId;
+  startedAt: number;
+  finishedAt: number | null;
+  total: number;
+  correct: number;
+  score: number | null;
+  scaledScore: number | null;
+  passed: boolean | null;
+}
+
 // ---- dashboard ----
 export interface DashboardDomainStat {
   code: string;
@@ -156,6 +255,15 @@ export interface DashboardStats {
     /** Σ(domain mastery × exam weight), percent 0-100; null until any attempt exists */
     readiness: number | null;
     perDomain: DashboardDomainStat[];
+  };
+  exams: {
+    attempts: number;
+    passed: number;
+    bestScaledScore: number | null;
+    lastScaledScore: number | null;
+    lastPassed: boolean | null;
+    passingScaledScore: number;
+    recent: ExamHistoryItem[];
   };
   recentSessions: RecentSession[];
 }

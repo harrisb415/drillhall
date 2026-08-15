@@ -5,6 +5,7 @@ import { LoginPage } from "@/features/auth/LoginPage";
 import { RegisterPage } from "@/features/auth/RegisterPage";
 import { ResetPasswordPage } from "@/features/auth/ResetPasswordPage";
 import { DashboardPage } from "@/features/dashboard/DashboardPage";
+import { ExamPage } from "@/features/exam/ExamPage";
 import { FlashcardsPage } from "@/features/flashcards/FlashcardsPage";
 import { MarketingPage } from "@/features/marketing/MarketingPage";
 import { QuizPage } from "@/features/quiz/QuizPage";
@@ -38,6 +39,7 @@ export function App() {
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/flashcards" element={<FlashcardsPage />} />
             <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/exam" element={<ExamPage />} />
             <Route path="/reference" element={<ReferencePage />} />
           </Route>
 

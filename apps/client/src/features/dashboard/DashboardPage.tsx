@@ -114,10 +114,85 @@ export function DashboardPage() {
         </CardContent>
       </Card>
 
+      <Card>
+        <CardHeader>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <CardTitle>Mock exams</CardTitle>
+              <CardDescription>
+                Shown beside readiness rather than folded into it — they measure different things.
+              </CardDescription>
+            </div>
+            <Link to="/exam">
+              <Button size="sm">
+                {data.exams.attempts === 0 ? "Take a mock exam" : "Take another"}
+              </Button>
+            </Link>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {data.exams.attempts === 0 ? (
+            <p className="py-2 text-sm text-muted-foreground">
+              No mock exams yet. A timed sitting is the fastest way to find out whether the
+              readiness number above is telling you the truth.
+            </p>
+          ) : (
+            <>
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div>
+                  <div className="text-xs text-muted-foreground">Last score</div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl font-bold tabular-nums">
+                      {data.exams.lastScaledScore}
+                    </span>
+                    <Badge variant={data.exams.lastPassed ? "success" : "secondary"}>
+                      {data.exams.lastPassed ? "pass" : "fail"}
+                    </Badge>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">Best score</div>
+                  <div className="text-2xl font-bold tabular-nums">
+                    {data.exams.bestScaledScore}
+                  </div>
+                </div>
+                <div>
+                  <div className="text-xs text-muted-foreground">
+                    Passed ({data.exams.passingScaledScore} needed)
+                  </div>
+                  <div className="text-2xl font-bold tabular-nums">
+                    {data.exams.passed}
+                    <span className="text-base font-normal text-muted-foreground">
+                      {" "}
+                      / {data.exams.attempts}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <ul className="mt-4 divide-y divide-border border-t border-border">
+                {data.exams.recent.map((e) => (
+                  <li key={e.sessionId} className="flex items-center justify-between py-2 text-sm">
+                    <span className="text-muted-foreground">
+                      {formatDate(e.startedAt)} · {e.examMode}
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <span className="text-muted-foreground">
+                        {e.correct}/{e.total}
+                      </span>
+                      <Badge variant={e.passed ? "success" : "secondary"}>{e.scaledScore}</Badge>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </CardContent>
+      </Card>
+
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Recent sessions</CardTitle>
+            <CardTitle>Recent practice sessions</CardTitle>
           </CardHeader>
           <CardContent>
             {data.recentSessions.length === 0 ? (
@@ -156,6 +231,11 @@ export function DashboardPage() {
           <CardContent className="flex flex-col gap-2">
             <Link to="/quiz">
               <Button className="w-full">Take a quiz</Button>
+            </Link>
+            <Link to="/exam">
+              <Button variant="secondary" className="w-full">
+                Sit a mock exam
+              </Button>
             </Link>
             <Link to="/flashcards">
               <Button variant="secondary" className="w-full">

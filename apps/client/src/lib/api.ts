@@ -5,11 +5,17 @@ import type {
   CatalogDto,
   CertDto,
   DashboardStats,
+  ExamAttemptRequest,
+  ExamHistoryItem,
+  ExamOptionsDto,
+  ExamResultDto,
+  ExamSessionDto,
   FlashcardStatus,
   FlashcardsResponse,
   MetaDto,
   ReferenceResponse,
   SessionSummary,
+  StartExamRequest,
   StartSessionRequest,
   StartSessionResponse,
 } from "@comptia/shared-types";
@@ -120,6 +126,60 @@ export function useCompleteSession(certId: number) {
       api<SessionSummary>(`/api/quiz/sessions/${sessionId}/complete`, { method: "POST" }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["dashboard", certId] });
+    },
+  });
+}
+
+// ---- exam ----
+
+export const useExamOptions = (certId: number) =>
+  useQuery({
+    queryKey: ["exam-options", certId],
+    queryFn: () => api<ExamOptionsDto>(`/api/exam/options?certId=${certId}`),
+    staleTime: 5 * 60 * 1000,
+  });
+
+export const useExamHistory = (certId: number) =>
+  useQuery({
+    queryKey: ["exam-history", certId],
+    queryFn: () => api<ExamHistoryItem[]>(`/api/exam/history?certId=${certId}`),
+  });
+
+export function useStartExam() {
+  return useMutation({
+    mutationFn: (body: StartExamRequest) =>
+      api<ExamSessionDto>("/api/exam/sessions", { method: "POST", body: JSON.stringify(body) }),
+  });
+}
+
+export function useRecordExamAnswer() {
+  return useMutation({
+    mutationFn: (body: ExamAttemptRequest) =>
+      api<{ recorded: boolean }>("/api/exam/attempts", {
+        method: "POST",
+        body: JSON.stringify(body),
+      }),
+  });
+}
+
+export function useFlagExamQuestion() {
+  return useMutation({
+    mutationFn: (vars: { sessionId: number; questionId: string; flagged: boolean }) =>
+      api<{ flagged: string[] }>(`/api/exam/sessions/${vars.sessionId}/flag`, {
+        method: "POST",
+        body: JSON.stringify({ questionId: vars.questionId, flagged: vars.flagged }),
+      }),
+  });
+}
+
+export function useSubmitExam(certId: number) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (sessionId: number) =>
+      api<ExamResultDto>(`/api/exam/sessions/${sessionId}/submit`, { method: "POST" }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["dashboard", certId] });
+      qc.invalidateQueries({ queryKey: ["exam-history", certId] });
     },
   });
 }

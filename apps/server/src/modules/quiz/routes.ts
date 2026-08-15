@@ -88,7 +88,14 @@ export function quizRoutes(deps: ApiDeps): Router {
       const session = deps.db
         .select()
         .from(quizSessions)
-        .where(and(eq(quizSessions.id, body.sessionId), eq(quizSessions.userId, req.user!.id)))
+        .where(
+          and(
+            eq(quizSessions.id, body.sessionId),
+            eq(quizSessions.userId, req.user!.id),
+            // exam sessions go through /api/exam/attempts, which withholds grading
+            eq(quizSessions.mode, "practice"),
+          ),
+        )
         .get();
       if (!session) {
         res.status(404).json({ error: "Unknown session" });
@@ -232,6 +239,7 @@ export function quizRoutes(deps: ApiDeps): Router {
         .where(
           and(
             eq(quizSessions.userId, req.user!.id),
+            eq(quizSessions.mode, "practice"),
             ...(Number.isInteger(certId) ? [eq(quizSessions.certId, certId)] : []),
             isNotNull(quizSessions.finishedAt),
           ),

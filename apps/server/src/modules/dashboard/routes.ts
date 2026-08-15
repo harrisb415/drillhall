@@ -52,12 +52,32 @@ export function dashboardRoutes(deps: ApiDeps): Router {
           and(
             eq(quizSessions.userId, userId),
             eq(quizSessions.certId, certId),
+            eq(quizSessions.mode, "practice"),
             isNotNull(quizSessions.finishedAt),
           ),
         )
         .orderBy(desc(quizSessions.startedAt))
         .limit(5)
         .all();
+
+      // Mock exams are shown beside readiness rather than blended into it —
+      // averaging two different measures makes both unreadable.
+      const examRows = deps.db
+        .select()
+        .from(quizSessions)
+        .where(
+          and(
+            eq(quizSessions.userId, userId),
+            eq(quizSessions.certId, certId),
+            eq(quizSessions.mode, "exam"),
+            isNotNull(quizSessions.finishedAt),
+          ),
+        )
+        .orderBy(desc(quizSessions.startedAt))
+        .all();
+      const scaledScores = examRows
+        .map((s) => s.scaledScore)
+        .filter((v): v is number => v !== null);
 
       const attempts = attemptRows.length;
       const correct = attemptRows.filter((a) => a.correct).length;
@@ -88,6 +108,25 @@ export function dashboardRoutes(deps: ApiDeps): Router {
               mastery: masteryByCode.get(d.code) ?? null,
             };
           }),
+        },
+        exams: {
+          attempts: examRows.length,
+          passed: examRows.filter((s) => s.passed).length,
+          bestScaledScore: scaledScores.length > 0 ? Math.max(...scaledScores) : null,
+          lastScaledScore: examRows[0]?.scaledScore ?? null,
+          lastPassed: examRows[0]?.passed ?? null,
+          passingScaledScore: pack.exam.passingScaledScore,
+          recent: examRows.slice(0, 5).map((s) => ({
+            sessionId: s.id,
+            examMode: (s.examMode ?? "full") as "full" | "half" | "domain" | "pbq" | "weak",
+            startedAt: s.startedAt.getTime(),
+            finishedAt: s.finishedAt?.getTime() ?? null,
+            total: s.questionCount,
+            correct: s.correctCount ?? 0,
+            score: s.score,
+            scaledScore: s.scaledScore,
+            passed: s.passed,
+          })),
         },
         recentSessions: recent.map((s) => ({
           id: s.id,

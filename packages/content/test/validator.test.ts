@@ -45,7 +45,21 @@ describe("validator catches deliberately broken packs", () => {
     expect(result.success).toBe(false);
     if (!result.success) {
       const paths = result.error.issues.map((i) => i.path.join("."));
+      // must fail on the weight specifically — not merely fail for some reason
       expect(paths.some((p) => p.includes("weight") || p.startsWith("domains"))).toBe(true);
+    }
+  });
+
+  it("rejects a pack with no exam configuration", () => {
+    const raw = loadPackDir(path.join(FIXTURES, "broken-bad-discriminant")) as Record<
+      string,
+      unknown
+    >;
+    const { exam: _dropped, ...withoutExam } = raw;
+    const result = CertPackSchema.safeParse(withoutExam);
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.some((i) => i.path[0] === "exam")).toBe(true);
     }
   });
 
@@ -62,6 +76,12 @@ describe("validator catches deliberately broken packs", () => {
     const raw = loadPackDir(path.join(FIXTURES, "broken-missing-weight")) as Record<string, unknown>;
     const fixed = {
       ...raw,
+      exam: {
+        questionCount: 90,
+        minutes: 90,
+        passingScaledScore: 675,
+        passingRawPercent: 75,
+      },
       domains: [{ code: "1.0", name: "D", weight: 100 }],
       quiz: [
         {

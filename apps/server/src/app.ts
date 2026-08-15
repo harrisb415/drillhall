@@ -15,6 +15,7 @@ import { requireAuth } from "./middleware/require-auth";
 import type { ContentIndex } from "./modules/certs/content";
 import { certsRoutes } from "./modules/certs/routes";
 import { dashboardRoutes } from "./modules/dashboard/routes";
+import { examRoutes } from "./modules/exam/routes";
 import { flashcardsRoutes } from "./modules/flashcards/routes";
 import { quizRoutes } from "./modules/quiz/routes";
 import { referenceRoutes } from "./modules/reference/routes";
@@ -130,6 +131,7 @@ export function createApp(deps: AppDeps): Express {
   app.use("/api", guard, flashcardsRoutes(apiDeps));
   app.use("/api", guard, referenceRoutes(apiDeps));
   app.use("/api", guard, quizRoutes(apiDeps));
+  app.use("/api", guard, examRoutes(apiDeps));
   app.use("/api", guard, dashboardRoutes(apiDeps));
   app.use("/api", guard, settingsRoutes(apiDeps));
   app.use("/api", (_req, res) => res.status(404).json({ error: "Not found" }));

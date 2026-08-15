@@ -1,20 +1,18 @@
-import type { AttemptAnswer, QuizQuestionPublic } from "@comptia/shared-types";
+import type { QuizQuestionPublic } from "@comptia/shared-types";
 import { cn } from "@/lib/utils";
-import type { AnswerRecord } from "@/stores/quiz";
+import { currentAnswer, type QuestionViewProps } from "./types";
 
 export function McQuestionView({
   question,
   answer,
+  given,
   busy,
   onSubmit,
-}: {
-  question: Extract<QuizQuestionPublic, { type: "mc" }>;
-  answer: AnswerRecord | undefined;
-  busy: boolean;
-  onSubmit: (answer: AttemptAnswer) => void;
-}) {
-  const chosen = answer?.given.type === "mc" ? answer.given.choiceIndex : null;
+}: QuestionViewProps<Extract<QuizQuestionPublic, { type: "mc" }>>) {
+  const picked = currentAnswer({ answer, given });
+  const chosen = picked?.type === "mc" ? picked.choiceIndex : null;
   const correctIndex = answer?.solution.type === "mc" ? answer.solution.answerIndex : null;
+  const locked = !!answer || busy;
 
   return (
     <div className="space-y-2">
@@ -26,10 +24,13 @@ export function McQuestionView({
             key={i}
             type="button"
             onClick={() => onSubmit({ type: "mc", choiceIndex: i })}
-            disabled={!!answer || busy}
+            disabled={locked}
+            aria-pressed={isChosen}
             className={cn(
               "flex w-full items-start gap-3 rounded-md border p-3 text-left text-sm transition-colors",
-              !answer && "border-border bg-card hover:border-ring/60 hover:bg-accent/50",
+              // ungraded: show the selection, say nothing about correctness
+              !answer && isChosen && "border-primary bg-accent/60",
+              !answer && !isChosen && "border-border bg-card hover:border-ring/60 hover:bg-accent/30",
               answer && isCorrectChoice && "border-success bg-success/10",
               answer && isChosen && !isCorrectChoice && "border-destructive bg-destructive/10",
               answer && !isChosen && !isCorrectChoice && "border-border opacity-60",

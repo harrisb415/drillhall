@@ -68,6 +68,16 @@ const NAV_ITEMS = [
     ),
   },
   {
+    to: "/exam",
+    label: "Exam",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4">
+        <circle cx="12" cy="13" r="8" />
+        <path d="M12 9v4l2.5 2.5M9 2h6" />
+      </svg>
+    ),
+  },
+  {
     to: "/reference",
     label: "Reference",
     icon: (

@@ -67,6 +67,21 @@ export const quizSessions = sqliteTable(
     correctCount: integer("correct_count"),
     /** percent 0-100 */
     score: real("score"),
+    /** practice = graded per answer; exam = timed, no feedback until submit */
+    mode: text("mode", { enum: ["practice", "exam"] })
+      .notNull()
+      .default("practice"),
+    /** which exam type was run: full | half | domain | pbq | weak */
+    examMode: text("exam_mode"),
+    timeLimitSeconds: integer("time_limit_seconds"),
+    /** server-authoritative deadline; a client clock can't be trusted */
+    expiresAt: integer("expires_at", { mode: "timestamp_ms" }),
+    /** JSON {questionId: number[]} display order for mc choices */
+    choiceOrders: text("choice_orders"),
+    /** JSON string[] of question ids the candidate flagged for review */
+    flagged: text("flagged"),
+    scaledScore: integer("scaled_score"),
+    passed: integer("passed", { mode: "boolean" }),
   },
   (t) => [index("quiz_sessions_user_idx").on(t.userId, t.certId, t.startedAt)],
 );

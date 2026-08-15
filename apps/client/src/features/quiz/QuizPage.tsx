@@ -115,7 +115,7 @@ function PlayingPhase() {
     );
   }
 
-  const viewProps = { answer, busy: submit.isPending, onSubmit: submitAnswer };
+  const viewProps = { answer, busy: submit.isPending, onSubmit: submitAnswer } as const;
 
   return (
     <div className="space-y-4">

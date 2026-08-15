@@ -1,28 +1,40 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, Draggable, Droppable, type DropResult } from "@hello-pangea/dnd";
-import type { AttemptAnswer, QuizQuestionPublic } from "@comptia/shared-types";
+import type { QuizQuestionPublic } from "@comptia/shared-types";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { AnswerRecord } from "@/stores/quiz";
+import { currentAnswer, type QuestionViewProps } from "./types";
 
 export function MatchQuestionView({
   question,
   answer,
+  given,
   busy,
   onSubmit,
-}: {
-  question: Extract<QuizQuestionPublic, { type: "match" }>;
-  answer: AnswerRecord | undefined;
-  busy: boolean;
-  onSubmit: (answer: AttemptAnswer) => void;
-}) {
-  const [rights, setRights] = useState<string[]>(question.rights);
+  submitLabel = "Submit matches",
+}: QuestionViewProps<Extract<QuizQuestionPublic, { type: "match" }>>) {
+  const picked = currentAnswer({ answer, given });
+
+  /** Rebuilds the right-column order from a previously submitted mapping. */
+  function ordered(): string[] {
+    if (picked?.type !== "match") return question.rights;
+    const fromAnswer = question.lefts.map((l) => picked.pairs[l]);
+    return fromAnswer.every((r): r is string => typeof r === "string")
+      ? fromAnswer
+      : question.rights;
+  }
+
+  const [rights, setRights] = useState<string[]>(ordered);
   useEffect(() => {
-    setRights(question.rights);
-  }, [question.id, question.rights]);
+    setRights(ordered());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [question.id]);
 
   const locked = !!answer || busy;
   const solutionPairs = answer?.solution.type === "match" ? answer.solution.pairs : null;
+  const dirty =
+    picked?.type !== "match" ||
+    question.lefts.some((l, i) => picked.pairs[l] !== rights[i]);
 
   function onDragEnd(result: DropResult) {
     if (!result.destination || locked) return;
@@ -94,7 +106,7 @@ export function MatchQuestionView({
       {!answer && (
         <Button
           className="mt-4"
-          disabled={busy}
+          disabled={busy || !dirty}
           onClick={() =>
             onSubmit({
               type: "match",
@@ -102,7 +114,7 @@ export function MatchQuestionView({
             })
           }
         >
-          Submit matches
+          {dirty ? submitLabel : "Matches saved"}
         </Button>
       )}
     </div>

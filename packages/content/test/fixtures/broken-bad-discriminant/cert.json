@@ -1,5 +1,11 @@
 {
   "code": "broken-discriminant",
   "name": "Broken Pack — invalid quiz question type",
-  "version": "0"
+  "version": "0",
+  "exam": {
+    "questionCount": 90,
+    "minutes": 90,
+    "passingScaledScore": 675,
+    "passingRawPercent": 75
+  }
 }
