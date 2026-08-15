@@ -1,9 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { ForgotPasswordPage } from "@/features/auth/ForgotPasswordPage";
 import { LoginPage } from "@/features/auth/LoginPage";
 import { RegisterPage } from "@/features/auth/RegisterPage";
+import { ResetPasswordPage } from "@/features/auth/ResetPasswordPage";
 import { DashboardPage } from "@/features/dashboard/DashboardPage";
 import { FlashcardsPage } from "@/features/flashcards/FlashcardsPage";
+import { MarketingPage } from "@/features/marketing/MarketingPage";
 import { QuizPage } from "@/features/quiz/QuizPage";
 import { ReferencePage } from "@/features/reference/ReferencePage";
 import { ProtectedLayout } from "@/routes/ProtectedRoute";
@@ -23,14 +26,21 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
+          {/* public */}
+          <Route path="/" element={<MarketingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+          {/* everything else requires a session */}
           <Route element={<ProtectedLayout />}>
-            <Route path="/" element={<DashboardPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/flashcards" element={<FlashcardsPage />} />
             <Route path="/quiz" element={<QuizPage />} />
             <Route path="/reference" element={<ReferencePage />} />
           </Route>
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

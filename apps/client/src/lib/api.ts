@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import type {
   AttemptRequest,
   AttemptResponse,
+  CatalogDto,
   CertDto,
   DashboardStats,
   FlashcardStatus,
@@ -46,6 +47,14 @@ async function api<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const useMeta = () =>
   useQuery({ queryKey: ["meta"], queryFn: () => api<MetaDto>("/api/meta"), staleTime: Infinity });
+
+/** Public — powers the marketing homepage, works signed out. */
+export const useCatalog = () =>
+  useQuery({
+    queryKey: ["catalog"],
+    queryFn: () => api<CatalogDto>("/api/catalog"),
+    staleTime: 5 * 60 * 1000,
+  });
 
 export const useCerts = () =>
   useQuery({ queryKey: ["certs"], queryFn: () => api<CertDto[]>("/api/certs") });

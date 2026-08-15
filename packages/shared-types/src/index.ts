@@ -7,6 +7,22 @@ export interface MetaDto {
   googleEnabled: boolean;
 }
 
+// ---- public catalog (marketing homepage; no auth) ----
+export interface CatalogCert {
+  code: string;
+  name: string;
+  version: string;
+  domains: number;
+  flashcards: number;
+  quizQuestions: number;
+  questionTypes: QuizQuestionType[];
+}
+
+export interface CatalogDto {
+  certs: CatalogCert[];
+  totals: { certs: number; flashcards: number; quizQuestions: number };
+}
+
 // ---- certs ----
 export interface CertDomainDto {
   code: string;

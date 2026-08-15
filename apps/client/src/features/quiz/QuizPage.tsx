@@ -229,7 +229,7 @@ function SummaryPhase() {
         ))}
         <div className="flex justify-center gap-2 pt-2">
           <Button onClick={reset}>New quiz</Button>
-          <Link to="/">
+          <Link to="/dashboard">
             <Button variant="outline">View dashboard</Button>
           </Link>
         </div>

@@ -7,7 +7,7 @@ import { pinoHttp } from "pino-http";
 import { toNodeHandler } from "better-auth/node";
 import { ZodError } from "zod";
 import type Database from "better-sqlite3";
-import type { MetaDto } from "@comptia/shared-types";
+import type { CatalogCert, CatalogDto, MetaDto } from "@comptia/shared-types";
 import type { Db } from "./db";
 import type { Auth } from "./lib/auth";
 import type { Logger } from "./lib/logger";
@@ -63,6 +63,29 @@ export function createApp(deps: AppDeps): Express {
   app.get(["/health", "/api/health"], healthHandler);
   app.get("/api/meta", (_req, res) => res.json(deps.meta));
 
+  // Public: what the marketing homepage advertises. Counts only — no question
+  // or card content, so this stays safe to serve unauthenticated.
+  app.get("/api/catalog", (_req, res) => {
+    const certs: CatalogCert[] = deps.content.packs.map((p) => ({
+      code: p.code,
+      name: p.name,
+      version: p.version,
+      domains: p.domains.length,
+      flashcards: p.flashcards.length,
+      quizQuestions: p.quiz.length,
+      questionTypes: [...new Set(p.quiz.map((q) => q.type))],
+    }));
+    const catalog: CatalogDto = {
+      certs,
+      totals: {
+        certs: certs.length,
+        flashcards: certs.reduce((n, c) => n + c.flashcards, 0),
+        quizQuestions: certs.reduce((n, c) => n + c.quizQuestions, 0),
+      },
+    };
+    res.json(catalog);
+  });
+
   // Auth: rate-limited, and mounted BEFORE express.json() — Better Auth reads the body itself.
   //
   // Two limits, because one number can't serve both jobs. The client's session
@@ -86,7 +109,11 @@ export function createApp(deps: AppDeps): Express {
     limit: 1000,
     message: { error: "Too many auth requests — try again later" },
   });
-  const CREDENTIAL_PATHS = /^\/api\/auth\/(sign-in|sign-up|forget-password|reset-password)/;
+  // Everything that either accepts credentials (brute-forceable) or sends mail
+  // to a caller-supplied address (spammable). Note request-password-reset and
+  // send-verification-email belong here precisely because they cost an email.
+  const CREDENTIAL_PATHS =
+    /^\/api\/auth\/(sign-in|sign-up|forget-password|request-password-reset|reset-password|send-verification-email|change-password|change-email)/;
   app.all("/api/auth/*", (req, res, next) => {
     const limiter = CREDENTIAL_PATHS.test(req.originalUrl.split("?")[0]!)
       ? credentialLimiter

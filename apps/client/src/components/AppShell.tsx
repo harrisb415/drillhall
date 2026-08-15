@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { Badge } from "@/components/ui/badge";
@@ -37,7 +37,7 @@ function CertSelect({ className }: { className?: string }) {
 
 const NAV_ITEMS = [
   {
-    to: "/",
+    to: "/dashboard",
     label: "Dashboard",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4">
@@ -86,7 +86,6 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
         <NavLink
           key={item.to}
           to={item.to}
-          end={item.to === "/"}
           onClick={onNavigate}
           className={({ isActive }) =>
             cn(
@@ -102,6 +101,39 @@ function NavItems({ onNavigate }: { onNavigate?: () => void }) {
         </NavLink>
       ))}
     </>
+  );
+}
+
+function VerifyBanner({ email }: { email: string }) {
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "failed">("idle");
+
+  async function resend() {
+    setState("sending");
+    const { error } = await authClient.sendVerificationEmail({
+      email,
+      callbackURL: "/dashboard",
+    });
+    setState(error ? "failed" : "sent");
+  }
+
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 border-b border-border bg-accent px-4 py-2 text-center text-xs text-accent-foreground">
+      <span>A verification link was sent to {email} — check your inbox.</span>
+      {state === "sent" ? (
+        <span className="font-medium">Sent again.</span>
+      ) : state === "failed" ? (
+        <span className="font-medium">Couldn't resend — try later.</span>
+      ) : (
+        <button
+          type="button"
+          onClick={resend}
+          disabled={state === "sending"}
+          className="font-medium underline underline-offset-2 hover:opacity-80 disabled:opacity-50"
+        >
+          {state === "sending" ? "Resending…" : "Resend"}
+        </button>
+      )}
+    </div>
   );
 }
 
@@ -151,11 +183,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <CertSelect />
         </div>
 
-        {unverified && (
-          <div className="border-b border-border bg-accent px-4 py-2 text-center text-xs text-accent-foreground">
-            A verification link was sent to {session.user.email} — check your inbox.
-          </div>
-        )}
+        {unverified && <VerifyBanner email={session.user.email} />}
 
         <main className="mx-auto w-full max-w-5xl flex-1 p-4 md:p-8">{children}</main>
       </div>

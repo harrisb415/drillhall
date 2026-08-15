@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { AppShell } from "@/components/AppShell";
 import { Spinner } from "@/components/ui/spinner";
 import { captureTimezone } from "@/lib/api";
@@ -8,6 +8,7 @@ import { CertProvider } from "@/lib/cert-context";
 
 export function ProtectedLayout() {
   const { data: session, isPending } = authClient.useSession();
+  const location = useLocation();
   const signedIn = !!session;
 
   useEffect(() => {
@@ -21,7 +22,12 @@ export function ProtectedLayout() {
       </div>
     );
   }
-  if (!session) return <Navigate to="/login" replace />;
+  if (!session) {
+    // Hand the login page where we were headed so it can return there.
+    return (
+      <Navigate to="/login" replace state={{ from: location.pathname + location.search }} />
+    );
+  }
 
   return (
     <CertProvider>

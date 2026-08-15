@@ -6,6 +6,7 @@ Self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express
 
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
+- **Phase 3** — public marketing homepage at `/` (dashboard moved to `/dashboard`), password reset flow, friendly auth errors, password visibility toggle, return-to-destination after login, verification-email resend.
 
 ## Quickstart (dev)
 
@@ -72,6 +73,15 @@ Two distinct weightings (spec §7), in `modules/analytics/readiness.ts`:
 2. **Exam weighting** — overall readiness is `Σ(domain mastery × official exam weight)`.
 
 Untouched domains contribute 0 to overall readiness (unstudied material genuinely means you aren't ready) while showing "no data" per-domain rather than a misleading 0%.
+
+## Routes
+
+| Path | Access |
+|---|---|
+| `/` | public marketing page (redirects to `/dashboard` when signed in) |
+| `/login`, `/register`, `/forgot-password`, `/reset-password` | public |
+| `/dashboard`, `/flashcards`, `/quiz`, `/reference` | session required |
+| `/api/meta`, `/api/catalog`, `/health` | public (counts and status only) |
 
 ## Auth notes
 

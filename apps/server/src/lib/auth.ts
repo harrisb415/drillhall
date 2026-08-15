@@ -28,6 +28,13 @@ export function createAuth(deps: AuthDeps) {
       minPasswordLength: 8,
       // Friends can use the app while unverified; the verification email still goes out.
       requireEmailVerification: false,
+      sendResetPassword: async ({ user: u, url }) => {
+        await deps.sendEmail({
+          to: u.email,
+          subject: "Reset your password — CompTIA Prep",
+          text: `Hi ${u.name},\n\nOpen this link to choose a new password:\n\n${url}\n\nThe link expires in an hour. If you didn't ask for a reset, ignore this message — your password stays unchanged.\n`,
+        });
+      },
     },
     emailVerification: {
       sendOnSignUp: true,
