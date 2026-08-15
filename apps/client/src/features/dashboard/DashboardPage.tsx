@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Spinner } from "@/components/ui/spinner";
+import { ExamPlanCard } from "@/features/planner/ExamPlanCard";
 import { useDashboard } from "@/lib/api";
 import { useCert } from "@/lib/cert-context";
 import { formatDate } from "@/lib/utils";
@@ -80,6 +81,8 @@ export function DashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+      <ExamPlanCard readinessPercent={data.quiz.readiness} />
 
       <Card>
         <CardHeader>

@@ -233,6 +233,39 @@ export interface ExamHistoryItem {
   passed: boolean | null;
 }
 
+// ---- exam planner ----
+export interface ExamPlanDto {
+  certId: number;
+  /** epoch ms, midnight UTC on the exam day */
+  examDate: number;
+  daysRemaining: number;
+  createdAt: number;
+}
+
+export interface SaveExamPlanRequest {
+  certId: number;
+  /** ISO date, YYYY-MM-DD */
+  examDate: string;
+}
+
+// ---- notification preferences ----
+export type DigestFrequency = "weekly" | "never";
+
+export interface NotificationPrefsDto {
+  emailEnabled: boolean;
+  examReminders: boolean;
+  examReminderDays: number[];
+  inactivityReminders: boolean;
+  digestFrequency: DigestFrequency;
+  timezone: string | null;
+  /** false when the server has no RESEND_API_KEY — mail is logged, not sent */
+  emailDeliveryConfigured: boolean;
+}
+
+export type UpdateNotificationPrefsRequest = Partial<
+  Omit<NotificationPrefsDto, "emailDeliveryConfigured">
+>;
+
 // ---- dashboard ----
 export interface DashboardDomainStat {
   code: string;

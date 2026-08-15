@@ -10,6 +10,7 @@ import { FlashcardsPage } from "@/features/flashcards/FlashcardsPage";
 import { MarketingPage } from "@/features/marketing/MarketingPage";
 import { QuizPage } from "@/features/quiz/QuizPage";
 import { ReferencePage } from "@/features/reference/ReferencePage";
+import { SettingsPage } from "@/features/settings/SettingsPage";
 import { ProtectedLayout } from "@/routes/ProtectedRoute";
 
 const queryClient = new QueryClient({
@@ -41,6 +42,7 @@ export function App() {
             <Route path="/quiz" element={<QuizPage />} />
             <Route path="/exam" element={<ExamPage />} />
             <Route path="/reference" element={<ReferencePage />} />
+            <Route path="/settings" element={<SettingsPage />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />

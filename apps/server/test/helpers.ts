@@ -56,6 +56,7 @@ export function createTestStack(opts?: {
     meta: { name: "test", version: "0.0.0-test", googleEnabled: !!opts?.google },
     clientDist: null,
     disableRateLimit: opts?.rateLimit !== true,
+    emailDeliveryConfigured: true,
   });
 
   return { app, db, sqlite, auth, emails, content, certId };

@@ -9,6 +9,8 @@ import { env, REPO_ROOT, SERVER_ROOT } from "./lib/env";
 import { createLogger } from "./lib/logger";
 import { seedCerts } from "./modules/certs/content";
 import { createEmailProvider } from "./modules/notifications/providers/email";
+import { startScheduler } from "./modules/notifications/scheduler";
+import { createNotificationService } from "./modules/notifications/service";
 
 const logger = createLogger();
 
@@ -65,9 +67,23 @@ const app = createApp({
   logger,
   meta: { name: "CompTIA Prep", version: rootPkg.version, googleEnabled: env.google !== null },
   clientDist,
+  emailDeliveryConfigured: !!env.resendApiKey,
 });
 
-app.listen(env.port, () => {
+// One in-process timer is the whole scheduling layer (spec §6). This assumes a
+// single instance — do not run a pm2 cluster, or the reminders double up
+// (they wouldn't actually send twice thanks to the unique index, but the
+// wasted work and log noise are pointless).
+const notifications = createNotificationService({ db, sendEmail, logger });
+const scheduler = startScheduler({
+  db,
+  content,
+  notifications,
+  logger,
+  baseURL: env.baseURL,
+});
+
+const server = app.listen(env.port, () => {
   logger.info(
     {
       port: env.port,
@@ -80,3 +96,14 @@ app.listen(env.port, () => {
     `server listening on http://localhost:${env.port}`,
   );
 });
+
+for (const signal of ["SIGINT", "SIGTERM"] as const) {
+  process.on(signal, () => {
+    logger.info({ signal }, "shutting down");
+    void scheduler.stop();
+    server.close(() => {
+      sqlite.close();
+      process.exit(0);
+    });
+  });
+}

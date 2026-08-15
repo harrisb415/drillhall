@@ -17,6 +17,7 @@ import { certsRoutes } from "./modules/certs/routes";
 import { dashboardRoutes } from "./modules/dashboard/routes";
 import { examRoutes } from "./modules/exam/routes";
 import { flashcardsRoutes } from "./modules/flashcards/routes";
+import { plannerRoutes } from "./modules/planner/routes";
 import { quizRoutes } from "./modules/quiz/routes";
 import { referenceRoutes } from "./modules/reference/routes";
 import { settingsRoutes } from "./modules/settings/routes";
@@ -33,6 +34,8 @@ export interface AppDeps {
   clientDist: string | null;
   /** Tests hammer the auth endpoints; they switch this off. */
   disableRateLimit?: boolean;
+  /** Surfaced in settings so the UI can say mail is logged, not delivered. */
+  emailDeliveryConfigured: boolean;
 }
 
 export function createApp(deps: AppDeps): Express {
@@ -125,7 +128,11 @@ export function createApp(deps: AppDeps): Express {
 
   app.use(express.json());
 
-  const apiDeps: ApiDeps = { db: deps.db, content: deps.content };
+  const apiDeps: ApiDeps = {
+    db: deps.db,
+    content: deps.content,
+    emailDeliveryConfigured: deps.emailDeliveryConfigured,
+  };
   const guard = requireAuth(deps.auth);
   app.use("/api", guard, certsRoutes(apiDeps));
   app.use("/api", guard, flashcardsRoutes(apiDeps));
@@ -133,6 +140,7 @@ export function createApp(deps: AppDeps): Express {
   app.use("/api", guard, quizRoutes(apiDeps));
   app.use("/api", guard, examRoutes(apiDeps));
   app.use("/api", guard, dashboardRoutes(apiDeps));
+  app.use("/api", guard, plannerRoutes(apiDeps));
   app.use("/api", guard, settingsRoutes(apiDeps));
   app.use("/api", (_req, res) => res.status(404).json({ error: "Not found" }));
 

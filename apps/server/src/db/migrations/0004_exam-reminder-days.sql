@@ -1,0 +1,1 @@
+ALTER TABLE `notification_preferences` ADD `exam_reminder_days` text DEFAULT '[7,3,1]' NOT NULL;

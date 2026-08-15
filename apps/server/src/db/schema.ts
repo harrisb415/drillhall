@@ -133,6 +133,8 @@ export const notificationPreferences = sqliteTable("notification_preferences", {
     .references(() => user.id, { onDelete: "cascade" }),
   emailEnabled: integer("email_enabled", { mode: "boolean" }).notNull().default(true),
   examReminders: integer("exam_reminders", { mode: "boolean" }).notNull().default(true),
+  /** JSON number[] of lead times in days, e.g. [7,3,1] */
+  examReminderDays: text("exam_reminder_days").notNull().default("[7,3,1]"),
   streakReminders: integer("streak_reminders", { mode: "boolean" }).notNull().default(true),
   inactivityReminders: integer("inactivity_reminders", { mode: "boolean" }).notNull().default(true),
   digestFrequency: text("digest_frequency").notNull().default("weekly"),

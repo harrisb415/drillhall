@@ -8,6 +8,7 @@ Self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
 - **Phase 3** — public marketing homepage at `/` (dashboard moved to `/dashboard`), password reset flow, friendly auth errors, password visibility toggle, return-to-destination after login, verification-email resend.
 - **Exam simulator** (Phase 2 addendum) — five randomized, timed exam types with server-authoritative timing and CompTIA-style scaled scoring. See below.
+- **Phase 4** — exam planner, notification preferences page, and an in-process `node-cron` scheduler sending exam reminders, inactivity nudges, and a weekly digest. See below.
 
 ## Quickstart (dev)
 
@@ -96,6 +97,18 @@ Novelty is bounded by pool size — two exams of N questions from a bank of B mu
 **Scaled scoring is an approximation and says so.** CompTIA doesn't publish the raw→scaled curve, so this uses a two-segment linear map anchored on the official pass mark. The pass/fail verdict is exact against the configured raw threshold; only the displayed number is modelled.
 
 Exam answers flow into the same `quiz_attempts` table as practice, so readiness and per-domain mastery absorb them automatically. Exam results are shown *beside* readiness on the dashboard, not blended into it.
+
+## Notifications & the exam planner
+
+Set an exam date per cert on the dashboard; the countdown and reminders follow from it. Preferences live at `/settings` — a master email switch, exam reminders with selectable lead times (30/14/7/3/1/0 days), inactivity nudges, and a weekly digest. Every toggle is wired to something real; nothing is a placeholder.
+
+**The whole scheduling layer is one in-process `node-cron` job** running every 30 minutes (spec §6). No Redis, no queue, no leader election. **Run a single instance** — a pm2 cluster would duplicate the work.
+
+**Dedupe is a database constraint, not a check.** Each send first claims a row in `notification_log`, whose unique index on `(user_id, type, window_key)` makes a second claim throw. A repeated sweep, a restart, or two racing processes cannot produce a duplicate email, because the claim happens before the send rather than after a check. A send that fails after claiming is *not* retried — a missed nudge costs less than a retry storm.
+
+**Dates are UTC throughout.** An exam date is a calendar date stored as midnight UTC, so all comparisons use `lib/dates.ts` rather than local-time helpers. Mixing the two silently shifts the day for anyone at a negative UTC offset — a date picked as the 25th reads back as the 24th in Los Angeles, and reminders fire early. The `timezone` column is captured but per-user delivery *timing* remains a Phase 5 concern, and the settings page says so.
+
+Without `RESEND_API_KEY` every notification is written to the server log instead of sent, and the settings page tells the user that rather than pretending mail went out.
 
 ## Readiness scoring
 

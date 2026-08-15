@@ -6,6 +6,10 @@ import type {
   CertDto,
   DashboardStats,
   ExamAttemptRequest,
+  ExamPlanDto,
+  NotificationPrefsDto,
+  SaveExamPlanRequest,
+  UpdateNotificationPrefsRequest,
   ExamHistoryItem,
   ExamOptionsDto,
   ExamResultDto,
@@ -181,6 +185,49 @@ export function useSubmitExam(certId: number) {
       qc.invalidateQueries({ queryKey: ["dashboard", certId] });
       qc.invalidateQueries({ queryKey: ["exam-history", certId] });
     },
+  });
+}
+
+// ---- exam planner ----
+
+export const useExamPlans = () =>
+  useQuery({ queryKey: ["exam-plans"], queryFn: () => api<ExamPlanDto[]>("/api/exam-plans") });
+
+export function useSaveExamPlan() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (body: SaveExamPlanRequest) =>
+      api<ExamPlanDto>("/api/exam-plans", { method: "PUT", body: JSON.stringify(body) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["exam-plans"] }),
+  });
+}
+
+export function useDeleteExamPlan() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (certId: number) =>
+      api<{ ok: boolean }>(`/api/exam-plans/${certId}`, { method: "DELETE" }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["exam-plans"] }),
+  });
+}
+
+// ---- notification settings ----
+
+export const useNotificationPrefs = () =>
+  useQuery({
+    queryKey: ["notification-prefs"],
+    queryFn: () => api<NotificationPrefsDto>("/api/settings/notifications"),
+  });
+
+export function useSaveNotificationPrefs() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (body: UpdateNotificationPrefsRequest) =>
+      api<NotificationPrefsDto>("/api/settings/notifications", {
+        method: "PUT",
+        body: JSON.stringify(body),
+      }),
+    onSuccess: (data) => qc.setQueryData(["notification-prefs"], data),
   });
 }
 

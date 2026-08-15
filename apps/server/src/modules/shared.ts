@@ -6,6 +6,8 @@ import type { ContentIndex } from "./certs/content";
 export interface ApiDeps {
   db: Db;
   content: ContentIndex;
+  /** false when RESEND_API_KEY is unset — mail is logged rather than delivered */
+  emailDeliveryConfigured: boolean;
 }
 
 /**
