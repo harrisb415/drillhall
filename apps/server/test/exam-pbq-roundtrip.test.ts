@@ -25,6 +25,41 @@ async function startPbqExam(stack: TestStack, cookie: string): Promise<ExamSessi
   return res.body as ExamSessionDto;
 }
 
+/**
+ * A gauntlet draws only part of the PBQ pool, so a given sitting may contain no
+ * ordering question at all. These helpers keep starting sessions until the type
+ * under test appears, rather than naming a specific question — the property
+ * being tested holds for any of them, and this still exercises the real API.
+ */
+async function examContaining(
+  stack: TestStack,
+  cookie: string,
+  type: "order" | "match",
+): Promise<ExamSessionDto> {
+  for (let attempt = 0; attempt < 25; attempt++) {
+    const session = await startPbqExam(stack, cookie);
+    if (session.questions.some((q) => q.type === type)) return session;
+  }
+  throw new Error(`no ${type} question drawn in 25 gauntlets`);
+}
+
+function sourceFor<T>(stack: TestStack, questionId: string): T {
+  const certId = stack.content.certIdByCode.get("aplus-core2")!;
+  return stack.content.questionsByCertId.get(certId)!.get(questionId) as T;
+}
+
+function servedOrder(stack: TestStack, session: ExamSessionDto) {
+  const served = session.questions.find((q) => q.type === "order");
+  if (served?.type !== "order") throw new Error("no ordering question in this gauntlet");
+  return { served, source: sourceFor<OrderQuestion>(stack, served.id) };
+}
+
+function servedMatch(stack: TestStack, session: ExamSessionDto) {
+  const served = session.questions.find((q) => q.type === "match");
+  if (served?.type !== "match") throw new Error("no matching question in this gauntlet");
+  return { served, source: sourceFor<MatchQuestion>(stack, served.id) };
+}
+
 function storedAnswer(stack: TestStack, sessionId: number, questionId: string) {
   const row = stack.db
     .select()
@@ -39,14 +74,8 @@ describe("ordering answers record exactly what was on screen", () => {
   it("stores the dragged arrangement verbatim and grades it correct", async () => {
     const stack = createTestStack();
     const { cookie } = await signUp(stack.app);
-    const certId = stack.content.certIdByCode.get("aplus-core2")!;
-    const source = stack.content
-      .questionsByCertId.get(certId)!
-      .get("core2-order-001") as OrderQuestion;
-
-    const session = await startPbqExam(stack, cookie);
-    const served = session.questions.find((q) => q.id === "core2-order-001");
-    if (served?.type !== "order") throw new Error("expected the ordering question");
+    const session = await examContaining(stack, cookie, "order");
+    const { served, source } = servedOrder(stack, session);
 
     // Sanity: it arrived shuffled, so a drag is genuinely required.
     expect(served.items).not.toEqual(source.items);
@@ -59,12 +88,12 @@ describe("ordering answers record exactly what was on screen", () => {
       .set("Cookie", cookie)
       .send({
         sessionId: session.sessionId,
-        questionId: "core2-order-001",
+        questionId: served.id,
         answer: { type: "order", order: onScreen },
       });
     expect(res.status).toBe(200);
 
-    const stored = storedAnswer(stack, session.sessionId, "core2-order-001")!;
+    const stored = storedAnswer(stack, session.sessionId, served.id)!;
     // byte-for-byte: no reordering, no index translation, nothing lost
     expect(stored.answer.order).toEqual(onScreen);
     expect(stored.correct).toBe(true);
@@ -73,12 +102,9 @@ describe("ordering answers record exactly what was on screen", () => {
   it("stores a wrong arrangement verbatim too, and marks it wrong", async () => {
     const stack = createTestStack();
     const { cookie } = await signUp(stack.app);
-    const certId = stack.content.certIdByCode.get("aplus-core2")!;
-    const source = stack.content
-      .questionsByCertId.get(certId)!
-      .get("core2-order-001") as OrderQuestion;
+    const session = await examContaining(stack, cookie, "order");
+    const { served, source } = servedOrder(stack, session);
 
-    const session = await startPbqExam(stack, cookie);
     // swap the first two steps — visually one drag away from correct
     const onScreen = [...source.items];
     [onScreen[0], onScreen[1]] = [onScreen[1]!, onScreen[0]!];
@@ -88,11 +114,11 @@ describe("ordering answers record exactly what was on screen", () => {
       .set("Cookie", cookie)
       .send({
         sessionId: session.sessionId,
-        questionId: "core2-order-001",
+        questionId: served.id,
         answer: { type: "order", order: onScreen },
       });
 
-    const stored = storedAnswer(stack, session.sessionId, "core2-order-001")!;
+    const stored = storedAnswer(stack, session.sessionId, served.id)!;
     expect(stored.answer.order).toEqual(onScreen);
     expect(stored.correct).toBe(false);
 
@@ -100,9 +126,7 @@ describe("ordering answers record exactly what was on screen", () => {
     const result = await request(stack.app)
       .post(`/api/exam/sessions/${session.sessionId}/submit`)
       .set("Cookie", cookie);
-    const item = (result.body as ExamResultDto).review.find(
-      (r) => r.questionId === "core2-order-001",
-    )!;
+    const item = (result.body as ExamResultDto).review.find((r) => r.questionId === served.id)!;
     expect(item.given).toEqual({ type: "order", order: onScreen });
     expect(item.solution).toEqual({ type: "order", order: source.items });
   });
@@ -110,11 +134,8 @@ describe("ordering answers record exactly what was on screen", () => {
   it("re-saving after another drag overwrites with the newest arrangement", async () => {
     const stack = createTestStack();
     const { cookie } = await signUp(stack.app);
-    const certId = stack.content.certIdByCode.get("aplus-core2")!;
-    const source = stack.content
-      .questionsByCertId.get(certId)!
-      .get("core2-order-001") as OrderQuestion;
-    const session = await startPbqExam(stack, cookie);
+    const session = await examContaining(stack, cookie, "order");
+    const { served, source } = servedOrder(stack, session);
 
     const wrong = [...source.items].reverse();
     await request(stack.app)
@@ -122,20 +143,20 @@ describe("ordering answers record exactly what was on screen", () => {
       .set("Cookie", cookie)
       .send({
         sessionId: session.sessionId,
-        questionId: "core2-order-001",
+        questionId: served.id,
         answer: { type: "order", order: wrong },
       });
-    expect(storedAnswer(stack, session.sessionId, "core2-order-001")!.answer.order).toEqual(wrong);
+    expect(storedAnswer(stack, session.sessionId, served.id)!.answer.order).toEqual(wrong);
 
     await request(stack.app)
       .post("/api/exam/attempts")
       .set("Cookie", cookie)
       .send({
         sessionId: session.sessionId,
-        questionId: "core2-order-001",
+        questionId: served.id,
         answer: { type: "order", order: source.items },
       });
-    const stored = storedAnswer(stack, session.sessionId, "core2-order-001")!;
+    const stored = storedAnswer(stack, session.sessionId, served.id)!;
     expect(stored.answer.order).toEqual(source.items);
     expect(stored.correct).toBe(true);
   });
@@ -145,14 +166,9 @@ describe("matching answers record exactly what was on screen", () => {
   it("pairs each left with the right that sat beside it", async () => {
     const stack = createTestStack();
     const { cookie } = await signUp(stack.app);
-    const certId = stack.content.certIdByCode.get("aplus-core2")!;
-    const source = stack.content
-      .questionsByCertId.get(certId)!
-      .get("core2-match-001") as MatchQuestion;
 
-    const session = await startPbqExam(stack, cookie);
-    const served = session.questions.find((q) => q.id === "core2-match-001");
-    if (served?.type !== "match") throw new Error("expected the matching question");
+    const session = await examContaining(stack, cookie, "match");
+    const { served, source } = servedMatch(stack, session);
     expect(served.lefts).toEqual(source.pairs.map((p) => p.left));
 
     // Arrange the right column so row i holds the correct partner for left i.
@@ -166,11 +182,11 @@ describe("matching answers record exactly what was on screen", () => {
       .set("Cookie", cookie)
       .send({
         sessionId: session.sessionId,
-        questionId: "core2-match-001",
+        questionId: served.id,
         answer: { type: "match", pairs: submitted },
       });
 
-    const stored = storedAnswer(stack, session.sessionId, "core2-match-001")!;
+    const stored = storedAnswer(stack, session.sessionId, served.id)!;
     expect(stored.answer.pairs).toEqual(submitted);
     expect(stored.correct).toBe(true);
   });
@@ -178,11 +194,8 @@ describe("matching answers record exactly what was on screen", () => {
   it("a single swapped row records as swapped and grades wrong", async () => {
     const stack = createTestStack();
     const { cookie } = await signUp(stack.app);
-    const certId = stack.content.certIdByCode.get("aplus-core2")!;
-    const source = stack.content
-      .questionsByCertId.get(certId)!
-      .get("core2-match-001") as MatchQuestion;
-    const session = await startPbqExam(stack, cookie);
+    const session = await examContaining(stack, cookie, "match");
+    const { served, source } = servedMatch(stack, session);
 
     const correctPairs = Object.fromEntries(source.pairs.map((p) => [p.left, p.right]));
     const swapped = { ...correctPairs };
@@ -194,11 +207,11 @@ describe("matching answers record exactly what was on screen", () => {
       .set("Cookie", cookie)
       .send({
         sessionId: session.sessionId,
-        questionId: "core2-match-001",
+        questionId: served.id,
         answer: { type: "match", pairs: swapped },
       });
 
-    const stored = storedAnswer(stack, session.sessionId, "core2-match-001")!;
+    const stored = storedAnswer(stack, session.sessionId, served.id)!;
     expect(stored.answer.pairs).toEqual(swapped);
     expect(stored.correct).toBe(false);
   });

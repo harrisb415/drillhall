@@ -1,0 +1,510 @@
+[
+  {
+    "id": "core2-mc-025",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows tool displays real-time CPU, memory, disk, and network utilisation along with running processes?",
+    "choices": ["Task Manager", "Disk Management", "Registry Editor", "Device Manager"],
+    "answerIndex": 0,
+    "explanation": "Task Manager shows live resource usage, processes, services, and startup items. Resource Monitor drills further into the same data."
+  },
+  {
+    "id": "core2-mc-026",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician needs to schedule a script to run every night at 2 a.m. Which tool should be used?",
+    "choices": ["Task Scheduler", "Event Viewer", "Performance Monitor", "System Configuration"],
+    "answerIndex": 0,
+    "explanation": "Task Scheduler creates triggers based on time, logon, or events and runs the specified action under a chosen account."
+  },
+  {
+    "id": "core2-mc-027",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows file system feature allows individual files to be encrypted per user?",
+    "choices": ["EFS", "BitLocker", "Compression", "Shadow copies"],
+    "answerIndex": 0,
+    "explanation": "Encrypting File System protects individual files and folders tied to a user's certificate. BitLocker encrypts the whole volume instead."
+  },
+  {
+    "id": "core2-mc-028",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user needs to see hidden system files in File Explorer. Where is this changed?",
+    "choices": [
+      "File Explorer Options (View tab)",
+      "Device Manager",
+      "Disk Cleanup",
+      "Credential Manager"
+    ],
+    "answerIndex": 0,
+    "explanation": "File Explorer Options controls hidden items, known file extensions, and protected operating system files on the View tab."
+  },
+  {
+    "id": "core2-mc-029",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows installation type preserves user files and applications?",
+    "choices": ["In-place upgrade", "Clean install", "Bare-metal restore", "Custom install to a new partition"],
+    "answerIndex": 0,
+    "explanation": "An in-place upgrade run from within Windows keeps files, settings, and applications. A clean install to a formatted partition removes them."
+  },
+  {
+    "id": "core2-mc-030",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which partition style is required to boot a drive larger than 2 TB with UEFI firmware?",
+    "choices": ["MBR", "GPT", "FAT32", "Dynamic disk"],
+    "answerIndex": 1,
+    "explanation": "MBR cannot address beyond 2 TB and allows only four primary partitions. GPT removes both limits and is what UEFI expects for booting."
+  },
+  {
+    "id": "core2-mc-031",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which macOS feature provides a searchable index for files, apps, and settings?",
+    "choices": ["Spotlight", "Mission Control", "Time Machine", "Finder Sidebar"],
+    "answerIndex": 0,
+    "explanation": "Spotlight indexes the system and returns files, applications, and settings as you type. Mission Control manages windows and desktops."
+  },
+  {
+    "id": "core2-mc-032",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which macOS feature displays all open windows and virtual desktops at once?",
+    "choices": ["Mission Control", "Keychain", "Disk Utility", "Dock"],
+    "answerIndex": 0,
+    "explanation": "Mission Control gives an overview of open windows, full-screen apps, and Spaces so the user can switch between them quickly."
+  },
+  {
+    "id": "core2-mc-033",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A Linux administrator must give a script owner read, write, and execute while others get read and execute only. Which chmod value applies?",
+    "choices": ["chmod 755", "chmod 777", "chmod 644", "chmod 400"],
+    "answerIndex": 0,
+    "explanation": "755 grants rwx to the owner and r-x to group and others. 777 gives everyone full control, 644 removes execute entirely, and 400 is owner read only."
+  },
+  {
+    "id": "core2-mc-034",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Linux command changes the owner of a file?",
+    "choices": ["chown", "chmod", "chgrp only", "ls -l"],
+    "answerIndex": 0,
+    "explanation": "chown sets the owning user and optionally the group. chmod changes permission bits, and ls -l only displays them."
+  },
+  {
+    "id": "core2-mc-035",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows edition feature encrypts an entire drive using the TPM?",
+    "choices": ["BitLocker", "EFS", "Windows Defender", "Storage Spaces"],
+    "answerIndex": 0,
+    "explanation": "BitLocker encrypts the whole volume and seals its key in the TPM, so the drive is unreadable if removed from the machine."
+  },
+  {
+    "id": "core2-mc-036",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must join a workstation to an Active Directory domain. Which minimum Windows edition is required?",
+    "choices": ["Home", "Pro", "S mode", "Any edition"],
+    "answerIndex": 1,
+    "explanation": "Domain join requires Pro or higher. Home editions can only use local accounts or Microsoft accounts in a workgroup."
+  },
+  {
+    "id": "core2-mc-037",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Control Panel applet configures how the system behaves when the lid closes or the power button is pressed?",
+    "choices": ["Power Options", "System", "Ease of Access", "Indexing Options"],
+    "answerIndex": 0,
+    "explanation": "Power Options defines plans and the actions tied to the power button, sleep button, and lid closure, separately for battery and AC."
+  },
+  {
+    "id": "core2-mc-038",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which command-line tool repairs the Windows component store when SFC cannot fix corrupt files?",
+    "choices": ["DISM", "chkdsk", "diskpart", "gpupdate"],
+    "answerIndex": 0,
+    "explanation": "DISM /Online /Cleanup-Image /RestoreHealth repairs the component store that SFC draws its known-good copies from, so run it when SFC reports it cannot repair."
+  },
+  {
+    "id": "core2-mc-039",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What does the Windows Registry hive HKEY_CURRENT_USER contain?",
+    "choices": [
+      "Settings for the currently logged-on user",
+      "Hardware configuration for the machine",
+      "Installed device drivers only",
+      "Boot configuration data"
+    ],
+    "answerIndex": 0,
+    "explanation": "HKCU holds the profile settings of the signed-in user. Machine-wide configuration lives in HKEY_LOCAL_MACHINE."
+  },
+  {
+    "id": "core2-mc-040",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must map a network drive that reconnects at every logon. Which approach is BEST?",
+    "choices": [
+      "Map the drive with the reconnect option or via Group Policy",
+      "Copy the files locally each morning",
+      "Create a desktop shortcut to the UNC path",
+      "Add the server to the hosts file"
+    ],
+    "answerIndex": 0,
+    "explanation": "Mapping with reconnect-at-logon, or deploying drive maps through Group Policy, makes the drive persistent. A shortcut is not a mapped drive letter."
+  },
+  {
+    "id": "core2-mc-041",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows feature creates restore points that roll back system files and settings?",
+    "choices": ["System Restore", "File History", "Storage Sense", "Disk Cleanup"],
+    "answerIndex": 0,
+    "explanation": "System Restore snapshots system files, drivers, and registry settings. File History versions personal files instead — the two are not interchangeable."
+  },
+  {
+    "id": "core2-mc-042",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which utility should be used to convert a basic disk to a dynamic disk in Windows?",
+    "choices": ["Disk Management", "Device Manager", "Task Manager", "Event Viewer"],
+    "answerIndex": 0,
+    "explanation": "Disk Management handles disk conversion, volume creation, and drive letter assignment. Note that spanned and striped volumes require dynamic disks."
+  },
+  {
+    "id": "core2-mc-043",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user's Windows profile loads with default settings and none of their files. What is the MOST likely cause?",
+    "choices": [
+      "A corrupt user profile loading a temporary profile",
+      "A failed graphics driver",
+      "An expired TLS certificate",
+      "An incorrect subnet mask"
+    ],
+    "answerIndex": 0,
+    "explanation": "When Windows cannot load a profile it signs the user into a temporary one, which appears empty and discards changes at logoff."
+  },
+  {
+    "id": "core2-mc-044",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows tool provides detailed hardware inventory including BIOS version and installed memory?",
+    "choices": ["System Information (msinfo32)", "Notepad", "Disk Cleanup", "Snipping Tool"],
+    "answerIndex": 0,
+    "explanation": "msinfo32 reports the system summary — firmware version, processor, memory, and driver details — in one place."
+  },
+  {
+    "id": "core2-mc-045",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which macOS utility manages disk partitions, formatting, and first aid repairs?",
+    "choices": ["Disk Utility", "Finder", "Terminal", "Activity Monitor"],
+    "answerIndex": 0,
+    "explanation": "Disk Utility handles partitioning, formatting to APFS or HFS+, and verifying or repairing volumes."
+  },
+  {
+    "id": "core2-mc-046",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Linux directory conventionally holds user home directories?",
+    "choices": ["/home", "/etc", "/var", "/bin"],
+    "answerIndex": 0,
+    "explanation": "/home contains per-user directories. /etc holds configuration, /var variable data such as logs, and /bin essential binaries."
+  },
+  {
+    "id": "core2-mc-047",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows boot option loads a minimal driver set to troubleshoot startup problems?",
+    "choices": ["Safe Mode", "Fast Startup", "Hibernate", "Secure Boot"],
+    "answerIndex": 0,
+    "explanation": "Safe Mode loads only essential drivers and services, which usually excludes whatever is preventing a normal boot."
+  },
+  {
+    "id": "core2-mc-048",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician needs to verify which Windows build a machine is running. Which command shows it quickly?",
+    "choices": ["winver", "ipconfig", "chkdsk", "netstat"],
+    "answerIndex": 0,
+    "explanation": "winver opens a dialog reporting the Windows edition, version, and build number."
+  },
+  {
+    "id": "core2-mc-049",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which statement about 32-bit versus 64-bit Windows is TRUE?",
+    "choices": [
+      "32-bit Windows cannot address more than about 4 GB of RAM",
+      "64-bit Windows cannot run any 32-bit software",
+      "32-bit Windows is faster on modern CPUs",
+      "64-bit drivers work on 32-bit systems"
+    ],
+    "answerIndex": 0,
+    "explanation": "A 32-bit address space caps usable memory near 4 GB. 64-bit Windows runs 32-bit applications through WoW64, but drivers must match the architecture."
+  },
+  {
+    "id": "core2-mc-050",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which tool would a technician use to view a machine's shared folders and active sessions?",
+    "choices": [
+      "Computer Management (Shared Folders)",
+      "Device Manager",
+      "Disk Cleanup",
+      "Windows Update"
+    ],
+    "answerIndex": 0,
+    "explanation": "Computer Management's Shared Folders node lists shares, current sessions, and open files, which is how you find who is holding a file open."
+  },
+  {
+    "id": "core2-mc-051",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows feature allows an administrator to enforce password and security settings across a domain?",
+    "choices": ["Group Policy", "Task Manager", "Disk Management", "Snipping Tool"],
+    "answerIndex": 0,
+    "explanation": "Group Policy applies configuration to users and computers centrally across the domain, including password complexity and lockout policy."
+  },
+  {
+    "id": "core2-mc-052",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must free disk space by removing temporary files and previous Windows installations. Which tool is appropriate?",
+    "choices": ["Disk Cleanup / Storage Sense", "Device Manager", "Registry Editor", "Event Viewer"],
+    "answerIndex": 0,
+    "explanation": "Disk Cleanup, and Storage Sense on newer builds, removes temporary files, update caches, and previous Windows installation folders safely."
+  },
+  {
+    "id": "core2-mc-053",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows account type can install software and change system-wide settings?",
+    "choices": ["Administrator", "Standard user", "Guest", "Power user in modern Windows"],
+    "answerIndex": 0,
+    "explanation": "Only administrators can make system-wide changes. Standard users are the recommended default under least privilege, elevating only when needed."
+  },
+  {
+    "id": "core2-mc-054",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which file system should be chosen to format a drive that must support files over 4 GB and NTFS permissions?",
+    "choices": ["NTFS", "FAT32", "exFAT", "ext4"],
+    "answerIndex": 0,
+    "explanation": "NTFS supports large files plus permissions, encryption, and journaling. exFAT handles large files but has no permission model, and FAT32 caps files at 4 GB."
+  },
+  {
+    "id": "core2-mc-055",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What is the purpose of the Windows Recovery Environment?",
+    "choices": [
+      "Provide repair tools when Windows cannot start normally",
+      "Manage installed applications",
+      "Configure display settings",
+      "Schedule automatic updates"
+    ],
+    "answerIndex": 0,
+    "explanation": "WinRE offers Startup Repair, System Restore, a command prompt, reset, and Startup Settings for a machine that cannot boot normally."
+  },
+  {
+    "id": "core2-mc-056",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician wants to prevent a specific service from starting at boot. Which tool provides this directly?",
+    "choices": ["Services console (services.msc)", "Notepad", "Paint", "Calculator"],
+    "answerIndex": 0,
+    "explanation": "The Services console sets each service's startup type to Automatic, Manual, or Disabled and controls its current state."
+  },
+  {
+    "id": "core2-mc-057",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which statement about Windows workgroups is TRUE?",
+    "choices": [
+      "Each computer maintains its own local accounts",
+      "Authentication is centralised on a domain controller",
+      "Group Policy applies automatically to all members",
+      "They require Windows Server"
+    ],
+    "answerIndex": 0,
+    "explanation": "A workgroup is peer-to-peer, so credentials exist separately on each machine. Central authentication and Group Policy require a domain."
+  },
+  {
+    "id": "core2-mc-058",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which macOS backup feature performs scheduled incremental backups to an external or network disk?",
+    "choices": ["Time Machine", "Keychain", "Spotlight", "Boot Camp"],
+    "answerIndex": 0,
+    "explanation": "Time Machine keeps hourly, daily, and weekly incremental backups, allowing restore of individual files or the whole system."
+  },
+  {
+    "id": "core2-mc-059",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Linux package manager is used on Debian and Ubuntu systems?",
+    "choices": ["apt", "yum", "dnf", "zypper"],
+    "answerIndex": 0,
+    "explanation": "apt manages .deb packages on Debian-family systems. yum and dnf serve Red Hat derivatives, and zypper is used by SUSE."
+  },
+  {
+    "id": "core2-mc-060",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must run a single command with elevated privileges on Linux. Which prefix accomplishes this?",
+    "choices": ["sudo", "chmod", "grep", "cd"],
+    "answerIndex": 0,
+    "explanation": "sudo executes one command as another user, normally root, with the action logged. It is preferred over signing in as root directly."
+  },
+  {
+    "id": "core2-mc-061",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows utility shows which program is using a particular network port?",
+    "choices": ["netstat -ano with Task Manager", "Disk Cleanup", "Character Map", "Magnifier"],
+    "answerIndex": 0,
+    "explanation": "netstat -ano lists connections with owning process IDs; matching the PID in Task Manager identifies the program holding the port."
+  },
+  {
+    "id": "core2-mc-062",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which upgrade consideration is MOST important before performing an in-place Windows upgrade?",
+    "choices": [
+      "Verify application compatibility and back up data",
+      "Change the desktop wallpaper",
+      "Disable the mouse",
+      "Uninstall all fonts"
+    ],
+    "answerIndex": 0,
+    "explanation": "Compatibility checks prevent applications breaking after the upgrade, and a backup protects against a failed upgrade — both belong to the planning stage."
+  },
+  {
+    "id": "core2-mc-063",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows tool captures performance data over time for later analysis?",
+    "choices": ["Performance Monitor", "Task Manager", "Snipping Tool", "Notepad"],
+    "answerIndex": 0,
+    "explanation": "Performance Monitor logs selected counters to a data collector set over hours or days, which is how intermittent performance problems get characterised."
+  },
+  {
+    "id": "core2-mc-064",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which statement about Windows Update is TRUE for a managed corporate environment?",
+    "choices": [
+      "Updates can be deferred and approved centrally through policy or WSUS",
+      "Updates cannot be controlled at all",
+      "Only Home edition supports updates",
+      "Updates must be installed manually on each PC"
+    ],
+    "answerIndex": 0,
+    "explanation": "Group Policy, WSUS, or Intune let administrators test and approve updates before deployment, and stage rollouts across the estate."
+  },
+  {
+    "id": "core2-mc-065",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must recover a file a user deleted yesterday from a network share with shadow copies enabled. Which feature is used?",
+    "choices": ["Previous Versions", "Disk Cleanup", "Device Manager", "Task Scheduler"],
+    "answerIndex": 0,
+    "explanation": "Previous Versions exposes Volume Shadow Copy snapshots, letting a user or technician restore an earlier copy without a full backup restore."
+  },
+  {
+    "id": "core2-mc-066",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows feature isolates a set of applications and settings for testing without affecting the host?",
+    "choices": ["Windows Sandbox", "Notepad", "Snip & Sketch", "Xbox Game Bar"],
+    "answerIndex": 0,
+    "explanation": "Windows Sandbox launches a disposable virtualised desktop that is discarded on close, useful for testing untrusted software."
+  },
+  {
+    "id": "core2-mc-067",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which command displays the current working directory in Linux?",
+    "choices": ["pwd", "ls", "cd", "df"],
+    "answerIndex": 0,
+    "explanation": "pwd prints the working directory. ls lists contents, cd changes directory, and df reports filesystem space."
+  },
+  {
+    "id": "core2-mc-068",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows security feature prompts for consent before an application makes system-level changes?",
+    "choices": ["User Account Control", "Windows Firewall", "SmartScreen", "BitLocker"],
+    "answerIndex": 0,
+    "explanation": "UAC interrupts privilege elevation with a consent or credential prompt so software cannot silently gain administrative rights."
+  },
+  {
+    "id": "core2-mc-069",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Linux command searches file contents for a text pattern?",
+    "choices": ["grep", "chmod", "mv", "top"],
+    "answerIndex": 0,
+    "explanation": "grep searches input for lines matching a pattern, and is frequently piped from other commands to filter output."
+  },
+  {
+    "id": "core2-mc-070",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must identify what is consuming disk space on a Linux server. Which command helps MOST?",
+    "choices": ["du -sh *", "ping", "nslookup", "chmod"],
+    "answerIndex": 0,
+    "explanation": "du -sh * summarises the size of each item in the current directory, letting you walk down to the directory responsible."
+  },
+  {
+    "id": "core2-term-004",
+    "type": "terminal",
+    "domainCode": "1.0",
+    "prompt": "Type the Windows command that displays the operating system version in a dialog box.",
+    "expected": ["winver"],
+    "explanation": "winver reports the Windows edition, version, and build. It is the fastest way to confirm which feature update a machine is on."
+  },
+  {
+    "id": "core2-term-005",
+    "type": "terminal",
+    "domainCode": "1.0",
+    "prompt": "On Linux, type the command that lists all files including hidden ones in long format.",
+    "expected": ["ls -la", "ls -al", "ls -l -a"],
+    "explanation": "ls -la combines long format with hidden entries, showing permissions, ownership, size, and dotfiles in one listing."
+  },
+  {
+    "id": "core2-order-002",
+    "type": "order",
+    "domainCode": "1.0",
+    "prompt": "Place the steps of a clean Windows installation in the correct order.",
+    "items": [
+      "Back up any existing user data",
+      "Verify hardware meets the edition's minimum requirements",
+      "Create bootable installation media",
+      "Set the firmware boot order to the installation media",
+      "Partition and format the target drive during setup",
+      "Install drivers and apply all pending updates"
+    ],
+    "explanation": "Protect the data first, confirm the hardware qualifies, prepare and boot the media, lay down the partitions during setup, and finish by bringing drivers and updates current."
+  },
+  {
+    "id": "core2-match-003",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each Windows command-line tool to what it does.",
+    "pairs": [
+      { "left": "sfc /scannow", "right": "Scans and repairs protected system files" },
+      { "left": "chkdsk /f", "right": "Checks the file system and fixes errors" },
+      { "left": "diskpart", "right": "Manages partitions from the command line" },
+      { "left": "gpupdate /force", "right": "Reapplies Group Policy immediately" }
+    ],
+    "explanation": "SFC repairs system files, chkdsk repairs the filesystem structure, diskpart manipulates partitions, and gpupdate refreshes policy without waiting for the background interval."
+  }
+]

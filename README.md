@@ -53,7 +53,9 @@ packages/shared-types  API DTOs shared client↔server
 
 ## Adding content
 
-Edit `packages/content/<pack>/*.json`, then `npm run validate`. A new cert = a new folder with `cert.json`, `domains.json`, `flashcards.json`, `quiz.json`, `reference.json` — **zero code changes**. The server seeds it on boot (matching rows by `code`, so ids stay stable) and it appears in the cert switcher. `aplus-core2` was added exactly this way.
+Edit `packages/content/<pack>/*.json`, then `npm run validate`. A new cert = a new folder with `cert.json`, `domains.json`, `flashcards.json`, `quiz.json`, `reference.json` — **zero code changes**.
+
+Any part may be either a single `<part>.json` array **or** a `<part>/` folder of JSON arrays that get concatenated (files are read in filename order). The A+ banks use `quiz/d1-mobile.json`, `quiz/d3-hardware.json`, and so on, so a 190-question bank stays reviewable per domain instead of living in one unmergeable array. Duplicate ids across files fail validation rather than silently merging. The server seeds it on boot (matching rows by `code`, so ids stay stable) and it appears in the cert switcher. `aplus-core2` was added exactly this way.
 
 Question types (one `QuizQuestionSchema` discriminated union, all graded server-side):
 
@@ -80,7 +82,14 @@ Modelled on the real thing: up to 90 questions in 90 minutes, scaled 100–900, 
 
 Each cert declares only four numbers (`exam` in `cert.json`); the modes are derived, so a new pack inherits all five.
 
-**Randomization.** Every attempt draws a fresh weighted sample, deprioritizes questions from your last three exams, and shuffles multiple-choice option order so a repeat sighting can't be answered from position memory. The shuffle is stored per session and mapped back at grading time. Note that novelty is bounded by pool size: a bank barely larger than the exam yields nearly the same questions each sitting.
+**Randomization.** Every attempt draws a fresh weighted sample, deprioritizes questions from your last three exams, and shuffles multiple-choice option order so a repeat sighting can't be answered from position memory. The shuffle is stored per session and mapped back at grading time.
+
+Novelty is bounded by pool size — two exams of N questions from a bank of B must share at least `2N − B`. With ~185 questions per cert, **every mode currently has zero forced repeat**, including a back-to-back pair of full 90-question mocks. The PBQ gauntlet is deliberately capped at half the PBQ pool for the same reason, since performance-based questions are the most expensive to author.
+
+| Cert | Questions | of which PBQ | Full mock forced repeat |
+|---|---|---|---|
+| A+ Core 1 (220-1101) | 188 | 16 | 0% |
+| A+ Core 2 (220-1102) | 185 | 19 | 0% |
 
 **Timing is server-authoritative.** The deadline lives in the database; answers are rejected after it and a reload resumes with the correct remaining time rather than restarting the clock. Unanswered questions count as incorrect, as they would on the real exam.
 

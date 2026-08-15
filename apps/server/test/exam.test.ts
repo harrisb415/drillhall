@@ -84,10 +84,10 @@ describe("exam options", () => {
     expect(options.officialQuestionCount).toBe(90);
     expect(options.passingScaledScore).toBe(675);
 
-    // full mock wants 90 but the bank is smaller — surfaced honestly, not hidden
+    // the bank now covers a full-length sitting, so no shortening is applied
     const full = options.modes.find((m) => m.id === "full")!;
     expect(full.questionCount).toBe(90);
-    expect(full.availableQuestions).toBeLessThan(90);
+    expect(full.availableQuestions).toBe(90);
   });
 
   it("reports Core 2's own pass mark", async () => {
@@ -175,11 +175,12 @@ describe("exam session lifecycle", () => {
     const stack = createTestStack();
     const { cookie } = await signUp(stack.app);
     const session = await startExam(stack, cookie, { certId: stack.certId, examMode: "domain", domainCodes: ["3.0"] });
-    const q = session.questions[0]!;
-    await request(stack.app)
+    const q = session.questions.find((x) => x.type === "mc")!;
+    const recorded = await request(stack.app)
       .post("/api/exam/attempts")
       .set("Cookie", cookie)
       .send({ sessionId: session.sessionId, questionId: q.id, answer: { type: "mc", choiceIndex: 1 } });
+    expect(recorded.status).toBe(200);
 
     const resumed = await request(stack.app)
       .get(`/api/exam/sessions/${session.sessionId}`)
@@ -361,6 +362,36 @@ describe("randomization", () => {
     const b = second.questions.map((q) => q.id);
     // With anti-repeat the second draw should not be the same ordered list.
     expect(b).not.toEqual(a);
+  });
+
+  it("two consecutive full mock exams share only a minority of questions", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app);
+
+    const first = await startExam(stack, cookie, { certId: stack.certId, examMode: "full" });
+    const second = await startExam(stack, cookie, { certId: stack.certId, examMode: "full" });
+    expect(first.questions).toHaveLength(90);
+    expect(second.questions).toHaveLength(90);
+
+    const a = new Set(first.questions.map((q) => q.id));
+    const shared = second.questions.filter((q) => a.has(q.id)).length;
+    // This is the property the question bank exists to provide: a second
+    // sitting must be mostly new material, not the same exam reshuffled.
+    expect(shared / 90, `${shared}/90 questions repeated`).toBeLessThan(0.5);
+  });
+
+  it("keeps blueprint weighting at full length", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app);
+    const session = await startExam(stack, cookie, { certId: stack.certId, examMode: "full" });
+
+    const pack = stack.content.byCertId.get(stack.certId)!;
+    for (const domain of pack.domains) {
+      const drawn = session.questions.filter((q) => q.domainCode === domain.code).length;
+      const expected = (domain.weight / 100) * 90;
+      // largest-remainder apportionment lands within a question of the ideal
+      expect(Math.abs(drawn - expected), `${domain.code} drew ${drawn}, expected ~${expected}`).toBeLessThanOrEqual(1);
+    }
   });
 
   it("shuffles multiple-choice option order between sessions", async () => {

@@ -1,0 +1,318 @@
+[
+  {
+    "id": "aplus-mc-096",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which port does SMTP use for sending mail between servers?",
+    "choices": ["25", "110", "143", "443"],
+    "answerIndex": 0,
+    "explanation": "SMTP uses TCP 25 for server-to-server delivery. 110 is POP3 and 143 IMAP for retrieval; 443 is HTTPS."
+  },
+  {
+    "id": "aplus-mc-097",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user needs mail accessible from a phone and a laptop with folders staying in sync. Which protocol should be configured?",
+    "choices": ["POP3", "IMAP", "SMTP", "SNMP"],
+    "answerIndex": 1,
+    "explanation": "IMAP keeps messages and folder structure on the server so every device sees the same state. POP3 typically downloads and removes mail, which breaks multi-device use."
+  },
+  {
+    "id": "aplus-mc-098",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which address is a private IPv4 address?",
+    "choices": ["8.8.8.8", "172.16.5.20", "203.0.113.9", "198.51.100.4"],
+    "answerIndex": 1,
+    "explanation": "RFC 1918 reserves 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16 for private use. 172.16.5.20 falls inside the 172.16–172.31 range."
+  },
+  {
+    "id": "aplus-mc-099",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "How many usable host addresses does a /24 subnet provide?",
+    "choices": ["254", "255", "256", "512"],
+    "answerIndex": 0,
+    "explanation": "A /24 has 256 addresses, minus one for the network identifier and one for broadcast, leaving 254 usable host addresses."
+  },
+  {
+    "id": "aplus-mc-100",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which technology allows many internal devices to share one public IP address?",
+    "choices": ["DNS", "NAT", "DHCP", "VLAN"],
+    "answerIndex": 1,
+    "explanation": "Network Address Translation rewrites private source addresses to the router's public address and tracks the sessions so replies return correctly."
+  },
+  {
+    "id": "aplus-mc-101",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the purpose of a default gateway?",
+    "choices": [
+      "Resolve hostnames to IP addresses",
+      "Forward traffic destined outside the local subnet",
+      "Assign IP addresses to clients",
+      "Encrypt wireless traffic"
+    ],
+    "answerIndex": 1,
+    "explanation": "When a destination isn't on the local subnet, the host sends the packet to the default gateway, which routes it onward. DNS resolves names; DHCP assigns addresses."
+  },
+  {
+    "id": "aplus-mc-102",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which device operates at Layer 2 and forwards frames based on MAC addresses?",
+    "choices": ["Hub", "Switch", "Router", "Firewall"],
+    "answerIndex": 1,
+    "explanation": "A switch learns MAC addresses and forwards frames only to the correct port. Hubs repeat to all ports; routers work at Layer 3 with IP addresses."
+  },
+  {
+    "id": "aplus-mc-103",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which wireless standard operates exclusively in the 6 GHz band in addition to 2.4 and 5 GHz?",
+    "choices": ["Wi-Fi 4", "Wi-Fi 5", "Wi-Fi 6E", "Wi-Fi 3"],
+    "answerIndex": 2,
+    "explanation": "The E in Wi-Fi 6E denotes the extension into 6 GHz, which offers wide, uncongested channels. Wi-Fi 5 is 5 GHz only; Wi-Fi 4 covers 2.4 and 5 GHz."
+  },
+  {
+    "id": "aplus-mc-104",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A small office needs to extend Ethernet 200 metres between two buildings. What is the BEST medium?",
+    "choices": ["Cat 6 copper", "Fiber optic", "Coaxial RG-6", "USB extension"],
+    "answerIndex": 1,
+    "explanation": "Copper Ethernet is limited to 100 m and carries lightning risk between buildings. Fiber spans far greater distances and is electrically isolated."
+  },
+  {
+    "id": "aplus-mc-105",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which service assigns IP addresses, subnet masks, and gateway information automatically?",
+    "choices": ["DNS", "DHCP", "NAT", "LDAP"],
+    "answerIndex": 1,
+    "explanation": "DHCP leases full IP configuration to clients through the DORA exchange, removing the need to configure each host by hand."
+  },
+  {
+    "id": "aplus-mc-106",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must allow remote SSH access through a firewall. Which port should be permitted?",
+    "choices": ["21", "22", "23", "25"],
+    "answerIndex": 1,
+    "explanation": "SSH listens on TCP 22. Port 21 is FTP control, 23 is unencrypted Telnet, and 25 is SMTP."
+  },
+  {
+    "id": "aplus-mc-107",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What does PoE allow a network switch to do?",
+    "choices": [
+      "Deliver electrical power to devices over the Ethernet cable",
+      "Encrypt all traffic at Layer 2",
+      "Double the available bandwidth",
+      "Extend cable runs beyond 300 m"
+    ],
+    "answerIndex": 0,
+    "explanation": "Power over Ethernet carries DC power alongside data, so access points, IP cameras, and phones need only a single cable and no local outlet."
+  },
+  {
+    "id": "aplus-mc-108",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which record type would a technician create to allow mail delivery for a domain?",
+    "choices": ["A", "MX", "CNAME", "PTR"],
+    "answerIndex": 1,
+    "explanation": "MX records designate the mail servers that accept a domain's mail and their priority. A maps names to IPv4, CNAME aliases, PTR does reverse lookups."
+  },
+  {
+    "id": "aplus-mc-109",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A guest network should reach the internet but not internal servers. Which technology enforces this?",
+    "choices": ["VLAN segmentation with firewall rules", "A longer DHCP lease", "A stronger Wi-Fi password", "Static IP addressing"],
+    "answerIndex": 0,
+    "explanation": "Placing guests on a separate VLAN and restricting traffic between it and internal subnets is what isolates them. Passwords control who joins, not what they can reach."
+  },
+  {
+    "id": "aplus-mc-110",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which protocol synchronises clocks across network devices?",
+    "choices": ["NTP", "SNMP", "SMTP", "LDAP"],
+    "answerIndex": 0,
+    "explanation": "Network Time Protocol keeps device clocks aligned, which matters for authentication tickets, certificate validity, and correlating logs."
+  },
+  {
+    "id": "aplus-mc-111",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the function of a DMZ (screened subnet) in a network design?",
+    "choices": [
+      "Host publicly reachable services while isolating the internal LAN",
+      "Increase wireless coverage",
+      "Provide backup power",
+      "Cache DNS responses"
+    ],
+    "answerIndex": 0,
+    "explanation": "A screened subnet holds internet-facing services behind their own firewall rules, so a compromise there does not immediately expose the internal network."
+  },
+  {
+    "id": "aplus-mc-112",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which cable type should be used in an air-handling space above a suspended ceiling?",
+    "choices": ["Standard PVC-jacketed cable", "Plenum-rated cable", "Coaxial cable", "Speaker wire"],
+    "answerIndex": 1,
+    "explanation": "Plenum-rated jackets produce less toxic smoke when burning and are required by fire code in spaces that circulate building air."
+  },
+  {
+    "id": "aplus-mc-113",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician needs to identify which wall port maps to which patch panel port. Which tool is appropriate?",
+    "choices": ["Multimeter", "Toner probe and tone generator", "Loopback plug", "Crimper"],
+    "answerIndex": 1,
+    "explanation": "A tone generator injects a signal on one end and the probe locates it at the other, identifying an unlabelled run without disturbing service."
+  },
+  {
+    "id": "aplus-mc-114",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which statement about IPv6 addresses is TRUE?",
+    "choices": [
+      "They are 32 bits long",
+      "They are 128 bits, written as eight hexadecimal groups",
+      "They require NAT to reach the internet",
+      "They cannot be assigned automatically"
+    ],
+    "answerIndex": 1,
+    "explanation": "IPv6 uses 128-bit addresses written as eight groups of four hex digits. The vast address space removes the need for NAT, and SLAAC allows self-configuration."
+  },
+  {
+    "id": "aplus-mc-115",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the purpose of port forwarding on a home router?",
+    "choices": [
+      "Direct inbound traffic on a specific port to an internal host",
+      "Increase available bandwidth",
+      "Assign static IPs to clients",
+      "Encrypt wireless traffic"
+    ],
+    "answerIndex": 0,
+    "explanation": "Port forwarding creates a NAT rule so unsolicited inbound traffic on a chosen port reaches a designated internal device, such as a game or web server."
+  },
+  {
+    "id": "aplus-mc-116",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which connector terminates fiber optic cable?",
+    "choices": ["RJ45", "LC or SC", "BNC", "RJ11"],
+    "answerIndex": 1,
+    "explanation": "LC and SC are common fiber connectors, along with ST. RJ45 terminates twisted-pair Ethernet, RJ11 telephone, and BNC coaxial."
+  },
+  {
+    "id": "aplus-mc-117",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician configures a wireless network and must prevent neighbouring APs from interfering on 2.4 GHz. Which channels should be used?",
+    "choices": ["1, 6, and 11", "1, 2, and 3", "5, 10, and 15", "All channels equally"],
+    "answerIndex": 0,
+    "explanation": "In 2.4 GHz only channels 1, 6, and 11 do not overlap. Anything else bleeds into adjacent channels and raises the noise floor for everyone."
+  },
+  {
+    "id": "aplus-mc-118",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes a client-server network compared with a peer-to-peer network?",
+    "choices": [
+      "Resources and authentication are centralised on dedicated servers",
+      "Every device acts as both client and server",
+      "It requires no network switch",
+      "It cannot use DNS"
+    ],
+    "answerIndex": 0,
+    "explanation": "Client-server centralises files, authentication, and management, which scales and secures better. Peer-to-peer shares resources directly with no central authority."
+  },
+  {
+    "id": "aplus-mc-119",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which internet connection type uses existing telephone lines and degrades with distance from the exchange?",
+    "choices": ["DSL", "Cable", "Fiber to the home", "Satellite"],
+    "answerIndex": 0,
+    "explanation": "DSL runs over copper telephone pairs and loses speed as the loop length grows. Cable uses coaxial, fiber uses light, and satellite is wireless with high latency."
+  },
+  {
+    "id": "aplus-mc-120",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which connection type typically has the highest latency, making it poor for real-time gaming?",
+    "choices": ["Fiber", "Cable", "Satellite", "DSL"],
+    "answerIndex": 2,
+    "explanation": "Geostationary satellite links add hundreds of milliseconds because the signal travels roughly 36,000 km each way. Terrestrial options are far lower latency."
+  },
+  {
+    "id": "aplus-mc-121",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the primary role of a firewall?",
+    "choices": [
+      "Filter traffic against a rule set",
+      "Assign IP addresses",
+      "Resolve domain names",
+      "Amplify wireless signals"
+    ],
+    "answerIndex": 0,
+    "explanation": "A firewall permits or denies traffic according to configured rules, at the network boundary or on the host itself."
+  },
+  {
+    "id": "aplus-mc-122",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which server role translates internal requests and caches web content for clients?",
+    "choices": ["Proxy server", "DHCP server", "File server", "Print server"],
+    "answerIndex": 0,
+    "explanation": "A proxy makes requests on clients' behalf, allowing caching, content filtering, and logging, while hiding internal addresses from the destination."
+  },
+  {
+    "id": "aplus-mc-123",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must terminate a network cable at a wall jack. Which tool is required?",
+    "choices": ["Punchdown tool", "Crimper", "Multimeter", "Screwdriver only"],
+    "answerIndex": 0,
+    "explanation": "Wall jacks and patch panels use insulation-displacement contacts seated with a punchdown tool. Crimpers attach RJ45 plugs to patch cable ends instead."
+  },
+  {
+    "id": "aplus-term-005",
+    "type": "terminal",
+    "domainCode": "2.0",
+    "prompt": "Type the Windows command that releases the current DHCP lease on all adapters.",
+    "expected": ["ipconfig /release"],
+    "explanation": "ipconfig /release surrenders the lease; /renew then requests a new one. Together they force a fresh DHCP negotiation without rebooting."
+  },
+  {
+    "id": "aplus-term-006",
+    "type": "terminal",
+    "domainCode": "2.0",
+    "prompt": "Type the command that queries DNS directly to look up the address of comptia.org.",
+    "expected": ["nslookup comptia.org"],
+    "explanation": "nslookup queries a DNS server directly, which separates name-resolution failures from general connectivity problems. dig serves the same role on Unix systems."
+  },
+  {
+    "id": "aplus-match-004",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each network device to its primary function.",
+    "pairs": [
+      { "left": "Switch", "right": "Forwards frames within a LAN using MAC addresses" },
+      { "left": "Router", "right": "Moves traffic between different IP networks" },
+      { "left": "Access point", "right": "Bridges wireless clients onto the wired network" },
+      { "left": "Firewall", "right": "Permits or denies traffic against a rule set" }
+    ],
+    "explanation": "Each device owns one layer of the path: switches inside the LAN, routers between networks, access points for wireless attachment, and firewalls for policy enforcement."
+  }
+]

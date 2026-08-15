@@ -1,0 +1,471 @@
+[
+  {
+    "id": "core2-mc-071",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which authentication factor category does a hardware security key belong to?",
+    "choices": ["Something you have", "Something you know", "Something you are", "Somewhere you are"],
+    "answerIndex": 0,
+    "explanation": "A physical key is a possession factor. Passwords and PINs are knowledge factors, and biometrics are inherence factors."
+  },
+  {
+    "id": "core2-mc-072",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which attack floods a service with traffic from many compromised hosts to make it unavailable?",
+    "choices": ["DDoS", "SQL injection", "Phishing", "Shoulder surfing"],
+    "answerIndex": 0,
+    "explanation": "A distributed denial-of-service uses many sources at once, which makes it far harder to filter than a single-source flood."
+  },
+  {
+    "id": "core2-mc-073",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user receives a call from someone claiming to be IT and asking for their password. What is this?",
+    "choices": ["Vishing", "Smishing", "Whaling", "Tailgating"],
+    "answerIndex": 0,
+    "explanation": "Voice phishing exploits the immediacy of a phone call. Smishing arrives by SMS, whaling targets executives by email, and tailgating is physical."
+  },
+  {
+    "id": "core2-mc-074",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which practice BEST protects against ransomware data loss?",
+    "choices": [
+      "Regular, tested, offline or immutable backups",
+      "Longer passwords",
+      "Disabling the firewall",
+      "Using a larger monitor"
+    ],
+    "answerIndex": 0,
+    "explanation": "Ransomware encrypts what it can reach, including mapped network drives, so backups must be offline or immutable — and verified by test restores."
+  },
+  {
+    "id": "core2-mc-075",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which Windows feature filters inbound and outbound traffic on the host itself?",
+    "choices": ["Windows Defender Firewall", "BitLocker", "Task Scheduler", "Disk Management"],
+    "answerIndex": 0,
+    "explanation": "The host firewall applies rules per profile — domain, private, public — independently of any network firewall."
+  },
+  {
+    "id": "core2-mc-076",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must securely dispose of drives containing confidential data before recycling. Which method is MOST thorough?",
+    "choices": [
+      "Physical destruction such as shredding or degaussing",
+      "Quick format",
+      "Deleting the files",
+      "Moving files to the Recycle Bin"
+    ],
+    "answerIndex": 0,
+    "explanation": "Physical destruction leaves nothing to recover. Formatting and deleting only remove pointers; a low-level wipe is acceptable for reuse but not for disposal of highly sensitive media."
+  },
+  {
+    "id": "core2-mc-077",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which term describes verifying a user's identity before granting access to a resource?",
+    "choices": ["Authentication", "Authorisation", "Accounting", "Auditing"],
+    "answerIndex": 0,
+    "explanation": "Authentication proves who you are; authorisation determines what you may do; accounting records what you did."
+  },
+  {
+    "id": "core2-mc-078",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which control prevents an unauthorised person from following an employee through a secured door?",
+    "choices": ["Access control vestibule (mantrap)", "Firewall rule", "Antivirus", "VPN"],
+    "answerIndex": 0,
+    "explanation": "An access control vestibule admits one person at a time between interlocking doors, which physically defeats tailgating."
+  },
+  {
+    "id": "core2-mc-079",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A website presents a certificate warning that it is not trusted. What should the user do?",
+    "choices": [
+      "Stop and verify the site before entering any credentials",
+      "Ignore it and continue",
+      "Disable the browser's security settings",
+      "Reinstall the operating system"
+    ],
+    "answerIndex": 0,
+    "explanation": "A certificate warning may mean an expired certificate or an interception attempt. Credentials should never be entered until the site is verified."
+  },
+  {
+    "id": "core2-mc-080",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which policy setting BEST limits the damage from a stolen password guessed by brute force?",
+    "choices": [
+      "Account lockout after a number of failed attempts",
+      "Longer session timeouts",
+      "Disabling the screen saver",
+      "Allowing password reuse"
+    ],
+    "answerIndex": 0,
+    "explanation": "Lockout thresholds stop automated guessing after a few failures. Password reuse and long sessions increase risk rather than reducing it."
+  },
+  {
+    "id": "core2-mc-081",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which type of malware disguises itself as legitimate software to get installed?",
+    "choices": ["Trojan", "Worm", "Rootkit", "Adware"],
+    "answerIndex": 0,
+    "explanation": "A trojan relies on the user choosing to install it, believing it is something useful. Worms spread on their own without user action."
+  },
+  {
+    "id": "core2-mc-082",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which malware type hides its presence at a deep system level and is hardest to detect from within the running OS?",
+    "choices": ["Rootkit", "Adware", "Spam", "Keylogger"],
+    "answerIndex": 0,
+    "explanation": "Rootkits subvert the operating system itself so scans from inside it return clean results. Offline or boot-time scanning, or reimaging, is the reliable answer."
+  },
+  {
+    "id": "core2-mc-083",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which wireless authentication method uses a central RADIUS server rather than a shared passphrase?",
+    "choices": ["WPA2/WPA3 Enterprise", "WPA2 Personal", "WEP", "Open"],
+    "answerIndex": 0,
+    "explanation": "Enterprise mode authenticates each user individually through 802.1X and RADIUS, so revoking one account does not require changing a shared key."
+  },
+  {
+    "id": "core2-mc-084",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must grant a contractor access to one folder only. Which principle guides this?",
+    "choices": ["Least privilege", "Defence in depth", "Implicit allow", "Separation of duties"],
+    "answerIndex": 0,
+    "explanation": "Least privilege grants only the access needed for the task, limiting exposure if the account is misused or compromised."
+  },
+  {
+    "id": "core2-mc-085",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which statement about NTFS and share permissions when accessing a folder over the network is TRUE?",
+    "choices": [
+      "The most restrictive of the two applies",
+      "Share permissions always win",
+      "NTFS permissions are ignored remotely",
+      "They are added together"
+    ],
+    "answerIndex": 0,
+    "explanation": "Both sets are evaluated and the effective permission is the more restrictive. A common misconfiguration is a permissive share with restrictive NTFS, or the reverse."
+  },
+  {
+    "id": "core2-mc-086",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which feature verifies that only trusted, signed code runs during system startup?",
+    "choices": ["Secure Boot", "Fast Startup", "Wake-on-LAN", "PXE boot"],
+    "answerIndex": 0,
+    "explanation": "Secure Boot checks bootloader and driver signatures against firmware-held keys, blocking bootkits that load before the OS."
+  },
+  {
+    "id": "core2-mc-087",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user's browser shows unwanted toolbars and pop-ups after installing free software. What is the MOST likely cause?",
+    "choices": ["Bundled adware / PUP", "Failing RAM", "A dead CMOS battery", "An outdated monitor driver"],
+    "answerIndex": 0,
+    "explanation": "Free installers frequently bundle potentially unwanted programs. Remove the extensions and programs, then reset browser settings."
+  },
+  {
+    "id": "core2-mc-088",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which action should be taken FIRST when a workstation is suspected of active malware infection on a corporate network?",
+    "choices": [
+      "Disconnect it from the network to quarantine it",
+      "Run Windows Update",
+      "Defragment the drive",
+      "Change the desktop background"
+    ],
+    "answerIndex": 0,
+    "explanation": "Quarantine limits lateral spread and data exfiltration while investigation proceeds. It is step 2 of the malware removal procedure, right after verifying symptoms."
+  },
+  {
+    "id": "core2-mc-089",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which password practice provides the greatest resistance to guessing while remaining usable?",
+    "choices": [
+      "A long unique passphrase stored in a password manager",
+      "A short complex password reused everywhere",
+      "The company name plus a number",
+      "A password written on a sticky note"
+    ],
+    "answerIndex": 0,
+    "explanation": "Length contributes more entropy than symbol substitution, and a manager makes uniqueness per site practical so one breach cannot cascade."
+  },
+  {
+    "id": "core2-mc-090",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which technology creates an encrypted tunnel so a remote worker can safely use public Wi-Fi?",
+    "choices": ["VPN", "VLAN", "NAT", "DHCP"],
+    "answerIndex": 0,
+    "explanation": "A VPN encrypts traffic end to end, so anyone intercepting on the untrusted network sees only ciphertext."
+  },
+  {
+    "id": "core2-mc-091",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which attack captures keystrokes to steal credentials?",
+    "choices": ["Keylogger", "DDoS", "Evil twin", "Dumpster diving"],
+    "answerIndex": 0,
+    "explanation": "Keyloggers record typed input in software or via a hardware inline device, capturing credentials as they are entered."
+  },
+  {
+    "id": "core2-mc-092",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which security setting should be changed FIRST on a newly installed SOHO router?",
+    "choices": [
+      "The default administrator credentials",
+      "The LED brightness",
+      "The physical placement",
+      "The firmware language"
+    ],
+    "answerIndex": 0,
+    "explanation": "Default credentials are published and are the first thing an attacker tries. Changing them precedes SSID, encryption, and firmware work."
+  },
+  {
+    "id": "core2-mc-093",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What does a certificate authority provide in a public key infrastructure?",
+    "choices": [
+      "It signs and vouches for the identity bound to a public key",
+      "It encrypts all network traffic",
+      "It assigns IP addresses",
+      "It stores user passwords"
+    ],
+    "answerIndex": 0,
+    "explanation": "A CA validates identity and issues signed certificates, so relying parties can trust that a public key genuinely belongs to the named entity."
+  },
+  {
+    "id": "core2-mc-094",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which method should be used to sanitise a drive that will be redeployed internally?",
+    "choices": [
+      "A standards-based low-level wipe of the whole drive",
+      "Deleting the user folder",
+      "Emptying the Recycle Bin",
+      "Hiding the partition"
+    ],
+    "answerIndex": 0,
+    "explanation": "A full overwrite (or ATA secure erase on SSDs) removes recoverable data while keeping the drive usable. Deleting files leaves the data intact on disk."
+  },
+  {
+    "id": "core2-mc-095",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user reports a pop-up claiming their PC is infected and demanding they call a phone number. What is this?",
+    "choices": [
+      "A social-engineering scam (scareware)",
+      "A legitimate antivirus alert",
+      "A Windows Update notification",
+      "A driver installation prompt"
+    ],
+    "answerIndex": 0,
+    "explanation": "Scareware manufactures urgency to get the victim to call and grant remote access or pay. Users should close the browser and never call the number."
+  },
+  {
+    "id": "core2-mc-096",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which control ensures a departing employee immediately loses access to company systems?",
+    "choices": [
+      "Prompt account disablement in the offboarding process",
+      "Changing the office Wi-Fi name",
+      "Rebooting the file server",
+      "Clearing the browser cache"
+    ],
+    "answerIndex": 0,
+    "explanation": "Offboarding must disable accounts and revoke tokens at once. Disabling rather than deleting preserves data ownership and audit history."
+  },
+  {
+    "id": "core2-mc-097",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes an evil twin attack?",
+    "choices": [
+      "A rogue access point impersonating a legitimate SSID",
+      "Two identical malware files",
+      "A duplicate user account",
+      "A mirrored hard drive"
+    ],
+    "answerIndex": 0,
+    "explanation": "An evil twin broadcasts a familiar network name so devices connect to the attacker, who can then intercept or manipulate traffic."
+  },
+  {
+    "id": "core2-mc-098",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which of these is a compensating control for a laptop that cannot support full-disk encryption?",
+    "choices": [
+      "Restrict what data may be stored on it and enforce strong access controls",
+      "Remove its battery",
+      "Disable its speakers",
+      "Increase its screen resolution"
+    ],
+    "answerIndex": 0,
+    "explanation": "When the preferred control is unavailable, a compensating control reduces the same risk another way — here by limiting exposure and hardening access."
+  },
+  {
+    "id": "core2-mc-099",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which browser setting reduces tracking without preventing the site from functioning?",
+    "choices": [
+      "Blocking third-party cookies",
+      "Disabling all JavaScript permanently",
+      "Clearing the DNS cache",
+      "Turning off the firewall"
+    ],
+    "answerIndex": 0,
+    "explanation": "Third-party cookies enable cross-site tracking, and blocking them rarely breaks a site's own functionality. Disabling JavaScript breaks most modern sites."
+  },
+  {
+    "id": "core2-mc-100",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which statement about hashing versus encryption is TRUE?",
+    "choices": [
+      "Hashing is one-way; encryption is reversible with a key",
+      "Both are reversible",
+      "Hashing requires a shared secret",
+      "Encryption cannot use a key"
+    ],
+    "answerIndex": 0,
+    "explanation": "A hash cannot be reversed to the original input, which is why passwords are stored hashed. Encryption is designed to be reversed by the key holder."
+  },
+  {
+    "id": "core2-mc-101",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A shared workstation should lock automatically when unattended. Which setting achieves this?",
+    "choices": [
+      "A screen saver timeout requiring sign-in on resume",
+      "A brighter display",
+      "A faster mouse pointer",
+      "A larger page file"
+    ],
+    "answerIndex": 0,
+    "explanation": "A short inactivity timeout that demands re-authentication prevents an unattended session being used by whoever walks up next."
+  },
+  {
+    "id": "core2-mc-102",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the BEST response to discovering an unknown USB drive in the car park?",
+    "choices": [
+      "Hand it to security without plugging it in",
+      "Plug it into a workstation to identify the owner",
+      "Plug it into a server",
+      "Format it and reuse it"
+    ],
+    "answerIndex": 0,
+    "explanation": "Dropped media is a known attack delivery method. Plugging it in — even to identify the owner — is the exact behaviour the attack relies on."
+  },
+  {
+    "id": "core2-mc-103",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which mobile security control prevents installation of apps from outside the official store?",
+    "choices": [
+      "Blocking sideloading through MDM policy",
+      "Turning off Bluetooth",
+      "Enabling airplane mode",
+      "Reducing screen brightness"
+    ],
+    "answerIndex": 0,
+    "explanation": "Restricting installation sources keeps unvetted applications off the device, which is one of the highest-value mobile controls an MDM can enforce."
+  },
+  {
+    "id": "core2-mc-104",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which log would show repeated failed sign-in attempts on a Windows workstation?",
+    "choices": [
+      "Event Viewer Security log",
+      "Application log",
+      "Setup log",
+      "Print queue"
+    ],
+    "answerIndex": 0,
+    "explanation": "Logon successes and failures are audited into the Security log, which is where you confirm a brute-force attempt."
+  },
+  {
+    "id": "core2-mc-105",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes defence in depth?",
+    "choices": [
+      "Layering multiple independent controls so no single failure is fatal",
+      "Using one very strong firewall",
+      "Encrypting only the most important file",
+      "Relying on user training alone"
+    ],
+    "answerIndex": 0,
+    "explanation": "Defence in depth assumes any single control can fail, so overlapping technical, physical, and administrative layers each have to be defeated."
+  },
+  {
+    "id": "core2-mc-106",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which action helps prevent shoulder surfing in an open-plan office?",
+    "choices": [
+      "Fit a privacy screen filter and reposition monitors",
+      "Increase the font size",
+      "Disable the keyboard",
+      "Use a lighter desktop wallpaper"
+    ],
+    "answerIndex": 0,
+    "explanation": "Privacy filters narrow the viewing angle, and orienting screens away from walkways removes the sight lines the attack depends on."
+  },
+  {
+    "id": "core2-mc-107",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is a characteristic of a worm that distinguishes it from a virus?",
+    "choices": [
+      "It self-propagates across networks without user action",
+      "It requires a host file to spread",
+      "It only affects mobile devices",
+      "It cannot cause damage"
+    ],
+    "answerIndex": 0,
+    "explanation": "Worms exploit network services to spread by themselves, which is why they propagate so fast. A virus needs a host file and a user to run it."
+  },
+  {
+    "id": "core2-term-006",
+    "type": "terminal",
+    "domainCode": "2.0",
+    "prompt": "Type the Windows command that lists all active network connections and listening ports with their owning process IDs.",
+    "expected": ["netstat -ano"],
+    "explanation": "netstat -ano shows connections, listening ports, and the PID holding each one, which is how you find an unexpected listener during an incident."
+  },
+  {
+    "id": "core2-match-004",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each security concept to its definition.",
+    "pairs": [
+      { "left": "Authentication", "right": "Proving who a user claims to be" },
+      { "left": "Authorisation", "right": "Determining what an authenticated user may access" },
+      { "left": "Least privilege", "right": "Granting only the access a role requires" },
+      { "left": "Defence in depth", "right": "Layering independent controls so one failure isn't fatal" }
+    ],
+    "explanation": "Authentication and authorisation are sequential and often confused; least privilege scopes the second, and defence in depth is the design philosophy surrounding both."
+  }
+]

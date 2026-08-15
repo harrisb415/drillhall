@@ -8,11 +8,38 @@ export const CONTENT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.
 
 const PART_FILES = ["domains", "flashcards", "quiz", "reference"] as const;
 
-/** Reads a pack folder's five JSON files into one raw (unvalidated) object. */
+/**
+ * Reads one part of a pack. A part may be a single `<name>.json` array, a
+ * `<name>/` folder of JSON arrays, or both — the folder's files are sorted by
+ * filename and concatenated after the single file.
+ *
+ * The folder form exists so a large question bank can live in reviewable
+ * per-domain files instead of one unmergeable thousand-line array. Duplicate
+ * ids across files are caught by the schema, not silently merged.
+ */
+function readPart(dir: string, part: string): unknown[] {
+  const out: unknown[] = [];
+  const single = path.join(dir, `${part}.json`);
+  if (fs.existsSync(single)) {
+    out.push(...(JSON.parse(fs.readFileSync(single, "utf8")) as unknown[]));
+  }
+  const folder = path.join(dir, part);
+  if (fs.existsSync(folder) && fs.statSync(folder).isDirectory()) {
+    const files = fs
+      .readdirSync(folder)
+      .filter((f) => f.endsWith(".json"))
+      .sort();
+    for (const file of files) {
+      out.push(...(JSON.parse(fs.readFileSync(path.join(folder, file), "utf8")) as unknown[]));
+    }
+  }
+  return out;
+}
+
+/** Reads a pack folder into one raw (unvalidated) object. */
 export function loadPackDir(dir: string): unknown {
-  const readJson = (file: string) => JSON.parse(fs.readFileSync(path.join(dir, file), "utf8"));
-  const meta = readJson("cert.json");
-  const parts = Object.fromEntries(PART_FILES.map((p) => [p, readJson(`${p}.json`)]));
+  const meta = JSON.parse(fs.readFileSync(path.join(dir, "cert.json"), "utf8"));
+  const parts = Object.fromEntries(PART_FILES.map((p) => [p, readPart(dir, p)]));
   return { ...meta, ...parts };
 }
 

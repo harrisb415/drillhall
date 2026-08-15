@@ -1,0 +1,203 @@
+[
+  {
+    "id": "aplus-mc-145",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A development team needs identical isolated environments that can be discarded after testing. Which technology fits BEST?",
+    "choices": [
+      "Virtual machines with snapshots",
+      "Dual-boot installations",
+      "Separate physical servers",
+      "A shared network drive"
+    ],
+    "answerIndex": 0,
+    "explanation": "VMs can be cloned from a template and rolled back to a snapshot in seconds, so each test starts from a known clean state without dedicated hardware."
+  },
+  {
+    "id": "aplus-mc-146",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What must a CPU support to run virtual machines efficiently?",
+    "choices": [
+      "Hardware virtualisation extensions such as Intel VT-x or AMD-V",
+      "Integrated graphics",
+      "Hyper-threading only",
+      "An unlocked multiplier"
+    ],
+    "answerIndex": 0,
+    "explanation": "VT-x and AMD-V let the CPU execute guest instructions natively rather than emulating them. They are often disabled by default and must be enabled in firmware."
+  },
+  {
+    "id": "aplus-mc-147",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company wants to stop managing email servers entirely and simply consume the service. Which model applies?",
+    "choices": ["IaaS", "PaaS", "SaaS", "On-premises"],
+    "answerIndex": 2,
+    "explanation": "SaaS delivers a finished application with the provider handling infrastructure, patching, and availability. The customer configures and uses it."
+  },
+  {
+    "id": "aplus-mc-148",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which cloud characteristic describes several customers sharing the same underlying physical hardware?",
+    "choices": ["Resource pooling / multitenancy", "Rapid elasticity", "Measured service", "High availability"],
+    "answerIndex": 0,
+    "explanation": "Resource pooling means the provider serves many tenants from shared infrastructure, allocating logical slices dynamically. It is what makes public cloud economical."
+  },
+  {
+    "id": "aplus-mc-149",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A business keeps sensitive records on private infrastructure but bursts to public cloud at peak. Which deployment model is this?",
+    "choices": ["Public cloud", "Private cloud", "Hybrid cloud", "Community cloud"],
+    "answerIndex": 2,
+    "explanation": "Hybrid connects private and public environments so workloads can move between them, keeping regulated data in place while gaining public elasticity on demand."
+  },
+  {
+    "id": "aplus-mc-150",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is a security benefit of running suspicious software inside a virtual machine?",
+    "choices": [
+      "The guest is isolated from the host and can be reverted",
+      "The VM runs faster than the host",
+      "Antivirus is unnecessary",
+      "The file cannot execute"
+    ],
+    "answerIndex": 0,
+    "explanation": "Sandboxing contains the software within the guest, and a snapshot rollback discards anything it changed. Isolation is not absolute, so a dedicated analysis network is still wise."
+  },
+  {
+    "id": "aplus-mc-151",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which resource is MOST likely to limit how many virtual machines a host can run simultaneously?",
+    "choices": ["RAM", "Optical drives", "USB ports", "Monitor resolution"],
+    "answerIndex": 0,
+    "explanation": "Each guest reserves memory that cannot be shared freely, so physical RAM is normally the first ceiling reached, ahead of CPU or storage."
+  },
+  {
+    "id": "aplus-mc-152",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What does a VM snapshot capture?",
+    "choices": [
+      "The machine's state at a point in time, allowing rollback",
+      "A permanent backup stored off-site",
+      "Only the guest's network settings",
+      "The host's BIOS configuration"
+    ],
+    "answerIndex": 0,
+    "explanation": "A snapshot preserves disk and optionally memory state so the VM can be returned to that moment. It is not a backup — it lives with the VM and fails with it."
+  },
+  {
+    "id": "aplus-mc-153",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which cloud model gives a developer a managed runtime to deploy code without administering the operating system?",
+    "choices": ["IaaS", "PaaS", "SaaS", "DaaS"],
+    "answerIndex": 1,
+    "explanation": "Platform as a Service supplies the OS, runtime, and scaling. The developer supplies application code and data only."
+  },
+  {
+    "id": "aplus-mc-154",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A virtual machine has no network connectivity while the host does. Which setting should be checked FIRST?",
+    "choices": [
+      "The VM's virtual network adapter mode",
+      "The host's monitor resolution",
+      "The guest's screen saver",
+      "The host's audio driver"
+    ],
+    "answerIndex": 0,
+    "explanation": "Virtual adapters run in modes such as NAT, bridged, host-only, or internal. A guest set to host-only or with a disconnected adapter has no path to the outside network."
+  },
+  {
+    "id": "aplus-mc-155",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which statement about desktop virtualisation (VDI) is TRUE?",
+    "choices": [
+      "Desktops run centrally and are streamed to endpoints",
+      "Each user must have a high-end local workstation",
+      "It eliminates the need for any network",
+      "Data is stored only on the endpoint"
+    ],
+    "answerIndex": 0,
+    "explanation": "VDI hosts desktops in the data centre and streams the display to thin clients, keeping data central. It depends heavily on a reliable network."
+  },
+  {
+    "id": "aplus-mc-156",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What does 'measured service' mean in a cloud context?",
+    "choices": [
+      "Usage is metered and billed according to consumption",
+      "Performance is capped at a fixed level",
+      "Only certain hours are available",
+      "Support is limited to business hours"
+    ],
+    "answerIndex": 0,
+    "explanation": "The provider measures consumption — compute hours, storage, requests — and bills on it, which is what makes pay-as-you-go possible and usage transparent."
+  },
+  {
+    "id": "aplus-mc-157",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician must run a legacy application that requires an older operating system. Which approach is BEST on modern hardware?",
+    "choices": [
+      "Run the legacy OS in a virtual machine",
+      "Downgrade the physical machine permanently",
+      "Rewrite the application",
+      "Run it in the browser"
+    ],
+    "answerIndex": 0,
+    "explanation": "A VM lets the legacy OS run in isolation on current hardware, without sacrificing the host or the security posture of the physical machine."
+  },
+  {
+    "id": "aplus-mc-158",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is a disadvantage of cloud file storage compared with local storage?",
+    "choices": [
+      "Access depends on network availability and bandwidth",
+      "It cannot be shared between users",
+      "It offers no redundancy",
+      "It requires a dedicated server room"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cloud storage is unreachable without connectivity, and large transfers are bound by available bandwidth. Sharing and redundancy are strengths, not weaknesses."
+  },
+  {
+    "id": "aplus-mc-159",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which virtualisation feature moves a running VM between physical hosts with no downtime?",
+    "choices": ["Live migration", "Snapshot", "Cold clone", "Thin provisioning"],
+    "answerIndex": 0,
+    "explanation": "Live migration transfers memory and state to another host while the guest keeps running, allowing host maintenance without an outage."
+  },
+  {
+    "id": "aplus-term-007",
+    "type": "terminal",
+    "domainCode": "4.0",
+    "prompt": "On a Linux VM, type the command that displays free and used memory in human-readable units.",
+    "expected": ["free -h", "free -m"],
+    "explanation": "free -h reports memory and swap in human-readable units, which is the quickest way to see whether a guest is short on RAM. free -m gives the same in megabytes."
+  },
+  {
+    "id": "aplus-match-006",
+    "type": "match",
+    "domainCode": "4.0",
+    "prompt": "Match each cloud or virtualisation term to its meaning.",
+    "pairs": [
+      { "left": "IaaS", "right": "Provider supplies compute, storage, and network; you manage the OS" },
+      { "left": "Type 1 hypervisor", "right": "Runs directly on hardware with no host operating system" },
+      { "left": "Rapid elasticity", "right": "Capacity scales up and down automatically with demand" },
+      { "left": "Container", "right": "Shares the host kernel and isolates at the process level" }
+    ],
+    "explanation": "IaaS defines the service boundary, Type 1 the hypervisor architecture, rapid elasticity the scaling behaviour, and containers the lighter alternative to full guest operating systems."
+  }
+]

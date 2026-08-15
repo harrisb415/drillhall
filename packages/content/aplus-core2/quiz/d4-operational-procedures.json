@@ -1,0 +1,413 @@
+[
+  {
+    "id": "core2-mc-133",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which document defines the response times a service provider guarantees to its customer?",
+    "choices": ["SLA", "NDA", "SOW", "MSDS"],
+    "answerIndex": 0,
+    "explanation": "A Service Level Agreement specifies measurable commitments such as response and resolution times. An NDA covers confidentiality and an SOW the scope of work."
+  },
+  {
+    "id": "core2-mc-134",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which document should be consulted before handling or disposing of a chemical cleaning product?",
+    "choices": ["Safety Data Sheet", "Service Level Agreement", "Acceptable Use Policy", "Change request"],
+    "answerIndex": 0,
+    "explanation": "The SDS lists hazards, handling requirements, first aid measures, and disposal instructions for that specific product."
+  },
+  {
+    "id": "core2-mc-135",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician must dispose of used laser toner cartridges. What is the correct procedure?",
+    "choices": [
+      "Follow local regulations and the manufacturer's recycling programme",
+      "Place them in general waste",
+      "Burn them on site",
+      "Bury them behind the building"
+    ],
+    "answerIndex": 0,
+    "explanation": "Toner cartridges are regulated waste in most jurisdictions and vendors provide take-back recycling. General waste and incineration are not permitted disposal routes."
+  },
+  {
+    "id": "core2-mc-136",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which device protects equipment from both power loss and voltage fluctuation, allowing a graceful shutdown?",
+    "choices": ["UPS", "Surge suppressor", "Power strip", "Extension lead"],
+    "answerIndex": 0,
+    "explanation": "A UPS supplies battery power during an outage and conditions the incoming supply. A surge suppressor only clamps spikes and offers no runtime."
+  },
+  {
+    "id": "core2-mc-137",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is the correct order of the standard change management process?",
+    "choices": [
+      "Request, assess risk, approve, schedule, implement, document",
+      "Implement, request, approve, document",
+      "Approve, document, request, implement",
+      "Implement, document, approve, request"
+    ],
+    "answerIndex": 0,
+    "explanation": "Change management front-loads risk assessment and approval so that implementation is planned, scheduled, communicated, and reversible."
+  },
+  {
+    "id": "core2-mc-138",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which element of a change request describes how to return to the previous state if the change fails?",
+    "choices": ["Rollback plan", "Risk analysis", "Scope of change", "End-user acceptance"],
+    "answerIndex": 0,
+    "explanation": "The rollback plan defines the concrete steps back to the pre-change state. Without one, a failed change becomes an outage of unknown duration."
+  },
+  {
+    "id": "core2-mc-139",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician discovers what appears to be illegal material on a user's PC. What should be done FIRST?",
+    "choices": [
+      "Preserve the evidence and report through the proper channels",
+      "Delete the files",
+      "Confront the user",
+      "Copy the files to a personal drive"
+    ],
+    "answerIndex": 0,
+    "explanation": "Stop, preserve the system as found, and escalate. Deleting destroys evidence and copying it is itself unlawful; the decision belongs to security and legal."
+  },
+  {
+    "id": "core2-mc-140",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What does chain of custody documentation record?",
+    "choices": [
+      "Who handled evidence, when, and for what purpose",
+      "The warranty status of hardware",
+      "The network topology",
+      "Software licence keys"
+    ],
+    "answerIndex": 0,
+    "explanation": "An unbroken record of custody and handling is what allows evidence to be admitted and trusted later."
+  },
+  {
+    "id": "core2-mc-141",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which backup scheme requires only the last full backup plus the most recent single backup to restore?",
+    "choices": ["Differential", "Incremental", "Synthetic", "Snapshot only"],
+    "answerIndex": 0,
+    "explanation": "Differential backups capture everything changed since the last full, so a restore needs just the full plus the latest differential. Incremental restores chain through every increment."
+  },
+  {
+    "id": "core2-mc-142",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Why must backups be tested with periodic restores?",
+    "choices": [
+      "An untested backup may be unusable when needed",
+      "Testing makes backups run faster",
+      "It reduces storage cost",
+      "It is required to enable compression"
+    ],
+    "answerIndex": 0,
+    "explanation": "Media faults, misconfigured jobs, and missing data sets are only discovered by restoring. An unverified backup is an assumption, not a safeguard."
+  },
+  {
+    "id": "core2-mc-143",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A customer becomes angry and raises their voice about a recurring fault. What is the appropriate response?",
+    "choices": [
+      "Listen without interrupting and acknowledge the impact",
+      "Raise your voice to match",
+      "Walk away without comment",
+      "Tell them it is their own fault"
+    ],
+    "answerIndex": 0,
+    "explanation": "Letting the customer be heard de-escalates and surfaces detail. Matching their tone or dismissing them escalates and damages the relationship."
+  },
+  {
+    "id": "core2-mc-144",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which practice is appropriate when a technician cannot resolve an issue within the agreed time?",
+    "choices": [
+      "Escalate according to policy and inform the customer",
+      "Keep trying silently until it is fixed",
+      "Close the ticket as resolved",
+      "Blame the previous technician"
+    ],
+    "answerIndex": 0,
+    "explanation": "Timely escalation with clear communication respects the SLA and the customer's ability to plan. Silence and false closure both erode trust."
+  },
+  {
+    "id": "core2-mc-145",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which precaution prevents electrostatic discharge damage during component installation?",
+    "choices": [
+      "Wear an anti-static strap bonded to the chassis",
+      "Work on a carpeted floor",
+      "Wear wool clothing",
+      "Handle boards by their contacts"
+    ],
+    "answerIndex": 0,
+    "explanation": "Bonding yourself to the chassis equalises potential so no discharge occurs. Carpet and wool generate static, and touching contacts is exactly what to avoid."
+  },
+  {
+    "id": "core2-mc-146",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which equipment should never be opened by a technician due to stored lethal voltage?",
+    "choices": [
+      "Power supply units and CRT monitors",
+      "Keyboards",
+      "External hard drives",
+      "USB hubs"
+    ],
+    "answerIndex": 0,
+    "explanation": "PSU and CRT capacitors retain a dangerous charge long after disconnection. These are replaced as units, never serviced in the field."
+  },
+  {
+    "id": "core2-mc-147",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which licence type permits use of software on a defined number of devices under one agreement?",
+    "choices": ["Volume licence", "Open source GPL", "Freeware", "Trial"],
+    "answerIndex": 0,
+    "explanation": "Volume licensing covers an agreed device or user count under a single agreement, which is how organisations manage compliance at scale."
+  },
+  {
+    "id": "core2-mc-148",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which regulation category covers personally identifiable information such as names and national ID numbers?",
+    "choices": ["PII handling requirements", "SDS requirements", "Fire code", "Building code"],
+    "answerIndex": 0,
+    "explanation": "PII is subject to privacy law governing collection, storage, transfer, and disposal, with breach notification duties attached."
+  },
+  {
+    "id": "core2-mc-149",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A ticket should contain which of the following to be useful to the next technician?",
+    "choices": [
+      "Problem description, steps already taken, and current status",
+      "Only the user's name",
+      "Only the device serial number",
+      "A single word such as 'broken'"
+    ],
+    "answerIndex": 0,
+    "explanation": "A useful ticket lets someone pick the work up cold: what is wrong, what has been tried, what happened, and where it stands now."
+  },
+  {
+    "id": "core2-mc-150",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which environmental control is MOST important in a server room?",
+    "choices": [
+      "Temperature and humidity regulation",
+      "Carpeted flooring",
+      "Natural sunlight",
+      "Open windows"
+    ],
+    "answerIndex": 0,
+    "explanation": "Heat shortens component life and low humidity encourages static while high humidity risks condensation. Carpet and open windows introduce static and contaminants."
+  },
+  {
+    "id": "core2-mc-151",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which action respects customer privacy while working on their device?",
+    "choices": [
+      "Access only what is necessary for the repair",
+      "Browse personal photographs",
+      "Read stored email for context",
+      "Copy documents for reference"
+    ],
+    "answerIndex": 0,
+    "explanation": "Professional conduct limits access strictly to what the task requires. Browsing or copying personal content is a serious breach regardless of intent."
+  },
+  {
+    "id": "core2-mc-152",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which document lists the specific tasks and deliverables agreed for a project?",
+    "choices": ["Statement of Work", "SDS", "AUP", "SLA"],
+    "answerIndex": 0,
+    "explanation": "An SOW defines deliverables, tasks, and timelines. The SLA sets service commitments and the AUP governs acceptable use of systems."
+  },
+  {
+    "id": "core2-mc-153",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What is the purpose of an Acceptable Use Policy?",
+    "choices": [
+      "Define how employees may use company systems and data",
+      "Specify hardware warranty terms",
+      "List chemical hazards",
+      "Record evidence handling"
+    ],
+    "answerIndex": 0,
+    "explanation": "The AUP sets the boundaries of permitted use, and signing it establishes that users were informed of them."
+  },
+  {
+    "id": "core2-mc-154",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which fire extinguisher class is appropriate for electrical equipment fires?",
+    "choices": ["Class C", "Class A", "Class D", "Class K"],
+    "answerIndex": 0,
+    "explanation": "Class C covers energised electrical equipment using a non-conductive agent. Class A is ordinary combustibles, D is metals, and K is cooking oils."
+  },
+  {
+    "id": "core2-mc-155",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician must lift a heavy UPS from the floor. What is the correct technique?",
+    "choices": [
+      "Bend at the knees and keep the load close to the body",
+      "Bend at the waist with straight legs",
+      "Lift quickly with one hand",
+      "Twist while lifting"
+    ],
+    "answerIndex": 0,
+    "explanation": "Lifting with the legs and keeping the load close protects the lower back. Bending at the waist and twisting under load are the classic injury mechanisms."
+  },
+  {
+    "id": "core2-mc-156",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which practice is part of proper remote support etiquette?",
+    "choices": [
+      "Obtain permission before connecting and explain what you will do",
+      "Connect without notifying the user",
+      "Disable the user's input silently",
+      "Browse unrelated files while connected"
+    ],
+    "answerIndex": 0,
+    "explanation": "Consent and transparency are baseline requirements for remote access, and the user should be able to see and end the session."
+  },
+  {
+    "id": "core2-mc-157",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which backup location satisfies the off-site element of the 3-2-1 rule?",
+    "choices": [
+      "Cloud storage or a physically separate facility",
+      "A second drive in the same PC",
+      "A USB stick in the same desk drawer",
+      "A folder on the same volume"
+    ],
+    "answerIndex": 0,
+    "explanation": "Off-site means a copy that survives loss of the primary site — fire, flood, or theft. Anything in the same room fails that test."
+  },
+  {
+    "id": "core2-mc-158",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is the appropriate way to handle a customer request that falls outside the agreed scope of work?",
+    "choices": [
+      "Explain the scope and route the request through the proper process",
+      "Do the work silently and bill later",
+      "Refuse and end the call",
+      "Perform it and skip documentation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Scope creep is managed by acknowledging the request and channelling it through change or contract processes, so it is authorised and recorded."
+  },
+  {
+    "id": "core2-mc-159",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which record helps an organisation know exactly which devices it owns and where they are?",
+    "choices": ["Asset inventory / management database", "Ticket queue", "SDS binder", "Firewall log"],
+    "answerIndex": 0,
+    "explanation": "An asset database tracks devices, ownership, location, and lifecycle, which underpins licensing, patching, and secure disposal."
+  },
+  {
+    "id": "core2-mc-160",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which communication practice is BEST when explaining a fault to a non-technical user?",
+    "choices": [
+      "Avoid jargon and describe the impact in plain terms",
+      "Use as many acronyms as possible",
+      "Give no explanation",
+      "Explain only to their manager"
+    ],
+    "answerIndex": 0,
+    "explanation": "Plain language focused on what it means for the user builds understanding and trust. Jargon signals expertise to nobody who does not already share it."
+  },
+  {
+    "id": "core2-mc-161",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which practice reduces the risk that a scripted change causes unintended damage across many machines?",
+    "choices": [
+      "Test on a small pilot group before wide deployment",
+      "Deploy to all machines at once",
+      "Run it without review",
+      "Disable logging during the run"
+    ],
+    "answerIndex": 0,
+    "explanation": "A pilot limits blast radius and surfaces problems while they are still cheap to reverse, which is why staged rollout is standard in change management."
+  },
+  {
+    "id": "core2-mc-162",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What should a technician do when a repair will exceed the quoted cost?",
+    "choices": [
+      "Stop and get customer approval before continuing",
+      "Continue and invoice the difference",
+      "Reduce the quality of parts used",
+      "Abandon the repair without notice"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cost changes require the customer's informed consent before work continues. Proceeding without approval is both a trust and a contractual failure."
+  },
+  {
+    "id": "core2-order-004",
+    "type": "order",
+    "domainCode": "4.0",
+    "prompt": "Place the change management steps in the order a well-run organisation follows.",
+    "items": [
+      "Submit a documented change request with its purpose",
+      "Analyse the risk and impact of the change",
+      "Obtain approval from the change board or owner",
+      "Schedule the work and notify affected users",
+      "Implement the change with a rollback plan ready",
+      "Verify the outcome and document the result"
+    ],
+    "explanation": "Request, assess, approve, schedule and communicate, implement with a way back, then verify and record. The rollback plan exists before implementation, not after."
+  },
+  {
+    "id": "core2-match-006",
+    "type": "match",
+    "domainCode": "4.0",
+    "prompt": "Match each document to what it governs.",
+    "pairs": [
+      { "left": "SLA", "right": "Guaranteed service response and resolution times" },
+      { "left": "AUP", "right": "How employees may use company systems" },
+      { "left": "SDS", "right": "Chemical hazards, handling, and disposal" },
+      { "left": "NDA", "right": "Confidentiality of shared information" }
+    ],
+    "explanation": "Each governs a different relationship: the SLA sets service expectations, the AUP employee conduct, the SDS physical safety, and the NDA information handling."
+  },
+  {
+    "id": "core2-match-007",
+    "type": "match",
+    "domainCode": "4.0",
+    "prompt": "Match each backup type to its restore requirement.",
+    "pairs": [
+      { "left": "Full", "right": "Restore from the single full backup" },
+      { "left": "Incremental", "right": "Restore the full plus every increment since" },
+      { "left": "Differential", "right": "Restore the full plus only the latest differential" },
+      { "left": "3-2-1 rule", "right": "Three copies, two media types, one off-site" }
+    ],
+    "explanation": "Incremental backs up least but chains longest on restore; differential trades larger backups for a two-step restore; 3-2-1 describes where the copies live."
+  }
+]

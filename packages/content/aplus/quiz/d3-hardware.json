@@ -1,0 +1,438 @@
+[
+  {
+    "id": "aplus-mc-061",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which connector supplies dedicated power to the CPU on a modern motherboard?",
+    "choices": ["24-pin ATX", "8-pin EPS12V", "6-pin PCIe", "4-pin Molex"],
+    "answerIndex": 1,
+    "explanation": "The 4/8-pin EPS12V connector near the CPU socket feeds the processor's voltage regulators. The 24-pin powers the board, PCIe connectors power graphics cards."
+  },
+  {
+    "id": "aplus-mc-062",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs quad-channel memory. How should the modules be installed?",
+    "choices": [
+      "All in adjacent slots starting at slot 1",
+      "In the four slots specified by the motherboard manual, usually colour-matched",
+      "Any four slots, order does not matter",
+      "Two modules only, in slots 1 and 3"
+    ],
+    "answerIndex": 1,
+    "explanation": "Multi-channel operation requires modules in the specific slots the board designates, normally indicated by colour coding. Wrong placement silently drops to fewer channels."
+  },
+  {
+    "id": "aplus-mc-063",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which RAM characteristic describes the delay between a request and the data being available?",
+    "choices": ["Bandwidth", "CAS latency", "Voltage", "Rank"],
+    "answerIndex": 1,
+    "explanation": "CAS latency (CL) measures cycles of delay before data is returned. Lower is faster at a given clock speed; bandwidth measures total throughput instead."
+  },
+  {
+    "id": "aplus-mc-064",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A motherboard has an M.2 slot keyed M and supports PCIe. Which drive will deliver the highest throughput?",
+    "choices": ["M.2 SATA SSD", "M.2 NVMe SSD", "2.5\" SATA SSD", "7200 RPM HDD"],
+    "answerIndex": 1,
+    "explanation": "An M-keyed PCIe slot supports NVMe, which uses PCIe lanes directly and reaches several thousand MB/s. Anything on the SATA bus caps around 550 MB/s."
+  },
+  {
+    "id": "aplus-mc-065",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which expansion card would a technician install to add legacy serial ports to a modern PC?",
+    "choices": [
+      "A PCIe I/O expansion card",
+      "A sound card",
+      "A capture card",
+      "A network interface card"
+    ],
+    "answerIndex": 0,
+    "explanation": "PCIe I/O cards add ports the board lacks, including RS-232 serial and parallel. The other cards serve audio, video capture, and networking."
+  },
+  {
+    "id": "aplus-mc-066",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the primary purpose of thermal paste between a CPU and its heatsink?",
+    "choices": [
+      "Glue the heatsink in place",
+      "Fill microscopic air gaps to improve heat transfer",
+      "Insulate the CPU electrically",
+      "Prevent electrostatic discharge"
+    ],
+    "answerIndex": 1,
+    "explanation": "Air is a poor conductor of heat. Paste displaces the tiny voids between the two imperfect metal surfaces so heat moves efficiently into the heatsink."
+  },
+  {
+    "id": "aplus-mc-067",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which power supply rating matters MOST when adding a high-end graphics card?",
+    "choices": [
+      "Total wattage and available PCIe power connectors",
+      "The number of SATA ports",
+      "The physical size of the fan",
+      "The colour of the cabling"
+    ],
+    "answerIndex": 0,
+    "explanation": "A GPU adds substantial draw and needs specific 6/8-pin PCIe connectors. Verify both the headroom in total wattage and that the correct connectors exist."
+  },
+  {
+    "id": "aplus-mc-068",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What does an 80 PLUS Gold rating indicate about a power supply?",
+    "choices": [
+      "It outputs 80 volts",
+      "It meets defined efficiency levels across its load range",
+      "It has an 80 mm fan",
+      "It carries an 80-month warranty"
+    ],
+    "answerIndex": 1,
+    "explanation": "80 PLUS certifies efficiency — how much drawn AC power reaches the components rather than becoming heat. Gold is a higher tier than Bronze or the base rating."
+  },
+  {
+    "id": "aplus-mc-069",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which storage configuration provides the best combination of read speed and redundancy for a small server?",
+    "choices": ["RAID 0", "RAID 1", "RAID 5", "JBOD"],
+    "answerIndex": 2,
+    "explanation": "RAID 5 stripes for read performance while distributed parity tolerates one drive failure, and it wastes only one drive's capacity. RAID 0 has no redundancy; JBOD has neither."
+  },
+  {
+    "id": "aplus-mc-070",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician installs a second identical drive and wants it to mirror the first. Which RAID level applies?",
+    "choices": ["RAID 0", "RAID 1", "RAID 5", "RAID 10"],
+    "answerIndex": 1,
+    "explanation": "RAID 1 writes identical data to both drives, so either can fail without data loss. Usable capacity is that of one drive."
+  },
+  {
+    "id": "aplus-mc-071",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which cable would connect an external drive enclosure at 10 Gbps?",
+    "choices": ["USB 2.0", "USB 3.2 Gen 2", "FireWire 400", "eSATA 1.5 Gb/s"],
+    "answerIndex": 1,
+    "explanation": "USB 3.2 Gen 2 runs at 10 Gbps. USB 2.0 is 480 Mbps, FireWire 400 is 400 Mbps, and first-generation eSATA is 1.5 Gb/s."
+  },
+  {
+    "id": "aplus-mc-072",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which motherboard form factor is the smallest and supports exactly one expansion slot?",
+    "choices": ["ATX", "Micro-ATX", "Mini-ITX", "Extended ATX"],
+    "answerIndex": 2,
+    "explanation": "Mini-ITX is 170 x 170 mm with a single expansion slot, used for small form factor builds. Micro-ATX and ATX are progressively larger with more slots."
+  },
+  {
+    "id": "aplus-mc-073",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician must connect four case fans to a board with only two headers. What is the correct solution?",
+    "choices": [
+      "Use a fan splitter or hub within the header's current rating",
+      "Solder the fans together",
+      "Connect fans to the 24-pin ATX connector",
+      "Run the system with two fans permanently"
+    ],
+    "answerIndex": 0,
+    "explanation": "Splitters and powered hubs let multiple fans share a header, as long as combined current stays within the header's rating. A powered hub draws from the PSU instead."
+  },
+  {
+    "id": "aplus-mc-074",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which display connector can carry video, audio, data, and power over a single reversible cable?",
+    "choices": ["VGA", "DVI-D", "USB-C with DisplayPort Alt Mode", "Composite"],
+    "answerIndex": 2,
+    "explanation": "USB-C with DP Alt Mode carries display, data, and power in one reversible connector, which is what makes single-cable docking possible. VGA is analogue video only."
+  },
+  {
+    "id": "aplus-mc-075",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the maximum supported length of a Cat 6 cable run at 10 Gbps?",
+    "choices": ["100 m", "55 m", "30 m", "10 m"],
+    "answerIndex": 1,
+    "explanation": "Cat 6 supports 10 Gbps only to about 55 m. It runs 1 Gbps to the full 100 m; Cat 6a sustains 10 Gbps across the whole 100 m."
+  },
+  {
+    "id": "aplus-mc-076",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which component converts AC from the wall into the DC voltages a computer uses?",
+    "choices": ["The voltage regulator module", "The power supply unit", "The UPS", "The CMOS battery"],
+    "answerIndex": 1,
+    "explanation": "The PSU rectifies wall AC into the +12 V, +5 V, and +3.3 V DC rails. VRMs then step +12 V down further for the CPU specifically."
+  },
+  {
+    "id": "aplus-mc-077",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A workstation needs to run several virtual machines. Which upgrade will help MOST?",
+    "choices": [
+      "A larger monitor",
+      "More RAM and CPU cores",
+      "A faster optical drive",
+      "A higher-end sound card"
+    ],
+    "answerIndex": 1,
+    "explanation": "Each VM reserves memory and competes for CPU time, so RAM capacity and core count are the binding constraints on how many can run well."
+  },
+  {
+    "id": "aplus-mc-078",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which statement about ECC and non-ECC memory is TRUE?",
+    "choices": [
+      "They can be mixed freely in the same system",
+      "ECC requires motherboard and CPU support",
+      "ECC is always faster than non-ECC",
+      "Non-ECC memory corrects single-bit errors"
+    ],
+    "answerIndex": 1,
+    "explanation": "ECC needs a memory controller that understands the extra check bits, so the board and CPU must support it. ECC is marginally slower, and mixing types is not supported."
+  },
+  {
+    "id": "aplus-mc-079",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician wants the fastest possible boot drive on a board with PCIe 4.0. Which should be chosen?",
+    "choices": [
+      "PCIe 4.0 x4 NVMe SSD",
+      "PCIe 3.0 x4 NVMe SSD",
+      "SATA III SSD",
+      "SAS 15K HDD"
+    ],
+    "answerIndex": 0,
+    "explanation": "PCIe 4.0 x4 roughly doubles Gen 3 bandwidth, reaching about 7,000 MB/s. Both NVMe options far exceed SATA, and mechanical SAS drives are slower still."
+  },
+  {
+    "id": "aplus-mc-080",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which tool measures whether a power supply is delivering correct voltages on each rail?",
+    "choices": ["Cable tester", "Multimeter or PSU tester", "Loopback plug", "Toner probe"],
+    "answerIndex": 1,
+    "explanation": "A multimeter or dedicated PSU tester reads the actual voltages. Cable testers verify wiring, loopback plugs test ports, and toner probes trace cable runs."
+  },
+  {
+    "id": "aplus-mc-081",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What distinguishes a workstation NIC that supports Wake-on-LAN?",
+    "choices": [
+      "It can power the system on from a magic packet",
+      "It doubles network throughput",
+      "It encrypts all traffic",
+      "It provides power over Ethernet to other devices"
+    ],
+    "answerIndex": 0,
+    "explanation": "Wake-on-LAN keeps the NIC listening while the system sleeps, powering it on when it receives a specially addressed magic packet."
+  },
+  {
+    "id": "aplus-mc-082",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which printer type uses heat to bond toner and is best suited to high-volume office printing?",
+    "choices": ["Inkjet", "Laser", "Thermal", "Impact"],
+    "answerIndex": 1,
+    "explanation": "Laser printers fuse toner with heat and pressure, giving fast, low-cost-per-page output at volume. Impact printers are for multipart forms; thermal printers for receipts."
+  },
+  {
+    "id": "aplus-mc-083",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which printer technology is required to print multipart carbon-copy forms?",
+    "choices": ["Laser", "Inkjet", "Impact (dot matrix)", "Thermal"],
+    "answerIndex": 2,
+    "explanation": "Only an impact printer physically strikes the paper, transferring the image through to carbon copies underneath. Non-contact technologies cannot."
+  },
+  {
+    "id": "aplus-mc-084",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user needs to scan documents directly to a network folder from a multifunction printer. What must be configured?",
+    "choices": [
+      "A static MAC address",
+      "An SMB share path with credentials on the device",
+      "A parallel port driver",
+      "A serial console cable"
+    ],
+    "answerIndex": 1,
+    "explanation": "Scan-to-folder requires the device to authenticate to a network share, so the SMB path plus credentials must be entered in the printer's configuration."
+  },
+  {
+    "id": "aplus-mc-085",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which characteristic defines a hot-swappable drive bay?",
+    "choices": [
+      "Drives can be replaced while the system is running",
+      "Drives run at higher temperatures",
+      "Drives require no power connector",
+      "Drives must be formatted before removal"
+    ],
+    "answerIndex": 0,
+    "explanation": "Hot-swap bays let a drive be removed and replaced without powering down, which is what allows a RAID array to be rebuilt while it stays in service."
+  },
+  {
+    "id": "aplus-mc-086",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician must connect a 4K 120 Hz display. Which standard is required?",
+    "choices": ["HDMI 1.4", "HDMI 2.1 or DisplayPort 1.4", "DVI-D single link", "VGA"],
+    "answerIndex": 1,
+    "explanation": "4K at 120 Hz needs the bandwidth of HDMI 2.1 or DisplayPort 1.4 with compression. HDMI 1.4 caps 4K at 30 Hz, and DVI/VGA cannot reach it at all."
+  },
+  {
+    "id": "aplus-mc-087",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which memory module type would be found in a rack server requiring maximum capacity and stability?",
+    "choices": [
+      "Unbuffered non-ECC UDIMM",
+      "Registered ECC RDIMM",
+      "SODIMM",
+      "GDDR6"
+    ],
+    "answerIndex": 1,
+    "explanation": "Registered (buffered) ECC DIMMs reduce electrical load on the memory controller, allowing far more modules per channel, and correct single-bit errors. GDDR6 is graphics memory."
+  },
+  {
+    "id": "aplus-mc-088",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the purpose of a riser card in a low-profile server chassis?",
+    "choices": [
+      "Increase CPU voltage",
+      "Reorient expansion slots so full-height cards fit horizontally",
+      "Add extra RAM slots",
+      "Convert SATA to NVMe"
+    ],
+    "answerIndex": 1,
+    "explanation": "A riser turns the expansion slot ninety degrees so cards lie parallel to the board, letting standard cards fit in a chassis too short for them upright."
+  },
+  {
+    "id": "aplus-mc-089",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which cooling approach moves heat away using a pump, radiator, and coolant loop?",
+    "choices": [
+      "Passive heatsink",
+      "Liquid cooling (AIO or custom loop)",
+      "Case fan only",
+      "Thermal pad"
+    ],
+    "answerIndex": 1,
+    "explanation": "Liquid cooling circulates coolant from a CPU block to a radiator where fans dissipate the heat, handling higher thermal loads than air in the same space."
+  },
+  {
+    "id": "aplus-mc-090",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician is asked to specify a PC for CAD work. Which components should be prioritised?",
+    "choices": [
+      "High-end GPU, many CPU cores, and large amounts of RAM",
+      "Large optical drive and sound card",
+      "Maximum number of USB ports",
+      "The smallest possible case"
+    ],
+    "answerIndex": 0,
+    "explanation": "CAD and rendering workloads are GPU and CPU bound and hold large models in memory, so graphics, cores, and RAM capacity are what matter."
+  },
+  {
+    "id": "aplus-mc-091",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which port type is used to connect a legacy keyboard and mouse on older systems?",
+    "choices": ["PS/2", "RJ45", "DB-9 serial", "RJ11"],
+    "answerIndex": 0,
+    "explanation": "PS/2 mini-DIN ports served keyboards (purple) and mice (green). RJ45 is Ethernet, RJ11 telephone, and DB-9 serial peripherals."
+  },
+  {
+    "id": "aplus-mc-092",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which statement about SATA data and power cables is TRUE?",
+    "choices": [
+      "The data cable also supplies power",
+      "Data uses a 7-pin connector and power a separate 15-pin connector",
+      "Both use the same 15-pin connector",
+      "SATA drives draw power over the motherboard header"
+    ],
+    "answerIndex": 1,
+    "explanation": "SATA separates the two: a 7-pin data cable to the board or controller, and a 15-pin power connector from the PSU."
+  },
+  {
+    "id": "aplus-mc-093",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs to add wireless capability to a desktop with no free PCIe slots. What is the simplest option?",
+    "choices": [
+      "A USB Wi-Fi adapter",
+      "Replace the motherboard",
+      "Install a second power supply",
+      "Add a PCI sound card"
+    ],
+    "answerIndex": 0,
+    "explanation": "A USB wireless adapter needs no internal slot and installs in seconds, which makes it the obvious choice when expansion slots are full."
+  },
+  {
+    "id": "aplus-mc-094",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What does the TDP specification of a CPU indicate?",
+    "choices": [
+      "Total data processed per second",
+      "The heat output the cooling solution must dissipate",
+      "The maximum RAM supported",
+      "The number of PCIe lanes"
+    ],
+    "answerIndex": 1,
+    "explanation": "Thermal Design Power expresses, in watts, the heat a cooler must handle under sustained load. It guides heatsink and case airflow selection."
+  },
+  {
+    "id": "aplus-mc-095",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which is a valid reason to choose a 2.5\" drive over a 3.5\" drive in a desktop?",
+    "choices": [
+      "It always holds more data",
+      "It uses less power and fits in more mounting locations",
+      "It is always mechanical",
+      "It requires no data cable"
+    ],
+    "answerIndex": 1,
+    "explanation": "2.5\" drives draw less power and fit small bays and adapters. 3.5\" mechanical drives usually offer more capacity per pound."
+  },
+  {
+    "id": "aplus-term-004",
+    "type": "terminal",
+    "domainCode": "3.0",
+    "prompt": "Type the Windows command that opens the disk partitioning utility from a command prompt.",
+    "expected": ["diskpart"],
+    "explanation": "diskpart is the command-line partition manager, used to list, select, create, and format volumes — including when the graphical Disk Management console isn't available."
+  },
+  {
+    "id": "aplus-match-003",
+    "type": "match",
+    "domainCode": "3.0",
+    "prompt": "Match each RAID level to its defining behaviour.",
+    "pairs": [
+      { "left": "RAID 0", "right": "Striping only — speed, no redundancy" },
+      { "left": "RAID 1", "right": "Mirroring — full duplicate on a second disk" },
+      { "left": "RAID 5", "right": "Striping with distributed parity, minimum three disks" },
+      { "left": "RAID 10", "right": "A stripe of mirrored pairs, minimum four disks" }
+    ],
+    "explanation": "0 trades all redundancy for speed, 1 duplicates, 5 adds distributed parity so one disk can fail, and 10 layers striping over mirrors for both speed and resilience."
+  }
+]

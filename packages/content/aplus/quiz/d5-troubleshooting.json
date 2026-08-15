@@ -1,0 +1,404 @@
+[
+  {
+    "id": "aplus-mc-034",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician replaces a failed RAM module. What is the NEXT step per the CompTIA troubleshooting methodology?",
+    "choices": [
+      "Document the findings",
+      "Verify full system functionality and implement preventive measures",
+      "Establish a new theory",
+      "Escalate to a senior technician"
+    ],
+    "answerIndex": 1,
+    "explanation": "Implementing the fix is step 4; step 5 is verifying the system fully works and taking preventive measures. Documentation is step 6 and comes last."
+  },
+  {
+    "id": "aplus-mc-035",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A desktop powers on, but there is no video, no beeps, and no drive activity. The fans spin at full speed continuously. What should be checked FIRST?",
+    "choices": [
+      "Reinstall the operating system",
+      "Reseat the RAM and graphics card",
+      "Replace the hard drive",
+      "Update the graphics driver"
+    ],
+    "answerIndex": 1,
+    "explanation": "Full-speed fans with no POST usually mean the board never initialized. Reseating RAM and the GPU is the cheapest reversible step. Driver and OS work require a booting system."
+  },
+  {
+    "id": "aplus-mc-036",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laptop screen flickers and dims randomly. Connecting an external monitor shows a stable image. What is the MOST likely faulty component?",
+    "choices": [
+      "The graphics card",
+      "The display panel or its cable",
+      "The system RAM",
+      "The CPU"
+    ],
+    "answerIndex": 1,
+    "explanation": "A stable external image proves the GPU and its output are fine, isolating the fault to the built-in panel, its backlight, or the ribbon cable running through the hinge."
+  },
+  {
+    "id": "aplus-mc-037",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user reports their PC randomly reboots under heavy load but is stable when idle. Temperatures are normal. What is the MOST likely cause?",
+    "choices": [
+      "Failing or undersized power supply",
+      "Corrupt user profile",
+      "Fragmented hard drive",
+      "Outdated BIOS clock battery"
+    ],
+    "answerIndex": 0,
+    "explanation": "Instability that appears only under load, with temperatures ruled out, points to the PSU failing to deliver enough clean power at peak draw."
+  },
+  {
+    "id": "aplus-mc-038",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation loses its date, time, and BIOS settings every time it is unplugged. What should be replaced?",
+    "choices": ["The power supply", "The CMOS battery", "The motherboard", "The RTC crystal"],
+    "answerIndex": 1,
+    "explanation": "The CMOS battery maintains firmware settings and the real-time clock while the system has no power. A dead one loses configuration on every disconnect."
+  },
+  {
+    "id": "aplus-mc-039",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A hard drive makes a repetitive clicking noise and the system no longer detects it. What should the technician do?",
+    "choices": [
+      "Run chkdsk to repair the file system",
+      "Defragment the drive",
+      "Stop using the drive and pursue data recovery",
+      "Reformat and reinstall"
+    ],
+    "answerIndex": 2,
+    "explanation": "Clicking on an undetected mechanical drive indicates head or actuator failure. Continued power-on risks further platter damage; anything written or scanned makes recovery harder."
+  },
+  {
+    "id": "aplus-mc-040",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Users on one floor lose network connectivity while other floors are fine. What should the technician investigate FIRST?",
+    "choices": [
+      "Each user's IP configuration",
+      "The switch and uplink serving that floor",
+      "The internet service provider",
+      "The DNS server records"
+    ],
+    "answerIndex": 1,
+    "explanation": "The scope of the outage points to the shared component. One floor down while others work implicates that floor's access switch or its uplink, not per-user settings or an upstream provider."
+  },
+  {
+    "id": "aplus-mc-041",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user can reach internal file servers by IP address but not by hostname. What is the MOST likely cause?",
+    "choices": [
+      "Failed network cable",
+      "DNS misconfiguration",
+      "Incorrect subnet mask",
+      "Disabled network adapter"
+    ],
+    "answerIndex": 1,
+    "explanation": "Connectivity by IP proves the physical path and routing work. Only name resolution is broken, which is DNS."
+  },
+  {
+    "id": "aplus-mc-042",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An inkjet printer produces pages with horizontal white lines through the text. What should be tried FIRST?",
+    "choices": [
+      "Replace the fuser",
+      "Run the printhead cleaning utility",
+      "Replace the printer",
+      "Reinstall the print driver"
+    ],
+    "answerIndex": 1,
+    "explanation": "Gaps in inkjet output usually mean clogged nozzles. The built-in cleaning cycle is the cheapest first step. Fusers exist in laser printers, not inkjets."
+  },
+  {
+    "id": "aplus-mc-043",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laser printer's output smudges when rubbed immediately after printing. Which component is at fault?",
+    "choices": ["Fuser assembly", "Imaging drum", "Transfer roller", "Pickup roller"],
+    "answerIndex": 0,
+    "explanation": "The fuser melts toner onto the paper. Unfused toner rubs right off. A bad drum causes repeating marks; pickup rollers cause misfeeds."
+  },
+  {
+    "id": "aplus-mc-044",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A projector shuts off after a few minutes and its indicator shows an over-temperature condition. What is the MOST likely fix?",
+    "choices": [
+      "Replace the lamp",
+      "Clean the air filter and clear the vents",
+      "Replace the video cable",
+      "Lower the resolution"
+    ],
+    "answerIndex": 1,
+    "explanation": "Thermal shutdown means heat isn't escaping. Blocked filters and vents are the usual cause and the cheapest fix to try before replacing the lamp."
+  },
+  {
+    "id": "aplus-mc-045",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user's laptop battery reports 100% charge but the system dies immediately when unplugged. What should be replaced?",
+    "choices": ["The AC adapter", "The battery", "The charging port", "The motherboard"],
+    "answerIndex": 1,
+    "explanation": "A battery that reports full but delivers nothing has lost its actual capacity; the reported percentage comes from a controller that no longer reflects reality. Replace the battery."
+  },
+  {
+    "id": "aplus-mc-046",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A RAID 5 array reports one failed drive and is running in a degraded state. What should the technician do?",
+    "choices": [
+      "Immediately rebuild by replacing the failed drive",
+      "Delete and recreate the array",
+      "Convert the array to RAID 0",
+      "Ignore it, since RAID 5 has parity"
+    ],
+    "answerIndex": 0,
+    "explanation": "RAID 5 survives exactly one failure. Degraded means there is no remaining redundancy, so replacing the drive and rebuilding is urgent — a second failure loses everything."
+  },
+  {
+    "id": "aplus-mc-047",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician suspects failing RAM after repeated random crashes. Which approach BEST tests the theory?",
+    "choices": [
+      "Reinstall the operating system",
+      "Run a memory diagnostic and test modules individually",
+      "Replace the power supply",
+      "Update all device drivers"
+    ],
+    "answerIndex": 1,
+    "explanation": "Testing the theory means isolating the suspected component: run a memory diagnostic, then swap or remove modules one at a time to identify the bad stick."
+  },
+  {
+    "id": "aplus-mc-048",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A smartphone becomes very hot and the battery drains quickly even after a factory reset. What is the MOST likely cause?",
+    "choices": [
+      "A malicious app",
+      "A failing battery or charging circuit",
+      "Too many browser tabs",
+      "An outdated OS version"
+    ],
+    "answerIndex": 1,
+    "explanation": "A factory reset removes software causes. Persistent heat and drain afterward point to hardware — a swollen or degraded battery, or its charging circuitry."
+  },
+  {
+    "id": "aplus-mc-049",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Wi-Fi works near the access point but drops in distant offices. Which is the BEST remedy?",
+    "choices": [
+      "Change the SSID",
+      "Add access points or a mesh extender for coverage",
+      "Switch all clients to WPA2",
+      "Disable the 2.4 GHz band"
+    ],
+    "answerIndex": 1,
+    "explanation": "The symptom is a coverage gap, so add capacity where the signal is weak. Renaming the SSID and changing security don't extend range, and disabling 2.4 GHz shrinks it."
+  },
+  {
+    "id": "aplus-mc-050",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A newly built PC posts but reports no bootable device. The drive appears in firmware. What is the MOST likely cause?",
+    "choices": [
+      "The RAM is faulty",
+      "The boot order or the drive has no OS installed",
+      "The CPU is not seated",
+      "The PSU is undersized"
+    ],
+    "answerIndex": 1,
+    "explanation": "The firmware sees the drive, so the hardware path works. Either the boot order points elsewhere or there is no operating system on the disk yet."
+  },
+  {
+    "id": "aplus-mc-051",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A monitor displays a distorted image with wrong colors. Swapping the cable resolves it. What should be documented as the cause?",
+    "choices": [
+      "Failed monitor panel",
+      "Damaged video cable",
+      "Faulty graphics card",
+      "Incorrect refresh rate"
+    ],
+    "answerIndex": 1,
+    "explanation": "Substituting a known-good part is how you test a theory. Since the swap fixed it, the original cable was at fault — document that, not a guess."
+  },
+  {
+    "id": "aplus-mc-052",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Several users report intermittent wired connectivity. The switch shows repeated link up/down on their ports. What should be checked?",
+    "choices": [
+      "The users' passwords",
+      "Cabling and connector terminations",
+      "The DNS suffix",
+      "The DHCP scope size"
+    ],
+    "answerIndex": 1,
+    "explanation": "Link flapping is a physical-layer symptom: damaged cable, bad terminations, exceeding 100 m, or interference. Credentials and DNS operate far above the link layer."
+  },
+  {
+    "id": "aplus-mc-053",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician needs to confirm a fix did not break anything else before closing a ticket. Which step covers this?",
+    "choices": [
+      "Establish a theory",
+      "Verify full system functionality",
+      "Document findings",
+      "Quarantine the system"
+    ],
+    "answerIndex": 1,
+    "explanation": "Step 5 is explicitly verifying full system functionality — confirming the original problem is resolved and nothing new was introduced — before documenting."
+  },
+  {
+    "id": "aplus-mc-054",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A tablet's touchscreen responds in the wrong locations after a screen replacement. What is the MOST likely cause?",
+    "choices": [
+      "The battery is failing",
+      "The digitizer needs calibration or is misaligned",
+      "The OS needs reinstalling",
+      "The Wi-Fi antenna is disconnected"
+    ],
+    "answerIndex": 1,
+    "explanation": "Touch registering at an offset is a digitizer alignment or calibration problem, common right after a screen swap."
+  },
+  {
+    "id": "aplus-mc-055",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user complains their computer is extremely slow. Task Manager shows disk usage pinned at 100% with low CPU and RAM use. What is the MOST likely bottleneck?",
+    "choices": ["The CPU", "The storage drive", "The GPU", "The network adapter"],
+    "answerIndex": 1,
+    "explanation": "Sustained 100% disk with idle CPU and free memory means the storage subsystem is the constraint — often a failing or simply slow mechanical drive."
+  },
+  {
+    "id": "aplus-mc-056",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "After moving a desktop to a new office, it will not power on at all. What should be verified FIRST?",
+    "choices": [
+      "The CPU is seated",
+      "Power cable, outlet, and PSU voltage switch",
+      "The RAM timings",
+      "The BIOS version"
+    ],
+    "answerIndex": 1,
+    "explanation": "Question the obvious first. After a physical move the likely causes are a loose power cable, a dead outlet, or a bumped PSU voltage selector — all checked in seconds."
+  },
+  {
+    "id": "aplus-mc-057",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laptop only charges when the connector is held at a certain angle. What is the MOST likely fault?",
+    "choices": [
+      "Failing battery",
+      "Damaged DC power jack",
+      "Corrupt power management driver",
+      "Incorrect power plan"
+    ],
+    "answerIndex": 1,
+    "explanation": "Charging that depends on physical position indicates a mechanical fault in the DC jack or its solder joints, not a software or battery capacity problem."
+  },
+  {
+    "id": "aplus-mc-058",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A print job sits in the queue and nothing prints, even after restarting the printer. What should the technician try NEXT?",
+    "choices": [
+      "Replace the toner cartridge",
+      "Restart the print spooler service and clear the queue",
+      "Replace the printer's network cable",
+      "Reinstall the operating system"
+    ],
+    "answerIndex": 1,
+    "explanation": "A stuck queue that survives a printer restart points at the spooler on the host. Restarting the service and clearing pending jobs is the standard next step."
+  },
+  {
+    "id": "aplus-mc-059",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which symptom BEST indicates a failing SSD rather than a failing mechanical drive?",
+    "choices": [
+      "Loud clicking noises",
+      "Grinding sounds during access",
+      "Files becoming read-only and SMART reporting worn blocks",
+      "The drive spinning up slowly"
+    ],
+    "answerIndex": 2,
+    "explanation": "SSDs have no moving parts, so they fail silently. A worn SSD often goes read-only to preserve data, with SMART reporting exhausted spare blocks. Clicking and grinding are mechanical symptoms."
+  },
+  {
+    "id": "aplus-mc-060",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A VoIP phone has choppy audio while file transfers on the same network are fine. What should be configured?",
+    "choices": [
+      "Quality of Service (QoS) prioritizing voice traffic",
+      "A larger DHCP scope",
+      "A static IP for the phone",
+      "WPA3 on the wireless network"
+    ],
+    "answerIndex": 0,
+    "explanation": "Voice is latency and jitter sensitive while file transfer is not. QoS prioritizes voice packets so bulk traffic can't crowd them out."
+  },
+  {
+    "id": "aplus-term-002",
+    "type": "terminal",
+    "domainCode": "5.0",
+    "prompt": "A user reports slow browsing. Type the Windows command that shows the full path packets take to reach comptia.org.",
+    "expected": ["tracert comptia.org"],
+    "explanation": "tracert maps each hop to the destination and shows where latency appears. On Linux and macOS the equivalent is traceroute."
+  },
+  {
+    "id": "aplus-term-003",
+    "type": "terminal",
+    "domainCode": "5.0",
+    "prompt": "Type the Windows command that displays the full IP configuration, including MAC address and DHCP server.",
+    "expected": ["ipconfig /all"],
+    "explanation": "ipconfig /all adds the physical address, DHCP and DNS servers, and lease times to the basic ipconfig output."
+  },
+  {
+    "id": "aplus-order-002",
+    "type": "order",
+    "domainCode": "5.0",
+    "prompt": "A desktop will not POST. Place these diagnostic steps in the order that tests the cheapest and most likely causes first.",
+    "items": [
+      "Confirm the power cable is connected and the outlet is live",
+      "Check that the front-panel power connector is seated on the motherboard",
+      "Reseat the RAM modules",
+      "Reseat the graphics card and clear CMOS",
+      "Test with a known-good power supply",
+      "Replace the motherboard"
+    ],
+    "explanation": "Question the obvious first and escalate by cost. Power source, then internal connections, then reseating components, then substituting a known-good PSU, and only then a board replacement."
+  },
+  {
+    "id": "aplus-match-002",
+    "type": "match",
+    "domainCode": "5.0",
+    "prompt": "Match each printer symptom to its most likely failed component.",
+    "pairs": [
+      { "left": "Toner rubs off the page", "right": "Fuser assembly" },
+      { "left": "Repeating vertical streak", "right": "Imaging drum" },
+      { "left": "Multiple sheets feed at once", "right": "Pickup rollers / separation pad" },
+      { "left": "Faded print across the whole page", "right": "Low toner cartridge" }
+    ],
+    "explanation": "Unfused toner means the fuser isn't melting it; repeating defects trace to a roller or drum; misfeeds are the pickup assembly; uniform fading is simply low toner."
+  }
+]

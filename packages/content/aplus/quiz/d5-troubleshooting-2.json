@@ -1,0 +1,179 @@
+[
+  {
+    "id": "aplus-mc-160",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician replaces a suspected faulty component, but the problem persists. What should be done NEXT?",
+    "choices": [
+      "Replace another component at random",
+      "Return to establishing a new theory of probable cause",
+      "Close the ticket as unresolved",
+      "Reinstall the operating system"
+    ],
+    "answerIndex": 1,
+    "explanation": "When a theory is disproved, the methodology loops back to step 2 — establish a new theory, or escalate. Swapping parts at random is guessing, not troubleshooting."
+  },
+  {
+    "id": "aplus-mc-161",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A computer displays 'CMOS checksum error' on every boot. What does this indicate?",
+    "choices": [
+      "The hard drive is failing",
+      "Stored firmware settings are corrupt or the CMOS battery is dead",
+      "The RAM is mismatched",
+      "The GPU driver is outdated"
+    ],
+    "answerIndex": 1,
+    "explanation": "The checksum validates saved firmware configuration. A mismatch means the settings were lost or corrupted, most often because the CMOS battery can no longer hold them."
+  },
+  {
+    "id": "aplus-mc-162",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Multiple users report they cannot reach any website, but internal file shares work normally. What should be checked FIRST?",
+    "choices": [
+      "Each workstation's antivirus",
+      "The internet gateway and its WAN link",
+      "The users' monitors",
+      "Local printer drivers"
+    ],
+    "answerIndex": 1,
+    "explanation": "Internal traffic working while external fails isolates the fault to the edge — the router, its WAN connection, or the ISP — not individual workstations."
+  },
+  {
+    "id": "aplus-mc-163",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A display shows a persistent single-colour dot that never changes. What is this called?",
+    "choices": ["Dead pixel", "Burn-in", "Screen tearing", "Backlight bleed"],
+    "answerIndex": 0,
+    "explanation": "A stuck or dead pixel is a single element that no longer changes state. Burn-in is a ghost of previous static content; tearing is a frame synchronisation artefact."
+  },
+  {
+    "id": "aplus-mc-164",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician hears a continuous beep when powering on a desktop and there is no video. What should be checked FIRST?",
+    "choices": [
+      "Memory seating and the board's beep code table",
+      "The optical drive",
+      "The network cable",
+      "The keyboard layout"
+    ],
+    "answerIndex": 0,
+    "explanation": "Beep codes come from POST before video initialises, and memory is the most common culprit. Look up the pattern for that firmware vendor and reseat accordingly."
+  },
+  {
+    "id": "aplus-mc-165",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laptop shows 'plugged in, not charging' while the AC adapter is connected. Which is the LEAST likely cause?",
+    "choices": [
+      "A degraded battery",
+      "An underpowered or failing adapter",
+      "Battery health thresholds set by vendor software",
+      "A corrupt web browser"
+    ],
+    "answerIndex": 3,
+    "explanation": "Charging behaviour is governed by the battery, the adapter, and the power management firmware or vendor utility. A browser has no bearing on it."
+  },
+  {
+    "id": "aplus-mc-166",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which symptom MOST strongly suggests an overheating CPU rather than failing storage?",
+    "choices": [
+      "Sudden shutdowns that occur only under sustained load",
+      "Files that will not open",
+      "SMART warnings at boot",
+      "Slow file copy speeds"
+    ],
+    "answerIndex": 0,
+    "explanation": "Thermal protection cuts power when the CPU exceeds its limit, so shutdowns track load rather than disk activity. The other symptoms all point at storage."
+  },
+  {
+    "id": "aplus-mc-167",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "After a power outage, a desktop will not power on at all and there is no fan movement. What should be tested FIRST?",
+    "choices": [
+      "The power supply, using a tester or known-good unit",
+      "The operating system installation",
+      "The monitor's input setting",
+      "The DNS configuration"
+    ],
+    "answerIndex": 0,
+    "explanation": "No fans and no lights means no power is being delivered. After confirming the outlet, the PSU is the prime suspect following a surge or outage."
+  },
+  {
+    "id": "aplus-mc-168",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user reports intermittent Bluetooth audio dropouts near a microwave oven. What is the MOST likely cause?",
+    "choices": [
+      "2.4 GHz interference",
+      "A failing Bluetooth chip",
+      "Insufficient RAM",
+      "An outdated audio codec"
+    ],
+    "answerIndex": 0,
+    "explanation": "Microwave ovens emit strongly in the 2.4 GHz band that Bluetooth shares, so proximity causes interference and dropouts that disappear elsewhere."
+  },
+  {
+    "id": "aplus-mc-169",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which action BEST prevents recurrence after resolving a dust-related overheating problem?",
+    "choices": [
+      "Schedule periodic cleaning and check filter placement",
+      "Increase the screen brightness",
+      "Disable the antivirus",
+      "Reduce the display resolution"
+    ],
+    "answerIndex": 0,
+    "explanation": "Step 5 of the methodology includes preventive measures. Scheduled cleaning and correct filtering stop the same failure returning in a few months."
+  },
+  {
+    "id": "aplus-mc-170",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician cannot reproduce a user's reported fault. What is the BEST next action?",
+    "choices": [
+      "Close the ticket as user error",
+      "Gather more detail on exactly when and how it occurs",
+      "Reimage the machine",
+      "Replace the motherboard"
+    ],
+    "answerIndex": 1,
+    "explanation": "Identifying the problem includes questioning the user thoroughly. Intermittent faults need the conditions that trigger them before any theory can be tested."
+  },
+  {
+    "id": "aplus-mc-171",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A wired connection shows a 100 Mbps link on a gigabit switch and gigabit NIC. What is the MOST likely cause?",
+    "choices": [
+      "A damaged cable or a pair not terminated correctly",
+      "An outdated web browser",
+      "Insufficient RAM",
+      "A misconfigured DNS server"
+    ],
+    "answerIndex": 0,
+    "explanation": "Gigabit Ethernet requires all four pairs. A broken conductor or bad termination drops the link to 100 Mbps, which uses only two pairs."
+  },
+  {
+    "id": "aplus-mc-172",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which characteristic distinguishes a modular power supply?",
+    "choices": [
+      "Unused cables can be detached to improve airflow",
+      "It outputs only 12 V",
+      "It requires no cooling fan",
+      "It cannot power a graphics card"
+    ],
+    "answerIndex": 0,
+    "explanation": "Modular units let the technician attach only the cables the build needs, reducing clutter and improving airflow. Electrically they behave the same as fixed-cable supplies."
+  }
+]

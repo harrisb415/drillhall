@@ -1,0 +1,394 @@
+[
+  {
+    "id": "core2-mc-108",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An application fails to launch with a missing DLL error. What should be tried FIRST?",
+    "choices": [
+      "Repair or reinstall the application",
+      "Replace the hard drive",
+      "Reinstall Windows",
+      "Replace the RAM"
+    ],
+    "answerIndex": 0,
+    "explanation": "A missing dependency is usually fixed by the application's own repair option or a reinstall, which restores the file. Hardware replacement is unrelated."
+  },
+  {
+    "id": "core2-mc-109",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Windows boots to a black screen with only a cursor after a recent update. Which recovery option should be tried FIRST?",
+    "choices": [
+      "Boot into Safe Mode and uninstall the update",
+      "Replace the motherboard",
+      "Reformat the drive",
+      "Replace the monitor"
+    ],
+    "answerIndex": 0,
+    "explanation": "Safe Mode loads minimal drivers so the offending update or driver can be removed. Destructive options come only after reversible ones fail."
+  },
+  {
+    "id": "core2-mc-110",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user reports frequent 'low disk space' warnings. Which action provides the MOST lasting relief?",
+    "choices": [
+      "Remove unneeded files and relocate large data, or upgrade the drive",
+      "Disable the warning message",
+      "Reduce the screen resolution",
+      "Turn off the firewall"
+    ],
+    "answerIndex": 0,
+    "explanation": "Freeing genuine space, moving large data elsewhere, or fitting a larger drive addresses the cause. Suppressing the warning hides an approaching failure."
+  },
+  {
+    "id": "core2-mc-111",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A Windows PC reboots into a BSOD loop and never reaches the desktop. Which tool should be used?",
+    "choices": [
+      "Windows Recovery Environment (Startup Repair / System Restore)",
+      "Task Manager",
+      "Disk Cleanup",
+      "Snipping Tool"
+    ],
+    "answerIndex": 0,
+    "explanation": "WinRE runs outside the failing installation, offering Startup Repair, System Restore, and a command prompt. In-Windows tools require a booting system."
+  },
+  {
+    "id": "core2-mc-112",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An Android app crashes repeatedly. Which step should be tried BEFORE reinstalling it?",
+    "choices": [
+      "Clear the app's cache and data",
+      "Factory reset the phone",
+      "Replace the battery",
+      "Change the SIM card"
+    ],
+    "answerIndex": 0,
+    "explanation": "Corrupt cached data is a frequent cause and clearing it is non-destructive to the rest of the device. Reset and hardware swaps are disproportionate first steps."
+  },
+  {
+    "id": "core2-mc-113",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user cannot install an application, receiving 'access denied'. What is the MOST likely cause?",
+    "choices": [
+      "They are signed in as a standard user without elevation",
+      "The monitor is too small",
+      "The network cable is unplugged",
+      "The printer is offline"
+    ],
+    "answerIndex": 0,
+    "explanation": "Installing software modifies protected areas and requires administrative rights, so a standard user is refused unless they can elevate."
+  },
+  {
+    "id": "core2-mc-114",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which symptom BEST indicates a rogue browser extension rather than a system-wide infection?",
+    "choices": [
+      "The behaviour occurs only in one browser and stops in a clean profile",
+      "The computer will not POST",
+      "Fans run at full speed",
+      "The CMOS battery is dead"
+    ],
+    "answerIndex": 0,
+    "explanation": "Scoping the fault to one browser, and its disappearance in a fresh profile, points at an extension rather than something affecting the whole OS."
+  },
+  {
+    "id": "core2-mc-115",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A mobile device shows very slow performance and unusually high data usage. What should be suspected?",
+    "choices": [
+      "A malicious or misbehaving app running in the background",
+      "A cracked screen protector",
+      "A loose SIM tray",
+      "A dim display"
+    ],
+    "answerIndex": 0,
+    "explanation": "Background activity consuming CPU and data is characteristic of malware or a badly behaved app. Per-app battery and data statistics identify it."
+  },
+  {
+    "id": "core2-mc-116",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which tool identifies which startup programs delay Windows sign-in?",
+    "choices": [
+      "Task Manager Startup tab",
+      "Disk Management",
+      "Device Manager",
+      "Windows Firewall"
+    ],
+    "answerIndex": 0,
+    "explanation": "The Startup tab lists autostart entries with a measured startup impact rating and lets each be disabled."
+  },
+  {
+    "id": "core2-mc-117",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "After removing malware, why should a new restore point be created?",
+    "choices": [
+      "Existing restore points may still contain the infection",
+      "Restore points expire weekly",
+      "It speeds up the disk",
+      "It updates the BIOS"
+    ],
+    "answerIndex": 0,
+    "explanation": "System Restore is disabled during remediation precisely because old points can carry the infection. Re-enabling and creating a fresh point gives a clean rollback target."
+  },
+  {
+    "id": "core2-mc-118",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user reports that files on a network share open very slowly, but local files are fast. Where should investigation focus?",
+    "choices": [
+      "Network path performance and the file server",
+      "The local GPU",
+      "The keyboard driver",
+      "The monitor cable"
+    ],
+    "answerIndex": 0,
+    "explanation": "The contrast between local and network access isolates the problem to the network path or the server, not the workstation's own hardware."
+  },
+  {
+    "id": "core2-mc-119",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which command-line utility checks a Windows volume for file system errors and bad sectors?",
+    "choices": ["chkdsk", "ipconfig", "gpupdate", "winver"],
+    "answerIndex": 0,
+    "explanation": "chkdsk verifies file system integrity; /f fixes errors and /r locates bad sectors and recovers readable data."
+  },
+  {
+    "id": "core2-mc-120",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A workstation's clock drifts and secure websites report certificate errors. What is the MOST likely cause?",
+    "choices": [
+      "Incorrect system time breaking certificate validity checks",
+      "A failing GPU",
+      "A missing sound driver",
+      "An unplugged mouse"
+    ],
+    "answerIndex": 0,
+    "explanation": "Certificates carry validity windows, so a badly wrong clock makes valid certificates appear expired or not yet valid. Correct the time, ideally via NTP."
+  },
+  {
+    "id": "core2-mc-121",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which approach BEST resolves an application that works for one user but not another on the same PC?",
+    "choices": [
+      "Compare user profiles and per-user settings or permissions",
+      "Replace the power supply",
+      "Reinstall the network driver",
+      "Replace the monitor"
+    ],
+    "answerIndex": 0,
+    "explanation": "A per-user difference on shared hardware points to the profile: permissions, per-user configuration, or a corrupt profile."
+  },
+  {
+    "id": "core2-mc-122",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A PC displays 'No operating system found' but the drive is healthy and visible in firmware. What should be checked?",
+    "choices": [
+      "Boot order and boot record integrity",
+      "The speakers",
+      "The webcam driver",
+      "The printer queue"
+    ],
+    "answerIndex": 0,
+    "explanation": "If firmware sees the disk, verify it is first in the boot order and that the boot record or EFI partition is intact — repairable from WinRE."
+  },
+  {
+    "id": "core2-mc-123",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which is the safest first response to a workstation displaying a ransomware demand?",
+    "choices": [
+      "Disconnect it from the network and report the incident",
+      "Pay the ransom immediately",
+      "Delete random files",
+      "Reboot repeatedly"
+    ],
+    "answerIndex": 0,
+    "explanation": "Isolation stops the spread to shares and other hosts, and reporting starts the incident response process. Paying funds the attack and rarely restores everything."
+  },
+  {
+    "id": "core2-mc-124",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A laptop's Wi-Fi shows connected with no internet, while other devices work fine. What should be tried FIRST?",
+    "choices": [
+      "Renew the IP configuration and check for an APIPA address",
+      "Replace the router",
+      "Reinstall Windows",
+      "Replace the laptop screen"
+    ],
+    "answerIndex": 0,
+    "explanation": "Other devices working narrows the fault to this client. A 169.254 address indicates DHCP failure; release and renew is the quickest test."
+  },
+  {
+    "id": "core2-mc-125",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which situation calls for reimaging rather than continued cleanup?",
+    "choices": [
+      "A confirmed rootkit or repeatedly returning infection",
+      "A single quarantined adware file",
+      "A full Recycle Bin",
+      "An outdated wallpaper"
+    ],
+    "answerIndex": 0,
+    "explanation": "Once system integrity cannot be trusted — a rootkit, or malware that keeps returning — reimaging from known-good media is faster and more reliable than cleaning."
+  },
+  {
+    "id": "core2-mc-126",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user's screen rotates unexpectedly on a convertible laptop. What is the MOST likely cause?",
+    "choices": [
+      "Auto-rotation is enabled and the accelerometer is responding",
+      "A failing hard drive",
+      "A DNS problem",
+      "An expired certificate"
+    ],
+    "answerIndex": 0,
+    "explanation": "Convertibles rotate the display based on the accelerometer. Locking rotation in settings stops it, which is a configuration matter rather than a fault."
+  },
+  {
+    "id": "core2-mc-127",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which Windows log should be examined to investigate a service that fails to start at boot?",
+    "choices": [
+      "Event Viewer System log",
+      "Security log",
+      "Print queue",
+      "Browser history"
+    ],
+    "answerIndex": 0,
+    "explanation": "Service start failures and driver problems are recorded in the System log, with an event ID identifying the service and reason."
+  },
+  {
+    "id": "core2-mc-128",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A phone will not connect to any Wi-Fi network although Bluetooth works. What should be tried FIRST?",
+    "choices": [
+      "Toggle Wi-Fi or forget and rejoin the network",
+      "Replace the phone",
+      "Reinstall the OS",
+      "Replace the battery"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cycling the radio or clearing a stale saved network resolves most cases at no cost. Escalate to network reset and hardware only if that fails."
+  },
+  {
+    "id": "core2-mc-129",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which symptom suggests insufficient RAM rather than a slow disk?",
+    "choices": [
+      "Heavy page file usage and slowdowns when many apps are open",
+      "Clicking noises from the case",
+      "SMART warnings at boot",
+      "A blank monitor"
+    ],
+    "answerIndex": 0,
+    "explanation": "When physical memory runs out Windows pages to disk, so slowdowns scale with how many applications are open. Clicking and SMART warnings indicate a failing drive."
+  },
+  {
+    "id": "core2-mc-130",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An update installs successfully but the problem it was meant to fix persists. What should the technician do NEXT?",
+    "choices": [
+      "Re-evaluate the theory of probable cause",
+      "Close the ticket",
+      "Reimage immediately",
+      "Replace the monitor"
+    ],
+    "answerIndex": 0,
+    "explanation": "A fix that does not resolve the symptom disproves the theory, so the methodology returns to establishing a new one rather than escalating destructively."
+  },
+  {
+    "id": "core2-mc-131",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which action should precede any significant troubleshooting that could alter user data?",
+    "choices": [
+      "Back up the user's data",
+      "Uninstall the antivirus",
+      "Disable the firewall",
+      "Clear the event logs"
+    ],
+    "answerIndex": 0,
+    "explanation": "Backing up is part of identifying the problem in the CompTIA methodology, explicitly so that later steps cannot cause irreversible loss."
+  },
+  {
+    "id": "core2-mc-132",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A shared printer prints garbled characters for every user. What is the MOST likely cause?",
+    "choices": [
+      "An incorrect or corrupt printer driver on the print server",
+      "A dead CMOS battery",
+      "A failing monitor",
+      "An expired domain account"
+    ],
+    "answerIndex": 0,
+    "explanation": "Garbled output across all users points at the shared driver rather than any one workstation. Reinstalling the correct driver on the server fixes it for everyone."
+  },
+  {
+    "id": "core2-term-007",
+    "type": "terminal",
+    "domainCode": "3.0",
+    "prompt": "Type the Windows command that checks the current volume for errors and fixes them.",
+    "expected": ["chkdsk /f"],
+    "explanation": "chkdsk /f repairs file system errors; it usually needs the volume locked, so it schedules itself for the next restart on the system drive."
+  },
+  {
+    "id": "core2-term-008",
+    "type": "terminal",
+    "domainCode": "3.0",
+    "prompt": "Type the command that repairs the Windows component store so SFC has a good source to restore from.",
+    "expected": [
+      "dism /online /cleanup-image /restorehealth",
+      "dism.exe /online /cleanup-image /restorehealth"
+    ],
+    "explanation": "DISM repairs the component store itself. Run it when SFC reports corruption it cannot fix, then run SFC again."
+  },
+  {
+    "id": "core2-order-003",
+    "type": "order",
+    "domainCode": "3.0",
+    "prompt": "Place these steps for troubleshooting a PC that will not boot into Windows in the order the methodology prescribes.",
+    "items": [
+      "Ask the user what changed immediately before the failure",
+      "Form a theory, such as a recent driver or update",
+      "Boot Safe Mode or WinRE to test that theory",
+      "Roll back the driver or update, or run Startup Repair",
+      "Confirm Windows boots normally and applications work",
+      "Record the cause and resolution in the ticket"
+    ],
+    "explanation": "The six steps in order: identify, theorise, test, act, verify, document. Testing before acting is what separates diagnosis from guesswork."
+  },
+  {
+    "id": "core2-match-005",
+    "type": "match",
+    "domainCode": "3.0",
+    "prompt": "Match each symptom to the tool that best investigates it.",
+    "pairs": [
+      { "left": "Application crashes repeatedly", "right": "Event Viewer Application log" },
+      { "left": "Slow sign-in from autoruns", "right": "Task Manager Startup tab" },
+      { "left": "Suspected file system corruption", "right": "chkdsk" },
+      { "left": "Corrupt protected system files", "right": "sfc /scannow" }
+    ],
+    "explanation": "Match the tool to the layer: application faults surface in the Application log, autoruns in Task Manager, filesystem structure in chkdsk, and OS file integrity in SFC."
+  }
+]

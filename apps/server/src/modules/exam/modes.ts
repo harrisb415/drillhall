@@ -25,6 +25,11 @@ export interface ExamMode {
 
 const PBQ_TYPES: QuizQuestionType[] = ["order", "match", "terminal"];
 
+/** At most half the pool, capped at 8, so two gauntlets can be fully distinct. */
+function pbqGauntletSize(pbqCount: number): number {
+  return Math.min(Math.max(1, Math.floor(pbqCount / 2)), 8);
+}
+
 /**
  * Modes are behavior, derived from the pack's four exam numbers — so adding a
  * cert never means restating the mode list. Counts are clamped to the pool at
@@ -66,12 +71,15 @@ export function examModes(pack: CertPack): ExamMode[] {
     },
     {
       id: "pbq",
+      // Deliberately at most half the PBQ pool. Performance-based questions are
+      // the most expensive to author, so taking nearly all of them would make
+      // every gauntlet the same drill — the one place repetition still bites.
       name: "PBQ gauntlet",
       description: `Performance-based questions only — ordering, matching, and terminal. ${
-        pbqCount > 0 ? `${Math.min(pbqCount, 15)} questions` : "No PBQs in this pack yet"
+        pbqCount > 0 ? `${pbqGauntletSize(pbqCount)} questions` : "No PBQs in this pack yet"
       }, 2 minutes each.`,
-      questionCount: Math.min(Math.max(pbqCount, 1), 15),
-      minutes: Math.min(Math.max(pbqCount, 1), 15) * 2,
+      questionCount: pbqGauntletSize(pbqCount),
+      minutes: pbqGauntletSize(pbqCount) * 2,
       selection: "even",
       types: PBQ_TYPES,
       picksDomains: false,

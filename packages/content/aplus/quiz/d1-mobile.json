@@ -1,0 +1,259 @@
+[
+  {
+    "id": "aplus-mc-124",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user wants to replace a laptop's storage with the fastest option the system supports. The board has an M.2 slot keyed M. What should be installed?",
+    "choices": ["M.2 NVMe SSD", "2.5\" SATA SSD", "mSATA SSD", "5400 RPM HDD"],
+    "answerIndex": 0,
+    "explanation": "An M-keyed M.2 slot carries PCIe lanes for NVMe, which is several times faster than anything on the SATA bus."
+  },
+  {
+    "id": "aplus-mc-125",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which laptop component is MOST likely to fail after repeated opening and closing of the lid?",
+    "choices": ["CPU", "Display ribbon cable and hinges", "RAM", "SSD"],
+    "answerIndex": 1,
+    "explanation": "The ribbon cable flexes through the hinge every time the lid moves, so it and the hinge assembly wear out mechanically long before solid-state components do."
+  },
+  {
+    "id": "aplus-mc-126",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must enable a laptop's external display output. Which is the standard method?",
+    "choices": [
+      "The Fn key combined with the display function key",
+      "Reinstalling Windows",
+      "Replacing the GPU",
+      "Disabling the battery"
+    ],
+    "answerIndex": 0,
+    "explanation": "Laptops map display switching to an Fn key combination, cycling between internal, external, duplicate, and extend. Windows also exposes this through the projection shortcut."
+  },
+  {
+    "id": "aplus-mc-127",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which mobile connection type is designed for very short range contactless payment?",
+    "choices": ["Bluetooth", "NFC", "Wi-Fi", "Infrared"],
+    "answerIndex": 1,
+    "explanation": "NFC works over roughly four centimetres, and that short range is itself a security property for tap-to-pay."
+  },
+  {
+    "id": "aplus-mc-128",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company issues tablets that must be remotely wiped if lost. Which technology provides this?",
+    "choices": [
+      "Mobile Device Management (MDM)",
+      "A stronger screen lock",
+      "A VPN client",
+      "Airplane mode"
+    ],
+    "answerIndex": 0,
+    "explanation": "MDM enrols devices under central policy, enabling remote wipe, lock, configuration enforcement, and app control."
+  },
+  {
+    "id": "aplus-mc-129",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which laptop feature allows the display to be used as a touch input surface and rotate fully behind the keyboard?",
+    "choices": ["2-in-1 convertible design", "Docking station", "Port replicator", "KVM switch"],
+    "answerIndex": 0,
+    "explanation": "A 2-in-1 convertible hinges or detaches so the device works as both laptop and tablet. Docks and port replicators only add connectivity."
+  },
+  {
+    "id": "aplus-mc-130",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A phone will not pair with a Bluetooth headset. What should be verified FIRST?",
+    "choices": [
+      "The headset is in pairing mode and within range",
+      "The phone's SIM card is active",
+      "The Wi-Fi password is correct",
+      "The phone has a data plan"
+    ],
+    "answerIndex": 0,
+    "explanation": "Pairing requires the accessory to be discoverable and close by. Cellular service and Wi-Fi are unrelated to a Bluetooth link."
+  },
+  {
+    "id": "aplus-mc-131",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which component in a laptop converts DC from the battery into the voltages the display backlight requires on older CCFL panels?",
+    "choices": ["Inverter", "Digitizer", "Rectifier", "Transformer coil"],
+    "answerIndex": 0,
+    "explanation": "CCFL backlights need high-voltage AC, supplied by an inverter. A failed inverter gives a very dim display that is faintly visible under bright light. LED panels use drivers instead."
+  },
+  {
+    "id": "aplus-mc-132",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which storage type is soldered directly to many modern ultrabook boards, preventing user upgrade?",
+    "choices": ["BGA-mounted flash storage", "2.5\" SATA drive", "M.2 module", "External SSD"],
+    "answerIndex": 0,
+    "explanation": "Ball grid array packages are soldered to the board, so capacity is fixed at purchase. M.2 and 2.5\" drives remain replaceable."
+  },
+  {
+    "id": "aplus-mc-133",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user reports their phone will not charge with a known-good cable and adapter. What should be inspected NEXT?",
+    "choices": [
+      "The charging port for lint or damage",
+      "The cellular signal strength",
+      "The installed apps",
+      "The screen brightness"
+    ],
+    "answerIndex": 0,
+    "explanation": "With the cable and adapter eliminated, the port is the remaining physical link. Pocket lint packed into the connector is an extremely common cause."
+  },
+  {
+    "id": "aplus-mc-134",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which authentication method uses a physical characteristic of the user?",
+    "choices": ["PIN", "Password", "Fingerprint reader", "Pattern swipe"],
+    "answerIndex": 2,
+    "explanation": "A fingerprint is biometric — something you are. PINs, passwords, and patterns are all something you know."
+  },
+  {
+    "id": "aplus-mc-135",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company allows staff to use personal phones for work email. Which policy governs this?",
+    "choices": ["BYOD", "SLA", "NDA", "AUP only"],
+    "answerIndex": 0,
+    "explanation": "Bring Your Own Device policy defines the terms for personal hardware accessing company resources, typically enforced through MDM containers separating work data."
+  },
+  {
+    "id": "aplus-mc-136",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which laptop accessory provides multiple ports and charging through one connection to the host?",
+    "choices": ["Docking station", "KVM switch", "USB hub with no power", "Ethernet switch"],
+    "answerIndex": 0,
+    "explanation": "A docking station adds display, network, USB, and power over a single connection, usually USB-C or Thunderbolt, so the laptop attaches with one cable."
+  },
+  {
+    "id": "aplus-mc-137",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which display technology offers the widest viewing angles and most accurate colour for a laptop used in design work?",
+    "choices": ["TN", "IPS", "CCFL", "Plasma"],
+    "answerIndex": 1,
+    "explanation": "IPS panels hold colour accuracy across wide viewing angles, which is what colour-critical work requires. TN is faster but shifts colour off-axis."
+  },
+  {
+    "id": "aplus-mc-138",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician replaces a laptop keyboard. Which precaution is MOST important before starting?",
+    "choices": [
+      "Disconnect power and remove the battery",
+      "Update the BIOS",
+      "Defragment the drive",
+      "Disable the touchpad in Windows"
+    ],
+    "answerIndex": 0,
+    "explanation": "Removing all power sources prevents shorts and accidental power-on during disassembly. Software steps are irrelevant to a physical repair."
+  },
+  {
+    "id": "aplus-mc-139",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which cellular standard offers the highest theoretical throughput?",
+    "choices": ["3G", "4G LTE", "5G", "GSM"],
+    "answerIndex": 2,
+    "explanation": "5G delivers the greatest bandwidth and lowest latency, particularly on millimetre-wave, though with shorter range than lower-frequency bands."
+  },
+  {
+    "id": "aplus-mc-140",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user's laptop touchpad stops responding but an external mouse works. What should be checked FIRST?",
+    "choices": [
+      "Whether the touchpad has been disabled by its function key",
+      "The hard drive health",
+      "The wireless adapter",
+      "The battery capacity"
+    ],
+    "answerIndex": 0,
+    "explanation": "Most laptops have a key combination or corner tap that disables the touchpad, and it is easily pressed by accident. Check that before opening the machine."
+  },
+  {
+    "id": "aplus-mc-141",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which SIM form factor is embedded in the device and reprogrammed remotely rather than physically swapped?",
+    "choices": ["Nano SIM", "Micro SIM", "eSIM", "Mini SIM"],
+    "answerIndex": 2,
+    "explanation": "An eSIM is soldered in and provisioned over the air, letting a user change carriers without handling a physical card."
+  },
+  {
+    "id": "aplus-mc-142",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which synchronisation method keeps a phone's contacts and calendar current across devices without a cable?",
+    "choices": [
+      "Cloud account synchronisation",
+      "USB tethering",
+      "Bluetooth file transfer",
+      "NFC tap"
+    ],
+    "answerIndex": 0,
+    "explanation": "Signing into a cloud account synchronises contacts, calendar, and mail continuously across every enrolled device. The other options move data manually, one transfer at a time."
+  },
+  {
+    "id": "aplus-mc-143",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A laptop runs hot and throttles during video calls. Which maintenance step should be performed FIRST?",
+    "choices": [
+      "Clean dust from the vents and fan",
+      "Replace the display",
+      "Add more RAM",
+      "Reinstall the OS"
+    ],
+    "answerIndex": 0,
+    "explanation": "Dust in the fan and heat exchanger is the most common and cheapest cause of laptop thermal throttling. Repasting comes next if cleaning is insufficient."
+  },
+  {
+    "id": "aplus-mc-144",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which port standard supports both data and display output while also charging a laptop at up to 100 W?",
+    "choices": ["USB-A 3.0", "USB-C with Power Delivery", "HDMI", "Thunderbolt 1"],
+    "answerIndex": 1,
+    "explanation": "USB-C with Power Delivery negotiates higher voltages for charging while carrying data and, with Alt Mode, video over the same reversible connector."
+  },
+  {
+    "id": "aplus-order-003",
+    "type": "order",
+    "domainCode": "1.0",
+    "prompt": "Place the steps for safely replacing a laptop's internal battery in the correct order.",
+    "items": [
+      "Power off the laptop and disconnect the AC adapter",
+      "Put on an anti-static wrist strap",
+      "Remove the bottom panel screws and open the chassis",
+      "Disconnect the battery connector from the motherboard",
+      "Remove the old battery and seat the replacement",
+      "Reassemble, power on, and verify the battery charges"
+    ],
+    "explanation": "Remove power first, then guard against ESD, open the chassis, disconnect before removing, fit the replacement, and finish by verifying the repair actually worked."
+  },
+  {
+    "id": "aplus-match-005",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each mobile display or input technology to its description.",
+    "pairs": [
+      { "left": "Digitizer", "right": "Converts touch and stylus input into digital signals" },
+      { "left": "OLED", "right": "Each pixel emits its own light, giving true blacks" },
+      { "left": "Inverter", "right": "Supplies high-voltage AC to a CCFL backlight" },
+      { "left": "IPS panel", "right": "Wide viewing angles and accurate colour reproduction" }
+    ],
+    "explanation": "The digitizer handles input while the others concern the display: OLED is emissive, inverters drive legacy CCFL backlights, and IPS is an LCD panel type chosen for colour fidelity."
+  }
+]

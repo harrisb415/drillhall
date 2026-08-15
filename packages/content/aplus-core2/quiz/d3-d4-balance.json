@@ -1,0 +1,58 @@
+[
+  {
+    "id": "core2-mc-163",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user's default browser search engine keeps reverting after being changed. What should be checked?",
+    "choices": [
+      "Browser extensions and any policy set by the organisation",
+      "The monitor refresh rate",
+      "The CMOS battery",
+      "The printer spooler"
+    ],
+    "answerIndex": 0,
+    "explanation": "A setting that reverts is being reapplied by something — a hijacking extension, or a legitimate enterprise policy. Check both before assuming infection."
+  },
+  {
+    "id": "core2-mc-164",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Windows reports 'The system cannot find the path specified' when launching a shortcut. What is the MOST likely cause?",
+    "choices": [
+      "The target was moved, renamed, or is on an unavailable drive",
+      "The RAM is failing",
+      "The GPU driver is corrupt",
+      "The BIOS needs updating"
+    ],
+    "answerIndex": 0,
+    "explanation": "A shortcut stores a path; if the target moved or lives on a disconnected network drive, the path no longer resolves. Recreate the shortcut or restore the mapping."
+  },
+  {
+    "id": "core2-mc-165",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An iOS device is stuck on the Apple logo after an update. What should be attempted FIRST?",
+    "choices": [
+      "A forced restart",
+      "Replacing the screen",
+      "Replacing the battery",
+      "Changing the SIM"
+    ],
+    "answerIndex": 0,
+    "explanation": "A forced restart clears a hung boot without data loss. Recovery mode and restore follow only if it fails; hardware swaps address nothing here."
+  },
+  {
+    "id": "core2-mc-166",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which practice should be followed when disposing of paper containing customer account details?",
+    "choices": [
+      "Cross-cut shred it",
+      "Place it in general recycling",
+      "Leave it in the office bin",
+      "Take it home"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cross-cut shredding defeats reconstruction and is the standard control against dumpster diving for printed personal data."
+  }
+]
