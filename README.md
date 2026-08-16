@@ -2,7 +2,7 @@
 
 Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express + better-sqlite3 server, Better Auth (email/password + Google), content shipped as validated data packs.
 
-**Status: v1.1.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1101), A+ Core 2 (220-1102), Network+ (N10-009), Security+ (SY0-701).
+**Status: v1.2.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1101), A+ Core 2 (220-1102), Network+ (N10-009), Security+ (SY0-701).
 
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
@@ -12,6 +12,7 @@ Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite 
 - **Phase 5** — gamification (XP, streaks, levels) with the race-safe transaction the spec calls for, per-user timezone-aware notification delivery, nightly backup automation, a low-confidence indicator on readiness, and Playwright e2e coverage.
 - **Network+ and Security+ packs**, each grown to ~180+ questions, and a practice-mode fix so multiple-choice option order shuffles per session instead of favoring the first-listed choice.
 - **Self-service account deletion** at `/settings` — cascades through every owned table, including unlinking Google.
+- **Visual identity** — charcoal-and-brass palette, radial mastery gauges, score sparklines, rank insignia and a tiered streak flame. See below.
 
 ## Quickstart (dev)
 
@@ -136,6 +137,18 @@ The streak is triggered by the qualifying activity itself, not by login — a se
 ## Readiness confidence
 
 A domain read as "100% mastery" off two correct answers is coin-flip noise wearing a precise-looking number. Below `CONFIDENT_ATTEMPTS` (8) answers, a domain's mastery is still shown — hiding it would be worse — but flagged `confident: false`, and the dashboard marks it `(thin)`. Once every exam-weighted domain clears the threshold, the overall readiness badge drops the "low confidence" tag. Verified against a real dashboard mid-session: 16% readiness, four of five domains marked thin, "roughly 19 more would make this trustworthy."
+
+## Visual design
+
+All colour lives as CSS custom properties in `apps/client/src/index.css` — one `:root` block for light, one `prefers-color-scheme: dark` block for dark. Nothing hardcodes a colour; components reference `var(--…)` or a Tailwind token mapped to one, so retheming is a single-file change.
+
+**One mastery scale, everywhere.** `lib/mastery.ts` maps a percentage to `weak` / `developing` / `strong` (bands anchored on the 75% pass mark), and every gauge, label, and badge on the dashboard derives its colour from it. A colour therefore means the same thing wherever it appears, rather than each component picking its own.
+
+**Primitives** in `components/ui/` are hand-rolled SVG with no charting dependency: `RadialGauge` (full donut or 270° gauge), `Sparkline` (optional dashed threshold line), `RankInsignia`, `StreakFlame`, `SegmentedProgress`. `Confetti` is ~50 lines of canvas rather than a package — this ships to a 1GB VM where every dependency is weight someone has to download and audit.
+
+**Motion is opt-out.** Every animation is defined in one block in `index.css` and every one is disabled under `prefers-reduced-motion: reduce`, including the count-up on the readiness figure and the confetti, which simply never fires.
+
+**Contrast is checked, not assumed.** Every foreground/background pair in both themes clears WCAG AA; the lowest is 4.59:1.
 
 ## Readiness scoring
 

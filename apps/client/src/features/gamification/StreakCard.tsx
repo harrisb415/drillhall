@@ -1,59 +1,77 @@
 import type { GamificationDto } from "@comptia/shared-types";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { RankInsignia } from "@/components/ui/rank-insignia";
+import { SegmentedProgress } from "@/components/ui/segmented-progress";
+import { StreakFlame } from "@/components/ui/streak-flame";
+
+/** Milestones worth calling out; anything past the last one keeps that label. */
+const MILESTONES = [7, 30, 100];
+
+function nextMilestone(streak: number): number | null {
+  return MILESTONES.find((m) => m > streak) ?? null;
+}
 
 export function StreakCard({ stats }: { stats: GamificationDto }) {
-  const pct =
-    stats.xpForNextLevel > 0 ? (stats.xpIntoLevel / stats.xpForNextLevel) * 100 : 0;
+  const pct = stats.xpForNextLevel > 0 ? (stats.xpIntoLevel / stats.xpForNextLevel) * 100 : 0;
+  const upcoming = nextMilestone(stats.currentStreak);
+  const atRisk = stats.currentStreak > 0 && !stats.activeToday;
 
   return (
     <Card>
       <CardHeader>
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
+        <div className="flex items-start gap-4">
+          <RankInsignia level={stats.level} />
+          <div className="min-w-0">
             <CardTitle>Level {stats.level}</CardTitle>
             <CardDescription>
-              {stats.xp.toLocaleString()} XP total — counted across every certification, since
-              this tracks the habit rather than one exam.
+              <span className="stat-numeral font-medium text-foreground">
+                {stats.xp.toLocaleString()}
+              </span>{" "}
+              XP total — counted across every certification, since this tracks the habit rather
+              than one exam.
             </CardDescription>
           </div>
-          <Badge variant={stats.activeToday ? "success" : "secondary"}>
-            {stats.currentStreak === 0
-              ? "no streak yet"
-              : `${stats.currentStreak} day${stats.currentStreak === 1 ? "" : "s"}`}
-          </Badge>
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
         <div>
-          <div className="mb-1 flex justify-between text-xs text-muted-foreground">
+          <div className="mb-1.5 flex justify-between text-xs text-muted-foreground">
             <span>Progress to level {stats.level + 1}</span>
-            <span>
+            <span className="stat-numeral">
               {stats.xpIntoLevel} / {stats.xpForNextLevel} XP
             </span>
           </div>
-          <Progress value={pct} />
+          <SegmentedProgress
+            value={pct}
+            label={`${stats.xpIntoLevel} of ${stats.xpForNextLevel} XP toward level ${stats.level + 1}`}
+          />
         </div>
 
-        <div className="grid grid-cols-2 gap-4 border-t border-border pt-3">
-          <div>
-            <div className="text-xs text-muted-foreground">Current streak</div>
-            <div className="text-2xl font-bold tabular-nums">{stats.currentStreak}</div>
-          </div>
-          <div>
-            <div className="text-xs text-muted-foreground">Longest streak</div>
-            <div className="text-2xl font-bold tabular-nums">{stats.longestStreak}</div>
+        <div className="flex items-center gap-4 border-t border-border pt-4">
+          <StreakFlame days={stats.currentStreak} atRisk={atRisk} size={44} />
+          <div className="min-w-0 flex-1">
+            <div className="flex items-baseline gap-1.5">
+              <span className="stat-numeral text-2xl font-bold">{stats.currentStreak}</span>
+              <span className="text-sm text-muted-foreground">
+                day{stats.currentStreak === 1 ? "" : "s"}
+              </span>
+              {stats.longestStreak > stats.currentStreak && (
+                <span className="ml-auto shrink-0 text-xs text-muted-foreground">
+                  best <span className="stat-numeral font-medium">{stats.longestStreak}</span>
+                </span>
+              )}
+            </div>
+            <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
+              {stats.activeToday
+                ? upcoming
+                  ? `Today counts. ${upcoming - stats.currentStreak} more to reach ${upcoming}.`
+                  : "Today already counts — the streak is safe."
+                : stats.currentStreak > 0
+                  ? "Answer one question today to keep the streak alive."
+                  : "Answer a question to start a streak. Studying is what counts, not signing in."}
+            </p>
           </div>
         </div>
-
-        <p className="text-xs text-muted-foreground">
-          {stats.activeToday
-            ? "Today already counts — the streak is safe."
-            : stats.currentStreak > 0
-              ? "Answer one question today to keep the streak alive."
-              : "Answer a question to start a streak. Studying is what counts, not signing in."}
-        </p>
       </CardContent>
     </Card>
   );

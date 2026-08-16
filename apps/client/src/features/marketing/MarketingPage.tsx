@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useCatalog } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
+import { ReadinessPreview } from "./ReadinessPreview";
 
 const TYPE_LABELS: Record<string, string> = {
   mc: "Multiple choice",
@@ -108,15 +109,19 @@ export function MarketingPage() {
             </Link>
           </div>
 
+          <div className="mt-14">
+            <ReadinessPreview />
+          </div>
+
           {catalog && (
-            <dl className="mx-auto mt-14 grid max-w-2xl grid-cols-3 gap-4">
+            <dl className="mx-auto mt-10 grid max-w-2xl grid-cols-3 gap-4">
               {[
                 { label: catalog.totals.certs === 1 ? "Certification" : "Certifications", value: catalog.totals.certs },
                 { label: "Practice questions", value: catalog.totals.quizQuestions },
                 { label: "Flashcards", value: catalog.totals.flashcards },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-lg border border-border bg-card p-4">
-                  <dd className="text-3xl font-bold tracking-tight">{stat.value}</dd>
+                  <dd className="stat-numeral text-3xl font-bold">{stat.value}</dd>
                   <dt className="mt-1 text-xs text-muted-foreground">{stat.label}</dt>
                 </div>
               ))}

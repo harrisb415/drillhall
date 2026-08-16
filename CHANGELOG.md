@@ -2,6 +2,24 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.2.0] — 2026-08-16
+
+### Changed
+- **Visual identity.** New charcoal-and-brass palette in both light and dark themes, replacing the default grays. Every foreground/background pair in both themes clears WCAG AA (lowest ratio 4.59:1).
+- **Readiness is now a gauge, not a number.** The dashboard's headline stat renders as a 270° radial gauge that counts up on load, coloured by a single mastery scale (`weak` / `developing` / `strong`) shared by every gauge, bar, and label on the page — so a colour means the same thing everywhere.
+- **Per-domain mastery** moved from a stack of flat bars to banded radial gauges in a two-column grid, each labelled with its band rather than only a percentage.
+- **Gamification has a face.** Levels render as a hexagonal rank insignia (chevrons accrue every fifth level), the streak as a flame that grows through five tiers and dims when today hasn't counted yet, and XP as a notched segmented bar instead of a flat fill.
+- Favicon replaced with a hexagon-and-chevron mark matching the in-app insignia; added `theme-color` and a page description.
+
+### Added
+- **Score trend sparklines** — practice-session accuracy on the dashboard, and mock-exam scaled scores with a dashed pass-mark reference line. Both drawn from data the API already returned; no backend change.
+- **Marketing hero preview** built from the real gauge and sparkline components (labelled "example"), so the homepage shows the actual UI rather than describing it and drifting out of date.
+- Two delight moments, both reduced-motion aware: a canvas confetti burst on passing a mock exam (hand-rolled, no new dependency), and a level-up toast. A correct practice answer now pulses the choice you picked — only the one you picked, so a reveal on a wrong answer doesn't read as a reward.
+- `prefers-reduced-motion` is honoured globally: every animation in the app is defined in one block in `index.css` and disabled together.
+
+### Fixed
+- Domain rows overflowed the viewport on narrow screens: as grid items they defaulted to `min-width: auto` and refused to shrink below the longest domain name, despite the truncation inside them.
+
 ## [1.1.0] — 2026-08-16
 
 ### Changed

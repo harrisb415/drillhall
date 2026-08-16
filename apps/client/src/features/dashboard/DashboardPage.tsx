@@ -3,16 +3,23 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { RadialGauge } from "@/components/ui/radial-gauge";
+import { Sparkline } from "@/components/ui/sparkline";
 import { Spinner } from "@/components/ui/spinner";
 import { ExamPlanCard } from "@/features/planner/ExamPlanCard";
+import { LevelUpToast } from "@/features/gamification/LevelUpToast";
 import { StreakCard } from "@/features/gamification/StreakCard";
 import { useDashboard } from "@/lib/api";
 import { useCert } from "@/lib/cert-context";
+import { BAND_LABEL, bandTextClass, masteryBand } from "@/lib/mastery";
+import { useCountUp } from "@/lib/use-count-up";
 import { formatDate } from "@/lib/utils";
 
 export function DashboardPage() {
   const cert = useCert();
   const { data, isPending } = useDashboard(cert.id);
+  // Called before the loading early-return so hook order stays stable.
+  const readinessShown = useCountUp(data?.quiz.readiness ?? null);
 
   if (isPending || !data) {
     return (
@@ -25,8 +32,19 @@ export function DashboardPage() {
   const knownPct =
     data.flashcards.total > 0 ? Math.round((data.flashcards.known / data.flashcards.total) * 100) : 0;
 
+  // Both lists arrive newest-first; a trend line reads left-to-right in time.
+  const sessionTrend = [...data.recentSessions]
+    .reverse()
+    .map((s) => s.score)
+    .filter((s): s is number => s !== null);
+  const examTrend = [...data.exams.recent]
+    .reverse()
+    .map((e) => e.scaledScore)
+    .filter((s): s is number => s !== null);
+
   return (
     <div className="space-y-6">
+      <LevelUpToast level={data.gamification.level} />
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
         <p className="text-sm text-muted-foreground">
@@ -45,33 +63,65 @@ export function DashboardPage() {
                 </Badge>
               )}
             </CardDescription>
-            <CardTitle className="text-3xl">
-              {data.quiz.readiness !== null ? `${data.quiz.readiness}%` : "—"}
-            </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-muted-foreground">
-            {data.quiz.readiness === null
-              ? "recency-weighted mastery × exam weights"
-              : data.quiz.readinessConfident
+          <CardContent className="space-y-2">
+            <div className="flex items-center gap-3">
+              <RadialGauge
+                value={data.quiz.readiness}
+                size={80}
+                strokeWidth={8}
+                sweep={270}
+                label={
+                  data.quiz.readiness === null
+                    ? "Readiness: no data yet"
+                    : `Readiness ${data.quiz.readiness} percent`
+                }
+              >
+                <span className="stat-numeral text-xl font-bold">
+                  {readinessShown !== null ? readinessShown : "—"}
+                  {readinessShown !== null && <span className="text-sm font-semibold">%</span>}
+                </span>
+              </RadialGauge>
+              {data.quiz.readiness !== null && (
+                <span
+                  className={`text-xs font-medium ${bandTextClass(masteryBand(data.quiz.readiness))}`}
+                >
+                  {BAND_LABEL[masteryBand(data.quiz.readiness)]}
+                </span>
+              )}
+            </div>
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              {data.quiz.readiness === null || data.quiz.readinessConfident
                 ? "recency-weighted mastery × exam weights"
                 : `Based on very few answers — roughly ${data.quiz.attemptsForConfidence} more would make this trustworthy.`}
+            </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Quiz accuracy</CardDescription>
-            <CardTitle className="text-3xl">
+            <CardTitle className="stat-numeral text-3xl">
               {data.quiz.accuracy !== null ? `${data.quiz.accuracy}%` : "—"}
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-xs text-muted-foreground">
-            {data.quiz.correct} of {data.quiz.attempts} questions correct
+          <CardContent className="space-y-2">
+            <p className="text-xs text-muted-foreground">
+              {data.quiz.correct} of {data.quiz.attempts} questions correct
+            </p>
+            {sessionTrend.length > 1 && (
+              <Sparkline
+                values={sessionTrend}
+                width={130}
+                height={28}
+                label={`Scores across your last ${sessionTrend.length} practice sessions`}
+              />
+            )}
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Questions answered</CardDescription>
-            <CardTitle className="text-3xl">{data.quiz.attempts}</CardTitle>
+            <CardTitle className="stat-numeral text-3xl">{data.quiz.attempts}</CardTitle>
           </CardHeader>
           <CardContent className="text-xs text-muted-foreground">
             across {data.recentSessions.length > 0 ? "your sessions" : "no sessions yet"}
@@ -80,7 +130,7 @@ export function DashboardPage() {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Flashcards known</CardDescription>
-            <CardTitle className="text-3xl">
+            <CardTitle className="stat-numeral text-3xl">
               {data.flashcards.known}
               <span className="text-base font-normal text-muted-foreground">
                 {" "}
@@ -107,38 +157,57 @@ export function DashboardPage() {
             Weight badges match the official exam breakdown.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="grid gap-x-6 gap-y-5 sm:grid-cols-2">
           {data.quiz.perDomain.map((d) => (
-            <div key={d.code}>
-              <div className="mb-1 flex items-center justify-between gap-2 text-sm">
-                <span className="min-w-0 truncate font-medium">
-                  {d.code} {d.name}
+            // min-w-0: a grid item defaults to min-width:auto and would
+            // otherwise refuse to shrink below the domain name, overflowing
+            // the viewport on narrow screens despite the truncate below.
+            <div key={d.code} className="flex min-w-0 items-center gap-3">
+              <RadialGauge
+                value={d.mastery}
+                size={54}
+                strokeWidth={5}
+                label={
+                  d.mastery === null
+                    ? `${d.code} ${d.name}: no data`
+                    : `${d.code} ${d.name}: ${d.mastery} percent mastery`
+                }
+              >
+                <span className="stat-numeral text-xs font-semibold">
+                  {d.mastery !== null ? d.mastery : "—"}
                 </span>
-                <span className="flex shrink-0 items-center gap-2">
-                  <Badge variant="secondary">{d.weight}%</Badge>
-                  <span className="w-44 text-right text-muted-foreground">
-                    {d.mastery !== null ? (
-                      <>
-                        {d.mastery}% mastery · {d.attempts} answered
-                        {!d.confident && (
-                          <span
-                            className="ml-1 text-muted-foreground/70"
-                            title={`Fewer than ${data.quiz.confidenceThreshold} answers in this domain — treat with caution`}
-                          >
-                            (thin)
-                          </span>
-                        )}
-                      </>
-                    ) : (
-                      "no data"
-                    )}
+              </RadialGauge>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-1.5">
+                  <span className="min-w-0 truncate text-sm font-medium" title={`${d.code} ${d.name}`}>
+                    {d.code} {d.name}
                   </span>
-                </span>
+                  <Badge variant="secondary" className="shrink-0">
+                    {d.weight}%
+                  </Badge>
+                </div>
+                <div className="mt-0.5 text-xs text-muted-foreground">
+                  {d.mastery !== null ? (
+                    <>
+                      <span className={bandTextClass(masteryBand(d.mastery))}>
+                        {BAND_LABEL[masteryBand(d.mastery)]}
+                      </span>
+                      {" · "}
+                      <span className="stat-numeral">{d.attempts}</span> answered
+                      {!d.confident && (
+                        <span
+                          className="ml-1 text-muted-foreground/70"
+                          title={`Fewer than ${data.quiz.confidenceThreshold} answers in this domain — treat with caution`}
+                        >
+                          (thin)
+                        </span>
+                      )}
+                    </>
+                  ) : (
+                    "no data yet"
+                  )}
+                </div>
               </div>
-              <Progress
-                value={d.mastery ?? 0}
-                barClassName={d.mastery === null ? "bg-muted" : undefined}
-              />
             </div>
           ))}
         </CardContent>
@@ -168,11 +237,11 @@ export function DashboardPage() {
             </p>
           ) : (
             <>
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-4">
                 <div>
                   <div className="text-xs text-muted-foreground">Last score</div>
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold tabular-nums">
+                    <span className="stat-numeral text-2xl font-bold">
                       {data.exams.lastScaledScore}
                     </span>
                     <Badge variant={data.exams.lastPassed ? "success" : "secondary"}>
@@ -182,7 +251,7 @@ export function DashboardPage() {
                 </div>
                 <div>
                   <div className="text-xs text-muted-foreground">Best score</div>
-                  <div className="text-2xl font-bold tabular-nums">
+                  <div className="stat-numeral text-2xl font-bold">
                     {data.exams.bestScaledScore}
                   </div>
                 </div>
@@ -190,7 +259,7 @@ export function DashboardPage() {
                   <div className="text-xs text-muted-foreground">
                     Passed ({data.exams.passingScaledScore} needed)
                   </div>
-                  <div className="text-2xl font-bold tabular-nums">
+                  <div className="stat-numeral text-2xl font-bold">
                     {data.exams.passed}
                     <span className="text-base font-normal text-muted-foreground">
                       {" "}
@@ -198,6 +267,22 @@ export function DashboardPage() {
                     </span>
                   </div>
                 </div>
+                {examTrend.length > 1 && (
+                  <div>
+                    <div className="text-xs text-muted-foreground">
+                      Trend{" "}
+                      <span className="text-muted-foreground/70">· dashed = pass mark</span>
+                    </div>
+                    <Sparkline
+                      values={examTrend}
+                      threshold={data.exams.passingScaledScore}
+                      width={130}
+                      height={34}
+                      className="mt-1"
+                      label={`Scaled scores across your last ${examTrend.length} mock exams, against a pass mark of ${data.exams.passingScaledScore}`}
+                    />
+                  </div>
+                )}
               </div>
               <ul className="mt-4 divide-y divide-border border-t border-border">
                 {data.exams.recent.map((e) => (

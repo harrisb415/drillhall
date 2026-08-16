@@ -4,6 +4,7 @@ import type { ExamReviewItem } from "@comptia/shared-types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Confetti } from "@/components/ui/confetti";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import { useExamStore } from "@/stores/exam";
@@ -114,12 +115,16 @@ export function ExamResults() {
 
   return (
     <div className="space-y-6">
+      {/* Passing a full mock is the milestone this whole app exists for. */}
+      <Confetti active={result.passed} />
       <Card className={result.passed ? "border-success" : "border-destructive"}>
         <CardHeader className="items-center text-center">
           <CardDescription>
             {result.expired ? "Time expired — scored where you left it" : "Exam complete"}
           </CardDescription>
-          <CardTitle className="text-6xl tabular-nums">{result.scaledScore}</CardTitle>
+          <CardTitle className={cn("stat-numeral text-6xl", result.passed && "animate-pop")}>
+            {result.scaledScore}
+          </CardTitle>
           <Badge variant={result.passed ? "success" : "secondary"} className="mt-1">
             {result.passed ? "PASS" : "FAIL"} · {result.passingScaledScore} needed
           </Badge>

@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-/* Design tokens — the single place look-and-feel lives (spec §1). */
+/* Design tokens — the single place look-and-feel lives (spec §1).
+   Drillhall identity: warm charcoal ground, brass accent. The brass carries
+   the brand; semantic colors (success/destructive) stay conventional because
+   a study tool shouldn't make you decode whether you got it right. */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -21,55 +24,70 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+
+  /* Mastery bands — one scale, used by gauges, bars, and badges alike so a
+     colour means the same thing everywhere on the dashboard. */
+  --color-weak: var(--weak);
+  --color-developing: var(--developing);
+  --color-strong: var(--strong);
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 }
 
 :root {
-  --background: #f6f7f9;
-  --foreground: #171a20;
+  --background: #f7f6f3;
+  --foreground: #1b1917;
   --card: #ffffff;
-  --card-foreground: #171a20;
-  --primary: #4f46e5;
+  --card-foreground: #1b1917;
+  --primary: #8b6914;
   --primary-foreground: #ffffff;
-  --secondary: #edeff3;
-  --secondary-foreground: #171a20;
-  --muted: #edeff3;
-  --muted-foreground: #66707f;
-  --accent: #eef2ff;
-  --accent-foreground: #3730a3;
-  --destructive: #dc2626;
+  --secondary: #ecebe6;
+  --secondary-foreground: #1b1917;
+  --muted: #ecebe6;
+  --muted-foreground: #6b6559;
+  --accent: #f5eeda;
+  --accent-foreground: #5c4310;
+  --destructive: #b3261e;
   --destructive-foreground: #ffffff;
-  --success: #16a34a;
+  --success: #2f7d32;
   --success-foreground: #ffffff;
-  --border: #e2e5ea;
-  --input: #d5d9e0;
-  --ring: #6366f1;
+  --border: #e1ded6;
+  --input: #d3cfc4;
+  --ring: #a8811f;
   --radius: 0.5rem;
+
+  --weak: #b4441c;
+  --developing: #9a6d12;
+  --strong: #2f7d32;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0e1015;
-    --foreground: #e7e9ef;
-    --card: #171a21;
-    --card-foreground: #e7e9ef;
-    --primary: #6366f1;
-    --primary-foreground: #ffffff;
-    --secondary: #20242e;
-    --secondary-foreground: #e7e9ef;
-    --muted: #20242e;
-    --muted-foreground: #8a92a3;
-    --accent: #252a40;
-    --accent-foreground: #c7d2fe;
-    --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
-    --success: #22c55e;
-    --success-foreground: #052e16;
-    --border: #272c37;
-    --input: #343b49;
-    --ring: #818cf8;
+    --background: #141310;
+    --foreground: #eae6dc;
+    --card: #1c1a16;
+    --card-foreground: #eae6dc;
+    --primary: #d9a441;
+    --primary-foreground: #1b1917;
+    --secondary: #262219;
+    --secondary-foreground: #eae6dc;
+    --muted: #262219;
+    --muted-foreground: #a09884;
+    --accent: #2c2519;
+    --accent-foreground: #e8c67a;
+    --destructive: #ef5350;
+    --destructive-foreground: #1b1917;
+    --success: #5fae5f;
+    --success-foreground: #10240f;
+    --border: #2f2b22;
+    --input: #3b3529;
+    --ring: #d9a441;
+
+    --weak: #e0794a;
+    --developing: #d9a441;
+    --strong: #6bbf6b;
   }
 }
 
@@ -84,4 +102,99 @@ body {
     "Helvetica Neue",
     Arial,
     sans-serif;
+}
+
+/* Headings carry the brand voice: tight, deliberate, a little military.
+   Numerals default to tabular so stat cards don't jitter as values change. */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.018em;
+}
+
+.stat-numeral {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* ---- motion ----------------------------------------------------------
+   Every animation in the app is defined here and every one is disabled by
+   the reduced-motion block at the bottom. Delight is opt-out, not opt-in. */
+
+@keyframes dh-pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes dh-slide-up {
+  from {
+    transform: translateY(0.75rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes dh-flicker {
+  0%,
+  100% {
+    transform: scaleY(1) translateY(0);
+  }
+  50% {
+    transform: scaleY(1.08) translateY(-0.5px);
+  }
+}
+
+@keyframes dh-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--success) 45%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 0.6rem transparent;
+  }
+}
+
+.animate-pop {
+  animation: dh-pop 240ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.animate-slide-up {
+  animation: dh-slide-up 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-flicker {
+  animation: dh-flicker 2.4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-pulse-ring {
+  animation: dh-pulse-ring 520ms ease-out;
+}
+
+/* Gauge/sparkline stroke draw-on. The dash offset is set inline per value;
+   the transition is what makes it sweep rather than snap. */
+.gauge-arc {
+  transition: stroke-dashoffset 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

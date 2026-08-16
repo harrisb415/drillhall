@@ -32,6 +32,9 @@ export function McQuestionView({
               !answer && isChosen && "border-primary bg-accent/60",
               !answer && !isChosen && "border-border bg-card hover:border-ring/60 hover:bg-accent/30",
               answer && isCorrectChoice && "border-success bg-success/10",
+              // Only the choice you picked yourself pulses — the reveal on a
+              // wrong answer shouldn't feel like a reward.
+              answer?.correct && isChosen && isCorrectChoice && "animate-pulse-ring",
               answer && isChosen && !isCorrectChoice && "border-destructive bg-destructive/10",
               answer && !isChosen && !isCorrectChoice && "border-border opacity-60",
             )}
