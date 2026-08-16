@@ -18,6 +18,8 @@ const MESSAGES: Record<string, string> = {
   TOKEN_EXPIRED: "That link has expired. Request a new one.",
   SOCIAL_ACCOUNT_ALREADY_LINKED: "That account is already linked to a different user.",
   FAILED_TO_CREATE_USER: "Couldn't create the account. Try again in a moment.",
+  SESSION_EXPIRED: "For your security, deleting an account needs a recent login. Log out and back in, then try again.",
+  CREDENTIAL_ACCOUNT_NOT_FOUND: "This account doesn't have a password set — no password is needed to confirm.",
 };
 
 export function authErrorMessage(error: { code?: string; message?: string } | null): string {

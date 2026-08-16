@@ -57,6 +57,14 @@ export function createAuth(deps: AuthDeps) {
     session: {
       cookieCache: { enabled: true, maxAge: 5 * 60 },
     },
+    user: {
+      // Hard-deletes the user row; every app table (quiz attempts, flashcard
+      // progress, exam dates, notification prefs, gamification) cascades via
+      // its userId foreign key, as does the linked Google account row — this
+      // is how a user disconnects Google, since we can't reach into their
+      // Google account from here, only drop what we stored about the link.
+      deleteUser: { enabled: true },
+    },
   });
 }
 

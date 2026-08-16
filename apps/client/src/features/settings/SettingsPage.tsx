@@ -1,12 +1,109 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { PasswordInput } from "@/components/ui/password-input";
 import { Spinner } from "@/components/ui/spinner";
 import { Switch } from "@/components/ui/switch";
+import { authErrorMessage } from "@/features/auth/authErrors";
+import { FormError } from "@/features/auth/FieldError";
 import { useNotificationPrefs, useSaveNotificationPrefs } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
+
+/**
+ * Delete-account confirmation. Better Auth requires the account's password
+ * when one exists (verified server-side); Google-only accounts fall back to
+ * its session-freshness check instead, since there's no password to check.
+ */
+function DeleteAccountSection() {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [loadingAccounts, setLoadingAccounts] = useState(false);
+  const [hasPassword, setHasPassword] = useState(false);
+  const [password, setPassword] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function startDelete() {
+    setOpen(true);
+    setError(null);
+    setLoadingAccounts(true);
+    const { data } = await authClient.listAccounts();
+    setHasPassword(!!data?.some((a) => a.providerId === "credential"));
+    setLoadingAccounts(false);
+  }
+
+  function cancel() {
+    setOpen(false);
+    setPassword("");
+    setError(null);
+  }
+
+  async function confirmDelete() {
+    if (hasPassword && !password) {
+      setError("Enter your password to confirm.");
+      return;
+    }
+    setBusy(true);
+    setError(null);
+    const { error: err } = await authClient.deleteUser(hasPassword ? { password } : {});
+    if (err) {
+      setError(authErrorMessage(err));
+      setBusy(false);
+      return;
+    }
+    navigate("/", { replace: true });
+  }
+
+  return (
+    <Card className="border-destructive/40">
+      <CardHeader>
+        <CardTitle className="text-base text-destructive">Delete account</CardTitle>
+        <CardDescription>
+          Permanently deletes your account: flashcard progress, quiz and exam history, exam
+          dates, and notification preferences. This also removes your Google sign-in link, if
+          any. There is no undo.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        {!open ? (
+          <Button variant="destructive" onClick={startDelete}>
+            Delete my account
+          </Button>
+        ) : loadingAccounts ? (
+          <Spinner className="size-6" />
+        ) : (
+          <div className="space-y-4">
+            <FormError message={error} />
+            {hasPassword && (
+              <div className="max-w-sm space-y-1.5">
+                <Label htmlFor="delete-password">Confirm your password</Label>
+                <PasswordInput
+                  id="delete-password"
+                  autoComplete="current-password"
+                  autoFocus
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            )}
+            <div className="flex gap-3">
+              <Button variant="destructive" disabled={busy} onClick={confirmDelete}>
+                {busy ? <Spinner className="size-4 text-destructive-foreground" /> : "Permanently delete my account"}
+              </Button>
+              <Button variant="outline" disabled={busy} onClick={cancel}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
 
 const LEAD_DAYS = [30, 14, 7, 3, 1, 0];
 
@@ -184,6 +281,8 @@ export function SettingsPage() {
           Couldn't save that change: {(save.error as Error).message}
         </p>
       )}
+
+      <DeleteAccountSection />
     </div>
   );
 }
