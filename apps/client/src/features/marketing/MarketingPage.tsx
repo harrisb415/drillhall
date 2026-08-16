@@ -69,7 +69,7 @@ export function MarketingPage() {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-10 border-b border-border bg-background/85 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-          <span className="text-lg font-semibold tracking-tight">CompTIA Prep</span>
+          <span className="text-lg font-semibold tracking-tight">Drillhall</span>
           <nav className="flex items-center gap-2">
             <Link to="/login">
               <Button variant="ghost" size="sm">
@@ -187,7 +187,7 @@ export function MarketingPage() {
       </main>
 
       <footer className="border-t border-border py-8 text-center text-xs text-muted-foreground">
-        CompTIA Prep · self-hosted study platform. Not affiliated with or endorsed by CompTIA.
+        Drillhall · self-hosted study platform. Not affiliated with or endorsed by CompTIA.
       </footer>
     </div>
   );

@@ -174,7 +174,7 @@ export function AppShell({ children }: { children: ReactNode }) {
     <div className="flex min-h-screen">
       <aside className="sticky top-0 hidden h-screen w-64 flex-col border-r border-border bg-card md:flex">
         <div className="border-b border-border p-5">
-          <div className="text-lg font-semibold tracking-tight">CompTIA Prep</div>
+          <div className="text-lg font-semibold tracking-tight">Drillhall</div>
           <CertSelect className="mt-2" />
         </div>
         <nav className="flex-1 space-y-1 overflow-y-auto p-3">
@@ -191,7 +191,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center justify-between border-b border-border bg-card px-4 py-3 md:hidden">
-          <div className="font-semibold">CompTIA Prep</div>
+          <div className="font-semibold">Drillhall</div>
           <Button variant="ghost" size="sm" onClick={handleSignOut}>
             Sign out
           </Button>

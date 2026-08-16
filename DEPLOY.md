@@ -6,8 +6,8 @@ Target: your Linux VM, reached over Tailscale. No ports exposed to the internet,
 
 ```bash
 # on the VM
-git clone <repo> /opt/comptia-platform
-cd /opt/comptia-platform
+git clone <repo> /opt/drillhall
+cd /opt/drillhall
 npm ci
 cp .env.example .env    # fill in — see SECRETS.md
 npm run build
@@ -27,33 +27,33 @@ Set in `.env`:
 
 ```bash
 npm i -g pm2
-cd /opt/comptia-platform
-NODE_ENV=production pm2 start npm --name comptia -- start
+cd /opt/drillhall
+NODE_ENV=production pm2 start npm --name drillhall -- start
 pm2 save && pm2 startup
 ```
 
 ### systemd (alternative)
 
-`/etc/systemd/system/comptia.service`:
+`/etc/systemd/system/drillhall.service`:
 
 ```ini
 [Unit]
-Description=CompTIA Prep
+Description=Drillhall
 After=network.target
 
 [Service]
-WorkingDirectory=/opt/comptia-platform
+WorkingDirectory=/opt/drillhall
 Environment=NODE_ENV=production
 ExecStart=/usr/bin/npm start
 Restart=on-failure
-User=comptia
+User=drillhall
 
 [Install]
 WantedBy=multi-user.target
 ```
 
 ```bash
-sudo systemctl enable --now comptia
+sudo systemctl enable --now drillhall
 ```
 
 Health check for either: `curl -f http://localhost:3001/health` (200 + DB ping). Wire it into pm2's health monitoring or a systemd watchdog if you want auto-restart on DB failure.
@@ -69,17 +69,17 @@ Single instance only — the Phase 4 notification scheduler assumes one process 
 ## 4. Updating
 
 ```bash
-cd /opt/comptia-platform
+cd /opt/drillhall
 git pull
 npm ci
 npm run build
 npm run db:migrate     # server refuses to boot if you forget this — that's intentional
-pm2 restart comptia    # or: sudo systemctl restart comptia
+pm2 restart drillhall    # or: sudo systemctl restart drillhall
 ```
 
 ## 5. Logs
 
-Structured JSON on stdout (pino, request IDs per request). With pm2: `pm2 logs comptia`. With systemd: `journalctl -u comptia -f`. Pipe through `npx pino-pretty` when reading by hand.
+Structured JSON on stdout (pino, request IDs per request). With pm2: `pm2 logs drillhall`. With systemd: `journalctl -u drillhall -f`. Pipe through `npx pino-pretty` when reading by hand.
 
 ## Docker (optional, untested path)
 

@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.1.0] — 2026-08-16
+
+### Changed
+- **Renamed the project to Drillhall** (was "CompTIA Prep"), including the GitHub repo, app title, header/sidebar branding, marketing page, email subject lines and sender name, `/api/meta`, and every deployment doc's example paths and service names.
+- **Production domain moved to `drillhall.duckdns.org`** (was `comptiastudy.duckdns.org`).
+
+### Added
+- **Self-service account deletion** at `/settings` — cascades through every table with a `userId` foreign key (flashcard progress, quiz/exam history, exam dates, notification prefs) and removes the linked Google account row, which is how a user disconnects Google. Credential accounts confirm with their password; Google-only accounts fall back to Better Auth's session-freshness check.
+
 ## [1.0.0] — 2026-08-15
 
 First public release.

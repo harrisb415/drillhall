@@ -67,7 +67,7 @@ const app = createApp({
   auth,
   content,
   logger,
-  meta: { name: "CompTIA Prep", version: rootPkg.version, googleEnabled: env.google !== null },
+  meta: { name: "Drillhall", version: rootPkg.version, googleEnabled: env.google !== null },
   clientDist,
   emailDeliveryConfigured: !!env.resendApiKey,
 });

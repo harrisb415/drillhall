@@ -15,7 +15,7 @@ export interface AuthDeps {
 
 export function createAuth(deps: AuthDeps) {
   return betterAuth({
-    appName: "CompTIA Prep",
+    appName: "Drillhall",
     secret: deps.secret,
     baseURL: deps.baseURL,
     trustedOrigins: deps.trustedOrigins ?? [],
@@ -31,7 +31,7 @@ export function createAuth(deps: AuthDeps) {
       sendResetPassword: async ({ user: u, url }) => {
         await deps.sendEmail({
           to: u.email,
-          subject: "Reset your password — CompTIA Prep",
+          subject: "Reset your password — Drillhall",
           text: `Hi ${u.name},\n\nOpen this link to choose a new password:\n\n${url}\n\nThe link expires in an hour. If you didn't ask for a reset, ignore this message — your password stays unchanged.\n`,
         });
       },
@@ -41,7 +41,7 @@ export function createAuth(deps: AuthDeps) {
       sendVerificationEmail: async ({ user: u, url }) => {
         await deps.sendEmail({
           to: u.email,
-          subject: "Verify your email — CompTIA Prep",
+          subject: "Verify your email — Drillhall",
           text: `Hi ${u.name},\n\nConfirm your email address by opening this link:\n\n${url}\n\nIf you didn't create an account, ignore this message.\n`,
         });
       },

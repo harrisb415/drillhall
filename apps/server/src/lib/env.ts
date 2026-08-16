@@ -38,7 +38,7 @@ export const env = {
   /** Nightly at 03:15 by default; set BACKUP_CRON="" to disable. */
   backupCron: process.env.BACKUP_CRON ?? "15 3 * * *",
   backupRetentionDays: Number(process.env.BACKUP_RETENTION_DAYS ?? 14),
-  emailFrom: process.env.EMAIL_FROM ?? "CompTIA Prep <onboarding@resend.dev>",
+  emailFrom: process.env.EMAIL_FROM ?? "Drillhall <onboarding@resend.dev>",
   trustedOrigins: [
     "http://localhost:5173",
     ...(process.env.TRUSTED_ORIGINS ?? "")
