@@ -1,0 +1,271 @@
+[
+  {
+    "id": "secplus-mc-001",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company wants proof that a specific employee approved a financial transaction and cannot later deny it. Which security concept addresses this?",
+    "choices": ["Confidentiality", "Non-repudiation", "Availability", "Obfuscation"],
+    "answerIndex": 1,
+    "explanation": "Non-repudiation ties an action to a verified identity in a way the actor cannot credibly deny, typically through digital signatures and audit trails."
+  },
+  {
+    "id": "secplus-mc-002",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which AAA function determines what an authenticated user is permitted to do?",
+    "choices": ["Authentication", "Authorization", "Accounting", "Attestation"],
+    "answerIndex": 1,
+    "explanation": "Authorization is the second step in AAA — it governs access after identity has already been proven by authentication."
+  },
+  {
+    "id": "secplus-mc-003",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A legacy system can't be patched, so extra network monitoring is put in place around it instead. What is this an example of?",
+    "choices": ["A preventive control", "A compensating control", "A detective control only", "A physical control"],
+    "answerIndex": 1,
+    "explanation": "A compensating control substitutes a different safeguard when the ideal one (patching) can't be applied, aiming to reduce the same risk another way."
+  },
+  {
+    "id": "secplus-mc-004",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which authentication factor category does a fingerprint scan belong to?",
+    "choices": ["Something you know", "Something you have", "Something you are", "Somewhere you are"],
+    "answerIndex": 2,
+    "explanation": "Biometrics are an inherence factor — something you are. Passwords are knowledge factors; tokens are possession factors."
+  },
+  {
+    "id": "secplus-mc-005",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which principle is violated when a help desk technician is granted permanent domain administrator rights for convenience?",
+    "choices": ["Least privilege", "Non-repudiation", "Availability", "Redundancy"],
+    "answerIndex": 0,
+    "explanation": "Least privilege requires granting only the access a role actually needs. Permanent broad admin rights for routine tasks vastly exceed what's required."
+  },
+  {
+    "id": "secplus-mc-006",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which term describes a vulnerability that is actively being exploited before the vendor has released a patch?",
+    "choices": ["Legacy vulnerability", "Zero-day", "False positive", "Misconfiguration"],
+    "answerIndex": 1,
+    "explanation": "A zero-day is unknown to the vendor at the time of exploitation, meaning no patch exists yet and signature-based defenses typically can't catch it."
+  },
+  {
+    "id": "secplus-mc-007",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A web form accepts user input directly into a database query without sanitization. Which attack does this enable?",
+    "choices": ["SQL injection", "ARP spoofing", "DNS poisoning", "Evil twin"],
+    "answerIndex": 0,
+    "explanation": "Unsanitized input concatenated into a query lets an attacker inject their own SQL, potentially reading or modifying data outside the intended scope."
+  },
+  {
+    "id": "secplus-mc-008",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker calls the help desk pretending to be a company executive locked out of their account. What social engineering technique is this?",
+    "choices": ["Pretexting", "Typosquatting", "Watering hole", "Credential stuffing"],
+    "answerIndex": 0,
+    "explanation": "Pretexting fabricates a plausible scenario or identity to manipulate the target into cooperating — impersonating an executive with urgency is a classic example."
+  },
+  {
+    "id": "secplus-mc-009",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which malware type self-propagates across a network without any user action?",
+    "choices": ["Virus", "Worm", "Trojan", "Adware"],
+    "answerIndex": 1,
+    "explanation": "A worm exploits a vulnerable network service directly to spread on its own. A virus requires a user to run an infected host file."
+  },
+  {
+    "id": "secplus-mc-010",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Registering a domain that is a common misspelling of a legitimate bank's site is an example of which technique?",
+    "choices": ["Typosquatting", "Pretexting", "Watering hole attack", "Business email compromise"],
+    "answerIndex": 0,
+    "explanation": "Typosquatting relies on users mistyping a URL and landing on a lookalike domain, often used to harvest credentials or deliver malware."
+  },
+  {
+    "id": "secplus-mc-011",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which security philosophy layers multiple independent controls so no single failure compromises the whole system?",
+    "choices": ["Defense in depth", "Security through obscurity", "Single sign-on", "Least functionality"],
+    "answerIndex": 0,
+    "explanation": "Defense in depth assumes any one control can fail, so overlapping physical, network, host, and application layers each add an independent barrier."
+  },
+  {
+    "id": "secplus-mc-012",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which architecture assumes no user or device is implicitly trusted, even inside the network perimeter?",
+    "choices": ["Zero trust", "Defense in depth", "Air-gapped network", "Bastion host model"],
+    "answerIndex": 0,
+    "explanation": "Zero trust requires continuous verification of every request regardless of network location, rather than trusting anything simply because it's 'inside' the perimeter."
+  },
+  {
+    "id": "secplus-mc-013",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A stolen laptop's drive cannot be read without the recovery key, even when removed and connected to another machine. Which control provides this?",
+    "choices": ["File-level permissions", "Full-disk encryption", "A strong login password", "Antivirus software"],
+    "answerIndex": 1,
+    "explanation": "Full-disk encryption protects data at rest regardless of the OS login, so removing the physical drive doesn't bypass the protection the way a login password would."
+  },
+  {
+    "id": "secplus-mc-014",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which device generates and stores cryptographic keys without ever exposing the raw key material to the host system?",
+    "choices": ["HSM", "Proxy server", "Load balancer", "IDS sensor"],
+    "answerIndex": 0,
+    "explanation": "A Hardware Security Module performs cryptographic operations internally so the key itself never leaves the tamper-resistant hardware."
+  },
+  {
+    "id": "secplus-mc-015",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Splitting a flat network into isolated VLANs for finance, engineering, and guests is an application of which concept?",
+    "choices": ["Network segmentation", "Non-repudiation", "Change management", "Data classification"],
+    "answerIndex": 0,
+    "explanation": "Segmentation limits how far an attacker who compromises one zone can move laterally into the rest of the network."
+  },
+  {
+    "id": "secplus-mc-016",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "During incident response, which piece of evidence should be collected FIRST due to its volatility?",
+    "choices": ["Archived log backups on tape", "Contents of RAM", "Files on the hard disk", "Printed documentation"],
+    "answerIndex": 1,
+    "explanation": "The order of volatility says collect the most fleeting evidence first — CPU cache/registers, then RAM, then network state, then disk, then archival media."
+  },
+  {
+    "id": "secplus-mc-017",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What must be maintained for digital evidence to remain admissible and trustworthy?",
+    "choices": ["Chain of custody", "A service level agreement", "A business impact analysis", "An acceptable use policy"],
+    "answerIndex": 0,
+    "explanation": "Chain of custody is the unbroken, documented record of who handled evidence and when — without it, evidence integrity can be challenged."
+  },
+  {
+    "id": "secplus-mc-018",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which system aggregates and correlates logs from across an environment to surface incidents?",
+    "choices": ["SIEM", "HSM", "VPN concentrator", "DLP agent"],
+    "answerIndex": 0,
+    "explanation": "A Security Information and Event Management platform centralizes log collection and correlation, so analysts search one place instead of many disconnected sources."
+  },
+  {
+    "id": "secplus-mc-019",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which activity actually attempts to exploit a discovered weakness to prove real-world impact, beyond simply flagging it?",
+    "choices": ["Vulnerability scanning", "Penetration testing", "Asset inventory", "Log review"],
+    "answerIndex": 1,
+    "explanation": "A vulnerability scan identifies potential weaknesses by signature or version. Penetration testing goes further and actively attempts exploitation to demonstrate real impact."
+  },
+  {
+    "id": "secplus-mc-020",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A specific malicious file hash found on a compromised host is an example of which term?",
+    "choices": ["An IOC", "A TTP", "An SLA", "A BIA"],
+    "answerIndex": 0,
+    "explanation": "An Indicator of Compromise is a specific, concrete artifact — a hash, IP, or filename — as opposed to a TTP, which describes broader attacker behavior patterns."
+  },
+  {
+    "id": "secplus-mc-021",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which document states the high-level intent that 'all sensitive data must be encrypted,' without specifying the exact algorithm?",
+    "choices": ["A policy", "A standard", "A procedure", "A runbook"],
+    "answerIndex": 0,
+    "explanation": "A policy sets intent at a high level. A standard would specify the exact requirement (e.g. AES-256); a procedure gives the step-by-step instructions."
+  },
+  {
+    "id": "secplus-mc-022",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which metric defines the maximum acceptable amount of data loss, measured in time, after a disruption?",
+    "choices": ["RTO", "RPO", "SLA", "MTTR"],
+    "answerIndex": 1,
+    "explanation": "Recovery Point Objective measures tolerable data loss — how far back backups must reach. RTO measures tolerable downtime instead."
+  },
+  {
+    "id": "secplus-mc-023",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which process identifies critical business functions and quantifies the impact of their disruption to prioritize recovery?",
+    "choices": ["Business impact analysis", "Penetration test", "Vulnerability scan", "Chain of custody"],
+    "answerIndex": 0,
+    "explanation": "A BIA determines which functions matter most and how quickly they must recover, which then drives RTO/RPO targets and recovery priorities."
+  },
+  {
+    "id": "secplus-mc-024",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company reviews the security posture of a cloud vendor before signing a contract. What discipline does this fall under?",
+    "choices": ["Third-party risk management", "Network segmentation", "Zero trust architecture", "Digital forensics"],
+    "answerIndex": 0,
+    "explanation": "Third-party risk management assesses and monitors vendors and suppliers, since their security weaknesses become risk to the organizations that depend on them."
+  },
+  {
+    "id": "secplus-mc-025",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which document, once signed, establishes that an employee was informed of the rules for using company systems before violating them?",
+    "choices": ["Acceptable Use Policy", "Business impact analysis", "Chain of custody log", "Penetration test report"],
+    "answerIndex": 0,
+    "explanation": "The AUP defines permitted and prohibited use of company systems and data; a signature establishes the employee was informed of those boundaries."
+  },
+  {
+    "id": "secplus-term-001",
+    "type": "terminal",
+    "domainCode": "2.0",
+    "prompt": "Type the Windows command that displays all active network connections and listening ports along with the owning process ID.",
+    "expected": ["netstat -ano"],
+    "explanation": "netstat -ano lists connections and listening ports with their PIDs, which is how an unexpected listener from malware or a backdoor gets identified during an incident."
+  },
+  {
+    "id": "secplus-term-002",
+    "type": "terminal",
+    "domainCode": "4.0",
+    "prompt": "Type the Windows command that lists all currently running processes from the command line.",
+    "expected": ["tasklist"],
+    "explanation": "tasklist enumerates running processes with their PIDs, useful for spotting an unfamiliar process during incident triage without opening the GUI Task Manager."
+  },
+  {
+    "id": "secplus-order-001",
+    "type": "order",
+    "domainCode": "4.0",
+    "prompt": "Place these forensic evidence types in the correct order of volatility, most volatile first.",
+    "items": [
+      "CPU registers and cache",
+      "RAM contents",
+      "Network state and active connections",
+      "Running processes",
+      "Data on local disk",
+      "Archival and backup media"
+    ],
+    "explanation": "Collect what disappears fastest first. Registers and RAM vanish the instant power is lost or the process ends; disk and archival media persist far longer."
+  },
+  {
+    "id": "secplus-match-001",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each security term to its definition.",
+    "pairs": [
+      { "left": "Confidentiality", "right": "Only authorized parties can read the data" },
+      { "left": "Integrity", "right": "Data is not altered without detection" },
+      { "left": "Availability", "right": "Systems are accessible when legitimately needed" },
+      { "left": "Non-repudiation", "right": "An action cannot be credibly denied by its actor" }
+    ],
+    "explanation": "The first three are the CIA triad. Non-repudiation is a related but distinct property, usually delivered through digital signatures and audit logs."
+  }
+]

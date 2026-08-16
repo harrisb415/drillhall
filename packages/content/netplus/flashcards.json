@@ -1,0 +1,188 @@
+[
+  {
+    "id": "netplus-fc-001",
+    "domainCode": "1.0",
+    "front": "What are the seven layers of the OSI model, in order?",
+    "back": "Physical, Data Link, Network, Transport, Session, Presentation, Application. Mnemonic: Please Do Not Throw Sausage Pizza Away."
+  },
+  {
+    "id": "netplus-fc-002",
+    "domainCode": "1.0",
+    "front": "At which OSI layer does a switch normally operate, and on what does it forward?",
+    "back": "Layer 2 (Data Link), forwarding frames based on MAC address. Layer 3 switches also route, blurring the line, but a basic switch is Layer 2."
+  },
+  {
+    "id": "netplus-fc-003",
+    "domainCode": "1.0",
+    "front": "What is the difference between a public and private IPv4 address?",
+    "back": "Private addresses (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) are not routable on the internet and are reused inside every private network. Public addresses are globally unique and routable."
+  },
+  {
+    "id": "netplus-fc-004",
+    "domainCode": "1.0",
+    "front": "How many usable hosts does a /26 subnet provide?",
+    "back": "A /26 has 64 addresses total; subtract network and broadcast, leaving 62 usable hosts."
+  },
+  {
+    "id": "netplus-fc-005",
+    "domainCode": "1.0",
+    "front": "What is the purpose of CIDR notation like /24?",
+    "back": "It states how many leading bits of the 32-bit address are the network portion, replacing a separate subnet mask. /24 means the first 24 bits (255.255.255.0) identify the network."
+  },
+  {
+    "id": "netplus-fc-006",
+    "domainCode": "1.0",
+    "front": "What distinguishes TCP from UDP at the transport layer?",
+    "back": "TCP is connection-oriented with a three-way handshake and guaranteed, ordered delivery. UDP is connectionless with no delivery guarantee, trading reliability for lower overhead."
+  },
+  {
+    "id": "netplus-fc-007",
+    "domainCode": "1.0",
+    "front": "What is the function of DNS?",
+    "back": "Resolves human-readable hostnames to IP addresses via a distributed, hierarchical database of authoritative servers, resolvers, and caches."
+  },
+  {
+    "id": "netplus-fc-008",
+    "domainCode": "1.0",
+    "front": "What is a default gateway?",
+    "back": "The router address a host sends traffic to when the destination is outside its own subnet. Without one, a host can only reach other devices on its local network."
+  },
+  {
+    "id": "netplus-fc-009",
+    "domainCode": "2.0",
+    "front": "What is the maximum cable length for a single Cat 6 Ethernet run at 1 Gbps?",
+    "back": "100 meters, per the standard 90 m horizontal run plus up to 10 m of patch cords at each end."
+  },
+  {
+    "id": "netplus-fc-010",
+    "domainCode": "2.0",
+    "front": "What does a VLAN accomplish that a single flat switch cannot?",
+    "back": "It splits one physical switch into multiple isolated broadcast domains — traffic in one VLAN cannot reach another without passing through a router or Layer 3 switch, even on the same hardware."
+  },
+  {
+    "id": "netplus-fc-011",
+    "domainCode": "2.0",
+    "front": "What is 802.1Q?",
+    "back": "The IEEE standard for VLAN tagging — it inserts a 4-byte tag into the Ethernet frame identifying which VLAN the frame belongs to as it crosses a trunk link."
+  },
+  {
+    "id": "netplus-fc-012",
+    "domainCode": "2.0",
+    "front": "What is the difference between an access port and a trunk port on a switch?",
+    "back": "An access port carries traffic for exactly one VLAN, untagged — typically to an end device. A trunk port carries tagged traffic for multiple VLANs between switches or to a router."
+  },
+  {
+    "id": "netplus-fc-013",
+    "domainCode": "2.0",
+    "front": "What problem does STP (Spanning Tree Protocol) solve?",
+    "back": "It prevents Layer 2 loops in a redundantly cabled switched network by logically blocking redundant paths, while keeping them available to fail over to if the active path breaks."
+  },
+  {
+    "id": "netplus-fc-014",
+    "domainCode": "2.0",
+    "front": "What is link aggregation (LACP)?",
+    "back": "Bundling multiple physical links between two devices into one logical link, increasing throughput and providing failover if one physical link drops."
+  },
+  {
+    "id": "netplus-fc-015",
+    "domainCode": "2.0",
+    "front": "Which wireless standard introduced OFDMA and target wake time for efficiency?",
+    "back": "802.11ax (Wi-Fi 6). OFDMA lets the AP serve multiple clients in one transmission; target wake time schedules device check-ins to save battery."
+  },
+  {
+    "id": "netplus-fc-016",
+    "domainCode": "2.0",
+    "front": "What is the purpose of PoE (Power over Ethernet)?",
+    "back": "Delivers DC power over the same cable as data, so devices like APs and IP cameras need only one cable and no local power outlet."
+  },
+  {
+    "id": "netplus-fc-017",
+    "domainCode": "3.0",
+    "front": "What does an SLA define?",
+    "back": "A Service Level Agreement sets measurable commitments a provider makes to a customer — uptime, response time, resolution time — usually with penalties for missing them."
+  },
+  {
+    "id": "netplus-fc-018",
+    "domainCode": "3.0",
+    "front": "What is the purpose of a change management process?",
+    "back": "It documents, assesses risk on, approves, schedules, and records network changes so they're planned and reversible rather than made ad hoc — with a rollback plan defined before implementation, not after."
+  },
+  {
+    "id": "netplus-fc-019",
+    "domainCode": "3.0",
+    "front": "What is the difference between a runbook and an SOP?",
+    "back": "An SOP (Standard Operating Procedure) is a general policy for how a task should be done. A runbook is the specific step-by-step script for executing one particular procedure."
+  },
+  {
+    "id": "netplus-fc-020",
+    "domainCode": "3.0",
+    "front": "Why is out-of-band management useful for network devices?",
+    "back": "It provides an access path (e.g. a dedicated management port or cellular modem) that doesn't depend on the production network being up, so a device stays reachable even during an outage."
+  },
+  {
+    "id": "netplus-fc-021",
+    "domainCode": "3.0",
+    "front": "What does SNMP do?",
+    "back": "Simple Network Management Protocol lets a management station poll or receive traps from network devices for monitoring — interface status, CPU load, errors — without logging into each device manually."
+  },
+  {
+    "id": "netplus-fc-022",
+    "domainCode": "3.0",
+    "front": "What is the purpose of NetFlow / traffic flow data?",
+    "back": "Summarizes who talked to whom, how much, and when, without capturing full packet contents — used for capacity planning, billing, and spotting anomalous traffic patterns."
+  },
+  {
+    "id": "netplus-fc-023",
+    "domainCode": "4.0",
+    "front": "What is the purpose of 802.1X?",
+    "back": "Port-based network access control — a device must authenticate (often via RADIUS) before a switch port or wireless association grants it network access."
+  },
+  {
+    "id": "netplus-fc-024",
+    "domainCode": "4.0",
+    "front": "What is a screened subnet (DMZ)?",
+    "back": "A network segment holding internet-facing servers, isolated from the internal LAN by its own firewall rules, so a compromise there doesn't directly expose internal systems."
+  },
+  {
+    "id": "netplus-fc-025",
+    "domainCode": "4.0",
+    "front": "What does a site-to-site VPN connect?",
+    "back": "Two networks (e.g. two office locations) over an encrypted tunnel across the internet, so devices on each side can reach each other as if on the same private network."
+  },
+  {
+    "id": "netplus-fc-026",
+    "domainCode": "4.0",
+    "front": "What is the difference between an IDS and an IPS?",
+    "back": "An IDS (Intrusion Detection System) monitors and alerts on suspicious traffic. An IPS (Intrusion Prevention System) sits inline and can actively block it in real time."
+  },
+  {
+    "id": "netplus-fc-027",
+    "domainCode": "4.0",
+    "front": "What is ARP spoofing / poisoning?",
+    "back": "An attacker sends forged ARP replies to associate their own MAC address with another device's IP, redirecting traffic through the attacker for interception — a Layer 2 man-in-the-middle technique."
+  },
+  {
+    "id": "netplus-fc-028",
+    "domainCode": "5.0",
+    "front": "Which command shows the hop-by-hop path packets take to a destination?",
+    "back": "tracert (Windows) or traceroute (Linux/macOS) — each hop's round-trip time reveals where latency or loss is being introduced."
+  },
+  {
+    "id": "netplus-fc-029",
+    "domainCode": "5.0",
+    "front": "A cable tester reports 'split pair.' What does that mean?",
+    "back": "Two wires from different pairs were incorrectly used together as if they were one pair. The link may still pass basic connectivity but crosstalk degrades performance badly at higher speeds."
+  },
+  {
+    "id": "netplus-fc-030",
+    "domainCode": "5.0",
+    "front": "What does a rising number of CRC errors on an interface usually indicate?",
+    "back": "Physical-layer problems — a bad cable, a failing NIC, a duplex mismatch, or interference — corrupting frames in transit."
+  },
+  {
+    "id": "netplus-fc-031",
+    "domainCode": "5.0",
+    "front": "What is the CompTIA troubleshooting methodology's first step?",
+    "back": "Identify the problem — gather information, question users, determine what changed, and back up configuration before making any change."
+  }
+]

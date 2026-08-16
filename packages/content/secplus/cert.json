@@ -1,0 +1,13 @@
+{
+  "code": "secplus",
+  "name": "CompTIA Security+",
+  "version": "SY0-701",
+  "exam": {
+    "questionCount": 90,
+    "minutes": 90,
+    "passingScaledScore": 750,
+    "passingRawPercent": 75,
+    "scaledMin": 100,
+    "scaledMax": 900
+  }
+}

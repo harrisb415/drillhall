@@ -2,6 +2,8 @@ import type { CertDomain, QuizQuestion } from "@comptia/content";
 import { shuffle } from "../quiz/grade";
 import type { SelectionStrategy } from "./modes";
 
+export { buildChoiceOrders } from "../quiz/grade";
+
 const PBQ_ORDER: Record<string, number> = { order: 0, match: 0, terminal: 0, mc: 1 };
 
 /**
@@ -98,19 +100,4 @@ export function selectExamQuestions(opts: SelectOptions): QuizQuestion[] {
 
   // Real exams front-load performance-based questions.
   return picked.sort((a, b) => (PBQ_ORDER[a.type] ?? 1) - (PBQ_ORDER[b.type] ?? 1));
-}
-
-/**
- * Per-question display order for multiple-choice options, so a repeat sighting
- * can't be answered from muscle memory of the position. The permutation maps
- * display index -> original index and is stored with the session so grading
- * and review both resolve correctly.
- */
-export function buildChoiceOrders(questions: QuizQuestion[]): Record<string, number[]> {
-  const orders: Record<string, number[]> = {};
-  for (const q of questions) {
-    if (q.type !== "mc") continue;
-    orders[q.id] = shuffle(q.choices.map((_, i) => i));
-  }
-  return orders;
 }

@@ -1,0 +1,97 @@
+[
+  {
+    "id": "osi-model",
+    "title": "OSI Model",
+    "description": "Please Do Not Throw Sausage Pizza Away.",
+    "columns": ["Layer", "Name", "Examples"],
+    "rows": [
+      ["7", "Application", "HTTP, FTP, SMTP, DNS"],
+      ["6", "Presentation", "TLS/SSL, encoding, compression"],
+      ["5", "Session", "session establishment, NetBIOS"],
+      ["4", "Transport", "TCP, UDP, port numbers"],
+      ["3", "Network", "IP, routing, ICMP"],
+      ["2", "Data Link", "Ethernet, MAC addresses, switches"],
+      ["1", "Physical", "cabling, connectors, signaling"]
+    ]
+  },
+  {
+    "id": "common-ports",
+    "title": "Common TCP/UDP Ports",
+    "columns": ["Port", "Protocol", "Service"],
+    "rows": [
+      ["20/21", "TCP", "FTP data/control"],
+      ["22", "TCP", "SSH/SFTP"],
+      ["23", "TCP", "Telnet (unencrypted, legacy)"],
+      ["25", "TCP", "SMTP"],
+      ["53", "TCP/UDP", "DNS"],
+      ["67/68", "UDP", "DHCP"],
+      ["80", "TCP", "HTTP"],
+      ["110", "TCP", "POP3"],
+      ["143", "TCP", "IMAP"],
+      ["161/162", "UDP", "SNMP"],
+      ["443", "TCP", "HTTPS"],
+      ["445", "TCP", "SMB"],
+      ["3389", "TCP/UDP", "RDP"]
+    ]
+  },
+  {
+    "id": "cidr-cheatsheet",
+    "title": "CIDR / Subnet Cheat Sheet",
+    "columns": ["CIDR", "Subnet Mask", "Total Addresses", "Usable Hosts"],
+    "rows": [
+      ["/24", "255.255.255.0", "256", "254"],
+      ["/25", "255.255.255.128", "128", "126"],
+      ["/26", "255.255.255.192", "64", "62"],
+      ["/27", "255.255.255.224", "32", "30"],
+      ["/28", "255.255.255.240", "16", "14"],
+      ["/29", "255.255.255.248", "8", "6"],
+      ["/30", "255.255.255.252", "4", "2 (point-to-point link)"]
+    ]
+  },
+  {
+    "id": "private-ip-ranges",
+    "title": "Private IPv4 Ranges (RFC 1918)",
+    "columns": ["Range", "CIDR", "Typical Use"],
+    "rows": [
+      ["10.0.0.0 – 10.255.255.255", "10.0.0.0/8", "Large enterprise networks"],
+      ["172.16.0.0 – 172.31.255.255", "172.16.0.0/12", "Medium networks"],
+      ["192.168.0.0 – 192.168.255.255", "192.168.0.0/16", "Home and small office"],
+      ["169.254.0.0 – 169.254.255.255", "169.254.0.0/16", "APIPA / link-local, self-assigned"]
+    ]
+  },
+  {
+    "id": "cable-standards",
+    "title": "Ethernet Cable Standards",
+    "columns": ["Category", "Max Speed", "Max Distance"],
+    "rows": [
+      ["Cat 5e", "1 Gbps", "100 m"],
+      ["Cat 6", "10 Gbps", "55 m (1 Gbps to 100 m)"],
+      ["Cat 6a", "10 Gbps", "100 m"],
+      ["Cat 8", "25/40 Gbps", "30 m"]
+    ]
+  },
+  {
+    "id": "wireless-standards",
+    "title": "Wi-Fi Standards",
+    "columns": ["Standard", "Marketing Name", "Band(s)", "Max Speed"],
+    "rows": [
+      ["802.11n", "Wi-Fi 4", "2.4 + 5 GHz", "600 Mbps"],
+      ["802.11ac", "Wi-Fi 5", "5 GHz", "~3.5 Gbps"],
+      ["802.11ax", "Wi-Fi 6 / 6E", "2.4, 5, (6E: 6) GHz", "~9.6 Gbps"]
+    ]
+  },
+  {
+    "id": "troubleshooting-methodology",
+    "title": "Network Troubleshooting Methodology",
+    "description": "CompTIA's six steps, in order.",
+    "columns": ["Step", "Action"],
+    "rows": [
+      ["1", "Identify the problem"],
+      ["2", "Establish a theory of probable cause"],
+      ["3", "Test the theory to determine the cause"],
+      ["4", "Establish a plan of action and implement the solution"],
+      ["5", "Verify full system functionality and implement preventive measures"],
+      ["6", "Document findings, actions, and outcomes"]
+    ]
+  }
+]

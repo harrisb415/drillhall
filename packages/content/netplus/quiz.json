@@ -1,0 +1,305 @@
+[
+  {
+    "id": "netplus-mc-001",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "At which OSI layer do routers primarily make forwarding decisions?",
+    "choices": ["Layer 2, Data Link", "Layer 3, Network", "Layer 4, Transport", "Layer 7, Application"],
+    "answerIndex": 1,
+    "explanation": "Routers forward based on IP addresses, which is Layer 3. Switches operate at Layer 2 with MAC addresses."
+  },
+  {
+    "id": "netplus-mc-002",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which address class range is reserved for APIPA when a client fails to obtain a DHCP lease?",
+    "choices": ["10.0.0.0/8", "169.254.0.0/16", "172.16.0.0/12", "192.168.0.0/16"],
+    "answerIndex": 1,
+    "explanation": "169.254.0.0/16 is the link-local APIPA range a client self-assigns from when DHCP is unreachable. It can only communicate on the local segment."
+  },
+  {
+    "id": "netplus-mc-003",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A host needs 500 usable addresses on one subnet. Which CIDR prefix is the smallest that satisfies this?",
+    "choices": ["/22", "/23", "/24", "/25"],
+    "answerIndex": 1,
+    "explanation": "A /23 provides 512 total addresses, 510 usable — enough for 500. A /24 gives only 254 usable, too few."
+  },
+  {
+    "id": "netplus-mc-004",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which DNS record type points a hostname to another hostname rather than an IP address?",
+    "choices": ["A", "CNAME", "PTR", "SOA"],
+    "answerIndex": 1,
+    "explanation": "CNAME aliases one name to another, which is then resolved again. A maps directly to IPv4; PTR does reverse lookups; SOA holds zone authority information."
+  },
+  {
+    "id": "netplus-mc-005",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which protocol would an email client use to send outgoing mail to a mail server?",
+    "choices": ["SMTP", "POP3", "IMAP", "SNMP"],
+    "answerIndex": 0,
+    "explanation": "SMTP handles sending and relaying mail. POP3 and IMAP are for retrieving mail; SNMP is unrelated network management."
+  },
+  {
+    "id": "netplus-mc-006",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which IPv6 address type is roughly equivalent to IPv4's private address space?",
+    "choices": ["Global unicast", "Link-local", "Unique local", "Multicast"],
+    "answerIndex": 2,
+    "explanation": "Unique local addresses (fc00::/7) are for private use within an organization, not routed on the public internet — the IPv6 analogue of RFC 1918 space."
+  },
+  {
+    "id": "netplus-mc-007",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which fiber connector type uses a push-pull mechanism and is common in modern data centers?",
+    "choices": ["ST", "SC", "LC", "FC"],
+    "answerIndex": 2,
+    "explanation": "LC connectors are small-form-factor with a push-pull latch, widely used for their density. ST uses a bayonet twist-lock; SC uses a push-pull but larger body; FC threads on."
+  },
+  {
+    "id": "netplus-mc-008",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A new switch port needs to carry traffic for VLANs 10, 20, and 30 to a downstream switch. How should the port be configured?",
+    "choices": ["As an access port on VLAN 10", "As a trunk port allowing VLANs 10, 20, 30", "As a routed port", "As a mirror port"],
+    "answerIndex": 1,
+    "explanation": "A trunk port tags frames with 802.1Q so multiple VLANs share one physical link between switches. An access port carries only one VLAN, untagged."
+  },
+  {
+    "id": "netplus-mc-009",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which wireless frequency band offers the longest range but the most channel congestion?",
+    "choices": ["2.4 GHz", "5 GHz", "6 GHz", "60 GHz"],
+    "answerIndex": 0,
+    "explanation": "2.4 GHz penetrates walls better and travels further, but has only three non-overlapping channels and is heavily used by other devices, causing congestion."
+  },
+  {
+    "id": "netplus-mc-010",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the primary purpose of Spanning Tree Protocol in a switched network?",
+    "choices": [
+      "Encrypt traffic between switches",
+      "Prevent Layer 2 forwarding loops on redundant links",
+      "Assign IP addresses to switch ports",
+      "Balance load across trunk links"
+    ],
+    "answerIndex": 1,
+    "explanation": "STP blocks redundant paths to prevent broadcast storms and loops, while keeping them ready to activate if the primary path fails."
+  },
+  {
+    "id": "netplus-mc-011",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which technology lets an access point supply both data and power to a security camera over one cable?",
+    "choices": ["VLAN trunking", "PoE", "LACP", "QoS"],
+    "answerIndex": 1,
+    "explanation": "Power over Ethernet delivers DC power alongside data on the same cable, removing the need for a separate power source at the device."
+  },
+  {
+    "id": "netplus-mc-012",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Two switches are connected with two separate cables for redundancy and additional bandwidth. Which technology combines them into one logical link?",
+    "choices": ["802.1Q", "LACP", "STP", "NAT"],
+    "answerIndex": 1,
+    "explanation": "Link Aggregation Control Protocol bundles multiple physical links into a single logical channel, increasing throughput and surviving the loss of one link."
+  },
+  {
+    "id": "netplus-mc-013",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which document specifies that a vendor will resolve critical outages within 4 hours?",
+    "choices": ["SLA", "MOU", "NDA", "AUP"],
+    "answerIndex": 0,
+    "explanation": "A Service Level Agreement is where measurable response and resolution commitments are formally specified."
+  },
+  {
+    "id": "netplus-mc-014",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which step of change management defines exactly how to undo a failed change?",
+    "choices": ["Risk analysis", "Approval", "Rollback plan", "End-user notification"],
+    "answerIndex": 2,
+    "explanation": "The rollback plan is the concrete path back to the pre-change state, and it must exist before implementation, not be improvised after something breaks."
+  },
+  {
+    "id": "netplus-mc-015",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs to reach a router's management interface during a WAN outage on the production network. What allows this?",
+    "choices": ["A VLAN trunk", "Out-of-band management", "A longer DHCP lease", "SNMP traps"],
+    "answerIndex": 1,
+    "explanation": "Out-of-band management uses a path independent of the production network — a dedicated port, console server, or cellular link — so the device stays reachable during an outage."
+  },
+  {
+    "id": "netplus-mc-016",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which protocol allows a monitoring station to receive an unsolicited alert when a switch port goes down?",
+    "choices": ["SNMP trap", "DHCP", "NTP", "FTP"],
+    "answerIndex": 0,
+    "explanation": "An SNMP trap is sent by the device itself when a defined event occurs, rather than waiting for the monitoring station to poll."
+  },
+  {
+    "id": "netplus-mc-017",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which tool would show total bandwidth consumed between two hosts over the last week without inspecting packet payloads?",
+    "choices": ["NetFlow data", "A packet sniffer", "A cable tester", "A toner probe"],
+    "answerIndex": 0,
+    "explanation": "Flow data summarizes conversations — source, destination, volume, timing — without capturing content, which is exactly what capacity and usage reporting need."
+  },
+  {
+    "id": "netplus-mc-018",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which technology requires a device to authenticate via a RADIUS server before a switch port allows traffic?",
+    "choices": ["802.1X", "802.1Q", "STP", "LACP"],
+    "answerIndex": 0,
+    "explanation": "802.1X is port-based network access control — the port stays closed until the connecting device authenticates through the RADIUS backend."
+  },
+  {
+    "id": "netplus-mc-019",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company hosts a public web server that must be reachable from the internet without exposing the internal LAN. Where should it be placed?",
+    "choices": ["On the internal VLAN with the workstations", "In a screened subnet (DMZ)", "On the guest wireless network", "Directly on the ISP's router"],
+    "answerIndex": 1,
+    "explanation": "A screened subnet isolates internet-facing servers behind their own firewall rules, so if the server is compromised, the attacker doesn't land directly on the internal network."
+  },
+  {
+    "id": "netplus-mc-020",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which attack involves sending forged ARP replies to redirect traffic through the attacker's machine?",
+    "choices": ["ARP spoofing", "DNS poisoning", "VLAN hopping", "Rogue DHCP"],
+    "answerIndex": 0,
+    "explanation": "ARP spoofing forges the IP-to-MAC mapping on the local segment so traffic meant for another host routes through the attacker instead — a Layer 2 man-in-the-middle."
+  },
+  {
+    "id": "netplus-mc-021",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What is the main purpose of a site-to-site VPN?",
+    "choices": [
+      "Connect two networks over the internet through an encrypted tunnel",
+      "Assign VLANs to switch ports automatically",
+      "Balance traffic across multiple ISPs",
+      "Cache DNS responses locally"
+    ],
+    "answerIndex": 0,
+    "explanation": "A site-to-site VPN links two networks — for example two office locations — through an encrypted tunnel over an untrusted network like the internet."
+  },
+  {
+    "id": "netplus-mc-022",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user's connection works but is extremely slow only when downloading large files. Which layer is the MOST likely source?",
+    "choices": ["Physical (bad cable or duplex mismatch)", "Application (browser cache)", "Session", "Presentation"],
+    "answerIndex": 0,
+    "explanation": "Sustained throughput problems that scale with data volume typically trace to the physical layer — a marginal cable, a duplex/speed mismatch, or interference — rather than upper layers."
+  },
+  {
+    "id": "netplus-mc-023",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which command displays the hop-by-hop path and per-hop latency to a destination on Windows?",
+    "choices": ["ping", "tracert", "netstat", "arp -a"],
+    "answerIndex": 1,
+    "explanation": "tracert maps each router hop along the path and its round-trip time, showing where delay or loss is introduced. ping only tests reachability of the final destination."
+  },
+  {
+    "id": "netplus-mc-024",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An interface counter shows a rapidly increasing number of CRC errors. What does this MOST likely indicate?",
+    "choices": [
+      "A misconfigured VLAN",
+      "A physical-layer problem such as a damaged cable or duplex mismatch",
+      "An expired DHCP lease",
+      "A DNS misconfiguration"
+    ],
+    "answerIndex": 1,
+    "explanation": "CRC errors mean frames are arriving corrupted, which points to the physical layer — cabling, connectors, interference, or a speed/duplex mismatch between the two ends."
+  },
+  {
+    "id": "netplus-mc-025",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Following the CompTIA troubleshooting methodology, what comes immediately after testing a theory and confirming it?",
+    "choices": [
+      "Document the outcome",
+      "Establish a plan of action and implement the solution",
+      "Escalate to the vendor",
+      "Restart the affected device"
+    ],
+    "answerIndex": 1,
+    "explanation": "Once a theory is confirmed, the next step is to plan and implement the fix. Documentation is the final step, after verifying the fix actually worked."
+  },
+  {
+    "id": "netplus-mc-026",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A cable tester reports a 'split pair' fault on a run. What does this describe?",
+    "choices": [
+      "The cable is too long for the standard",
+      "Two wires from different twisted pairs were used together as one pair",
+      "The cable is unshielded",
+      "The connector is the wrong type"
+    ],
+    "answerIndex": 1,
+    "explanation": "A split pair miswires two conductors from different pairs together. It can still carry a basic link light but crosstalk badly degrades performance at higher speeds."
+  },
+  {
+    "id": "netplus-term-001",
+    "type": "terminal",
+    "domainCode": "5.0",
+    "prompt": "Type the Windows command that displays the ARP cache mapping IP addresses to MAC addresses.",
+    "expected": ["arp -a"],
+    "explanation": "arp -a lists the current ARP table, which is useful for spotting a duplicate or spoofed MAC address on the local segment."
+  },
+  {
+    "id": "netplus-term-002",
+    "type": "terminal",
+    "domainCode": "5.0",
+    "prompt": "Type the command that traces the hop-by-hop route to comptia.org on Windows.",
+    "expected": ["tracert comptia.org"],
+    "explanation": "tracert shows every router hop to the destination along with round-trip time per hop, which localizes where latency is introduced."
+  },
+  {
+    "id": "netplus-order-001",
+    "type": "order",
+    "domainCode": "5.0",
+    "prompt": "Place the six steps of the CompTIA network troubleshooting methodology in the correct order.",
+    "items": [
+      "Identify the problem",
+      "Establish a theory of probable cause",
+      "Test the theory to determine the cause",
+      "Establish a plan of action and implement the solution",
+      "Verify full system functionality and implement preventive measures",
+      "Document findings, actions, and outcomes"
+    ],
+    "explanation": "Identify, theorize, test, act, verify, document. Testing the theory before acting is what separates diagnosis from guessing."
+  },
+  {
+    "id": "netplus-match-001",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each protocol to the port it uses.",
+    "pairs": [
+      { "left": "DNS", "right": "53" },
+      { "left": "HTTPS", "right": "443" },
+      { "left": "SSH", "right": "22" },
+      { "left": "RDP", "right": "3389" }
+    ],
+    "explanation": "53 for DNS lookups, 443 for TLS-encrypted web traffic, 22 for encrypted remote shell, and 3389 for Windows Remote Desktop."
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "id": "cia-triad",
+    "title": "CIA Triad + Non-repudiation",
+    "columns": ["Concept", "Meaning"],
+    "rows": [
+      ["Confidentiality", "Only authorized parties can access or read the data"],
+      ["Integrity", "Data is not altered without detection"],
+      ["Availability", "Systems and data are accessible when legitimately needed"],
+      ["Non-repudiation", "An action cannot be credibly denied by the party who performed it"]
+    ]
+  },
+  {
+    "id": "malware-types",
+    "title": "Malware Types",
+    "columns": ["Type", "Defining Behavior"],
+    "rows": [
+      ["Virus", "Attaches to a host file, needs a user to run it to spread"],
+      ["Worm", "Self-propagates across a network with no user action"],
+      ["Trojan", "Disguises itself as legitimate software to get installed"],
+      ["Ransomware", "Encrypts data and demands payment for the key"],
+      ["Rootkit", "Hides deep with admin/kernel rights, survives reboots"],
+      ["Spyware / keylogger", "Covertly captures input, credentials, or activity"]
+    ]
+  },
+  {
+    "id": "social-engineering",
+    "title": "Social Engineering Techniques",
+    "columns": ["Technique", "Description"],
+    "rows": [
+      ["Phishing", "Mass fraudulent email harvesting credentials"],
+      ["Spear phishing / whaling", "Phishing targeted at a specific person or executive"],
+      ["Vishing", "Voice-call-based social engineering"],
+      ["Smishing", "SMS-based phishing"],
+      ["Pretexting", "Fabricating a plausible scenario to manipulate the target"],
+      ["Typosquatting", "Registering common misspellings of a legitimate domain"],
+      ["Watering hole", "Compromising a site the target is known to visit"]
+    ]
+  },
+  {
+    "id": "order-of-volatility",
+    "title": "Order of Volatility (Forensics)",
+    "description": "Collect from most to least volatile.",
+    "columns": ["Order", "Evidence Source"],
+    "rows": [
+      ["1", "CPU registers and cache"],
+      ["2", "RAM contents"],
+      ["3", "Network state / active connections"],
+      ["4", "Running processes"],
+      ["5", "Data on local disk"],
+      ["6", "Archival and backup media"]
+    ]
+  },
+  {
+    "id": "policy-hierarchy",
+    "title": "Policy, Standard, Procedure",
+    "columns": ["Document", "Purpose", "Example"],
+    "rows": [
+      ["Policy", "States high-level intent", "\"All sensitive data must be encrypted\""],
+      ["Standard", "Specifies the exact requirement", "\"Use AES-256\""],
+      ["Procedure", "Step-by-step instructions", "The exact steps to enable BitLocker on a device"]
+    ]
+  },
+  {
+    "id": "continuity-metrics",
+    "title": "Business Continuity Metrics",
+    "columns": ["Metric", "Measures"],
+    "rows": [
+      ["RTO (Recovery Time Objective)", "Maximum acceptable downtime before impact is unacceptable"],
+      ["RPO (Recovery Point Objective)", "Maximum acceptable data loss, measured in time"],
+      ["MTTR (Mean Time To Repair)", "Average time to restore a failed system"],
+      ["MTBF (Mean Time Between Failures)", "Average time a system runs before failing"]
+    ]
+  },
+  {
+    "id": "security-control-types",
+    "title": "Security Control Categories",
+    "columns": ["Type", "Purpose", "Example"],
+    "rows": [
+      ["Preventive", "Stops an incident before it happens", "Firewall rule, MFA"],
+      ["Detective", "Identifies an incident in progress or after", "IDS, log review, SIEM alert"],
+      ["Corrective", "Limits damage and restores after an incident", "Restoring from backup"],
+      ["Compensating", "Alternative when the primary control isn't feasible", "Extra monitoring on an unpatchable legacy system"],
+      ["Deterrent", "Discourages an attempt", "Warning banners, visible cameras"]
+    ]
+  }
+]

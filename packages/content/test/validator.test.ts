@@ -6,11 +6,12 @@ import { CONTENT_ROOT, listPackDirs, loadPackDir } from "../src/loader";
 
 const FIXTURES = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "fixtures");
 
+const SHIPPED_PACKS = ["aplus", "aplus-core2", "netplus", "secplus"];
+
 describe("shipped content packs", () => {
-  it("discovers both shipped packs", () => {
+  it("discovers every shipped pack", () => {
     const dirs = listPackDirs().map((d) => path.basename(d));
-    expect(dirs).toContain("aplus");
-    expect(dirs).toContain("aplus-core2");
+    for (const pack of SHIPPED_PACKS) expect(dirs).toContain(pack);
   });
 
   it("every shipped pack passes the schema", () => {
@@ -28,8 +29,16 @@ describe("shipped content packs", () => {
     expect(pack.reference.length).toBeGreaterThanOrEqual(5);
   });
 
-  it("both packs contain every PBQ type", () => {
-    for (const dir of ["aplus", "aplus-core2"]) {
+  it("every pack's domain weights sum to exactly 100", () => {
+    for (const dir of SHIPPED_PACKS) {
+      const pack = CertPackSchema.parse(loadPackDir(path.join(CONTENT_ROOT, dir)));
+      const sum = pack.domains.reduce((s, d) => s + d.weight, 0);
+      expect(sum, `${dir} domain weights summed to ${sum}`).toBe(100);
+    }
+  });
+
+  it("every pack contains every PBQ type", () => {
+    for (const dir of SHIPPED_PACKS) {
       const pack = CertPackSchema.parse(loadPackDir(path.join(CONTENT_ROOT, dir)));
       const types = new Set(pack.quiz.map((q) => q.type));
       for (const t of ["mc", "order", "match", "terminal"]) {

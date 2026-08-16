@@ -1,0 +1,7 @@
+[
+  { "code": "1.0", "name": "General Security Concepts", "weight": 12 },
+  { "code": "2.0", "name": "Threats, Vulnerabilities, and Mitigations", "weight": 22 },
+  { "code": "3.0", "name": "Security Architecture", "weight": 18 },
+  { "code": "4.0", "name": "Security Operations", "weight": 28 },
+  { "code": "5.0", "name": "Security Program Management and Oversight", "weight": 20 }
+]

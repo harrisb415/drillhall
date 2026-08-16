@@ -87,6 +87,45 @@ export function solutionFor(q: QuizQuestion): Solution {
   }
 }
 
+/**
+ * Per-question display order for multiple-choice options, so the correct
+ * answer isn't parked in the same slot every time. The permutation maps
+ * display index -> original (file order) index and is stored with the
+ * session so grading and review both resolve correctly.
+ */
+export function buildChoiceOrders(questions: QuizQuestion[]): Record<string, number[]> {
+  const orders: Record<string, number[]> = {};
+  for (const q of questions) {
+    if (q.type !== "mc") continue;
+    orders[q.id] = shuffle(q.choices.map((_, i) => i));
+  }
+  return orders;
+}
+
+/** Reorders an mc question's choices per the session's stored permutation. */
+export function applyChoiceOrder(
+  question: QuizQuestionPublic,
+  orders: Record<string, number[]>,
+): QuizQuestionPublic {
+  if (question.type !== "mc") return question;
+  const order = orders[question.id];
+  if (!order) return question;
+  return { ...question, choices: order.map((orig) => question.choices[orig]!) };
+}
+
+/** Expresses an mc solution's answerIndex in the same display order the client was shown. */
+export function applySolutionOrder(
+  solution: Solution,
+  orders: Record<string, number[]>,
+  questionId: string,
+): Solution {
+  if (solution.type !== "mc") return solution;
+  const order = orders[questionId];
+  if (!order) return solution;
+  const display = order.indexOf(solution.answerIndex);
+  return display === -1 ? solution : { ...solution, answerIndex: display };
+}
+
 export function normalizeCommand(input: string): string {
   return input.trim().toLowerCase().replace(/\s+/g, " ");
 }

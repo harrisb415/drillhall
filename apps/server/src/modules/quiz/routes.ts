@@ -11,7 +11,16 @@ import { quizAttempts, quizSessions } from "../../db/schema";
 import { recordActivity } from "../gamification/service";
 import { h } from "../../lib/handler";
 import type { ApiDeps } from "../shared";
-import { AnswerTypeMismatchError, grade, shuffle, solutionFor, toPublicQuestion } from "./grade";
+import {
+  AnswerTypeMismatchError,
+  applyChoiceOrder,
+  applySolutionOrder,
+  buildChoiceOrders,
+  grade,
+  shuffle,
+  solutionFor,
+  toPublicQuestion,
+} from "./grade";
 
 const QUESTION_TYPES = ["mc", "order", "match", "terminal"] as const;
 
@@ -61,6 +70,10 @@ export function quizRoutes(deps: ApiDeps): Router {
         return;
       }
       const chosen = shuffle(pool).slice(0, body.count);
+      // Stored so grading can map the display index back to the original
+      // answer — without this, the first-listed choice is correct almost
+      // every time, since content authoring habitually puts it there.
+      const choiceOrders = buildChoiceOrders(chosen);
       const session = deps.db
         .insert(quizSessions)
         .values({
@@ -69,6 +82,7 @@ export function quizRoutes(deps: ApiDeps): Router {
           questionIds: JSON.stringify(chosen.map((q) => q.id)),
           questionCount: chosen.length,
           startedAt: new Date(),
+          choiceOrders: JSON.stringify(choiceOrders),
         })
         .returning()
         .get();
@@ -76,8 +90,11 @@ export function quizRoutes(deps: ApiDeps): Router {
       const response: StartSessionResponse = {
         sessionId: session.id,
         certId: body.certId,
-        // Practice shuffles fresh at delivery; these sessions are never resumed.
-        questions: chosen.map((q) => toPublicQuestion(q)),
+        // order/match layouts still shuffle fresh each delivery — practice
+        // sessions are never resumed, so there's nothing to stay consistent
+        // with. mc choice order is the exception: it's persisted above so the
+        // attempt endpoint can translate the answer back correctly.
+        questions: chosen.map((q) => applyChoiceOrder(toPublicQuestion(q), choiceOrders)),
       };
       res.json(response);
     }),
@@ -117,14 +134,20 @@ export function quizRoutes(deps: ApiDeps): Router {
         res.status(404).json({ error: "Unknown question" });
         return;
       }
-      if (
-        body.answer.type === "mc" &&
-        question.type === "mc" &&
-        body.answer.choiceIndex >= question.choices.length
-      ) {
-        res.status(400).json({ error: "choiceIndex out of range" });
-        return;
+
+      // Map the displayed choice index back through this session's shuffle.
+      const choiceOrders = JSON.parse(session.choiceOrders ?? "{}") as Record<string, number[]>;
+      let answer = body.answer;
+      if (answer.type === "mc" && question.type === "mc") {
+        const order = choiceOrders[question.id];
+        const original = order ? order[answer.choiceIndex] : answer.choiceIndex;
+        if (original === undefined) {
+          res.status(400).json({ error: "choiceIndex out of range" });
+          return;
+        }
+        answer = { type: "mc", choiceIndex: original };
       }
+
       const existing = deps.db
         .select({ id: quizAttempts.id })
         .from(quizAttempts)
@@ -139,7 +162,7 @@ export function quizRoutes(deps: ApiDeps): Router {
 
       let correct: boolean;
       try {
-        correct = grade(question, body.answer);
+        correct = grade(question, answer);
       } catch (err) {
         if (err instanceof AnswerTypeMismatchError) {
           res.status(400).json({ error: err.message });
@@ -156,8 +179,8 @@ export function quizRoutes(deps: ApiDeps): Router {
           certId: session.certId,
           questionId: question.id,
           domainCode: question.domainCode,
-          choiceIndex: body.answer.type === "mc" ? body.answer.choiceIndex : null,
-          answer: JSON.stringify(body.answer),
+          choiceIndex: answer.type === "mc" ? answer.choiceIndex : null,
+          answer: JSON.stringify(answer),
           correct,
           answeredAt: new Date(),
         })
@@ -171,7 +194,9 @@ export function quizRoutes(deps: ApiDeps): Router {
       const response: AttemptResponse = {
         correct,
         explanation: question.explanation,
-        solution: solutionFor(question),
+        // Expressed in the same display order the client was shown, so its
+        // highlight-by-index logic needs no knowledge of the shuffle.
+        solution: applySolutionOrder(solutionFor(question), choiceOrders, question.id),
       };
       res.json(response);
     }),

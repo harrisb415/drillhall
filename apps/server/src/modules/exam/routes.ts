@@ -9,7 +9,6 @@ import type {
   ExamResultDto,
   ExamReviewItem,
   ExamSessionDto,
-  QuizQuestionPublic,
 } from "@comptia/shared-types";
 import { quizAttempts, quizSessions } from "../../db/schema";
 import { h } from "../../lib/handler";
@@ -17,6 +16,7 @@ import { computeReadiness, type AttemptLite } from "../analytics/readiness";
 import { recordActivity } from "../gamification/service";
 import {
   AnswerTypeMismatchError,
+  applyChoiceOrder,
   buildLayout,
   grade,
   solutionFor,
@@ -53,21 +53,6 @@ const FlagBody = z.object({ questionId: z.string().min(1), flagged: z.boolean() 
 
 /** How many past exams count as "recently seen" for anti-repeat selection. */
 const RECENT_EXAMS_FOR_NOVELTY = 3;
-
-/**
- * Applies the session's stored choice permutation to a public question, so the
- * candidate sees options in the shuffled order. `orders[i]` is the original
- * index shown at display position i.
- */
-function applyChoiceOrder(
-  question: QuizQuestionPublic,
-  orders: Record<string, number[]>,
-): QuizQuestionPublic {
-  if (question.type !== "mc") return question;
-  const order = orders[question.id];
-  if (!order) return question;
-  return { ...question, choices: order.map((orig) => question.choices[orig]!) };
-}
 
 export function examRoutes(deps: ApiDeps): Router {
   const router = Router();

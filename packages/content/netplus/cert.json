@@ -1,0 +1,13 @@
+{
+  "code": "netplus",
+  "name": "CompTIA Network+",
+  "version": "N10-009",
+  "exam": {
+    "questionCount": 90,
+    "minutes": 90,
+    "passingScaledScore": 720,
+    "passingRawPercent": 75,
+    "scaledMin": 100,
+    "scaledMax": 900
+  }
+}

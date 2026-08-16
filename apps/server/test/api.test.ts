@@ -1,6 +1,7 @@
 import Database from "better-sqlite3";
 import request from "supertest";
 import { describe, expect, it } from "vitest";
+import type { McQuestion } from "@comptia/content";
 import type { DashboardStats, StartSessionResponse } from "@comptia/shared-types";
 import { pendingMigrations } from "../src/db/migration-check";
 import { createTestStack, signUp } from "./helpers";
@@ -37,12 +38,13 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
     const stack = createTestStack();
     const { cookie } = await signUp(stack.app);
 
-    // certs — both packs seeded, engines stay cert-agnostic
+    // certs — every shipped pack seeded, engines stay cert-agnostic
     const certsRes = await request(stack.app).get("/api/certs").set("Cookie", cookie);
     expect(certsRes.status).toBe(200);
-    expect(certsRes.body).toHaveLength(2);
-    expect(certsRes.body.map((c: { code: string }) => c.code)).toEqual(["aplus", "aplus-core2"]);
-    const cert = certsRes.body[0];
+    expect(certsRes.body.map((c: { code: string }) => c.code)).toEqual(
+      expect.arrayContaining(["aplus", "aplus-core2", "netplus", "secplus"]),
+    );
+    const cert = certsRes.body.find((c: { code: string }) => c.code === "aplus");
     expect(cert.code).toBe("aplus");
     expect(cert.domains).toHaveLength(5);
     expect(cert.domains.reduce((s: number, d: { weight: number }) => s + d.weight, 0)).toBe(100);
@@ -188,6 +190,68 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
     expect(res.status).toBe(200);
     for (const q of res.body.questions) {
       expect(q.domainCode).toBe("5.0");
+    }
+  });
+});
+
+describe("practice quiz: mc choice order", () => {
+  it("shuffles multiple-choice option order between sessions", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app);
+    const byId = stack.content.questionsByCertId.get(stack.certId)!;
+
+    // Look across several sessions for any mc question served out of pack order.
+    let sawShuffle = false;
+    for (let i = 0; i < 10 && !sawShuffle; i++) {
+      const start = await request(stack.app)
+        .post("/api/quiz/sessions")
+        .set("Cookie", cookie)
+        .send({ certId: stack.certId, count: 10, types: ["mc"] });
+      const session = start.body as StartSessionResponse;
+      for (const q of session.questions) {
+        if (q.type !== "mc") continue;
+        const source = byId.get(q.id) as McQuestion;
+        if (JSON.stringify(q.choices) !== JSON.stringify(source.choices)) {
+          sawShuffle = true;
+          // same options, different order — nothing invented or dropped
+          expect([...q.choices].sort()).toEqual([...source.choices].sort());
+          break;
+        }
+      }
+    }
+    expect(sawShuffle, "mc choices were never shuffled across 10 practice sessions").toBe(true);
+  });
+
+  it("grades a shuffled choice against the right original answer and reports the solution in display order", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app);
+    const byId = stack.content.questionsByCertId.get(stack.certId)!;
+
+    const start = await request(stack.app)
+      .post("/api/quiz/sessions")
+      .set("Cookie", cookie)
+      .send({ certId: stack.certId, count: 10, types: ["mc"] });
+    expect(start.status).toBe(200);
+    const session = start.body as StartSessionResponse;
+
+    // Answer every question by matching the correct option's *text*, not its index.
+    for (const q of session.questions) {
+      if (q.type !== "mc") continue;
+      const source = byId.get(q.id) as McQuestion;
+      const idx = q.choices.indexOf(source.choices[source.answerIndex]!);
+
+      const attempt = await request(stack.app)
+        .post("/api/quiz/attempts")
+        .set("Cookie", cookie)
+        .send({
+          sessionId: session.sessionId,
+          questionId: q.id,
+          answer: { type: "mc", choiceIndex: idx },
+        });
+      expect(attempt.status).toBe(200);
+      expect(attempt.body.correct, `mc ${q.id} graded wrong through the shuffle`).toBe(true);
+      // the returned solution must index into the same display order the client holds
+      expect(attempt.body.solution.answerIndex).toBe(idx);
     }
   });
 });

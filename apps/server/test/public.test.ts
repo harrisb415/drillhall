@@ -10,8 +10,10 @@ describe("public catalog (marketing homepage)", () => {
     expect(res.status).toBe(200);
 
     const catalog = res.body as CatalogDto;
-    expect(catalog.certs).toHaveLength(2);
-    expect(catalog.totals.certs).toBe(2);
+    expect(catalog.certs.map((c) => c.code)).toEqual(
+      expect.arrayContaining(["aplus", "aplus-core2", "netplus", "secplus"]),
+    );
+    expect(catalog.totals.certs).toBe(catalog.certs.length);
     expect(catalog.totals.quizQuestions).toBe(
       catalog.certs.reduce((n, c) => n + c.quizQuestions, 0),
     );

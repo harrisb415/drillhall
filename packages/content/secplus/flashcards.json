@@ -1,0 +1,164 @@
+[
+  {
+    "id": "secplus-fc-001",
+    "domainCode": "1.0",
+    "front": "What are the three pillars of the CIA triad?",
+    "back": "Confidentiality (only authorized parties can read data), Integrity (data isn't altered undetected), Availability (systems are accessible when needed)."
+  },
+  {
+    "id": "secplus-fc-002",
+    "domainCode": "1.0",
+    "front": "What is non-repudiation?",
+    "back": "Proof that a specific party performed an action and cannot credibly deny it — typically achieved through digital signatures and audit logs tied to a verified identity."
+  },
+  {
+    "id": "secplus-fc-003",
+    "domainCode": "1.0",
+    "front": "What is the difference between authentication, authorization, and accounting (AAA)?",
+    "back": "Authentication proves identity, authorization determines what that identity may do, and accounting records what was actually done — three distinct, sequential steps."
+  },
+  {
+    "id": "secplus-fc-004",
+    "domainCode": "1.0",
+    "front": "What is a compensating control?",
+    "back": "An alternative safeguard used when the primary control can't be implemented, reducing the same risk a different way — for example, extra monitoring in place of encryption on a legacy system that can't support it."
+  },
+  {
+    "id": "secplus-fc-005",
+    "domainCode": "1.0",
+    "front": "What is the principle of least privilege?",
+    "back": "Every account or process gets only the access it needs to do its job, nothing more — limiting the damage if that account is compromised or misused."
+  },
+  {
+    "id": "secplus-fc-006",
+    "domainCode": "2.0",
+    "front": "What distinguishes a zero-day vulnerability?",
+    "back": "A flaw unknown to the vendor with no patch available yet — 'zero days' of protection have existed since discovery, so signature-based defenses can't catch it."
+  },
+  {
+    "id": "secplus-fc-007",
+    "domainCode": "2.0",
+    "front": "What is the difference between a vulnerability, a threat, and a risk?",
+    "back": "A vulnerability is a weakness. A threat is something that could exploit it. Risk is the likelihood and impact of that exploitation actually happening — risk requires both a vulnerability and a credible threat."
+  },
+  {
+    "id": "secplus-fc-008",
+    "domainCode": "2.0",
+    "front": "What is a SQL injection attack?",
+    "back": "Malicious SQL is inserted into an input field and executed by a backend database because user input wasn't properly parameterized or sanitized, potentially exposing or altering data."
+  },
+  {
+    "id": "secplus-fc-009",
+    "domainCode": "2.0",
+    "front": "What is a pretexting attack?",
+    "back": "A social engineering technique where the attacker fabricates a plausible scenario or false identity to manipulate the victim into divulging information or performing an action."
+  },
+  {
+    "id": "secplus-fc-010",
+    "domainCode": "2.0",
+    "front": "What is typosquatting?",
+    "back": "Registering domain names that are common misspellings of legitimate sites to catch users who mistype a URL, often to deliver malware or harvest credentials."
+  },
+  {
+    "id": "secplus-fc-011",
+    "domainCode": "2.0",
+    "front": "What is the difference between a virus and a worm?",
+    "back": "A virus attaches to a host file and needs a user to run it to spread. A worm self-propagates across a network without any user action, exploiting a vulnerable service directly."
+  },
+  {
+    "id": "secplus-fc-012",
+    "domainCode": "3.0",
+    "front": "What is defense in depth?",
+    "back": "Layering multiple independent security controls so that no single point of failure compromises the whole system — physical, network, host, application, and data-level controls each add a barrier."
+  },
+  {
+    "id": "secplus-fc-013",
+    "domainCode": "3.0",
+    "front": "What is the purpose of network segmentation?",
+    "back": "Dividing a network into isolated zones so a compromise in one segment doesn't automatically grant access to the rest — limits lateral movement for an attacker who gets a foothold."
+  },
+  {
+    "id": "secplus-fc-014",
+    "domainCode": "3.0",
+    "front": "What is a zero trust architecture built on?",
+    "back": "The assumption that no user or device is implicitly trusted, even inside the perimeter — every request is authenticated, authorized, and encrypted, verified continuously rather than once at the network edge."
+  },
+  {
+    "id": "secplus-fc-015",
+    "domainCode": "3.0",
+    "front": "What does full-disk encryption protect against that file-level encryption doesn't?",
+    "back": "It protects data at rest if the entire physical drive is stolen or removed, since the whole volume is unreadable without the key — including OS and temp files a file-level scheme might miss."
+  },
+  {
+    "id": "secplus-fc-016",
+    "domainCode": "3.0",
+    "front": "What is the purpose of a hardware security module (HSM)?",
+    "back": "A dedicated, tamper-resistant device that generates, stores, and uses cryptographic keys without ever exposing the raw key material to the host system."
+  },
+  {
+    "id": "secplus-fc-017",
+    "domainCode": "4.0",
+    "front": "What is the order of volatility in digital forensics?",
+    "back": "Collect the most volatile evidence first: CPU registers/cache, RAM, network state, running processes, then disk, then archival/backup media — because volatile data is lost first if the system keeps running."
+  },
+  {
+    "id": "secplus-fc-018",
+    "domainCode": "4.0",
+    "front": "What is chain of custody?",
+    "back": "An unbroken, documented record of who handled a piece of evidence, when, and why — required for that evidence to be trusted and admissible later."
+  },
+  {
+    "id": "secplus-fc-019",
+    "domainCode": "4.0",
+    "front": "What is the difference between an IOC and a TTP?",
+    "back": "An IOC (Indicator of Compromise) is a specific artifact — a file hash, an IP address. TTPs (Tactics, Techniques, and Procedures) describe the attacker's broader behavior pattern, which is harder for them to change than any single IOC."
+  },
+  {
+    "id": "secplus-fc-020",
+    "domainCode": "4.0",
+    "front": "What is the purpose of a SIEM?",
+    "back": "A Security Information and Event Management system aggregates logs from across the environment, correlates them, and alerts on patterns that indicate an incident — giving one place to search instead of many."
+  },
+  {
+    "id": "secplus-fc-021",
+    "domainCode": "4.0",
+    "front": "What does vulnerability scanning identify that penetration testing goes further to prove?",
+    "back": "A scan identifies known weaknesses by signature/version. A penetration test attempts to actually exploit them to prove real-world impact, going beyond simply flagging a possible issue."
+  },
+  {
+    "id": "secplus-fc-022",
+    "domainCode": "5.0",
+    "front": "What does a data classification scheme typically define?",
+    "back": "Categories like public, internal, confidential, and restricted, each with its own required handling, storage, and access controls proportional to sensitivity."
+  },
+  {
+    "id": "secplus-fc-023",
+    "domainCode": "5.0",
+    "front": "What is the difference between a policy, a standard, and a procedure?",
+    "back": "A policy states the high-level intent ('data must be encrypted'). A standard specifies the exact requirement ('AES-256'). A procedure gives the step-by-step instructions for doing it."
+  },
+  {
+    "id": "secplus-fc-024",
+    "domainCode": "5.0",
+    "front": "What is a business impact analysis (BIA)?",
+    "back": "An assessment identifying critical business functions and quantifying the impact of their disruption over time, used to prioritize recovery efforts and set RTO/RPO targets."
+  },
+  {
+    "id": "secplus-fc-025",
+    "domainCode": "5.0",
+    "front": "What do RTO and RPO measure?",
+    "back": "RTO (Recovery Time Objective) is how long a system can be down before the impact is unacceptable. RPO (Recovery Point Objective) is how much data loss, measured in time, is tolerable."
+  },
+  {
+    "id": "secplus-fc-026",
+    "domainCode": "5.0",
+    "front": "What is third-party risk management concerned with?",
+    "back": "Assessing and monitoring the security posture of vendors and suppliers who have access to your data or systems, since their weaknesses become your risk too."
+  },
+  {
+    "id": "secplus-fc-027",
+    "domainCode": "5.0",
+    "front": "What does an Acceptable Use Policy (AUP) govern?",
+    "back": "The rules for how employees may use company systems, network, and data — signing it establishes that users were informed of the boundaries before violating them."
+  }
+]

@@ -1,0 +1,7 @@
+[
+  { "code": "1.0", "name": "Networking Concepts", "weight": 23 },
+  { "code": "2.0", "name": "Network Implementation", "weight": 20 },
+  { "code": "3.0", "name": "Network Operations", "weight": 19 },
+  { "code": "4.0", "name": "Network Security", "weight": 14 },
+  { "code": "5.0", "name": "Network Troubleshooting", "weight": 24 }
+]
