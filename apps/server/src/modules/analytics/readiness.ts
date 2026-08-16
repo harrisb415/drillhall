@@ -21,6 +21,16 @@ export interface AttemptLite {
 const DECAY = 0.85;
 const MAX_ATTEMPTS = 30;
 
+/**
+ * Attempts in a domain before its mastery figure is worth trusting.
+ *
+ * Two-for-two reads as "100% mastery" and that is technically what the
+ * formula says, but it is two coin flips, not evidence. Below this threshold
+ * the number is still shown — hiding it would be worse — but it is flagged so
+ * nobody plans revision around noise.
+ */
+export const CONFIDENT_ATTEMPTS = 8;
+
 /** Recency-weighted mastery for one domain as a fraction 0..1, or null with no attempts. */
 export function domainMastery(attempts: AttemptLite[]): number | null {
   if (attempts.length === 0) return null;
@@ -40,7 +50,11 @@ export function domainMastery(attempts: AttemptLite[]): number | null {
 export interface ReadinessResult {
   /** percent 0-100, null when there are no attempts at all */
   overall: number | null;
-  perDomain: { code: string; mastery: number | null }[];
+  perDomain: { code: string; mastery: number | null; confident: boolean }[];
+  /** true once every domain carrying exam weight has enough attempts to trust */
+  confident: boolean;
+  /** how many more answers, weighted by exam importance, would earn confidence */
+  attemptsForConfidence: number;
 }
 
 export function computeReadiness(
@@ -48,15 +62,31 @@ export function computeReadiness(
   attemptsByDomain: Map<string, AttemptLite[]>,
 ): ReadinessResult {
   const perDomain = domains.map((d) => {
-    const mastery = domainMastery(attemptsByDomain.get(d.code) ?? []);
-    return { code: d.code, mastery: mastery === null ? null : Math.round(mastery * 100) };
+    const attempts = attemptsByDomain.get(d.code) ?? [];
+    const mastery = domainMastery(attempts);
+    return {
+      code: d.code,
+      mastery: mastery === null ? null : Math.round(mastery * 100),
+      confident: attempts.length >= CONFIDENT_ATTEMPTS,
+    };
   });
+
+  const attemptsForConfidence = domains.reduce((short, d) => {
+    const count = (attemptsByDomain.get(d.code) ?? []).length;
+    return short + Math.max(0, CONFIDENT_ATTEMPTS - count);
+  }, 0);
+
   if (perDomain.every((p) => p.mastery === null)) {
-    return { overall: null, perDomain };
+    return { overall: null, perDomain, confident: false, attemptsForConfidence };
   }
   const overall = domains.reduce((sum, d) => {
     const mastery = domainMastery(attemptsByDomain.get(d.code) ?? []) ?? 0;
     return sum + mastery * d.weight;
   }, 0);
-  return { overall: Math.round(overall), perDomain };
+  return {
+    overall: Math.round(overall),
+    perDomain,
+    confident: perDomain.every((p) => p.confident),
+    attemptsForConfidence,
+  };
 }

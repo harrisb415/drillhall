@@ -12,7 +12,7 @@ import {
   type SchedulerDeps,
 } from "../src/modules/notifications/scheduler";
 import { createNotificationService } from "../src/modules/notifications/service";
-import { utcDateKey, utcDaysUntil, utcLongDate } from "../src/lib/dates";
+import { dateKeyInZone, hourInZone, utcDateKey, utcDaysUntil, utcLongDate } from "../src/lib/dates";
 import { createTestStack, signUp, type TestStack } from "./helpers";
 
 const DAY = 24 * 60 * 60 * 1000;
@@ -32,6 +32,9 @@ function schedulerFor(stack: TestStack, inactivityDays = 7): SchedulerDeps {
     logger: silent,
     baseURL: "http://localhost:3001",
     inactivityDays,
+    // These tests assert *what* is eligible to send; the local-hour gate is
+    // covered separately so the rest don't depend on the wall clock.
+    ignoreDeliveryWindow: true,
   };
 }
 
@@ -375,6 +378,63 @@ describe("notification preferences API", () => {
     const stack = createTestStack();
     expect((await request(stack.app).get("/api/settings/notifications")).status).toBe(401);
     expect((await request(stack.app).get("/api/exam-plans")).status).toBe(401);
+  });
+});
+
+describe("timezone-aware delivery (Phase 5)", () => {
+  it("holds a reminder until the recipient's local morning", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app, { email: "tokyo@example.com" });
+    await setPlan(stack, cookie, stack.certId, isoDaysFromNow(1));
+    await request(stack.app)
+      .post("/api/settings/timezone")
+      .set("Cookie", cookie)
+      .send({ timezone: "Asia/Tokyo" });
+    stack.emails.length = 0;
+
+    // Gate on, so the local hour actually matters.
+    const deps: SchedulerDeps = { ...schedulerFor(stack), ignoreDeliveryWindow: false };
+
+    // 20:00 UTC is 05:00 next day in Tokyo — too early to email someone.
+    const tooEarly = new Date("2026-08-20T20:00:00.000Z");
+    expect(await checkExamReminders(deps, tooEarly)).toBe(0);
+    expect(stack.emails).toHaveLength(0);
+
+    // 01:00 UTC is 10:00 in Tokyo — a civil hour.
+    const civil = new Date("2026-08-21T01:00:00.000Z");
+    // (re-point the plan so it is still one day out at that instant)
+    await setPlan(stack, cookie, stack.certId, "2026-08-22");
+    expect(await checkExamReminders(deps, civil)).toBe(1);
+  });
+
+  it("falls back to UTC hours when no timezone was ever captured", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app, { email: "nozone@example.com" });
+    await setPlan(stack, cookie, stack.certId, "2026-08-22");
+    stack.emails.length = 0;
+
+    const deps: SchedulerDeps = { ...schedulerFor(stack), ignoreDeliveryWindow: false };
+    // 03:00 UTC is outside the window; 12:00 UTC is inside it.
+    expect(await checkExamReminders(deps, new Date("2026-08-21T03:00:00.000Z"))).toBe(0);
+    expect(await checkExamReminders(deps, new Date("2026-08-21T12:00:00.000Z"))).toBe(1);
+  });
+
+  it("keys the daily nudge off the recipient's calendar day, not UTC's", () => {
+    // 14:00 UTC on the 20th is already the 21st in Auckland. Keying on UTC
+    // would let the same local day take a second nudge after UTC rolls over.
+    const at = new Date("2026-08-20T14:00:00.000Z");
+    expect(dateKeyInZone(at, "Pacific/Auckland")).toBe("2026-08-21");
+    expect(dateKeyInZone(at, "America/Los_Angeles")).toBe("2026-08-20");
+    expect(dateKeyInZone(at, null)).toBe("2026-08-20");
+  });
+
+  it("reads the local hour correctly across zones and survives a bad one", () => {
+    const at = new Date("2026-08-20T14:00:00.000Z");
+    expect(hourInZone(at, "UTC")).toBe(14);
+    expect(hourInZone(at, "America/Los_Angeles")).toBe(7);
+    expect(hourInZone(at, "Asia/Tokyo")).toBe(23);
+    // a junk zone must degrade to UTC rather than throw mid-sweep
+    expect(hourInZone(at, "Not/AZone")).toBe(14);
   });
 });
 

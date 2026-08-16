@@ -266,6 +266,19 @@ export type UpdateNotificationPrefsRequest = Partial<
   Omit<NotificationPrefsDto, "emailDeliveryConfigured">
 >;
 
+// ---- gamification ----
+export interface GamificationDto {
+  xp: number;
+  level: number;
+  /** XP earned inside the current level, and what the next level costs */
+  xpIntoLevel: number;
+  xpForNextLevel: number;
+  currentStreak: number;
+  longestStreak: number;
+  /** true when today's activity has already counted toward the streak */
+  activeToday: boolean;
+}
+
 // ---- dashboard ----
 export interface DashboardDomainStat {
   code: string;
@@ -277,6 +290,8 @@ export interface DashboardDomainStat {
   accuracy: number | null;
   /** recency-weighted mastery, percent 0-100, null when no attempts yet (spec §7) */
   mastery: number | null;
+  /** false when too few attempts for the mastery figure to mean much */
+  confident: boolean;
 }
 
 export interface DashboardStats {
@@ -287,8 +302,15 @@ export interface DashboardStats {
     accuracy: number | null;
     /** Σ(domain mastery × exam weight), percent 0-100; null until any attempt exists */
     readiness: number | null;
+    /** false while any weighted domain is still too thin to trust */
+    readinessConfident: boolean;
+    /** roughly how many more answers would make the figure trustworthy */
+    attemptsForConfidence: number;
+    /** attempts per domain needed before its mastery is considered meaningful */
+    confidenceThreshold: number;
     perDomain: DashboardDomainStat[];
   };
+  gamification: GamificationDto;
   exams: {
     attempts: number;
     passed: number;

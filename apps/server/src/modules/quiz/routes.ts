@@ -8,6 +8,7 @@ import type {
   StartSessionResponse,
 } from "@comptia/shared-types";
 import { quizAttempts, quizSessions } from "../../db/schema";
+import { recordActivity } from "../gamification/service";
 import { h } from "../../lib/handler";
 import type { ApiDeps } from "../shared";
 import { AnswerTypeMismatchError, grade, shuffle, solutionFor, toPublicQuestion } from "./grade";
@@ -162,6 +163,11 @@ export function quizRoutes(deps: ApiDeps): Router {
         })
         .run();
 
+      // XP for the effort, not the outcome — a wrong answer you engaged with
+      // still counts, and paying only for correct ones would push people to
+      // avoid the material they most need.
+      recordActivity(deps.db, req.user!.id, "question_answered");
+
       const response: AttemptResponse = {
         correct,
         explanation: question.explanation,
@@ -197,12 +203,16 @@ export function quizRoutes(deps: ApiDeps): Router {
       const correct = attempts.filter((a) => a.correct).length;
       const score = Math.round((correct / session.questionCount) * 100);
 
+      // Award only on the first completion; re-posting to this endpoint is
+      // idempotent (it re-reads and returns the same summary), so the XP has
+      // to be too or a refresh would mint 50 XP each time.
       if (!session.finishedAt) {
         deps.db
           .update(quizSessions)
           .set({ finishedAt: new Date(), correctCount: correct, score })
           .where(eq(quizSessions.id, sessionId))
           .run();
+        recordActivity(deps.db, req.user!.id, "session_completed");
       }
 
       const pack = deps.content.byCertId.get(session.certId);

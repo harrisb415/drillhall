@@ -9,6 +9,8 @@ import { env, REPO_ROOT, SERVER_ROOT } from "./lib/env";
 import { createLogger } from "./lib/logger";
 import { seedCerts } from "./modules/certs/content";
 import { createEmailProvider } from "./modules/notifications/providers/email";
+import cron, { type ScheduledTask } from "node-cron";
+import { runBackup } from "./lib/backup";
 import { startScheduler } from "./modules/notifications/scheduler";
 import { createNotificationService } from "./modules/notifications/service";
 
@@ -83,6 +85,25 @@ const scheduler = startScheduler({
   baseURL: env.baseURL,
 });
 
+// Nightly snapshot. Backups live with the app rather than in an external cron
+// so a fresh deployment is protected without a second setup step being
+// remembered; BACKUP_CRON="" opts out where a real backup system exists.
+let backupTask: ScheduledTask | null = null;
+if (env.backupCron) {
+  backupTask = cron.schedule(env.backupCron, () => {
+    runBackup({
+      sqlite,
+      dir: env.backupDir,
+      retentionDays: env.backupRetentionDays,
+      logger,
+    }).catch((err) => logger.error(err, "scheduled backup failed"));
+  });
+  logger.info(
+    { cron: env.backupCron, dir: env.backupDir, retentionDays: env.backupRetentionDays },
+    "backup scheduler started",
+  );
+}
+
 const server = app.listen(env.port, () => {
   logger.info(
     {
@@ -101,6 +122,7 @@ for (const signal of ["SIGINT", "SIGTERM"] as const) {
   process.on(signal, () => {
     logger.info({ signal }, "shutting down");
     void scheduler.stop();
+    void backupTask?.stop();
     server.close(() => {
       sqlite.close();
       process.exit(0);

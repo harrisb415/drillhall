@@ -17,7 +17,9 @@
     "validate": "npm run validate -w packages/content",
     "db:generate": "npm run db:generate -w apps/server",
     "db:migrate": "npm run db:migrate -w apps/server",
-    "start": "npm run start -w apps/server"
+    "start": "npm run start -w apps/server",
+    "e2e:server": "node scripts/e2e-server.mjs",
+    "e2e": "npm run build -w apps/client && playwright test -c apps/client/playwright.config.ts"
   },
   "devDependencies": {
     "concurrently": "10.0.5"

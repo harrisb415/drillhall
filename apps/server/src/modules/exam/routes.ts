@@ -14,6 +14,7 @@ import type {
 import { quizAttempts, quizSessions } from "../../db/schema";
 import { h } from "../../lib/handler";
 import { computeReadiness, type AttemptLite } from "../analytics/readiness";
+import { recordActivity } from "../gamification/service";
 import {
   AnswerTypeMismatchError,
   buildLayout,
@@ -485,6 +486,9 @@ export function examRoutes(deps: ApiDeps): Router {
           })
           .where(eq(quizSessions.id, sessionId))
           .run();
+        // First submission only — this endpoint is safe to re-post (it just
+        // recomputes the same result), so the award must not be.
+        recordActivity(deps.db, req.user!.id, "exam_completed");
       }
 
       const perDomain = pack.domains

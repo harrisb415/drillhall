@@ -9,6 +9,7 @@ Self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express
 - **Phase 3** — public marketing homepage at `/` (dashboard moved to `/dashboard`), password reset flow, friendly auth errors, password visibility toggle, return-to-destination after login, verification-email resend.
 - **Exam simulator** (Phase 2 addendum) — five randomized, timed exam types with server-authoritative timing and CompTIA-style scaled scoring. See below.
 - **Phase 4** — exam planner, notification preferences page, and an in-process `node-cron` scheduler sending exam reminders, inactivity nudges, and a weekly digest. See below.
+- **Phase 5** — gamification (XP, streaks, levels) with the race-safe transaction the spec calls for, per-user timezone-aware notification delivery, nightly backup automation, a low-confidence indicator on readiness, and Playwright e2e coverage.
 
 ## Quickstart (dev)
 
@@ -109,6 +110,28 @@ Set an exam date per cert on the dashboard; the countdown and reminders follow f
 **Dates are UTC throughout.** An exam date is a calendar date stored as midnight UTC, so all comparisons use `lib/dates.ts` rather than local-time helpers. Mixing the two silently shifts the day for anyone at a negative UTC offset — a date picked as the 25th reads back as the 24th in Los Angeles, and reminders fire early. The `timezone` column is captured but per-user delivery *timing* remains a Phase 5 concern, and the settings page says so.
 
 Without `RESEND_API_KEY` every notification is written to the server log instead of sent, and the settings page tells the user that rather than pretending mail went out.
+
+**Delivery respects the recipient's local hour.** Reminders only go out between 08:00–20:00 in the recipient's IANA timezone (falling back to UTC if none was ever captured); daily-nudge dedupe keys off their local calendar date too, so someone near the international date line can't be nudged twice as UTC rolls over mid-afternoon for them. `lib/dates.ts` centralizes every date/timezone calculation in the codebase — exam countdowns, dedupe windows, and delivery gating all go through it rather than ad hoc `date-fns` local-time calls, which is what caused the exam-date bug above in the first place.
+
+## Backups
+
+A nightly `node-cron` job (`03:15` by default, `BACKUP_CRON` to change, empty string to disable) runs SQLite's `VACUUM INTO` — not a raw file copy, which can catch a WAL write mid-flight — into `BACKUP_DIR` (defaults to `../../backups` from the server), and prunes snapshots older than `BACKUP_RETENTION_DAYS` (default 14). A test opens a produced snapshot as its own database and asserts the rows are actually readable back out, not just that a file appeared.
+
+## End-to-end tests
+
+`npm run e2e` builds the client, boots the real server against a throwaway `e2e.db`, and runs Playwright against it — registration, protected-route return-to, answering a quiz question, marking a flashcard, the low-confidence readiness badge, the exam planner, notification settings persistence, a full timed exam (withholds grading, blank-question confirmation, scored review), and the cert switcher. It exercises the actual Express app and content packs, not a mocked API.
+
+## Gamification
+
+XP for four actions (question answered +10, session completed +50, exam completed +200, flashcard marked known +2 — only on the transition into "known", so toggling can't farm it) and a daily streak, both counted across every certification rather than scoped to one exam.
+
+**The race the spec warns about is real and closed by a transaction.** The naive version — read stats, conditionally modify, write back — lets two near-simultaneous requests (a double-submit, two open tabs) both read the same starting XP, so one write clobbers the other. `modules/gamification/service.ts` wraps the whole read-modify-write in `db.transaction()`, which better-sqlite3 executes under an exclusive lock. A test fires 20 concurrent awards for one user and asserts the XP and streak both land exactly once, not lost or double-counted.
+
+The streak is triggered by the qualifying activity itself, not by login — a session can run for days without a fresh login event while the user studies daily inside it, so gating on login would silently freeze the streak for exactly that case. An `isSameUtcDay` guard (see the UTC note in Notifications above) makes repeated activity in one sitting safe: answer 50 questions today and XP accrues 50 times, but the streak moves once.
+
+## Readiness confidence
+
+A domain read as "100% mastery" off two correct answers is coin-flip noise wearing a precise-looking number. Below `CONFIDENT_ATTEMPTS` (8) answers, a domain's mastery is still shown — hiding it would be worse — but flagged `confident: false`, and the dashboard marks it `(thin)`. Once every exam-weighted domain clears the threshold, the overall readiness badge drops the "low confidence" tag. Verified against a real dashboard mid-session: 16% readiness, four of five domains marked thin, "roughly 19 more would make this trustworthy."
 
 ## Readiness scoring
 

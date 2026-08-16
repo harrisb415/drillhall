@@ -1,7 +1,14 @@
 import cron, { type ScheduledTask } from "node-cron";
 import { and, eq, isNotNull, sql } from "drizzle-orm";
 import { examPlans, quizAttempts, quizSessions, user } from "../../db/schema";
-import { utcDateKey, utcDaysUntil, utcIsoWeekKey, utcLongDate } from "../../lib/dates";
+import {
+  dateKeyInZone,
+  hourInZone,
+  utcDateKey,
+  utcDaysUntil,
+  utcIsoWeekKey,
+  utcLongDate,
+} from "../../lib/dates";
 import type { Db } from "../../db";
 import type { Logger } from "../../lib/logger";
 import type { ContentIndex } from "../certs/content";
@@ -16,18 +23,42 @@ export interface SchedulerDeps {
   baseURL: string;
   /** Days of silence before a nudge. */
   inactivityDays?: number;
+  /**
+   * Skip the local-hour gate. Tests and a manual sweep want every eligible
+   * message now rather than only those whose local morning has arrived.
+   */
+  ignoreDeliveryWindow?: boolean;
 }
 
 const DAY_MS = 24 * 60 * 60 * 1000;
+
+/**
+ * Reminders go out during this local-hour window for the recipient. A nudge
+ * that lands at 3am reads as noise, and the whole point of storing the
+ * timezone was to avoid that.
+ *
+ * The job runs every 30 minutes, so any user whose local clock passes through
+ * this window gets picked up. Users with no timezone recorded fall back to
+ * UTC, which is the old behaviour rather than being skipped entirely.
+ */
+const DELIVERY_HOUR_START = 8;
+const DELIVERY_HOUR_END = 20;
+
+function withinDeliveryWindow(deps: SchedulerDeps, now: Date, timezone: string | null): boolean {
+  if (deps.ignoreDeliveryWindow) return true;
+  const hour = hourInZone(now, timezone);
+  return hour >= DELIVERY_HOUR_START && hour < DELIVERY_HOUR_END;
+}
 
 function certName(deps: SchedulerDeps, certId: number): string {
   return deps.content.byCertId.get(certId)?.name ?? "your certification";
 }
 
 /**
- * Windows are computed in UTC. Per-user local-time delivery is deliberately
- * deferred — the timezone column is captured, but converting send times per
- * user is real complexity for a nudge that is not time-critical.
+ * Which lead-time window an exam falls in is computed in UTC, because the exam
+ * date is a UTC calendar date. *When* the resulting mail is sent is gated on
+ * the recipient's local hour, so "3 days out" is decided consistently but
+ * delivered civilly.
  */
 export async function checkExamReminders(deps: SchedulerDeps, now = new Date()): Promise<number> {
   const rows = deps.db
@@ -49,6 +80,7 @@ export async function checkExamReminders(deps: SchedulerDeps, now = new Date()):
 
     const prefs = getPrefs(deps.db, row.userId);
     if (!prefs.examReminderDays.includes(daysOut)) continue;
+    if (!withinDeliveryWindow(deps, now, prefs.timezone)) continue;
 
     const when =
       daysOut === 0 ? "today" : daysOut === 1 ? "tomorrow" : `in ${daysOut} days`;
@@ -109,14 +141,18 @@ export async function checkInactivityNudges(deps: SchedulerDeps, now = new Date(
     // started is noise, not a reminder.
     if (last === 0 || last > cutoff.getTime()) continue;
 
+    const prefs = getPrefs(deps.db, row.id);
+    if (!withinDeliveryWindow(deps, now, prefs.timezone)) continue;
+
     const idleDays = Math.floor((now.getTime() - last) / DAY_MS);
     const ok = await deps.notifications.send({
       userId: row.id,
       email: row.email,
       name: row.name,
       type: "inactivity",
-      // At most one nudge per calendar day, however often the job runs.
-      windowKey: `inactive:${utcDateKey(now)}`,
+      // One nudge per *their* calendar day, so someone near the dateline
+      // can't be nudged twice as UTC rolls over mid-afternoon for them.
+      windowKey: `inactive:${dateKeyInZone(now, prefs.timezone)}`,
       subject: "Still studying?",
       body:
         `Hi ${row.name},\n\n` +
@@ -148,6 +184,9 @@ export async function checkWeeklyDigest(deps: SchedulerDeps, now = new Date()): 
       .all()
       .filter((a) => a.answeredAt.getTime() >= since.getTime());
     if (attempts.length === 0) continue; // nothing happened; say nothing
+
+    const prefs = getPrefs(deps.db, row.id);
+    if (!withinDeliveryWindow(deps, now, prefs.timezone)) continue;
 
     const correct = attempts.filter((a) => a.correct).length;
     const exams = deps.db

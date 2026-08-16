@@ -15,9 +15,24 @@ function utcMidnight(d: Date): number {
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
 }
 
+/** Whole calendar days from `a` to `b`, both taken in UTC (positive when `b` is later). */
+export function utcCalendarDayDiff(a: Date, b: Date): number {
+  return Math.round((utcMidnight(b) - utcMidnight(a)) / MS_PER_DAY);
+}
+
 /** Whole calendar days from `now` to `target`, both taken in UTC. */
 export function utcDaysUntil(target: Date, now: Date = new Date()): number {
-  return Math.round((utcMidnight(target) - utcMidnight(now)) / MS_PER_DAY);
+  return utcCalendarDayDiff(now, target);
+}
+
+/** Same UTC calendar date — used for "did this already happen today". */
+export function isSameUtcDay(a: Date, b: Date): boolean {
+  return utcCalendarDayDiff(a, b) === 0;
+}
+
+/** `earlier` is exactly one UTC calendar day before `reference`. */
+export function isUtcYesterday(earlier: Date, reference: Date): boolean {
+  return utcCalendarDayDiff(earlier, reference) === 1;
 }
 
 /** yyyy-MM-dd in UTC. */
@@ -34,6 +49,37 @@ export function utcLongDate(d: Date): string {
     month: "long",
     year: "numeric",
   }).format(d);
+}
+
+/**
+ * The local hour (0–23) in an IANA zone at a given instant.
+ * Falls back to the UTC hour if the zone string is unusable, so a bad value in
+ * the database degrades to the old behaviour rather than throwing mid-sweep.
+ */
+export function hourInZone(at: Date, timeZone: string | null): number {
+  if (!timeZone) return at.getUTCHours();
+  try {
+    const hour = new Intl.DateTimeFormat("en-GB", {
+      timeZone,
+      hour: "numeric",
+      hour12: false,
+    }).format(at);
+    const parsed = Number(hour);
+    return Number.isFinite(parsed) ? parsed % 24 : at.getUTCHours();
+  } catch {
+    return at.getUTCHours();
+  }
+}
+
+/** yyyy-MM-dd as it reads in the given zone, for per-user daily dedupe keys. */
+export function dateKeyInZone(at: Date, timeZone: string | null): string {
+  if (!timeZone) return utcDateKey(at);
+  try {
+    // en-CA renders ISO-style yyyy-mm-dd.
+    return new Intl.DateTimeFormat("en-CA", { timeZone }).format(at);
+  } catch {
+    return utcDateKey(at);
+  }
 }
 
 /** ISO week key such as 2026-W33, in UTC. */

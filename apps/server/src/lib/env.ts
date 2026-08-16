@@ -32,6 +32,12 @@ export const env = {
       ? { clientId: googleClientId, clientSecret: googleClientSecret }
       : null,
   resendApiKey: process.env.RESEND_API_KEY,
+  backupDir: path.isAbsolute(process.env.BACKUP_DIR ?? "")
+    ? process.env.BACKUP_DIR!
+    : path.resolve(SERVER_ROOT, process.env.BACKUP_DIR ?? "../../backups"),
+  /** Nightly at 03:15 by default; set BACKUP_CRON="" to disable. */
+  backupCron: process.env.BACKUP_CRON ?? "15 3 * * *",
+  backupRetentionDays: Number(process.env.BACKUP_RETENTION_DAYS ?? 14),
   emailFrom: process.env.EMAIL_FROM ?? "CompTIA Prep <onboarding@resend.dev>",
   trustedOrigins: [
     "http://localhost:5173",

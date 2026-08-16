@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Spinner } from "@/components/ui/spinner";
 import { ExamPlanCard } from "@/features/planner/ExamPlanCard";
+import { StreakCard } from "@/features/gamification/StreakCard";
 import { useDashboard } from "@/lib/api";
 import { useCert } from "@/lib/cert-context";
 import { formatDate } from "@/lib/utils";
@@ -34,15 +35,26 @@ export function DashboardPage() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className={!data.quiz.readinessConfident ? "border-dashed" : undefined}>
           <CardHeader className="pb-2">
-            <CardDescription>Readiness</CardDescription>
+            <CardDescription className="flex items-center gap-1.5">
+              Readiness
+              {data.quiz.readiness !== null && !data.quiz.readinessConfident && (
+                <Badge variant="outline" title="Too few answers so far for this to mean much">
+                  low confidence
+                </Badge>
+              )}
+            </CardDescription>
             <CardTitle className="text-3xl">
               {data.quiz.readiness !== null ? `${data.quiz.readiness}%` : "—"}
             </CardTitle>
           </CardHeader>
           <CardContent className="text-xs text-muted-foreground">
-            recency-weighted mastery × exam weights
+            {data.quiz.readiness === null
+              ? "recency-weighted mastery × exam weights"
+              : data.quiz.readinessConfident
+                ? "recency-weighted mastery × exam weights"
+                : `Based on very few answers — roughly ${data.quiz.attemptsForConfidence} more would make this trustworthy.`}
           </CardContent>
         </Card>
         <Card>
@@ -82,7 +94,10 @@ export function DashboardPage() {
         </Card>
       </div>
 
-      <ExamPlanCard readinessPercent={data.quiz.readiness} />
+      <div className="grid gap-4 md:grid-cols-2">
+        <ExamPlanCard readinessPercent={data.quiz.readiness} />
+        <StreakCard stats={data.gamification} />
+      </div>
 
       <Card>
         <CardHeader>
@@ -101,10 +116,22 @@ export function DashboardPage() {
                 </span>
                 <span className="flex shrink-0 items-center gap-2">
                   <Badge variant="secondary">{d.weight}%</Badge>
-                  <span className="w-36 text-right text-muted-foreground">
-                    {d.mastery !== null
-                      ? `${d.mastery}% mastery · ${d.attempts} answered`
-                      : "no data"}
+                  <span className="w-44 text-right text-muted-foreground">
+                    {d.mastery !== null ? (
+                      <>
+                        {d.mastery}% mastery · {d.attempts} answered
+                        {!d.confident && (
+                          <span
+                            className="ml-1 text-muted-foreground/70"
+                            title={`Fewer than ${data.quiz.confidenceThreshold} answers in this domain — treat with caution`}
+                          >
+                            (thin)
+                          </span>
+                        )}
+                      </>
+                    ) : (
+                      "no data"
+                    )}
                   </span>
                 </span>
               </div>

@@ -3,6 +3,7 @@ import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 import type { FlashcardsResponse } from "@comptia/shared-types";
 import { flashcardProgress } from "../../db/schema";
+import { recordActivity } from "../gamification/service";
 import { h } from "../../lib/handler";
 import { resolveCert, type ApiDeps } from "../shared";
 
@@ -51,6 +52,19 @@ export function flashcardsRoutes(deps: ApiDeps): Router {
         res.status(404).json({ error: "Unknown card" });
         return;
       }
+
+      const existing = deps.db
+        .select({ status: flashcardProgress.status })
+        .from(flashcardProgress)
+        .where(
+          and(
+            eq(flashcardProgress.userId, req.user!.id),
+            eq(flashcardProgress.certId, body.certId),
+            eq(flashcardProgress.cardId, body.cardId),
+          ),
+        )
+        .get();
+
       deps.db
         .insert(flashcardProgress)
         .values({
@@ -65,6 +79,13 @@ export function flashcardsRoutes(deps: ApiDeps): Router {
           set: { status: body.status, updatedAt: new Date() },
         })
         .run();
+
+      // XP on the transition into "known" only — re-saving an already-known
+      // card is a no-op for XP, so toggling back and forth can't farm it.
+      if (body.status === "known" && existing?.status !== "known") {
+        recordActivity(deps.db, req.user!.id, "flashcard_known");
+      }
+
       res.json({ ok: true });
     }),
   );

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  CONFIDENT_ATTEMPTS,
   computeReadiness,
   domainMastery,
   type AttemptLite,
@@ -50,9 +51,10 @@ describe("computeReadiness (exam weighting, spec §7 concept 2)", () => {
   it("is null overall when no domain has attempts", () => {
     const result = computeReadiness(domains, new Map());
     expect(result.overall).toBeNull();
+    expect(result.confident).toBe(false);
     expect(result.perDomain).toEqual([
-      { code: "A", mastery: null },
-      { code: "B", mastery: null },
+      { code: "A", mastery: null, confident: false },
+      { code: "B", mastery: null, confident: false },
     ]);
   });
 
@@ -60,9 +62,11 @@ describe("computeReadiness (exam weighting, spec §7 concept 2)", () => {
     const byDomain = new Map([["A", attempts([{ correct: true, daysAgo: 0 }])]]);
     const result = computeReadiness(domains, byDomain);
     expect(result.overall).toBe(60); // 100% of a 60-weight domain, nothing in B
+    // one attempt is nowhere near enough to trust, so neither domain is confident
+    expect(result.confident).toBe(false);
     expect(result.perDomain).toEqual([
-      { code: "A", mastery: 100 },
-      { code: "B", mastery: null },
+      { code: "A", mastery: 100, confident: false },
+      { code: "B", mastery: null, confident: false },
     ]);
   });
 
@@ -72,5 +76,50 @@ describe("computeReadiness (exam weighting, spec §7 concept 2)", () => {
     const onlyLight = computeReadiness(domains, new Map([["B", perfect]]));
     expect(onlyHeavy.overall!).toBeGreaterThan(onlyLight.overall!);
     expect(onlyLight.overall).toBe(40);
+  });
+});
+
+describe("confidence (spec follow-up: don't present noise as precision)", () => {
+  const domains = [
+    { code: "A", weight: 60 },
+    { code: "B", weight: 40 },
+  ];
+
+  it("marks a domain confident only once it clears the threshold", () => {
+    const justUnder = attempts(
+      Array.from({ length: CONFIDENT_ATTEMPTS - 1 }, (_, i) => ({ correct: true, daysAgo: i })),
+    );
+    const atThreshold = attempts(
+      Array.from({ length: CONFIDENT_ATTEMPTS }, (_, i) => ({ correct: true, daysAgo: i })),
+    );
+    const under = computeReadiness(domains, new Map([["A", justUnder]]));
+    const at = computeReadiness(domains, new Map([["A", atThreshold]]));
+    expect(under.perDomain.find((d) => d.code === "A")!.confident).toBe(false);
+    expect(at.perDomain.find((d) => d.code === "A")!.confident).toBe(true);
+  });
+
+  it("overall confidence requires every weighted domain to individually clear it", () => {
+    const plenty = attempts(
+      Array.from({ length: CONFIDENT_ATTEMPTS }, (_, i) => ({ correct: true, daysAgo: i })),
+    );
+    const thin = attempts([{ correct: true, daysAgo: 0 }]);
+    const result = computeReadiness(domains, new Map([["A", plenty], ["B", thin]]));
+    expect(result.perDomain.find((d) => d.code === "A")!.confident).toBe(true);
+    expect(result.perDomain.find((d) => d.code === "B")!.confident).toBe(false);
+    // one thin domain is enough to make the overall figure untrustworthy
+    expect(result.confident).toBe(false);
+  });
+
+  it("reports how many more answers would earn confidence", () => {
+    const half = attempts(
+      Array.from({ length: Math.floor(CONFIDENT_ATTEMPTS / 2) }, (_, i) => ({
+        correct: true,
+        daysAgo: i,
+      })),
+    );
+    const result = computeReadiness(domains, new Map([["A", half]]));
+    const shortA = CONFIDENT_ATTEMPTS - half.length;
+    const shortB = CONFIDENT_ATTEMPTS; // untouched
+    expect(result.attemptsForConfidence).toBe(shortA + shortB);
   });
 });

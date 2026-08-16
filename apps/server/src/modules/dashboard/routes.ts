@@ -1,9 +1,12 @@
 import { Router } from "express";
 import { and, desc, eq, isNotNull } from "drizzle-orm";
 import type { DashboardStats } from "@comptia/shared-types";
-import { flashcardProgress, quizAttempts, quizSessions } from "../../db/schema";
+import { flashcardProgress, gamificationStats, quizAttempts, quizSessions } from "../../db/schema";
 import { h } from "../../lib/handler";
-import { computeReadiness, type AttemptLite } from "../analytics/readiness";
+import { CONFIDENT_ATTEMPTS, computeReadiness, type AttemptLite } from "../analytics/readiness";
+import { getStats } from "../gamification/service";
+import { xpForLevel, xpIntoCurrentLevel } from "../gamification/levels";
+import { isSameUtcDay } from "../../lib/dates";
 import type { ApiDeps } from "../shared";
 
 export function dashboardRoutes(deps: ApiDeps): Router {
@@ -43,7 +46,7 @@ export function dashboardRoutes(deps: ApiDeps): Router {
         else byDomain.set(a.domainCode, [a]);
       }
       const readiness = computeReadiness(pack.domains, byDomain);
-      const masteryByCode = new Map(readiness.perDomain.map((d) => [d.code, d.mastery]));
+      const readinessByCode = new Map(readiness.perDomain.map((d) => [d.code, d]));
 
       const recent = deps.db
         .select()
@@ -92,6 +95,9 @@ export function dashboardRoutes(deps: ApiDeps): Router {
           correct,
           accuracy: attempts > 0 ? Math.round((correct / attempts) * 100) : null,
           readiness: readiness.overall,
+          readinessConfident: readiness.confident,
+          attemptsForConfidence: readiness.attemptsForConfidence,
+          confidenceThreshold: CONFIDENT_ATTEMPTS,
           perDomain: pack.domains.map((d) => {
             const domainAttempts = byDomain.get(d.code) ?? [];
             const dCorrect = domainAttempts.filter((a) => a.correct).length;
@@ -105,10 +111,31 @@ export function dashboardRoutes(deps: ApiDeps): Router {
                 domainAttempts.length > 0
                   ? Math.round((dCorrect / domainAttempts.length) * 100)
                   : null,
-              mastery: masteryByCode.get(d.code) ?? null,
+              mastery: readinessByCode.get(d.code)?.mastery ?? null,
+              confident: readinessByCode.get(d.code)?.confident ?? false,
             };
           }),
         },
+        gamification: (() => {
+          // XP and streaks span every cert — they measure study habit, not
+          // progress on one exam, so they are not scoped by certId.
+          const stats = getStats(deps.db, userId);
+          const { current, needed } = xpIntoCurrentLevel(stats.xp);
+          const lastActive = deps.db
+            .select({ lastActiveDate: gamificationStats.lastActiveDate })
+            .from(gamificationStats)
+            .where(eq(gamificationStats.userId, userId))
+            .get()?.lastActiveDate;
+          return {
+            xp: stats.xp,
+            level: stats.level,
+            xpIntoLevel: current,
+            xpForNextLevel: needed,
+            currentStreak: stats.currentStreak,
+            longestStreak: stats.longestStreak,
+            activeToday: !!lastActive && isSameUtcDay(lastActive, new Date()),
+          };
+        })(),
         exams: {
           attempts: examRows.length,
           passed: examRows.filter((s) => s.passed).length,
