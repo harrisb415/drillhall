@@ -2,7 +2,7 @@
 
 Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express + better-sqlite3 server, Better Auth (email/password + Google), content shipped as validated data packs.
 
-**Status: v1.2.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1101), A+ Core 2 (220-1102), Network+ (N10-009), Security+ (SY0-701).
+**Status: v1.3.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1101), A+ Core 2 (220-1102), Network+ (N10-009), Security+ (SY0-701).
 
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
@@ -13,6 +13,7 @@ Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite 
 - **Network+ and Security+ packs**, each grown to ~180+ questions, and a practice-mode fix so multiple-choice option order shuffles per session instead of favoring the first-listed choice.
 - **Self-service account deletion** at `/settings` — cascades through every owned table, including unlinking Google.
 - **Visual identity** — charcoal-and-brass palette, radial mastery gauges, score sparklines, rank insignia and a tiered streak flame. See below.
+- **Light/dark/system theme toggle**, and **installable as a PWA** on iOS and Android with an offline app shell. See below.
 
 ## Quickstart (dev)
 
@@ -149,6 +150,16 @@ All colour lives as CSS custom properties in `apps/client/src/index.css` — one
 **Motion is opt-out.** Every animation is defined in one block in `index.css` and every one is disabled under `prefers-reduced-motion: reduce`, including the count-up on the readiness figure and the confetti, which simply never fires.
 
 **Contrast is checked, not assumed.** Every foreground/background pair in both themes clears WCAG AA; the lowest is 4.59:1.
+
+**Theming.** The toggle writes `data-theme` on `<html>`; the dark palette applies either under `prefers-color-scheme: dark` when no explicit choice is set, or under `[data-theme="dark"]` regardless of the OS. Choosing "system" removes the attribute rather than resolving it, so the OS preference keeps being tracked live. An inline script in `index.html` applies the saved choice before first paint — deferring that to React means a flash of the wrong theme on every load.
+
+## Mobile & install
+
+The web app is the mobile app: it's responsive down to 375px and installable to the home screen on iOS and Android via `manifest.webmanifest`, launching standalone with no browser chrome and no app store.
+
+The service worker (`public/sw.js`) is deliberately small, with two rules. **It never touches `/api/*`** — those responses are per-user and session-scoped, and a cached authenticated response is a real hazard on a shared device. **Navigations are network-first**, with the cached shell as an offline fallback only; a cache-first shell is the well-worn way to leave users running last week's build. Content-hashed assets under `/assets/` are cached first, which is safe precisely because a changed file gets a new URL.
+
+Mobile specifics worth knowing, since each was a real bug: inputs are 16px below the `md` breakpoint because Safari iOS force-zooms anything smaller on focus and never zooms back; `viewport-fit=cover` plus `env(safe-area-inset-*)` keeps content clear of the notch and home indicator; and the 44px touch-target floor applies only under `(hover: none) and (pointer: coarse)`, with inline prose links exempt.
 
 ## Readiness scoring
 

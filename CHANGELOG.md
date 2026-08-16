@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.3.0] — 2026-08-16
+
+### Added
+- **Theme toggle** — light / system / dark, in the sidebar, the mobile header, the marketing header, and the auth pages. Three-way rather than a binary flip: "follow the system" is a real preference, and a two-state toggle strands anyone whose phone switches theme at sunset. The choice persists in `localStorage` and is applied by a small inline script before first paint, so there's no flash of the wrong theme on load. Picking "system" removes the override entirely rather than resolving it to a value, so the OS preference keeps being tracked live.
+- **Installable as a PWA** — web manifest, maskable and Apple touch icons, and a conservative service worker. Adds to the home screen on iOS and Android and launches standalone, with no app store involved.
+- **Offline shell.** The service worker never caches `/api/*` — those responses are per-user and session-scoped, and a cached authenticated response is a hazard on a shared device. Navigations are network-first with the cached shell as a fallback only, which avoids the usual PWA trap of users running a stale build after every deploy. Content-hashed assets are cached aggressively, since a changed file is a different URL.
+
+### Fixed
+- **iOS zoomed the page on every input focus.** Safari force-zooms when a focused input's font-size is under 16px and never zooms back out; inputs were 14px. Now 16px on mobile, 14px from `md` up.
+- **Content could sit under the notch and home indicator.** Added `viewport-fit=cover` with safe-area padding on the body, the mobile header, the main content area, and the level-up toast.
+- Touch targets are held to a 44px minimum on touch devices only, so desktop density is unaffected. Inline links inside prose are exempt, where a 44px floor would wreck line spacing.
+- Suppressed the grey tap-flash on touch devices and the page-level rubber-band scroll on iOS.
+
 ## [1.2.0] — 2026-08-16
 
 ### Changed

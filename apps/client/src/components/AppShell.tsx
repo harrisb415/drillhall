@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { authClient } from "@/lib/auth-client";
 import { useCertSwitcher } from "@/lib/cert-context";
 import { cn } from "@/lib/utils";
@@ -180,21 +181,27 @@ export function AppShell({ children }: { children: ReactNode }) {
         <nav className="flex-1 space-y-1 overflow-y-auto p-3">
           <NavItems />
         </nav>
-        <div className="border-t border-border p-4">
-          <div className="truncate text-sm font-medium">{session?.user.name}</div>
-          <div className="truncate text-xs text-muted-foreground">{session?.user.email}</div>
-          <Button variant="outline" size="sm" className="mt-3 w-full" onClick={handleSignOut}>
+        <div className="space-y-3 border-t border-border p-4">
+          <ThemeToggle />
+          <div>
+            <div className="truncate text-sm font-medium">{session?.user.name}</div>
+            <div className="truncate text-xs text-muted-foreground">{session?.user.email}</div>
+          </div>
+          <Button variant="outline" size="sm" className="w-full" onClick={handleSignOut}>
             Sign out
           </Button>
         </div>
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex items-center justify-between border-b border-border bg-card px-4 py-3 md:hidden">
+        <header className="flex items-center justify-between gap-2 border-b border-border bg-card px-4 py-3 pt-[max(0.75rem,env(safe-area-inset-top))] md:hidden">
           <div className="font-semibold">Drillhall</div>
-          <Button variant="ghost" size="sm" onClick={handleSignOut}>
-            Sign out
-          </Button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle className="w-28" />
+            <Button variant="ghost" size="sm" onClick={handleSignOut}>
+              Sign out
+            </Button>
+          </div>
         </header>
         <nav className="flex gap-1 overflow-x-auto border-b border-border bg-card px-2 py-2 md:hidden">
           <NavItems />
@@ -205,7 +212,9 @@ export function AppShell({ children }: { children: ReactNode }) {
 
         {unverified && <VerifyBanner email={session.user.email} />}
 
-        <main className="mx-auto w-full max-w-5xl flex-1 p-4 md:p-8">{children}</main>
+        <main className="mx-auto w-full max-w-5xl flex-1 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:p-8">
+          {children}
+        </main>
       </div>
     </div>
   );

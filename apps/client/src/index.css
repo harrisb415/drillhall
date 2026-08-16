@@ -63,8 +63,17 @@
   --strong: #2f7d32;
 }
 
+/* ---- dark palette -----------------------------------------------------
+   Applied in two cases, which plain CSS can't express in one rule because
+   one of them lives inside a media query:
+
+     1. the OS prefers dark AND the user hasn't explicitly chosen light
+     2. the user explicitly chose dark, whatever the OS says
+
+   The two blocks below MUST stay in sync. Edit one, edit the other. */
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --background: #141310;
     --foreground: #eae6dc;
     --card: #1c1a16;
@@ -91,6 +100,32 @@
   }
 }
 
+:root[data-theme="dark"] {
+  --background: #141310;
+  --foreground: #eae6dc;
+  --card: #1c1a16;
+  --card-foreground: #eae6dc;
+  --primary: #d9a441;
+  --primary-foreground: #1b1917;
+  --secondary: #262219;
+  --secondary-foreground: #eae6dc;
+  --muted: #262219;
+  --muted-foreground: #a09884;
+  --accent: #2c2519;
+  --accent-foreground: #e8c67a;
+  --destructive: #ef5350;
+  --destructive-foreground: #1b1917;
+  --success: #5fae5f;
+  --success-foreground: #10240f;
+  --border: #2f2b22;
+  --input: #3b3529;
+  --ring: #d9a441;
+
+  --weak: #e0794a;
+  --developing: #d9a441;
+  --strong: #6bbf6b;
+}
+
 body {
   @apply bg-background text-foreground antialiased;
   font-family:
@@ -102,6 +137,43 @@ body {
     "Helvetica Neue",
     Arial,
     sans-serif;
+  /* Keeps content clear of the notch and home indicator once the viewport is
+     allowed to extend under them (viewport-fit=cover in index.html). */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  /* Stops the whole page rubber-banding behind fixed UI on iOS. */
+  overscroll-behavior-y: none;
+}
+
+/* Grey flash on every tap looks broken on a touch device; focus rings and the
+   :active styles already communicate the press. */
+@media (hover: none) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Touch targets: the WCAG 2.5.8 / platform-HIG floor is 44px, and several
+   controls here are sized for a mouse. Applied only on genuinely touch
+   devices so desktop density is unaffected. */
+@media (hover: none) and (pointer: coarse) {
+  button,
+  [role="button"],
+  [role="radio"],
+  a[href],
+  select,
+  input[type="checkbox"],
+  input[type="radio"] {
+    min-height: 44px;
+  }
+
+  /* ...but not for links sitting inside a run of prose, where a 44px floor
+     would blow the line spacing apart. */
+  p a[href],
+  li a[href],
+  label a[href] {
+    min-height: 0;
+  }
 }
 
 /* Headings carry the brand voice: tight, deliberate, a little military.

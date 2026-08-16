@@ -47,7 +47,7 @@ export function LevelUpToast({ level }: { level: number }) {
   return (
     <div
       role="status"
-      className="animate-slide-up fixed bottom-4 right-4 z-50 flex items-center gap-3 rounded-lg border border-primary/40 bg-card p-3 pr-4 shadow-lg"
+      className="animate-slide-up fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-50 flex items-center gap-3 rounded-lg border border-primary/40 bg-card p-3 pr-4 shadow-lg"
     >
       <RankInsignia level={level} size={44} />
       <div>

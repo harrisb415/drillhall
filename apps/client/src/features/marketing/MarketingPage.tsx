@@ -2,6 +2,7 @@ import { Link, Navigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useCatalog } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
 import { ReadinessPreview } from "./ReadinessPreview";
@@ -72,6 +73,7 @@ export function MarketingPage() {
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
           <span className="text-lg font-semibold tracking-tight">Drillhall</span>
           <nav className="flex items-center gap-2">
+            <ThemeToggle className="mr-1 w-24" />
             <Link to="/login">
               <Button variant="ghost" size="sm">
                 Log in

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export function AuthLayout({
   title,
@@ -23,6 +24,7 @@ export function AuthLayout({
         </CardHeader>
         <CardContent>{children}</CardContent>
       </Card>
+      <ThemeToggle className="mt-6 w-32" />
     </div>
   );
 }
