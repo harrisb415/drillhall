@@ -1,0 +1,388 @@
+[
+  {
+    "id": "netplus-d1-mc-001",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which OSI layer is responsible for logical addressing and choosing the best path between networks?",
+    "choices": ["Layer 1, Physical", "Layer 2, Data Link", "Layer 3, Network", "Layer 4, Transport"],
+    "answerIndex": 2,
+    "explanation": "The Network layer handles logical (IP) addressing and path selection. Data Link handles MAC addressing on the local segment, and Transport handles end-to-end delivery guarantees."
+  },
+  {
+    "id": "netplus-d1-mc-002",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which OSI layer establishes, manages, and tears down connections between applications, and provides port-based multiplexing?",
+    "choices": ["Session", "Transport", "Presentation", "Data Link"],
+    "answerIndex": 1,
+    "explanation": "The Transport layer (TCP/UDP) multiplexes conversations using port numbers and, in TCP's case, manages connection setup, flow control, and reliability."
+  },
+  {
+    "id": "netplus-d1-mc-003",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What is the correct name for a Protocol Data Unit at the Data Link layer?",
+    "choices": ["Frame", "Packet", "Segment", "Bit stream"],
+    "answerIndex": 0,
+    "explanation": "Data Link layer PDUs are called frames. Layer 3 units are packets, Layer 4 TCP units are segments (UDP units are datagrams)."
+  },
+  {
+    "id": "netplus-d1-mc-004",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "When an application sends data down the OSI stack for transmission, what is this process called?",
+    "choices": ["Decapsulation", "Encapsulation", "Multiplexing", "Demodulation"],
+    "answerIndex": 1,
+    "explanation": "Encapsulation wraps data with each layer's own header (and sometimes trailer) as it moves down the stack. The receiving side reverses this through decapsulation."
+  },
+  {
+    "id": "netplus-d1-mc-005",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A branch office network connects every workstation to a single central switch. What topology is this?",
+    "choices": ["Bus", "Ring", "Star", "Full mesh"],
+    "answerIndex": 2,
+    "explanation": "In a star topology, every node has its own link back to a central device. It's easy to troubleshoot, but the central device is a single point of failure."
+  },
+  {
+    "id": "netplus-d1-mc-006",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "In a full mesh topology, what is the main tradeoff for the redundancy it provides?",
+    "choices": [
+      "It cannot support more than two devices",
+      "The number of required links grows quickly as devices are added, raising cost and complexity",
+      "It requires all devices to share one collision domain",
+      "It cannot be used with routed networks"
+    ],
+    "answerIndex": 1,
+    "explanation": "Full mesh gives every device a direct link to every other device, which maximizes redundancy but scales poorly — the link count grows by n(n-1)/2 as nodes are added."
+  },
+  {
+    "id": "netplus-d1-mc-007",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A data center design connects every leaf switch to every spine switch, with no direct leaf-to-leaf links. What is the main benefit of this spine-leaf architecture?",
+    "choices": [
+      "It eliminates the need for IP addressing",
+      "It provides predictable, low-latency paths with consistent hop count between any two leaf switches",
+      "It removes the need for redundant power supplies",
+      "It allows unlimited VLANs without trunking"
+    ],
+    "answerIndex": 1,
+    "explanation": "Spine-leaf ensures any server-to-server path crosses exactly one spine switch, giving consistent latency and high east-west bandwidth typical of modern data center traffic patterns."
+  },
+  {
+    "id": "netplus-d1-mc-008",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A campus network uses a star topology within each building but connects the buildings together in a partial mesh for redundancy. What is this overall design called?",
+    "choices": ["Bus topology", "Hybrid topology", "Ring topology", "Point-to-point topology"],
+    "answerIndex": 1,
+    "explanation": "A hybrid topology combines two or more basic topologies. Here, star wiring inside buildings is combined with a mesh between buildings."
+  },
+  {
+    "id": "netplus-d1-mc-009",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user connects a wireless keyboard, mouse, and headset to a laptop over Bluetooth. What type of network is this?",
+    "choices": ["LAN", "MAN", "PAN", "WAN"],
+    "answerIndex": 2,
+    "explanation": "A Personal Area Network covers a very short range around one person or device, typically using Bluetooth or similar short-range radio."
+  },
+  {
+    "id": "netplus-d1-mc-010",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A city government links several municipal buildings across downtown using leased fiber it does not own end-to-end beyond city limits. What best describes this network's scope?",
+    "choices": ["PAN", "LAN", "MAN", "SAN"],
+    "answerIndex": 2,
+    "explanation": "A Metropolitan Area Network spans a city or large campus footprint — larger than a single-building LAN but smaller than a WAN spanning regions or countries."
+  },
+  {
+    "id": "netplus-d1-mc-011",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company replaces static site-to-site VPN tunnels with a solution that centrally manages multiple branch connections and dynamically chooses the best underlying transport (MPLS, broadband, LTE) per application. What is this called?",
+    "choices": ["SD-WAN", "VPC peering", "A screened subnet", "A collapsed core"],
+    "answerIndex": 0,
+    "explanation": "SD-WAN abstracts and centrally manages WAN links across multiple transport types, steering traffic dynamically based on policy and link conditions rather than relying on static routing."
+  },
+  {
+    "id": "netplus-d1-mc-012",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What is the defining characteristic of Software-Defined Networking (SDN)?",
+    "choices": [
+      "It separates the control plane from the data plane so forwarding logic can be managed centrally",
+      "It replaces all physical switches with virtual machines",
+      "It eliminates the need for IP addressing",
+      "It is only usable inside a single vendor's hardware"
+    ],
+    "answerIndex": 0,
+    "explanation": "SDN centralizes the control plane (path/policy decisions) in a controller, separate from the data plane (packet forwarding) still done in switches, allowing programmatic, centralized management."
+  },
+  {
+    "id": "netplus-d1-mc-013",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A provider offers a virtual firewall, virtual router, and virtual load balancer that run as software instances instead of dedicated appliances. What concept does this describe?",
+    "choices": ["Network Function Virtualization (NFV)", "A VPC endpoint", "Anycast routing", "A screened subnet"],
+    "answerIndex": 0,
+    "explanation": "NFV replaces purpose-built network appliances with virtualized instances of the same functions running on standard hardware or in the cloud, easing scaling and management."
+  },
+  {
+    "id": "netplus-d1-mc-014",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "In cloud networking, what is a VPC?",
+    "choices": [
+      "A logically isolated private network segment within a public cloud provider",
+      "A physical router installed at the customer's edge",
+      "A type of cloud-based load balancer",
+      "A protocol for encrypting DNS queries"
+    ],
+    "answerIndex": 0,
+    "explanation": "A Virtual Private Cloud is a customer-defined, isolated slice of a public cloud provider's network, with its own IP space, subnets, and routing, similar in concept to a private on-premises LAN."
+  },
+  {
+    "id": "netplus-d1-mc-015",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An organization runs its ERP system in one cloud provider and its data analytics platform in a different cloud provider, with no on-premises component. What best describes this deployment?",
+    "choices": ["Hybrid cloud", "Multi-cloud", "Community cloud", "Private cloud"],
+    "answerIndex": 1,
+    "explanation": "Multi-cloud means using services from more than one public cloud provider. Hybrid cloud specifically mixes on-premises (private) infrastructure with public cloud resources."
+  },
+  {
+    "id": "netplus-d1-mc-016",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company wants a private, dedicated network connection from its data center to its cloud VPC instead of routing cloud traffic over the public internet. What kind of connectivity option is this?",
+    "choices": [
+      "A cloud direct connection / private circuit to the provider",
+      "A public NAT gateway",
+      "An anycast DNS record",
+      "A screened subnet"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cloud providers offer dedicated private circuits (such as AWS Direct Connect or Azure ExpressRoute) that bypass the public internet for more consistent latency, throughput, and security than a standard VPN."
+  },
+  {
+    "id": "netplus-d1-mc-017",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which two ports does traditional active-mode FTP use for control and data traffic, respectively?",
+    "choices": ["20 and 21", "21 and 20", "22 and 23", "69 and 21"],
+    "answerIndex": 1,
+    "explanation": "FTP uses port 21 for the control channel (commands, authentication) and port 20 for the actual data transfer in active mode."
+  },
+  {
+    "id": "netplus-d1-mc-018",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Why has Telnet largely been replaced by SSH for remote CLI administration?",
+    "choices": [
+      "Telnet only works over UDP",
+      "Telnet sends all traffic, including credentials, in cleartext",
+      "Telnet cannot reach devices on a different subnet",
+      "Telnet requires a GUI"
+    ],
+    "answerIndex": 1,
+    "explanation": "Telnet (port 23) transmits everything unencrypted, including login credentials, making it trivial to sniff on the wire. SSH (port 22) encrypts the entire session."
+  },
+  {
+    "id": "netplus-d1-mc-019",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which protocol is commonly used to transfer a router or switch configuration file to or from a device, and offers no authentication?",
+    "choices": ["TFTP", "SNMP", "LDAP", "NTP"],
+    "answerIndex": 0,
+    "explanation": "Trivial File Transfer Protocol (UDP port 69) is lightweight and unauthenticated, historically used for transferring firmware and configuration files on trusted management networks."
+  },
+  {
+    "id": "netplus-d1-mc-020",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user wants to read email from a phone and a laptop and see the same folder structure and read/unread status on both. Which protocol supports this, and why is it a better fit than the alternative?",
+    "choices": [
+      "POP3, because it deletes messages after download",
+      "IMAP, because it keeps mail and folder state synchronized on the server",
+      "SMTP, because it is used for retrieving mail",
+      "SNMP, because it supports multiple device polling"
+    ],
+    "answerIndex": 1,
+    "explanation": "IMAP (port 143) keeps messages and folder structure on the server and syncs state across multiple clients. POP3 (port 110) typically downloads and removes mail from the server, which breaks multi-device consistency."
+  },
+  {
+    "id": "netplus-d1-mc-021",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which protocol synchronizes device clocks across a network, and why does accurate time matter for network operations?",
+    "choices": [
+      "NTP; accurate timestamps are essential for correlating logs and validating certificates",
+      "SNMP; accurate timestamps are needed for polling interface counters",
+      "TFTP; accurate timestamps are needed for firmware transfers",
+      "LDAP; accurate timestamps are needed for directory replication only"
+    ],
+    "answerIndex": 0,
+    "explanation": "Network Time Protocol (UDP 123) keeps device clocks synchronized, which matters for correlating log and security events across devices and for time-sensitive certificate validation."
+  },
+  {
+    "id": "netplus-d1-mc-022",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A Windows file server shares folders that clients access over the network using \\\\server\\share paths. Which protocol and port does this rely on?",
+    "choices": ["SMB, port 445", "FTP, port 21", "NFS, port 2049", "RDP, port 3389"],
+    "answerIndex": 0,
+    "explanation": "Server Message Block (SMB), on TCP port 445, is the protocol behind native Windows file and printer sharing."
+  },
+  {
+    "id": "netplus-d1-mc-023",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A network needs at least 25 usable host addresses on a single subnet. Which CIDR prefix is the most efficient choice?",
+    "choices": ["/25", "/26", "/27", "/28"],
+    "answerIndex": 2,
+    "explanation": "A /27 provides 32 total addresses, 30 usable, which comfortably covers 25 hosts without wasting as many addresses as a /26 (62 usable) would."
+  },
+  {
+    "id": "netplus-d1-mc-024",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What advantage does VLSM (Variable Length Subnet Masking) provide over dividing a network into equal fixed-size subnets?",
+    "choices": [
+      "It allows subnets of different sizes to be carved from the same address block based on actual host needs, reducing waste",
+      "It removes the need for a default gateway",
+      "It automatically encrypts traffic between subnets",
+      "It doubles the available address space"
+    ],
+    "answerIndex": 0,
+    "explanation": "VLSM lets an administrator size each subnet to fit its actual number of hosts — a point-to-point WAN link might get a /30 while a user VLAN gets a /24 — instead of wasting addresses on uniform blocks."
+  },
+  {
+    "id": "netplus-d1-mc-025",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which of the following is entirely within the private, non-routable IPv4 address space defined by RFC 1918?",
+    "choices": ["172.32.5.10", "192.168.50.1", "11.0.0.5", "169.254.1.1"],
+    "answerIndex": 1,
+    "explanation": "192.168.0.0/16 is one of the three RFC 1918 private ranges. 172.32.0.0 is outside the 172.16.0.0/12 private block, 11.0.0.0 is public space, and 169.254.0.0/16 is the separate APIPA range."
+  },
+  {
+    "id": "netplus-d1-mc-026",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What is the correct rule for using the :: shorthand when writing an IPv6 address?",
+    "choices": [
+      ":: may be used any number of times in one address",
+      ":: may be used only once per address, replacing one or more consecutive groups of all-zero hextets",
+      ":: replaces the first hextet only",
+      ":: is only valid in link-local addresses"
+    ],
+    "answerIndex": 1,
+    "explanation": ":: can compress one contiguous run of all-zero 16-bit groups, and only once per address — otherwise the number of compressed groups would be ambiguous."
+  },
+  {
+    "id": "netplus-d1-mc-027",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What is the IPv6 loopback address, equivalent to 127.0.0.1 in IPv4?",
+    "choices": ["::0", "::1", "fe80::1", "ff02::1"],
+    "answerIndex": 1,
+    "explanation": "::1 (all zeros with a trailing 1) is the IPv6 loopback address, used by a host to test its own IP stack."
+  },
+  {
+    "id": "netplus-d1-mc-028",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which IPv6 address prefix range is reserved for multicast traffic?",
+    "choices": ["fe80::/10", "fc00::/7", "ff00::/8", "2000::/3"],
+    "answerIndex": 2,
+    "explanation": "ff00::/8 is reserved for IPv6 multicast. fe80::/10 is link-local, fc00::/7 is unique local, and 2000::/3 covers global unicast."
+  },
+  {
+    "id": "netplus-d1-mc-029",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company's mail flow depends on a DNS record that tells other mail servers where to deliver messages for its domain, including a priority value for multiple servers. Which record type is this?",
+    "choices": ["A", "MX", "TXT", "SRV"],
+    "answerIndex": 1,
+    "explanation": "MX (Mail Exchange) records specify the mail server(s) responsible for a domain, each with a preference value so senders know which to try first."
+  },
+  {
+    "id": "netplus-d1-mc-030",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which DNS record type resolves an IP address back to a hostname, and in which special zone does it live?",
+    "choices": [
+      "A PTR record, in an in-addr.arpa reverse lookup zone",
+      "A CNAME record, in the forward lookup zone",
+      "An SOA record, in the root zone",
+      "An NS record, in the forward lookup zone"
+    ],
+    "answerIndex": 0,
+    "explanation": "PTR records perform reverse DNS lookups (IP-to-name) and are stored in special in-addr.arpa (IPv4) or ip6.arpa (IPv6) zones."
+  },
+  {
+    "id": "netplus-d1-mc-031",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An administrator publishes a DNS TXT record containing SPF information for a domain. What is the general purpose of a TXT record?",
+    "choices": [
+      "It maps a hostname to an IPv6 address",
+      "It stores arbitrary text data, commonly used for domain verification and email authentication policies",
+      "It delegates a subdomain to another set of nameservers",
+      "It records the zone's serial number and refresh interval"
+    ],
+    "answerIndex": 1,
+    "explanation": "TXT records hold free-form text and are widely used for things like SPF, DKIM, and domain-ownership verification, rather than for direct name resolution."
+  },
+  {
+    "id": "netplus-d1-mc-032",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "When a client's stub resolver asks a recursive DNS resolver to look up a name, and that resolver in turn queries a root server, then a TLD server, then the authoritative server on the client's behalf, what is this overall process called?",
+    "choices": ["Zone transfer", "Recursive resolution", "Reverse lookup", "Split-horizon DNS"],
+    "answerIndex": 1,
+    "explanation": "Recursive resolution means the resolver does the full chain of queries itself and returns only the final answer to the client, rather than handing back referrals for the client to follow."
+  },
+  {
+    "id": "netplus-d1-mc-033",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A DHCP server hands out addresses from a defined pool of 192.168.10.50 through 192.168.10.200 for one subnet. What is this pool called?",
+    "choices": ["A reservation", "A scope", "A lease", "An exclusion"],
+    "answerIndex": 1,
+    "explanation": "A scope is the range of addresses a DHCP server is configured to lease out on a given subnet. Reservations pin specific addresses to specific MAC addresses within that scope."
+  },
+  {
+    "id": "netplus-d1-mc-034",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Clients on a remote subnet need to reach a DHCP server that lives on a different subnet, but DHCP discovery messages are broadcasts that routers don't forward by default. What allows this to work?",
+    "choices": [
+      "A DHCP relay agent (IP helper) configured on the router forwards the requests to the DHCP server",
+      "The clients must be manually assigned static addresses instead",
+      "DHCP reservations automatically cross subnet boundaries",
+      "NTP synchronizes the DHCP broadcast domains"
+    ],
+    "answerIndex": 0,
+    "explanation": "A DHCP relay agent, typically configured on the router interface (ip helper-address), converts the client's broadcast into a unicast forwarded to the remote DHCP server and relays the reply back."
+  },
+  {
+    "id": "netplus-d1-match-001",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each protocol to its default port number.",
+    "pairs": [
+      { "left": "FTP (control)", "right": "21" },
+      { "left": "Telnet", "right": "23" },
+      { "left": "TFTP", "right": "69" },
+      { "left": "SNMP", "right": "161" },
+      { "left": "LDAP", "right": "389" },
+      { "left": "SMB", "right": "445" }
+    ],
+    "explanation": "FTP control uses 21 (data uses 20), Telnet 23, TFTP 69 over UDP, SNMP agent polling on 161, LDAP directory queries on 389, and SMB file sharing on 445."
+  }
+]

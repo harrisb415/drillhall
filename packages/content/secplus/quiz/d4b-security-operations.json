@@ -1,0 +1,244 @@
+[
+  {
+    "id": "secplus-d4-mc-022",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A network device sends a short unsolicited alert message to a monitoring server the instant a specific threshold, like high CPU usage, is crossed. What is this alert mechanism called?",
+    "choices": ["An SNMP trap", "A NetFlow record", "A DLP alert", "A syslog facility"],
+    "answerIndex": 0,
+    "explanation": "An SNMP trap is pushed immediately from the managed device to the monitoring system when a defined condition occurs, rather than waiting for the next scheduled poll."
+  },
+  {
+    "id": "secplus-d4-mc-023",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which technology summarizes metadata about network traffic flows — source/destination IP, ports, and byte counts — without capturing full packet payloads?",
+    "choices": ["NetFlow", "An SNMP trap", "A honeytoken", "Static code analysis"],
+    "answerIndex": 0,
+    "explanation": "NetFlow records summarize conversations between hosts, which is efficient for spotting traffic patterns and anomalies at scale without the storage cost of full packet captures."
+  },
+  {
+    "id": "secplus-d4-mc-024",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which technology inspects outbound traffic and blocks an employee from emailing a file that contains what appears to be unmasked credit card numbers?",
+    "choices": ["Data loss prevention (DLP)", "A load balancer", "An IPS", "SNMP"],
+    "answerIndex": 0,
+    "explanation": "DLP inspects content in motion, at rest, or in use for sensitive data patterns and can automatically block or flag transfers that violate policy."
+  },
+  {
+    "id": "secplus-d4-mc-025",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which tool alerts administrators when the cryptographic hash of a critical system file changes unexpectedly, potentially indicating tampering?",
+    "choices": ["File integrity monitoring (FIM)", "A load balancer", "A proxy server", "NetFlow"],
+    "answerIndex": 0,
+    "explanation": "File integrity monitoring baselines hashes of critical files and alerts on unauthorized changes, which is useful for spotting rootkits or unauthorized configuration edits."
+  },
+  {
+    "id": "secplus-d4-mc-026",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A firewall rule set ends with a rule that silently drops any traffic not explicitly permitted by an earlier rule. What principle does this final rule enforce?",
+    "choices": ["Implicit deny", "Fail-open", "Least functionality", "Non-repudiation"],
+    "answerIndex": 0,
+    "explanation": "Implicit deny ensures that anything not specifically allowed is blocked by default, which is the safer default posture for firewall ACLs."
+  },
+  {
+    "id": "secplus-d4-mc-027",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization blocks employee access to known gambling and malware-hosting sites by sorting destination URLs into predefined categories. What capability is this?",
+    "choices": ["Web content filtering (URL categorization)", "DNS filtering only", "Network access control", "Data loss prevention"],
+    "answerIndex": 0,
+    "explanation": "URL/content categorization sorts destinations into groups like gambling, social media, or malware, letting policy block entire categories rather than maintaining a manual list."
+  },
+  {
+    "id": "secplus-d4-mc-028",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which Linux security mechanism enforces mandatory access control policies that confine what a process can do even if it is running as root?",
+    "choices": ["SELinux", "Group Policy", "802.1X", "A screened subnet"],
+    "answerIndex": 0,
+    "explanation": "SELinux applies mandatory access control labels and policies to processes and files, restricting actions beyond standard discretionary Linux permissions — even for root."
+  },
+  {
+    "id": "secplus-d4-mc-029",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An administrator disables Telnet on all network devices and requires SSH instead for remote management. What security principle does this change reflect?",
+    "choices": [
+      "Replacing an insecure protocol with a secure, encrypted equivalent",
+      "Implementing data loss prevention",
+      "Enabling fail-open behavior",
+      "Applying data classification labels"
+    ],
+    "answerIndex": 0,
+    "explanation": "Telnet transmits credentials and session data in cleartext, while SSH encrypts the session, so standardizing on secure protocols and ports is a core secure-protocol selection practice."
+  },
+  {
+    "id": "secplus-d4-mc-030",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which security control blocks a workstation from resolving the hostname of a known command-and-control domain, stopping malware from phoning home even if the endpoint agent misses it?",
+    "choices": ["DNS filtering", "File integrity monitoring", "SNMP", "A load balancer"],
+    "answerIndex": 0,
+    "explanation": "DNS filtering blocks resolution of malicious or unwanted domains at the name-lookup stage, cutting off communication before a connection can even be attempted."
+  },
+  {
+    "id": "secplus-d4-mc-031",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which email authentication record lets a receiving mail server verify that a message actually originated from a mail server the sending domain has authorized?",
+    "choices": ["SPF (Sender Policy Framework)", "DKIM", "DMARC", "S/MIME"],
+    "answerIndex": 0,
+    "explanation": "SPF publishes a DNS record listing which mail servers are authorized to send email for a domain, letting receiving servers reject mail from unauthorized sources claiming that domain."
+  },
+  {
+    "id": "secplus-d4-mc-032",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which email security mechanism attaches a cryptographic signature to outgoing messages so the receiving server can verify the message wasn't altered in transit and truly came from the claimed domain?",
+    "choices": ["DKIM (DomainKeys Identified Mail)", "SPF", "DMARC", "DLP"],
+    "answerIndex": 0,
+    "explanation": "DKIM signs outgoing messages with a private key; the receiving server checks the signature against a public key published in DNS to confirm authenticity and integrity."
+  },
+  {
+    "id": "secplus-d4-mc-033",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which email security policy tells receiving mail servers what action to take — quarantine, reject, or none — when a message fails both SPF and DKIM checks, and enables reporting on those failures?",
+    "choices": ["DMARC", "SPF", "DKIM", "S/MIME"],
+    "answerIndex": 0,
+    "explanation": "DMARC builds on SPF and DKIM by defining an enforcement policy for messages that fail authentication and providing aggregate reports back to the domain owner."
+  },
+  {
+    "id": "secplus-d4-mc-034",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which technology checks a device's security posture — patch level, antivirus status, disk encryption — before allowing it onto the corporate network, and can quarantine it into a remediation VLAN if it fails?",
+    "choices": ["Network access control (NAC)", "A load balancer", "A WAF", "DNS filtering"],
+    "answerIndex": 0,
+    "explanation": "NAC evaluates a connecting device against defined health and compliance criteria and can restrict or quarantine devices that don't meet the required posture."
+  },
+  {
+    "id": "secplus-d4-mc-035",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Compared to traditional signature-based antivirus, what capability does endpoint detection and response (EDR) add?",
+    "choices": [
+      "Continuous behavioral monitoring, correlation, and response actions across the endpoint",
+      "Blocking only traffic matching known malware file hashes",
+      "Filtering DNS requests at the network perimeter",
+      "Encrypting data at rest on the endpoint"
+    ],
+    "answerIndex": 0,
+    "explanation": "EDR continuously monitors endpoint behavior, correlates suspicious activity over time, and supports investigation and automated response — well beyond simple signature matching."
+  },
+  {
+    "id": "secplus-d4-mc-036",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A user authenticates once through a central identity provider and is then automatically granted access to several separate applications without logging in again to each. What capability does this describe?",
+    "choices": ["Single sign-on (SSO)", "Federation across separate organizations only", "Multifactor authentication", "Attestation"],
+    "answerIndex": 0,
+    "explanation": "SSO lets a user authenticate once with an identity provider and reuse that session across multiple applications, commonly implemented with protocols like SAML or OAuth."
+  },
+  {
+    "id": "secplus-d4-mc-037",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company grants system access based on each employee's job function — 'Accountant,' 'Manager,' 'Help Desk Tier 1' — rather than assigning permissions to each person individually. What access control model is this?",
+    "choices": ["Role-based access control (RBAC)", "Discretionary access control (DAC)", "Mandatory access control (MAC)", "Attribute-based access control (ABAC)"],
+    "answerIndex": 0,
+    "explanation": "RBAC assigns permissions to roles rather than individuals, so access changes automatically when someone's role changes instead of requiring manual per-user updates."
+  },
+  {
+    "id": "secplus-d4-mc-038",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An access control policy grants a document editor permission to a file only if the request comes from a company-managed device, during business hours, and from an employee in the finance department. What access control model combines these multiple contextual conditions?",
+    "choices": ["Attribute-based access control (ABAC)", "Role-based access control (RBAC)", "Discretionary access control (DAC)", "Mandatory access control (MAC)"],
+    "answerIndex": 0,
+    "explanation": "ABAC evaluates a combination of attributes — device, time, department, and more — at the time of the request, allowing far more granular and dynamic decisions than a role alone."
+  },
+  {
+    "id": "secplus-d4-mc-039",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "When an employee's role changes to no longer require access to a finance application, which identity lifecycle activity should immediately remove that access?",
+    "choices": ["De-provisioning", "Federation", "Attestation", "Interoperability"],
+    "answerIndex": 0,
+    "explanation": "De-provisioning removes or adjusts access rights promptly when they are no longer needed, which is essential to keeping permissions aligned with least privilege over time."
+  },
+  {
+    "id": "secplus-d4-mc-040",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A user logs in with only a registered device and a biometric scan — no password is entered at any point. What authentication approach is this?",
+    "choices": ["Passwordless authentication", "Single sign-on", "Federation", "Knowledge-based authentication"],
+    "answerIndex": 0,
+    "explanation": "Passwordless authentication replaces the shared secret entirely, typically combining a possession factor (a registered device or key) with an inherence factor (biometrics)."
+  },
+  {
+    "id": "secplus-d4-mc-041",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "During root cause analysis after an incident, the team determines the actual underlying failure that allowed the breach to occur, rather than just describing its symptoms. Why is this step important?",
+    "choices": [
+      "It ensures remediation addresses the true source of the problem so it doesn't recur",
+      "It replaces the need for a lessons-learned meeting",
+      "It is required before evidence can be collected",
+      "It eliminates the need for a chain of custody"
+    ],
+    "answerIndex": 0,
+    "explanation": "Root cause analysis looks past surface symptoms to identify the actual failure that enabled the incident, so the fix prevents recurrence instead of just patching the visible effect."
+  },
+  {
+    "id": "secplus-d4-mc-042",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Rather than waiting for an alert, an analyst proactively searches the environment for subtle signs of a compromise that automated tools haven't flagged, based on a hypothesis about attacker behavior. What activity is this?",
+    "choices": ["Threat hunting", "Vulnerability scanning", "Penetration testing", "Root cause analysis"],
+    "answerIndex": 0,
+    "explanation": "Threat hunting is a proactive, hypothesis-driven search for indicators of compromise that existing detections may have missed, rather than a reactive response to a triggered alert."
+  },
+  {
+    "id": "secplus-d4-mc-043",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "During an investigation, an analyst records the full contents of network traffic between a suspected compromised host and an external IP for detailed offline analysis. What is this data source called?",
+    "choices": ["A packet capture (PCAP)", "A dashboard", "An automated report", "A NetFlow summary"],
+    "answerIndex": 0,
+    "explanation": "A packet capture records complete raw traffic, including payloads, giving investigators the deepest level of detail compared to flow summaries or high-level dashboards."
+  },
+  {
+    "id": "secplus-d4-order-001",
+    "type": "order",
+    "domainCode": "4.0",
+    "prompt": "Place these incident response phases in the correct order, from the earliest stage to the final stage.",
+    "items": ["Preparation", "Detection", "Analysis", "Containment", "Eradication", "Recovery", "Lessons learned"],
+    "explanation": "Preparation builds readiness before an incident occurs; detection and analysis identify and scope it; containment, eradication, and recovery resolve it; and lessons learned captures improvements for next time."
+  },
+  {
+    "id": "secplus-d4-match-001",
+    "type": "match",
+    "domainCode": "4.0",
+    "prompt": "Match each access control model to its defining characteristic.",
+    "pairs": [
+      { "left": "Mandatory access control (MAC)", "right": "A central authority assigns fixed security labels/clearances that users cannot change" },
+      { "left": "Discretionary access control (DAC)", "right": "The resource's owner decides who else may access it" },
+      { "left": "Role-based access control (RBAC)", "right": "Permissions are tied to a job function rather than to an individual" },
+      { "left": "Attribute-based access control (ABAC)", "right": "Access decisions combine multiple contextual attributes like device, time, and location" }
+    ],
+    "explanation": "Each model decides access differently: MAC is centrally dictated and inflexible, DAC leaves the decision to the resource owner, RBAC groups permissions by role, and ABAC evaluates a combination of real-time attributes."
+  },
+  {
+    "id": "secplus-d4-term-001",
+    "type": "terminal",
+    "domainCode": "4.0",
+    "prompt": "Type the Windows command that displays detailed configuration information for all network adapters, including IP address, subnet mask, default gateway, and DNS servers.",
+    "expected": ["ipconfig /all"],
+    "explanation": "ipconfig /all shows the full network configuration for every adapter, which is useful during an investigation to confirm a host's actual DNS servers and DHCP lease details."
+  }
+]

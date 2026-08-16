@@ -1,0 +1,221 @@
+[
+  {
+    "id": "secplus-d4-mc-001",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company enrolls all employee smartphones in a management platform that can enforce encryption, remotely wipe lost devices, and separate corporate apps from personal ones. What is this platform called?",
+    "choices": ["Mobile device management (MDM)", "A jump server", "A screened subnet", "Network access control"],
+    "answerIndex": 0,
+    "explanation": "MDM centrally enforces security baselines on mobile devices — encryption, passcodes, remote wipe, and containerization of corporate data — regardless of who owns the device."
+  },
+  {
+    "id": "secplus-d4-mc-002",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which two actions are MOST important when establishing a secure baseline for a newly deployed router or switch?",
+    "choices": [
+      "Changing default administrative credentials and disabling unused ports/services",
+      "Enabling every available routing protocol for flexibility",
+      "Leaving default SNMP community strings for easier monitoring",
+      "Connecting the management interface directly to the public internet"
+    ],
+    "answerIndex": 0,
+    "explanation": "Default credentials and unnecessary open ports or services are among the first things attackers probe for, so changing credentials and disabling what isn't needed is a baseline hardening step for any network device."
+  },
+  {
+    "id": "secplus-d4-mc-003",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "When hardening cloud infrastructure, which practice best limits the damage a compromised service account could cause?",
+    "choices": [
+      "Assigning IAM roles based on least privilege",
+      "Granting every service account owner-level permissions for convenience",
+      "Disabling cloud provider logging to reduce noise",
+      "Using the same credentials across all cloud services"
+    ],
+    "answerIndex": 0,
+    "explanation": "Scoping IAM roles to only the permissions a service actually needs limits the blast radius if that account's credentials are ever compromised."
+  },
+  {
+    "id": "secplus-d4-mc-004",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "When securing an industrial control system (ICS/SCADA) environment, which priority typically outweighs confidentiality, unlike in a typical IT network?",
+    "choices": ["Availability", "Data classification", "Non-repudiation", "Deception technology"],
+    "answerIndex": 0,
+    "explanation": "In ICS/SCADA environments, an outage can halt physical processes or endanger safety, so uptime and availability are usually prioritized above confidentiality when trade-offs must be made."
+  },
+  {
+    "id": "secplus-d4-mc-005",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which security weakness is most commonly associated with consumer IoT devices deployed on a corporate network?",
+    "choices": [
+      "Default or hardcoded credentials that are rarely changed",
+      "Overly aggressive automatic patching",
+      "Excessive use of strong mutual TLS",
+      "Too many configurable security settings"
+    ],
+    "answerIndex": 0,
+    "explanation": "Many IoT devices ship with default or even hardcoded credentials and receive infrequent firmware updates, making them an easy foothold for attackers if left on a flat network."
+  },
+  {
+    "id": "secplus-d4-mc-006",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An embedded system running a real-time operating system (RTOS) in medical equipment cannot tolerate the unpredictable delays that patching or antivirus scanning might introduce. What does this constraint primarily affect?",
+    "choices": [
+      "How security controls must be selected to avoid impacting deterministic timing",
+      "Whether the device needs a data classification label",
+      "Whether the device needs a change management policy",
+      "Whether the device requires a digital signature"
+    ],
+    "answerIndex": 0,
+    "explanation": "RTOS-based embedded systems often require guaranteed response times, so security controls must be chosen and scheduled carefully to avoid introducing latency that could affect safety-critical timing."
+  },
+  {
+    "id": "secplus-d4-mc-007",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which wireless security improvement in WPA3 replaces the pre-shared key exchange used in WPA2-Personal with a method that resists offline password-guessing attacks?",
+    "choices": ["Simultaneous Authentication of Equals (SAE)", "WEP key rotation", "Open System Authentication", "MAC address filtering"],
+    "answerIndex": 0,
+    "explanation": "SAE replaces WPA2's four-way handshake with a more robust key exchange that protects against offline dictionary attacks even if an attacker captures the handshake."
+  },
+  {
+    "id": "secplus-d4-mc-008",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "In enterprise wireless deployments, which authentication mode requires each user to authenticate individually against a RADIUS server rather than sharing one network-wide passphrase?",
+    "choices": ["802.1X (Enterprise mode)", "WPA2-Personal (PSK)", "WEP", "Open authentication"],
+    "answerIndex": 0,
+    "explanation": "Enterprise mode ties wireless authentication to individual user credentials verified by a RADIUS server, unlike Personal mode, where every device shares the same static passphrase."
+  },
+  {
+    "id": "secplus-d4-mc-009",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A web application rejects any form submission containing unexpected characters or exceeding an expected length before processing it further. What secure coding practice is this?",
+    "choices": ["Input validation", "Code signing", "Static code analysis", "Sandboxing"],
+    "answerIndex": 0,
+    "explanation": "Input validation checks that data conforms to expected format, type, and length before it's processed, which blocks many injection and overflow attacks at the entry point."
+  },
+  {
+    "id": "secplus-d4-mc-010",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Setting the 'Secure' and 'HttpOnly' attributes on a session cookie accomplishes which two things, respectively?",
+    "choices": [
+      "Restricts the cookie to HTTPS connections and blocks client-side script access to it",
+      "Encrypts the cookie's contents and signs it with a digital certificate",
+      "Extends the cookie's expiration and increases its storage size",
+      "Shares the cookie across all subdomains and disables SameSite restrictions"
+    ],
+    "answerIndex": 0,
+    "explanation": "The Secure attribute ensures the cookie is only sent over encrypted HTTPS connections, while HttpOnly prevents JavaScript from reading the cookie, mitigating theft via cross-site scripting."
+  },
+  {
+    "id": "secplus-d4-mc-011",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which technique reviews an application's source code for security flaws without actually executing the program?",
+    "choices": ["Static code analysis (SAST)", "Dynamic code analysis", "Penetration testing", "Fuzzing"],
+    "answerIndex": 0,
+    "explanation": "Static analysis inspects source or compiled code directly, catching issues like hardcoded secrets or unsafe function calls before the application is ever run."
+  },
+  {
+    "id": "secplus-d4-mc-012",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Before installing an application update, an operating system verifies a cryptographic signature to confirm the publisher's identity and that the file hasn't been tampered with. What is this practice called?",
+    "choices": ["Code signing", "Input validation", "Data masking", "Sandboxing"],
+    "answerIndex": 0,
+    "explanation": "Code signing attaches a cryptographic signature tied to the publisher's certificate, letting the system verify both the source and integrity of the code before running it."
+  },
+  {
+    "id": "secplus-d4-mc-013",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A security team executes a suspicious email attachment inside an isolated virtual environment to observe its behavior without risking the production network. What is this technique called?",
+    "choices": ["Sandboxing", "Code signing", "Data masking", "Tokenization"],
+    "answerIndex": 0,
+    "explanation": "Sandboxing runs untrusted code in an isolated environment so its behavior can be safely observed and analyzed without any risk to real systems."
+  },
+  {
+    "id": "secplus-d4-mc-014",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "When retiring an old server that stored sensitive data, the organization has the drives shredded and receives formal documentation confirming the destruction. What does this documentation provide?",
+    "choices": [
+      "A certificate of destruction proving compliant, verifiable data sanitization",
+      "A business impact analysis",
+      "A vulnerability scan report",
+      "A service level agreement"
+    ],
+    "answerIndex": 0,
+    "explanation": "A certificate of destruction is formal, auditable proof that media was sanitized or destroyed according to policy, supporting compliance and data retention requirements during asset disposal."
+  },
+  {
+    "id": "secplus-d4-mc-015",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which standardized identifier uniquely names a specific publicly known software vulnerability so different tools and vendors can reference the same issue?",
+    "choices": ["CVE (Common Vulnerabilities and Exposures)", "CVSS", "SCAP", "IOC"],
+    "answerIndex": 0,
+    "explanation": "A CVE ID is a unique, standardized reference for a specific known vulnerability, letting scanners, vendors, and analysts all refer to the same issue unambiguously."
+  },
+  {
+    "id": "secplus-d4-mc-016",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A vulnerability is assigned a numeric score from 0 to 10 based on factors like attack complexity, privileges required, and potential impact, to help prioritize remediation. What scoring system is this?",
+    "choices": ["CVSS (Common Vulnerability Scoring System)", "CVE", "SCAP", "RTO"],
+    "answerIndex": 0,
+    "explanation": "CVSS produces a standardized severity score from measurable factors, giving teams a consistent basis for prioritizing which vulnerabilities to remediate first."
+  },
+  {
+    "id": "secplus-d4-mc-017",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A security team subscribes to a service that publishes newly observed attacker IP addresses, malware hashes, and campaign details gathered from across the industry. What is this source called?",
+    "choices": ["A threat feed", "A vulnerability scanner", "A SIEM", "A jump server"],
+    "answerIndex": 0,
+    "explanation": "A threat intelligence feed delivers ongoing, externally sourced indicators and context about active threats, which teams use to proactively tune defenses and hunt for compromise."
+  },
+  {
+    "id": "secplus-d4-mc-018",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An independent researcher discovers a flaw in a company's product, privately reports it to the vendor, and is paid a reward once the vendor confirms and fixes it. What is this program called?",
+    "choices": ["A bug bounty program", "A penetration test", "A gap analysis", "A tabletop exercise"],
+    "answerIndex": 0,
+    "explanation": "Bug bounty programs formally invite outside researchers to responsibly disclose vulnerabilities in exchange for a defined reward, extending an organization's testing beyond its internal team."
+  },
+  {
+    "id": "secplus-d4-mc-019",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A critical vulnerability is found in a legacy application that cannot be patched without breaking a required business process. The team instead adds strict network segmentation and enhanced monitoring around it. What remediation approach is this?",
+    "choices": ["A compensating control", "An exception", "Risk avoidance", "Vulnerability acceptance with no action"],
+    "answerIndex": 0,
+    "explanation": "When the ideal fix (patching) isn't possible, a compensating control provides an alternative safeguard that reduces the same risk through a different means."
+  },
+  {
+    "id": "secplus-d4-mc-020",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "After patching a previously vulnerable server, the team runs another vulnerability scan against it specifically to confirm the finding no longer appears. What is this step called?",
+    "choices": ["Rescanning (validation)", "Threat hunting", "Root cause analysis", "Risk avoidance"],
+    "answerIndex": 0,
+    "explanation": "Rescanning confirms that remediation actually resolved the finding, closing the loop on the vulnerability management process rather than assuming the patch worked."
+  },
+  {
+    "id": "secplus-d4-mc-021",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A department requests formal, time-limited approval to remain out of compliance with a security standard for a specific vulnerable system while a long-term fix is planned. What is this formal approval called?",
+    "choices": ["An exception (or exemption)", "A compensating control", "A risk register", "A gap analysis"],
+    "answerIndex": 0,
+    "explanation": "An exception or exemption formally documents and approves a temporary or permanent deviation from policy, with accountability and an expiration or review date, rather than simply ignoring the requirement."
+  }
+]

@@ -1,0 +1,363 @@
+[
+  {
+    "id": "netplus-d5-mc-001",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A cable run passes close alongside several other active cables, and one pair's signal induces noise onto an adjacent pair within the same cable. What is this phenomenon called?",
+    "choices": ["Attenuation", "Crosstalk", "Latency", "Collision"],
+    "answerIndex": 1,
+    "explanation": "Crosstalk (near-end crosstalk, or NEXT) is signal bleed between adjacent wire pairs. Proper twisting of pairs is designed specifically to cancel this out; damaged or untwisted sections make it worse."
+  },
+  {
+    "id": "netplus-d5-mc-002",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A fiber run measures a signal loss of 0.5 dB per kilometer, and the link fails once the run exceeds the transceiver's power budget. What is this signal weakening over distance called?",
+    "choices": ["Attenuation", "Crosstalk", "Jitter", "A split pair"],
+    "answerIndex": 0,
+    "explanation": "Attenuation is the gradual loss of signal strength as it travels down a cable, measured in dB. Every cable type has a maximum supported distance before attenuation exceeds what the receiver can reliably decode."
+  },
+  {
+    "id": "netplus-d5-mc-003",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A newly terminated Ethernet cable links two devices, but the connection never comes up even though a link light is present on one end. A cable tester shows pins 1/2 and 3/6 swapped between the two ends. What is this fault called?",
+    "choices": ["TX/RX reversed", "A short circuit", "Attenuation", "An open circuit"],
+    "answerIndex": 0,
+    "explanation": "When the transmit and receive pairs are wired backward relative to each other, the two ends can't understand each other even if a physical link is detected. Straight-through cables must keep TX at one end aligned with RX at the other."
+  },
+  {
+    "id": "netplus-d5-mc-004",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A cable tester reports infinite resistance on one conductor of a copper run, and the link never comes up at all. What kind of fault does this indicate?",
+    "choices": ["A short circuit", "An open circuit (a break in the conductor)", "Crosstalk", "A duplex mismatch"],
+    "answerIndex": 1,
+    "explanation": "An open circuit means the conductor is physically broken somewhere along its length, so no current or signal can pass — infinite resistance is exactly what an open shows on a continuity test."
+  },
+  {
+    "id": "netplus-d5-mc-005",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two conductors that should be separate are touching somewhere along a cable run, and a continuity tester shows near-zero resistance between wires that shouldn't be connected. What fault is this?",
+    "choices": ["An open circuit", "A short circuit", "Attenuation", "A split pair"],
+    "answerIndex": 1,
+    "explanation": "A short circuit occurs when two conductors that should be electrically isolated make unintended contact, which a tester reads as abnormally low resistance between them."
+  },
+  {
+    "id": "netplus-d5-mc-006",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation's connection drops intermittently whenever the cable is nudged near the wall plate, and visual inspection shows a cracked, poorly seated RJ45 connector. What is the most likely root cause of the intermittent connectivity?",
+    "choices": ["DHCP scope exhaustion", "A damaged or improperly seated connector", "DNS cache poisoning", "MTU mismatch"],
+    "answerIndex": 1,
+    "explanation": "A physically damaged or loose connector can make and break contact with slight movement, producing exactly this kind of intermittent, physically triggered disconnect."
+  },
+  {
+    "id": "netplus-d5-mc-007",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician wants to run a single Cat6 segment 130 meters from the switch to a workstation with no intermediate equipment. What problem should be expected?",
+    "choices": [
+      "None — copper Ethernet has no meaningful distance limit",
+      "The run exceeds the 100-meter maximum distance for standard copper Ethernet and will likely fail or perform unreliably",
+      "It will work but only at half the rated speed automatically",
+      "It will only be a problem if the cable is Cat5e instead of Cat6"
+    ],
+    "answerIndex": 1,
+    "explanation": "Twisted-pair Ethernet standards specify a 100-meter maximum segment length (including patch cords). Beyond that, attenuation degrades the signal past what the receiver can reliably interpret, requiring a repeater, switch, or media conversion to fiber."
+  },
+  {
+    "id": "netplus-d5-mc-008",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which tool verifies that all eight conductors in a copper cable are wired straight-through and continuous, quickly flagging opens, shorts, and miswires?",
+    "choices": ["A cable tester (wiremap tester)", "An OTDR", "A tone generator and probe", "A packet sniffer"],
+    "answerIndex": 0,
+    "explanation": "A basic cable tester checks the wiremap and continuity of each pin end-to-end, which is the fastest way to confirm a newly terminated cable is wired correctly before it's put into service."
+  },
+  {
+    "id": "netplus-d5-mc-009",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A copper cable tests as having a break, but the run is buried and its exact physical location is unknown. Which tool pinpoints the distance to the fault?",
+    "choices": ["A Time Domain Reflectometer (TDR)", "A multimeter", "A toner probe", "A loopback adapter"],
+    "answerIndex": 0,
+    "explanation": "A TDR sends a signal down the cable and measures the time it takes to reflect back off a fault, calculating the distance to the break so technicians can locate and repair it without digging up the entire run."
+  },
+  {
+    "id": "netplus-d5-mc-010",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which tool is the fiber-optic equivalent of a TDR, sending light pulses down a fiber strand to locate breaks and measure loss at each splice or connector?",
+    "choices": ["An OTDR (Optical Time Domain Reflectometer)", "A cable certifier", "A tone generator", "A punch-down tool"],
+    "answerIndex": 0,
+    "explanation": "An OTDR characterizes a fiber run's loss profile end-to-end and can identify the location of breaks, bad splices, or excessive bends by analyzing reflected and backscattered light."
+  },
+  {
+    "id": "netplus-d5-mc-011",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician needs to identify which of dozens of unlabeled cables in a wiring closet corresponds to a specific wall jack. Which tool set is designed for exactly this?",
+    "choices": ["A tone generator and probe", "An OTDR", "A multimeter", "A loopback adapter"],
+    "answerIndex": 0,
+    "explanation": "A tone generator injects an audible signal onto a cable at one end, and the probe detects that tone at the other end, letting a technician trace a specific cable through a bundle or wall without visual continuity."
+  },
+  {
+    "id": "netplus-d5-mc-012",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician wants to verify a switch port's transmit and receive circuitry is functioning without connecting it to another live device. What tool plugs directly into the port to test this?",
+    "choices": ["A loopback adapter", "A tone generator", "An OTDR", "A packet sniffer"],
+    "answerIndex": 0,
+    "explanation": "A loopback adapter wires the transmit pins directly back to the receive pins, letting a port test its own send/receive circuitry in isolation, without needing a second device on the other end."
+  },
+  {
+    "id": "netplus-d5-mc-013",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician suspects a PoE switch port isn't delivering the expected voltage to an access point. Which basic tool measures voltage, continuity, and resistance directly?",
+    "choices": ["A multimeter", "A protocol analyzer", "A port scanner", "An IPAM system"],
+    "answerIndex": 0,
+    "explanation": "A multimeter measures electrical properties like voltage, current, resistance, and continuity, making it useful for verifying power delivery issues such as a PoE port not supplying the expected voltage."
+  },
+  {
+    "id": "netplus-d5-mc-014",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which command-line tool sends ICMP echo requests to test basic reachability and round-trip time to a host?",
+    "choices": ["ping", "netstat", "nslookup", "arp"],
+    "answerIndex": 0,
+    "explanation": "ping is the most basic connectivity test, sending ICMP echo requests and reporting whether replies come back and how long they take."
+  },
+  {
+    "id": "netplus-d5-mc-015",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which Windows command displays the full IP configuration of every network adapter, including IP address, subnet mask, default gateway, and DNS servers?",
+    "choices": ["ipconfig /all", "netstat -an", "nslookup", "tracert"],
+    "answerIndex": 0,
+    "explanation": "ipconfig /all shows complete adapter details. Plain ipconfig shows a shorter summary without DNS servers, MAC address, or lease information."
+  },
+  {
+    "id": "netplus-d5-mc-016",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation shows a stale DHCP lease and needs to give it up and immediately request a new one. Which pair of Windows commands accomplishes this?",
+    "choices": ["ipconfig /release then ipconfig /renew", "ipconfig /flushdns then ipconfig /registerdns", "netstat -r then netstat -e", "nslookup then arp -a"],
+    "answerIndex": 0,
+    "explanation": "ipconfig /release gives up the current DHCP lease, and ipconfig /renew immediately requests a fresh one from the DHCP server, which is useful when a client has a bad or stale address."
+  },
+  {
+    "id": "netplus-d5-mc-017",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician wants to query a domain's MX records specifically, rather than its default A record, directly from the command line. Which tool supports this?",
+    "choices": ["nslookup", "ping", "arp -a", "netstat"],
+    "answerIndex": 0,
+    "explanation": "nslookup (or dig on Linux/macOS) can query specific DNS record types like MX, TXT, or NS, not just the default A/AAAA lookup, which is useful for troubleshooting mail flow or DNS delegation."
+  },
+  {
+    "id": "netplus-d5-mc-018",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which command lists all active TCP connections and listening ports on a local Windows machine?",
+    "choices": ["netstat -an", "ipconfig /all", "tracert", "nslookup"],
+    "answerIndex": 0,
+    "explanation": "netstat -an shows active connections and listening ports numerically, which helps identify unexpected open ports or unwanted outbound connections."
+  },
+  {
+    "id": "netplus-d5-mc-019",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician wants both the hop-by-hop path to a destination and statistical packet loss/latency data at each hop over time, combined into a single tool. Which command provides this?",
+    "choices": ["pathping", "ping -t", "arp -a", "ipconfig /all"],
+    "answerIndex": 0,
+    "explanation": "pathping combines the hop discovery of tracert with extended statistics gathered over time at each hop, making it useful for spotting exactly where intermittent loss is occurring along a path."
+  },
+  {
+    "id": "netplus-d5-mc-020",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Before deploying a new server, a security-conscious admin scans it from another host to see which TCP ports are open and responding. What kind of tool is being used?",
+    "choices": ["A port scanner", "A tone generator", "A TDR", "An IPAM system"],
+    "answerIndex": 0,
+    "explanation": "A port scanner probes a range of ports on a target host to determine which are open, closed, or filtered — useful both for attackers and for defenders auditing their own exposure."
+  },
+  {
+    "id": "netplus-d5-mc-021",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user complains that file downloads are much slower than their ISP's advertised plan. Which tool measures actual throughput to a distant test server for comparison?",
+    "choices": ["A speed test utility", "arp -a", "A cable tester", "A loopback adapter"],
+    "answerIndex": 0,
+    "explanation": "Speed test tools measure real-world upload and download throughput (and often latency) against a nearby test server, giving a practical comparison against the advertised or contracted bandwidth."
+  },
+  {
+    "id": "netplus-d5-mc-022",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A wireless network in an office kitchen area experiences frequent dropouts whenever the microwave oven is running. What is the most likely cause?",
+    "choices": [
+      "RF interference from the microwave on the 2.4 GHz band",
+      "A duplicate IP address",
+      "MTU mismatch",
+      "DNS cache poisoning"
+    ],
+    "answerIndex": 0,
+    "explanation": "Microwave ovens, along with cordless phones and some Bluetooth devices, operate in or near the 2.4 GHz band and can cause significant interference to Wi-Fi on that band."
+  },
+  {
+    "id": "netplus-d5-mc-023",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two access points in adjacent rooms are both set to the same 2.4 GHz channel, and clients near the boundary experience poor throughput and retries. What is this problem called?",
+    "choices": ["Channel overlap / co-channel interference", "MTU mismatch", "A duplicate IP address", "Asymmetrical routing"],
+    "answerIndex": 0,
+    "explanation": "When neighboring APs share the same or overlapping channels, their signals interfere with each other, forcing more retransmissions and reducing throughput for clients in the overlap zone. Staggering non-overlapping channels (1, 6, 11 on 2.4 GHz) avoids this."
+  },
+  {
+    "id": "netplus-d5-mc-024",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Users at the far end of a warehouse report very weak or absent Wi-Fi signal, while users near the single access point have no issues. What is the most likely explanation?",
+    "choices": [
+      "Insufficient coverage — the AP placement and count don't adequately cover the whole space",
+      "A rogue DHCP server",
+      "An MTU mismatch",
+      "VLAN hopping"
+    ],
+    "answerIndex": 0,
+    "explanation": "A dead zone at the far end of a large space typically means the existing AP or APs simply don't reach that area with sufficient signal strength — the fix is usually additional APs or better placement, informed by a site survey."
+  },
+  {
+    "id": "netplus-d5-mc-025",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An access point is mounted flat against a metal ceiling duct, and coverage in the room below is noticeably worse than expected for its rated range. What is the most likely issue?",
+    "choices": [
+      "Poor antenna placement, with a large metal obstruction blocking and reflecting the signal",
+      "A DHCP scope exhaustion",
+      "An open circuit in the Ethernet cable",
+      "A DNS resolution failure"
+    ],
+    "answerIndex": 0,
+    "explanation": "RF signals are absorbed and reflected by metal. Mounting an AP against or near large metal surfaces significantly degrades coverage regardless of the AP's rated range."
+  },
+  {
+    "id": "netplus-d5-mc-026",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An access point installed to cover a long hallway uses an omnidirectional antenna, and coverage trails off quickly at both ends of the hall despite adequate signal in the middle rooms off to the side. What would likely improve this?",
+    "choices": [
+      "Replacing the omnidirectional antenna with a directional antenna aimed down the hallway",
+      "Lowering the AP's transmit power",
+      "Switching from WPA3 to WPA2",
+      "Changing the DHCP scope"
+    ],
+    "answerIndex": 0,
+    "explanation": "An omnidirectional antenna spreads signal evenly in all directions, which wastes energy to the sides in a long, narrow space. A directional antenna focused down the hallway would concentrate coverage where it's actually needed."
+  },
+  {
+    "id": "netplus-d5-mc-027",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation can reach every other device on its local subnet but cannot reach anything beyond it, including the internet. Its IP configuration shows a gateway address that doesn't exist on that subnet. What is the likely cause?",
+    "choices": ["An incorrect default gateway", "A duplicate IP address", "DNS cache poisoning", "Channel overlap"],
+    "answerIndex": 0,
+    "explanation": "Local subnet traffic doesn't need a gateway, but anything destined off-subnet does. A wrong or unreachable default gateway address explains connectivity that works locally but fails everywhere else."
+  },
+  {
+    "id": "netplus-d5-mc-028",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user's laptop periodically loses network connectivity and Windows displays a warning that another device on the network is using the same IP address. What is the underlying problem?",
+    "choices": ["A duplicate IP address, likely from a static assignment conflicting with the DHCP scope", "An MTU mismatch", "A rogue DHCP server exhausting the scope", "Asymmetrical routing"],
+    "answerIndex": 0,
+    "explanation": "Two devices with the same IP on one segment will intermittently disrupt each other's connectivity, and Windows explicitly warns about this condition. It's commonly caused by a statically assigned address that overlaps with the DHCP scope."
+  },
+  {
+    "id": "netplus-d5-mc-029",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user can successfully ping 8.8.8.8 but cannot browse to any website by name, and pinging a website's name fails to resolve. What category of problem is this?",
+    "choices": ["A DNS resolution failure", "A duplicate IP address", "A cable open circuit", "PoE power delivery failure"],
+    "answerIndex": 0,
+    "explanation": "Reaching an IP address directly but failing on names points squarely at DNS — either the configured resolver is unreachable, misconfigured, or the record itself has a problem."
+  },
+  {
+    "id": "netplus-d5-mc-030",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "New devices on a large office subnet suddenly stop receiving IP addresses, while existing devices remain unaffected until their leases expire. What is the most likely cause?",
+    "choices": ["DHCP scope exhaustion — the pool of available addresses has been used up", "A DNS cache poisoning attack", "An OTDR misconfiguration", "A native VLAN mismatch"],
+    "answerIndex": 0,
+    "explanation": "If a DHCP scope runs out of free addresses, new lease requests simply can't be satisfied, while devices that already hold a valid lease keep working until it expires or is released."
+  },
+  {
+    "id": "netplus-d5-mc-031",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A stateful firewall randomly drops legitimate sessions because outbound traffic leaves through one ISP link while the return traffic comes back through a different ISP link that never saw the original request. What is this routing condition called?",
+    "choices": ["Asymmetrical routing", "A duplicate IP address", "Channel overlap", "A split pair"],
+    "answerIndex": 0,
+    "explanation": "Asymmetrical routing happens when outbound and return traffic take different paths. Stateful devices like firewalls that only saw one direction of the conversation may treat the return traffic as unsolicited and drop it."
+  },
+  {
+    "id": "netplus-d5-mc-032",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A video call has acceptable overall latency, but audio periodically stutters and cuts out because packet arrival times vary wildly from one moment to the next. What is this variation in delay called?",
+    "choices": ["Jitter", "Attenuation", "Crosstalk", "Split pair"],
+    "answerIndex": 0,
+    "explanation": "Jitter is the variation in packet delay over time. Real-time traffic like voice and video is especially sensitive to jitter, since inconsistent arrival timing disrupts smooth playback even when average latency looks fine."
+  },
+  {
+    "id": "netplus-d5-mc-033",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "During business hours, file transfers across the WAN link slow dramatically, and monitoring shows the circuit consistently running near 100% utilization at those times. What is this best described as?",
+    "choices": ["A bandwidth bottleneck", "A duplicate IP address", "DNS cache poisoning", "A split pair"],
+    "answerIndex": 0,
+    "explanation": "When a link's actual demand regularly approaches or exceeds its capacity, throughput for everyone sharing it degrades — a bandwidth bottleneck, typically resolved by upgrading capacity, adding a second path, or applying QoS."
+  },
+  {
+    "id": "netplus-d5-mc-034",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "After a VPN tunnel is deployed, small pings succeed but transfers involving large packets stall or fail silently, with no ICMP error returned because a device along the path has fragmentation-blocking rules. What is the likely cause?",
+    "choices": ["An MTU mismatch", "A duplicate IP address", "A wrong default gateway", "Channel overlap"],
+    "answerIndex": 0,
+    "explanation": "Tunneling protocols add overhead that can push packets past the path's maximum transmission unit. If ICMP 'fragmentation needed' messages are blocked somewhere along the way, large packets are silently dropped instead of being fragmented or rejected with a clear error."
+  },
+  {
+    "id": "netplus-d5-mc-035",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation was moved to a new switch port that was accidentally left assigned to the wrong VLAN. What symptom would this most likely produce?",
+    "choices": [
+      "The device gets an IP address (if the wrong VLAN also has DHCP) but cannot reach resources that live on its intended VLAN",
+      "The cable will show an open circuit on a tester",
+      "The switch port will show a duplex mismatch",
+      "The device will be unable to power on"
+    ],
+    "answerIndex": 0,
+    "explanation": "An incorrect VLAN assignment is a configuration problem, not a physical one — the port and cable are fine, but the device ends up logically on the wrong segment, cut off from the resources and gateway it expects to reach."
+  },
+  {
+    "id": "netplus-d5-order-001",
+    "type": "order",
+    "domainCode": "5.0",
+    "prompt": "When troubleshooting a connectivity problem using a bottom-up approach, place these OSI layers in the order they would be checked first to last.",
+    "items": ["Physical", "Data Link", "Network", "Transport", "Application"],
+    "explanation": "A bottom-up approach rules out the simplest, most fundamental causes first — cabling and link status — before moving up through addressing, connections, and finally the application itself."
+  },
+  {
+    "id": "netplus-d5-term-001",
+    "type": "terminal",
+    "domainCode": "5.0",
+    "prompt": "Type the Windows command that clears the local DNS resolver cache.",
+    "expected": ["ipconfig /flushdns"],
+    "explanation": "ipconfig /flushdns discards all cached DNS entries, forcing the next lookups to be resolved fresh — useful after a DNS record change or when a stale/poisoned entry is suspected."
+  }
+]

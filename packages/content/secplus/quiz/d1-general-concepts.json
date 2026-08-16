@@ -1,0 +1,182 @@
+[
+  {
+    "id": "secplus-d1-mc-001",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company's requirement that all new hires undergo a background check before being granted system access is documented in policy. Which control category does this represent?",
+    "choices": ["Managerial", "Technical", "Physical", "Corrective"],
+    "answerIndex": 0,
+    "explanation": "Managerial controls are administrative in nature — policies, procedures, and risk-based decisions like a background-check requirement — rather than technology or physical hardware."
+  },
+  {
+    "id": "secplus-d1-mc-002",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Posting a sign that reads 'Premises protected by 24-hour video surveillance' at a facility entrance is an example of which control type?",
+    "choices": ["Deterrent", "Detective", "Corrective", "Compensating"],
+    "answerIndex": 0,
+    "explanation": "A deterrent control discourages an attack before it's attempted; the sign itself doesn't detect or stop anything, it just makes the target look less appealing."
+  },
+  {
+    "id": "secplus-d1-mc-003",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A security analyst reviews the previous night's camera footage and discovers an unauthorized person entered the server room. Which control type made this discovery possible?",
+    "choices": ["Detective", "Preventive", "Deterrent", "Directive"],
+    "answerIndex": 0,
+    "explanation": "Detective controls identify that an event occurred, often after the fact — reviewing footage to discover an intrusion is detection, not prevention."
+  },
+  {
+    "id": "secplus-d1-mc-004",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "After a server is infected with ransomware, the team wipes the disk and restores data from a clean backup. Which control type does this action represent?",
+    "choices": ["Corrective", "Deterrent", "Detective", "Preventive"],
+    "answerIndex": 0,
+    "explanation": "Corrective controls act after an incident to restore normal operations and limit damage, such as restoring from backup rather than preventing or merely detecting the event."
+  },
+  {
+    "id": "secplus-d1-mc-005",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A firewall rule that blocks all inbound traffic on an unused port before any connection attempt reaches the host is an example of which control type?",
+    "choices": ["Preventive", "Detective", "Corrective", "Compensating"],
+    "answerIndex": 0,
+    "explanation": "Preventive controls stop an event from happening in the first place; the traffic is blocked before it can ever reach the target."
+  },
+  {
+    "id": "secplus-d1-mc-006",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which physical security mechanism uses a small interlocking two-door space that only allows one person through at a time, preventing tailgating into a secure area?",
+    "choices": ["Access control vestibule", "Bollard", "Faraday cage", "Air gap"],
+    "answerIndex": 0,
+    "explanation": "An access control vestibule (mantrap) traps a single individual between two doors, with the second door unlocking only after the first has closed and identity is verified — defeating tailgating."
+  },
+  {
+    "id": "secplus-d1-mc-007",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which physical control is specifically designed to stop a vehicle from ramming into a building entrance?",
+    "choices": ["Bollards", "Access control vestibule", "Motion-activated lighting", "Signage"],
+    "answerIndex": 0,
+    "explanation": "Bollards are short, sturdy vertical posts installed to physically block vehicle access while still allowing pedestrians through."
+  },
+  {
+    "id": "secplus-d1-mc-008",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "In a zero trust architecture, which component evaluates a request against policy and makes the final decision to grant, deny, or revoke access?",
+    "choices": ["Policy engine", "Policy enforcement point", "Subject", "Data plane"],
+    "answerIndex": 0,
+    "explanation": "The policy engine is the decision-making component of the control plane; it evaluates trust algorithms and policy to decide whether access should be granted."
+  },
+  {
+    "id": "secplus-d1-mc-009",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "In a zero trust architecture, which component sits inline between a subject and a resource and actually enables, monitors, or terminates the connection once a decision has been made?",
+    "choices": ["Policy enforcement point", "Policy engine", "Policy administrator", "Trust broker"],
+    "answerIndex": 0,
+    "explanation": "The policy enforcement point lives in the data plane and is the actual gatekeeper that opens, monitors, or shuts down the connection once the control plane has made its decision."
+  },
+  {
+    "id": "secplus-d1-mc-010",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "In zero trust terminology, what is the area on the resource side of the policy enforcement point — where traffic is no longer separately verified — called?",
+    "choices": ["An implicit trust zone", "The control plane", "A subject", "A screened subnet"],
+    "answerIndex": 0,
+    "explanation": "The implicit trust zone is the space where messages travel without further verification once they've passed the enforcement point, so zero trust designs try to keep these zones as small as possible."
+  },
+  {
+    "id": "secplus-d1-mc-011",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A zero trust system grants a user fewer privileges when they log in from an unfamiliar country on an unmanaged device than when they log in from their usual office. Which zero trust concept does this describe?",
+    "choices": ["Adaptive identity", "Implicit trust", "Federation", "Non-repudiation"],
+    "answerIndex": 0,
+    "explanation": "Adaptive identity evaluates contextual signals — location, device posture, behavior — and adjusts trust and access dynamically rather than granting a fixed level of trust once a user logs in."
+  },
+  {
+    "id": "secplus-d1-mc-012",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An organization compares its current password policy against the requirements of a new regulatory standard to identify what must change. What is this process called?",
+    "choices": ["Gap analysis", "Business impact analysis", "Penetration test", "Root cause analysis"],
+    "answerIndex": 0,
+    "explanation": "A gap analysis compares the current state to a desired or required state and identifies the specific deficiencies that must be closed."
+  },
+  {
+    "id": "secplus-d1-mc-013",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A decoy server with intentionally weak configurations is placed on the network purely to attract and study attacker behavior. What is this called?",
+    "choices": ["A honeypot", "A sandbox", "A jump server", "A bastion host"],
+    "answerIndex": 0,
+    "explanation": "A honeypot is a deliberately vulnerable decoy system used to lure attackers away from real assets while security teams observe their techniques."
+  },
+  {
+    "id": "secplus-d1-mc-014",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Security places a fake database record containing a bogus credit card number that should never legitimately be queried. If that record is ever accessed, an alert fires. What is this technique called?",
+    "choices": ["A honeytoken", "A honeynet", "A digital signature", "Data masking"],
+    "answerIndex": 0,
+    "explanation": "A honeytoken is a fake piece of data planted specifically so that any access to it is inherently suspicious, since no legitimate process should ever touch it."
+  },
+  {
+    "id": "secplus-d1-mc-015",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Before rolling a configuration change out to production, a team first applies it in an isolated test environment to observe its effects. What does this step accomplish in the change management process?",
+    "choices": [
+      "It validates the change's impact before it can affect live systems",
+      "It eliminates the need for a rollback plan",
+      "It replaces the need for stakeholder approval",
+      "It skips the formal request process entirely"
+    ],
+    "answerIndex": 0,
+    "explanation": "Sandbox testing lets a team observe a change's real effects on an isolated system, catching problems before they reach production without any risk to live services."
+  },
+  {
+    "id": "secplus-d1-mc-016",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A change management policy specifies that only pre-approved applications may execute on endpoints, and everything else is blocked by default. What is this approach called?",
+    "choices": ["Allow listing", "Deny listing", "Sandboxing", "Patch management"],
+    "answerIndex": 0,
+    "explanation": "Allow listing (whitelisting) permits only explicitly approved software to run and blocks everything else by default, which is more restrictive than deny listing specific known-bad items."
+  },
+  {
+    "id": "secplus-d1-mc-017",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which technique adds random data to a password before it is hashed, so that identical passwords do not produce identical stored hashes?",
+    "choices": ["Salting", "Tokenization", "Obfuscation", "Key stretching"],
+    "answerIndex": 0,
+    "explanation": "A salt is random data added before hashing so that identical passwords produce different stored hashes, defeating precomputed rainbow table attacks."
+  },
+  {
+    "id": "secplus-d1-mc-018",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which encryption approach uses a mathematically related public and private key pair, allowing two parties to communicate securely without ever sharing a secret key in advance?",
+    "choices": ["Asymmetric encryption", "Symmetric encryption", "Hashing", "Obfuscation"],
+    "answerIndex": 0,
+    "explanation": "Asymmetric (public-key) encryption uses a key pair so a sender can encrypt with the recipient's public key while only the recipient's private key can decrypt it, solving the key-distribution problem symmetric encryption has."
+  },
+  {
+    "id": "secplus-d1-match-001",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each security control type to an example of that type.",
+    "pairs": [
+      { "left": "Preventive", "right": "A firewall rule that blocks unauthorized traffic before it reaches the network" },
+      { "left": "Detective", "right": "A security camera log reviewed after an incident is discovered" },
+      { "left": "Corrective", "right": "Restoring a server from backup after a ransomware infection" },
+      { "left": "Deterrent", "right": "A warning sign stating the area is monitored by security" }
+    ],
+    "explanation": "Preventive controls stop an event, detective controls identify one that already happened, corrective controls restore normal operation afterward, and deterrent controls discourage the attempt in the first place."
+  }
+]

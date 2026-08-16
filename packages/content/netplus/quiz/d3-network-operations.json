@@ -1,0 +1,313 @@
+[
+  {
+    "id": "netplus-d3-mc-001",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the key difference between a physical network diagram and a logical network diagram?",
+    "choices": [
+      "A physical diagram shows actual device locations, cabling, and ports; a logical diagram shows IP addressing, VLANs, and traffic flow regardless of physical placement",
+      "A logical diagram shows rack units; a physical diagram shows IP subnets",
+      "They are two names for the same document",
+      "A physical diagram is only used for wireless networks"
+    ],
+    "answerIndex": 0,
+    "explanation": "Physical diagrams document real-world layout — where devices sit and how they're cabled. Logical diagrams abstract that away to show addressing, VLANs, and how traffic actually flows between segments."
+  },
+  {
+    "id": "netplus-d3-mc-002",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs to know exactly which patch panel port a given wall jack terminates to before running a new cable. Which document should be consulted?",
+    "choices": ["A wiring diagram", "An SLA", "A rack diagram", "An incident response plan"],
+    "answerIndex": 0,
+    "explanation": "Wiring diagrams (also called cable maps) document how individual cable runs connect endpoints, patch panels, and switch ports — exactly what's needed before touching physical cabling."
+  },
+  {
+    "id": "netplus-d3-mc-003",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the primary purpose of an IP Address Management (IPAM) system?",
+    "choices": [
+      "To centrally track address allocation, subnets, and DNS/DHCP data so conflicts and exhaustion are easier to prevent",
+      "To physically secure network racks",
+      "To encrypt traffic between subnets",
+      "To replace the need for a DHCP server"
+    ],
+    "answerIndex": 0,
+    "explanation": "IPAM tools give a single, authoritative view of which addresses and subnets are in use, reserved, or free — critical in larger environments where spreadsheets and tribal knowledge break down."
+  },
+  {
+    "id": "netplus-d3-mc-004",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which document shows the exact position of each server, switch, and patch panel within a cabinet, typically numbered by rack unit?",
+    "choices": ["A rack diagram", "A logical diagram", "An MOU", "A baseline report"],
+    "answerIndex": 0,
+    "explanation": "Rack diagrams map equipment to specific rack units, which is essential for planning power, cooling, cabling, and physical access in a data center or server room."
+  },
+  {
+    "id": "netplus-d3-mc-005",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the main security improvement SNMPv3 provides over SNMPv1 and SNMPv2c?",
+    "choices": [
+      "It removes the need for a management station",
+      "It adds authentication and encryption of SNMP messages, instead of relying on a plaintext community string",
+      "It only works over TCP",
+      "It eliminates the need for traps"
+    ],
+    "answerIndex": 1,
+    "explanation": "SNMPv1/v2c authenticate with a community string sent in cleartext, which is easily sniffed. SNMPv3 adds real per-user authentication and optional encryption of the message payload."
+  },
+  {
+    "id": "netplus-d3-mc-006",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A security review flags that a network's SNMP monitoring still uses the default community string 'public' with read access on every device. What is the risk?",
+    "choices": [
+      "There is no risk; community strings are only cosmetic",
+      "Anyone who can reach the device on UDP 161 and knows the well-known default string can query device data without further authentication",
+      "It prevents SNMP traps from being sent",
+      "It disables the device's web interface"
+    ],
+    "answerIndex": 1,
+    "explanation": "Default and well-known community strings are effectively public knowledge. Leaving them in place lets anyone with network access to the SNMP port pull configuration and status data from the device."
+  },
+  {
+    "id": "netplus-d3-mc-007",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An engineer suspects a specific application is malformed at the protocol level and needs to inspect the actual packet contents byte by byte. Which tool is most appropriate?",
+    "choices": ["A packet capture tool such as Wireshark", "NetFlow summary data", "An SNMP MIB browser", "A rack diagram"],
+    "answerIndex": 0,
+    "explanation": "A packet capture (protocol analyzer) records full packet contents for deep inspection, unlike NetFlow, which only summarizes conversations without payload detail."
+  },
+  {
+    "id": "netplus-d3-mc-008",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Why would an organization deploy a centralized syslog server instead of leaving logs on each individual device?",
+    "choices": [
+      "Centralizing logs lets administrators correlate events across many devices, retain history beyond local storage limits, and search more efficiently",
+      "It is required for DHCP to function",
+      "It automatically fixes configuration errors",
+      "It replaces the need for SNMP entirely"
+    ],
+    "answerIndex": 0,
+    "explanation": "Local device logs are limited in size and scattered across many systems. A centralized syslog collector aggregates events for correlation, longer retention, and easier searching during troubleshooting or investigations."
+  },
+  {
+    "id": "netplus-d3-mc-009",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Before setting alert thresholds for link utilization, a network team spends two weeks recording normal traffic patterns on each core link. What is this reference data called?",
+    "choices": ["A baseline", "A rollback plan", "A wiring diagram", "An MOU"],
+    "answerIndex": 0,
+    "explanation": "A baseline captures what 'normal' looks like for a given metric, so future deviations — a sudden spike or steady decline — can be recognized as anomalies rather than guessed at."
+  },
+  {
+    "id": "netplus-d3-mc-010",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A monitoring system is configured to send an alert whenever any WAN circuit's utilization exceeds 80% for more than five minutes. What is this an example of?",
+    "choices": ["Threshold-based alerting", "A disaster recovery plan", "A change freeze", "Port security"],
+    "answerIndex": 0,
+    "explanation": "Threshold alerting fires notifications automatically once a monitored metric crosses a defined limit, letting staff respond before a problem becomes an outage."
+  },
+  {
+    "id": "netplus-d3-mc-011",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A monitoring dashboard polls every switch interface every 60 seconds and logs when a port transitions from up to down. What is this practice generally called?",
+    "choices": ["Interface/uptime monitoring", "A cold site failover", "A zone transfer", "A penetration test"],
+    "answerIndex": 0,
+    "explanation": "Regularly polling interface state (and overall device reachability) is core uptime monitoring, letting teams see outages or flapping links quickly rather than waiting for a user complaint."
+  },
+  {
+    "id": "netplus-d3-mc-012",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the fundamental goal of building high availability into critical network infrastructure?",
+    "choices": [
+      "To reduce the number of devices that need to be patched",
+      "To eliminate single points of failure so a service continues operating despite the failure of one component",
+      "To increase the cost of an outage so management takes it seriously",
+      "To remove the need for monitoring"
+    ],
+    "answerIndex": 1,
+    "explanation": "High availability designs redundancy into power, links, and devices so that any one component failing doesn't take down the service — the opposite of a single point of failure."
+  },
+  {
+    "id": "netplus-d3-mc-013",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "In an active-passive firewall cluster, how does the standby unit behave under normal conditions?",
+    "choices": [
+      "It processes half of all traffic alongside the active unit",
+      "It stays idle, synchronized with the active unit's state, and takes over only if the active unit fails",
+      "It handles only outbound traffic while the active unit handles inbound",
+      "It is powered off until manually started"
+    ],
+    "answerIndex": 1,
+    "explanation": "In active-passive designs, the standby unit mirrors configuration and session state but does not forward production traffic until a failover occurs. Active-active designs, by contrast, have both units processing traffic simultaneously."
+  },
+  {
+    "id": "netplus-d3-mc-014",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company's disaster recovery policy states it can tolerate losing at most 15 minutes of data in a disaster. Which metric does this describe?",
+    "choices": ["RTO", "RPO", "MTTR", "SLA"],
+    "answerIndex": 1,
+    "explanation": "Recovery Point Objective defines the maximum acceptable amount of data loss, measured as time since the last good backup or replication point. Recovery Time Objective (RTO) instead measures how long recovery is allowed to take."
+  },
+  {
+    "id": "netplus-d3-mc-015",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A business continuity plan states that the ERP system must be back online within 4 hours of a declared disaster. Which metric does this describe?",
+    "choices": ["RPO", "RTO", "MOU", "AUP"],
+    "answerIndex": 1,
+    "explanation": "Recovery Time Objective is the maximum tolerable downtime before a system must be restored. It answers 'how long can we be down,' distinct from RPO, which answers 'how much data can we lose.'"
+  },
+  {
+    "id": "netplus-d3-mc-016",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which backup type captures every selected file regardless of whether it changed since the last backup, and therefore takes the longest to run but the least time to restore from alone?",
+    "choices": ["Full backup", "Incremental backup", "Differential backup", "Snapshot"],
+    "answerIndex": 0,
+    "explanation": "A full backup copies the entire selected data set every time. It takes the most time and storage to create, but a single full backup is enough to restore from without needing other backup sets."
+  },
+  {
+    "id": "netplus-d3-mc-017",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A backup job copies only the files that changed since the most recent backup of any type (full or incremental). What backup strategy is this, and what's its restore tradeoff?",
+    "choices": [
+      "Incremental — fastest to back up, but restoring requires the last full backup plus every incremental since",
+      "Differential — fastest to back up, and restoring only needs the last full backup",
+      "Full — slowest to back up, fastest to restore",
+      "Snapshot — instantaneous with no restore process needed"
+    ],
+    "answerIndex": 0,
+    "explanation": "Incremental backups are small and fast because they only capture changes since the last backup of any kind. The tradeoff shows up at restore time: you need the last full backup plus every incremental in sequence."
+  },
+  {
+    "id": "netplus-d3-mc-018",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A backup job copies all files that changed since the last full backup, every time it runs, ignoring any backups in between. What is this backup type?",
+    "choices": ["Incremental", "Differential", "Full", "Archive"],
+    "answerIndex": 1,
+    "explanation": "Differential backups always reference the last full backup rather than the last backup of any kind, so each differential grows larger over time, but a restore only needs the last full plus the single most recent differential."
+  },
+  {
+    "id": "netplus-d3-mc-019",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Before applying a risky patch to a production virtual machine, an administrator captures its exact disk and memory state so it can be instantly reverted if the patch causes problems. What is this called?",
+    "choices": ["A snapshot", "A differential backup", "An MSA", "A cold site"],
+    "answerIndex": 0,
+    "explanation": "A snapshot captures a point-in-time image of a system's state, commonly used with virtual machines for a fast rollback path — though it's typically not a substitute for a full off-system backup."
+  },
+  {
+    "id": "netplus-d3-mc-020",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "In a formal change management process, which body typically reviews and approves proposed changes before they are implemented in production?",
+    "choices": ["The Change Advisory Board (CAB)", "The help desk", "The vendor's support line", "The end users affected by the change"],
+    "answerIndex": 0,
+    "explanation": "A Change Advisory Board evaluates proposed changes for risk, scheduling, and impact before granting approval, which keeps unreviewed changes from hitting production directly."
+  },
+  {
+    "id": "netplus-d3-mc-021",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "During an active security incident, the team isolates infected hosts from the rest of the network to stop the malware from spreading further, before beginning eradication. Which phase of incident response does this describe?",
+    "choices": ["Identification", "Containment", "Lessons learned", "Preparation"],
+    "answerIndex": 1,
+    "explanation": "Containment focuses on limiting the damage and blast radius of an ongoing incident — such as isolating affected systems — before moving on to eradication and recovery."
+  },
+  {
+    "id": "netplus-d3-mc-022",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A team follows a written, step-by-step document each time they onboard a new switch, ensuring the same configuration steps happen in the same order every time. What kind of document is this?",
+    "choices": ["A Standard Operating Procedure (SOP)", "An NDA", "An MOU", "A baseline"],
+    "answerIndex": 0,
+    "explanation": "SOPs are detailed, repeatable procedures for routine tasks, ensuring consistency regardless of who performs the work."
+  },
+  {
+    "id": "netplus-d3-mc-023",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Two companies plan a joint pilot project and sign a document outlining their general intentions and each party's informal responsibilities, without the binding, enforceable detail of a full contract. What is this document?",
+    "choices": ["MOU (Memorandum of Understanding)", "NDA", "SLA", "AUP"],
+    "answerIndex": 0,
+    "explanation": "An MOU expresses mutual intent and a general understanding between parties. It's less formal and typically less legally binding than a contract or SLA."
+  },
+  {
+    "id": "netplus-d3-mc-024",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A contractor is given access to sensitive network diagrams and must sign a document legally obligating them not to disclose that information to third parties. Which document is this?",
+    "choices": ["NDA (Non-Disclosure Agreement)", "AUP", "MSA", "SOP"],
+    "answerIndex": 0,
+    "explanation": "An NDA creates a legal obligation to keep specified information confidential, commonly signed before sharing sensitive network or business data with outside parties."
+  },
+  {
+    "id": "netplus-d3-mc-025",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "New employees must read and sign a document stating that company internet access may not be used for personal business or illegal activity before their accounts are activated. What kind of document is this?",
+    "choices": ["Acceptable Use Policy (AUP)", "MSA", "MOU", "RPO statement"],
+    "answerIndex": 0,
+    "explanation": "An AUP defines the rules for how users are permitted to use an organization's systems and network, and is typically acknowledged during onboarding."
+  },
+  {
+    "id": "netplus-d3-mc-026",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company hires a managed services provider and signs an overarching contract defining the general terms of the business relationship, which future individual work orders and SLAs will reference. What is this called?",
+    "choices": ["MSA (Master Service Agreement)", "AUP", "NDA", "IPAM policy"],
+    "answerIndex": 0,
+    "explanation": "A Master Service Agreement sets the overall legal and commercial terms of an ongoing vendor relationship, under which specific SLAs or statements of work are then negotiated."
+  },
+  {
+    "id": "netplus-d3-mc-027",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A disaster recovery site has racks, power, and connectivity ready, but no servers installed and no data replicated — staff would need to procure and configure hardware before it could take over production. What type of site is this?",
+    "choices": ["Hot site", "Warm site", "Cold site", "Screened subnet"],
+    "answerIndex": 2,
+    "explanation": "A cold site provides only the basic facility and infrastructure, with no live systems or current data, making it the cheapest option but the slowest to bring into service. A hot site is fully mirrored and can take over almost immediately; a warm site sits in between, with some hardware and periodically updated data in place."
+  },
+  {
+    "id": "netplus-d3-mc-028",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A scheduled Saturday-night maintenance window is used to apply firmware updates to core switches. Why do organizations formalize maintenance windows rather than patching whenever convenient?",
+    "choices": [
+      "It has no real benefit beyond tradition",
+      "It confines risky, potentially disruptive changes to a pre-communicated low-impact time, so unexpected outages don't hit users during business hours",
+      "It is legally required for all patches",
+      "It removes the need for a rollback plan"
+    ],
+    "answerIndex": 1,
+    "explanation": "A defined maintenance window communicates expected downtime in advance and confines risk to a period when the business impact is lowest, rather than patching production systems unpredictably during peak use."
+  },
+  {
+    "id": "netplus-d3-order-001",
+    "type": "order",
+    "domainCode": "3.0",
+    "prompt": "Place these steps of a typical formal change management process in the correct order.",
+    "items": [
+      "Submit a change request describing the proposed change and its risk",
+      "Change Advisory Board reviews and approves the request",
+      "Implement the change during the scheduled maintenance window",
+      "Verify the change achieved the intended result",
+      "Document the outcome and update records"
+    ],
+    "explanation": "A change is requested and assessed, formally approved, carried out in a controlled window, verified against expectations, and finally documented — skipping approval or verification is how unreviewed changes cause outages."
+  }
+]

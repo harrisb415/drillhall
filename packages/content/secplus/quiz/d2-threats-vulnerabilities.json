@@ -1,0 +1,299 @@
+[
+  {
+    "id": "secplus-d2-mc-001",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which threat actor type is typically the most sophisticated and well-funded, often pursuing espionage or critical infrastructure disruption on behalf of a government?",
+    "choices": ["Nation-state actor", "Script kiddie", "Hacktivist", "Insider threat"],
+    "answerIndex": 0,
+    "explanation": "Nation-state actors have significant funding, time, and advanced tooling behind them, letting them conduct long-term, highly sophisticated campaigns that outmatch most other threat actor types."
+  },
+  {
+    "id": "secplus-d2-mc-002",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker with minimal technical skill runs a downloaded exploit tool against random targets without understanding how it works. What type of threat actor is this?",
+    "choices": ["An unskilled attacker (script kiddie)", "A nation-state actor", "Organized crime", "An insider threat"],
+    "answerIndex": 0,
+    "explanation": "An unskilled attacker, often called a script kiddie, uses existing tools and scripts written by others rather than developing original techniques."
+  },
+  {
+    "id": "secplus-d2-mc-003",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker defaces a company's website to protest its environmental record and publicize the group's cause. What is this threat actor's primary motivation?",
+    "choices": ["Ideology (hacktivism)", "Financial gain", "Espionage", "Revenge"],
+    "answerIndex": 0,
+    "explanation": "Hacktivists are driven by political or social causes, using attacks like defacement or leaks to draw attention to their message rather than for profit."
+  },
+  {
+    "id": "secplus-d2-mc-004",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A disgruntled employee with legitimate access copies confidential files to a personal USB drive before resigning. What category of threat actor does this describe?",
+    "choices": ["Insider threat", "Hacktivist", "Nation-state actor", "Shadow IT"],
+    "answerIndex": 0,
+    "explanation": "An insider threat originates from someone who already has authorized access, which makes their actions harder to distinguish from normal activity than an external attacker's."
+  },
+  {
+    "id": "secplus-d2-mc-005",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A criminal group deploys ransomware against multiple hospitals purely for financial extortion, using a well-resourced affiliate structure. Which threat actor type best fits?",
+    "choices": ["Organized crime", "Hacktivist", "Script kiddie", "Shadow IT"],
+    "answerIndex": 0,
+    "explanation": "Organized crime groups operate with financial motivation and meaningful resources, often running ransomware-as-a-service operations at scale for profit."
+  },
+  {
+    "id": "secplus-d2-mc-006",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Attackers compromise a trusted software vendor's build process so that a malicious update is automatically pushed to thousands of the vendor's customers. What is this an example of?",
+    "choices": ["A supply chain attack", "A watering hole attack", "Typosquatting", "A downgrade attack"],
+    "answerIndex": 0,
+    "explanation": "A supply chain attack compromises a trusted third party — such as a software vendor or update mechanism — to reach many downstream victims at once."
+  },
+  {
+    "id": "secplus-d2-mc-007",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker leaves infected USB drives in a company parking lot, hoping an employee will plug one into a corporate machine. Which attack vector does this exploit?",
+    "choices": ["Removable device vector", "Email vector", "Wireless vector", "Supply chain vector"],
+    "answerIndex": 0,
+    "explanation": "This is a classic 'USB drop' attack that relies on human curiosity to introduce malware through a physical removable-media vector rather than the network."
+  },
+  {
+    "id": "secplus-d2-mc-008",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An application fails to check the size of user input before copying it into a fixed-length memory buffer, allowing an attacker to overwrite adjacent memory and execute arbitrary code. What vulnerability is this?",
+    "choices": ["Buffer overflow", "Race condition", "Cross-site scripting", "Directory traversal"],
+    "answerIndex": 0,
+    "explanation": "A buffer overflow occurs when input exceeds the space allocated for it in memory, letting an attacker overwrite adjacent memory — including return addresses — to hijack execution."
+  },
+  {
+    "id": "secplus-d2-mc-009",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An application checks whether a file is safe to access, but an attacker swaps the file for a malicious one in the brief window between the check and the actual use. What vulnerability class is this?",
+    "choices": ["A race condition (TOCTOU)", "A buffer overflow", "SQL injection", "Privilege escalation"],
+    "answerIndex": 0,
+    "explanation": "This is a time-of-check-to-time-of-use (TOCTOU) race condition, where the state of a resource changes in the gap between validation and use."
+  },
+  {
+    "id": "secplus-d2-mc-010",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A cloud storage bucket is left readable by anyone on the internet because the default access setting was never changed. What type of vulnerability does this represent?",
+    "choices": ["Misconfiguration", "Zero-day", "Race condition", "Buffer overflow"],
+    "answerIndex": 0,
+    "explanation": "Misconfigurations — like an overly permissive default setting left unchanged — are among the most common causes of real-world data exposure, independent of any software flaw."
+  },
+  {
+    "id": "secplus-d2-mc-011",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker injects a malicious script into a comment field on a website, and the script executes in the browser of every visitor who views that page. What attack is this?",
+    "choices": ["Cross-site scripting (XSS)", "SQL injection", "Directory traversal", "Credential replay"],
+    "answerIndex": 0,
+    "explanation": "Cross-site scripting injects attacker-controlled script into pages viewed by other users, letting it run in their browser session — for example, to steal cookies or session tokens."
+  },
+  {
+    "id": "secplus-d2-mc-012",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Malware encrypts all files on a victim's system and displays a message demanding payment for the decryption key. What type of malware is this?",
+    "choices": ["Ransomware", "Spyware", "Rootkit", "A logic bomb"],
+    "answerIndex": 0,
+    "explanation": "Ransomware denies access to data — typically by encrypting it — and demands payment, usually in cryptocurrency, in exchange for restoring access."
+  },
+  {
+    "id": "secplus-d2-mc-013",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user downloads what appears to be a legitimate free utility, but running it secretly installs malware in the background. What type of malware relies on this disguise?",
+    "choices": ["A trojan", "A worm", "A virus", "Bloatware"],
+    "answerIndex": 0,
+    "explanation": "A trojan disguises itself as legitimate or desirable software to trick the user into installing it voluntarily, unlike a worm, which spreads without any user action."
+  },
+  {
+    "id": "secplus-d2-mc-014",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Malware silently records every keystroke a user types, including usernames and passwords, and periodically transmits the captured data to an attacker. What type of malware is this?",
+    "choices": ["A keylogger", "A logic bomb", "A rootkit", "Ransomware"],
+    "answerIndex": 0,
+    "explanation": "A keylogger is a form of spyware that captures keystrokes to harvest credentials and other sensitive input without the user's knowledge."
+  },
+  {
+    "id": "secplus-d2-mc-015",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Malware modifies core operating system components to hide its own files, processes, and network connections from normal detection tools. What type of malware is this?",
+    "choices": ["A rootkit", "A trojan", "A worm", "Adware"],
+    "answerIndex": 0,
+    "explanation": "A rootkit embeds itself at a privileged level of the OS specifically to conceal its presence from standard monitoring and antivirus tools."
+  },
+  {
+    "id": "secplus-d2-mc-016",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A disgruntled developer plants code that will delete critical files only if their employee ID is ever removed from the payroll system. What is this malicious code called?",
+    "choices": ["A logic bomb", "A worm", "A rootkit", "Spyware"],
+    "answerIndex": 0,
+    "explanation": "A logic bomb lies dormant until a specific triggering condition is met — in this case, the developer's termination being processed — at which point it executes its payload."
+  },
+  {
+    "id": "secplus-d2-mc-017",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker uses a handheld device to capture the signal from an employee's proximity badge and creates a duplicate badge that unlocks the same doors. What is this attack called?",
+    "choices": ["RFID cloning", "An evil twin attack", "Credential replay", "Brute force"],
+    "answerIndex": 0,
+    "explanation": "RFID cloning copies the data from a legitimate proximity card or badge onto a blank one, letting the attacker impersonate the badge holder at physical access points."
+  },
+  {
+    "id": "secplus-d2-mc-018",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker sends small DNS queries with a spoofed source address to open resolvers, which then send much larger responses to the victim, overwhelming its bandwidth. What is this technique called?",
+    "choices": ["A DNS amplification/reflection DDoS attack", "A rootkit infection", "An evil twin attack", "A downgrade attack"],
+    "answerIndex": 0,
+    "explanation": "Amplification attacks abuse services that return responses much larger than the request and spoof the victim's address as the source, multiplying the traffic that reaches the target."
+  },
+  {
+    "id": "secplus-d2-mc-019",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker corrupts a DNS resolver's cache so that a legitimate domain name now resolves to the attacker's IP address, silently redirecting all visitors. What attack is this?",
+    "choices": ["DNS poisoning", "An evil twin attack", "Typosquatting", "Directory traversal"],
+    "answerIndex": 0,
+    "explanation": "DNS poisoning corrupts cached resolution records so a trusted domain name points to a malicious address, redirecting users without any visible change to the URL they typed."
+  },
+  {
+    "id": "secplus-d2-mc-020",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker sets up a rogue wireless access point using the same SSID as a coffee shop's legitimate Wi-Fi, hoping nearby customers will connect to it instead. What is this attack called?",
+    "choices": ["An evil twin", "A deauthentication attack", "An on-path attack", "War driving"],
+    "answerIndex": 0,
+    "explanation": "An evil twin is a rogue access point impersonating a legitimate network's name, luring victims into connecting so their traffic can be intercepted."
+  },
+  {
+    "id": "secplus-d2-mc-021",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker positions themselves between a client and a server, silently intercepting and possibly altering traffic while both sides believe they are communicating directly. What is this attack called?",
+    "choices": ["An on-path (man-in-the-middle) attack", "An evil twin attack", "A replay attack", "Pharming"],
+    "answerIndex": 0,
+    "explanation": "An on-path attack places the attacker inline between two communicating parties so traffic can be observed or modified without either side's knowledge."
+  },
+  {
+    "id": "secplus-d2-mc-022",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker captures a valid authentication token from network traffic and resubmits it later to gain access without ever knowing the actual password. What attack is this?",
+    "choices": ["A replay attack", "A brute-force attack", "A downgrade attack", "A birthday attack"],
+    "answerIndex": 0,
+    "explanation": "A replay attack reuses previously captured, legitimate credentials or session tokens to impersonate the original party without needing to crack anything."
+  },
+  {
+    "id": "secplus-d2-mc-023",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A standard user exploits a flaw in a system service to gain administrator-level rights they were never granted. What is this attack called?",
+    "choices": ["Privilege escalation", "Directory traversal", "A buffer overflow only", "Credential replay"],
+    "answerIndex": 0,
+    "explanation": "Privilege escalation is the act of gaining a higher level of access than originally granted, often by exploiting a flaw in how permissions are enforced."
+  },
+  {
+    "id": "secplus-d2-mc-024",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A malicious webpage silently submits a request to a banking site using a victim's already-authenticated browser session, transferring funds without their knowledge. What attack is this?",
+    "choices": ["Cross-site request forgery (CSRF)", "Cross-site scripting (XSS)", "SQL injection", "Directory traversal"],
+    "answerIndex": 0,
+    "explanation": "CSRF tricks a victim's browser into submitting a forged request using their existing authenticated session, exploiting the trust a site has in the browser rather than the user's credentials directly."
+  },
+  {
+    "id": "secplus-d2-mc-025",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker manipulates a URL by inserting '../../' sequences to escape a web application's intended directory and read arbitrary files elsewhere on the server. What is this attack called?",
+    "choices": ["Directory traversal", "Cross-site scripting", "SQL injection", "Privilege escalation"],
+    "answerIndex": 0,
+    "explanation": "Directory traversal exploits insufficient input validation on file paths to move outside the intended directory and access files the application should never expose."
+  },
+  {
+    "id": "secplus-d2-mc-026",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker forces a connection to negotiate an older, weaker encryption protocol that is easier to break, even though both endpoints support a stronger option. What is this called?",
+    "choices": ["A downgrade attack", "A collision attack", "A birthday attack", "A replay attack"],
+    "answerIndex": 0,
+    "explanation": "A downgrade attack manipulates the negotiation process so a connection falls back to a weaker, more exploitable protocol version or cipher suite."
+  },
+  {
+    "id": "secplus-d2-mc-027",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker exploits the mathematical probability that two different inputs can produce the same hash output, faster than expected, to forge a valid signature. What is this known as?",
+    "choices": ["A birthday (collision) attack", "A downgrade attack", "A replay attack", "A brute-force attack"],
+    "answerIndex": 0,
+    "explanation": "A birthday attack leverages the birthday paradox — collisions are found faster than a brute-force search of the full hash space would suggest — to locate two inputs sharing a hash."
+  },
+  {
+    "id": "secplus-d2-mc-028",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Instead of trying many passwords against one account, an attacker tries one common password like 'Summer2024!' against thousands of accounts to avoid triggering lockout thresholds. What attack technique is this?",
+    "choices": ["Password spraying", "A brute-force attack", "Credential replay", "A birthday attack"],
+    "answerIndex": 0,
+    "explanation": "Password spraying tests one or a few common passwords across many accounts, staying under per-account lockout thresholds instead of repeatedly guessing against a single account."
+  },
+  {
+    "id": "secplus-d2-mc-029",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user's account logs in from New York and, eleven minutes later, logs in again from a country that would require an eight-hour flight to reach. Which indicator does this represent?",
+    "choices": ["Impossible travel", "Resource consumption", "Blocked content", "Concurrent session usage"],
+    "answerIndex": 0,
+    "explanation": "Impossible travel flags logins from geographically distant locations in a timeframe that physical travel could not explain, strongly suggesting a compromised credential."
+  },
+  {
+    "id": "secplus-d2-mc-030",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker compromises or spoofs a CFO's email account and sends the accounting department urgent, convincing instructions to wire funds to a new account. What is this attack called?",
+    "choices": ["Business email compromise", "A watering hole attack", "Pharming", "Typosquatting"],
+    "answerIndex": 0,
+    "explanation": "Business email compromise uses a trusted or hijacked executive email identity to convince employees to take a financially damaging action, such as an unauthorized wire transfer."
+  },
+  {
+    "id": "secplus-d2-mc-031",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Attackers compromise a niche industry forum that employees of their real target frequently visit, planting malware that infects visitors' machines. What social engineering technique is this?",
+    "choices": ["A watering hole attack", "Business email compromise", "Pretexting", "Smishing"],
+    "answerIndex": 0,
+    "explanation": "A watering hole attack compromises a site the intended victims are known to visit, rather than attacking them directly, waiting for the target to come to the trap."
+  },
+  {
+    "id": "secplus-d2-mc-032",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Without the victim clicking any suspicious link, malicious changes to DNS or a hosts file silently redirect them from the real banking site to a fake one that looks identical. What is this technique called?",
+    "choices": ["Pharming", "Phishing", "Vishing", "Whaling"],
+    "answerIndex": 0,
+    "explanation": "Pharming redirects users to a fraudulent site at the DNS or network level, so even a correctly typed URL leads to the attacker's page — no deceptive link required."
+  },
+  {
+    "id": "secplus-d2-mc-033",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user receives a text message claiming to be from a delivery company, containing a link to 'reschedule a package' that actually harvests credentials. What social engineering technique is this?",
+    "choices": ["Smishing", "Vishing", "Pharming", "Whaling"],
+    "answerIndex": 0,
+    "explanation": "Smishing is phishing conducted over SMS text messages, using the same urgency and deception tactics as email phishing but through a different channel."
+  }
+]

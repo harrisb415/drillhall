@@ -1,0 +1,254 @@
+[
+  {
+    "id": "secplus-d3-mc-001",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which virtualization approach packages an application with its dependencies but shares the host operating system's kernel, making it more lightweight than a traditional virtual machine?",
+    "choices": ["Containerization", "Full virtualization", "Air-gapping", "Serverless computing"],
+    "answerIndex": 0,
+    "explanation": "Containers share the host OS kernel and isolate only the application layer, making them start faster and use fewer resources than a full VM running its own guest OS."
+  },
+  {
+    "id": "secplus-d3-mc-002",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which type of hypervisor runs directly on the physical hardware without a host operating system underneath it, as used in most enterprise data centers?",
+    "choices": ["A Type 1 (bare-metal) hypervisor", "A Type 2 (hosted) hypervisor", "A container runtime", "A jump server"],
+    "answerIndex": 0,
+    "explanation": "A Type 1 hypervisor runs directly on hardware for better performance and a smaller attack surface, while a Type 2 hypervisor runs as an application on top of a host OS."
+  },
+  {
+    "id": "secplus-d3-mc-003",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A team defines their entire cloud network topology, servers, and security groups in version-controlled configuration files that can be applied automatically and repeatably. What practice is this?",
+    "choices": ["Infrastructure as code", "Software-defined networking", "Change management", "Containerization"],
+    "answerIndex": 0,
+    "explanation": "Infrastructure as code defines environments in machine-readable files so deployments are repeatable, version-controlled, and consistent instead of manually configured."
+  },
+  {
+    "id": "secplus-d3-mc-004",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A developer deploys a function that automatically runs in response to an event, without provisioning or managing any underlying server instances. What model is this?",
+    "choices": ["Serverless computing", "Containerization", "Virtual desktop infrastructure", "Microservices"],
+    "answerIndex": 0,
+    "explanation": "Serverless computing lets code run on demand while the cloud provider manages the underlying compute infrastructure entirely, abstracting servers away from the developer."
+  },
+  {
+    "id": "secplus-d3-mc-005",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An application is broken into many small, independently deployable services that each handle one specific function and communicate over APIs. What architecture is this?",
+    "choices": ["Microservices architecture", "Monolithic architecture", "Serverless architecture", "Air-gapped architecture"],
+    "answerIndex": 0,
+    "explanation": "Microservices decompose an application into small, independently deployable components, in contrast to a monolithic architecture where everything is built and deployed as one unit."
+  },
+  {
+    "id": "secplus-d3-mc-006",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which architecture separates the network's control logic from the physical forwarding hardware, allowing network behavior to be programmed centrally?",
+    "choices": ["Software-defined networking (SDN)", "A virtual private network", "Network address translation", "802.1X"],
+    "answerIndex": 0,
+    "explanation": "SDN decouples the control plane from the data plane, letting administrators programmatically manage traffic flow from a centralized controller instead of configuring each device individually."
+  },
+  {
+    "id": "secplus-d3-mc-007",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company places its public-facing web server in a separate network segment, isolated from the internal LAN by firewalls on both sides, so a compromise of the web server doesn't directly expose internal systems. What is this segment called?",
+    "choices": ["A screened subnet (DMZ)", "An air gap", "A VPN concentrator", "A honeynet"],
+    "answerIndex": 0,
+    "explanation": "A screened subnet (DMZ) sits between untrusted external networks and the trusted internal network, hosting public-facing services while limiting direct access to internal systems."
+  },
+  {
+    "id": "secplus-d3-mc-008",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An administrator disables unused services, closes unnecessary ports, and removes unneeded software from a server as part of hardening. What security goal does this directly support?",
+    "choices": ["Attack surface reduction", "Load balancing", "Data sovereignty", "Non-repudiation"],
+    "answerIndex": 0,
+    "explanation": "Every open port, running service, or installed application is a potential entry point, so removing what isn't needed shrinks the overall attack surface."
+  },
+  {
+    "id": "secplus-d3-mc-009",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A security appliance is configured so that if it crashes, all network traffic is blocked rather than passed through unfiltered. What failure mode is this?",
+    "choices": ["Fail-closed", "Fail-open", "Failover", "Fail-safe redundancy"],
+    "answerIndex": 0,
+    "explanation": "Fail-closed prioritizes security over availability by blocking traffic when a control fails, while fail-open would allow traffic through unfiltered to preserve availability."
+  },
+  {
+    "id": "secplus-d3-mc-010",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which type of network security device sits directly in the traffic path and can actively block a malicious packet in real time, as opposed to a device that only receives a mirrored copy of traffic?",
+    "choices": ["An inline (active) device", "A passive tap/monitor device", "A screened subnet", "A honeynet"],
+    "answerIndex": 0,
+    "explanation": "An inline device sits directly in the flow of traffic, letting it drop or modify packets in real time; a passive tap only observes a mirrored copy and cannot intervene."
+  },
+  {
+    "id": "secplus-d3-mc-011",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Administrators must first connect to a hardened, tightly monitored host before they are allowed to reach any server in a sensitive management network. What is this hardened intermediary called?",
+    "choices": ["A jump server", "A load balancer", "A proxy server", "A honeypot"],
+    "answerIndex": 0,
+    "explanation": "A jump server (jump box) is a hardened, closely monitored gateway that administrators must pass through to reach a protected network segment, centralizing and logging privileged access."
+  },
+  {
+    "id": "secplus-d3-mc-012",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which appliance sits between internal clients and the internet, forwarding their requests on their behalf and allowing centralized content filtering and logging?",
+    "choices": ["A forward proxy server", "A reverse proxy", "A load balancer", "An IPS"],
+    "answerIndex": 0,
+    "explanation": "A forward proxy handles outbound requests from internal clients to external destinations, which centralizes control for filtering, caching, and logging user traffic."
+  },
+  {
+    "id": "secplus-d3-mc-013",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which device sits inline and can automatically drop malicious packets in real time, as opposed to one that only generates an alert after observing a copy of the traffic?",
+    "choices": ["An IPS (intrusion prevention system)", "An IDS (intrusion detection system)", "A passive network tap", "A honeypot"],
+    "answerIndex": 0,
+    "explanation": "An IPS is deployed inline and can actively block traffic it identifies as malicious, while an IDS is typically passive and only alerts without stopping the traffic itself."
+  },
+  {
+    "id": "secplus-d3-mc-014",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which device distributes incoming client requests across multiple backend servers to improve availability and prevent any single server from being overwhelmed?",
+    "choices": ["A load balancer", "A jump server", "An IDS sensor", "A WAF"],
+    "answerIndex": 0,
+    "explanation": "A load balancer spreads traffic across a pool of servers, improving both performance and availability by avoiding any single point of overload."
+  },
+  {
+    "id": "secplus-d3-mc-015",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which technology requires a device to authenticate against a RADIUS server before it is granted access to a wired switch port or wireless network?",
+    "choices": ["802.1X", "NAT", "SD-WAN", "IPSec"],
+    "answerIndex": 0,
+    "explanation": "802.1X provides port-based network access control, requiring successful authentication — typically against a RADIUS server — before a device is allowed onto the network."
+  },
+  {
+    "id": "secplus-d3-mc-016",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which security appliance is specifically designed to inspect and filter HTTP/HTTPS traffic to protect web applications from attacks like SQL injection and XSS?",
+    "choices": ["A web application firewall (WAF)", "A network firewall", "An IDS", "A VPN concentrator"],
+    "answerIndex": 0,
+    "explanation": "A WAF operates at the application layer, understanding HTTP semantics well enough to detect and block attacks like SQL injection or XSS aimed at web applications specifically."
+  },
+  {
+    "id": "secplus-d3-mc-017",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which appliance bundles multiple security functions — such as firewall, IPS, antivirus, and web filtering — into a single device for simplified management?",
+    "choices": [
+      "A unified threat management (UTM) appliance",
+      "A next-generation firewall performing only Layer 4 filtering",
+      "A basic packet-filtering firewall",
+      "A load balancer"
+    ],
+    "answerIndex": 0,
+    "explanation": "UTM appliances consolidate several security functions into one device for simpler management, which suits smaller environments, whereas larger enterprises often prefer dedicated best-of-breed appliances."
+  },
+  {
+    "id": "secplus-d3-mc-018",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which protocol suite is commonly used to build an encrypted site-to-site VPN tunnel operating at the network layer, providing both encryption and authentication?",
+    "choices": ["IPSec", "SNMP", "SASE", "802.1X"],
+    "answerIndex": 0,
+    "explanation": "IPSec operates at the network layer to authenticate and encrypt IP traffic between two endpoints, commonly used for site-to-site VPN tunnels between offices or data centers."
+  },
+  {
+    "id": "secplus-d3-mc-019",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which technology lets an organization intelligently route branch office traffic across multiple transport links (MPLS, broadband, LTE) based on application performance needs, managed centrally?",
+    "choices": ["SD-WAN", "A VPN concentrator", "NAT", "802.1X"],
+    "answerIndex": 0,
+    "explanation": "SD-WAN abstracts and centrally manages WAN connectivity across multiple transport types, dynamically steering traffic based on policy and real-time link performance."
+  },
+  {
+    "id": "secplus-d3-mc-020",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which architecture converges networking (like SD-WAN) with cloud-delivered security functions such as a secure web gateway and zero trust access into a single cloud-native service?",
+    "choices": ["SASE (Secure Access Service Edge)", "IPSec", "VLAN trunking", "NAC"],
+    "answerIndex": 0,
+    "explanation": "SASE combines WAN connectivity with cloud-delivered security services into one platform, extending consistent security policy to users regardless of location."
+  },
+  {
+    "id": "secplus-d3-mc-021",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Encrypting data in a database file and using TLS while it travels over the network still leaves data unprotected during which state, when it exists unencrypted in RAM while being actively processed?",
+    "choices": ["Data in use", "Data at rest", "Data in transit", "Data in escrow"],
+    "answerIndex": 0,
+    "explanation": "Data in use is being actively processed in memory, which traditionally requires techniques like memory encryption or confidential computing since standard at-rest/in-transit encryption doesn't cover this state."
+  },
+  {
+    "id": "secplus-d3-mc-022",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company labels its documents as Public, Internal, Confidential, or Restricted based on the harm that would result from unauthorized disclosure. What is this practice called?",
+    "choices": ["Data classification", "Data sovereignty", "Data masking", "Tokenization"],
+    "answerIndex": 0,
+    "explanation": "Data classification sorts information into tiers based on sensitivity, which then drives which handling and protection controls apply to each tier."
+  },
+  {
+    "id": "secplus-d3-mc-023",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A regulation requires that all citizen health records be stored and processed only on servers physically located within the country's borders. What concept does this illustrate?",
+    "choices": ["Data sovereignty", "Data classification", "Data masking", "Data minimization"],
+    "answerIndex": 0,
+    "explanation": "Data sovereignty holds that data is subject to the laws of the country in which it is physically located, driving geographic restrictions on where it may be stored or processed."
+  },
+  {
+    "id": "secplus-d3-mc-024",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A payment system replaces a customer's real credit card number with a randomly generated substitute value that has no mathematical relationship to the original, usable only by looking it up in a secure vault. What technique is this?",
+    "choices": ["Tokenization", "Hashing", "Masking", "Obfuscation"],
+    "answerIndex": 0,
+    "explanation": "Tokenization substitutes sensitive data with a non-sensitive placeholder that can only be mapped back to the original value through a separate secure lookup, unlike masking, which permanently obscures part of the data for display."
+  },
+  {
+    "id": "secplus-d3-mc-025",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A web application runs on three redundant servers behind a load balancer, so that if one server fails, the other two continue serving traffic without interruption. What does this design provide?",
+    "choices": ["High availability", "Data sovereignty", "Non-repudiation", "Least privilege"],
+    "answerIndex": 0,
+    "explanation": "High availability designs eliminate single points of failure through redundancy, so the loss of one component doesn't take down the overall service."
+  },
+  {
+    "id": "secplus-d3-mc-026",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which piece of power resilience equipment provides only short-term battery backup to bridge the gap until longer-term power can take over, rather than sustained power for hours?",
+    "choices": ["A UPS (uninterruptible power supply)", "A generator", "A hot site", "A warm site"],
+    "answerIndex": 0,
+    "explanation": "A UPS provides immediate, short-duration battery power to prevent an abrupt outage and to bridge the time it takes a generator to start, while a generator supplies sustained power for extended outages."
+  },
+  {
+    "id": "secplus-d3-order-001",
+    "type": "order",
+    "domainCode": "3.0",
+    "prompt": "Order these business continuity test types from least disruptive to most disruptive to live operations.",
+    "items": [
+      "Tabletop exercise (discussion-based walkthrough)",
+      "Simulation test",
+      "Parallel processing test",
+      "Full interruption test"
+    ],
+    "explanation": "Tabletop exercises are discussion-only and carry no operational risk; simulations exercise the plan without failing over; parallel tests run the recovery site alongside production; a full interruption actually cuts over live operations, making it the most disruptive but most realistic test."
+  }
+]

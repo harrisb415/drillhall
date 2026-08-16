@@ -1,0 +1,291 @@
+[
+  {
+    "id": "secplus-d5-mc-001",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which governance document specifies the exact technical requirement, such as 'passwords must use AES-256 for storage,' derived from a higher-level policy?",
+    "choices": ["A standard", "A policy", "A guideline", "A playbook"],
+    "answerIndex": 0,
+    "explanation": "A standard translates a policy's intent into a specific, measurable requirement, unlike the policy itself, which states intent at a high level without prescribing exact technical details."
+  },
+  {
+    "id": "secplus-d5-mc-002",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which document provides the exact step-by-step instructions an administrator follows to configure disk encryption on a new laptop?",
+    "choices": ["A procedure", "A policy", "A guideline", "A risk register"],
+    "answerIndex": 0,
+    "explanation": "A procedure gives concrete, sequential instructions for performing a task, sitting below policies and standards, which state intent and requirements rather than exact steps."
+  },
+  {
+    "id": "secplus-d5-mc-003",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A security document recommends using a password manager and enabling MFA 'where practical,' but doesn't mandate either. What type of document is this?",
+    "choices": ["A guideline", "A standard", "A law", "A contract"],
+    "answerIndex": 0,
+    "explanation": "Guidelines offer recommended best practices that are not strictly mandatory, unlike standards and policies, which set enforceable requirements."
+  },
+  {
+    "id": "secplus-d5-mc-004",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which role is ultimately accountable for a specific dataset's classification and for deciding who is allowed to access it?",
+    "choices": ["Data owner", "Data custodian", "Data processor", "Data subject"],
+    "answerIndex": 0,
+    "explanation": "The data owner holds ultimate accountability for a dataset, including classifying its sensitivity and approving access, even though day-to-day handling is often delegated to a custodian."
+  },
+  {
+    "id": "secplus-d5-mc-005",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which role is responsible for the day-to-day technical management of data — backups, storage, and applying the access controls the data owner defined — without deciding who should have access?",
+    "choices": ["Data custodian/steward", "Data owner", "Data controller", "Data processor"],
+    "answerIndex": 0,
+    "explanation": "A data custodian or steward handles the operational and technical maintenance of data on the owner's behalf, implementing decisions rather than making classification or access policy."
+  },
+  {
+    "id": "secplus-d5-mc-006",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Under privacy regulations like GDPR, which party determines the purposes and means of processing personal data, as distinct from the party that merely processes it on their behalf?",
+    "choices": ["The data controller", "The data processor", "The data custodian", "The data subject"],
+    "answerIndex": 0,
+    "explanation": "The data controller decides why and how personal data is processed, while a data processor only handles data under the controller's instructions, such as a third-party payroll vendor."
+  },
+  {
+    "id": "secplus-d5-mc-007",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A dedicated group of executives and department heads meets quarterly to review security posture, approve major policy changes, and set organizational risk priorities. What is this an example of?",
+    "choices": ["A governance committee/board", "A data processor", "A risk register", "A right-to-audit clause"],
+    "answerIndex": 0,
+    "explanation": "Governance structures like committees and boards provide oversight, direction, and formal approval authority for an organization's security program at the leadership level."
+  },
+  {
+    "id": "secplus-d5-mc-008",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization maintains a running document listing each identified risk, its likelihood, impact, owner, and current treatment status. What is this document called?",
+    "choices": ["A risk register", "A business impact analysis", "A right-to-audit clause", "A playbook"],
+    "answerIndex": 0,
+    "explanation": "A risk register centrally tracks identified risks along with their assessment details and treatment status, giving the organization an ongoing view of its risk landscape."
+  },
+  {
+    "id": "secplus-d5-mc-009",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization with an expansionary risk appetite is evaluating a new venture. What does 'risk appetite' describe in this context?",
+    "choices": [
+      "The overall level of risk the organization is willing to pursue in service of its objectives",
+      "The exact dollar amount of a single loss event",
+      "The number of vulnerabilities currently unpatched",
+      "The maximum downtime a system can tolerate"
+    ],
+    "answerIndex": 0,
+    "explanation": "Risk appetite is a broad, strategic statement of how much risk an organization is generally willing to take on, distinct from risk tolerance, which is the acceptable variance around a specific risk."
+  },
+  {
+    "id": "secplus-d5-mc-010",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which risk analysis approach assigns numeric values like dollar amounts and probabilities to calculate an expected loss, as opposed to ranking risks as 'high,' 'medium,' or 'low'?",
+    "choices": ["Quantitative risk analysis", "Qualitative risk analysis", "Ad hoc risk analysis", "Continuous risk analysis"],
+    "answerIndex": 0,
+    "explanation": "Quantitative analysis uses measurable numeric inputs to calculate financial risk figures, while qualitative analysis relies on subjective severity ratings without hard numbers."
+  },
+  {
+    "id": "secplus-d5-mc-011",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A server outage occurs on average twice per year and costs $10,000 in lost revenue each time. What is the Annualized Loss Expectancy (ALE)?",
+    "choices": ["$20,000", "$10,000", "$5,000", "$2,000"],
+    "answerIndex": 0,
+    "explanation": "ALE = Single Loss Expectancy (SLE) x Annualized Rate of Occurrence (ARO), so $10,000 x 2 = $20,000 per year."
+  },
+  {
+    "id": "secplus-d5-mc-012",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company purchases a cyber liability insurance policy to cover the financial fallout of a potential data breach instead of building additional in-house controls. Which risk management strategy is this?",
+    "choices": ["Risk transfer", "Risk avoidance", "Risk acceptance", "Risk mitigation"],
+    "answerIndex": 0,
+    "explanation": "Risk transfer shifts the financial impact of a risk to another party, such as an insurer, rather than eliminating, reducing, or simply tolerating the risk itself."
+  },
+  {
+    "id": "secplus-d5-mc-013",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "After analysis, management decides a low-likelihood, low-impact risk isn't worth the cost of any additional control and formally documents the decision to take no further action. Which risk management strategy is this?",
+    "choices": ["Risk acceptance", "Risk avoidance", "Risk transfer", "Risk mitigation"],
+    "answerIndex": 0,
+    "explanation": "Risk acceptance formally acknowledges a risk and chooses to tolerate it, typically because the cost of treating it would exceed the potential impact."
+  },
+  {
+    "id": "secplus-d5-mc-014",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company discontinues an experimental product feature entirely after determining that the security risks it introduces outweigh any potential benefit. Which risk management strategy is this?",
+    "choices": ["Risk avoidance", "Risk transfer", "Risk acceptance", "Risk mitigation"],
+    "answerIndex": 0,
+    "explanation": "Risk avoidance eliminates the risk by discontinuing or never engaging in the activity that creates it, rather than reducing, transferring, or tolerating that risk."
+  },
+  {
+    "id": "secplus-d5-mc-015",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization deploys additional endpoint monitoring and network segmentation specifically to reduce the likelihood and impact of a known risk, without eliminating the underlying activity. Which risk management strategy is this?",
+    "choices": ["Risk mitigation", "Risk avoidance", "Risk transfer", "Risk acceptance"],
+    "answerIndex": 0,
+    "explanation": "Risk mitigation applies controls to reduce a risk's likelihood or impact to an acceptable level, while still continuing the underlying activity that carries the risk."
+  },
+  {
+    "id": "secplus-d5-mc-016",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Rather than running a single annual review, an organization continuously ingests vulnerability and threat data to reassess its risk posture in near real time. What kind of risk assessment approach is this?",
+    "choices": ["Continuous risk assessment", "One-time risk assessment", "Ad hoc risk assessment only", "Recurring risk assessment on a fixed annual schedule"],
+    "answerIndex": 0,
+    "explanation": "Continuous assessment updates the risk picture on an ongoing basis as new data arrives, in contrast to a one-time or fixed-schedule review that only captures a snapshot."
+  },
+  {
+    "id": "secplus-d5-mc-017",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Before signing a contract, a company insists on a clause that lets it (or an independent party) inspect a vendor's security controls and evidence of compliance at any time during the relationship. What is this clause called?",
+    "choices": ["A right-to-audit clause", "A non-disclosure agreement", "A memorandum of understanding", "A statement of work"],
+    "answerIndex": 0,
+    "explanation": "A right-to-audit clause gives the customer the contractual ability to verify a vendor's security posture directly, rather than relying solely on the vendor's own attestations."
+  },
+  {
+    "id": "secplus-d5-mc-018",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "As part of vendor selection, a company sends a detailed security questionnaire asking about the vendor's encryption practices, incident history, and certifications before signing a contract. What is this process called?",
+    "choices": ["Vendor due diligence", "Risk avoidance", "A business impact analysis", "Chain of custody"],
+    "answerIndex": 0,
+    "explanation": "Due diligence involves proactively investigating a prospective vendor's security practices and track record before entering into a business relationship with them."
+  },
+  {
+    "id": "secplus-d5-mc-019",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Before sharing proprietary source code with a contracted vendor, both parties sign an agreement legally prohibiting the vendor from disclosing that information to anyone else. What agreement is this?",
+    "choices": ["A non-disclosure agreement (NDA)", "A memorandum of understanding (MOU)", "A service level agreement (SLA)", "A right-to-audit clause"],
+    "answerIndex": 0,
+    "explanation": "An NDA creates a legally binding obligation of confidentiality between parties, specifically to protect sensitive information shared during the relationship."
+  },
+  {
+    "id": "secplus-d5-mc-020",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two organizations sign a document expressing their intent to collaborate on a joint security initiative, without the binding legal and financial detail of a formal contract. What is this document called?",
+    "choices": ["A memorandum of understanding (MOU)", "A statement of work (SOW)", "A master service agreement (MSA)", "A non-disclosure agreement (NDA)"],
+    "answerIndex": 0,
+    "explanation": "An MOU expresses mutual intent and general terms of cooperation between parties but is typically less formally binding than a full contract like an SOW or MSA."
+  },
+  {
+    "id": "secplus-d5-mc-021",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A contract with a cloud provider guarantees 99.9% uptime and specifies financial penalties if that threshold isn't met. What type of agreement is this?",
+    "choices": ["A service level agreement (SLA)", "A non-disclosure agreement", "A memorandum of understanding", "A business partnership agreement"],
+    "answerIndex": 0,
+    "explanation": "An SLA defines measurable minimum performance expectations, such as uptime, between a vendor and customer, often with defined remedies if those expectations aren't met."
+  },
+  {
+    "id": "secplus-d5-mc-022",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company found to have mishandled regulated customer data faces a large fine, mandatory public disclosure, and the loss of a key industry certification. What are these examples of?",
+    "choices": [
+      "Consequences of non-compliance",
+      "Risk mitigation strategies",
+      "Business impact analysis outcomes",
+      "Compensating controls"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fines, sanctions, reputational damage, and loss of certification or licensure are direct consequences an organization can face for failing to meet regulatory or contractual compliance obligations."
+  },
+  {
+    "id": "secplus-d5-mc-023",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An administrator who consistently follows secure configuration procedures even when nobody is checking is exercising which concept, as distinct from simply performing a scheduled review?",
+    "choices": ["Due care", "Due diligence", "Risk transfer", "Attestation"],
+    "answerIndex": 0,
+    "explanation": "Due care refers to the ongoing, reasonable actions taken to maintain security in daily operations, while due diligence refers more to the upfront investigation and vetting before a decision is made."
+  },
+  {
+    "id": "secplus-d5-mc-024",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Under privacy regulations such as GDPR, which right allows an individual to request that an organization erase their personal data when it's no longer needed for its original purpose?",
+    "choices": ["The right to be forgotten", "The right to audit", "Data sovereignty", "Non-repudiation"],
+    "answerIndex": 0,
+    "explanation": "The right to be forgotten (right to erasure) lets individuals request deletion of their personal data under specified conditions, reflecting their control over how their information is retained."
+  },
+  {
+    "id": "secplus-d5-mc-025",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company's own compliance team reviews its adherence to internal security policy each quarter, separate from any outside regulator. What type of audit is this?",
+    "choices": ["An internal audit", "An external audit", "A regulatory examination", "A penetration test"],
+    "answerIndex": 0,
+    "explanation": "Internal audits are conducted by staff within the organization to self-assess compliance and control effectiveness, distinct from external audits performed by independent outside parties."
+  },
+  {
+    "id": "secplus-d5-mc-026",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A government regulator conducts a formal review of a bank's security controls to verify compliance with financial industry regulations. What type of audit is this?",
+    "choices": ["An external (regulatory) audit", "An internal audit", "A self-assessment", "A tabletop exercise"],
+    "answerIndex": 0,
+    "explanation": "External audits are performed by independent outside parties, such as regulators or third-party assessors, and typically carry more formal weight than an organization's own internal review."
+  },
+  {
+    "id": "secplus-d5-mc-027",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A penetration tester is given full network diagrams, source code, and credentials before the engagement begins. What type of environment is this test conducted against?",
+    "choices": ["A known environment (white box)", "An unknown environment (black box)", "A partially known environment (gray box)", "A passive reconnaissance environment"],
+    "answerIndex": 0,
+    "explanation": "A known-environment (white box) test gives the tester full internal knowledge up front, allowing deeper coverage in less time than a black-box test starting from zero information."
+  },
+  {
+    "id": "secplus-d5-mc-028",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Before actively scanning a target, a penetration tester gathers information from public sources like DNS records, job postings, and social media without ever directly interacting with the target's systems. What is this phase called?",
+    "choices": ["Passive reconnaissance", "Active reconnaissance", "Exploitation", "Post-exploitation"],
+    "answerIndex": 0,
+    "explanation": "Passive reconnaissance collects publicly available information without touching the target directly, keeping the tester's activity invisible to the target's monitoring, unlike active reconnaissance."
+  },
+  {
+    "id": "secplus-d5-mc-029",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization periodically sends convincing but fake phishing emails to its own employees and tracks who clicks the link or reports it. What is the main purpose of this exercise?",
+    "choices": [
+      "Measuring and improving employee ability to recognize and report phishing",
+      "Fulfilling a penetration testing rules-of-engagement requirement",
+      "Satisfying a right-to-audit clause",
+      "Performing a business impact analysis"
+    ],
+    "answerIndex": 0,
+    "explanation": "Simulated phishing campaigns are a security awareness practice that measures real employee susceptibility and reinforces recognition and reporting behavior through repeated, low-stakes practice."
+  },
+  {
+    "id": "secplus-d5-match-001",
+    "type": "match",
+    "domainCode": "5.0",
+    "prompt": "Match each risk management strategy to an example of its use.",
+    "pairs": [
+      { "left": "Risk transfer", "right": "Purchasing a cyber liability insurance policy" },
+      { "left": "Risk acceptance", "right": "Deciding a low-impact risk isn't worth the cost to address and taking no further action" },
+      { "left": "Risk avoidance", "right": "Discontinuing a risky business activity or feature entirely" },
+      { "left": "Risk mitigation", "right": "Deploying additional security controls to reduce the risk's likelihood or impact" }
+    ],
+    "explanation": "These are the four classic risk response strategies: transfer shifts financial impact to a third party, acceptance takes no action, avoidance eliminates the activity causing the risk, and mitigation reduces likelihood or impact with controls."
+  }
+]

@@ -1,0 +1,366 @@
+[
+  {
+    "id": "netplus-d2-mc-001",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "On an 802.1Q trunk port, what happens to frames belonging to the native VLAN?",
+    "choices": [
+      "They are dropped",
+      "They are sent untagged",
+      "They are tagged with VLAN ID 0",
+      "They are duplicated onto every VLAN"
+    ],
+    "answerIndex": 1,
+    "explanation": "The native VLAN is the one VLAN on a trunk that is sent without an 802.1Q tag, for backward compatibility with devices that don't understand tagging. A mismatch between the two ends' native VLAN is a common misconfiguration."
+  },
+  {
+    "id": "netplus-d2-mc-002",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What does an 802.1Q trunk actually add to an Ethernet frame to identify which VLAN it belongs to?",
+    "choices": [
+      "A new destination MAC address",
+      "A 4-byte tag inserted after the source MAC address containing the VLAN ID",
+      "An extra IP header",
+      "A checksum appended to the end of the frame"
+    ],
+    "answerIndex": 1,
+    "explanation": "802.1Q inserts a 4-byte tag (including a 12-bit VLAN ID field) between the source MAC address and the EtherType/length field, letting a single link carry multiple VLANs."
+  },
+  {
+    "id": "netplus-d2-mc-003",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "In Spanning Tree Protocol, how is the root bridge for a VLAN elected?",
+    "choices": [
+      "The switch with the highest MAC address",
+      "The switch with the lowest bridge ID (priority plus MAC address)",
+      "The switch with the most connected ports",
+      "The first switch to power on"
+    ],
+    "answerIndex": 1,
+    "explanation": "Every switch advertises a bridge ID made up of a configurable priority and its MAC address; the switch with the lowest overall bridge ID becomes root. Lowering priority is how admins deliberately choose the root."
+  },
+  {
+    "id": "netplus-d2-mc-004",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "On a non-root switch running STP, what is the root port?",
+    "choices": [
+      "Any port that is administratively disabled",
+      "The port with the best (lowest-cost) path back to the root bridge",
+      "The port connected to the most end devices",
+      "The port assigned VLAN 1"
+    ],
+    "answerIndex": 1,
+    "explanation": "Each non-root switch selects exactly one root port — the interface with the lowest cumulative path cost toward the root bridge — and forwards through it."
+  },
+  {
+    "id": "netplus-d2-mc-005",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the main operational advantage of Rapid Spanning Tree Protocol (RSTP, 802.1w) over the original 802.1D STP?",
+    "choices": [
+      "It eliminates the need for a root bridge",
+      "It converges in seconds rather than the up to 50 seconds classic STP can take",
+      "It removes the need for VLANs",
+      "It only works on wireless networks"
+    ],
+    "answerIndex": 1,
+    "explanation": "RSTP redefines port states and roles to reach a forwarding topology much faster than legacy STP, which can take up to 50 seconds moving through listening and learning states after a topology change."
+  },
+  {
+    "id": "netplus-d2-mc-006",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Port security on a switch is configured with a maximum of one learned MAC address, and the port is set to shut down on a violation. What triggers the shutdown?",
+    "choices": [
+      "The port receiving a broadcast frame",
+      "A second, different source MAC address appearing on that port",
+      "The port going administratively down",
+      "The cable being unplugged"
+    ],
+    "answerIndex": 1,
+    "explanation": "Port security tracks allowed MAC addresses per port; once the limit is reached, any frame from a new, unrecognized source MAC counts as a violation and triggers the configured action (protect, restrict, or shutdown)."
+  },
+  {
+    "id": "netplus-d2-mc-007",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which IEEE standard defines the Link Aggregation Control Protocol used to bundle multiple physical links into one logical EtherChannel?",
+    "choices": ["802.1Q", "802.1X", "802.3ad", "802.3af"],
+    "answerIndex": 2,
+    "explanation": "802.3ad defines LACP. 802.1Q is VLAN tagging, 802.1X is port-based authentication, and 802.3af is the original PoE standard."
+  },
+  {
+    "id": "netplus-d2-mc-008",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A wireless access point requires roughly 25.5 watts at the device to power its radios reliably. Which PoE standard is the minimum needed to supply this?",
+    "choices": ["802.3af (PoE)", "802.3at (PoE+)", "802.3bt Type 3 only", "USB power injection"],
+    "answerIndex": 1,
+    "explanation": "802.3af (PoE) delivers up to about 15.4W at the source (12.95W at the device). 802.3at (PoE+) raises that to about 30W at the source (25.5W at the device), which covers higher-draw APs."
+  },
+  {
+    "id": "netplus-d2-mc-009",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the main drawback of relying entirely on static routes in a mid-sized network with multiple redundant paths?",
+    "choices": [
+      "Static routes cannot be used with IPv4",
+      "Static routes do not automatically adapt when a link fails, requiring manual updates",
+      "Static routes consume more CPU than dynamic protocols",
+      "Static routes cannot coexist with NAT"
+    ],
+    "answerIndex": 1,
+    "explanation": "A static route is a fixed, manually entered path. If the link it depends on goes down, traffic keeps trying to use it until an administrator intervenes, unlike a dynamic protocol that reroutes automatically."
+  },
+  {
+    "id": "netplus-d2-mc-010",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which of these is a link-state dynamic routing protocol commonly used inside an enterprise network?",
+    "choices": ["RIP", "OSPF", "Static routing", "NAT"],
+    "answerIndex": 1,
+    "explanation": "OSPF is a link-state protocol where each router builds a full map of the network topology from link-state advertisements. RIP is an older distance-vector protocol; static routing and NAT aren't routing protocols at all."
+  },
+  {
+    "id": "netplus-d2-mc-011",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A router has learned a route to the same destination network from both OSPF and a static route. Assuming default values, which one is installed in the routing table?",
+    "choices": [
+      "OSPF, because dynamic protocols always win",
+      "The static route, because static routes have a lower default administrative distance than OSPF",
+      "Both are installed and load-balanced automatically",
+      "Neither is installed until manually selected"
+    ],
+    "answerIndex": 1,
+    "explanation": "Administrative distance is the router's trust rating for a route's source; lower wins. A directly configured static route defaults to AD 1, while OSPF defaults to AD 110, so the static route takes precedence."
+  },
+  {
+    "id": "netplus-d2-mc-012",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "How does PAT (Port Address Translation) differ from basic NAT?",
+    "choices": [
+      "PAT translates one private IP to one public IP with no port changes",
+      "PAT allows many internal private addresses to share a single public IP by also translating source port numbers",
+      "PAT only works with UDP traffic",
+      "PAT is the IPv6 equivalent of NAT and cannot be used with IPv4"
+    ],
+    "answerIndex": 1,
+    "explanation": "PAT (also called NAT overload) tracks translations by both IP and port, so an entire private network can share one public IP address — this is what most home and office routers do by default."
+  },
+  {
+    "id": "netplus-d2-mc-013",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An organization wants an internal web server permanently reachable from the internet at one dedicated public IP address, mapped one-to-one to its private IP. What is this technique called?",
+    "choices": ["PAT", "Static (1:1) NAT", "Dynamic NAT pool", "Split-horizon DNS"],
+    "answerIndex": 1,
+    "explanation": "Static NAT maps a single private address to a single dedicated public address permanently, which is appropriate for a server that must always be reachable at the same public IP — unlike PAT, which shares one public IP among many hosts."
+  },
+  {
+    "id": "netplus-d2-mc-014",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Two routers share a virtual IP address that acts as the default gateway for a subnet; if the active router fails, the standby takes over transparently. What is this called?",
+    "choices": ["A first-hop redundancy protocol such as VRRP or HSRP", "Split horizon", "PAT", "Link aggregation"],
+    "answerIndex": 0,
+    "explanation": "First-hop redundancy protocols like VRRP and HSRP let two or more routers share a virtual gateway IP and MAC, so hosts keep a working default gateway even if the primary router fails."
+  },
+  {
+    "id": "netplus-d2-mc-015",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the key difference between a distance-vector and a link-state routing protocol?",
+    "choices": [
+      "Distance-vector routers share their full topology map; link-state routers only share hop counts",
+      "Distance-vector routers share routes learned from neighbors and typically use hop count; link-state routers build a complete map of the network from flooded link-state information",
+      "Link-state protocols cannot be used on IP networks",
+      "Distance-vector protocols never have convergence delays"
+    ],
+    "answerIndex": 1,
+    "explanation": "Distance-vector protocols (like RIP) pass along summarized routing info from neighbor to neighbor, often using hop count as the metric. Link-state protocols (like OSPF) flood link information so every router independently calculates the best paths from a full topology view."
+  },
+  {
+    "id": "netplus-d2-mc-016",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the primary technical advantage of 802.11ax (Wi-Fi 6) over 802.11ac in dense, high-client environments?",
+    "choices": [
+      "It only operates in the 2.4 GHz band",
+      "OFDMA lets the access point serve multiple clients in a single transmission, improving efficiency in dense deployments",
+      "It removes the need for SSIDs",
+      "It doubles the maximum cable length to the AP"
+    ],
+    "answerIndex": 1,
+    "explanation": "802.11ax introduces OFDMA, which subdivides a channel so the AP can serve several clients simultaneously in one transmission opportunity, greatly improving efficiency where many devices compete for airtime."
+  },
+  {
+    "id": "netplus-d2-mc-017",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Compared to 2.4 GHz, what is the main tradeoff of using the 5 GHz Wi-Fi band?",
+    "choices": [
+      "5 GHz has fewer available channels and worse range, but far less congestion and interference",
+      "5 GHz has shorter range but far more non-overlapping channels and typically less interference from legacy devices",
+      "5 GHz cannot support 802.11ac or 802.11ax",
+      "5 GHz always requires a wired backhaul"
+    ],
+    "answerIndex": 1,
+    "explanation": "5 GHz signals attenuate faster and penetrate obstacles less effectively, shrinking range, but the band offers many more non-overlapping channels and sees less interference than the crowded 2.4 GHz band."
+  },
+  {
+    "id": "netplus-d2-mc-018",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A wireless engineer widens an AP's channel from 20 MHz to 80 MHz to increase per-client throughput. What is the tradeoff of doing this?",
+    "choices": [
+      "Wider channels always improve range with no downside",
+      "Wider channels consume more of the available spectrum, leaving fewer non-overlapping channels and increasing the chance of co-channel interference in dense deployments",
+      "Wider channels disable encryption",
+      "Wider channels only work with 802.11g"
+    ],
+    "answerIndex": 1,
+    "explanation": "A wider channel can carry more data per transmission, but it uses up more spectrum, which reduces the number of non-overlapping channels available for neighboring APs — a real problem in dense, multi-AP deployments."
+  },
+  {
+    "id": "netplus-d2-mc-019",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What does MU-MIMO allow a modern access point to do?",
+    "choices": [
+      "Broadcast on multiple SSIDs with a single radio",
+      "Transmit to multiple client devices simultaneously using multiple antenna streams, rather than serving clients one at a time",
+      "Automatically switch between 2.4 GHz and 5 GHz per packet",
+      "Encrypt traffic without requiring a passphrase"
+    ],
+    "answerIndex": 1,
+    "explanation": "Multi-User MIMO uses multiple antennas to send independent data streams to several clients at the same time, increasing effective throughput and airtime efficiency compared to serving one client at a time."
+  },
+  {
+    "id": "netplus-d2-mc-020",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the primary security improvement WPA3 introduces over WPA2?",
+    "choices": [
+      "It removes the need for any passphrase",
+      "It replaces the WPA2 pre-shared key handshake with Simultaneous Authentication of Equals (SAE), which resists offline dictionary attacks",
+      "It disables encryption to speed up throughput",
+      "It only supports enterprise authentication, not personal mode"
+    ],
+    "answerIndex": 1,
+    "explanation": "WPA3-Personal replaces WPA2's four-way handshake (vulnerable to offline dictionary attacks against captured handshakes) with SAE, a more resilient key exchange that also provides forward secrecy."
+  },
+  {
+    "id": "netplus-d2-mc-021",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An organization wants the strongest practical wireless authentication, using client-side digital certificates instead of usernames and passwords. Which EAP method fits best?",
+    "choices": ["EAP-TLS", "PEAP", "LEAP", "Open authentication"],
+    "answerIndex": 0,
+    "explanation": "EAP-TLS requires a certificate on both the client and server, providing mutual certificate-based authentication. PEAP wraps a weaker inner authentication (often a password) inside a TLS tunnel using only a server-side certificate."
+  },
+  {
+    "id": "netplus-d2-mc-022",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A network team wants to authenticate administrators logging into switches and routers with full accounting of every command entered, using a protocol that encrypts the entire authentication packet. Which AAA protocol is the better fit than RADIUS for this use case?",
+    "choices": ["TACACS+", "SNMP", "LDAP", "Kerberos"],
+    "answerIndex": 0,
+    "explanation": "TACACS+ separates authentication, authorization, and accounting, encrypts the entire packet body (not just the password like RADIUS), and supports granular per-command authorization — a common fit for device administration."
+  },
+  {
+    "id": "netplus-d2-mc-023",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What distinguishes a lightweight (controller-based) access point from an autonomous access point?",
+    "choices": [
+      "A lightweight AP makes all its own configuration and RF decisions independently",
+      "A lightweight AP offloads management, RF coordination, and often authentication to a central wireless LAN controller",
+      "A lightweight AP cannot support more than one SSID",
+      "A lightweight AP requires no power over Ethernet"
+    ],
+    "answerIndex": 1,
+    "explanation": "Lightweight APs are centrally managed by a WLC, which pushes configuration, coordinates channels/power, and handles roaming logic. Autonomous APs are configured and managed individually, which doesn't scale well in large deployments."
+  },
+  {
+    "id": "netplus-d2-mc-024",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Before installing access points in a new warehouse, an engineer walks the space with a survey tool measuring signal strength, noise, and interference at many points. What is this process called?",
+    "choices": ["A site survey", "A packet capture", "A cable certification test", "A change management review"],
+    "answerIndex": 0,
+    "explanation": "A site survey assesses RF conditions on location — obstacles, interference sources, existing coverage — before AP placement is finalized, so the design matches real-world conditions rather than a floor plan alone."
+  },
+  {
+    "id": "netplus-d2-mc-025",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What does a wireless heat map visualize?",
+    "choices": [
+      "CPU temperature of each access point",
+      "Signal strength and coverage across a physical space, usually overlaid on a floor plan",
+      "The number of VLANs configured on each AP",
+      "Historical DHCP lease usage"
+    ],
+    "answerIndex": 1,
+    "explanation": "A heat map overlays measured or predicted signal strength onto a floor plan, making coverage gaps and overlap immediately visible to the person planning or troubleshooting AP placement."
+  },
+  {
+    "id": "netplus-d2-mc-026",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A long, narrow warehouse aisle needs Wi-Fi coverage focused down its length rather than spread in all directions. Which antenna type is the better choice?",
+    "choices": ["Omnidirectional", "Directional (such as a Yagi or panel antenna)", "A dipole antenna only", "No antenna is needed"],
+    "answerIndex": 1,
+    "explanation": "Directional antennas concentrate RF energy in a focused direction, which suits long corridors or point-to-point links. Omnidirectional antennas spread signal evenly in all directions, better suited to open, centrally located coverage."
+  },
+  {
+    "id": "netplus-d2-mc-027",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Why would an installer choose Cat6a over Cat6 for a new 10GBASE-T run?",
+    "choices": [
+      "Cat6a is thinner and easier to run through conduit",
+      "Cat6a provides better alien crosstalk shielding, supporting the full 100-meter 10GBASE-T distance where Cat6 is typically limited to about 55 meters",
+      "Cat6a is required for any Gigabit Ethernet link",
+      "Cat6a uses fiber-optic strands instead of copper"
+    ],
+    "answerIndex": 1,
+    "explanation": "Cat6a improves shielding against alien crosstalk between adjacent cables, letting 10GBASE-T run the full 100-meter standard distance. Standard Cat6 can support 10GBASE-T only over shorter runs, roughly 55 meters, due to crosstalk."
+  },
+  {
+    "id": "netplus-d2-mc-028",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the fundamental difference between single-mode and multimode fiber?",
+    "choices": [
+      "Single-mode uses a larger core and LED light source for short campus runs; multimode uses a smaller core and laser for long-haul links",
+      "Single-mode uses a small core and laser light for long-distance transmission; multimode uses a larger core and LED or VCSEL light, suited to shorter distances",
+      "Multimode fiber cannot be used with LC or SC connectors",
+      "Single-mode fiber is only used for wireless backhaul"
+    ],
+    "answerIndex": 1,
+    "explanation": "Single-mode fiber's narrow core allows one light path with a laser source, minimizing dispersion over long distances (kilometers). Multimode's larger core supports multiple light paths, causing modal dispersion that limits it to shorter runs, typically using LEDs or VCSELs."
+  },
+  {
+    "id": "netplus-d2-mc-029",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A data center is upgrading switch uplinks from 10 Gbps to 40 Gbps. Which transceiver form factor is designed for that higher speed?",
+    "choices": ["SFP", "SFP+", "QSFP", "GBIC"],
+    "answerIndex": 2,
+    "explanation": "QSFP (Quad Small Form-factor Pluggable) modules support 40 Gbps and higher by combining four lanes; SFP+ tops out around 10 Gbps, and plain SFP and GBIC are older, lower-speed form factors."
+  },
+  {
+    "id": "netplus-d2-order-001",
+    "type": "order",
+    "domainCode": "2.0",
+    "prompt": "Place the classic 802.1D Spanning Tree Protocol port states in the order a port progresses through them when transitioning to forwarding.",
+    "items": ["Blocking", "Listening", "Learning", "Forwarding"],
+    "explanation": "A port starts blocking to prevent loops, moves to listening while it processes BPDUs, then learning while it builds the MAC address table, and finally forwarding once STP is confident the topology is loop-free."
+  }
+]
