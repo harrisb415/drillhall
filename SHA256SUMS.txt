@@ -1,0 +1,28 @@
+# SHA256 checksums — v1.0.0
+
+Verifies the integrity of the v1.0.0 release: that the source tree at
+tag v1.0.0 matches what was published, and hasn't been altered.
+
+## Git identity of the release
+
+    tag v1.0.0 (annotated object): a1651d3d8484879a7a59e1946556ab7ddf407ba9
+    commit it points to:           7f9e70c812e8710a98a2d47eb4731d0dab8890f5
+
+Verify with:
+
+    git rev-parse v1.0.0
+    git rev-parse v1.0.0^{commit}
+
+## Source archive checksums
+
+`git archive` is deterministic for a given tag and format, so these are
+reproducible by anyone with the repo — no separately hosted download to
+trust:
+
+    git checkout v1.0.0
+    git archive --format=tar.gz --prefix=comptia-platform-1.0.0/ -o comptia-platform-1.0.0.tar.gz v1.0.0
+    git archive --format=zip     --prefix=comptia-platform-1.0.0/ -o comptia-platform-1.0.0.zip     v1.0.0
+    sha256sum comptia-platform-1.0.0.tar.gz comptia-platform-1.0.0.zip
+
+4f727d29f4fc44dc16d9ae3303c1784930062e20040c9e85839cd6e960772688 *comptia-platform-1.0.0.tar.gz
+ab1dc2a673f403a419c70ad65aaeb41866bdbd81e5fa20d3db78c6edbd566191 *comptia-platform-1.0.0.zip
