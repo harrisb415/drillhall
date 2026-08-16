@@ -2,7 +2,7 @@
 
 Self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express + better-sqlite3 server, Better Auth (email/password + Google), content shipped as validated data packs.
 
-**Status: Phases 1–2 complete** (see `comptia-platform-build-spec.md` §13 for the phase plan).
+**Status: v1.0.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1101), A+ Core 2 (220-1102), Network+ (N10-009), Security+ (SY0-701).
 
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
@@ -10,6 +10,7 @@ Self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express
 - **Exam simulator** (Phase 2 addendum) — five randomized, timed exam types with server-authoritative timing and CompTIA-style scaled scoring. See below.
 - **Phase 4** — exam planner, notification preferences page, and an in-process `node-cron` scheduler sending exam reminders, inactivity nudges, and a weekly digest. See below.
 - **Phase 5** — gamification (XP, streaks, levels) with the race-safe transaction the spec calls for, per-user timezone-aware notification delivery, nightly backup automation, a low-confidence indicator on readiness, and Playwright e2e coverage.
+- **Network+ and Security+ packs**, each grown to ~180+ questions, and a practice-mode fix so multiple-choice option order shuffles per session instead of favoring the first-listed choice.
 
 ## Quickstart (dev)
 
@@ -84,14 +85,16 @@ Modelled on the real thing: up to 90 questions in 90 minutes, scaled 100–900, 
 
 Each cert declares only four numbers (`exam` in `cert.json`); the modes are derived, so a new pack inherits all five.
 
-**Randomization.** Every attempt draws a fresh weighted sample, deprioritizes questions from your last three exams, and shuffles multiple-choice option order so a repeat sighting can't be answered from position memory. The shuffle is stored per session and mapped back at grading time.
+**Randomization.** Every attempt draws a fresh weighted sample, deprioritizes questions from your last three exams, and shuffles multiple-choice option order so a repeat sighting can't be answered from position memory. The shuffle is stored per session and mapped back at grading time. Practice mode (not just exam mode) shuffles the same way — `buildChoiceOrders`/`applyChoiceOrder` in `modules/quiz/grade.ts` are shared by both.
 
-Novelty is bounded by pool size — two exams of N questions from a bank of B must share at least `2N − B`. With ~185 questions per cert, **every mode currently has zero forced repeat**, including a back-to-back pair of full 90-question mocks. The PBQ gauntlet is deliberately capped at half the PBQ pool for the same reason, since performance-based questions are the most expensive to author.
+Novelty is bounded by pool size — two exams of N questions from a bank of B must share at least `2N − B`. With ~180+ questions per cert, **every mode currently has zero forced repeat**, including a back-to-back pair of full 90-question mocks. The PBQ gauntlet is deliberately capped at half the PBQ pool for the same reason, since performance-based questions are the most expensive to author.
 
 | Cert | Questions | of which PBQ | Full mock forced repeat |
 |---|---|---|---|
 | A+ Core 1 (220-1101) | 188 | 16 | 0% |
 | A+ Core 2 (220-1102) | 185 | 19 | 0% |
+| Network+ (N10-009) | 182 | 10 | 0% |
+| Security+ (SY0-701) | 184 | 10 | 0% |
 
 **Timing is server-authoritative.** The deadline lives in the database; answers are rejected after it and a reload resumes with the correct remaining time rather than restarting the clock. Unanswered questions count as incorrect, as they would on the real exam.
 
