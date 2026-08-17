@@ -1,0 +1,92 @@
+[
+  {
+    "id": "secplus-c-1-1",
+    "domainCode": "1.0",
+    "type": "reading",
+    "title": "The CIA triad, plus the property everyone forgets",
+    "summary": "Confidentiality, integrity, availability — and why non-repudiation is a fourth idea, not a fourth letter.",
+    "estimatedMinutes": 6,
+    "body": "## Three properties, one for each way security fails\n\n- **Confidentiality** — only authorized parties can read the data. Fails when data is exposed to someone who shouldn't see it (a breach, a misconfigured permission).\n- **Integrity** — data isn't altered without detection. Fails when data is tampered with, even if no one ever *reads* it improperly.\n- **Availability** — systems are accessible when legitimately needed. Fails during a DDoS, a ransomware lockout, or a hardware failure — even if confidentiality and integrity are both perfectly intact.\n\nEvery control you'll study maps to protecting one (or more) of these three. Encryption protects confidentiality. Hashing and digital signatures protect integrity. Redundancy and backups protect availability.\n\n### The fourth idea that isn't part of the triad\n\n**Non-repudiation** — an action can't be credibly denied by the party who performed it — is a related but *separate* property, usually delivered through digital signatures and audit logs. It's not \"CIA plus one letter\"; it answers a different question (\"can they deny doing this?\") than the triad does (\"is the data safe?\"). When a scenario is about proving *who* did something, not protecting *what* they did, that's non-repudiation."
+  },
+  {
+    "id": "secplus-c-1-2",
+    "domainCode": "1.0",
+    "type": "reading",
+    "title": "Control types and categories: two different questions",
+    "summary": "Preventive vs detective is a different axis from technical vs managerial.",
+    "estimatedMinutes": 7,
+    "body": "## Every control gets classified two ways, not one\n\nThis is where people mix things up: a control has a **category** (what kind of thing it is) and a **type** (what it does). They're independent axes.\n\n### Categories — what kind of control\n\n- **Technical** — implemented in systems: firewalls, encryption, access control lists.\n- **Managerial** — policies and procedures: a risk assessment, a security policy.\n- **Operational** — day-to-day human processes: security awareness training, guard patrols.\n- **Physical** — tangible barriers: locks, fences, cameras.\n\n### Types — what the control does\n\n- **Preventive** — stops an incident before it happens (a firewall rule, MFA).\n- **Detective** — identifies an incident in progress or after (an IDS alert, a log review).\n- **Corrective** — limits damage and restores after an incident (restoring from backup).\n- **Deterrent** — discourages an attempt without physically stopping it (a warning banner, a visible camera).\n- **Compensating** — an alternative when the ideal control isn't feasible (extra monitoring on a system that can't be patched).\n\n### How this gets tested\n\nA question describes a control and asks for **both** its category and type: \"a security camera at the entrance\" is a **physical, deterrent** control (and arguably detective too, if footage is reviewed). Extra monitoring around a legacy system that can't be patched is the textbook **compensating control** — it substitutes a different safeguard because the ideal one (patching) isn't available."
+  },
+  {
+    "id": "secplus-c-2-1",
+    "domainCode": "2.0",
+    "type": "reading",
+    "title": "Threat actors: motivation is the tell",
+    "summary": "Nation-state, insider, hacktivist — sorted by what they want, not just what they do.",
+    "estimatedMinutes": 7,
+    "body": "## The exam asks \"who did this,\" and the answer hinges on motive\n\n- **Nation-state** — high resources, high sophistication, often patient (advanced persistent threats). Motive: espionage, disruption, strategic advantage.\n- **Organized crime** — resourced and skilled, but the motive is **financial** — ransomware, fraud, data theft to sell.\n- **Hacktivist** — motivated by an ideological or political cause, not money. Defacement, leaks, and disruption aimed at making a statement.\n- **Insider threat** — someone with legitimate access misusing it, whether maliciously (a disgruntled employee) or unintentionally (a careless one). The access itself is what makes insiders dangerous — no need to breach a perimeter they're already inside.\n- **Unskilled attacker / script kiddie** — low sophistication, uses existing tools without deep understanding. Low resources, but not harmless — the tools they run were built by someone skilled.\n- **Shadow IT** — not an attacker at all, but a risk category: employees using unauthorized systems or services, creating blind spots the security team doesn't know exist.\n\n### Reading a scenario for the actor\n\nRansom demand → **organized crime**. Political message replacing a website's homepage → **hacktivist**. A slow, quiet, long-running compromise of critical infrastructure → **nation-state**. A terminated employee's account still pulling files the night before their exit interview → **insider threat**."
+  },
+  {
+    "id": "secplus-c-2-2",
+    "domainCode": "2.0",
+    "type": "reading",
+    "title": "Social engineering: the technique names, precisely",
+    "summary": "Phishing's many variants, and the one word that separates each from the next.",
+    "estimatedMinutes": 6,
+    "body": "## Social engineering questions are vocabulary questions\n\nAll of these manipulate a person rather than a system, but the exam wants the precise term.\n\n- **Phishing** — mass, generic fraudulent email.\n- **Spear phishing** — phishing targeted at a specific person, using details about them.\n- **Whaling** — spear phishing aimed specifically at executives.\n- **Vishing** — phishing over a **voice** call.\n- **Smishing** — phishing over **SMS**.\n- **Pretexting** — fabricating a plausible scenario or false identity to manipulate the target (\"I'm from IT, I need your password to fix an issue\").\n- **Typosquatting** — registering a domain that's a common misspelling of a real one, hoping for typo traffic.\n- **Watering hole** — compromising a site the target is known to visit, rather than attacking them directly.\n- **Business email compromise (BEC)** — impersonating an executive or vendor over email, usually to redirect a payment.\n\n### The pattern in how these get tested\n\nThe scenario gives you the **channel** (voice, SMS, email) and the **target** (a specific exec vs. the general public) — those two facts alone usually pin down the exact term. A fraudulent call to the CFO impersonating the CEO is **vishing** *and* effectively **whaling**-style targeting at once; the exam will usually want the more specific label the question is steering toward."
+  },
+  {
+    "id": "secplus-c-3-1",
+    "domainCode": "3.0",
+    "type": "reading",
+    "title": "Zero trust: verify, don't inherit trust from location",
+    "summary": "Why \"inside the network\" stopped meaning \"safe,\" and the two planes that enforce it.",
+    "estimatedMinutes": 7,
+    "body": "## The old model trusted the network perimeter. Zero trust doesn't trust anything by default\n\nTraditional security drew a hard line: outside the firewall, untrusted; inside, trusted. Zero trust rejects that — a device or user being \"inside\" the network proves nothing, since attackers regularly get inside anyway (phishing, a compromised laptop, an insider). Under zero trust, **every request is verified**, regardless of where it originates.\n\n### The two conceptual planes\n\n- **Control plane** — where policy decisions get made. Contains the **policy engine** (evaluates a request against policy and decides allow/deny) and the **policy administrator** (executes that decision).\n- **Data plane** — where the actual traffic flows, gated by the **policy enforcement point**, which is the thing that actually allows or blocks the connection based on what the control plane decided.\n\nThink of it as separating the *decision* (control plane) from the *enforcement* (data plane) — a deliberate split so policy logic isn't scattered across every device that happens to be in the traffic path.\n\n### What this looks like in practice\n\nInstead of \"you're on the corporate VPN, so you're trusted,\" zero trust continuously evaluates identity, device posture, and context for **every** access request — a user on the VPN accessing a sensitive system still authenticates and gets evaluated against policy, every time, not once at login."
+  },
+  {
+    "id": "secplus-c-3-2",
+    "domainCode": "3.0",
+    "type": "reading",
+    "title": "Data states, and the control that protects each one",
+    "summary": "At rest, in transit, in use — three states, three different tools.",
+    "estimatedMinutes": 6,
+    "body": "## Data needs different protection depending on where it currently is\n\n- **Data at rest** — sitting on a disk, unused right now. Protected primarily by **encryption** (full-disk like BitLocker, or file-level) and access controls.\n- **Data in transit** — moving across a network. Protected by **TLS**, VPN tunnels, and other transport encryption — the goal is that anyone intercepting the traffic sees nothing usable.\n- **Data in use** — actively being processed in memory, by an application. The hardest state to protect, since the data must be in a readable form for the application to work with it at all; specialized techniques like secure enclaves address this, but it's the state most often left under-protected.\n\n### Why the state matters for control selection\n\nEncrypting a database file on disk (at rest) does nothing to protect the data the instant a query decrypts it into an application's working memory (in use) — that's a different exposure entirely. A question describing data being intercepted *between* two servers is asking about protecting data **in transit** (TLS), not at rest — encrypting the disk on either end wouldn't have stopped that interception.\n\n### Methods that show up across states\n\n**Masking** and **tokenization** substitute a real value with a fake or placeholder one, useful when a system needs *realistic-looking* data (for testing, for display) without exposing the real thing. **Hashing** proves integrity without storing the original value at all — used for passwords, so even the system storing them never holds the plaintext."
+  },
+  {
+    "id": "secplus-c-4-1",
+    "domainCode": "4.0",
+    "type": "reading",
+    "title": "IAM: provisioning, access models, and MFA that's actually multi-factor",
+    "summary": "RBAC vs ABAC vs DAC, and the factor categories that make MFA real.",
+    "estimatedMinutes": 8,
+    "body": "## Access control models, distinguished by what decides access\n\n- **DAC (Discretionary Access Control)** — the resource **owner** decides who gets access. Flexible, but inconsistent — every owner makes their own call.\n- **MAC (Mandatory Access Control)** — access is decided by a **central authority** based on classification labels (like government security clearances), not by individual owners. The strictest and least flexible.\n- **RBAC (Role-Based Access Control)** — access follows a user's **role** (\"HR staff can access HR systems\"). The most common enterprise model — assign a role, inherit its permissions.\n- **ABAC (Attribute-Based Access Control)** — access decided by evaluating **attributes** (department, time of day, device, location) against policy. The most granular and flexible, and the model most aligned with zero trust's \"evaluate every request\" philosophy.\n- **Rule-based** — access follows explicit if-then rules, like a firewall ACL.\n\n### MFA: the factors have to be different categories\n\n- **Something you know** — password, PIN.\n- **Something you have** — hardware token, phone (for a push or code).\n- **Something you are** — biometrics.\n- **Somewhere you are** — geolocation.\n\nA password plus a PIN is **not MFA** — both are \"something you know.\" This is one of the most reliably tested facts on the exam: MFA requires factors from **different** categories, not just *more than one* credential.\n\n### The lifecycle\n\n**Provisioning** creates an account with appropriate access; **deprovisioning** removes it — and a delayed deprovisioning (an ex-employee's account still active) is one of the most common real-world access failures, which is why it's a recurring exam theme too."
+  },
+  {
+    "id": "secplus-c-4-2",
+    "domainCode": "4.0",
+    "type": "reading",
+    "title": "Incident response: the seven phases, in order",
+    "summary": "Preparation through lessons learned, and why order is the actual test.",
+    "estimatedMinutes": 7,
+    "body": "## A fixed sequence, and the exam mostly tests whether you know the order\n\n1. **Preparation** — before anything happens: policies, tools, training, and a plan already in place.\n2. **Detection** — recognizing that an incident is occurring.\n3. **Analysis** — understanding scope, impact, and root cause.\n4. **Containment** — stopping the incident from spreading further, without necessarily fixing it yet.\n5. **Eradication** — removing the actual cause (the malware, the unauthorized access).\n6. **Recovery** — restoring affected systems to normal operation.\n7. **Lessons learned** — a post-incident review to improve the process for next time.\n\n### The step people jump past\n\nThe trap in scenario questions is skipping straight from detection to eradication. **Containment comes first** — stop the bleeding before you try to remove the cause, or the incident keeps spreading while you're busy investigating it. This mirrors the same lesson elsewhere in security: contain, *then* fix.\n\n### Where forensics fits in\n\nDuring analysis and containment, evidence handling follows **order of volatility** — collect what disappears fastest first: CPU registers/cache, then RAM, then network state, then running processes, then disk, then archival media. And **chain of custody** — the unbroken, documented record of who handled evidence and when — has to be maintained throughout, or the evidence's integrity can be challenged later."
+  },
+  {
+    "id": "secplus-c-5-1",
+    "domainCode": "5.0",
+    "type": "reading",
+    "title": "Risk: the vocabulary of qualitative and quantitative analysis",
+    "summary": "SLE, ALE, ARO — what each formula answers, and the four ways to respond to risk.",
+    "estimatedMinutes": 8,
+    "body": "## Quantitative risk analysis is three formulas, chained together\n\n- **SLE (Single Loss Expectancy)** — the cost of **one** occurrence of a risk event. Formula: **Asset Value × Exposure Factor**. (Exposure factor is the *percentage* of the asset's value lost in one event.)\n- **ARO (Annualized Rate of Occurrence)** — how many times per year the event is expected to happen. Might be 0.1 (once a decade) or 5 (five times a year).\n- **ALE (Annualized Loss Expectancy)** — the yearly cost, accounting for frequency. Formula: **SLE × ARO**.\n\n### Working an example\n\nA server worth $50,000 has a 20% exposure factor per incident (SLE = $10,000), and the event is expected twice a year (ARO = 2). **ALE = $10,000 × 2 = $20,000** — meaning a $15,000/year mitigation is worth buying; a $25,000/year one isn't, on pure cost-avoidance math.\n\n**Qualitative** analysis skips the dollar figures and instead ranks risks by relative severity (low/medium/high, or a risk matrix) — faster, but more subjective. Used when hard numbers aren't available or the exercise doesn't need them.\n\n### Four ways to respond to an identified risk\n\n- **Accept** — do nothing further; the cost of mitigation exceeds the risk.\n- **Avoid** — eliminate the activity that creates the risk entirely.\n- **Mitigate** — reduce likelihood or impact (this is most controls).\n- **Transfer** — shift the financial impact elsewhere, typically cyber insurance.\n\nA company that decides a risk is too expensive to fix but insures against the loss has chosen to **transfer** it — not accept it. Those two get confused constantly; accept means doing nothing, transfer means paying someone else to absorb the financial hit."
+  },
+  {
+    "id": "secplus-c-5-2",
+    "domainCode": "5.0",
+    "type": "reading",
+    "title": "Compliance, third-party risk, and the agreements that define them",
+    "summary": "Due diligence vs due care, and the alphabet soup of vendor agreements.",
+    "estimatedMinutes": 6,
+    "body": "## Two Latin-flavored terms that get mixed up constantly\n\n- **Due diligence** — the research done *before* an action: investigating a vendor's security posture before signing a contract.\n- **Due care** — the ongoing responsibility to *maintain* reasonable security once you're operating: patching systems, keeping controls current.\n\nDue diligence is the homework beforehand; due care is doing the job properly afterward. A question about vetting a new vendor before signing is due diligence; a question about keeping systems updated after deployment is due care.\n\n### Vendor and third-party agreements\n\n- **SLA (Service Level Agreement)** — measurable performance commitments (uptime, response time).\n- **MOU (Memorandum of Understanding)** — a general statement of intent between parties, less formal than a contract.\n- **MSA (Master Service Agreement)** — the overarching contract terms that govern the relationship, under which individual work is ordered.\n- **NDA (Non-Disclosure Agreement)** — confidentiality obligations.\n- **BPA (Business Partnership Agreement)** — defines the terms of a business partnership, including profit/loss sharing and responsibilities.\n\n### Third-party risk management in practice\n\nBefore engaging a vendor: **due diligence** (security questionnaires, right-to-audit clauses, checking for independent assessments). During the relationship: ongoing **vendor monitoring** — their security posture is now part of your risk surface, and a breach at a vendor can become your incident too. This is why regulated industries increasingly require evidence of a vendor's own controls, not just a signature on an NDA."
+  }
+]

@@ -2,10 +2,15 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.4.1] — 2026-08-16
+
+### Added
+- **Course content for the remaining three packs.** A+ Core 2 (9 lessons), Network+ (11), and Security+ (10), matching the depth and house style of the A+ Core 1 course that shipped in 1.4.0. All four packs validate against `CertPackSchema` — correct ids, correct domain codes, domain weights still summing to 100 — and the full server (117) and content (9) suites pass. Every pack now shows real content instead of the Course page's empty state.
+
 ## [1.4.0] — 2026-08-16
 
 ### Added
-- **Course** — a reading-based study track, a fifth part of each content pack (`course.json`), domain-tagged like everything else. A new **Course** nav item, a domain-grouped index with per-domain progress rings, and a markdown lesson reader (`react-markdown`, never `innerHTML`). Lessons are browsable, not gated or sequenced — matching how flashcards, quiz, and reference already work. Completing a lesson awards XP once (guarded against re-farming) and offers a one-tap jump into a domain-filtered quiz. Video was deliberately left out of the schema for now rather than stubbed. A+ Core 1 ships with a full course; the other three certs show a clean empty state until their content lands.
+- **Course** — a reading-based study track, a fifth part of each content pack (`course.json`), domain-tagged like everything else. A new **Course** nav item, a domain-grouped index with per-domain progress rings, and a markdown lesson reader (`react-markdown`, never `innerHTML`). Lessons are browsable, not gated or sequenced — matching how flashcards, quiz, and reference already work. Completing a lesson awards XP once (guarded against re-farming) and offers a one-tap jump into a domain-filtered quiz. Video was deliberately left out of the schema for now rather than stubbed. A+ Core 1 shipped with a full course; the other three packs followed in 1.4.1.
 - **Course-vs-mastery cross-reference** on the dashboard — shows what you've *read* beside what you've *proven* with a quiz answer, per domain, and flags the gap ("quiz it →") where a domain is well-read but thinly tested. Kept separate from the readiness gauge, since reading isn't evidence of mastery — the same call already made for mock exams.
 
 ### Fixed

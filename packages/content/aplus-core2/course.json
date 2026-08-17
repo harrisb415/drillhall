@@ -1,0 +1,83 @@
+[
+  {
+    "id": "core2-c-1-1",
+    "domainCode": "1.0",
+    "type": "reading",
+    "title": "Windows editions and the features that separate them",
+    "summary": "Home vs Pro, and the features CompTIA expects you to know are missing from Home.",
+    "estimatedMinutes": 6,
+    "body": "## The exam tests the boundary, not the list\n\nYou will not be asked to recite every Windows edition. You *will* be asked which edition a scenario requires — and that almost always comes down to a feature **Home doesn't have**.\n\n### The Pro-only features worth memorizing\n\n- **BitLocker** — full-disk encryption. Home has *Device Encryption* on some hardware, but managed BitLocker is Pro and up.\n- **Domain join** — Home cannot join an Active Directory domain. This is the single most common \"which edition?\" answer on the exam. A workstation that needs to authenticate against a company domain needs Pro.\n- **Group Policy Editor (gpedit.msc)** — Home has no local Group Policy editor.\n- **Remote Desktop (host)** — Home can *connect out* as a client, but cannot *host* an incoming RDP session.\n- **Hyper-V** — the built-in hypervisor is Pro and up.\n\n### How this shows up\n\n> \"A user needs to join their laptop to the corporate domain and enable full-disk encryption managed by IT.\"\n\nThat's two Pro-only features in one sentence. The answer is **Windows Pro** (or Enterprise), and the reason is the domain join — Home simply can't do it, no workaround.\n\nWhen a question lists a feature and asks what's needed, ask yourself: *is this something Home is deliberately missing?* If yes, the answer is Pro or higher."
+  },
+  {
+    "id": "core2-c-1-2",
+    "domainCode": "1.0",
+    "type": "reading",
+    "title": "The command line you'll be tested on",
+    "summary": "The handful of Windows and Linux commands that show up again and again.",
+    "estimatedMinutes": 8,
+    "body": "## A small set of commands does most of the work\n\nCommand-line questions cluster around a few tools. Know what each does and the one flag that matters.\n\n### Windows networking\n\n- **`ipconfig /all`** — full adapter detail, including MAC and DNS. `/release` and `/renew` cycle a DHCP lease; `/flushdns` clears the resolver cache after a DNS change.\n- **`ping`** — reachability. A reply proves Layer 3 connectivity; a timeout doesn't prove the host is down (it may just drop ICMP).\n- **`tracert`** — the hop-by-hop path, for locating *where* along the route the failure is.\n- **`nslookup`** — query DNS directly, to separate a name-resolution problem from a connectivity one.\n- **`netstat -ano`** — active connections and listening ports with owning PIDs; how you find what's listening on a port.\n\n### Windows files and disks\n\n- **`sfc /scannow`** — System File Checker, repairs corrupted system files. First stop for weird OS behavior after malware or a bad update.\n- **`chkdsk /f`** — fixes file-system errors; `/r` also checks for bad sectors.\n- **`diskpart`** — scriptable partition management, when Disk Management's GUI isn't enough.\n- **`gpupdate /force`** — reapply Group Policy immediately instead of waiting for the refresh cycle.\n\n### Linux essentials\n\n- **`sudo`** — run one command as root. Preferred over logging in as root.\n- **`chmod` / `chown`** — permissions and ownership. `chmod 755` is the classic \"owner full, everyone else read+execute.\"\n- **`ip` / `ifconfig`** — interface configuration (`ip` is the modern replacement).\n- **`apt-get` / `yum` / `dnf`** — package managers; which one depends on the distribution family.\n- **`ps` / `top`** — running processes; `top` is the live view.\n\nDon't memorize man pages. Memorize *which tool solves which sentence* — that's how the questions are phrased."
+  },
+  {
+    "id": "core2-c-1-3",
+    "domainCode": "1.0",
+    "type": "reading",
+    "title": "Install, migrate, and boot: the OS lifecycle",
+    "summary": "Clean vs in-place, MBR vs GPT, and the file systems that matter.",
+    "estimatedMinutes": 7,
+    "body": "## Installation choices have consequences the exam probes\n\n### Install types\n\n- **Clean install** — wipes and starts fresh. Cleanest result, but you lose data and apps unless backed up.\n- **In-place upgrade** — keeps files, settings, and apps. Convenient, but carries forward whatever was wrong before.\n- **Repair / reset** — Windows can reset while keeping personal files, a middle ground for a misbehaving install.\n\n### Partitioning: MBR vs GPT\n\nThis pairing is a frequent question.\n\n- **MBR** — older; supports up to **4 primary partitions** and a maximum disk of **2 TB**. Tied to legacy BIOS boot.\n- **GPT** — modern; effectively unlimited partitions, disks well beyond 2 TB, and **required for UEFI boot** on drives over 2 TB.\n\nIf a scenario has a 4 TB drive that won't fully use its space, the suspect is **MBR** — it can't address past 2 TB.\n\n### File systems\n\n- **NTFS** — the Windows default. Journaling, per-file permissions, encryption, large files. Use it for internal Windows drives.\n- **FAT32** — old, universal, but capped at **4 GB per file** and 32 GB volumes in Windows' formatter. Handy for cross-platform compatibility on small media.\n- **exFAT** — FAT32's successor without the 4 GB file limit; the right pick for large files on removable media shared between Windows and macOS.\n\nThe **4 GB FAT32 file-size limit** is the single most-tested file-system fact. A user who can't copy a 5 GB video to a USB stick is almost certainly formatted **FAT32**; reformat as exFAT or NTFS."
+  },
+  {
+    "id": "core2-c-2-1",
+    "domainCode": "2.0",
+    "type": "reading",
+    "title": "Malware: telling the types apart, and removal in order",
+    "summary": "The malware categories CompTIA tests, plus the fixed 7-step removal process.",
+    "estimatedMinutes": 8,
+    "body": "## Two things get tested: what it is, and how you remove it\n\n### The categories\n\n- **Virus** — attaches to a file, needs a user to run it to spread.\n- **Worm** — self-propagates across a network with no user action. The \"spreads on its own\" answer.\n- **Trojan** — disguised as legitimate software.\n- **Ransomware** — encrypts data and demands payment.\n- **Rootkit** — hides with deep system privileges; may survive reinstalls of the OS if it's in firmware.\n- **Keylogger / spyware** — captures input or activity covertly.\n- **Cryptominer** — hijacks CPU/GPU for someone else's mining; the tell is sustained high usage and heat when idle.\n\n### The removal process — know the order\n\nCompTIA teaches a **fixed 7-step sequence**, and the exam asks what comes next:\n\n1. **Investigate and verify** malware symptoms.\n2. **Quarantine** the infected system — disconnect it from the network so it can't spread or phone home.\n3. **Disable System Restore** (Windows) — so you don't restore the infection back from a restore point.\n4. **Remediate** — update anti-malware definitions, then scan and remove.\n5. **Schedule scans and run updates** — recurring protection.\n6. **Re-enable System Restore** and create a fresh, clean restore point.\n7. **Educate the end user** — the human is the recurring vector.\n\nThe two most-tested steps are **quarantine first** (before anything else touches the network) and **disable System Restore before remediation** (or you'll re-infect from a saved point). If a question asks \"what should you do *first*,\" the answer is almost always quarantine."
+  },
+  {
+    "id": "core2-c-2-2",
+    "domainCode": "2.0",
+    "type": "reading",
+    "title": "Authentication, permissions, and securing the workstation",
+    "summary": "MFA factors, NTFS vs share permissions, and the hardening basics.",
+    "estimatedMinutes": 7,
+    "body": "## Access control is the backbone of the Security domain\n\n### Authentication factors\n\nMulti-factor means combining **different categories**, not two of the same:\n\n- **Something you know** — password, PIN.\n- **Something you have** — token, phone, smart card.\n- **Something you are** — fingerprint, face.\n\nA password plus a security question is **not** MFA — both are \"something you know.\" A password plus a phone code *is*.\n\n### NTFS vs share permissions\n\nThis catches people out. When a user accesses a shared folder over the network, **both** sets apply and the **most restrictive wins**.\n\n- **Share permissions** apply only over the network, not locally.\n- **NTFS permissions** apply both locally and over the network, and are more granular.\n\nIf share says Full Control but NTFS says Read, the effective network access is **Read**. The exam loves this exact conflict.\n\n### Hardening basics\n\n- **Rename or disable default accounts** (the built-in Administrator).\n- **Require strong passwords** and set an expiration/lockout policy.\n- **Disable AutoRun/AutoPlay** — a classic removable-media infection vector.\n- **Principle of least privilege** — give each account only what its role needs. A standard user account for daily work, admin only when required.\n- **Encrypt** with BitLocker (whole disk) or EFS (individual files) for data at rest."
+  },
+  {
+    "id": "core2-c-3-1",
+    "domainCode": "3.0",
+    "type": "reading",
+    "title": "Troubleshooting Windows: symptoms and their usual causes",
+    "summary": "Boot failures, slow performance, and the tools that fix each.",
+    "estimatedMinutes": 7,
+    "body": "## Match the symptom to the tool\n\nSoftware troubleshooting on the exam is pattern recognition: a described symptom points to a specific tool or cause.\n\n### Boot problems\n\n- **\"No boot device\" / \"Operating system not found\"** — boot order, a failed drive, or corrupted boot files. `bootrec /fixmbr` and `/fixboot` rebuild boot records from the recovery environment.\n- **BSOD (blue screen)** — usually a driver or hardware fault. Note the stop code; boot into **Safe Mode** to roll back the offending driver.\n- **Continuous reboot loop** — often a bad update or driver. Safe Mode or the recovery environment breaks the loop so you can uninstall it.\n\n### Performance problems\n\n- **Slow performance** — check **Task Manager** for a process pinning CPU, memory, or disk. Sustained 100% disk on a mechanical drive is a common culprit on older machines.\n- **Low memory / sluggish multitasking** — too little RAM, or too many startup programs (trim them in Task Manager's Startup tab).\n- **Services not starting** — `services.msc` to check state and dependencies; the Event Viewer for the error behind the failure.\n\n### The go-to repair tools\n\n- **`sfc /scannow`** — repairs corrupted system files.\n- **`DISM /Online /Cleanup-Image /RestoreHealth`** — repairs the underlying component store when SFC alone can't.\n- **Safe Mode** — minimal drivers, for isolating whether a third-party driver or app is the cause.\n- **System Restore** — roll back to before the problem, when it started after a change.\n\nThe habit that scores points: *a problem that started right after a change is almost always caused by that change.* Roll it back before you dig deeper."
+  },
+  {
+    "id": "core2-c-3-2",
+    "domainCode": "3.0",
+    "type": "reading",
+    "title": "Mobile and browser problems, including security symptoms",
+    "summary": "The mobile-device and browser issues that signal something's wrong.",
+    "estimatedMinutes": 6,
+    "body": "## Mobile and browser symptoms often mean a security problem\n\n### Mobile red flags\n\n- **Rapid battery drain / overheating when idle** — a rogue app or malware running in the background.\n- **High data usage you can't explain** — an app exfiltrating data, or unwanted background activity.\n- **Slow performance and frequent crashes** — could be a failing app, could be malware; clear cache, update, uninstall recent apps.\n- **Unexpected app behavior or unfamiliar apps** — possible sideloaded malware; on Android, disable installation from unknown sources.\n\nWhen several of these appear together, treat it as a **possible compromise**, not just a slow phone.\n\n### Browser symptoms\n\n- **Redirection** — you type one site and land on another. Classic sign of a browser hijack or a compromised hosts file.\n- **Certificate warnings** — an expired or untrusted cert, a wrong system clock, or a man-in-the-middle. Check the date/time first; a wrong clock invalidates every certificate.\n- **Excessive pop-ups / new toolbars** — adware or a malicious extension. Remove unknown extensions and reset the browser.\n- **Slow browsing on a fast connection** — too many extensions, or a proxy quietly set by malware. Check the proxy settings.\n\n### The fixes\n\nUninstall unrecognized extensions, clear cache and cookies, verify proxy and DNS settings, and confirm the system clock. If redirection or hijacking persists, treat it as malware and run the full removal process from the security lessons."
+  },
+  {
+    "id": "core2-c-4-1",
+    "domainCode": "4.0",
+    "type": "reading",
+    "title": "Safety, documentation, and change management",
+    "summary": "ESD, the documents you'll be asked to name, and why change control exists.",
+    "estimatedMinutes": 7,
+    "body": "## Operational Procedures is about doing the job responsibly\n\n### Safety\n\n- **ESD (electrostatic discharge)** — the invisible killer of components. Use an **anti-static wrist strap** connected to ground, anti-static mats and bags, and keep humidity moderate. Notably, you **do not** wear a wrist strap when working inside a **CRT monitor or a power supply** — those hold lethal stored charge, and grounding yourself to them is dangerous.\n- **Equipment grounding** and proper lifting technique round out the physical-safety questions.\n\n### Documentation you'll be asked to identify\n\n- **AUP (Acceptable Use Policy)** — what users may and may not do with company systems.\n- **Knowledge base / articles** — documented fixes so the same problem isn't re-solved from scratch.\n- **Network topology diagrams** — how the network is laid out.\n- **Incident reports** — the record of what happened, for security and audit.\n- **Regulatory / compliance policy** — external rules the organization must follow.\n\n### Change management\n\nChange control exists so a \"quick fix\" doesn't cause an outage nobody planned for. The pieces the exam names:\n\n- **Request** with a documented **purpose and scope**.\n- **Risk analysis** — what could go wrong, and how likely.\n- **Approval** by a change board before implementation.\n- **Rollback (backout) plan** — the concrete way to undo it if it fails. This must exist *before* you make the change, not be improvised after.\n- **End-user acceptance** and documentation of the outcome.\n\nThe most-tested idea: a change without a **rollback plan** is not ready to implement."
+  },
+  {
+    "id": "core2-c-4-2",
+    "domainCode": "4.0",
+    "type": "reading",
+    "title": "Backups, communication, and handling sensitive data",
+    "summary": "The 3-2-1 rule, professionalism basics, and how to treat regulated data.",
+    "estimatedMinutes": 6,
+    "body": "## The parts of the job that aren't about hardware\n\n### Backups\n\nThe **3-2-1 rule** is the anchor: **3** copies of your data, on **2** different media types, with **1** copy **off-site**. Off-site is what survives a fire, theft, or ransomware that reaches everything on the local network.\n\nBackup types and what they cost:\n\n- **Full** — everything, every time. Slowest to run, fastest to restore.\n- **Incremental** — only what changed since the *last backup of any kind*. Fast to run, slower to restore (you replay the full plus every increment).\n- **Differential** — everything changed since the last *full*. A middle ground: larger than incremental, but restore needs only the full plus one differential.\n\nAnd the rule everyone forgets: **a backup you have never tested is not a backup.** Verify restores.\n\n### Professionalism and communication\n\nThe soft-skills questions have consistent \"right\" answers: **avoid jargon** with non-technical users, **actively listen** and don't interrupt, **set and meet expectations**, maintain a positive attitude, and **respect confidentiality** — don't go through a customer's files beyond the task, and don't share what you see.\n\n### Handling regulated data\n\nWhen you encounter **PII** (personally identifiable information), **PHI** (health data under HIPAA), or payment-card data under **PCI DSS**, the expectation is: follow the organization's incident-response and data-handling policy, preserve the chain of custody if it's an incident, and escalate rather than improvise. If you find prohibited or illegal content on a customer's machine, the exam answer is to **preserve it, stop, and report through the proper chain** — not to investigate it yourself."
+  }
+]

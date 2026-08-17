@@ -1,0 +1,101 @@
+[
+  {
+    "id": "netplus-c-1-1",
+    "domainCode": "1.0",
+    "type": "reading",
+    "title": "The OSI model, without the mnemonics",
+    "summary": "What each layer actually does, and why troubleshooting starts at the bottom.",
+    "estimatedMinutes": 7,
+    "body": "## Forget \"Please Do Not Throw Sausage Pizza Away\" for a second\n\nThe mnemonic gets you the order. It doesn't get you what each layer *does*, and that's what the exam actually tests — usually by describing a symptom and asking which layer it belongs to.\n\n### The seven layers, by job\n\n1. **Physical** — bits on the wire. Cables, connectors, signal, voltage. A cut cable or a bad port is a Layer 1 problem.\n2. **Data Link** — MAC addresses, switches, frames. \"Two devices on the same switch can't talk\" is often Layer 2.\n3. **Network** — IP addresses, routing. \"Two devices on different subnets can't talk\" is Layer 3.\n4. **Transport** — TCP/UDP, ports, reliability. A service listening on the wrong port, or a firewall blocking one, is Layer 4.\n5. **Session** — establishing, maintaining, and tearing down a connection.\n6. **Presentation** — formatting, encryption, compression (think TLS, JPEG).\n7. **Application** — what the user actually sees: HTTP, DNS, email.\n\n### Why layer number is a troubleshooting tool\n\nA **switch** operates at Layer 2 — it forwards by MAC address and doesn't care about IP. A **router** operates at Layer 3 — it forwards by IP address between networks. So \"the switch won't route between VLANs\" is actually a category error: switches don't route (unless it's a *Layer 3 switch*, which is really a router wearing a switch's housing).\n\nWhen a question describes a broken connection, ask: *what's the lowest layer that could explain this?* A cable issue explains everything above it failing too — so check physical connectivity before chasing an application-layer theory."
+  },
+  {
+    "id": "netplus-c-1-2",
+    "domainCode": "1.0",
+    "type": "reading",
+    "title": "Subnetting: the only two numbers you actually need",
+    "summary": "How to go from a CIDR prefix to usable hosts without a cheat sheet.",
+    "estimatedMinutes": 9,
+    "body": "## Subnetting panic is a memorization problem, not a math problem\n\nYou need exactly two facts. Everything else is arithmetic.\n\n### Fact 1: the prefix tells you the host bits\n\nAn IPv4 address has 32 bits. A **/24** means 24 bits are network, leaving **8 bits for hosts**. A **/26** leaves 6 host bits. The formula for total addresses in a subnet is:\n\n**2^(host bits) = total addresses**\n\n- /24 → 8 host bits → 2^8 = **256 addresses**\n- /26 → 6 host bits → 2^6 = **64 addresses**\n- /30 → 2 host bits → 2^2 = **4 addresses** (a classic point-to-point link size)\n\n### Fact 2: subtract two for usable hosts\n\nEvery subnet reserves its **first address** (the network address, identifies the subnet itself) and its **last address** (the broadcast address). So:\n\n**Usable hosts = 2^(host bits) − 2**\n\n- /24 → 256 − 2 = **254 usable hosts**\n- /26 → 64 − 2 = **62 usable hosts**\n- /30 → 4 − 2 = **2 usable hosts** — exactly enough for a router-to-router link, which is exactly why /30s exist.\n\n### Working the exam's favorite question type\n\n> \"You need 100 usable hosts on one subnet. What's the smallest CIDR prefix that fits?\"\n\nWork it from the host count backward: 100 hosts needs 2^n − 2 ≥ 100, so n = 7 (2^7 − 2 = 126, enough; n = 6 gives only 62, not enough). 7 host bits means the prefix is 32 − 7 = **/25**.\n\nThat's the whole method. No chart required — just 2^n and subtract 2."
+  },
+  {
+    "id": "netplus-c-1-3",
+    "domainCode": "1.0",
+    "type": "reading",
+    "title": "DNS record types and what each one resolves",
+    "summary": "A, AAAA, CNAME, MX, and the rest — matched to the question that names them.",
+    "estimatedMinutes": 6,
+    "body": "## DNS questions are really \"match the record to the job\"\n\n- **A** — hostname → IPv4 address. The default, most common record.\n- **AAAA** — hostname → IPv6 address. Same job as A, different address family.\n- **CNAME** — hostname → another hostname (an alias). `www.example.com` might CNAME to `example.com`. The client then resolves *that* name again.\n- **MX** — which mail server handles email for a domain, with a priority value (lower number = higher priority).\n- **TXT** — arbitrary text; commonly used for domain verification and email anti-spoofing records (SPF, DKIM policies live here).\n- **NS** — which name servers are authoritative for the domain.\n- **PTR** — the reverse of A: IP address → hostname. Used for reverse lookups.\n- **SOA** — Start of Authority; holds the zone's admin contact and refresh/retry timing.\n- **SRV** — service location: host and port for a specific service (used by things like VoIP and directory services).\n\n### The one distinction worth drilling\n\nIf a question says \"an alias for another name,\" that's **CNAME**. If it says \"resolve an IP address back to a name,\" that's **PTR**. Those two get swapped on purpose as distractors — know which direction each one runs."
+  },
+  {
+    "id": "netplus-c-2-1",
+    "domainCode": "2.0",
+    "type": "reading",
+    "title": "VLANs and trunking: why segmentation exists",
+    "summary": "Access vs trunk ports, and what 802.1Q tagging actually does.",
+    "estimatedMinutes": 7,
+    "body": "## One switch, many broadcast domains\n\nA **VLAN** (Virtual LAN) splits one physical switch into multiple logical networks. Devices on different VLANs can't talk to each other without a router (or a Layer 3 switch) — which is the entire point: it contains broadcast traffic and separates groups that shouldn't mix (guest Wi-Fi from the internal LAN, for instance).\n\n### Access ports vs trunk ports\n\n- **Access port** — belongs to exactly **one VLAN**, untagged. This is what an end device (a PC, a printer) plugs into — it doesn't know or care that VLANs exist.\n- **Trunk port** — carries **multiple VLANs** over one physical link, using **802.1Q tagging** to mark which VLAN each frame belongs to. This is what connects two switches together, or a switch to a router that needs to see multiple VLANs (a \"router on a stick\" setup).\n\n### Why this matters for troubleshooting\n\nIf a device can't reach anything even though its cable and switch port both look fine, check whether the port is configured as **access on the wrong VLAN** — the physical layer is perfect and it still won't work, because Layer 2 segmentation is doing exactly what it was configured to do.\n\nA link between two switches that's only carrying one VLAN's traffic when it should carry several is usually a port configured as **access** when it needed to be a **trunk**."
+  },
+  {
+    "id": "netplus-c-2-2",
+    "domainCode": "2.0",
+    "type": "reading",
+    "title": "Wireless standards and the 2.4 vs 5 GHz trade-off",
+    "summary": "802.11 generations, and why the exam keeps asking about range vs speed.",
+    "estimatedMinutes": 6,
+    "body": "## The trade-off underneath every wireless question\n\n**2.4 GHz** travels farther and penetrates walls better, but has only **3 non-overlapping channels** in most regions and is crowded with other devices (microwaves, Bluetooth, cordless phones). **5 GHz** is faster with far more non-overlapping channels, but has shorter range and penetrates walls worse. **6 GHz** (Wi-Fi 6E and later) adds even more clean spectrum, with the shortest range of the three.\n\nIf a scenario says \"users far from the AP have a weak signal but no congestion,\" that points toward needing better **2.4 GHz** coverage or AP placement. If it says \"signal is fine but throughput is terrible in a crowded office,\" that's **congestion**, and 5 GHz's extra channels are the fix.\n\n### The generations, in short\n\n- **802.11n (Wi-Fi 4)** — introduced MIMO (multiple antennas), works on both 2.4 and 5 GHz.\n- **802.11ac (Wi-Fi 5)** — 5 GHz only, higher throughput.\n- **802.11ax (Wi-Fi 6 / 6E)** — both bands (6E adds 6 GHz), better performance in dense environments via OFDMA.\n\nYou won't be asked to recite every spec number. You will be asked which band or generation solves a described symptom — range, speed, or congestion."
+  },
+  {
+    "id": "netplus-c-3-1",
+    "domainCode": "3.0",
+    "type": "reading",
+    "title": "Monitoring: SNMP, NetFlow, and knowing which one to reach for",
+    "summary": "The difference between polling, traps, and flow data.",
+    "estimatedMinutes": 6,
+    "body": "## Three tools, three different questions they answer\n\n### SNMP: polling and traps\n\n**SNMP** lets a monitoring station ask devices for their status (**polling**) or let devices push an alert the instant something happens (**a trap**). A trap is faster to notice a problem — it doesn't wait for the next poll cycle. If a question describes a switch immediately notifying a monitoring server when a port goes down, that's a **trap**, not polling.\n\n### NetFlow: who's talking to whom\n\n**NetFlow** (and similar flow protocols) summarizes *conversations* — source, destination, ports, byte counts — without capturing the actual packet contents. It's how you answer \"which host is consuming all our bandwidth\" without the storage cost of full packet capture.\n\n### Packet capture: the actual bytes\n\nA **packet sniffer** captures full packet contents. Use it when you need to see exactly what's inside the traffic, not just who's talking — but it's expensive to store at scale, which is exactly why NetFlow exists for the \"who's using bandwidth\" question instead.\n\n### The one-line summary\n\nSNMP tells you device **health and status**. NetFlow tells you **traffic patterns**. Packet capture tells you **exact contents**. Match the tool to what the question is actually asking for."
+  },
+  {
+    "id": "netplus-c-3-2",
+    "domainCode": "3.0",
+    "type": "reading",
+    "title": "High availability and the documents that define it",
+    "summary": "Active-active vs active-passive, and SLA/MOU/NDA in plain terms.",
+    "estimatedMinutes": 6,
+    "body": "## Redundancy has a design choice baked into its name\n\n- **Active-active** — both (or all) redundant devices are handling traffic simultaneously. Better resource use, and losing one still leaves capacity running.\n- **Active-passive** — one device handles traffic while the standby sits idle, ready to take over on failure. Simpler, but the standby's capacity is wasted until it's needed.\n\n### Organizational documents, matched to their job\n\n- **SLA (Service Level Agreement)** — the measurable commitment: response time, uptime percentage, resolution time. \"We'll resolve critical outages within 4 hours\" is an SLA line.\n- **MOU (Memorandum of Understanding)** — a general, often informal agreement between parties on intentions — softer than a contract.\n- **NDA (Non-Disclosure Agreement)** — confidentiality: what can't be shared outside the relationship.\n- **AUP (Acceptable Use Policy)** — what users are and aren't allowed to do with the network.\n\nWhen a scenario asks which document to reference for a specific, measurable uptime guarantee, the SLA is always the answer — that's what makes it different from an MOU."
+  },
+  {
+    "id": "netplus-c-4-1",
+    "domainCode": "4.0",
+    "type": "reading",
+    "title": "Common network attacks, matched to their mechanism",
+    "summary": "ARP spoofing, rogue DHCP, and evil twins — what each one actually does.",
+    "estimatedMinutes": 7,
+    "body": "## Each attack exploits one specific weak spot\n\n- **ARP spoofing** — forges the IP-to-MAC mapping on the local segment, so traffic meant for one host routes through the attacker instead. A Layer 2 man-in-the-middle.\n- **Rogue DHCP server** — an unauthorized DHCP server hands out incorrect gateway or DNS settings, silently redirecting clients' traffic.\n- **Evil twin** — a rogue access point mimics a legitimate SSID to lure clients into connecting, so their traffic passes through the attacker.\n- **DNS poisoning** — corrupts DNS records (or a resolver's cache) so a legitimate hostname resolves to a malicious IP.\n- **VLAN hopping** — abuses trunk negotiation or double-tagging to reach traffic on a VLAN the attacker shouldn't have access to.\n- **DDoS** — overwhelms a target with traffic from many sources at once, denying service to legitimate users.\n\n### Spot the pattern\n\nMost of these attacks work by **impersonating something trusted** — a gateway (ARP spoofing), a DHCP server (rogue DHCP), an SSID (evil twin), or a DNS answer (poisoning). When you see \"an attacker tricked devices into trusting a fake X,\" identify what X is, and you've identified the attack."
+  },
+  {
+    "id": "netplus-c-4-2",
+    "domainCode": "4.0",
+    "type": "reading",
+    "title": "802.1X, RADIUS, and the screened subnet",
+    "summary": "Port-based authentication and where to put a server the internet needs to reach.",
+    "estimatedMinutes": 6,
+    "body": "## Keeping unauthorized devices off the network\n\n**802.1X** is port-based network access control — a switch port stays closed until the connecting device authenticates, typically against a **RADIUS** server. Plug in an unauthorized laptop, and the port simply won't pass traffic until it authenticates. This is how enterprise wired and wireless networks stop an unknown device from just plugging in and getting an IP.\n\n**RADIUS** vs **TACACS+** is a distinction worth having straight: RADIUS is the more common protocol for authenticating network access (802.1X, VPN); TACACS+ separates authentication, authorization, and accounting more granularly and is often used for administrative access to network devices themselves.\n\n### The screened subnet (DMZ)\n\nA public-facing server — a web server the internet needs to reach — should never sit directly on the internal LAN. A **screened subnet** (DMZ) isolates it behind its own firewall rules: if the server is compromised, the attacker doesn't land directly on the internal network. Traffic from the internet reaches the DMZ; traffic from the DMZ into the internal LAN is tightly restricted or blocked outright.\n\nIf a scenario asks where to place a public web server, the answer is a screened subnet — never \"on the internal VLAN with the workstations.\""
+  },
+  {
+    "id": "netplus-c-5-1",
+    "domainCode": "5.0",
+    "type": "reading",
+    "title": "The troubleshooting methodology, and why order matters",
+    "summary": "The six official steps, and the one the exam most likes to test.",
+    "estimatedMinutes": 6,
+    "body": "## CompTIA has one official troubleshooting sequence — learn the order, not just the steps\n\n1. **Identify the problem** — gather information, question the user, determine what changed.\n2. **Establish a theory of probable cause** — start with the obvious/simple explanation.\n3. **Test the theory to determine the cause** — confirm it before acting on it.\n4. **Establish a plan of action and implement the solution.**\n5. **Verify full system functionality**, and implement preventive measures if applicable.\n6. **Document findings, actions, and outcomes.**\n\n### The step the exam tests hardest\n\nQuestions frequently describe someone who's already formed a theory and ask what comes *next* — and the trap answer is always jumping straight to \"implement the fix.\" The real next step is **testing the theory first**. Skipping straight from theory to fix is what separates diagnosis from guessing, and it's exactly the failure mode this methodology exists to prevent.\n\nThe other detail worth remembering: **documentation is last**, after verifying the fix actually worked — not a step you do partway through in case you forget details. Verify first, document the confirmed outcome after."
+  },
+  {
+    "id": "netplus-c-5-2",
+    "domainCode": "5.0",
+    "type": "reading",
+    "title": "Cable faults and the tools that diagnose them",
+    "summary": "Split pairs, opens, shorts, and the tester that finds each.",
+    "estimatedMinutes": 7,
+    "body": "## Physical-layer faults, named precisely\n\n- **Open** — a broken conductor; no continuity at all. The link won't come up.\n- **Short** — two conductors touching that shouldn't be; a continuity tester reads near-zero resistance where it should read infinite.\n- **Split pair** — two wires from *different* twisted pairs miswired together as one pair. Can still show a link light, but crosstalk badly degrades performance at higher speeds — a subtle fault that passes a basic check but fails under load.\n- **TX/RX reversed** — transmit and receive are swapped between the two ends; the link won't establish even with a physical connection.\n- **Attenuation** — gradual signal loss over distance, measured in dB; every cable type has a maximum supported run before this breaks the link.\n- **Crosstalk** — signal bleed between adjacent pairs; proper twisting is what cancels this, so damage or untwisted sections make it worse.\n\n### The right tool for each fault\n\n- **Cable tester** — continuity, opens, shorts, split pairs, wire mapping.\n- **TDR / OTDR** — sends a signal down the cable and reports *where* a break is, by distance. The OTDR is the fiber version.\n- **Tone generator and probe** — traces which physical cable in a bundle corresponds to which port, when labeling has failed.\n- **Loopback adapter** — plugs into a port to test whether the port/interface itself can transmit and receive, isolating the NIC from the cable.\n\nA split pair is the fault most likely to be tested precisely because it's counterintuitive — a cable that *looks* fine and shows link can still be the problem."
+  }
+]
