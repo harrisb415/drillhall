@@ -14,6 +14,7 @@ import type { Logger } from "./lib/logger";
 import { requireAuth } from "./middleware/require-auth";
 import type { ContentIndex } from "./modules/certs/content";
 import { certsRoutes } from "./modules/certs/routes";
+import { courseRoutes } from "./modules/course/routes";
 import { dashboardRoutes } from "./modules/dashboard/routes";
 import { examRoutes } from "./modules/exam/routes";
 import { flashcardsRoutes } from "./modules/flashcards/routes";
@@ -137,6 +138,7 @@ export function createApp(deps: AppDeps): Express {
   app.use("/api", guard, certsRoutes(apiDeps));
   app.use("/api", guard, flashcardsRoutes(apiDeps));
   app.use("/api", guard, referenceRoutes(apiDeps));
+  app.use("/api", guard, courseRoutes(apiDeps));
   app.use("/api", guard, quizRoutes(apiDeps));
   app.use("/api", guard, examRoutes(apiDeps));
   app.use("/api", guard, dashboardRoutes(apiDeps));

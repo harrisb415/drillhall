@@ -30,6 +30,7 @@ export function certsRoutes(deps: ApiDeps): Router {
             flashcards: pack?.flashcards.length ?? 0,
             quizQuestions: pack?.quiz.length ?? 0,
             referenceGroups: pack?.reference.length ?? 0,
+            courseLessons: pack?.course.length ?? 0,
           },
         };
       });

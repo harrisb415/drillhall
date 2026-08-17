@@ -4,11 +4,14 @@ import type {
   AttemptResponse,
   CatalogDto,
   CertDto,
+  CourseResponse,
   DashboardStats,
   ExamAttemptRequest,
   ExamPlanDto,
   NotificationPrefsDto,
   SaveExamPlanRequest,
+  SaveFlashcardStateRequest,
+  SaveLessonProgressRequest,
   UpdateNotificationPrefsRequest,
   ExamHistoryItem,
   ExamOptionsDto,
@@ -100,6 +103,38 @@ export function useSetCardStatus(certId: number) {
       // patch the cache in place so the deck doesn't flicker on refetch
       qc.setQueryData<FlashcardsResponse>(["flashcards", certId], (old) =>
         old ? { ...old, progress: { ...old.progress, [vars.cardId]: vars.status } } : old,
+      );
+      qc.invalidateQueries({ queryKey: ["dashboard", certId] });
+    },
+  });
+}
+
+/** Saves the current deck position. Fire-and-forget from the caller's side —
+ *  no cache patch needed since nothing else on screen reads this value. */
+export function useSaveFlashcardState() {
+  return useMutation({
+    mutationFn: (body: SaveFlashcardStateRequest) =>
+      api<{ ok: boolean }>("/api/flashcards/state", { method: "POST", body: JSON.stringify(body) }),
+  });
+}
+
+export const useCourse = (certId: number) =>
+  useQuery({
+    queryKey: ["course", certId],
+    queryFn: () => api<CourseResponse>(`/api/certs/${certId}/course`),
+  });
+
+export function useCompleteLesson(certId: number) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (lessonId: string) =>
+      api<{ ok: boolean }>("/api/course/progress", {
+        method: "POST",
+        body: JSON.stringify({ certId, lessonId } satisfies SaveLessonProgressRequest),
+      }),
+    onSuccess: (_data, lessonId) => {
+      qc.setQueryData<CourseResponse>(["course", certId], (old) =>
+        old ? { ...old, progress: { ...old.progress, [lessonId]: Date.now() } } : old,
       );
       qc.invalidateQueries({ queryKey: ["dashboard", certId] });
     },

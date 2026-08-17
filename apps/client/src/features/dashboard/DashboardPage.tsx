@@ -6,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { RadialGauge } from "@/components/ui/radial-gauge";
 import { Sparkline } from "@/components/ui/sparkline";
 import { Spinner } from "@/components/ui/spinner";
+import { CourseProgressCard } from "@/features/course/CourseProgressCard";
 import { ExamPlanCard } from "@/features/planner/ExamPlanCard";
 import { LevelUpToast } from "@/features/gamification/LevelUpToast";
 import { StreakCard } from "@/features/gamification/StreakCard";
@@ -147,6 +148,7 @@ export function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2">
         <ExamPlanCard readinessPercent={data.quiz.readiness} />
         <StreakCard stats={data.gamification} />
+        <CourseProgressCard stats={data} />
       </div>
 
       <Card>
@@ -350,6 +352,11 @@ export function DashboardPage() {
             <Link to="/exam">
               <Button variant="secondary" className="w-full">
                 Sit a mock exam
+              </Button>
+            </Link>
+            <Link to="/course">
+              <Button variant="secondary" className="w-full">
+                Read the course
               </Button>
             </Link>
             <Link to="/flashcards">

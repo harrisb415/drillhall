@@ -1,4 +1,4 @@
-import type { Flashcard, ReferenceGroup } from "@comptia/content";
+import type { CourseLesson, Flashcard, ReferenceGroup } from "@comptia/content";
 
 // ---- meta ----
 export interface MetaDto {
@@ -40,21 +40,46 @@ export interface CertDto {
     flashcards: number;
     quizQuestions: number;
     referenceGroups: number;
+    courseLessons: number;
   };
 }
 
 // ---- flashcards ----
 export type FlashcardStatus = "known" | "learning";
 
+/** The deck view a user left off on. Deterministic seed, so this alone reconstructs the exact order. */
+export interface FlashcardStateDto {
+  domainCode: string | null;
+  hideKnown: boolean;
+  seed: number;
+  cardIndex: number;
+}
+
 export interface FlashcardsResponse {
   cards: Flashcard[];
   /** cardId -> status; cards absent from the map are unseen */
   progress: Record<string, FlashcardStatus>;
+  /** null the first time a user ever opens this cert's deck */
+  state: FlashcardStateDto | null;
 }
+
+export type SaveFlashcardStateRequest = { certId: number } & FlashcardStateDto;
 
 // ---- reference ----
 export interface ReferenceResponse {
   groups: ReferenceGroup[];
+}
+
+// ---- course ----
+export interface CourseResponse {
+  lessons: CourseLesson[];
+  /** lessonId -> completed-at epoch ms; lessons absent from the map are unstarted */
+  progress: Record<string, number>;
+}
+
+export interface SaveLessonProgressRequest {
+  certId: number;
+  lessonId: string;
 }
 
 // ---- quiz ----
@@ -294,8 +319,22 @@ export interface DashboardDomainStat {
   confident: boolean;
 }
 
+export interface DashboardCourseDomainStat {
+  code: string;
+  /** percent of this domain's lessons completed, 0-100. null = domain has no course content yet */
+  studiedPercent: number | null;
+  totalLessons: number;
+  completedLessons: number;
+}
+
 export interface DashboardStats {
   flashcards: { total: number; known: number; learning: number };
+  course: {
+    totalLessons: number;
+    completedLessons: number;
+    /** per-domain, so the client can cross-reference against quiz.perDomain's mastery */
+    perDomain: DashboardCourseDomainStat[];
+  };
   quiz: {
     attempts: number;
     correct: number;

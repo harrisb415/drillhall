@@ -4,13 +4,19 @@ import { gamificationStats } from "../../db/schema";
 import { isSameUtcDay, isUtcYesterday } from "../../lib/dates";
 import { computeLevel } from "./levels";
 
-export type XpAction = "question_answered" | "session_completed" | "exam_completed" | "flashcard_known";
+export type XpAction =
+  | "question_answered"
+  | "session_completed"
+  | "exam_completed"
+  | "flashcard_known"
+  | "lesson_completed";
 
 export const XP_VALUES: Record<XpAction, number> = {
   question_answered: 10,
   session_completed: 50,
   exam_completed: 200,
   flashcard_known: 2,
+  lesson_completed: 15,
 };
 
 export interface GamificationResult {

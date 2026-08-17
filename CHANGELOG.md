@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.4.0] — 2026-08-16
+
+### Added
+- **Course** — a reading-based study track, a fifth part of each content pack (`course.json`), domain-tagged like everything else. A new **Course** nav item, a domain-grouped index with per-domain progress rings, and a markdown lesson reader (`react-markdown`, never `innerHTML`). Lessons are browsable, not gated or sequenced — matching how flashcards, quiz, and reference already work. Completing a lesson awards XP once (guarded against re-farming) and offers a one-tap jump into a domain-filtered quiz. Video was deliberately left out of the schema for now rather than stubbed. A+ Core 1 ships with a full course; the other three certs show a clean empty state until their content lands.
+- **Course-vs-mastery cross-reference** on the dashboard — shows what you've *read* beside what you've *proven* with a quiz answer, per domain, and flags the gap ("quiz it →") where a domain is well-read but thinly tested. Kept separate from the readiness gauge, since reading isn't evidence of mastery — the same call already made for mock exams.
+
+### Fixed
+- **Flashcard shuffle did nothing.** The seeded-shuffle hash folded the seed in once and then multiplied it by 31 per character; because every card id is the same length, that made the seed an identical constant offset for every card, which cancelled out in the sort and left the original order untouched. Replaced with a hash that mixes the seed through each byte with an avalanche step, so it produces a genuine, seed-dependent order while staying deterministic (which the new position-persistence relies on).
+- **Flashcard position is now remembered, server-side.** Your domain filter, shuffle state, and exact place in the deck persist across reloads and follow you across devices — stored as `{seed, index, filters}`, which reconstructs the exact deck because the shuffle is deterministic. The Shuffle button is now a two-way toggle (Shuffle ⇄ Original order) rather than a one-way re-roll.
+
 ## [1.3.0] — 2026-08-16
 
 ### Added

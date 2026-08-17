@@ -6,7 +6,7 @@ import { CertPackSchema, type CertPack } from "./schema";
 /** Root of the content package — cert pack folders live directly under it. */
 export const CONTENT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
-const PART_FILES = ["domains", "flashcards", "quiz", "reference"] as const;
+const PART_FILES = ["domains", "flashcards", "quiz", "reference", "course"] as const;
 
 /**
  * Reads one part of a pack. A part may be a single `<name>.json` array, a

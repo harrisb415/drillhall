@@ -1,7 +1,13 @@
 import { Router } from "express";
 import { and, desc, eq, isNotNull } from "drizzle-orm";
 import type { DashboardStats } from "@comptia/shared-types";
-import { flashcardProgress, gamificationStats, quizAttempts, quizSessions } from "../../db/schema";
+import {
+  courseProgress,
+  flashcardProgress,
+  gamificationStats,
+  quizAttempts,
+  quizSessions,
+} from "../../db/schema";
 import { h } from "../../lib/handler";
 import { CONFIDENT_ATTEMPTS, computeReadiness, type AttemptLite } from "../analytics/readiness";
 import { getStats } from "../gamification/service";
@@ -28,6 +34,23 @@ export function dashboardRoutes(deps: ApiDeps): Router {
         .from(flashcardProgress)
         .where(and(eq(flashcardProgress.userId, userId), eq(flashcardProgress.certId, certId)))
         .all();
+
+      const completedLessonIds = new Set(
+        deps.db
+          .select({ lessonId: courseProgress.lessonId })
+          .from(courseProgress)
+          .where(and(eq(courseProgress.userId, userId), eq(courseProgress.certId, certId)))
+          .all()
+          .map((r) => r.lessonId),
+      );
+      const lessonsByDomain = new Map<string, number>();
+      const completedByDomain = new Map<string, number>();
+      for (const l of pack.course) {
+        lessonsByDomain.set(l.domainCode, (lessonsByDomain.get(l.domainCode) ?? 0) + 1);
+        if (completedLessonIds.has(l.id)) {
+          completedByDomain.set(l.domainCode, (completedByDomain.get(l.domainCode) ?? 0) + 1);
+        }
+      }
 
       const attemptRows = deps.db
         .select({
@@ -89,6 +112,22 @@ export function dashboardRoutes(deps: ApiDeps): Router {
           total: pack.flashcards.length,
           known: progressRows.filter((r) => r.status === "known").length,
           learning: progressRows.filter((r) => r.status === "learning").length,
+        },
+        course: {
+          totalLessons: pack.course.length,
+          completedLessons: completedLessonIds.size,
+          perDomain: pack.domains
+            .map((d) => {
+              const total = lessonsByDomain.get(d.code) ?? 0;
+              const completed = completedByDomain.get(d.code) ?? 0;
+              return {
+                code: d.code,
+                totalLessons: total,
+                completedLessons: completed,
+                studiedPercent: total > 0 ? Math.round((completed / total) * 100) : null,
+              };
+            })
+            .filter((d) => d.totalLessons > 0),
         },
         quiz: {
           attempts,

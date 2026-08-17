@@ -4,6 +4,8 @@ import { ForgotPasswordPage } from "@/features/auth/ForgotPasswordPage";
 import { LoginPage } from "@/features/auth/LoginPage";
 import { RegisterPage } from "@/features/auth/RegisterPage";
 import { ResetPasswordPage } from "@/features/auth/ResetPasswordPage";
+import { CourseIndexPage } from "@/features/course/CourseIndexPage";
+import { LessonPage } from "@/features/course/LessonPage";
 import { DashboardPage } from "@/features/dashboard/DashboardPage";
 import { ExamPage } from "@/features/exam/ExamPage";
 import { FlashcardsPage } from "@/features/flashcards/FlashcardsPage";
@@ -38,6 +40,8 @@ export function App() {
           {/* everything else requires a session */}
           <Route element={<ProtectedLayout />}>
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/course" element={<CourseIndexPage />} />
+            <Route path="/course/:lessonId" element={<LessonPage />} />
             <Route path="/flashcards" element={<FlashcardsPage />} />
             <Route path="/quiz" element={<QuizPage />} />
             <Route path="/exam" element={<ExamPage />} />

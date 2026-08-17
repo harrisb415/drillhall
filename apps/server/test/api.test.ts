@@ -56,6 +56,7 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
     expect(cardsRes.status).toBe(200);
     expect(cardsRes.body.cards.length).toBeGreaterThanOrEqual(30);
     expect(cardsRes.body.progress).toEqual({});
+    expect(cardsRes.body.state).toBeNull();
 
     const firstCard = cardsRes.body.cards[0];
     const progressRes = await request(stack.app)
@@ -68,6 +69,38 @@ describe("study flow: certs → flashcards → quiz → dashboard", () => {
       .get(`/api/certs/${cert.id}/flashcards`)
       .set("Cookie", cookie);
     expect(cardsRes2.body.progress[firstCard.id]).toBe("known");
+
+    // deck position — survives a reload or a switch to another device
+    const stateRes = await request(stack.app)
+      .post("/api/flashcards/state")
+      .set("Cookie", cookie)
+      .send({ certId: cert.id, domainCode: "2.0", hideKnown: true, seed: 12345, cardIndex: 7 });
+    expect(stateRes.status).toBe(200);
+
+    const cardsRes3 = await request(stack.app)
+      .get(`/api/certs/${cert.id}/flashcards`)
+      .set("Cookie", cookie);
+    expect(cardsRes3.body.state).toEqual({
+      domainCode: "2.0",
+      hideKnown: true,
+      seed: 12345,
+      cardIndex: 7,
+    });
+
+    // re-saving overwrites in place rather than accumulating rows
+    await request(stack.app)
+      .post("/api/flashcards/state")
+      .set("Cookie", cookie)
+      .send({ certId: cert.id, domainCode: null, hideKnown: false, seed: 0, cardIndex: 3 });
+    const cardsRes4 = await request(stack.app)
+      .get(`/api/certs/${cert.id}/flashcards`)
+      .set("Cookie", cookie);
+    expect(cardsRes4.body.state).toEqual({
+      domainCode: null,
+      hideKnown: false,
+      seed: 0,
+      cardIndex: 3,
+    });
 
     // reference
     const refRes = await request(stack.app)

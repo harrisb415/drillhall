@@ -189,6 +189,124 @@ h3 {
   letter-spacing: -0.02em;
 }
 
+/* Course lesson body. Hand-rolled rather than a Tailwind typography plugin —
+   it's a dozen rules for content that only ever comes from our own Zod-
+   validated packs, not arbitrary markdown. Width is constrained by the
+   page (max-w-2xl), not here, so this only ever governs vertical rhythm. */
+.prose-lesson {
+  color: var(--foreground);
+  line-height: 1.7;
+}
+
+.prose-lesson > :first-child {
+  margin-top: 0;
+}
+
+.prose-lesson h1,
+.prose-lesson h2,
+.prose-lesson h3 {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.prose-lesson h1 {
+  margin: 1.75rem 0 0.75rem;
+  font-size: 1.375rem;
+}
+
+.prose-lesson h2 {
+  margin: 1.5rem 0 0.625rem;
+  font-size: 1.15rem;
+}
+
+.prose-lesson h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1rem;
+}
+
+.prose-lesson p,
+.prose-lesson ul,
+.prose-lesson ol,
+.prose-lesson blockquote,
+.prose-lesson pre {
+  margin: 0 0 1rem;
+}
+
+.prose-lesson ul,
+.prose-lesson ol {
+  padding-left: 1.375rem;
+}
+
+.prose-lesson li {
+  margin: 0.3rem 0;
+}
+
+.prose-lesson li > ul,
+.prose-lesson li > ol {
+  margin: 0.3rem 0 0.3rem 0;
+}
+
+.prose-lesson strong {
+  font-weight: 600;
+}
+
+.prose-lesson a {
+  color: var(--primary);
+  text-underline-offset: 2px;
+}
+
+.prose-lesson code {
+  border-radius: 0.25rem;
+  background: var(--secondary);
+  padding: 0.15em 0.4em;
+  font-size: 0.85em;
+}
+
+.prose-lesson pre {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  background: var(--secondary);
+  padding: 0.875rem 1rem;
+}
+
+.prose-lesson pre code {
+  background: none;
+  padding: 0;
+}
+
+.prose-lesson blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 1rem;
+  color: var(--muted-foreground);
+}
+
+.prose-lesson hr {
+  margin: 1.5rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.prose-lesson table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: 0 0 1rem;
+  font-size: 0.9em;
+}
+
+.prose-lesson th,
+.prose-lesson td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+
+.prose-lesson th {
+  background: var(--secondary);
+  font-weight: 600;
+}
+
 /* ---- motion ----------------------------------------------------------
    Every animation in the app is defined here and every one is disabled by
    the reduced-motion block at the bottom. Delight is opt-out, not opt-in. */

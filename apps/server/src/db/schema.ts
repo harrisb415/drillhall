@@ -49,6 +49,48 @@ export const flashcardProgress = sqliteTable(
   (t) => [primaryKey({ columns: [t.userId, t.certId, t.cardId] })],
 );
 
+/**
+ * Where the user is in the flashcard deck, per cert. The whole view is stored,
+ * not just the index: an index is meaningless without the filters and shuffle
+ * that produced the deck it points into. Because the shuffle is a deterministic
+ * function of `seed`, storing the seed reconstructs the exact order — no need
+ * to persist a card-id list.
+ */
+export const flashcardState = sqliteTable(
+  "flashcard_state",
+  {
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    certId: integer("cert_id")
+      .notNull()
+      .references(() => certs.id, { onDelete: "cascade" }),
+    /** null = all domains */
+    domainCode: text("domain_code"),
+    hideKnown: integer("hide_known", { mode: "boolean" }).notNull().default(false),
+    /** 0 = pack order; any other value seeds the shuffle */
+    seed: integer("seed").notNull().default(0),
+    cardIndex: integer("card_index").notNull().default(0),
+    updatedAt: integer("updated_at", { mode: "timestamp_ms" }).notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.certId] })],
+);
+
+export const courseProgress = sqliteTable(
+  "course_progress",
+  {
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    certId: integer("cert_id")
+      .notNull()
+      .references(() => certs.id, { onDelete: "cascade" }),
+    lessonId: text("lesson_id").notNull(),
+    completedAt: integer("completed_at", { mode: "timestamp_ms" }).notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.certId, t.lessonId] })],
+);
+
 export const quizSessions = sqliteTable(
   "quiz_sessions",
   {

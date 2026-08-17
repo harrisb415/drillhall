@@ -56,6 +56,29 @@ export const QuizQuestionSchema = z.discriminatedUnion("type", [
   TerminalQuestionSchema,
 ]);
 
+/**
+ * A course lesson. Only `reading` exists today — video was deliberately left
+ * out rather than stubbed, so adding it later is a schema change with no
+ * migration and no dead code in the meantime.
+ *
+ * Lessons are domain-tagged like everything else in a pack, so a domain is
+ * effectively the module; ordering inside a domain is array order.
+ */
+export const ReadingLessonSchema = z.object({
+  id: z.string().min(1),
+  domainCode: z.string().min(1),
+  type: z.literal("reading"),
+  title: z.string().min(1),
+  /** One-line summary shown in the course index. */
+  summary: z.string().min(1),
+  /** Reading time in minutes, for the index and for pacing expectations. */
+  estimatedMinutes: z.number().int().min(1).max(120),
+  /** Markdown. Rendered through react-markdown — never innerHTML. */
+  body: z.string().min(1),
+});
+
+export const CourseLessonSchema = z.discriminatedUnion("type", [ReadingLessonSchema]);
+
 export const ReferenceGroupSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
@@ -92,6 +115,8 @@ export const CertPackSchema = z
     flashcards: z.array(FlashcardSchema).min(1),
     quiz: z.array(QuizQuestionSchema).min(1),
     reference: z.array(ReferenceGroupSchema),
+    /** Optional so the packs that predate courses keep validating untouched. */
+    course: z.array(CourseLessonSchema).default([]),
   })
   .superRefine((pack, ctx) => {
     const weightSum = pack.domains.reduce((s, d) => s + d.weight, 0);
@@ -136,6 +161,10 @@ export const CertPackSchema = z
         });
       }
     });
+    pack.course.forEach((l, i) => {
+      checkId(l.id, ["course", i, "id"]);
+      checkDomain(l.domainCode, ["course", i, "domainCode"]);
+    });
     pack.reference.forEach((g, i) => {
       g.rows.forEach((row, j) => {
         if (row.length !== g.columns.length) {
@@ -159,4 +188,7 @@ export type TerminalQuestion = z.infer<typeof TerminalQuestionSchema>;
 export type QuizQuestion = z.infer<typeof QuizQuestionSchema>;
 export type QuizQuestionType = QuizQuestion["type"];
 export type ReferenceGroup = z.infer<typeof ReferenceGroupSchema>;
+export type ReadingLesson = z.infer<typeof ReadingLessonSchema>;
+export type CourseLesson = z.infer<typeof CourseLessonSchema>;
+export type CourseLessonType = CourseLesson["type"];
 export type CertPack = z.infer<typeof CertPackSchema>;

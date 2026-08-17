@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import type { AttemptAnswer } from "@comptia/shared-types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,8 +28,14 @@ function SetupPhase() {
   const cert = useCert();
   const begin = useQuizStore((s) => s.begin);
   const start = useStartSession();
+  const [searchParams] = useSearchParams();
   const [count, setCount] = useState(10);
-  const [domains, setDomains] = useState<string[]>([]);
+  // Arriving from "Test what you just read" pre-selects that lesson's domain,
+  // e.g. /quiz?domain=1.0 — read once on mount, same as any other initial state.
+  const [domains, setDomains] = useState<string[]>(() => {
+    const d = searchParams.get("domain");
+    return d ? [d] : [];
+  });
 
   function toggleDomain(code: string) {
     setDomains((d) => (d.includes(code) ? d.filter((c) => c !== code) : [...d, code]));
