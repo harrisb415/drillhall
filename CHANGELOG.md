@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.5.0] — 2026-08-16
+
+### Added
+- **Unmark a lesson as read.** Previously a completed lesson had no way back — the "Mark as read" button just turned into "Test it" permanently. A lesson can now be unmarked ("needs more studying?"), which drops it from the dashboard's read count and the domain progress ring, and shows "Mark as read" again on the lesson page. `course_progress` gained a `read` boolean (migration `0006`); the row itself, and the XP it earned, are never deleted or clawed back — only the current flag flips. That's deliberate: XP rewards the effort already made, matching how flashcards' known/learning toggle already works here, and it closes an XP-farming loop that a delete-based unmark would have opened (mark → unmark → remark could otherwise repeat the +15 forever). Guarded by row *existence*, not the read flag, so a remark after unmarking never re-pays it — covered by a dedicated test that walks the full mark → unmark → remark cycle and asserts XP at every step.
+
 ## [1.4.1] — 2026-08-16
 
 ### Added

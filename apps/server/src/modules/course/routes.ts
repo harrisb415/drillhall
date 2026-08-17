@@ -10,6 +10,7 @@ import { resolveCert, type ApiDeps } from "../shared";
 const ProgressBody = z.object({
   certId: z.number().int(),
   lessonId: z.string().min(1),
+  read: z.boolean().default(true),
 });
 
 export function courseRoutes(deps: ApiDeps): Router {
@@ -31,15 +32,24 @@ export function courseRoutes(deps: ApiDeps): Router {
 
       const response: CourseResponse = {
         lessons: resolved.pack.course,
-        progress: Object.fromEntries(rows.map((r) => [r.lessonId, r.completedAt.getTime()])),
+        // Only currently-read lessons appear here — a row that exists but
+        // was unmarked (read: false) is deliberately absent, same as a row
+        // that never existed. The client can't tell those apart and doesn't
+        // need to; only the server needs the distinction, for the XP guard.
+        progress: Object.fromEntries(
+          rows.filter((r) => r.read).map((r) => [r.lessonId, r.completedAt.getTime()]),
+        ),
       };
       res.json(response);
     }),
   );
 
-  // Idempotent and re-postable: completing an already-completed lesson just
-  // refreshes completedAt rather than erroring, so a client retry can't fail
-  // oddly. XP is guarded separately, by row existence, so a retry can't farm it.
+  // Idempotent and re-postable: marking an already-read lesson read again
+  // just refreshes completedAt, so a client retry can't fail oddly. Unmarking
+  // (read: false) never deletes the row — it flips the flag and leaves
+  // completedAt untouched, so a later remark can't re-earn XP it already
+  // earned once. XP is guarded purely by row *existence*, not by the read
+  // flag, which is what makes mark -> unmark -> remark loop-proof.
   router.post(
     "/course/progress",
     h((req, res) => {
@@ -73,14 +83,17 @@ export function courseRoutes(deps: ApiDeps): Router {
           certId: body.certId,
           lessonId: body.lessonId,
           completedAt: new Date(),
+          read: body.read,
         })
         .onConflictDoUpdate({
           target: [courseProgress.userId, courseProgress.certId, courseProgress.lessonId],
-          set: { completedAt: new Date() },
+          // Only a mark-as-read bumps the timestamp; an unmark just flips the
+          // flag, so "last actually read" doesn't drift on every toggle.
+          set: body.read ? { read: true, completedAt: new Date() } : { read: false },
         })
         .run();
 
-      if (!existing) {
+      if (!existing && body.read) {
         recordActivity(deps.db, req.user!.id, "lesson_completed");
       }
 

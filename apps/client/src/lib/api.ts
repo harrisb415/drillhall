@@ -124,18 +124,24 @@ export const useCourse = (certId: number) =>
     queryFn: () => api<CourseResponse>(`/api/certs/${certId}/course`),
   });
 
-export function useCompleteLesson(certId: number) {
+/** `read` defaults true (mark as read); pass false to unmark. */
+export function useSetLessonRead(certId: number) {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (lessonId: string) =>
+    mutationFn: ({ lessonId, read = true }: { lessonId: string; read?: boolean }) =>
       api<{ ok: boolean }>("/api/course/progress", {
         method: "POST",
-        body: JSON.stringify({ certId, lessonId } satisfies SaveLessonProgressRequest),
+        body: JSON.stringify({ certId, lessonId, read } satisfies SaveLessonProgressRequest),
       }),
-    onSuccess: (_data, lessonId) => {
-      qc.setQueryData<CourseResponse>(["course", certId], (old) =>
-        old ? { ...old, progress: { ...old.progress, [lessonId]: Date.now() } } : old,
-      );
+    onSuccess: (_data, { lessonId, read = true }) => {
+      qc.setQueryData<CourseResponse>(["course", certId], (old) => {
+        if (!old) return old;
+        if (read) return { ...old, progress: { ...old.progress, [lessonId]: Date.now() } };
+        // Unmarking: drop the key entirely, matching the server's contract
+        // that only currently-read lessons appear in the progress map.
+        const { [lessonId]: _dropped, ...rest } = old.progress;
+        return { ...old, progress: rest };
+      });
       qc.invalidateQueries({ queryKey: ["dashboard", certId] });
     },
   });

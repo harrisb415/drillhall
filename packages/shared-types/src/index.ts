@@ -73,13 +73,21 @@ export interface ReferenceResponse {
 // ---- course ----
 export interface CourseResponse {
   lessons: CourseLesson[];
-  /** lessonId -> completed-at epoch ms; lessons absent from the map are unstarted */
+  /**
+   * lessonId -> last-marked-read-at epoch ms. Lessons absent from the map
+   * currently read false — either never read, or read once and then
+   * unmarked. The two aren't distinguished here: the row (and the XP it
+   * already earned) persists server-side regardless, but the client only
+   * needs "is this currently checked off."
+   */
   progress: Record<string, number>;
 }
 
 export interface SaveLessonProgressRequest {
   certId: number;
   lessonId: string;
+  /** true = mark read (default), false = unmark. XP is never re-awarded or clawed back by this. */
+  read?: boolean;
 }
 
 // ---- quiz ----

@@ -43,6 +43,13 @@
       "when": 1786935707034,
       "tag": "0005_numerous_prowler",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1786954536038,
+      "tag": "0006_fresh_tinkerer",
+      "breakpoints": true
     }
   ]
 }

@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
-import { useCompleteLesson, useCourse } from "@/lib/api";
+import { useCourse, useSetLessonRead } from "@/lib/api";
 import { useCert } from "@/lib/cert-context";
 
 export function LessonPage() {
@@ -12,7 +12,7 @@ export function LessonPage() {
   const { lessonId } = useParams<{ lessonId: string }>();
   const navigate = useNavigate();
   const { data, isPending } = useCourse(cert.id);
-  const complete = useCompleteLesson(cert.id);
+  const setRead = useSetLessonRead(cert.id);
 
   if (isPending || !data) {
     return (
@@ -66,12 +66,25 @@ export function LessonPage() {
 
       <div className="flex flex-wrap items-center gap-3">
         {done ? (
-          <Link to={`/quiz?domain=${lesson.domainCode}`}>
-            <Button>Test it — questions from {lesson.domainCode}</Button>
-          </Link>
+          <>
+            <Link to={`/quiz?domain=${lesson.domainCode}`}>
+              <Button>Test it — questions from {lesson.domainCode}</Button>
+            </Link>
+            <Button
+              variant="ghost"
+              size="sm"
+              disabled={setRead.isPending}
+              onClick={() => setRead.mutate({ lessonId: lesson.id, read: false })}
+            >
+              Mark as unread
+            </Button>
+          </>
         ) : (
-          <Button disabled={complete.isPending} onClick={() => complete.mutate(lesson.id)}>
-            {complete.isPending ? <Spinner className="size-4 text-primary-foreground" /> : "Mark as read"}
+          <Button
+            disabled={setRead.isPending}
+            onClick={() => setRead.mutate({ lessonId: lesson.id, read: true })}
+          >
+            {setRead.isPending ? <Spinner className="size-4 text-primary-foreground" /> : "Mark as read"}
           </Button>
         )}
         <div className="ml-auto flex gap-2">

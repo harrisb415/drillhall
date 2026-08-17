@@ -1,0 +1,1 @@
+ALTER TABLE `course_progress` ADD `read` integer DEFAULT true NOT NULL;

@@ -86,7 +86,15 @@ export const courseProgress = sqliteTable(
       .notNull()
       .references(() => certs.id, { onDelete: "cascade" }),
     lessonId: text("lesson_id").notNull(),
+    /** When first marked read. Never cleared or moved by a later unmark — it's the XP-award guard. */
     completedAt: integer("completed_at", { mode: "timestamp_ms" }).notNull(),
+    /**
+     * Current read state. A lesson can be unmarked back to false, e.g. "I
+     * don't actually remember this, treat it as unread" — but the row stays,
+     * so the XP already earned for reading it once is never clawed back or
+     * re-awarded on a later remark.
+     */
+    read: integer("read", { mode: "boolean" }).notNull().default(true),
   },
   (t) => [primaryKey({ columns: [t.userId, t.certId, t.lessonId] })],
 );
