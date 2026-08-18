@@ -37,11 +37,15 @@ export function SegmentedProgress({
         return (
           <div
             key={i}
-            className="h-full flex-1 overflow-hidden rounded-[2px] bg-secondary first:rounded-l-full last:rounded-r-full"
+            className="relative h-full flex-1 overflow-hidden rounded-[2px] bg-secondary first:rounded-l-full last:rounded-r-full"
           >
             <div
               className={cn(
-                "h-full rounded-[2px] bg-primary transition-[width] duration-500 ease-out",
+                "relative h-full overflow-hidden rounded-[2px] transition-[width] duration-500 ease-out",
+                "[background-image:var(--grad-primary)]",
+                // The shimmer sweeps only the last filled segment — running it
+                // across every segment would read as a loading bar.
+                fill > 0 && fill < 1 && "animate-shimmer",
                 barClassName,
               )}
               style={{ width: `${fill * 100}%` }}

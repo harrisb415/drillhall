@@ -31,12 +31,52 @@ export function StreakFlame({ days, size = 40, atRisk = false, className }: Stre
   const tier = tierFor(days);
   const lit = days > 0;
 
+  // Embers only once the streak is genuinely established — they'd be noise on
+  // a one-day streak, and the point is that a long streak looks different.
+  const embers = tier.core && !atRisk;
+
+  return (
+    <span className={cn("relative inline-block", className)} style={{ width: size, height: size }}>
+      {embers &&
+        [0, 1, 2].map((i) => (
+          <span
+            key={i}
+            aria-hidden="true"
+            className="animate-rise absolute rounded-full"
+            style={{
+              width: size * 0.07,
+              height: size * 0.07,
+              left: `${34 + i * 16}%`,
+              top: "22%",
+              background: "var(--primary)",
+              animationDelay: `${i * 460}ms`,
+            }}
+          />
+        ))}
+      <FlameSvg days={days} size={size} atRisk={atRisk} tier={tier} lit={lit} />
+    </span>
+  );
+}
+
+function FlameSvg({
+  days,
+  size,
+  atRisk,
+  tier,
+  lit,
+}: {
+  days: number;
+  size: number;
+  atRisk: boolean;
+  tier: Tier;
+  lit: boolean;
+}) {
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      className={cn(lit && "animate-flicker", atRisk && "opacity-55", className)}
+      className={cn("relative", lit && "animate-flicker", atRisk && "opacity-55")}
       role="img"
       aria-label={
         days === 0

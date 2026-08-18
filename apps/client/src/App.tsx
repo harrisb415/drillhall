@@ -13,6 +13,7 @@ import { MarketingPage } from "@/features/marketing/MarketingPage";
 import { QuizPage } from "@/features/quiz/QuizPage";
 import { ReferencePage } from "@/features/reference/ReferencePage";
 import { SettingsPage } from "@/features/settings/SettingsPage";
+import { AdminPage } from "@/features/admin/AdminPage";
 import { ProtectedLayout } from "@/routes/ProtectedRoute";
 
 const queryClient = new QueryClient({
@@ -47,6 +48,8 @@ export function App() {
             <Route path="/exam" element={<ExamPage />} />
             <Route path="/reference" element={<ReferencePage />} />
             <Route path="/settings" element={<SettingsPage />} />
+            {/* AdminPage redirects non-admins itself; the real gate is server-side. */}
+            <Route path="/admin" element={<AdminPage />} />
           </Route>
 
           <Route path="*" element={<Navigate to="/" replace />} />

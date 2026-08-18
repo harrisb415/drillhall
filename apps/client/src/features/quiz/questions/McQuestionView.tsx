@@ -1,4 +1,5 @@
 import type { QuizQuestionPublic } from "@comptia/shared-types";
+import { DrawCheck } from "@/components/ui/draw-check";
 import { cn } from "@/lib/utils";
 import { currentAnswer, type QuestionViewProps } from "./types";
 
@@ -42,7 +43,9 @@ export function McQuestionView({
             <span className="mt-0.5 font-mono text-xs text-muted-foreground">
               {String.fromCharCode(65 + i)}
             </span>
-            <span>{choice}</span>
+            <span className="flex-1">{choice}</span>
+            {/* Draws itself in on the graded correct answer. */}
+            {answer && isCorrectChoice && <DrawCheck className="mt-0.5 size-4 shrink-0 text-success" />}
           </button>
         );
       })}

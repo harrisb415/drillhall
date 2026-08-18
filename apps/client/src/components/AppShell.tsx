@@ -3,8 +3,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { CertBadge } from "@/components/ui/cert-badge";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
-import { authClient } from "@/lib/auth-client";
+import { authClient, isAdmin } from "@/lib/auth-client";
 import { useCertSwitcher } from "@/lib/cert-context";
 import { cn } from "@/lib/utils";
 
@@ -17,22 +18,24 @@ function CertSelect({ className }: { className?: string }) {
       </Badge>
     );
   }
+  // A native <select> can't render SVG inside its options, so the badge sits
+  // alongside and reflects the active cert rather than decorating each row.
   return (
-    <select
-      aria-label="Active certification"
-      value={cert.code}
-      onChange={(e) => switchCert(e.target.value)}
-      className={cn(
-        "w-full rounded-md border border-input bg-card px-2 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        className,
-      )}
-    >
-      {certs.map((c) => (
-        <option key={c.code} value={c.code}>
-          {c.name} · {c.version}
-        </option>
-      ))}
-    </select>
+    <div className={cn("flex items-center gap-2", className)}>
+      <CertBadge code={cert.code} size={26} />
+      <select
+        aria-label="Active certification"
+        value={cert.code}
+        onChange={(e) => switchCert(e.target.value)}
+        className="min-w-0 flex-1 rounded-md border border-input bg-card px-2 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        {certs.map((c) => (
+          <option key={c.code} value={c.code}>
+            {c.name} · {c.version}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
 
@@ -110,10 +113,23 @@ const NAV_ITEMS = [
   },
 ];
 
+/** Appended only for admins. Hiding it is convenience; the server is the gate. */
+const ADMIN_NAV_ITEM = {
+  to: "/admin",
+  label: "Admin",
+  icon: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  ),
+};
+
 function NavItems({ onNavigate }: { onNavigate?: () => void }) {
+  const { data: session } = authClient.useSession();
+  const items = isAdmin(session) ? [...NAV_ITEMS, ADMIN_NAV_ITEM] : NAV_ITEMS;
   return (
     <>
-      {NAV_ITEMS.map((item) => (
+      {items.map((item) => (
         <NavLink
           key={item.to}
           to={item.to}

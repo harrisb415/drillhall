@@ -132,7 +132,14 @@ export function FlashcardsPage() {
     if (!card) return;
     setStatus.mutate({ cardId: card.id, status });
     setFlipped(false);
-    setIndex((i) => i + 1);
+
+    // With "hide known" on, marking a card known drops it out of the deck once
+    // the cache patch lands, and everything after it shifts back one slot. The
+    // next card therefore arrives *at the current index* on its own —
+    // incrementing as well would step straight over it, which reads as one
+    // click advancing two cards.
+    const leavesDeck = hideKnown && status === "known";
+    if (!leavesDeck) setIndex((i) => i + 1);
   }
 
   function step(delta: number) {
@@ -233,31 +240,52 @@ export function FlashcardsPage() {
             <button
               type="button"
               onClick={() => setFlipped((f) => !f)}
-              className={cn(
-                "block w-full rounded-lg border border-border bg-card p-8 text-left shadow-sm transition-colors hover:border-ring/50",
-                "min-h-56 md:min-h-64",
-              )}
+              aria-label={flipped ? "Show the question" : "Reveal the answer"}
+              className="flip-scene block w-full text-left"
             >
-              <div className="mb-4 flex items-center justify-between">
-                <Badge variant="accent">
-                  {card.domainCode} ·{" "}
-                  {cert.domains.find((d) => d.code === card.domainCode)?.name ?? ""}
-                </Badge>
-                <span className="text-xs text-muted-foreground">
-                  {index + 1} / {deck.length}
-                  {data.progress[card.id] && (
-                    <Badge
-                      variant={data.progress[card.id] === "known" ? "success" : "secondary"}
-                      className="ml-2"
-                    >
-                      {data.progress[card.id]}
-                    </Badge>
-                  )}
-                </span>
-              </div>
-              <div className="text-lg leading-relaxed">{flipped ? card.back : card.front}</div>
-              <div className="mt-6 text-xs text-muted-foreground">
-                {flipped ? "Click to see the question" : "Click to reveal the answer"}
+              {/* Both faces render at once and the container turns. Keyed on
+                  the card id so moving to the next card resets the rotation
+                  instantly instead of animating a spin between two cards. */}
+              <div
+                key={card.id}
+                className={cn(
+                  "flip-inner min-h-56 md:min-h-64",
+                  flipped && "is-flipped",
+                )}
+              >
+                {[false, true].map((isBack) => (
+                  <div
+                    key={isBack ? "back" : "front"}
+                    className={cn(
+                      "flip-face flex flex-col rounded-lg border border-border bg-card p-8 elev-2 [background-image:var(--grad-surface)]",
+                      isBack && "flip-face-back border-primary/40",
+                    )}
+                  >
+                    <div className="mb-4 flex items-center justify-between">
+                      <Badge variant={isBack ? "default" : "accent"}>
+                        {card.domainCode} ·{" "}
+                        {cert.domains.find((d) => d.code === card.domainCode)?.name ?? ""}
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">
+                        <span className="stat-numeral">
+                          {index + 1} / {deck.length}
+                        </span>
+                        {data.progress[card.id] && (
+                          <Badge
+                            variant={data.progress[card.id] === "known" ? "success" : "secondary"}
+                            className="ml-2"
+                          >
+                            {data.progress[card.id]}
+                          </Badge>
+                        )}
+                      </span>
+                    </div>
+                    <div className="text-lg leading-relaxed">{isBack ? card.back : card.front}</div>
+                    <div className="mt-auto pt-6 text-xs text-muted-foreground">
+                      {isBack ? "Click to see the question" : "Click to reveal the answer"}
+                    </div>
+                  </div>
+                ))}
               </div>
             </button>
 

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
 import { Progress } from "@/components/ui/progress";
 import { RadialGauge } from "@/components/ui/radial-gauge";
 import { Sparkline } from "@/components/ui/sparkline";
@@ -53,7 +54,8 @@ export function DashboardPage() {
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Stat cards enter in sequence — see the .animate-enter note in index.css. */}
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 [&>*]:animate-enter [&>*:nth-child(1)]:[animation-delay:0ms] [&>*:nth-child(2)]:[animation-delay:60ms] [&>*:nth-child(3)]:[animation-delay:120ms] [&>*:nth-child(4)]:[animation-delay:180ms]">
         <Card className={!data.quiz.readinessConfident ? "border-dashed" : undefined}>
           <CardHeader className="pb-2">
             <CardDescription className="flex items-center gap-1.5">
@@ -233,10 +235,16 @@ export function DashboardPage() {
         </CardHeader>
         <CardContent>
           {data.exams.attempts === 0 ? (
-            <p className="py-2 text-sm text-muted-foreground">
-              No mock exams yet. A timed sitting is the fastest way to find out whether the
-              readiness number above is telling you the truth.
-            </p>
+            <EmptyState
+              art="exam"
+              title="No mock exams yet"
+              description="A timed sitting is the fastest way to find out whether the readiness number above is telling you the truth."
+              action={
+                <Link to="/exam">
+                  <Button>Sit your first mock exam</Button>
+                </Link>
+              }
+            />
           ) : (
             <>
               <div className="grid gap-4 sm:grid-cols-4">
@@ -313,14 +321,16 @@ export function DashboardPage() {
           </CardHeader>
           <CardContent>
             {data.recentSessions.length === 0 ? (
-              <div className="py-4 text-center text-sm text-muted-foreground">
-                No quizzes yet.
-                <div className="mt-3">
+              <EmptyState
+                art="quiz"
+                title="No quizzes yet"
+                description="Answers here are what move your readiness score — it stays at zero until you start."
+                action={
                   <Link to="/quiz">
                     <Button>Start your first quiz</Button>
                   </Link>
-                </div>
-              </div>
+                }
+              />
             ) : (
               <ul className="divide-y divide-border">
                 {data.recentSessions.map((s) => (

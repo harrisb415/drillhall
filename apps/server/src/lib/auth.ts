@@ -1,5 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { admin as adminPlugin } from "better-auth/plugins/admin";
 import type { Db } from "../db";
 import { account, session, user, verification } from "../db/auth-schema";
 import type { SendEmail } from "../modules/notifications/providers/email";
@@ -65,6 +66,23 @@ export function createAuth(deps: AuthDeps) {
       // Google account from here, only drop what we stored about the link.
       deleteUser: { enabled: true },
     },
+    plugins: [
+      /**
+       * User management, using the official plugin rather than hand-rolled
+       * role checks. Authorization is exactly the code you don't want to
+       * write yourself: the plugin already handles revoking a banned user's
+       * live sessions, refusing to let an admin delete or demote themselves
+       * into lockout, and keeping impersonation attributable.
+       *
+       * Everyone signs up as "user"; "admin" is granted out of band (see
+       * scripts/grant-admin.mjs). Nothing in the app can self-promote —
+       * that's the whole point of the gate.
+       */
+      adminPlugin({
+        defaultRole: "user",
+        adminRoles: ["admin"],
+      }),
+    ],
   });
 }
 

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
 import { RadialGauge } from "@/components/ui/radial-gauge";
 import { Spinner } from "@/components/ui/spinner";
 import { useCourse } from "@/lib/api";
@@ -75,8 +76,12 @@ export function CourseIndexPage() {
 
       {sections.length === 0 ? (
         <Card>
-          <CardContent className="py-10 text-center text-sm text-muted-foreground">
-            No course content for {cert.name} yet.
+          <CardContent>
+            <EmptyState
+              art="course"
+              title={`No course content for ${cert.name} yet`}
+              description="Lessons ship as part of the content pack for each certification. Flashcards, quizzes and the exam simulator all still work in the meantime."
+            />
           </CardContent>
         </Card>
       ) : (
@@ -124,7 +129,7 @@ export function CourseIndexPage() {
                         className={
                           done
                             ? "flex size-7 shrink-0 items-center justify-center rounded-full bg-success/15 text-success"
-                            : "flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary text-muted-foreground"
+                            : "flex size-7 shrink-0 items-center justify-center rounded-full bg-info-muted text-info"
                         }
                       >
                         {done ? <CheckIcon className="size-4" /> : <ReadingIcon className="size-3.5" />}

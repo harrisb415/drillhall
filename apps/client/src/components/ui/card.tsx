@@ -1,10 +1,22 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-export function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Adds hover lift. For cards that are themselves a link or a target. */
+  interactive?: boolean;
+}
+
+export function Card({ className, interactive, ...props }: CardProps) {
   return (
     <div
-      className={cn("rounded-lg border border-border bg-card text-card-foreground shadow-sm", className)}
+      className={cn(
+        "rounded-lg border border-border bg-card text-card-foreground elev-1",
+        // A gradient surface rather than flat fill — very subtle, but it's
+        // what stops a wall of cards reading as flat rectangles.
+        "[background-image:var(--grad-surface)]",
+        interactive && "lift cursor-pointer hover:border-primary/40",
+        className,
+      )}
       {...props}
     />
   );

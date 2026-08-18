@@ -2,7 +2,7 @@
 
 Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express + better-sqlite3 server, Better Auth (email/password + Google), content shipped as validated data packs.
 
-**Status: v1.5.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1101), A+ Core 2 (220-1102), Network+ (N10-009), Security+ (SY0-701).
+**Status: v1.6.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1101), A+ Core 2 (220-1102), Network+ (N10-009), Security+ (SY0-701).
 
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
@@ -15,6 +15,7 @@ Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite 
 - **Visual identity** — charcoal-and-brass palette, radial mastery gauges, score sparklines, rank insignia and a tiered streak flame. See below.
 - **Light/dark/system theme toggle**, and **installable as a PWA** on iOS and Android with an offline app shell. See below.
 - **Course** — a reading-based study track per cert, with a dashboard cross-reference of what you've read against what you've proven by quiz. Video was left out of scope on purpose.
+- **Admin panel** at `/admin` for user management, gated on a `role` field. See below.
 
 ## Quickstart (dev)
 
@@ -74,6 +75,23 @@ Question types (one `QuizQuestionSchema` discriminated union, all graded server-
 | `terminal` | `expected[]` acceptable commands | `xterm.js`, case/whitespace-insensitive match |
 
 Answers and explanations never reach the client until after grading.
+
+## Admin
+
+`/admin` lists every account and can ban/unban, promote/demote, force sign-out, delete, and set a password directly. That last one matters here specifically: with no outbound email configured, the normal "forgot password" link goes nowhere, so this is the only working recovery path.
+
+Built on Better Auth's official **admin plugin** rather than hand-rolled role checks — authorization is exactly the code not worth writing yourself, and the plugin already handles revoking a banned user's live sessions and refusing self-lockout.
+
+**Granting the first admin is deliberately outside the app:**
+
+```bash
+node scripts/grant-admin.mjs you@example.com          # promote
+node scripts/grant-admin.mjs someone@example.com --revoke
+```
+
+If any signed-in user could reach an endpoint that made them an admin, the gate would be decorative — so promotion has to start with someone holding shell access to the database. After that, an existing admin can promote others from the panel. The account must have signed in at least once before it can be promoted (there's no row otherwise), and the user may need to sign out and back in for a role change to take effect, since an existing session was minted with the old value.
+
+The nav item only renders for admins, but that's cosmetic. Every action is authorized server-side, and non-admin requests to admin routes get a **404 rather than a 403** — an admin surface shouldn't confirm its own existence to someone who isn't one. `apps/server/test/admin.test.ts` covers the escalation cases directly: an ordinary user can neither promote themselves nor ban anyone else.
 
 ## Exam simulator
 

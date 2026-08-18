@@ -31,6 +31,13 @@
   --color-developing: var(--developing);
   --color-strong: var(--strong);
 
+  /* Secondary accent. Brass belongs to progress and achievement; this cooler
+     hue marks *content* — course lessons, reference material — so the two
+     halves of the app read apart instead of everything being one colour. */
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-info-muted: var(--info-muted);
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
@@ -61,6 +68,23 @@
   --weak: #b4441c;
   --developing: #9a6d12;
   --strong: #2f7d32;
+
+  --info: #1d6b70;
+  --info-foreground: #ffffff;
+  --info-muted: #e2efef;
+
+  /* Elevation. Two-part shadows — a tight contact shadow plus a soft ambient
+     one — because a single blurred box-shadow reads as a smudge rather than
+     as height. */
+  --shadow-1: 0 1px 2px rgb(28 25 23 / 0.06), 0 1px 3px rgb(28 25 23 / 0.08);
+  --shadow-2: 0 1px 2px rgb(28 25 23 / 0.06), 0 4px 12px rgb(28 25 23 / 0.09);
+  --shadow-3: 0 2px 4px rgb(28 25 23 / 0.07), 0 12px 28px rgb(28 25 23 / 0.13);
+  --glow-primary: 0 0 0 1px rgb(139 105 20 / 0.18), 0 4px 18px rgb(139 105 20 / 0.30);
+
+  /* Gradients, defined once so every surface that wants brass depth agrees. */
+  --grad-primary: linear-gradient(135deg, #a37f1c 0%, #7d5d10 100%);
+  --grad-surface: linear-gradient(180deg, #ffffff 0%, #faf9f6 100%);
+  --grad-page: radial-gradient(1200px 600px at 50% -10%, #efece3 0%, transparent 70%);
 }
 
 /* ---- dark palette -----------------------------------------------------
@@ -97,6 +121,21 @@
     --weak: #e0794a;
     --developing: #d9a441;
     --strong: #6bbf6b;
+
+    --info: #5fbcc2;
+    --info-foreground: #0e2223;
+    --info-muted: #17302f;
+
+    /* Shadows carry less weight on a dark ground, so they lean on a darker
+       base and a subtle top highlight does the lifting instead. */
+    --shadow-1: 0 1px 2px rgb(0 0 0 / 0.40), 0 1px 3px rgb(0 0 0 / 0.30);
+    --shadow-2: 0 1px 2px rgb(0 0 0 / 0.45), 0 4px 14px rgb(0 0 0 / 0.40);
+    --shadow-3: 0 2px 6px rgb(0 0 0 / 0.50), 0 14px 32px rgb(0 0 0 / 0.55);
+    --glow-primary: 0 0 0 1px rgb(217 164 65 / 0.28), 0 4px 22px rgb(217 164 65 / 0.35);
+
+    --grad-primary: linear-gradient(135deg, #e2b25a 0%, #c08d2c 100%);
+    --grad-surface: linear-gradient(180deg, #201d18 0%, #1a1814 100%);
+    --grad-page: radial-gradient(1200px 600px at 50% -10%, #221f18 0%, transparent 70%);
   }
 }
 
@@ -124,10 +163,28 @@
   --weak: #e0794a;
   --developing: #d9a441;
   --strong: #6bbf6b;
+
+  --info: #5fbcc2;
+  --info-foreground: #0e2223;
+  --info-muted: #17302f;
+
+  --shadow-1: 0 1px 2px rgb(0 0 0 / 0.40), 0 1px 3px rgb(0 0 0 / 0.30);
+  --shadow-2: 0 1px 2px rgb(0 0 0 / 0.45), 0 4px 14px rgb(0 0 0 / 0.40);
+  --shadow-3: 0 2px 6px rgb(0 0 0 / 0.50), 0 14px 32px rgb(0 0 0 / 0.55);
+  --glow-primary: 0 0 0 1px rgb(217 164 65 / 0.28), 0 4px 22px rgb(217 164 65 / 0.35);
+
+  --grad-primary: linear-gradient(135deg, #e2b25a 0%, #c08d2c 100%);
+  --grad-surface: linear-gradient(180deg, #201d18 0%, #1a1814 100%);
+  --grad-page: radial-gradient(1200px 600px at 50% -10%, #221f18 0%, transparent 70%);
 }
 
 body {
   @apply bg-background text-foreground antialiased;
+  /* A soft wash behind the page so the ground isn't a flat slab. Fixed so it
+     stays put while content scrolls over it. */
+  background-image: var(--grad-page);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   font-family:
     ui-sans-serif,
     system-ui,
@@ -356,8 +413,135 @@ h3 {
   }
 }
 
+@keyframes dh-shimmer {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(320%);
+  }
+}
+
+@keyframes dh-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dh-rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-14px) scale(0.4);
+    opacity: 0;
+  }
+}
+
 .animate-pop {
   animation: dh-pop 240ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Entrance for lists and card grids. The delay is set inline per index so a
+   group arrives in sequence rather than all at once — it reads as the page
+   assembling itself instead of flashing into place. */
+.animate-enter {
+  animation: dh-slide-up 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Sweeps a highlight across a filled bar segment. */
+.animate-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(255 255 255 / 0.55) 50%,
+    transparent 100%
+  );
+  animation: dh-shimmer 1.6s ease-in-out 400ms;
+}
+
+/* SVG path that draws itself — the stroke-dasharray is set inline to the
+   path's own length so the maths lands regardless of the icon. */
+.animate-draw {
+  animation: dh-draw 420ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+.animate-rise {
+  animation: dh-rise 1.4s ease-out infinite;
+}
+
+/* Depth utilities. Interactive surfaces lift toward the pointer; the
+   translate is tiny on purpose — enough to feel responsive, not enough to
+   shove neighbouring content around. */
+.elev-1 {
+  box-shadow: var(--shadow-1);
+}
+.elev-2 {
+  box-shadow: var(--shadow-2);
+}
+.elev-3 {
+  box-shadow: var(--shadow-3);
+}
+
+.lift {
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms ease;
+}
+.lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-3);
+}
+.lift:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-1);
+}
+
+/* Presses respond immediately. Applied to buttons app-wide below. */
+.press {
+  transition: transform 90ms ease;
+}
+.press:active {
+  transform: scale(0.97);
+}
+
+.glow-primary {
+  box-shadow: var(--glow-primary);
+}
+
+/* ---- flashcard flip ---------------------------------------------------
+   A real card turn rather than a crossfade. The scene holds the perspective,
+   the inner element rotates, and each face hides its own back so they don't
+   bleed through mid-turn. Both faces are absolutely positioned over a shared
+   grid cell, so the card sizes to whichever face is taller and never jumps
+   height as it flips. */
+.flip-scene {
+  perspective: 1400px;
+}
+
+.flip-inner {
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flip-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-face-back {
+  transform: rotateY(180deg);
 }
 
 .animate-slide-up {

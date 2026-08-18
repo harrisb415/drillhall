@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.6.0] — 2026-08-18
+
+### Added
+- **Admin panel** at `/admin`, gated on a `role` field on the user. Built on Better Auth's official admin plugin rather than hand-rolled role checks — authorization is precisely the code worth not writing yourself, and the plugin already handles revoking a banned user's live sessions and refusing self-lockout. List and search users, ban/unban, promote/demote, force sign-out, delete, and **set a password directly** — which matters here because this instance has no outbound email, so the normal reset link goes nowhere; this is the working recovery path. The nav item only renders for admins, but that's cosmetic: every action is authorized server-side, and non-admin routes 404 rather than 403 so the surface doesn't confirm its own existence.
+- **Promotion is deliberately not possible inside the app.** The first admin is set out of band via `scripts/grant-admin.mjs <email>`; after that an existing admin can promote others. If any signed-in user could reach an endpoint that made them an admin, the gate would be decorative.
+- **Visual overhaul.** A two-part elevation scale (contact + ambient shadow, since one blurred shadow reads as a smudge rather than height), brass gradients on primary actions and progress fills, a soft page wash, hover-lift on cards and press-response on buttons, staggered card entrances, XP-bar shimmer, a self-drawing checkmark on correct answers, and rising embers on established streaks.
+- **A real 3D flashcard flip** — perspective and `rotateY` with both faces rendered and back-face-hidden, replacing the previous text swap. Faces share a grid cell so the card sizes to the taller side and never jumps height mid-turn.
+- **A second accent hue (teal)** marking *content* — course lessons, reference material — so it reads apart from brass, which now means progress and achievement exclusively.
+- **Illustrated empty states** for quizzes, exams and courses, plus **per-certification badge marks** (a chip for hardware, a node graph for networking, a padlock for security) in the switcher and on the marketing cards.
+
+### Fixed
+- **"Got it" advanced two flashcards instead of one** whenever *Hide known* was on. Marking a card known removes it from the filtered deck, which shifts every later card back one slot — so the next card already arrived at the current index, and incrementing on top of that stepped straight over it. Reported from production with a screenshot; reproduced, fixed, and verified by walking a known card order and asserting the exact card landed on.
+
+### Changed
+- Every new colour pair in both themes was contrast-checked rather than eyeballed; all clear WCAG AA.
+
 ## [1.5.0] — 2026-08-16
 
 ### Added

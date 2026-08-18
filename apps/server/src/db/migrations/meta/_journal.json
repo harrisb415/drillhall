@@ -50,6 +50,13 @@
       "when": 1786954536038,
       "tag": "0006_fresh_tinkerer",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1787093356800,
+      "tag": "0007_large_captain_cross",
+      "breakpoints": true
     }
   ]
 }

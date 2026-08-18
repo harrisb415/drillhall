@@ -2,6 +2,7 @@ import { Link, Navigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CertBadge } from "@/components/ui/cert-badge";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useCatalog } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
@@ -122,7 +123,12 @@ export function MarketingPage() {
                 { label: "Practice questions", value: catalog.totals.quizQuestions },
                 { label: "Flashcards", value: catalog.totals.flashcards },
               ].map((stat) => (
-                <div key={stat.label} className="rounded-lg border border-border bg-card p-4">
+                <div
+                  key={stat.label}
+                  // Hand-rolled rather than <Card>, so it needs the depth
+                  // utilities applied explicitly to match everything else.
+                  className="rounded-lg border border-border bg-card p-4 elev-1 [background-image:var(--grad-surface)]"
+                >
                   <dd className="stat-numeral text-3xl font-bold">{stat.value}</dd>
                   <dt className="mt-1 text-xs text-muted-foreground">{stat.label}</dt>
                 </div>
@@ -156,10 +162,15 @@ export function MarketingPage() {
             </p>
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
               {catalog.certs.map((cert) => (
-                <Card key={cert.code}>
+                <Card key={cert.code} interactive>
                   <CardHeader>
-                    <CardTitle>{cert.name}</CardTitle>
-                    <CardDescription>Exam {cert.version}</CardDescription>
+                    <div className="flex items-center gap-3">
+                      <CertBadge code={cert.code} size={34} />
+                      <div className="min-w-0">
+                        <CardTitle>{cert.name}</CardTitle>
+                        <CardDescription>Exam {cert.version}</CardDescription>
+                      </div>
+                    </div>
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <p className="text-sm text-muted-foreground">
