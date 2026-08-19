@@ -114,14 +114,15 @@ export function LessonPage() {
         )}
         <Button
           variant="outline"
-          size="sm"
-          className="gap-1.5"
+          size="icon"
+          className="size-8 shrink-0"
           style={flagged ? { color: "var(--weak)", borderColor: "var(--weak)" } : undefined}
           disabled={setFlag.isPending}
           onClick={() => setFlag.mutate({ lessonId: lesson.id, flagged: !flagged })}
+          aria-label={flagged ? "Clear flag for review" : "Flag for review"}
+          title={flagged ? "Flagged for review — click to clear" : "Flag for review"}
         >
-          <FlagIcon className="size-3.5" />
-          {flagged ? "Flagged for review" : "Flag for review"}
+          <FlagIcon className="size-4" />
         </Button>
         <div className="ml-auto flex gap-2">
           <Button variant="outline" disabled={!prev} onClick={() => prev && goToLesson(prev.id)}>

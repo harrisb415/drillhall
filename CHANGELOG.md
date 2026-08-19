@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.8.1] — 2026-08-19
+
+### Fixed
+- **Flag-for-review button caused the lesson page's action row to wrap and jump.** The full-width "Flag for review" / "Flagged for review" text button changed width between states, which could push it (and the Previous/Next buttons) past the row's available space and onto a new line only in one of the two states — a layout jump on toggle. Replaced with a fixed-size icon-only toggle (flag icon, `aria-label` + native tooltip for the state) that's the same width flagged or not.
+
 ## [1.8.0] — 2026-08-18
 
 ### Added
