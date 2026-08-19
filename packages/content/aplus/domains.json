@@ -1,7 +1,7 @@
 [
-  { "code": "1.0", "name": "Mobile Devices", "weight": 15 },
-  { "code": "2.0", "name": "Networking", "weight": 20 },
+  { "code": "1.0", "name": "Mobile Devices", "weight": 13 },
+  { "code": "2.0", "name": "Networking", "weight": 23 },
   { "code": "3.0", "name": "Hardware", "weight": 25 },
   { "code": "4.0", "name": "Virtualization and Cloud Computing", "weight": 11 },
-  { "code": "5.0", "name": "Hardware and Network Troubleshooting", "weight": 29 }
+  { "code": "5.0", "name": "Hardware and Network Troubleshooting", "weight": 28 }
 ]

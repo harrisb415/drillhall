@@ -48,6 +48,18 @@
     "back": "The router address a host sends traffic to when the destination is outside its own subnet. Without one, a host can only reach other devices on its local network."
   },
   {
+    "id": "netplus-fc-036",
+    "domainCode": "1.0",
+    "front": "Unicast vs multicast vs anycast vs broadcast?",
+    "back": "Unicast: one sender to one receiver. Broadcast: one sender to every device on the segment. Multicast: one sender to a specific interested group. Anycast: one address routed to the nearest of several servers advertising it."
+  },
+  {
+    "id": "netplus-fc-037",
+    "domainCode": "1.0",
+    "front": "NAS vs SAN?",
+    "back": "NAS: file-level storage shared over the network, simple to set up. SAN: block-level storage that appears to servers as a local disk — higher performance, used for databases and virtualization."
+  },
+  {
     "id": "netplus-fc-009",
     "domainCode": "2.0",
     "front": "What is the maximum cable length for a single Cat 6 Ethernet run at 1 Gbps?",
@@ -96,6 +108,18 @@
     "back": "Delivers DC power over the same cable as data, so devices like APs and IP cameras need only one cable and no local power outlet."
   },
   {
+    "id": "netplus-fc-038",
+    "domainCode": "2.0",
+    "front": "BGP vs EIGRP vs OSPF — which routes where?",
+    "back": "BGP routes between separate organizations/ISPs — it runs the internet itself. OSPF and EIGRP are interior protocols used inside one organization's network; EIGRP is Cisco-originated."
+  },
+  {
+    "id": "netplus-fc-039",
+    "domainCode": "2.0",
+    "front": "What is a VIP in an FHRP setup?",
+    "back": "The single virtual IP that a redundant router pair (VRRP/HSRP) presents to hosts. Hosts point their gateway at the VIP and never notice which physical router is actually active."
+  },
+  {
     "id": "netplus-fc-017",
     "domainCode": "3.0",
     "front": "What does an SLA define?",
@@ -132,6 +156,24 @@
     "back": "Summarizes who talked to whom, how much, and when, without capturing full packet contents — used for capacity planning, billing, and spotting anomalous traffic patterns."
   },
   {
+    "id": "netplus-fc-040",
+    "domainCode": "3.0",
+    "front": "MTBF vs MTTR?",
+    "back": "MTBF (Mean Time Between Failures): how long a device typically runs before it fails — higher is better. MTTR (Mean Time To Repair): how long a fix takes once it has failed — lower is better."
+  },
+  {
+    "id": "netplus-fc-041",
+    "domainCode": "3.0",
+    "front": "EOL vs EOS?",
+    "back": "EOL (End of Life): the vendor stops selling/developing the product. EOS (End of Support): the vendor stops providing patches — the date that matters most for security, since the device can still run for years with no more patches."
+  },
+  {
+    "id": "netplus-fc-042",
+    "domainCode": "3.0",
+    "front": "Baseline configuration vs traffic baseline?",
+    "back": "A baseline configuration is the documented, known-good device config used to detect unauthorized changes. A traffic baseline is normal bandwidth/latency levels, used to spot performance anomalies — different things being measured."
+  },
+  {
     "id": "netplus-fc-023",
     "domainCode": "4.0",
     "front": "What is the purpose of 802.1X?",
@@ -160,6 +202,30 @@
     "domainCode": "4.0",
     "front": "What is ARP spoofing / poisoning?",
     "back": "An attacker sends forged ARP replies to associate their own MAC address with another device's IP, redirecting traffic through the attacker for interception — a Layer 2 man-in-the-middle technique."
+  },
+  {
+    "id": "netplus-fc-032",
+    "domainCode": "4.0",
+    "front": "CIA triad — what does each letter protect?",
+    "back": "Confidentiality: only authorized parties can read the data. Integrity: the data hasn't been altered undetected. Availability: authorized parties can access it when needed. Ransomware that encrypts (but doesn't read) data is primarily an availability hit."
+  },
+  {
+    "id": "netplus-fc-033",
+    "domainCode": "4.0",
+    "front": "Threat vs vulnerability vs exploit vs risk?",
+    "back": "Threat: something that could cause harm. Vulnerability: a weakness a threat could use. Exploit: the specific method used to take advantage of the vulnerability. Risk: the likelihood and impact if it happens — what you're actually trying to reduce."
+  },
+  {
+    "id": "netplus-fc-034",
+    "domainCode": "4.0",
+    "front": "SSO vs SAML?",
+    "back": "SSO (single sign-on) is the user experience — log in once, access multiple systems. SAML is the XML-based protocol that technically carries the authentication assertion between the identity provider and each service provider."
+  },
+  {
+    "id": "netplus-fc-035",
+    "domainCode": "4.0",
+    "front": "Honeypot vs honeynet?",
+    "back": "A honeypot is a single decoy system. A honeynet is a whole decoy network of honeypots, built to observe more complex, multi-step attacker behavior."
   },
   {
     "id": "netplus-fc-028",

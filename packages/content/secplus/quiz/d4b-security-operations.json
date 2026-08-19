@@ -240,5 +240,94 @@
     "prompt": "Type the Windows command that displays detailed configuration information for all network adapters, including IP address, subnet mask, default gateway, and DNS servers.",
     "expected": ["ipconfig /all"],
     "explanation": "ipconfig /all shows the full network configuration for every adapter, which is useful during an investigation to confirm a host's actual DNS servers and DHCP lease details."
+  },
+  {
+    "id": "secplus-d4-mc-044",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A security team deploys a platform that, upon receiving a malware alert, automatically quarantines the host, opens a ticket, and notifies the on-call analyst — coordinating several tools into one workflow without human intervention. What is this platform category called?",
+    "choices": ["SOAR (Security Orchestration, Automation, and Response)", "SIEM", "EDR", "DLP"],
+    "answerIndex": 0,
+    "explanation": "SOAR platforms orchestrate multiple tools and automated steps into a single coordinated workflow, going beyond a single automated task to chain several actions together."
+  },
+  {
+    "id": "secplus-d4-mc-045",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A single script automatically disables a user account after five failed login attempts, with no other systems involved. Is this best described as automation or orchestration?",
+    "choices": [
+      "Automation — a single repetitive task performed without a human",
+      "Orchestration — multiple tools coordinated into one workflow",
+      "Neither — this requires a human decision every time",
+      "SOAR specifically, since any automated security action counts as SOAR"
+    ],
+    "answerIndex": 0,
+    "explanation": "Automation is one task running without a human. Orchestration specifically means coordinating multiple tools/steps together — a single account-lockout script is automation, not orchestration."
+  },
+  {
+    "id": "secplus-d4-match-002",
+    "type": "match",
+    "domainCode": "4.0",
+    "prompt": "Match each mobile deployment model to its description.",
+    "pairs": [
+      { "left": "BYOD", "right": "Employees use their own personal devices — lowest cost, least IT control" },
+      { "left": "CYOD", "right": "Employees choose from a company-approved list, but the company owns and manages it" },
+      { "left": "COPE", "right": "The company owns and fully manages the device, but permits personal use" }
+    ],
+    "explanation": "The three models trade off cost and control differently: BYOD is cheapest with the least control, COPE gives IT the most control, and CYOD sits in between."
+  },
+  {
+    "id": "secplus-d4-mc-046",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Rather than storing admin credentials in a spreadsheet, an organization keeps them in a secure vault that checks them out to admins on demand and automatically rotates them after use. What is this called?",
+    "choices": ["Password vaulting", "Just-in-time access", "A break-glass account", "Federation"],
+    "answerIndex": 0,
+    "explanation": "Password vaulting stores privileged credentials securely and controls check-out/rotation, rather than admins knowing or memorizing standing passwords."
+  },
+  {
+    "id": "secplus-d4-mc-047",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An admin account is granted elevated privileges only for the specific 30-minute window needed to complete an approved task, then access is automatically revoked. What privileged access approach is this?",
+    "choices": ["Just-in-time (JIT) access", "Password vaulting", "A break-glass account", "Role-based access control"],
+    "answerIndex": 0,
+    "explanation": "JIT access grants privileged rights only for a limited window tied to a specific task, rather than an account holding standing admin rights permanently — shrinking the window an attacker could exploit."
+  },
+  {
+    "id": "secplus-d4-mc-048",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization keeps one heavily-monitored emergency admin account, normally locked away, to be used only if the primary identity provider goes down. What is this called?",
+    "choices": ["A break-glass account", "A honeypot", "A service account", "A guest account"],
+    "answerIndex": 0,
+    "explanation": "A break-glass account is an emergency-use privileged account for when normal access methods have failed. Its use should always trigger an alert, since it's meant to be rare."
+  },
+  {
+    "id": "secplus-d4-mc-049",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A security team wants to correlate signals across endpoints, network traffic, email, and cloud services into one unified view, rather than analyzing endpoint alerts in isolation. What does this describe, beyond standard EDR?",
+    "choices": ["XDR (Extended Detection and Response)", "DLP", "NAC", "A WAF"],
+    "answerIndex": 0,
+    "explanation": "XDR extends EDR's endpoint-only view by correlating data across multiple sources, catching attack patterns only visible when signals are connected across those sources."
+  },
+  {
+    "id": "secplus-d4-mc-050",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An identity provider asserts to a separate web application that a user is already authenticated, enabling single sign-on between the two. Which protocol is directly responsible for carrying that assertion?",
+    "choices": ["SAML", "OAuth", "TACACS+", "SNMP"],
+    "answerIndex": 0,
+    "explanation": "SAML is the XML-based standard that carries an authentication assertion from an identity provider to a service provider, enabling SSO between separate systems."
+  },
+  {
+    "id": "secplus-d4-mc-051",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A user clicks \"Allow this app to read your calendar\" and the third-party app gains that specific access without ever seeing the user's actual password. What framework enables this?",
+    "choices": ["OAuth", "SAML", "RADIUS", "Kerberos"],
+    "answerIndex": 0,
+    "explanation": "OAuth is an authorization framework that grants a third party limited access to specific resources on a user's behalf, without sharing credentials — distinct from SAML, which is about proving identity (authentication), not granting scoped access."
   }
 ]

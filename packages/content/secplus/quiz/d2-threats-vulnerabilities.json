@@ -295,5 +295,83 @@
     "choices": ["Smishing", "Vishing", "Pharming", "Whaling"],
     "answerIndex": 0,
     "explanation": "Smishing is phishing conducted over SMS text messages, using the same urgency and deception tactics as email phishing but through a different channel."
+  },
+  {
+    "id": "secplus-d2-mc-034",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Malicious code is inserted directly into a legitimate running process's memory space, never writing a new file to disk. Why does this evade traditional file-based antivirus scanning?",
+    "choices": [
+      "Because it's memory injection — there's no new file on disk for a file scanner to detect",
+      "Because it only happens during BIOS boot, before the OS loads",
+      "Because it's encrypted with the user's own key",
+      "Because it only affects network traffic, not the endpoint"
+    ],
+    "answerIndex": 0,
+    "explanation": "Memory injection writes malicious code directly into a running process's memory rather than to disk, so file-scanning antivirus has nothing new to find — detecting it requires memory/behavioral monitoring instead."
+  },
+  {
+    "id": "secplus-d2-mc-035",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Malicious code running inside a guest virtual machine breaks out and gains access to the host hypervisor. What is this called?",
+    "choices": ["VM escape", "Memory injection", "A watering hole attack", "Resource reuse"],
+    "answerIndex": 0,
+    "explanation": "VM escape defeats the entire isolation model virtualization depends on — code meant to be contained inside one guest reaches the hypervisor or other VMs on it."
+  },
+  {
+    "id": "secplus-d2-mc-036",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A cloud customer discovers sensitive data left behind in storage that was previously assigned to a different tenant, before it was reassigned to them. What vulnerability category does this describe?",
+    "choices": ["Resource reuse", "VM escape", "Typosquatting", "A supply chain vulnerability"],
+    "answerIndex": 0,
+    "explanation": "Resource reuse is sensitive data left in memory or storage not being properly cleared before that resource is reassigned to another tenant or process — a particular concern in shared cloud/virtualized environments."
+  },
+  {
+    "id": "secplus-d2-mc-037",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A server still runs a critical business application on an operating system version the vendor stopped patching two years ago. What is the core risk here?",
+    "choices": [
+      "Every newly discovered flaw in that OS stays open permanently, with no vendor patch ever coming",
+      "The application will simply stop working eventually",
+      "It only affects performance, not security",
+      "It's not a security concern as long as a firewall is in place"
+    ],
+    "answerIndex": 0,
+    "explanation": "An end-of-life/unsupported system accumulates unpatched vulnerabilities indefinitely — this risk grows over time rather than being a one-time issue, and compensating controls (segmentation, extra monitoring) become necessary since patching isn't an option."
+  },
+  {
+    "id": "secplus-d2-mc-038",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A flaw is discovered in a network switch's low-level BIOS/UEFI-equivalent software, below the operating system layer. Why is this particularly dangerous?",
+    "choices": [
+      "OS-level security tools often can't see or fix firmware, and a compromise can survive even a full OS reinstall",
+      "Firmware vulnerabilities only affect display output",
+      "It can only be exploited by someone with physical access, so it's low priority",
+      "Firmware automatically updates itself, so it's self-correcting"
+    ],
+    "answerIndex": 0,
+    "explanation": "Firmware sits below the OS, so typical OS-level security tools have no visibility into it — and because it persists outside the OS, reinstalling the OS doesn't remove a firmware-level compromise."
+  },
+  {
+    "id": "secplus-d2-mc-039",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An employee removes manufacturer-imposed restrictions on their company iPhone to install unauthorized customizations, disabling the built-in app sandboxing and code-signing enforcement in the process. What is this called on iOS specifically?",
+    "choices": ["Jailbreaking", "Sideloading", "Rooting", "Tethering"],
+    "answerIndex": 0,
+    "explanation": "Jailbreaking is the iOS-specific term for removing manufacturer restrictions (rooting is the equivalent term on Android); both strip away built-in protections the device normally relies on."
+  },
+  {
+    "id": "secplus-d2-mc-040",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user installs an app downloaded directly from a website instead of the official app store, bypassing the vetting the store normally provides. What is this practice called?",
+    "choices": ["Sideloading", "Jailbreaking", "Pretexting", "Typosquatting"],
+    "answerIndex": 0,
+    "explanation": "Sideloading is installing apps from outside the official store. It's a distinct risk from jailbreaking/rooting — a stock, non-jailbroken device can still be exposed to sideloading risk if it's permitted."
   }
 ]

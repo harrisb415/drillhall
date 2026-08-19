@@ -42,6 +42,18 @@
     "back": "Time Machine is the built-in incremental backup to an external/network disk. Keychain is the system credential store for passwords and certificates."
   },
   {
+    "id": "core2-fc-033",
+    "domainCode": "1.0",
+    "front": "FileVault, Gatekeeper, and Force Quit — what does each do on macOS?",
+    "back": "FileVault: full-disk encryption (macOS's BitLocker). Gatekeeper: blocks apps from unidentified developers from launching by default. Force Quit (⌘⌥Esc): kills a frozen app, macOS's End Task."
+  },
+  {
+    "id": "core2-fc-034",
+    "domainCode": "1.0",
+    "front": "How does a mobile OS get \"installed\" or updated, compared to a PC?",
+    "back": "No separate clean/in-place choice — routine updates are OTA (over-the-air), applied without wiping the device. A factory reset/wipe is the mobile equivalent of a clean install, used to fix a broken device or before resale, not for routine updates."
+  },
+  {
     "id": "core2-fc-008",
     "domainCode": "1.0",
     "front": "When would you use a Windows 'in-place upgrade' vs a clean install?",

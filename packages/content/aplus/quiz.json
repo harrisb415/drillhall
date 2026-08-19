@@ -393,13 +393,5 @@
       { "left": "3389", "right": "RDP" }
     ],
     "explanation": "22 carries encrypted SSH/SFTP, 53 serves DNS lookups, 443 is TLS-encrypted web traffic, and 3389 is Remote Desktop."
-  },
-  {
-    "id": "aplus-term-001",
-    "type": "terminal",
-    "domainCode": "5.0",
-    "prompt": "You suspect the local TCP/IP stack is broken. Type the command that tests the IPv4 loopback address.",
-    "expected": ["ping 127.0.0.1", "ping localhost"],
-    "explanation": "Pinging 127.0.0.1 (or localhost) exercises the local stack without touching the network — if this fails, the problem is the OS networking stack, not cabling or DHCP."
   }
 ]

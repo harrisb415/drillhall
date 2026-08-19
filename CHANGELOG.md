@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.9.0] — 2026-08-19
+
+### Added
+- **Full content audit and expansion across all four cert packs**, triggered by a Linux command-line question appearing in an A+ Core 1 quiz with no course material to back it up. Every pack was checked question-by-question and lesson-by-lesson against CompTIA's official objectives:
+  - **A+ Core 1** — corrected domain weights to match the real V15 split (13/23/25/11/28%). Removed 7 quiz questions that tested Windows/Linux command-line syntax, which is a Core 2 objective, not Core 1's — Core 1's course never taught it, so those questions could only ever be guessed. Added 4 new lessons (SOHO networks & VPNs, peripherals, virtualization concepts, the physical troubleshooting toolkit) plus matching quiz/flashcard/reference content.
+  - **A+ Core 2** — macOS and mobile-OS coverage were thin relative to Windows despite being named objectives; extended the OS lifecycle lesson with real macOS tools (FileVault, Force Quit, Migration Assistant, Gatekeeper) and mobile-OS content (OTA updates, factory reset, iOS vs Android, MDM), plus a new "macOS Tools" reference sheet.
+  - **Network+** — Network Security (14%) was the thinnest domain; added two lessons covering CIA triad/risk terminology/PKI/IAM/SSO/SAML and compliance/OT segmentation/honeypots/social engineering. Filled smaller gaps across every other domain too: address classes, appliance categories, connectors/media, BGP/EIGRP, jumbo frames, power/environmental installation factors, SLAAC/PTP/NTS, MTBF, port mirroring, EOL/EOS lifecycle.
+  - **Security+** — Security Operations (28%, the largest domain) had a solid quiz bank but almost no course backing; added two lessons covering automation/orchestration (previously absent entirely), BYOD/CYOD, privileged access management, XDR, and SAML/OAuth. Also added lessons for the missing PKI/cryptography stack, named vulnerability categories (memory injection, VM escape), hardware roots of trust (TPM, secure enclave), and compliance frameworks (PCI DSS, HIPAA, ISO 27001) — plus Security Architecture's first reference sheet, since it had none.
+  - Net: +21 course lessons, +54 quiz questions, +32 flashcards, +14 reference groups across the four packs, all schema-validated and covered by the content package's own test suite.
+
+### Fixed
+- **Client bundle exceeded Vite's 500 kB chunk-size warning.** Every route was eagerly bundled into one ~1 MB JS file. Split every authenticated route (Dashboard, Course, Flashcards, Quiz, Exam, Reference, Settings, Admin) into its own lazy-loaded chunk via `React.lazy`/`Suspense` — marketing and auth pages stay eager since they're a signed-out visitor's first load. No route now exceeds ~435 kB, and a session only downloads the feature areas it actually visits.
+
 ## [1.8.1] — 2026-08-19
 
 ### Fixed

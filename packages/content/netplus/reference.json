@@ -60,6 +60,32 @@
     ]
   },
   {
+    "id": "ipv4-address-classes",
+    "title": "IPv4 Address Classes",
+    "columns": ["Class", "First octet", "Default mask", "Use"],
+    "rows": [
+      ["A", "1–126", "/8", "Very large networks"],
+      ["B", "128–191", "/16", "Medium networks"],
+      ["C", "192–223", "/24", "Small networks"],
+      ["D", "224–239", "—", "Multicast"],
+      ["E", "240–255", "—", "Experimental/reserved"]
+    ]
+  },
+  {
+    "id": "connectors-and-media",
+    "title": "Connectors & Media",
+    "columns": ["Connector/media", "Used for"],
+    "rows": [
+      ["SC, LC, ST", "Fiber connectors — LC is the small modern type, ST is older twist-lock"],
+      ["MPO", "One connector carrying many fiber strands — high-density runs"],
+      ["RJ11", "Telephone jack — phone lines/older DSL"],
+      ["F-type", "Coaxial connector — cable internet/TV"],
+      ["BNC", "Legacy twist-lock coaxial connector"],
+      ["DAC", "Fixed copper cable with transceivers built onto both ends — cheap short high-speed runs"],
+      ["Satellite / cellular", "Wireless WAN media for remote sites or backup links"]
+    ]
+  },
+  {
     "id": "cable-standards",
     "title": "Ethernet Cable Standards",
     "columns": ["Category", "Max Speed", "Max Distance"],
@@ -78,6 +104,44 @@
       ["802.11n", "Wi-Fi 4", "2.4 + 5 GHz", "600 Mbps"],
       ["802.11ac", "Wi-Fi 5", "5 GHz", "~3.5 Gbps"],
       ["802.11ax", "Wi-Fi 6 / 6E", "2.4, 5, (6E: 6) GHz", "~9.6 Gbps"]
+    ]
+  },
+  {
+    "id": "network-services-and-lifecycle",
+    "title": "Network Services & Lifecycle Terms",
+    "columns": ["Term", "Meaning"],
+    "rows": [
+      ["SLAAC", "IPv6 hosts self-configure an address from router advertisements — no DHCP server needed"],
+      ["PTP", "Time sync accurate to the microsecond — trading systems, some industrial/telecom gear"],
+      ["NTS", "Adds authentication/integrity to time sync so a spoofed time source can't be accepted"],
+      ["MTBF", "How long a device runs between failures (higher is better) — vs. MTTR, how long a repair takes"],
+      ["Port mirroring (SPAN)", "Copies traffic from one or more ports to a monitoring port for a sniffer/IDS"],
+      ["API integration", "How monitoring reaches cloud resources that don't expose SNMP"],
+      ["EOL / EOS", "Vendor stops selling the product / vendor stops patching it — EOS is the security-relevant date"],
+      ["Baseline configuration", "The documented known-good device config, used to detect drift — distinct from a traffic baseline"],
+      ["BGP / OSPF / EIGRP", "Between organizations (BGP) vs. inside one organization (OSPF, EIGRP)"],
+      ["VIP", "The shared virtual IP an FHRP pair (VRRP/HSRP) presents to hosts"],
+      ["Jumbo frames", "Ethernet frames larger than 1500-byte MTU — every device on the path must support it"]
+    ]
+  },
+  {
+    "id": "security-terminology",
+    "title": "Network Security Terminology",
+    "columns": ["Term", "Meaning"],
+    "rows": [
+      ["Confidentiality / Integrity / Availability", "Only authorized reads / data isn't altered undetected / service is accessible when needed"],
+      ["Threat / Vulnerability / Exploit / Risk", "What could cause harm / the weakness it could use / how it uses it / the likelihood and impact"],
+      ["PKI", "Certificate authorities + certificates + key pairs that make TLS and signatures trustworthy"],
+      ["IAM", "Umbrella term for creating, managing, and revoking accounts and access"],
+      ["SSO", "Log in once, access multiple systems"],
+      ["SAML", "The protocol that technically carries an SSO authentication assertion between systems"],
+      ["Data in transit / at rest", "Moving across the network (TLS/VPN) / sitting on disk (disk/DB encryption)"],
+      ["PCI DSS", "Required for any org that stores/processes/transmits credit card data"],
+      ["GDPR", "EU regulation covering personal data of EU residents"],
+      ["Data locality", "Legal/contractual requirement that data physically stays in a given region"],
+      ["ICS / SCADA / OT / IIoT", "Industrial control systems / large-scale distributed ICS / tech controlling physical devices / industrial IoT — all get segmented off the corporate LAN"],
+      ["Honeypot / Honeynet", "A single decoy system / a whole decoy network of them"],
+      ["MAC flooding", "Overflows a switch's MAC table so it fails open and broadcasts traffic to every port"]
     ]
   },
   {

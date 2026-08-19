@@ -250,5 +250,60 @@
       "Full interruption test"
     ],
     "explanation": "Tabletop exercises are discussion-only and carry no operational risk; simulations exercise the plan without failing over; parallel tests run the recovery site alongside production; a full interruption actually cuts over live operations, making it the most disruptive but most realistic test."
+  },
+  {
+    "id": "secplus-d3-mc-027",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Full-disk encryption software needs to securely generate and store its encryption key so the key material never has to leave a dedicated hardware chip. Which component provides this?",
+    "choices": ["TPM (Trusted Platform Module)", "A secure enclave", "A HSM cluster", "An IPS"],
+    "answerIndex": 0,
+    "explanation": "A TPM is a dedicated hardware chip that securely generates and stores cryptographic keys and can attest to boot integrity — exactly what tools like BitLocker rely on to protect their disk-encryption keys."
+  },
+  {
+    "id": "secplus-d3-mc-028",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A smartphone keeps biometric fingerprint data isolated in a dedicated, protected processor region, separate from the main OS, so even a compromised OS can't directly read it. What is this called?",
+    "choices": ["A secure enclave", "A TPM", "A screened subnet", "A honeypot"],
+    "answerIndex": 0,
+    "explanation": "A secure enclave is an isolated, protected processor area (or dedicated co-processor) that keeps sensitive data and operations separated from the main OS, even if that OS is compromised."
+  },
+  {
+    "id": "secplus-d3-mc-029",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization's redundant servers all run the same OS from the same vendor. A single vulnerability in that vendor's software could take down every redundant copy at once. What resilience principle addresses this gap?",
+    "choices": ["Platform diversity", "Geographic dispersion", "Capacity planning", "Data sovereignty"],
+    "answerIndex": 0,
+    "explanation": "Platform diversity deliberately uses different vendors/platforms for redundant systems, so one vendor-specific vulnerability or outage can't take down every redundant copy simultaneously."
+  },
+  {
+    "id": "secplus-d3-mc-030",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company's primary and backup datacenters are both located 2 miles apart in the same city. What resilience gap does this illustrate?",
+    "choices": [
+      "Insufficient geographic dispersion — one regional event could take out both",
+      "Insufficient platform diversity",
+      "Insufficient capacity planning",
+      "This is not a resilience gap"
+    ],
+    "answerIndex": 0,
+    "explanation": "Geographic dispersion requires redundant sites to be far enough apart that one regional event (a storm, a regional power/ISP outage) can't take out both — 2 miles apart defeats that purpose even though redundancy technically exists."
+  },
+  {
+    "id": "secplus-d3-mc-031",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "During a failover, all traffic shifts to the surviving redundant server, which then becomes overwhelmed and also fails. What resilience planning step was missing?",
+    "choices": [
+      "Capacity planning for the surviving system to actually absorb the extra load",
+      "Platform diversity",
+      "A legal hold",
+      "Rules of engagement"
+    ],
+    "answerIndex": 0,
+    "explanation": "Capacity planning ensures infrastructure can handle both normal growth and the load spike a failover creates — redundancy that can't actually handle the load during a failure isn't meaningfully resilient."
   }
 ]

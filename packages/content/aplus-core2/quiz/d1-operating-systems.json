@@ -506,5 +506,55 @@
       { "left": "gpupdate /force", "right": "Reapplies Group Policy immediately" }
     ],
     "explanation": "SFC repairs system files, chkdsk repairs the filesystem structure, diskpart manipulates partitions, and gpupdate refreshes policy without waiting for the background interval."
+  },
+  {
+    "id": "core2-mc-167",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company requires full-disk encryption on every Mac laptop it issues. Which macOS feature provides this?",
+    "choices": ["FileVault", "Gatekeeper", "Keychain", "Time Machine"],
+    "answerIndex": 0,
+    "explanation": "FileVault is macOS's full-disk encryption, the equivalent of BitLocker on Windows. Gatekeeper checks app code-signing before launch, Keychain stores credentials, and Time Machine is backup — none of them encrypt the disk."
+  },
+  {
+    "id": "core2-mc-168",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An app on a Mac has frozen and the spinning wait cursor won't go away. Which built-in tool force-closes it without a reboot?",
+    "choices": ["Force Quit", "Disk Utility", "Migration Assistant", "System Preferences"],
+    "answerIndex": 0,
+    "explanation": "Force Quit (⌘⌥Esc) is macOS's answer to End Task in Task Manager — it kills a frozen application directly. The others manage disks, transfer data from another Mac, and configure settings, respectively."
+  },
+  {
+    "id": "core2-mc-169",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user just bought a new Mac and wants to bring over their accounts, files, and settings from their old one during setup. Which tool is designed for this?",
+    "choices": ["Migration Assistant", "Time Machine", "FileVault", "Gatekeeper"],
+    "answerIndex": 0,
+    "explanation": "Migration Assistant walks through transferring accounts, files, and settings from an old Mac (or even a Windows PC) directly during setup. Time Machine is ongoing backup, not a one-time migration tool."
+  },
+  {
+    "id": "core2-mc-170",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A mobile device needs to move to the newest OS version. What is the standard way this happens on a modern phone?",
+    "choices": [
+      "An OTA (over-the-air) update downloads and applies in place",
+      "The user performs a clean install from external media",
+      "The device must be factory reset first, then updated",
+      "A technician re-images the device via USB every time"
+    ],
+    "answerIndex": 0,
+    "explanation": "Unlike a PC, mobile devices don't get a separate clean/in-place install choice — routine updates on iOS and Android are OTA, downloading and applying without wiping the device. A factory reset/wipe is the mobile equivalent of a clean install, reserved for fixing a broken device or preparing it for resale, not routine updates."
+  },
+  {
+    "id": "core2-mc-171",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company issues phones to employees and wants IT able to push policy, restrict app installs, and remotely wipe a lost device. What should the phones be enrolled in during setup?",
+    "choices": ["MDM (Mobile Device Management)", "A VPN profile", "Airplane mode", "Developer mode"],
+    "answerIndex": 0,
+    "explanation": "MDM enrollment during setup lets IT manage or \"supervise\" a device centrally — push configuration, restrict installs, and wipe it remotely if lost or an employee leaves. A VPN profile only secures network traffic; it doesn't give IT device-level control."
   }
 ]

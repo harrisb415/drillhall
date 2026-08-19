@@ -178,5 +178,86 @@
       { "left": "Deterrent", "right": "A warning sign stating the area is monitored by security" }
     ],
     "explanation": "Preventive controls stop an event, detective controls identify one that already happened, corrective controls restore normal operation afterward, and deterrent controls discourage the attempt in the first place."
+  },
+  {
+    "id": "secplus-d1-mc-019",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A browser needs to check whether one specific certificate has been revoked, and wants an immediate real-time answer rather than downloading an entire revocation list. Which protocol does it use?",
+    "choices": ["OCSP", "CRL", "SAML", "TACACS+"],
+    "answerIndex": 0,
+    "explanation": "OCSP (Online Certificate Status Protocol) answers a real-time query about one certificate's status. A CRL is the full published list a client would otherwise have to download and check itself."
+  },
+  {
+    "id": "secplus-d1-match-002",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each PKI term to its role.",
+    "pairs": [
+      { "left": "Certificate Authority (CA)", "right": "Trusted third party that verifies identity and issues certificates" },
+      { "left": "CRL", "right": "Published list of certificates revoked before expiration" },
+      { "left": "OCSP", "right": "Real-time protocol to check one certificate's revocation status" },
+      { "left": "Key escrow", "right": "A trusted third party holds a copy of a private key for recovery" }
+    ],
+    "explanation": "A CA issues and vouches for certificates; CRL and OCSP are two different ways to check whether one has since been revoked; key escrow trades some risk for the ability to recover a lost private key."
+  },
+  {
+    "id": "secplus-d1-mc-020",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A sender hashes a document, then encrypts that hash with their own private key and attaches it to the message. What does the recipient verify by decrypting it with the sender's public key and comparing hashes?",
+    "choices": [
+      "Both that the document wasn't altered AND that it genuinely came from the sender",
+      "Only that the document wasn't altered",
+      "Only that the sender is who they claim, with no integrity guarantee",
+      "That the document is encrypted"
+    ],
+    "answerIndex": 0,
+    "explanation": "A digital signature proves integrity (the hashes match, so nothing changed) and non-repudiation (only the holder of that private key could have produced a signature that decrypts correctly with the matching public key) at the same time."
+  },
+  {
+    "id": "secplus-d1-mc-021",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An attacker hides a stolen document inside the pixel data of an ordinary-looking image file, so its very presence isn't obvious. What technique is this?",
+    "choices": ["Steganography", "Hashing", "Tokenization", "Salting"],
+    "answerIndex": 0,
+    "explanation": "Steganography hides data inside another file so its existence isn't apparent — a form of obfuscation, distinct from encryption (which doesn't hide that protected data exists, just prevents reading it without a key)."
+  },
+  {
+    "id": "secplus-d1-mc-022",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company needs to encrypt large volumes of data quickly and isn't worried about securely distributing the key in advance (it's already shared over a separate secure channel). Which algorithm fits?",
+    "choices": ["AES", "RSA", "ECC", "SHA-256"],
+    "answerIndex": 0,
+    "explanation": "AES is symmetric and fast — ideal for bulk data once both parties already have the shared key. RSA and ECC are asymmetric and slower, typically used to exchange that key rather than encrypt bulk data directly. SHA-256 is a hash, not an encryption algorithm at all."
+  },
+  {
+    "id": "secplus-d1-mc-023",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A mobile device manufacturer wants strong asymmetric encryption but needs much smaller key sizes than RSA to conserve battery and processing power. Which algorithm family fits?",
+    "choices": ["ECC (Elliptic Curve Cryptography)", "AES", "3DES", "MD5"],
+    "answerIndex": 0,
+    "explanation": "ECC achieves equivalent security to RSA with much smaller keys, which is exactly why resource-constrained devices like mobile and IoT increasingly prefer it."
+  },
+  {
+    "id": "secplus-d1-mc-024",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A distributed ledger where each block cryptographically references the previous block's hash, making past entries tamper-evident, describes which technology?",
+    "choices": ["Blockchain", "PKI", "A honeynet", "SIEM"],
+    "answerIndex": 0,
+    "explanation": "Blockchain's append-only, hash-chained structure means altering an old entry would break every hash chained after it, making tampering evident."
+  },
+  {
+    "id": "secplus-d1-mc-025",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company policy states that any employee who discovers a security incident MUST report it to the security team within one hour, with no exceptions. What control type is this policy?",
+    "choices": ["Directive", "Deterrent", "Compensating", "Corrective"],
+    "answerIndex": 0,
+    "explanation": "A directive control mandates a specific required action — compliance isn't optional, unlike a deterrent, which only discourages without commanding a specific response."
   }
 ]

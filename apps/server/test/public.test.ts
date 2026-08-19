@@ -22,9 +22,10 @@ describe("public catalog (marketing homepage)", () => {
     const core1 = catalog.certs.find((c) => c.code === "aplus")!;
     expect(core1.version).toBe("220-1101");
     expect(core1.domains).toBe(5);
-    expect(core1.questionTypes).toEqual(
-      expect.arrayContaining(["mc", "order", "match", "terminal"]),
-    );
+    // No "terminal" (type-the-command) questions: Core 1's real objectives
+    // never test command-line syntax — that's Core 2's domain.
+    expect(core1.questionTypes).toEqual(expect.arrayContaining(["mc", "order", "match"]));
+    expect(core1.questionTypes).not.toContain("terminal");
   });
 
   it("leaks no question or flashcard content", async () => {

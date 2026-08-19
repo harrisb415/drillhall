@@ -128,5 +128,20 @@
       ["Micro-ATX", "244 × 244 mm", "Fewer slots; fits most cases"],
       ["Mini-ITX", "170 × 170 mm", "Single expansion slot; SFF builds"]
     ]
+  },
+  {
+    "id": "troubleshooting-tools",
+    "title": "Hardware & Network Troubleshooting Tools",
+    "description": "What each tool actually tells you — the exam likes to test the tool, not just the symptom.",
+    "columns": ["Tool", "What it's for"],
+    "rows": [
+      ["Multimeter", "Measures voltage, continuity, and resistance — confirms an outlet, cable, or PSU rail is actually carrying power"],
+      ["Cable tester", "Verifies a cable's pinout end-to-end; flags opens, shorts, and miswired pairs"],
+      ["Loopback plug", "Wires a port's transmit pins back to its receive pins so a NIC or switch port can be tested with no live network"],
+      ["Toner probe (tone generator + probe)", "Injects a tone on one end of a cable so it can be traced and identified at a patch panel or wall"],
+      ["Crimper", "Attaches an RJ45 (or similar) connector onto the end of a loose cable"],
+      ["Punchdown tool", "Seats a wire into the insulation-displacement contacts on a wall jack or patch panel"],
+      ["Wi-Fi analyzer", "Scans nearby channels and signal strength to diagnose wireless interference or plan AP placement"]
+    ]
   }
 ]

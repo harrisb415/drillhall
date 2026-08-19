@@ -37,14 +37,30 @@ describe("shipped content packs", () => {
     }
   });
 
-  it("every pack contains every PBQ type", () => {
+  it("every pack contains every PBQ type it has legitimate content for", () => {
+    // aplus (Core 1) has no "terminal" (type-the-command) content: Core 1's
+    // real objectives never test command-line syntax — that's Core 2's
+    // domain (1.1, Microsoft command-line tools). A batch of Core 2 CLI
+    // questions was previously misfiled into the Core 1 bank; removing them
+    // correctly leaves Core 1 with zero terminal-type questions.
+    const requiredTypes: Record<string, string[]> = {
+      aplus: ["mc", "order", "match"],
+      "aplus-core2": ["mc", "order", "match", "terminal"],
+      netplus: ["mc", "order", "match", "terminal"],
+      secplus: ["mc", "order", "match", "terminal"],
+    };
     for (const dir of SHIPPED_PACKS) {
       const pack = CertPackSchema.parse(loadPackDir(path.join(CONTENT_ROOT, dir)));
       const types = new Set(pack.quiz.map((q) => q.type));
-      for (const t of ["mc", "order", "match", "terminal"]) {
+      for (const t of requiredTypes[dir]!) {
         expect(types.has(t as never), `${dir} missing ${t}`).toBe(true);
       }
     }
+  });
+
+  it("aplus (Core 1) has no out-of-scope command-line questions", () => {
+    const pack = CertPackSchema.parse(loadPackDir(path.join(CONTENT_ROOT, "aplus")));
+    expect(pack.quiz.some((q) => q.type === "terminal")).toBe(false);
   });
 });
 

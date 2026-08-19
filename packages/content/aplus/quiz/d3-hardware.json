@@ -415,12 +415,13 @@
     "explanation": "2.5\" drives draw less power and fit small bays and adapters. 3.5\" mechanical drives usually offer more capacity per pound."
   },
   {
-    "id": "aplus-term-004",
-    "type": "terminal",
+    "id": "aplus-mc-176",
+    "type": "mc",
     "domainCode": "3.0",
-    "prompt": "Type the Windows command that opens the disk partitioning utility from a command prompt.",
-    "expected": ["diskpart"],
-    "explanation": "diskpart is the command-line partition manager, used to list, select, create, and format volumes — including when the graphical Disk Management console isn't available."
+    "prompt": "A newly installed inkjet printer produces streaky, faded output on every page. What should the technician check FIRST?",
+    "choices": ["Ink or cartridge levels and print head condition", "The USB cable length", "The paper tray capacity", "The printer's IP address"],
+    "answerIndex": 0,
+    "explanation": "Streaking and fading on an inkjet almost always trace to low/dried ink or clogged print head nozzles — most printers offer a built-in nozzle-cleaning or alignment utility to try before replacing anything. Connectivity and tray capacity wouldn't produce a quality defect like this."
   },
   {
     "id": "aplus-match-003",

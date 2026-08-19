@@ -384,5 +384,90 @@
       { "left": "SMB", "right": "445" }
     ],
     "explanation": "FTP control uses 21 (data uses 20), Telnet 23, TFTP 69 over UDP, SNMP agent polling on 161, LDAP directory queries on 389, and SMB file sharing on 445."
+  },
+  {
+    "id": "netplus-d1-mc-035",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An IPv4 address of 10.4.2.1 falls into which historical address class?",
+    "choices": ["Class A", "Class B", "Class C", "Class D"],
+    "answerIndex": 0,
+    "explanation": "Class A covers first-octet values 1–126, with a default /8 mask — 10.x.x.x is a classic Class A range (and also happens to be the RFC 1918 private range for large networks)."
+  },
+  {
+    "id": "netplus-d1-match-002",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each network appliance to its job.",
+    "pairs": [
+      { "left": "Load balancer", "right": "Spreads client requests across multiple servers" },
+      { "left": "Proxy", "right": "Makes requests on a client's behalf, enabling caching and filtering" },
+      { "left": "NAS", "right": "File-level storage shared over the network" },
+      { "left": "SAN", "right": "Block-level storage that appears as a local disk to servers" }
+    ],
+    "explanation": "A load balancer distributes traffic, a proxy sits between client and destination, NAS serves files, and SAN serves block storage for databases and virtualization back-ends."
+  },
+  {
+    "id": "netplus-d1-mc-036",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company deploys public DNS resolvers at many locations worldwide, all sharing one published address; a query is automatically routed to whichever location is topologically nearest the requester. What traffic type does this use?",
+    "choices": ["Anycast", "Multicast", "Broadcast", "Unicast"],
+    "answerIndex": 0,
+    "explanation": "Anycast lets one address route to the nearest of several servers advertising it — exactly the pattern public DNS resolvers use for performance. Multicast targets a subscribed group, not \"nearest one.\""
+  },
+  {
+    "id": "netplus-d1-mc-037",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A routing protocol update needs to reach every other router running that protocol on the segment, but not every host on the network. Which traffic type fits?",
+    "choices": ["Multicast", "Anycast", "Unicast", "Broadcast"],
+    "answerIndex": 0,
+    "explanation": "Multicast delivers to a specific interested group — routers participating in the protocol — without flooding every host on the segment the way a broadcast would."
+  },
+  {
+    "id": "netplus-d1-mc-038",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A datacenter needs to run a single connector carrying many fiber strands at once between two high-density patch panels. Which connector type is designed for this?",
+    "choices": ["MPO", "RJ11", "F-type", "BNC"],
+    "answerIndex": 0,
+    "explanation": "MPO connectors bundle multiple fiber strands into one connector for high-density runs. RJ11 is a phone jack, F-type is coaxial, and BNC is a legacy twist-lock coaxial connector."
+  },
+  {
+    "id": "netplus-d1-mc-039",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Two switches sit in adjacent racks and need a cheap, high-speed link between them. Which option avoids the cost of separate fiber and optical transceivers?",
+    "choices": ["DAC (Direct Attach Copper)", "RJ11 cabling", "BNC coaxial", "Satellite link"],
+    "answerIndex": 0,
+    "explanation": "A DAC cable has transceivers built onto both ends of a fixed copper cable, giving high-speed short-distance links without buying separate fiber and optics — ideal for adjacent-rack connections."
+  },
+  {
+    "id": "netplus-d1-mc-040",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A small branch office's network design merges the core and distribution layers into a single tier of switching, since the site is too small to justify three separate layers. What is this design called?",
+    "choices": ["Collapsed core", "Three-tier", "Spine and leaf", "Point-to-point"],
+    "answerIndex": 0,
+    "explanation": "A collapsed core merges the core and distribution layers into one tier — appropriate for smaller deployments that don't need the full three-tier design."
+  },
+  {
+    "id": "netplus-d1-mc-041",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company deploys an application entirely on a provider's platform, writing and pushing only their own code — the provider manages the OS, runtime, and scaling. Which cloud service model is this?",
+    "choices": ["PaaS", "IaaS", "SaaS", "DaaS"],
+    "answerIndex": 0,
+    "explanation": "PaaS hands you a platform to deploy code onto; the provider manages everything underneath it. IaaS would still require you to manage the OS yourself; SaaS would mean using someone else's finished application."
+  },
+  {
+    "id": "netplus-d1-mc-042",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A network monitoring system watches traffic for suspicious patterns and sends an alert, but takes no action to stop it. What kind of system is this?",
+    "choices": ["IDS", "IPS", "NAC", "IAM"],
+    "answerIndex": 0,
+    "explanation": "An IDS (Intrusion Detection System) monitors and alerts only. An IPS (Intrusion Prevention System) sits inline and can actively block traffic — the detect-vs-prevent distinction is the whole point of the question."
   }
 ]

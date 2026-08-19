@@ -238,5 +238,11 @@
     "domainCode": "5.0",
     "front": "Laser printer prints with a repeating vertical line/streak. Likely cause?",
     "back": "A scratched or dirty imaging drum (or a failing toner cartridge if the drum is integrated). Repeating defects at a fixed interval correspond to one roller's circumference — replace that component."
+  },
+  {
+    "id": "aplus-fc-041",
+    "domainCode": "2.0",
+    "front": "Site-to-site VPN vs client-to-site (remote-access) VPN?",
+    "back": "Site-to-site: an always-on tunnel between two routers/gateways, joining two whole networks (e.g., branch office to HQ) — transparent to the devices behind each end. Client-to-site: a VPN app on one device connects that single user in, typically for remote/home workers."
   }
 ]

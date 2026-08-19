@@ -180,12 +180,13 @@
     "explanation": "Live migration transfers memory and state to another host while the guest keeps running, allowing host maintenance without an outage."
   },
   {
-    "id": "aplus-term-007",
-    "type": "terminal",
+    "id": "aplus-mc-177",
+    "type": "mc",
     "domainCode": "4.0",
-    "prompt": "On a Linux VM, type the command that displays free and used memory in human-readable units.",
-    "expected": ["free -h", "free -m"],
-    "explanation": "free -h reports memory and swap in human-readable units, which is the quickest way to see whether a guest is short on RAM. free -m gives the same in megabytes."
+    "prompt": "A company wants every employee's desktop to actually run as a VM in the datacenter, streamed to a thin client at their desk, so IT can patch and back up one central image instead of hundreds of physical PCs. What is this called?",
+    "choices": ["VDI (virtual desktop infrastructure)", "IaaS", "Live migration", "A Type 2 hypervisor"],
+    "answerIndex": 0,
+    "explanation": "VDI hosts full desktop OS instances as VMs on central servers and streams the display to lightweight endpoints, centralizing management, patching, and backup. IaaS is a broader cloud-rental model; live migration moves a running VM between hosts; a Type 2 hypervisor just runs on top of a host OS."
   },
   {
     "id": "aplus-match-006",

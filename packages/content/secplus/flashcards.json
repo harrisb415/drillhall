@@ -30,6 +30,18 @@
     "back": "Every account or process gets only the access it needs to do its job, nothing more — limiting the damage if that account is compromised or misused."
   },
   {
+    "id": "secplus-fc-028",
+    "domainCode": "1.0",
+    "front": "CRL vs OCSP?",
+    "back": "CRL: a full published list of revoked certificates a client downloads and checks itself. OCSP: a real-time query to check one specific certificate's status immediately, without downloading the whole list."
+  },
+  {
+    "id": "secplus-fc-029",
+    "domainCode": "1.0",
+    "front": "AES vs RSA vs ECC — when is each used?",
+    "back": "AES: fast symmetric encryption for bulk data once a key is shared. RSA: asymmetric, used to exchange keys or sign, but slow with large keys. ECC: asymmetric like RSA but with much smaller keys — preferred on mobile/IoT."
+  },
+  {
     "id": "secplus-fc-006",
     "domainCode": "2.0",
     "front": "What distinguishes a zero-day vulnerability?",
@@ -66,6 +78,18 @@
     "back": "A virus attaches to a host file and needs a user to run it to spread. A worm self-propagates across a network without any user action, exploiting a vulnerable service directly."
   },
   {
+    "id": "secplus-fc-030",
+    "domainCode": "2.0",
+    "front": "Memory injection vs VM escape?",
+    "back": "Memory injection: malicious code inserted directly into a running process's memory, no file on disk. VM escape: code running in a guest VM breaks out to the host hypervisor or a sibling VM, defeating virtualization isolation."
+  },
+  {
+    "id": "secplus-fc-031",
+    "domainCode": "2.0",
+    "front": "Jailbreaking/rooting vs sideloading?",
+    "back": "Jailbreaking (iOS) / rooting (Android): removing manufacturer restrictions for full device control, stripping built-in protections. Sideloading: installing apps from outside the official store, bypassing its vetting — a distinct risk even on a stock device."
+  },
+  {
     "id": "secplus-fc-012",
     "domainCode": "3.0",
     "front": "What is defense in depth?",
@@ -96,6 +120,18 @@
     "back": "A dedicated, tamper-resistant device that generates, stores, and uses cryptographic keys without ever exposing the raw key material to the host system."
   },
   {
+    "id": "secplus-fc-032",
+    "domainCode": "3.0",
+    "front": "TPM vs secure enclave?",
+    "back": "TPM: a dedicated chip generating/storing keys and attesting boot integrity, used by tools like BitLocker. Secure enclave: an isolated processor region keeping sensitive data (e.g. biometrics) separate from the main OS."
+  },
+  {
+    "id": "secplus-fc-033",
+    "domainCode": "3.0",
+    "front": "Platform diversity vs geographic dispersion?",
+    "back": "Platform diversity: using different vendors/platforms for redundant systems, so one vendor-specific flaw can't take all copies down. Geographic dispersion: spreading redundant sites far apart, so one regional event can't take out both."
+  },
+  {
     "id": "secplus-fc-017",
     "domainCode": "4.0",
     "front": "What is the order of volatility in digital forensics?",
@@ -124,6 +160,24 @@
     "domainCode": "4.0",
     "front": "What does vulnerability scanning identify that penetration testing goes further to prove?",
     "back": "A scan identifies known weaknesses by signature/version. A penetration test attempts to actually exploit them to prove real-world impact, going beyond simply flagging a possible issue."
+  },
+  {
+    "id": "secplus-fc-034",
+    "domainCode": "4.0",
+    "front": "Automation vs orchestration?",
+    "back": "Automation: a single repetitive task runs without a human (auto-disable an account). Orchestration: multiple tools/steps coordinated into one workflow (alert → quarantine → ticket → notify), often via a SOAR platform."
+  },
+  {
+    "id": "secplus-fc-035",
+    "domainCode": "4.0",
+    "front": "Password vaulting vs just-in-time access vs break-glass account?",
+    "back": "Vaulting: privileged credentials stored securely, checked out and rotated. JIT: privileged access granted only for a limited window per task. Break-glass: an emergency-only privileged account, normally locked away, for when normal access fails."
+  },
+  {
+    "id": "secplus-fc-036",
+    "domainCode": "4.0",
+    "front": "SAML vs OAuth?",
+    "back": "SAML: carries an authentication assertion between an identity provider and a service, enabling SSO — proves who you are. OAuth: an authorization framework granting limited access to a resource on your behalf, without sharing your password."
   },
   {
     "id": "secplus-fc-022",
@@ -160,5 +214,11 @@
     "domainCode": "5.0",
     "front": "What does an Acceptable Use Policy (AUP) govern?",
     "back": "The rules for how employees may use company systems, network, and data — signing it establishes that users were informed of the boundaries before violating them."
+  },
+  {
+    "id": "secplus-fc-037",
+    "domainCode": "5.0",
+    "front": "PCI DSS vs HIPAA vs ISO 27001?",
+    "back": "PCI DSS: required for anyone handling payment card data. HIPAA: governs US healthcare/PHI. ISO 27001: a general, certifiable information security management framework, not tied to one industry or data type."
   }
 ]

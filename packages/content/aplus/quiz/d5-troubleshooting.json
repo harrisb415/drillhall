@@ -358,20 +358,22 @@
     "explanation": "Voice is latency and jitter sensitive while file transfer is not. QoS prioritizes voice packets so bulk traffic can't crowd them out."
   },
   {
-    "id": "aplus-term-002",
-    "type": "terminal",
+    "id": "aplus-mc-178",
+    "type": "mc",
     "domainCode": "5.0",
-    "prompt": "A user reports slow browsing. Type the Windows command that shows the full path packets take to reach comptia.org.",
-    "expected": ["tracert comptia.org"],
-    "explanation": "tracert maps each hop to the destination and shows where latency appears. On Linux and macOS the equivalent is traceroute."
+    "prompt": "A technician wants to confirm a suspect NIC and switch port can send and receive without involving the rest of the network. Which tool plugs directly into the port and reflects the signal back to itself?",
+    "choices": ["Loopback plug", "Toner probe", "Punchdown tool", "Wi-Fi analyzer"],
+    "answerIndex": 0,
+    "explanation": "A loopback plug wires a port's transmit pins back to its receive pins, so a diagnostic tool can confirm the interface itself works with no live network or cable run required. A toner probe traces a cable's physical path instead."
   },
   {
-    "id": "aplus-term-003",
-    "type": "terminal",
+    "id": "aplus-mc-179",
+    "type": "mc",
     "domainCode": "5.0",
-    "prompt": "Type the Windows command that displays the full IP configuration, including MAC address and DHCP server.",
-    "expected": ["ipconfig /all"],
-    "explanation": "ipconfig /all adds the physical address, DHCP and DNS servers, and lease times to the basic ipconfig output."
+    "prompt": "A desktop won't power on at all — no fans, no lights. Before replacing any parts, which tool should the technician use to confirm the wall outlet and PSU are actually delivering voltage?",
+    "choices": ["Multimeter", "Cable tester", "POST diagnostic card", "Loopback plug"],
+    "answerIndex": 0,
+    "explanation": "A multimeter measures voltage, continuity, and resistance directly — the fastest way to rule out a dead outlet, cable, or failed PSU rail before opening the case further. A POST card only helps once the system is at least receiving power."
   },
   {
     "id": "aplus-order-002",

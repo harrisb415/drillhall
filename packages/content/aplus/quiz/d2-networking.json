@@ -287,20 +287,36 @@
     "explanation": "Wall jacks and patch panels use insulation-displacement contacts seated with a punchdown tool. Crimpers attach RJ45 plugs to patch cable ends instead."
   },
   {
-    "id": "aplus-term-005",
-    "type": "terminal",
+    "id": "aplus-mc-173",
+    "type": "mc",
     "domainCode": "2.0",
-    "prompt": "Type the Windows command that releases the current DHCP lease on all adapters.",
-    "expected": ["ipconfig /release"],
-    "explanation": "ipconfig /release surrenders the lease; /renew then requests a new one. Together they force a fresh DHCP negotiation without rebooting."
+    "prompt": "An employee working from home needs to reach files on the office's internal file server securely over the public internet. Which technology is designed for this?",
+    "choices": ["VPN", "VLAN", "NAT", "QoS"],
+    "answerIndex": 0,
+    "explanation": "A VPN builds an encrypted tunnel over the untrusted internet so the remote device behaves as if it were on the private LAN. VLANs segment a local network, NAT translates addresses, and QoS prioritizes traffic — none of them provide remote access."
   },
   {
-    "id": "aplus-term-006",
-    "type": "terminal",
+    "id": "aplus-mc-174",
+    "type": "mc",
     "domainCode": "2.0",
-    "prompt": "Type the command that queries DNS directly to look up the address of comptia.org.",
-    "expected": ["nslookup comptia.org"],
-    "explanation": "nslookup queries a DNS server directly, which separates name-resolution failures from general connectivity problems. dig serves the same role on Unix systems."
+    "prompt": "A small office wants every remote worker's traffic to reach headquarters through one encrypted tunnel, rather than configuring a VPN client on each laptop. Which VPN setup fits?",
+    "choices": [
+      "A site-to-site VPN between the worker's home router and headquarters",
+      "A client-to-site VPN app installed on each laptop",
+      "A site-to-site VPN between two office routers",
+      "Split tunneling with no VPN"
+    ],
+    "answerIndex": 2,
+    "explanation": "Site-to-site VPNs join two networks (e.g., two office routers) so every device behind each end reaches the other transparently — that's the branch-office case. Individual remote workers connecting in from home use a client-to-site VPN app per device instead."
+  },
+  {
+    "id": "aplus-mc-175",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician walks the office with a handheld tool that shows which Wi-Fi channels are congested and where signal strength drops off. What is this tool?",
+    "choices": ["Wi-Fi analyzer", "Cable tester", "Toner probe", "Multimeter"],
+    "answerIndex": 0,
+    "explanation": "A Wi-Fi analyzer surveys nearby access points, channel usage, and signal strength — exactly what's needed to plan AP placement or diagnose wireless interference. Cable testers and toner probes are for wired runs; a multimeter reads electrical values."
   },
   {
     "id": "aplus-match-004",

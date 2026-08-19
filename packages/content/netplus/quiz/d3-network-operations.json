@@ -309,5 +309,82 @@
       "Document the outcome and update records"
     ],
     "explanation": "A change is requested and assessed, formally approved, carried out in a controlled window, verified against expectations, and finally documented — skipping approval or verification is how unreviewed changes cause outages."
+  },
+  {
+    "id": "netplus-d3-mc-029",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An IPv6 host configures its own address using information from a router advertisement, with no DHCP server involved. What is this process called?",
+    "choices": ["SLAAC", "APIPA", "NAT64", "DHCPv6 relay"],
+    "answerIndex": 0,
+    "explanation": "SLAAC (Stateless Address Autoconfiguration) lets an IPv6 host build its own address from router advertisements, without needing a DHCP server the way IPv4 typically does."
+  },
+  {
+    "id": "netplus-d3-mc-030",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A financial trading platform needs time synchronization accurate to the microsecond, far tighter than standard NTP provides. Which protocol is designed for this level of precision?",
+    "choices": ["PTP (Precision Time Protocol)", "SNMP", "SIP", "LDAP"],
+    "answerIndex": 0,
+    "explanation": "PTP provides microsecond-level time synchronization, used where standard NTP's accuracy isn't tight enough — financial trading systems and some industrial/telecom equipment are classic use cases."
+  },
+  {
+    "id": "netplus-d3-mc-031",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A security team wants time synchronization that can't be spoofed by an attacker sending a fake time source. What adds authentication and integrity protection to NTP-style time sync?",
+    "choices": ["NTS (Network Time Security)", "PTP", "SLAAC", "TACACS+"],
+    "answerIndex": 0,
+    "explanation": "NTS adds authentication and integrity checks to time synchronization, preventing a device from being tricked into accepting a spoofed time source — same underlying goal as NTP, with security added."
+  },
+  {
+    "id": "netplus-d3-mc-032",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A vendor's spec sheet advertises how long a device typically runs before it's expected to fail. What metric is this?",
+    "choices": ["MTBF (Mean Time Between Failures)", "MTTR (Mean Time To Repair)", "RTO", "RPO"],
+    "answerIndex": 0,
+    "explanation": "MTBF measures how long a device runs between failures — higher is better. MTTR measures how long a repair takes once something has already failed, which answers a different question."
+  },
+  {
+    "id": "netplus-d3-mc-033",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs a packet sniffer to see traffic from a specific switch port it isn't directly connected to, without inserting anything inline. What switch feature enables this?",
+    "choices": ["Port mirroring (SPAN)", "Jumbo frames", "802.1Q trunking", "LACP"],
+    "answerIndex": 0,
+    "explanation": "Port mirroring (SPAN) copies traffic from one or more ports to a monitoring port, so a sniffer or IDS can observe it without sitting inline on the actual traffic path."
+  },
+  {
+    "id": "netplus-d3-mc-034",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A cloud-based monitoring platform pulls metrics from both on-prem devices and cloud resources that don't support SNMP. How does it typically gather that data?",
+    "choices": ["API integration", "Port mirroring", "A honeypot", "PTP"],
+    "answerIndex": 0,
+    "explanation": "Modern monitoring extends beyond SNMP by pulling data via API, which is how it reaches cloud resources that don't expose traditional SNMP polling."
+  },
+  {
+    "id": "netplus-d3-mc-035",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A vendor announces it will stop selling a switch model next year, but will keep providing security patches for it for five more years after that. What term describes the point when patches stop, five years later?",
+    "choices": ["EOS (End of Support)", "EOL (End of Life)", "MTBF", "Decommissioning"],
+    "answerIndex": 0,
+    "explanation": "EOL is when the vendor stops selling/developing the product. EOS is when patches and support stop — the date that matters most for security, since an EOS device with no more patches is a growing vulnerability even if it still runs."
+  },
+  {
+    "id": "netplus-d3-mc-036",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A network team documents exactly what a switch's configuration should look like, and periodically compares the live device against it to catch unauthorized changes. What is this reference document called?",
+    "choices": [
+      "A baseline configuration",
+      "A traffic baseline",
+      "An SLA",
+      "A rollback plan"
+    ],
+    "answerIndex": 0,
+    "explanation": "A baseline configuration is the known-good, documented device configuration used as the reference point for change management and drift detection — distinct from a traffic baseline, which tracks normal bandwidth/latency levels instead."
   }
 ]

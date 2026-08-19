@@ -362,5 +362,78 @@
     "prompt": "Place the classic 802.1D Spanning Tree Protocol port states in the order a port progresses through them when transitioning to forwarding.",
     "items": ["Blocking", "Listening", "Learning", "Forwarding"],
     "explanation": "A port starts blocking to prevent loops, moves to listening while it processes BPDUs, then learning while it builds the MAC address table, and finally forwarding once STP is confident the topology is loop-free."
+  },
+  {
+    "id": "netplus-d2-mc-030",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Two ISPs need to exchange routes with each other at an internet exchange point. Which routing protocol is designed for routing between separate organizations like this?",
+    "choices": ["BGP", "OSPF", "EIGRP", "RIP"],
+    "answerIndex": 0,
+    "explanation": "BGP is the protocol that runs the internet itself, routing between autonomous systems belonging to different organizations. OSPF and EIGRP are interior protocols used inside one organization's network."
+  },
+  {
+    "id": "netplus-d2-mc-031",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A company's internal network uses a Cisco-originated interior routing protocol that combines distance-vector simplicity with fast convergence. Which protocol is this?",
+    "choices": ["EIGRP", "BGP", "SNMP", "LACP"],
+    "answerIndex": 0,
+    "explanation": "EIGRP is Cisco's interior gateway protocol, used inside a single organization the same way OSPF is — BGP is reserved for routing between organizations."
+  },
+  {
+    "id": "netplus-d2-mc-032",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Two routers run VRRP so hosts always send traffic to one consistent address even if the active router fails over to its standby. What is that shared address called?",
+    "choices": ["A VIP (virtual IP)", "An APIPA address", "A loopback address", "An anycast address"],
+    "answerIndex": 0,
+    "explanation": "The VIP is the single address an FHRP pair (VRRP/HSRP) presents to hosts. Hosts point their default gateway at the VIP and never notice which physical router is actually active."
+  },
+  {
+    "id": "netplus-d2-mc-033",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A storage network carries large file transfers efficiently by using Ethernet frames far larger than the standard 1500-byte MTU. What are these called?",
+    "choices": ["Jumbo frames", "Broadcast frames", "Runt frames", "Tagged frames"],
+    "answerIndex": 0,
+    "explanation": "Jumbo frames (up to ~9000 bytes) reduce per-packet overhead on high-throughput links. Every device on the path must support the larger MTU, or frames get fragmented or dropped."
+  },
+  {
+    "id": "netplus-d2-mc-034",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Large file transfers mysteriously fail on one specific path through the network, while smaller transfers work fine everywhere. Every device was recently reconfigured for jumbo frames except one older switch left at the default. What is the MOST likely cause?",
+    "choices": [
+      "An MTU mismatch — the unconfigured switch is fragmenting or dropping the larger frames",
+      "A duplicate IP address on that segment",
+      "DNS resolution failing intermittently",
+      "The switch's spanning tree port is stuck in blocking"
+    ],
+    "answerIndex": 0,
+    "explanation": "Jumbo frames require every device on the path to agree on the larger MTU. One switch left at the default 1500-byte MTU will fragment or drop the oversized frames, exactly matching \"works for small transfers, fails for large ones on one path.\""
+  },
+  {
+    "id": "netplus-d2-mc-035",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A network closet's switch keeps randomly rebooting during the hottest part of summer afternoons, but never in cooler months. What should be checked FIRST?",
+    "choices": [
+      "HVAC/cooling and environmental conditions in the closet",
+      "Replace the switch",
+      "Reconfigure spanning tree",
+      "Update the switch's firmware"
+    ],
+    "answerIndex": 0,
+    "explanation": "A clear seasonal/heat correlation points at environmental conditions — inadequate cooling or airflow — before assuming a hardware defect. Network equipment generates real heat and needs adequate HVAC."
+  },
+  {
+    "id": "netplus-d2-mc-036",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A datacenter wants critical routers to keep running through a multi-hour utility power outage, not just a brief blip. What provides this, beyond a standard UPS?",
+    "choices": ["A generator", "A second Ethernet cable", "Jumbo frames", "A VIP"],
+    "answerIndex": 0,
+    "explanation": "A UPS rides through short outages and buys time for a clean shutdown, but a generator is what covers extended outages. Redundant power supplies protect against one PSU failing, not a utility-wide outage."
   }
 ]

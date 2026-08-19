@@ -46,6 +46,21 @@
     ]
   },
   {
+    "id": "macos-tools",
+    "title": "macOS Tools",
+    "columns": ["Tool", "Purpose"],
+    "rows": [
+      ["System Preferences / System Settings", "GUI settings hub — the macOS Control Panel/Settings equivalent"],
+      ["Force Quit (⌘⌥Esc)", "Kills a frozen app — the macOS End Task"],
+      ["Migration Assistant", "Transfers accounts, files, and settings from an old Mac or PC during setup"],
+      ["FileVault", "Full-disk encryption — the macOS BitLocker"],
+      ["Gatekeeper", "Blocks unsigned/unidentified-developer apps from launching by default"],
+      ["Disk Utility", "Partition, format, and run First Aid on a volume — the macOS Disk Management + chkdsk"],
+      ["Time Machine", "Built-in incremental backup to an external or network disk"],
+      ["Keychain", "System credential store for saved passwords and certificates"]
+    ]
+  },
+  {
     "id": "linux-commands",
     "title": "Linux Command Line",
     "columns": ["Command", "Purpose"],

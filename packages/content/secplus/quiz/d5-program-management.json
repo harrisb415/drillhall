@@ -287,5 +287,59 @@
       { "left": "Risk mitigation", "right": "Deploying additional security controls to reduce the risk's likelihood or impact" }
     ],
     "explanation": "These are the four classic risk response strategies: transfer shifts financial impact to a third party, acceptance takes no action, avoidance eliminates the activity causing the risk, and mitigation reduces likelihood or impact with controls."
+  },
+  {
+    "id": "secplus-d5-mc-030",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A retail company that accepts credit card payments in-store and online must comply with which standard governing cardholder data?",
+    "choices": ["PCI DSS", "HIPAA", "ISO 27001", "GDPR"],
+    "answerIndex": 0,
+    "explanation": "PCI DSS specifically governs organizations that store, process, or transmit payment card data, regardless of the organization's size or industry."
+  },
+  {
+    "id": "secplus-d5-mc-031",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A US hospital system must follow which regulation governing patient health records?",
+    "choices": ["HIPAA", "PCI DSS", "ISO 27001", "GDPR"],
+    "answerIndex": 0,
+    "explanation": "HIPAA governs protected health information (PHI) in the US healthcare industry — distinct from GDPR (EU personal data broadly) or PCI DSS (payment cards specifically)."
+  },
+  {
+    "id": "secplus-d5-mc-032",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company wants to formally certify that its information security management system meets an internationally recognized standard, independent of any one industry or data type. Which framework fits?",
+    "choices": ["ISO 27001", "PCI DSS", "HIPAA", "COPPA"],
+    "answerIndex": 0,
+    "explanation": "ISO 27001 is a general, certifiable framework for an organization's information security management system, not tied to a specific industry the way HIPAA or PCI DSS are."
+  },
+  {
+    "id": "secplus-d5-mc-033",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Before a penetration test begins, the tester and client formally agree on what's in scope, what's off-limits, the testing window, and escalation contacts. What is this document called?",
+    "choices": ["Rules of engagement", "An SLA", "A risk register", "A BIA"],
+    "answerIndex": 0,
+    "explanation": "Rules of engagement define the formal boundaries of an authorized test — without them, an authorized test looks legally and technically identical to a real attack."
+  },
+  {
+    "id": "secplus-d5-mc-034",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company anticipates litigation and must now preserve all potentially relevant records, suspending its normal data-deletion policy. What is this requirement called?",
+    "choices": ["A legal hold", "Due diligence", "A compensating control", "Risk avoidance"],
+    "answerIndex": 0,
+    "explanation": "A legal hold requires preserving relevant records once litigation or an investigation is reasonably anticipated, overriding routine retention/deletion policies that would otherwise apply."
+  },
+  {
+    "id": "secplus-d5-mc-035",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A former employee's account is discovered still active and pulling files three weeks after their last day. What governance process failed?",
+    "choices": ["Offboarding", "Onboarding", "Due diligence", "Third-party risk management"],
+    "answerIndex": 0,
+    "explanation": "Offboarding must promptly revoke access when someone leaves. A delayed offboarding — an account still active well past departure — is one of the most common real-world governance failures."
   }
 ]

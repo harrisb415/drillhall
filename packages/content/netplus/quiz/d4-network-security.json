@@ -241,5 +241,122 @@
       { "left": "Deauthentication attack", "right": "Forges management frames that forcibly disconnect clients from a legitimate access point" }
     ],
     "explanation": "Each attack targets a different weak point: VLAN hopping abuses trunking, an evil twin abuses trust in an SSID name, a rogue DHCP server abuses the unauthenticated DORA process, and deauthentication abuses unauthenticated 802.11 management frames."
+  },
+  {
+    "id": "netplus-d4-mc-021",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Ransomware encrypts every file on a file server but the attacker never actually copies or reads the data. Which part of the CIA triad is MOST directly violated?",
+    "choices": ["Availability", "Confidentiality", "Integrity", "Non-repudiation"],
+    "answerIndex": 0,
+    "explanation": "Nobody can access the files anymore, which is an availability failure. Confidentiality would require the data being read or exfiltrated, which didn't happen here — the exam tests this exact distinction."
+  },
+  {
+    "id": "netplus-d4-match-002",
+    "type": "match",
+    "domainCode": "4.0",
+    "prompt": "Match each risk term to its definition.",
+    "pairs": [
+      { "left": "Threat", "right": "Something that could cause harm, such as an attacker or a natural disaster" },
+      { "left": "Vulnerability", "right": "A weakness that a threat could take advantage of, such as an unpatched server" },
+      { "left": "Exploit", "right": "The specific method or code used to take advantage of a vulnerability" },
+      { "left": "Risk", "right": "The likelihood and impact if a threat successfully exploits a vulnerability" }
+    ],
+    "explanation": "These four terms are related but distinct: a threat needs a vulnerability to act on, an exploit is how it acts on it, and risk is the resulting exposure you're trying to reduce."
+  },
+  {
+    "id": "netplus-d4-mc-022",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A browser trusts a website's HTTPS certificate because it was issued by a recognized certificate authority. What is this overall system of certificates and authorities called?",
+    "choices": ["PKI (Public Key Infrastructure)", "SSO", "IAM", "NAC"],
+    "answerIndex": 0,
+    "explanation": "PKI is the framework of certificate authorities, certificates, and key pairs that lets a browser verify a public key actually belongs to the site claiming it."
+  },
+  {
+    "id": "netplus-d4-mc-023",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An employee logs into one company web portal and is automatically authenticated into several other unrelated internal web apps without logging in again. Which technology is directly carrying that authentication assertion between the apps?",
+    "choices": ["SAML", "NAT", "STP", "QoS"],
+    "answerIndex": 0,
+    "explanation": "SAML is the XML-based standard that carries authentication assertions from an identity provider to separate service providers — the technical mechanism underneath the single sign-on (SSO) experience."
+  },
+  {
+    "id": "netplus-d4-mc-024",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A database is encrypted with TLS when queried remotely, but the database files themselves sit unencrypted on disk. If the physical drive were stolen, what protection is missing?",
+    "choices": ["Encryption of data at rest", "Encryption of data in transit", "Multi-factor authentication", "Network segmentation"],
+    "answerIndex": 0,
+    "explanation": "TLS protects data in transit — while it's moving across the network. It does nothing for a stolen drive; that requires encrypting the data at rest, e.g. full-disk or database-level encryption."
+  },
+  {
+    "id": "netplus-d4-mc-025",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A retail company processes credit card payments in-store and online. Which standard governs how they must handle that cardholder data?",
+    "choices": ["PCI DSS", "GDPR", "NDA", "MOU"],
+    "answerIndex": 0,
+    "explanation": "PCI DSS is the standard specifically for organizations that store, process, or transmit credit card data, regardless of company size. GDPR governs EU personal data broadly, not payment cards specifically."
+  },
+  {
+    "id": "netplus-d4-mc-026",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company's contract with a European client requires that client's personal data never leave EU-based servers. What compliance concern does this describe?",
+    "choices": ["Data locality", "Least privilege", "Non-repudiation", "Change management"],
+    "answerIndex": 0,
+    "explanation": "Data locality is a requirement about *where* data physically resides. Even with strong encryption and access controls, storing the data outside the required region would violate this requirement."
+  },
+  {
+    "id": "netplus-d4-mc-027",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A factory's SCADA system controlling physical machinery is discovered plugged into the same VLAN as office workstations. What is the recommended fix?",
+    "choices": [
+      "Move the SCADA/ICS equipment onto its own segmented VLAN, isolated from the general corporate network",
+      "Nothing, as long as the office network has a firewall to the internet",
+      "Give the SCADA system a static IP so it's easier to track",
+      "Enable jumbo frames on the SCADA VLAN"
+    ],
+    "answerIndex": 0,
+    "explanation": "Operational technology like SCADA/ICS/IIoT should always be segmented onto its own VLAN, same principle as guest Wi-Fi or IoT devices — a compromised office PC shouldn't have a path to industrial control systems."
+  },
+  {
+    "id": "netplus-d4-mc-028",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A security team deploys an entire fake subnet of decoy servers, specifically to observe how an intruder moves between systems once inside. What is this called?",
+    "choices": ["A honeynet", "A honeypot", "A screened subnet", "A NAC policy"],
+    "answerIndex": 0,
+    "explanation": "A honeynet is a whole decoy network of honeypots, built to observe multi-step attacker behavior. A single decoy system would just be a honeypot."
+  },
+  {
+    "id": "netplus-d4-mc-029",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An attacker floods a switch's MAC address table with thousands of fake source addresses until it fills up, causing the switch to broadcast traffic out every port like a hub. What is this attack called?",
+    "choices": ["MAC flooding", "ARP poisoning", "DNS poisoning", "VLAN hopping"],
+    "answerIndex": 0,
+    "explanation": "MAC flooding overwhelms the switch's content-addressable memory (CAM) table; once full, some switches fail open and broadcast everywhere, letting the attacker see traffic on the segment that wasn't meant for them."
+  },
+  {
+    "id": "netplus-d4-mc-030",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company blocks employee access to social media and gambling sites at the network edge, regardless of whether the traffic itself is otherwise well-formed. What is enforcing this?",
+    "choices": ["URL/content filtering", "NAC", "802.1X", "A honeypot"],
+    "answerIndex": 0,
+    "explanation": "URL/content filtering blocks access by site or content category, typically at a proxy or firewall, independent of whether the underlying traffic looks legitimate."
+  },
+  {
+    "id": "netplus-d4-mc-031",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician finds a printout of last quarter's network diagram, including IP ranges and admin usernames, sitting in an unlocked recycling bin behind the building. What social engineering risk does this illustrate?",
+    "choices": ["Dumpster diving", "Shoulder surfing", "Vishing", "Tailgating"],
+    "answerIndex": 0,
+    "explanation": "Dumpster diving is recovering sensitive information from improperly discarded trash. Shoulder surfing is observing a screen or keypad directly, which isn't what happened here."
   }
 ]

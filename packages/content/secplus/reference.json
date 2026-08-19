@@ -62,6 +62,21 @@
     ]
   },
   {
+    "id": "compliance-frameworks",
+    "title": "Compliance Frameworks & Audit Terms",
+    "columns": ["Term", "Meaning"],
+    "rows": [
+      ["PCI DSS", "Required for anyone storing/processing/transmitting payment card data"],
+      ["HIPAA", "Governs protected health information (PHI) in US healthcare"],
+      ["GDPR", "EU regulation covering personal data of EU residents"],
+      ["ISO 27001", "General, certifiable information security management framework"],
+      ["Rules of engagement", "Formal scope/boundaries agreed before a penetration test"],
+      ["Legal hold", "Preserving records once litigation/investigation is anticipated"],
+      ["E-discovery", "Identifying, collecting, and producing electronic evidence for legal proceedings"],
+      ["Onboarding / Offboarding", "Provisioning access on hire / revoking it on departure — a common failure point when delayed"]
+    ]
+  },
+  {
     "id": "continuity-metrics",
     "title": "Business Continuity Metrics",
     "columns": ["Metric", "Measures"],
@@ -73,6 +88,36 @@
     ]
   },
   {
+    "id": "pki-and-cryptography",
+    "title": "PKI & Cryptography",
+    "columns": ["Term", "Meaning"],
+    "rows": [
+      ["CA (Certificate Authority)", "Trusted third party that verifies identity and issues certificates"],
+      ["CRL", "Published list of certificates revoked before expiration"],
+      ["OCSP", "Real-time protocol to check one certificate's revocation status"],
+      ["Key escrow", "A trusted third party holds a private key copy for recovery"],
+      ["Digital signature", "Hash encrypted with the sender's private key — proves integrity + non-repudiation"],
+      ["Obfuscation / Steganography", "Makes data harder to notice or understand, not necessarily encrypted"],
+      ["AES", "Fast symmetric encryption — bulk data once a key is shared"],
+      ["RSA / ECC", "Asymmetric encryption/signing — RSA is older/larger keys, ECC is smaller/efficient"],
+      ["Blockchain", "Append-only, hash-chained ledger — tampering with an old entry breaks the chain"]
+    ]
+  },
+  {
+    "id": "architecture-and-hardware-trust",
+    "title": "Security Architecture & Hardware Trust",
+    "columns": ["Term", "Meaning"],
+    "rows": [
+      ["TPM", "Chip that generates/stores keys and attests boot integrity — used by BitLocker"],
+      ["Secure enclave", "Isolated processor region protecting sensitive data from a compromised OS"],
+      ["Platform diversity", "Different vendors for redundant systems, so one flaw can't take all copies down"],
+      ["Capacity planning", "Ensuring infrastructure can absorb the load spike a failover creates"],
+      ["Geographic dispersion", "Redundant sites far enough apart that one regional event can't take out both"],
+      ["IaC (Infrastructure as Code)", "Infrastructure defined and deployed from code/templates, not manual setup"],
+      ["Screened subnet (DMZ)", "Isolates internet-facing servers from the internal LAN"]
+    ]
+  },
+  {
     "id": "security-control-types",
     "title": "Security Control Categories",
     "columns": ["Type", "Purpose", "Example"],
@@ -81,7 +126,24 @@
       ["Detective", "Identifies an incident in progress or after", "IDS, log review, SIEM alert"],
       ["Corrective", "Limits damage and restores after an incident", "Restoring from backup"],
       ["Compensating", "Alternative when the primary control isn't feasible", "Extra monitoring on an unpatchable legacy system"],
-      ["Deterrent", "Discourages an attempt", "Warning banners, visible cameras"]
+      ["Deterrent", "Discourages an attempt", "Warning banners, visible cameras"],
+      ["Directive", "Mandates a specific required action, compliance isn't optional", "A policy requiring incidents be reported within one hour"]
+    ]
+  },
+  {
+    "id": "security-operations-terms",
+    "title": "Security Operations: Automation, PAM & Identity",
+    "columns": ["Term", "Meaning"],
+    "rows": [
+      ["Automation", "A single repetitive task performed without a human"],
+      ["Orchestration / SOAR", "Multiple tools/steps coordinated into one workflow"],
+      ["BYOD / CYOD / COPE", "Own device (least control) / choose from a list / company-owned (most control)"],
+      ["Password vaulting", "Privileged credentials stored securely, checked out and rotated"],
+      ["Just-in-time (JIT) access", "Privileged access granted only for a limited window per task"],
+      ["Break-glass account", "Emergency-only privileged account, normally locked away"],
+      ["EDR vs XDR", "Endpoint-only detection vs correlated detection across endpoint/network/email/cloud"],
+      ["SAML", "Carries an authentication assertion between systems — enables SSO"],
+      ["OAuth", "Authorization framework — grants limited access without sharing a password"]
     ]
   }
 ]
