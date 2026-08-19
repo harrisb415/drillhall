@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.8.0] — 2026-08-18
+
+### Added
+- **Flag a lesson "needs more study."** A new toggle on every course lesson, independent of read state — flag it whether you've read it or not, come back to it later. Flagged lessons show a small flag icon in the Course index list, right next to the title, so you can scan a domain and see what still needs another pass. Backed by its own `course_flags` table rather than a column on `course_progress`, deliberately: that table's row existence is the XP-award guard for reading a lesson, and a flag on an unread lesson would otherwise create a row early and silently block the XP it should still earn once actually marked read.
+
 ## [1.7.0] — 2026-08-18
 
 ### Added

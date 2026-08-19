@@ -19,6 +19,7 @@ describe("course", () => {
     expect(res.status).toBe(200);
     expect(Array.isArray(res.body.lessons)).toBe(true);
     expect(res.body.progress).toEqual({});
+    expect(res.body.flagged).toEqual([]);
   });
 
   it("404s completing a lesson that doesn't exist in the pack", async () => {
@@ -124,5 +125,105 @@ describe("course: mark, unmark, remark", () => {
       .get(`/api/certs/${stack.certId}/course`)
       .set("Cookie", bob.cookie);
     expect(bobsView.body.progress[lessonId]).toBeUndefined();
+  });
+});
+
+describe("course: flag for review", () => {
+  it("flags and clears a flag, independent of read state", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app);
+
+    const before = await request(stack.app)
+      .get(`/api/certs/${stack.certId}/course`)
+      .set("Cookie", cookie);
+    const lessonId = before.body.lessons[0].id as string;
+
+    const flag = await request(stack.app)
+      .post("/api/course/flag")
+      .set("Cookie", cookie)
+      .send({ certId: stack.certId, lessonId });
+    expect(flag.status).toBe(200);
+
+    let course = await request(stack.app)
+      .get(`/api/certs/${stack.certId}/course`)
+      .set("Cookie", cookie);
+    expect(course.body.flagged).toEqual([lessonId]);
+    expect(course.body.progress[lessonId]).toBeUndefined();
+
+    // Flagging again is idempotent (no duplicate/error on the composite PK).
+    const reflag = await request(stack.app)
+      .post("/api/course/flag")
+      .set("Cookie", cookie)
+      .send({ certId: stack.certId, lessonId });
+    expect(reflag.status).toBe(200);
+    course = await request(stack.app)
+      .get(`/api/certs/${stack.certId}/course`)
+      .set("Cookie", cookie);
+    expect(course.body.flagged).toEqual([lessonId]);
+
+    const clear = await request(stack.app)
+      .post("/api/course/flag")
+      .set("Cookie", cookie)
+      .send({ certId: stack.certId, lessonId, flagged: false });
+    expect(clear.status).toBe(200);
+    course = await request(stack.app)
+      .get(`/api/certs/${stack.certId}/course`)
+      .set("Cookie", cookie);
+    expect(course.body.flagged).toEqual([]);
+  });
+
+  it("flagging an unread lesson doesn't block XP when it's later marked read", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app);
+    const userId = await userIdFor(stack, cookie);
+
+    const before = await request(stack.app)
+      .get(`/api/certs/${stack.certId}/course`)
+      .set("Cookie", cookie);
+    const lessonId = before.body.lessons[0].id as string;
+
+    await request(stack.app)
+      .post("/api/course/flag")
+      .set("Cookie", cookie)
+      .send({ certId: stack.certId, lessonId });
+
+    await request(stack.app)
+      .post("/api/course/progress")
+      .set("Cookie", cookie)
+      .send({ certId: stack.certId, lessonId });
+
+    expect(getStats(stack.db, userId).xp).toBe(XP_VALUES.lesson_completed);
+  });
+
+  it("404s flagging a lesson that doesn't exist in the pack", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app);
+
+    const res = await request(stack.app)
+      .post("/api/course/flag")
+      .set("Cookie", cookie)
+      .send({ certId: stack.certId, lessonId: "no-such-lesson" });
+    expect(res.status).toBe(404);
+  });
+
+  it("keeps each user's flags separate", async () => {
+    const stack = createTestStack();
+    const alice = await signUp(stack.app, { email: "alice-flag@example.com" });
+    const bob = await signUp(stack.app, { email: "bob-flag@example.com" });
+
+    const listing = await request(stack.app)
+      .get(`/api/certs/${stack.certId}/course`)
+      .set("Cookie", alice.cookie);
+    const lessonId = listing.body.lessons[0].id as string;
+
+    await request(stack.app)
+      .post("/api/course/flag")
+      .set("Cookie", alice.cookie)
+      .send({ certId: stack.certId, lessonId });
+
+    const bobsView = await request(stack.app)
+      .get(`/api/certs/${stack.certId}/course`)
+      .set("Cookie", bob.cookie);
+    expect(bobsView.body.flagged).toEqual([]);
   });
 });

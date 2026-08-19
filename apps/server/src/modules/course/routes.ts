@@ -2,7 +2,7 @@ import { Router } from "express";
 import { and, eq } from "drizzle-orm";
 import { z } from "zod";
 import type { CourseResponse } from "@comptia/shared-types";
-import { courseProgress } from "../../db/schema";
+import { courseFlags, courseProgress } from "../../db/schema";
 import { recordActivity } from "../gamification/service";
 import { h } from "../../lib/handler";
 import { resolveCert, type ApiDeps } from "../shared";
@@ -11,6 +11,12 @@ const ProgressBody = z.object({
   certId: z.number().int(),
   lessonId: z.string().min(1),
   read: z.boolean().default(true),
+});
+
+const FlagBody = z.object({
+  certId: z.number().int(),
+  lessonId: z.string().min(1),
+  flagged: z.boolean().default(true),
 });
 
 export function courseRoutes(deps: ApiDeps): Router {
@@ -30,6 +36,12 @@ export function courseRoutes(deps: ApiDeps): Router {
         )
         .all();
 
+      const flagRows = deps.db
+        .select({ lessonId: courseFlags.lessonId })
+        .from(courseFlags)
+        .where(and(eq(courseFlags.userId, req.user!.id), eq(courseFlags.certId, resolved.certId)))
+        .all();
+
       const response: CourseResponse = {
         lessons: resolved.pack.course,
         // Only currently-read lessons appear here — a row that exists but
@@ -39,6 +51,7 @@ export function courseRoutes(deps: ApiDeps): Router {
         progress: Object.fromEntries(
           rows.filter((r) => r.read).map((r) => [r.lessonId, r.completedAt.getTime()]),
         ),
+        flagged: flagRows.map((r) => r.lessonId),
       };
       res.json(response);
     }),
@@ -95,6 +108,51 @@ export function courseRoutes(deps: ApiDeps): Router {
 
       if (!existing && body.read) {
         recordActivity(deps.db, req.user!.id, "lesson_completed");
+      }
+
+      res.json({ ok: true });
+    }),
+  );
+
+  // Independent of read state — see the comment on `courseFlags` in schema.ts
+  // for why this isn't a column on course_progress. Row existence is the
+  // whole signal, so clearing a flag deletes the row rather than flipping it.
+  router.post(
+    "/course/flag",
+    h((req, res) => {
+      const body = FlagBody.parse(req.body);
+      const pack = deps.content.byCertId.get(body.certId);
+      if (!pack) {
+        res.status(404).json({ error: "Unknown cert" });
+        return;
+      }
+      if (!pack.course.some((l) => l.id === body.lessonId)) {
+        res.status(404).json({ error: "Unknown lesson" });
+        return;
+      }
+
+      if (body.flagged) {
+        deps.db
+          .insert(courseFlags)
+          .values({
+            userId: req.user!.id,
+            certId: body.certId,
+            lessonId: body.lessonId,
+            flaggedAt: new Date(),
+          })
+          .onConflictDoNothing()
+          .run();
+      } else {
+        deps.db
+          .delete(courseFlags)
+          .where(
+            and(
+              eq(courseFlags.userId, req.user!.id),
+              eq(courseFlags.certId, body.certId),
+              eq(courseFlags.lessonId, body.lessonId),
+            ),
+          )
+          .run();
       }
 
       res.json({ ok: true });

@@ -11,6 +11,7 @@ import type {
   NotificationPrefsDto,
   SaveExamPlanRequest,
   SaveFlashcardStateRequest,
+  SaveLessonFlagRequest,
   SaveLessonProgressRequest,
   UpdateNotificationPrefsRequest,
   ExamHistoryItem,
@@ -143,6 +144,31 @@ export function useSetLessonRead(certId: number) {
         return { ...old, progress: rest };
       });
       qc.invalidateQueries({ queryKey: ["dashboard", certId] });
+    },
+  });
+}
+
+/** `flagged` defaults true (flag for review); pass false to clear it. */
+export function useSetLessonFlag(certId: number) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ lessonId, flagged = true }: { lessonId: string; flagged?: boolean }) =>
+      api<{ ok: boolean }>("/api/course/flag", {
+        method: "POST",
+        body: JSON.stringify({ certId, lessonId, flagged } satisfies SaveLessonFlagRequest),
+      }),
+    onSuccess: (_data, { lessonId, flagged = true }) => {
+      qc.setQueryData<CourseResponse>(["course", certId], (old) => {
+        if (!old) return old;
+        return {
+          ...old,
+          flagged: flagged
+            ? old.flagged.includes(lessonId)
+              ? old.flagged
+              : [...old.flagged, lessonId]
+            : old.flagged.filter((id) => id !== lessonId),
+        };
+      });
     },
   });
 }

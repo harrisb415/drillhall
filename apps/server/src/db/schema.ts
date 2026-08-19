@@ -99,6 +99,28 @@ export const courseProgress = sqliteTable(
   (t) => [primaryKey({ columns: [t.userId, t.certId, t.lessonId] })],
 );
 
+/**
+ * "I need to study this more" — independent of read state, and deliberately
+ * its own table rather than a column on `course_progress`. That table's row
+ * existence is the XP-award guard for reading a lesson; flagging an unread
+ * lesson would create a row early and silently block the XP that lesson
+ * should still earn when actually marked read later.
+ */
+export const courseFlags = sqliteTable(
+  "course_flags",
+  {
+    userId: text("user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    certId: integer("cert_id")
+      .notNull()
+      .references(() => certs.id, { onDelete: "cascade" }),
+    lessonId: text("lesson_id").notNull(),
+    flaggedAt: integer("flagged_at", { mode: "timestamp_ms" }).notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.certId, t.lessonId] })],
+);
+
 export const quizSessions = sqliteTable(
   "quiz_sessions",
   {

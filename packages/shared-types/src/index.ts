@@ -81,6 +81,8 @@ export interface CourseResponse {
    * needs "is this currently checked off."
    */
   progress: Record<string, number>;
+  /** lessonIds currently flagged "needs more study" — independent of read state. */
+  flagged: string[];
 }
 
 export interface SaveLessonProgressRequest {
@@ -88,6 +90,13 @@ export interface SaveLessonProgressRequest {
   lessonId: string;
   /** true = mark read (default), false = unmark. XP is never re-awarded or clawed back by this. */
   read?: boolean;
+}
+
+export interface SaveLessonFlagRequest {
+  certId: number;
+  lessonId: string;
+  /** true = flag for review (default), false = clear the flag. */
+  flagged?: boolean;
 }
 
 // ---- quiz ----

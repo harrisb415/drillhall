@@ -1,3 +1,4 @@
+import type { SVGProps } from "react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -36,6 +37,24 @@ function CheckIcon({ className }: { className?: string }) {
       className={className}
     >
       <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
+function FlagIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      {...props}
+    >
+      <path d="M4 3v18" />
+      <path d="M4 4h13l-2.5 4L17 12H4" />
     </svg>
   );
 }
@@ -119,6 +138,7 @@ export function CourseIndexPage() {
               <CardContent className="divide-y divide-border pt-0">
                 {lessons.map((lesson) => {
                   const done = data.progress[lesson.id] !== undefined;
+                  const flagged = data.flagged.includes(lesson.id);
                   return (
                     <Link
                       key={lesson.id}
@@ -135,7 +155,16 @@ export function CourseIndexPage() {
                         {done ? <CheckIcon className="size-4" /> : <ReadingIcon className="size-3.5" />}
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate text-sm font-medium">{lesson.title}</span>
+                        <span className="flex items-center gap-1.5">
+                          <span className="block truncate text-sm font-medium">{lesson.title}</span>
+                          {flagged && (
+                            <FlagIcon
+                              className="size-3.5 shrink-0 text-weak"
+                              role="img"
+                              aria-label="Flagged for review"
+                            />
+                          )}
+                        </span>
                         <span className="block truncate text-xs text-muted-foreground">
                           {lesson.summary}
                         </span>
