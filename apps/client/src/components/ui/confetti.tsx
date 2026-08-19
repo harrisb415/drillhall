@@ -9,8 +9,15 @@ import { useEffect, useRef } from "react";
  * user has asked for reduced motion.
  */
 const COLORS = ["#d9a441", "#8b6914", "#e8c67a", "#5fae5f", "#b4441c"];
-const PARTICLES = 90;
-const DURATION_MS = 2600;
+
+/** Bigger achievements get a bigger burst, so they don't all feel identical. */
+const INTENSITY = {
+  small: { particles: 45, duration: 1900 },
+  medium: { particles: 90, duration: 2600 },
+  large: { particles: 160, duration: 3400 },
+} as const;
+
+export type ConfettiIntensity = keyof typeof INTENSITY;
 
 interface Particle {
   x: number;
@@ -23,7 +30,13 @@ interface Particle {
   vr: number;
 }
 
-export function Confetti({ active }: { active: boolean }) {
+export function Confetti({
+  active,
+  intensity = "medium",
+}: {
+  active: boolean;
+  intensity?: ConfettiIntensity;
+}) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -35,6 +48,8 @@ export function Confetti({ active }: { active: boolean }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const { particles: particleCount, duration } = INTENSITY[intensity];
+
     const dpr = window.devicePixelRatio || 1;
     const w = (canvas.width = window.innerWidth * dpr);
     const h = (canvas.height = window.innerHeight * dpr);
@@ -43,7 +58,7 @@ export function Confetti({ active }: { active: boolean }) {
 
     // Two side cannons angled inward — reads as celebratory rather than as
     // something falling on the page.
-    const particles: Particle[] = Array.from({ length: PARTICLES }, (_, i) => {
+    const particles: Particle[] = Array.from({ length: particleCount }, (_, i) => {
       const fromLeft = i % 2 === 0;
       return {
         x: fromLeft ? 0 : vw,
@@ -74,19 +89,19 @@ export function Confetti({ active }: { active: boolean }) {
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rot);
-        ctx.globalAlpha = Math.max(0, 1 - elapsed / DURATION_MS);
+        ctx.globalAlpha = Math.max(0, 1 - elapsed / duration);
         ctx.fillStyle = p.color;
         ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
         ctx.restore();
       }
 
-      if (elapsed < DURATION_MS) raf = requestAnimationFrame(frame);
+      if (elapsed < duration) raf = requestAnimationFrame(frame);
       else ctx.clearRect(0, 0, w, h);
     };
     raf = requestAnimationFrame(frame);
 
     return () => cancelAnimationFrame(raf);
-  }, [active]);
+  }, [active, intensity]);
 
   if (!active) return null;
 

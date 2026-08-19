@@ -116,7 +116,7 @@ export function ExamResults() {
   return (
     <div className="space-y-6">
       {/* Passing a full mock is the milestone this whole app exists for. */}
-      <Confetti active={result.passed} />
+      <Confetti active={result.passed} intensity="large" />
       <Card className={result.passed ? "border-success" : "border-destructive"}>
         <CardHeader className="items-center text-center">
           <CardDescription>

@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.7.0] — 2026-08-18
+
+### Added
+- **Confetti on milestones, not just exam passes.** Streak milestones (7/30/100/365 days) and level milestones (5/10/25/50/100) now trigger a burst on the dashboard, sized to the achievement — a 7-day streak reads smaller than a 100-day one. A perfect quiz score (100%) now bursts too. Exam-pass confetti got bigger to stay the biggest moment in the app. New shared `useMilestone`/`useOneShot` hooks (`apps/client/src/lib/milestones.ts`) detect a threshold crossing exactly once per browser, and stay silent on the very first load of the feature — nobody gets congratulated for a streak they reached months ago the instant this ships.
+
 ## [1.6.0] — 2026-08-18
 
 ### Added

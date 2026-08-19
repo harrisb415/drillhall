@@ -1,23 +1,49 @@
 import type { GamificationDto } from "@comptia/shared-types";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Confetti, type ConfettiIntensity } from "@/components/ui/confetti";
 import { RankInsignia } from "@/components/ui/rank-insignia";
 import { SegmentedProgress } from "@/components/ui/segmented-progress";
 import { StreakFlame } from "@/components/ui/streak-flame";
-
-/** Milestones worth calling out; anything past the last one keeps that label. */
-const MILESTONES = [7, 30, 100];
+import { LEVEL_MILESTONES, STREAK_MILESTONES, useMilestone } from "@/lib/milestones";
 
 function nextMilestone(streak: number): number | null {
-  return MILESTONES.find((m) => m > streak) ?? null;
+  return STREAK_MILESTONES.find((m) => m > streak) ?? null;
 }
+
+/** How big the burst reads for each threshold — later ones escalate. */
+const STREAK_INTENSITY: Record<number, ConfettiIntensity> = {
+  7: "small",
+  30: "medium",
+  100: "large",
+  365: "large",
+};
+const LEVEL_INTENSITY: Record<number, ConfettiIntensity> = {
+  5: "small",
+  10: "small",
+  25: "medium",
+  50: "medium",
+  100: "large",
+};
 
 export function StreakCard({ stats }: { stats: GamificationDto }) {
   const pct = stats.xpForNextLevel > 0 ? (stats.xpIntoLevel / stats.xpForNextLevel) * 100 : 0;
   const upcoming = nextMilestone(stats.currentStreak);
   const atRisk = stats.currentStreak > 0 && !stats.activeToday;
 
+  // Streak takes priority if both land on the same load — it's the rarer event.
+  const streakHit = useMilestone("streak", stats.currentStreak, STREAK_MILESTONES);
+  const levelHit = useMilestone("level", stats.level, LEVEL_MILESTONES);
+  const celebrating = streakHit !== null || levelHit !== null;
+  const intensity =
+    streakHit !== null
+      ? STREAK_INTENSITY[streakHit]
+      : levelHit !== null
+        ? LEVEL_INTENSITY[levelHit]
+        : "medium";
+
   return (
     <Card>
+      <Confetti active={celebrating} intensity={intensity} />
       <CardHeader>
         <div className="flex items-start gap-4">
           <RankInsignia level={stats.level} />

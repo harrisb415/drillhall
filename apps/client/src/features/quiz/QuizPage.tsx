@@ -4,10 +4,12 @@ import type { AttemptAnswer } from "@comptia/shared-types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Confetti } from "@/components/ui/confetti";
 import { Progress } from "@/components/ui/progress";
 import { Spinner } from "@/components/ui/spinner";
 import { useCompleteSession, useStartSession, useSubmitAttempt } from "@/lib/api";
 import { useCert } from "@/lib/cert-context";
+import { useOneShot } from "@/lib/milestones";
 import { cn } from "@/lib/utils";
 import { useQuizStore } from "@/stores/quiz";
 import { McQuestionView } from "./questions/McQuestionView";
@@ -207,11 +209,19 @@ function PlayingPhase() {
 }
 
 function SummaryPhase() {
-  const { summary, reset } = useQuizStore();
+  const { summary, sessionId, reset } = useQuizStore();
+  // A perfect score is a one-shot burst, not a rising milestone — keyed on the
+  // session so a *different* perfect run still celebrates.
+  const perfect = summary !== null && summary.score === 100;
+  const celebrate = useOneShot(
+    "quiz-perfect",
+    perfect && sessionId !== null ? String(sessionId) : null,
+  );
   if (!summary) return null;
 
   return (
     <Card>
+      <Confetti active={celebrate} intensity="medium" />
       <CardHeader className="items-center text-center">
         <CardDescription>Session complete</CardDescription>
         <CardTitle className="text-5xl">{summary.score}%</CardTitle>
