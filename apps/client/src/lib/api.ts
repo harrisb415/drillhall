@@ -309,6 +309,18 @@ export function useResetProgress() {
   });
 }
 
+/** Same wipe as `useResetProgress`, scoped to a single cert — for "start
+ *  Network+ over without touching Core 1." XP/level/streak aren't touched:
+ *  they're cross-cert by design, so there's nothing to reset there. */
+export function useResetCertProgress() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (certId: number) =>
+      api<{ ok: boolean }>(`/api/settings/reset-progress/${certId}`, { method: "POST" }),
+    onSuccess: () => qc.clear(),
+  });
+}
+
 /** Fire-and-forget: fills notification_preferences.timezone while it's null (spec §4). */
 export function captureTimezone(): void {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;

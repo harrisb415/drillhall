@@ -2,7 +2,7 @@
 
 Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express + better-sqlite3 server, Better Auth (email/password + Google), content shipped as validated data packs.
 
-**Status: v1.11.1 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1201), A+ Core 2 (220-1202), Network+ (N10-009), Security+ (SY0-701).
+**Status: v1.11.2 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1201), A+ Core 2 (220-1202), Network+ (N10-009), Security+ (SY0-701).
 
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
@@ -12,7 +12,7 @@ Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite 
 - **Phase 5** — gamification (XP, streaks, levels) with the race-safe transaction the spec calls for, per-user timezone-aware notification delivery, nightly backup automation, a low-confidence indicator on readiness, and Playwright e2e coverage.
 - **Network+ and Security+ packs**, each grown to ~180+ questions, and a practice-mode fix so multiple-choice option order shuffles per session instead of favoring the first-listed choice.
 - **Self-service account deletion** at `/settings` — cascades through every owned table, including unlinking Google.
-- **Self-service progress reset** at `/settings` — wipes XP, level, streaks, and every quiz/exam/flashcard/course record back to a fresh account, without touching the account itself, notification settings, or a booked exam date.
+- **Self-service progress reset** at `/settings` — wipes XP, level, streaks, and every quiz/exam/flashcard/course record back to a fresh account, without touching the account itself, notification settings, or a booked exam date. A second option resets just one cert's quiz/exam/flashcard/course records, leaving every other cert (and XP/level/streak, which are cross-cert) untouched.
 - **Visual identity** — charcoal-and-brass palette, radial mastery gauges, score sparklines, rank insignia and a tiered streak flame. See below.
 - **Light/dark/system theme toggle**, and **installable as a PWA** on iOS and Android with an offline app shell. See below.
 - **Course** — a reading-based study track per cert, with a dashboard cross-reference of what you've read against what you've proven by quiz. Video was left out of scope on purpose.

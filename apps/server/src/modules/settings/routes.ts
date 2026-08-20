@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { eq, sql } from "drizzle-orm";
+import { and, eq, sql } from "drizzle-orm";
 import { z } from "zod";
 import type { NotificationPrefsDto } from "@comptia/shared-types";
 import {
@@ -133,6 +133,48 @@ export function settingsRoutes(deps: ApiDeps): Router {
         tx.delete(courseProgress).where(eq(courseProgress.userId, userId)).run();
         tx.delete(courseFlags).where(eq(courseFlags.userId, userId)).run();
         tx.delete(gamificationStats).where(eq(gamificationStats.userId, userId)).run();
+      });
+      res.json({ ok: true });
+    }),
+  );
+
+  // Same wipe, scoped to a single cert — for "I want to start Network+ over
+  // without touching my Core 1 progress." XP/level/streak are deliberately
+  // left alone here: they measure study habit across every certification,
+  // not progress against one exam (see the dashboard's gamification query),
+  // so there's nothing cert-scoped to reset there.
+  router.post(
+    "/settings/reset-progress/:certId",
+    h((req, res) => {
+      const certId = Number(req.params.certId);
+      if (!Number.isInteger(certId)) {
+        res.status(400).json({ error: "certId must be an integer" });
+        return;
+      }
+      if (!deps.content.byCertId.has(certId)) {
+        res.status(404).json({ error: "Unknown cert" });
+        return;
+      }
+      const userId = req.user!.id;
+      deps.db.transaction((tx) => {
+        tx.delete(quizAttempts)
+          .where(and(eq(quizAttempts.userId, userId), eq(quizAttempts.certId, certId)))
+          .run();
+        tx.delete(quizSessions)
+          .where(and(eq(quizSessions.userId, userId), eq(quizSessions.certId, certId)))
+          .run();
+        tx.delete(flashcardProgress)
+          .where(and(eq(flashcardProgress.userId, userId), eq(flashcardProgress.certId, certId)))
+          .run();
+        tx.delete(flashcardState)
+          .where(and(eq(flashcardState.userId, userId), eq(flashcardState.certId, certId)))
+          .run();
+        tx.delete(courseProgress)
+          .where(and(eq(courseProgress.userId, userId), eq(courseProgress.certId, certId)))
+          .run();
+        tx.delete(courseFlags)
+          .where(and(eq(courseFlags.userId, userId), eq(courseFlags.certId, certId)))
+          .run();
       });
       res.json({ ok: true });
     }),

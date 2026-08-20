@@ -9,8 +9,14 @@ import { Spinner } from "@/components/ui/spinner";
 import { Switch } from "@/components/ui/switch";
 import { authErrorMessage } from "@/features/auth/authErrors";
 import { FormError } from "@/features/auth/FieldError";
-import { useNotificationPrefs, useResetProgress, useSaveNotificationPrefs } from "@/lib/api";
+import {
+  useNotificationPrefs,
+  useResetCertProgress,
+  useResetProgress,
+  useSaveNotificationPrefs,
+} from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
+import { useCertSwitcher } from "@/lib/cert-context";
 import { cn } from "@/lib/utils";
 
 /**
@@ -157,6 +163,89 @@ function ResetProgressSection() {
                   <Spinner className="size-4 text-destructive-foreground" />
                 ) : (
                   "Yes, reset everything"
+                )}
+              </Button>
+              <Button variant="outline" disabled={reset.isPending} onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+/**
+ * Same wipe as ResetProgressSection, scoped to a single cert — for "restart
+ * Network+ without touching Core 1." XP/level/streak are cross-cert by
+ * design (they track study habit, not one exam), so they're never part of
+ * this one regardless of which cert is picked.
+ */
+function ResetCertProgressSection() {
+  const { cert, certs, switchCert } = useCertSwitcher();
+  const [certId, setCertId] = useState(cert.id);
+  const [open, setOpen] = useState(false);
+  const reset = useResetCertProgress();
+
+  const selected = certs.find((c) => c.id === certId) ?? cert;
+
+  function confirmReset() {
+    reset.mutate(certId, {
+      onSuccess: () => {
+        switchCert(selected.code);
+        window.location.href = "/dashboard";
+      },
+    });
+  }
+
+  return (
+    <Card className="border-destructive/40">
+      <CardHeader>
+        <CardTitle className="text-base text-destructive">Reset progress for one cert</CardTitle>
+        <CardDescription>
+          Clears quiz and exam history, flashcard status, and course read/flag state for a single
+          cert only — every other cert is untouched. XP, level, and streaks aren't cert-specific,
+          so they're unaffected either way. There is no undo.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="max-w-xs space-y-1.5">
+          <Label htmlFor="reset-cert-select">Cert to reset</Label>
+          <select
+            id="reset-cert-select"
+            value={certId}
+            disabled={open}
+            onChange={(e) => setCertId(Number(e.target.value))}
+            className="w-full rounded-md border border-input bg-card px-2 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            {certs.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name} · {c.version}
+              </option>
+            ))}
+          </select>
+        </div>
+        {!open ? (
+          <Button variant="destructive" onClick={() => setOpen(true)}>
+            Reset {selected.name}
+          </Button>
+        ) : (
+          <div className="space-y-4">
+            {reset.isError && (
+              <p className="text-sm text-destructive">
+                Couldn't reset progress: {(reset.error as Error).message}
+              </p>
+            )}
+            <p className="text-sm">
+              This permanently deletes all study progress for {selected.name}. Are you sure?
+            </p>
+            <div className="flex gap-3">
+              <Button variant="destructive" disabled={reset.isPending} onClick={confirmReset}>
+                {reset.isPending ? (
+                  <Spinner className="size-4 text-destructive-foreground" />
+                ) : (
+                  `Yes, reset ${selected.name}`
                 )}
               </Button>
               <Button variant="outline" disabled={reset.isPending} onClick={() => setOpen(false)}>
@@ -346,6 +435,8 @@ export function SettingsPage() {
           Couldn't save that change: {(save.error as Error).message}
         </p>
       )}
+
+      <ResetCertProgressSection />
 
       <ResetProgressSection />
 

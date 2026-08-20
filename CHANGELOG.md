@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.11.2] — 2026-08-20
+
+### Added
+- **Reset progress for one cert**, at `/settings`, alongside the full reset added in 1.11.1. Pick a cert from a dropdown and clear only its quiz/exam history, flashcard status, and course read/flag state — every other cert stays exactly as it was. XP, level, and streaks are cross-cert by design (they track study habit, not one exam), so a single-cert reset never touches them, same as the full reset. New route `POST /api/settings/reset-progress/:certId`, scoped in one transaction the same way the all-certs version is.
+
 ## [1.11.1] — 2026-08-20
 
 ### Added

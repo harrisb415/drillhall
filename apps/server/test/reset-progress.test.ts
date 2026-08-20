@@ -125,3 +125,99 @@ describe("POST /api/settings/reset-progress", () => {
     expect(prefs?.emailEnabled).toBe(false);
   });
 });
+
+describe("POST /api/settings/reset-progress/:certId", () => {
+  it("requires a signed-in session", async () => {
+    const stack = createTestStack();
+    const res = await request(stack.app).post(`/api/settings/reset-progress/${stack.certId}`);
+    expect(res.status).toBe(401);
+  });
+
+  it("404s on a cert id that doesn't exist", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app);
+    const res = await request(stack.app)
+      .post("/api/settings/reset-progress/999999")
+      .set("Cookie", cookie);
+    expect(res.status).toBe(404);
+  });
+
+  it("wipes progress for the given cert only, leaving other certs and XP/level/streak untouched", async () => {
+    const stack = createTestStack();
+    const { cookie } = await signUp(stack.app);
+    const userId = await userIdFor(stack, cookie);
+    const core2 = stack.content.certIdByCode.get("aplus-core2")!;
+
+    // Progress on the cert we're about to reset.
+    const start = await request(stack.app)
+      .post("/api/quiz/sessions")
+      .set("Cookie", cookie)
+      .send({ certId: stack.certId, count: 2, types: ["mc"] });
+    for (const q of start.body.questions) {
+      await request(stack.app)
+        .post("/api/quiz/attempts")
+        .set("Cookie", cookie)
+        .send({ sessionId: start.body.sessionId, questionId: q.id, answer: { type: "mc", choiceIndex: 0 } });
+    }
+    const cards = await request(stack.app)
+      .get(`/api/certs/${stack.certId}/flashcards`)
+      .set("Cookie", cookie);
+    await request(stack.app)
+      .post("/api/flashcards/progress")
+      .set("Cookie", cookie)
+      .send({ certId: stack.certId, cardId: cards.body.cards[0].id, status: "known" });
+
+    // Same shape of progress on a second cert, which must survive.
+    const core2Start = await request(stack.app)
+      .post("/api/quiz/sessions")
+      .set("Cookie", cookie)
+      .send({ certId: core2, count: 2, types: ["mc"] });
+    for (const q of core2Start.body.questions) {
+      await request(stack.app)
+        .post("/api/quiz/attempts")
+        .set("Cookie", cookie)
+        .send({ sessionId: core2Start.body.sessionId, questionId: q.id, answer: { type: "mc", choiceIndex: 0 } });
+    }
+    const core2Cards = await request(stack.app)
+      .get(`/api/certs/${core2}/flashcards`)
+      .set("Cookie", cookie);
+    await request(stack.app)
+      .post("/api/flashcards/progress")
+      .set("Cookie", cookie)
+      .send({ certId: core2, cardId: core2Cards.body.cards[0].id, status: "known" });
+
+    const xpBefore = getStats(stack.db, userId).xp;
+    expect(xpBefore).toBeGreaterThan(0);
+
+    const res = await request(stack.app)
+      .post(`/api/settings/reset-progress/${stack.certId}`)
+      .set("Cookie", cookie);
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ ok: true });
+
+    // The reset cert: empty.
+    for (const table of [quizAttempts, quizSessions, flashcardProgress]) {
+      const rows = stack.db
+        .select()
+        .from(table)
+        .where(eq(table.userId, userId))
+        .all()
+        .filter((r) => r.certId === stack.certId);
+      expect(rows).toEqual([]);
+    }
+
+    // The other cert: untouched.
+    for (const table of [quizAttempts, flashcardProgress]) {
+      const rows = stack.db
+        .select()
+        .from(table)
+        .where(eq(table.userId, userId))
+        .all()
+        .filter((r) => r.certId === core2);
+      expect(rows.length).toBeGreaterThan(0);
+    }
+
+    // XP/level/streak are cross-cert by design — a single-cert reset never touches them.
+    expect(getStats(stack.db, userId).xp).toBe(xpBefore);
+  });
+});
