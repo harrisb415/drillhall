@@ -20,7 +20,7 @@ describe("public catalog (marketing homepage)", () => {
     expect(catalog.totals.flashcards).toBeGreaterThan(0);
 
     const core1 = catalog.certs.find((c) => c.code === "aplus")!;
-    expect(core1.version).toBe("220-1101");
+    expect(core1.version).toBe("220-1201");
     expect(core1.domains).toBe(5);
     // No "terminal" (type-the-command) questions: Core 1's real objectives
     // never test command-line syntax — that's Core 2's domain.

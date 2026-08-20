@@ -69,6 +69,8 @@
       ["SATA SSD", "SATA III (6 Gb/s)", "~550 MB/s", "2.5\" or M.2 SATA"],
       ["NVMe SSD Gen3", "PCIe 3.0 x4", "~3,500 MB/s", "M.2 2280"],
       ["NVMe SSD Gen4", "PCIe 4.0 x4", "~7,000 MB/s", "M.2 2280"],
+      ["SAS SSD/HDD", "SAS (Serial Attached SCSI)", "Faster/more reliable than SATA", "Enterprise servers/storage arrays"],
+      ["mSATA SSD", "SATA (compact)", "~550 MB/s", "Older small-form-factor/laptop slot, pre-M.2"],
       ["microSD", "SD bus", "Varies by class", "Removable flash"]
     ]
   },
@@ -116,7 +118,8 @@
       ["RAID 0", "2", "Nothing", "Striping only — speed, full capacity, any disk loss kills the array"],
       ["RAID 1", "2", "1 disk", "Mirroring — half capacity, simple redundancy"],
       ["RAID 5", "3", "1 disk", "Striping with distributed parity — good capacity/redundancy balance"],
-      ["RAID 10", "4", "1 per mirror pair", "Stripe of mirrors — fast and redundant, half capacity"]
+      ["RAID 10", "4", "1 per mirror pair", "Stripe of mirrors — fast and redundant, half capacity"],
+      ["RAID 6", "4", "2 disks", "Striping with dual distributed parity — survives two failures, more write overhead than RAID 5"]
     ]
   },
   {
@@ -141,7 +144,45 @@
       ["Toner probe (tone generator + probe)", "Injects a tone on one end of a cable so it can be traced and identified at a patch panel or wall"],
       ["Crimper", "Attaches an RJ45 (or similar) connector onto the end of a loose cable"],
       ["Punchdown tool", "Seats a wire into the insulation-displacement contacts on a wall jack or patch panel"],
-      ["Wi-Fi analyzer", "Scans nearby channels and signal strength to diagnose wireless interference or plan AP placement"]
+      ["Wi-Fi analyzer", "Scans nearby channels and signal strength to diagnose wireless interference or plan AP placement"],
+      ["Cable stripper", "Removes a cable's outer jacket — the prep step before a crimp or punchdown"],
+      ["Network tap", "Inserted inline on a live link to copy traffic for a packet analyzer, without disrupting the connection"]
+    ]
+  },
+  {
+    "id": "server-roles-appliances",
+    "title": "Server Roles & Internet Appliances",
+    "columns": ["Role/appliance", "Job"],
+    "rows": [
+      ["DNS server", "Resolves names to IP addresses"],
+      ["DHCP server", "Hands out IP configuration to clients"],
+      ["Fileshare server", "Hosts shared folders/files over the network"],
+      ["Print server", "Queues and routes print jobs to shared printers"],
+      ["Mail server", "Sends/receives email"],
+      ["Syslog server", "Centrally collects log messages from other devices"],
+      ["Web server", "Serves HTTP/HTTPS content"],
+      ["AAA server", "Authentication, Authorization, and Accounting"],
+      ["Database server", "Hosts structured data applications query"],
+      ["NTP server", "Keeps every device's clock synchronized"],
+      ["Spam gateway", "Filters incoming mail for spam/phishing before the mail server"],
+      ["UTM", "Bundles firewall, antivirus, content filtering, and IPS into one appliance"],
+      ["Load balancer", "Spreads client requests across multiple servers"],
+      ["Proxy server", "Makes requests on a client's behalf — caching, filtering, hiding internal addresses"]
+    ]
+  },
+  {
+    "id": "connector-types",
+    "title": "Legacy & Peripheral Connector Types",
+    "columns": ["Connector", "Used for"],
+    "rows": [
+      ["RJ11", "Telephone-style jack — phone lines/older DSL"],
+      ["RJ45", "Ethernet"],
+      ["DB9", "Legacy serial port"],
+      ["Molex", "Legacy peripheral power from the PSU"],
+      ["F-type", "Coaxial — cable internet/TV"],
+      ["ST / SC / LC", "Fiber connectors — ST is older twist-lock, LC is the small modern type"],
+      ["Punchdown block", "Where twisted-pair wire terminates at a wall jack or patch panel"],
+      ["T568A / T568B", "The two allowed RJ45 wiring color-pair orders — mixing them on one cable's two ends makes a crossover"]
     ]
   }
 ]

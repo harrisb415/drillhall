@@ -200,5 +200,41 @@
       { "left": "Container", "right": "Shares the host kernel and isolates at the process level" }
     ],
     "explanation": "IaaS defines the service boundary, Type 1 the hypervisor architecture, rapid elasticity the scaling behaviour, and containers the lighter alternative to full guest operating systems."
+  },
+  {
+    "id": "aplus-mc-193",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Several universities in the same research consortium share a single cloud environment built specifically for their joint projects, not open to the general public and not exclusive to one institution. What cloud deployment model is this?",
+    "choices": ["Community cloud", "Public cloud", "Private cloud", "Hybrid cloud"],
+    "answerIndex": 0,
+    "explanation": "A community cloud is shared by several organizations with common needs or goals — distinct from a private cloud (one organization only) and a public cloud (open to anyone)."
+  },
+  {
+    "id": "aplus-mc-194",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A cloud provider hosts data belonging to many different customers on the same shared physical infrastructure, while keeping each customer's data logically isolated from the others. What is this called?",
+    "choices": ["Multitenancy", "Elasticity", "Metered utilization", "High availability"],
+    "answerIndex": 0,
+    "explanation": "Multitenancy is multiple customers sharing the same underlying infrastructure while remaining logically separated — the norm in public cloud, which is part of why it's cheaper than dedicated hardware per customer."
+  },
+  {
+    "id": "aplus-mc-195",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company notices its cloud bill has a separate line item charging more for data leaving the cloud to the internet than for data coming in. What billing concept does this describe?",
+    "choices": ["Ingress/egress metering", "Rapid elasticity", "Resource pooling", "Multitenancy"],
+    "answerIndex": 0,
+    "explanation": "Ingress (data coming in) and egress (data going out) are frequently metered separately, with egress typically costing more — part of the broader metered-utilization billing model cloud providers use."
+  },
+  {
+    "id": "aplus-mc-196",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A user edits a file on their laptop and, within seconds, the same updated file is automatically available on their phone and tablet without any manual transfer. What cloud characteristic enables this?",
+    "choices": ["File synchronization", "Multitenancy", "Elasticity", "Resource pooling"],
+    "answerIndex": 0,
+    "explanation": "File synchronization keeps the same file consistent across a user's devices automatically, backed by cloud storage — separate from multitenancy or elasticity, which describe how the provider's infrastructure is shared and scaled."
   }
 ]

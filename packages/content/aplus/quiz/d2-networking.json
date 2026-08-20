@@ -330,5 +330,57 @@
       { "left": "Firewall", "right": "Permits or denies traffic against a rule set" }
     ],
     "explanation": "Each device owns one layer of the path: switches inside the LAN, routers between networks, access points for wireless attachment, and firewalls for policy enforcement."
+  },
+  {
+    "id": "aplus-mc-183",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A warehouse tracks inventory by reading small passive tags attached to each pallet as it passes through a doorway, with no line-of-sight or battery required in the tag. What wireless technology is this?",
+    "choices": ["RFID", "NFC", "Bluetooth", "Infrared"],
+    "answerIndex": 0,
+    "explanation": "RFID (Radio-Frequency Identification) reads passive tags at a distance, commonly used for inventory and asset tracking. NFC has a much shorter range (a few centimeters) and is used for pairing and payments, not warehouse-scale tracking."
+  },
+  {
+    "id": "aplus-match-007",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each email-authentication DNS record to its purpose.",
+    "pairs": [
+      { "left": "SPF", "right": "Lists which mail servers are authorized to send email for the domain" },
+      { "left": "DKIM", "right": "Attaches a cryptographic signature so receivers can verify the message wasn't altered" },
+      { "left": "DMARC", "right": "Tells receivers what to do when SPF/DKIM checks fail, and where to report it" }
+    ],
+    "explanation": "All three live in DNS TXT records and work together: SPF authorizes senders, DKIM proves integrity, and DMARC sets the enforcement policy and reporting on top of both."
+  },
+  {
+    "id": "aplus-mc-184",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A fiber internet installation ends at a small box on the customer's wall that converts the incoming optical signal into an Ethernet connection the router can use. What is this box called?",
+    "choices": ["ONT (Optical Network Terminal)", "DSL modem", "Patch panel", "NIC"],
+    "answerIndex": 0,
+    "explanation": "An ONT converts the fiber provider's optical signal to Ethernet at the customer premises — the fiber equivalent of a cable or DSL modem."
+  },
+  {
+    "id": "aplus-mc-185",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A rural business with no cable or DSL availability gets internet access via a rooftop antenna that has line-of-sight to a nearby tower. What kind of provider is this?",
+    "choices": ["WISP (Wireless Internet Service Provider)", "Satellite ISP", "Cellular carrier", "MSP"],
+    "answerIndex": 0,
+    "explanation": "A WISP delivers internet over fixed point-to-point wireless links to a local tower, a common option in rural areas where wired internet doesn't reach — distinct from satellite, which doesn't need a nearby tower at all."
+  },
+  {
+    "id": "aplus-match-008",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each network type abbreviation to what it spans.",
+    "pairs": [
+      { "left": "PAN", "right": "A very short range around one person, e.g. a phone paired to a smartwatch" },
+      { "left": "LAN", "right": "One building or site" },
+      { "left": "MAN", "right": "A single city or metro area" },
+      { "left": "WAN", "right": "Multiple sites, potentially worldwide" }
+    ],
+    "explanation": "The network types scale up by geographic reach: PAN is device-to-device on one person, LAN covers a site, MAN covers a metro area, and WAN spans multiple sites."
   }
 ]

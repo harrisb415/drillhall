@@ -171,10 +171,10 @@ test("switching certification scopes the dashboard to that exam", async ({ page 
 
   const selector = page.getByLabel("Active certification").first();
   await expect(selector).toHaveValue("aplus");
-  await expect(page.getByText("CompTIA A+ Core 1 (220-1101)")).toBeVisible();
+  await expect(page.getByText("CompTIA A+ Core 1 (220-1201)")).toBeVisible();
 
   await selector.selectOption("aplus-core2");
-  await expect(page.getByText("CompTIA A+ Core 2 (220-1102)")).toBeVisible();
+  await expect(page.getByText("CompTIA A+ Core 2 (220-1202)")).toBeVisible();
 
   // Core 2 has its own domains, so the breakdown must change with it.
   await expect(page.getByText("1.0 Operating Systems")).toBeVisible();

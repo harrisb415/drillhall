@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.10.0] — 2026-08-19
+
+### Fixed
+- **A+ Core 1 and Core 2 were labeled with retired exam codes.** The platform showed "220-1101"/"220-1102" everywhere (marketing page, cert switcher, exam simulator) — CompTIA retired both on September 25, 2025, replacing them with 220-1201/220-1202 back in March 2025. Every candidate today sits the 1201/1202 exams; the platform had been silently out of date for almost a year. Updated `cert.json` for both packs, plus every hardcoded reference in tests and docs.
+
+### Added
+- **Line-by-line audit of A+ Core 1 against CompTIA's actual official 220-1201 V15 objectives document** (not a web summary this time — the real PDF, all 20 sub-objectives). Found real gaps the earlier summary-based audit missed:
+  - An entire objective (2.3, server roles and internet appliances — DNS/DHCP/fileshare/mail/syslog/web/AAA/database/NTP servers, spam gateways, UTM, load balancers, proxies, SCADA, IoT) had zero coverage. Added a full lesson plus a new reference sheet.
+  - Objective 3.7 (deploying/configuring printers — PCL vs. PostScript, badging, secured prints, network scan services) was conflated with 3.8's maintenance content and never actually covered on its own. Added a dedicated lesson.
+  - Named items with no coverage anywhere: RFID, RAID 6, mSATA, SAS as a real interface (not just a distractor), Mini-LED, T568A/T568B, DB9, Molex, direct burial cable, ONT, WISP, multisocket, HSM, DKIM/SPF/DMARC, community cloud, multitenancy, ingress/egress, file synchronization, and printer finishing issues (staple jams, hole punch). Projector-specific troubleshooting was down to a single question against seven named symptoms in the objective.
+  - Net: +2 lessons, +27 quiz questions, +7 flashcards, +3 reference groups, all schema-validated.
+
+This is the same audit method as v1.9.0's four-pack pass, just against a primary source instead of a paraphrase — worth doing again whenever CompTIA republishes an objectives document, since a summary can drift from what's actually tested even when it looks complete.
+
 ## [1.9.0] — 2026-08-19
 
 ### Added

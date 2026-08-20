@@ -175,5 +175,88 @@
     ],
     "answerIndex": 0,
     "explanation": "Modular units let the technician attach only the cables the build needs, reducing clutter and improving airflow. Electrically they behave the same as fixed-cable supplies."
+  },
+  {
+    "id": "aplus-mc-197",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A conference room projector displays a picture, but colors look washed out and the source is definitely a laptop's HDMI output known to be correct elsewhere. The projector has been in heavy use for years. What is the MOST likely cause?",
+    "choices": [
+      "An aging or burnt-out bulb/lamp",
+      "The projector's input source is set incorrectly",
+      "A bad HDMI cable",
+      "The projector needs a firmware update"
+    ],
+    "answerIndex": 0,
+    "explanation": "A dim, washed-out image from an otherwise-known-good source on a projector with years of use points to lamp degradation — bulbs lose brightness and color accuracy well before they fail outright. Wrong input source would typically show no signal or the wrong device entirely, not a color/brightness problem."
+  },
+  {
+    "id": "aplus-mc-198",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A projector displays an image for a few seconds after power-on, then shuts off completely, repeating this cycle. The room is warm and the intake vents are visibly dusty. What should be checked FIRST?",
+    "choices": [
+      "Clean the air filter/vents and confirm the fan is running",
+      "Replace the bulb",
+      "Replace the projector",
+      "Update the projector's firmware"
+    ],
+    "answerIndex": 0,
+    "explanation": "Intermittent shutdown shortly after power-on, combined with dusty vents and a warm room, is a classic thermal-protection shutoff — clogged airflow overheats the lamp/electronics and the projector cuts power to protect itself. Clear the airflow path before assuming a component has failed."
+  },
+  {
+    "id": "aplus-match-011",
+    "type": "match",
+    "domainCode": "5.0",
+    "prompt": "Match each display/projector symptom to its most likely cause.",
+    "pairs": [
+      { "left": "A single pixel is permanently black", "right": "Dead pixel" },
+      { "left": "A faint ghost of the desktop background remains visible after switching windows", "right": "Display burn-in" },
+      { "left": "The image is stretched or squished compared to the source", "right": "Incorrect aspect ratio/sizing setting" },
+      { "left": "The image has visible warping or curves along straight lines", "right": "Distorted image" }
+    ],
+    "explanation": "Each symptom points to a distinct cause: a dead pixel is a manufacturing/hardware defect at one point, burn-in is retained ghosting from static content, sizing issues come from an aspect-ratio mismatch, and distortion suggests a panel or signal processing fault."
+  },
+  {
+    "id": "aplus-mc-199",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A shared office printer with a stapling finisher attachment jams every time a multi-page job requests stapling, even though the same documents print fine unstapled. Where should the technician look first?",
+    "choices": [
+      "The finishing unit's staple cartridge and paper path",
+      "The toner cartridge",
+      "The printer's IP configuration",
+      "The print driver's color settings"
+    ],
+    "answerIndex": 0,
+    "explanation": "A jam that only happens when stapling is requested points at the finishing unit itself — a misaligned or empty staple cartridge, or a paper-path jam specific to the finisher — not the core print engine, which is proven fine by successful unstapled jobs."
+  },
+  {
+    "id": "aplus-mc-200",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user sends a print job, but the printer's control panel shows \"Tray 2 not recognized\" and the job won't print. What is the MOST likely cause?",
+    "choices": [
+      "Tray 2 isn't fully seated/inserted, or has a sensor fault",
+      "The print driver is out of date",
+      "The toner cartridge is empty",
+      "The network cable is unplugged"
+    ],
+    "answerIndex": 0,
+    "explanation": "A specific \"tray not recognized\" message points at that tray's physical seating or its position sensor, not the driver, consumables, or network — those would produce different, more generic errors."
+  },
+  {
+    "id": "aplus-mc-201",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Several print jobs are stuck showing \"pending\" in the queue and nothing prints, even after the printer is confirmed to be powered on and connected. What is the fastest first step to try?",
+    "choices": [
+      "Clear/restart the print spooler and resend the job",
+      "Replace the toner cartridge",
+      "Factory reset the printer",
+      "Replace the network cable"
+    ],
+    "answerIndex": 0,
+    "explanation": "A frozen queue with jobs stuck pending, on an otherwise reachable printer, is a classic print-spooler fault — clearing the stuck jobs and restarting the spooler service resolves most frozen queues without touching hardware."
   }
 ]

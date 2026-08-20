@@ -255,5 +255,37 @@
       { "left": "IPS panel", "right": "Wide viewing angles and accurate colour reproduction" }
     ],
     "explanation": "The digitizer handles input while the others concern the display: OLED is emissive, inverters drive legacy CCFL backlights, and IPS is an LCD panel type chosen for colour fidelity."
+  },
+  {
+    "id": "aplus-mc-180",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A laptop accessory adds a full-size trackpad-like surface used specifically for precision drawing and handwriting input, distinct from the laptop's built-in trackpad. What is this accessory category called?",
+    "choices": ["Drawing pad", "Docking station", "Port replicator", "Stylus"],
+    "answerIndex": 0,
+    "explanation": "A drawing pad (graphics tablet) is a dedicated surface for precision pen input, separate from the laptop's own trackpad. A stylus is the pen itself, not the surface."
+  },
+  {
+    "id": "aplus-mc-181",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A traveling employee needs to quickly connect their laptop to a monitor, wired network, and external keyboard through a single cable, without the extra features (power delivery passthrough, multiple simultaneous displays) a full docking station offers. What is the lighter-weight device for this called?",
+    "choices": ["Port replicator", "KVM switch", "Network tap", "Patch panel"],
+    "answerIndex": 0,
+    "explanation": "A port replicator extends a laptop's physical ports through one connector, similar to a docking station but typically simpler and without a docking station's extra power/display management features."
+  },
+  {
+    "id": "aplus-mc-182",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A corporate phone requires a fingerprint scan to unlock, and additionally has a dedicated sensor that can read an employee's contactless badge to grant building access from the same device. Which two mobile hardware features does this describe?",
+    "choices": [
+      "Biometrics and a near-field scanner",
+      "GPS and Bluetooth",
+      "A digitizer and an accelerometer",
+      "A SIM reader and a webcam"
+    ],
+    "answerIndex": 0,
+    "explanation": "Biometrics (fingerprint/face) is one physical security component; a near-field scanner reading a contactless badge is a separate one — both are listed replaceable mobile hardware security components on the exam."
   }
 ]

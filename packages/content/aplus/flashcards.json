@@ -244,5 +244,41 @@
     "domainCode": "2.0",
     "front": "Site-to-site VPN vs client-to-site (remote-access) VPN?",
     "back": "Site-to-site: an always-on tunnel between two routers/gateways, joining two whole networks (e.g., branch office to HQ) — transparent to the devices behind each end. Client-to-site: a VPN app on one device connects that single user in, typically for remote/home workers."
+  },
+  {
+    "id": "aplus-fc-042",
+    "domainCode": "2.0",
+    "front": "RFID vs NFC?",
+    "back": "RFID: reads passive tags at a distance (inventory/asset tracking), no battery needed in the tag. NFC: much shorter range (a few cm), used for pairing and contactless payments."
+  },
+  {
+    "id": "aplus-fc-043",
+    "domainCode": "2.0",
+    "front": "SPF vs DKIM vs DMARC?",
+    "back": "SPF: lists which mail servers may send for the domain. DKIM: cryptographic signature proving the message wasn't altered. DMARC: policy telling receivers what to do when SPF/DKIM fail, plus reporting — all three live in DNS TXT records."
+  },
+  {
+    "id": "aplus-fc-044",
+    "domainCode": "3.0",
+    "front": "RAID 5 vs RAID 6?",
+    "back": "RAID 5: single distributed parity, survives 1 disk failure, minimum 3 disks. RAID 6: dual distributed parity, survives 2 simultaneous disk failures, minimum 4 disks, more write overhead."
+  },
+  {
+    "id": "aplus-fc-045",
+    "domainCode": "3.0",
+    "front": "mSATA vs SAS vs standard SATA?",
+    "back": "mSATA: compact SSD form factor, still SATA protocol, used pre-M.2 in small laptops. SAS: enterprise storage interface, faster/more reliable than SATA, used in servers. SATA: the everyday desktop/laptop drive interface."
+  },
+  {
+    "id": "aplus-fc-046",
+    "domainCode": "3.0",
+    "front": "PCL vs PostScript print languages?",
+    "back": "PCL (Printer Command Language): faster, simpler, common for everyday business printing. PostScript: handles complex graphics and precise layout more faithfully — preferred for design/publishing."
+  },
+  {
+    "id": "aplus-fc-047",
+    "domainCode": "3.0",
+    "front": "Secure Boot vs BIOS password vs boot password?",
+    "back": "Secure Boot: only lets a digitally-signed, trusted bootloader run. BIOS/UEFI password: blocks access to firmware setup itself. Boot password: required before the OS is even allowed to start booting."
   }
 ]

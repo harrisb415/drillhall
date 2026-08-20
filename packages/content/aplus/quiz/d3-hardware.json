@@ -435,5 +435,99 @@
       { "left": "RAID 10", "right": "A stripe of mirrored pairs, minimum four disks" }
     ],
     "explanation": "0 trades all redundancy for speed, 1 duplicates, 5 adds distributed parity so one disk can fail, and 10 layers striping over mirrors for both speed and resilience."
+  },
+  {
+    "id": "aplus-mc-186",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A server needs to survive TWO simultaneous disk failures without losing data, using striping with parity rather than mirroring. Which RAID level fits, and what's the minimum number of disks?",
+    "choices": ["RAID 6, minimum 4 disks", "RAID 5, minimum 3 disks", "RAID 1, minimum 2 disks", "RAID 0, minimum 2 disks"],
+    "answerIndex": 0,
+    "explanation": "RAID 6 adds a second, independent parity block beyond RAID 5's single parity, so it tolerates any two disk failures at once — at the cost of needing a fourth disk minimum and more write overhead to maintain two parity calculations."
+  },
+  {
+    "id": "aplus-mc-187",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs to add a small-form-factor SSD to an older laptop that has a full-size SATA data cable header but no M.2 slot. Which SSD form factor is designed for exactly this case?",
+    "choices": ["mSATA", "NVMe M.2", "2.5-inch SATA", "SAS"],
+    "answerIndex": 0,
+    "explanation": "mSATA is a compact SSD form factor that still speaks the SATA protocol, used in older small-form-factor and laptop designs before M.2 became standard. NVMe specifically needs a PCIe-wired M.2 slot, not a SATA header."
+  },
+  {
+    "id": "aplus-mc-188",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A server's storage array uses drives connected over SAS rather than SATA. What is the main advantage SAS offers over SATA in this context?",
+    "choices": [
+      "Higher performance and reliability for multi-drive enterprise storage",
+      "Lower cost per drive",
+      "Native wireless connectivity",
+      "No cabling required at all"
+    ],
+    "answerIndex": 0,
+    "explanation": "SAS (Serial Attached SCSI) is built for enterprise storage — faster, more reliable, and supports more devices per controller than SATA, which is why it shows up in servers and storage arrays rather than typical desktops."
+  },
+  {
+    "id": "aplus-match-009",
+    "type": "match",
+    "domainCode": "3.0",
+    "prompt": "Match each connector/cable type to what it's used for.",
+    "pairs": [
+      { "left": "DB9", "right": "Legacy serial port connector" },
+      { "left": "Molex", "right": "Legacy peripheral power connector from the PSU" },
+      { "left": "Direct burial cable", "right": "Shielded twisted pair rated to be buried directly in the ground" },
+      { "left": "T568A/T568B", "right": "Wiring standards defining which color pair goes on which RJ45 pin" }
+    ],
+    "explanation": "DB9 and Molex are both legacy connectors (serial data and peripheral power respectively), direct burial cable is jacketed for underground runs without conduit, and T568A/B are the two allowed wiring orders for terminating Ethernet cable — mixing them on the two ends of one cable makes a crossover."
+  },
+  {
+    "id": "aplus-mc-189",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A server motherboard has two physical CPU sockets, allowing two separate processors to work together in the same system. What is this design called?",
+    "choices": ["Multisocket", "Multi-core", "Multithreading", "Hyperthreading"],
+    "answerIndex": 0,
+    "explanation": "A multisocket board provides more than one physical CPU socket — distinct from a multi-core CPU, which is many cores inside one single physical chip."
+  },
+  {
+    "id": "aplus-mc-190",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company wants encryption keys generated and stored in a dedicated, tamper-resistant hardware device separate from the server itself, for the highest level of key protection. What should they use?",
+    "choices": ["An HSM (Hardware Security Module)", "A TPM", "Secure Boot", "BitLocker alone"],
+    "answerIndex": 0,
+    "explanation": "An HSM is a dedicated, often external, tamper-resistant device purpose-built for key generation/storage — a step up from a TPM, which is a chip built into one specific motherboard rather than a standalone security appliance."
+  },
+  {
+    "id": "aplus-match-010",
+    "type": "match",
+    "domainCode": "3.0",
+    "prompt": "Match each BIOS/UEFI setting to what it controls.",
+    "pairs": [
+      { "left": "Secure Boot", "right": "Only allows the OS to boot if its bootloader is digitally signed and trusted" },
+      { "left": "BIOS/UEFI password", "right": "Blocks access to firmware settings themselves without the correct password" },
+      { "left": "Boot password", "right": "Requires a password before the OS is even allowed to start booting" },
+      { "left": "USB permissions", "right": "Enables or disables USB ports/boot at the firmware level" }
+    ],
+    "explanation": "These four settings are easy to blur together but each guards a different stage: Secure Boot validates the bootloader's signature, a BIOS password protects the firmware setup screen itself, a boot password gates the boot process before the OS loads, and USB permissions control the ports at the firmware level."
+  },
+  {
+    "id": "aplus-mc-191",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A new monitor uses an array of tiny individually-dimmable LED zones behind an LCD panel to get much better contrast than typical LED-backlit LCDs, while still being cheaper than OLED. What display technology is this?",
+    "choices": ["Mini-LED", "OLED", "TN", "VA"],
+    "answerIndex": 0,
+    "explanation": "Mini-LED uses many small LED backlight zones for finer local dimming, improving contrast well beyond standard LCD backlighting while avoiding OLED's higher cost and burn-in risk."
+  },
+  {
+    "id": "aplus-mc-192",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A designer complains that colors on their new monitor look duller and less vivid than on their old one, even at the same brightness and resolution. Which display attribute most directly explains this?",
+    "choices": ["Color gamut", "Refresh rate", "Pixel density", "Screen resolution"],
+    "answerIndex": 0,
+    "explanation": "Color gamut is the range of colors a display can reproduce — a narrower gamut looks duller and less vivid regardless of resolution or refresh rate, which affect sharpness and motion smoothness instead."
   }
 ]
