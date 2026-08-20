@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.11.1] — 2026-08-20
+
+### Added
+- **Reset all progress**, at `/settings`. Wipes XP, level, and streaks back to day one and clears every quiz/exam attempt, flashcard status, and course read/flag state across all four certs — a full "start from scratch" without touching the account itself, notification preferences, or a booked exam date. Same destructive-action UX as account deletion (click to reveal, explicit confirm, no undo), scoped server-side in one transaction so a mid-way failure can't leave some tables cleared and others not.
+
+### Fixed
+- **A newly added Core 2 match question could grade a genuinely wrong answer as correct.** `core2-match-008` (MFA factor categories) paired two different lefts to the identical right-hand text "Something you have" — since grading checks each left against its own correct right independently, swapping those two specific rows produced an assignment indistinguishable from the correct one. Gave each row distinct right-hand text; audited every match question in all four packs for the same duplicate-right pattern and found no other instances.
+
 ## [1.11.0] — 2026-08-19
 
 ### Added

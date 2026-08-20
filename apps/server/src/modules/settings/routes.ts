@@ -2,7 +2,16 @@ import { Router } from "express";
 import { eq, sql } from "drizzle-orm";
 import { z } from "zod";
 import type { NotificationPrefsDto } from "@comptia/shared-types";
-import { notificationPreferences } from "../../db/schema";
+import {
+  courseFlags,
+  courseProgress,
+  flashcardProgress,
+  flashcardState,
+  gamificationStats,
+  notificationPreferences,
+  quizAttempts,
+  quizSessions,
+} from "../../db/schema";
 import { h } from "../../lib/handler";
 import { getPrefs } from "../notifications/service";
 import type { ApiDeps } from "../shared";
@@ -104,6 +113,28 @@ export function settingsRoutes(deps: ApiDeps): Router {
         emailDeliveryConfigured: deps.emailDeliveryConfigured,
       };
       res.json(dto);
+    }),
+  );
+
+  // Wipes every scrap of study progress for the signed-in user — XP, level,
+  // streaks, quiz/exam history, flashcard state, and course read/flag state —
+  // while leaving the account, its login, and settings (notification prefs,
+  // booked exam date) untouched. Wrapped in a transaction so a mid-way
+  // failure can't leave some tables cleared and others not.
+  router.post(
+    "/settings/reset-progress",
+    h((req, res) => {
+      const userId = req.user!.id;
+      deps.db.transaction((tx) => {
+        tx.delete(quizAttempts).where(eq(quizAttempts.userId, userId)).run();
+        tx.delete(quizSessions).where(eq(quizSessions.userId, userId)).run();
+        tx.delete(flashcardProgress).where(eq(flashcardProgress.userId, userId)).run();
+        tx.delete(flashcardState).where(eq(flashcardState.userId, userId)).run();
+        tx.delete(courseProgress).where(eq(courseProgress.userId, userId)).run();
+        tx.delete(courseFlags).where(eq(courseFlags.userId, userId)).run();
+        tx.delete(gamificationStats).where(eq(gamificationStats.userId, userId)).run();
+      });
+      res.json({ ok: true });
     }),
   );
 

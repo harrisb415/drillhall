@@ -574,8 +574,8 @@
     "domainCode": "2.0",
     "prompt": "Match each MFA delivery method to its factor category.",
     "pairs": [
-      { "left": "Authenticator app generating a TOTP", "right": "Something you have" },
-      { "left": "SMS code", "right": "Something you have" },
+      { "left": "Authenticator app generating a TOTP", "right": "Something you have (an authenticator app)" },
+      { "left": "SMS code", "right": "Something you have (a registered phone)" },
       { "left": "Fingerprint scan", "right": "Something you are" },
       { "left": "PIN", "right": "Something you know" }
     ],

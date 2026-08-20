@@ -9,7 +9,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { Switch } from "@/components/ui/switch";
 import { authErrorMessage } from "@/features/auth/authErrors";
 import { FormError } from "@/features/auth/FieldError";
-import { useNotificationPrefs, useSaveNotificationPrefs } from "@/lib/api";
+import { useNotificationPrefs, useResetProgress, useSaveNotificationPrefs } from "@/lib/api";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 
@@ -95,6 +95,71 @@ function DeleteAccountSection() {
                 {busy ? <Spinner className="size-4 text-destructive-foreground" /> : "Permanently delete my account"}
               </Button>
               <Button variant="outline" disabled={busy} onClick={cancel}>
+                Cancel
+              </Button>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
+/**
+ * Wipes XP, level, streaks, and all quiz/exam/flashcard/course progress —
+ * everything the dashboard, flashcards, and course pages track — but leaves
+ * the account itself, notification settings, and any booked exam date
+ * alone. A full page reload after success is deliberate: it's the simplest
+ * way to guarantee no stale in-memory state (an open quiz session, a cached
+ * streak count) survives the wipe.
+ */
+function ResetProgressSection() {
+  const [open, setOpen] = useState(false);
+  const reset = useResetProgress();
+
+  function confirmReset() {
+    reset.mutate(undefined, {
+      onSuccess: () => {
+        window.location.href = "/dashboard";
+      },
+    });
+  }
+
+  return (
+    <Card className="border-destructive/40">
+      <CardHeader>
+        <CardTitle className="text-base text-destructive">Reset all progress</CardTitle>
+        <CardDescription>
+          Wipes your XP, level, and streaks back to day one, and clears every quiz and exam
+          attempt, flashcard status, and course read/flag state across all certs. Your account,
+          sign-in, notification settings, and any booked exam date are not affected. There is no
+          undo.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        {!open ? (
+          <Button variant="destructive" onClick={() => setOpen(true)}>
+            Reset all progress
+          </Button>
+        ) : (
+          <div className="space-y-4">
+            {reset.isError && (
+              <p className="text-sm text-destructive">
+                Couldn't reset progress: {(reset.error as Error).message}
+              </p>
+            )}
+            <p className="text-sm">
+              This permanently deletes all study progress on every cert. Are you sure?
+            </p>
+            <div className="flex gap-3">
+              <Button variant="destructive" disabled={reset.isPending} onClick={confirmReset}>
+                {reset.isPending ? (
+                  <Spinner className="size-4 text-destructive-foreground" />
+                ) : (
+                  "Yes, reset everything"
+                )}
+              </Button>
+              <Button variant="outline" disabled={reset.isPending} onClick={() => setOpen(false)}>
                 Cancel
               </Button>
             </div>
@@ -281,6 +346,8 @@ export function SettingsPage() {
           Couldn't save that change: {(save.error as Error).message}
         </p>
       )}
+
+      <ResetProgressSection />
 
       <DeleteAccountSection />
     </div>

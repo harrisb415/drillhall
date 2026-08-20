@@ -298,6 +298,17 @@ export function useSaveNotificationPrefs() {
   });
 }
 
+/** Wipes XP, level, streaks, quiz/exam history, flashcard state, and course
+ *  read/flag state for the signed-in user. Clears the whole query cache on
+ *  success since practically every page's data is stale afterward. */
+export function useResetProgress() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: () => api<{ ok: boolean }>("/api/settings/reset-progress", { method: "POST" }),
+    onSuccess: () => qc.clear(),
+  });
+}
+
 /** Fire-and-forget: fills notification_preferences.timezone while it's null (spec §4). */
 export function captureTimezone(): void {
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
