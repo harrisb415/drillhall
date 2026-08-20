@@ -359,5 +359,62 @@
     "prompt": "Type the Windows command that clears the local DNS resolver cache.",
     "expected": ["ipconfig /flushdns"],
     "explanation": "ipconfig /flushdns discards all cached DNS entries, forcing the next lookups to be resolved fresh — useful after a DNS record change or when a stale/poisoned entry is suspected."
+  },
+  {
+    "id": "netplus-d5-mc-036",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An interface's error counters show a rising number of CRC errors on a copper link that was recently re-terminated. What does a CRC error MOST likely indicate here?",
+    "choices": [
+      "Frames are arriving corrupted — typically bad termination, damaged cable, or interference",
+      "Frames are arriving smaller than the 64-byte minimum",
+      "Frames exceed the configured MTU",
+      "The port has been administratively shut down"
+    ],
+    "answerIndex": 0,
+    "explanation": "A CRC error means the frame's checksum didn't match on arrival — the frame was corrupted in transit. After a re-termination, suspect the termination, cable damage, or interference. Undersized frames are runts; oversized are giants."
+  },
+  {
+    "id": "netplus-d5-mc-037",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A switch port shows a status of 'err-disabled' after a user plugged in an unmanaged mini-switch. What should the technician do FIRST?",
+    "choices": [
+      "Determine why the port was disabled (for example a port-security or BPDU guard violation) before re-enabling it",
+      "Immediately re-enable the port with no further investigation",
+      "Replace the switch",
+      "Increase the port's MTU"
+    ],
+    "answerIndex": 0,
+    "explanation": "Err-disabled is a protective shutdown triggered by a specific violation — commonly port security or BPDU guard. Blindly re-enabling recreates the condition; identify the trigger first, which is also the methodology's 'identify the problem' step."
+  },
+  {
+    "id": "netplus-d5-mc-038",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A newly installed PoE security camera fails to power on. Several other cameras on the same switch work normally. Which is the LEAST likely cause of this single camera failing?",
+    "choices": [
+      "The switch's total PoE power budget is exhausted",
+      "The camera requires a higher PoE standard (for example 802.3at) than the port supplies",
+      "The patch cable to that camera is faulty",
+      "The camera itself is defective"
+    ],
+    "answerIndex": 0,
+    "explanation": "An exhausted power budget usually affects newly added devices broadly and often logs a budget warning — but with several cameras already working and only this one failing, a port/cable/standard mismatch or a defective unit is far more likely than a switch-wide budget issue."
+  },
+  {
+    "id": "netplus-d5-multi-001",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A technician must trace which physical cable in a crowded patch panel corresponds to a specific wall jack, then confirm the run has no opens or shorts. Which TWO tools are appropriate?",
+    "choices": [
+      "Tone generator and probe",
+      "Cable tester",
+      "Protocol analyzer",
+      "Spectrum analyzer",
+      "NetFlow collector"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A toner and probe identifies which physical cable is which; a cable tester verifies continuity, opens, shorts, and wire mapping. Protocol analyzers, spectrum analyzers, and flow collectors examine traffic or RF, not the physical cable path."
   }
 ]

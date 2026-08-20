@@ -305,5 +305,71 @@
     ],
     "answerIndex": 0,
     "explanation": "Capacity planning ensures infrastructure can handle both normal growth and the load spike a failover creates — redundancy that can't actually handle the load during a failure isn't meaningfully resilient."
+  },
+  {
+    "id": "secplus-d3-mc-032",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company moving to IaaS asks who patches the guest operating system, who secures the hypervisor, and who classifies the data. Which cloud document defines these boundaries?",
+    "choices": [
+      "The responsibility matrix",
+      "The service-level agreement",
+      "The business partners agreement",
+      "The rules of engagement"
+    ],
+    "answerIndex": 0,
+    "explanation": "The (shared) responsibility matrix spells out which security duties belong to the provider and which stay with the customer — the boundary shifts with the service model, which is exactly why it's documented."
+  },
+  {
+    "id": "secplus-d3-mc-033",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization buys cyber-insurance to cover the financial cost of a breach it cannot fully prevent. Which risk management strategy is this, and which architectural consideration does it map to?",
+    "choices": [
+      "Risk transference — moving the financial impact to a third party",
+      "Risk avoidance — eliminating the activity entirely",
+      "Risk acceptance — absorbing the loss internally",
+      "Risk mitigation — reducing likelihood with a technical control"
+    ],
+    "answerIndex": 0,
+    "explanation": "Transference moves impact to another party (insurance, or outsourcing to a provider). It doesn't reduce the likelihood of the event — it changes who absorbs the cost, which is why it's paired with, not a substitute for, mitigation."
+  },
+  {
+    "id": "secplus-d3-mc-034",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A database must be recoverable to any point in time, so every transaction is written to a separate sequential log before being committed. Which backup-related concept is this?",
+    "choices": ["Journaling", "Snapshotting", "Replication", "Platform diversity"],
+    "answerIndex": 0,
+    "explanation": "Journaling records each change sequentially so the database can be replayed or rolled back to a precise point. A snapshot is a point-in-time image; replication maintains a live copy elsewhere, which protects against site loss but not against a bad transaction."
+  },
+  {
+    "id": "secplus-d3-mc-035",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A firewall is configured so that if the appliance itself crashes, all traffic is blocked rather than passed. In a high-security environment protecting sensitive data, which behaviour is this, and why is it usually preferred there?",
+    "choices": [
+      "Fail-closed — it preserves confidentiality and integrity at the cost of availability",
+      "Fail-open — it preserves availability at the cost of security",
+      "Active-passive clustering — it fails over to a standby",
+      "Load balancing — it redistributes traffic"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fail-closed denies traffic on failure, protecting the data even though the service goes down. Fail-open keeps traffic flowing but unprotected — acceptable where availability outweighs exposure, and dangerous where it doesn't."
+  },
+  {
+    "id": "secplus-d3-multi-001",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "An architect is documenting how backups protect against different failure modes. Which TWO of the following maintain a copy of data at a *separate location* to survive the loss of the primary site?",
+    "choices": [
+      "Offsite backups",
+      "Replication to a geographically dispersed site",
+      "Local snapshots on the same SAN",
+      "Journaling to the same database volume",
+      "Increasing the local RAID level"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Offsite backups and geographic replication both put a copy beyond the primary site. Local snapshots, same-volume journaling, and RAID all live with the original hardware — they survive a disk failure, not a site loss."
   }
 ]

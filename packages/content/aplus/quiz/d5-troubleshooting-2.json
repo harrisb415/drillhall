@@ -258,5 +258,48 @@
     ],
     "answerIndex": 0,
     "explanation": "A frozen queue with jobs stuck pending, on an otherwise reachable printer, is a classic print-spooler fault — clearing the stuck jobs and restarting the spooler service resolves most frozen queues without touching hardware."
+  },
+  {
+    "id": "aplus-mc-203",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A desktop powers on, fans spin, but there is no video output and no POST beeps. The technician has already confirmed the monitor works on another machine. What should they do FIRST?",
+    "choices": [
+      "Reseat the RAM and the video card, and remove non-essential peripherals",
+      "Replace the motherboard",
+      "Reinstall the operating system from recovery media",
+      "Update the graphics driver from another PC"
+    ],
+    "answerIndex": 0,
+    "explanation": "With no POST at all, the machine never reached the OS or drivers, so software steps are irrelevant. Reseating memory and the video card and stripping to essentials is the cheap, non-destructive first step before condemning the board."
+  },
+  {
+    "id": "aplus-mc-204",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laptop shuts down without warning under heavy load but runs fine when idle. Which is the LEAST likely cause?",
+    "choices": [
+      "A corrupted user profile",
+      "A blocked or dust-clogged cooling vent",
+      "A failing battery unable to sustain peak draw",
+      "Dried-out thermal paste on the CPU"
+    ],
+    "answerIndex": 0,
+    "explanation": "A load-correlated shutdown points at thermal or power delivery — cooling, thermal paste, or the battery/adapter. A corrupted user profile causes login and application problems, not hardware shutdowns that track CPU load."
+  },
+  {
+    "id": "aplus-multi-003",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A workstation displays intermittent blue screens and random application crashes. Which TWO diagnostic steps BEST isolate a suspected memory fault?",
+    "choices": [
+      "Run a memory diagnostic such as Windows Memory Diagnostic or MemTest86",
+      "Reseat the memory modules and test with one module at a time",
+      "Replace the power supply",
+      "Defragment the system drive",
+      "Increase the page file size"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A dedicated memory test and testing modules individually both isolate a bad stick directly. Replacing the PSU is a shotgun swap, defragmentation addresses fragmentation rather than stability, and enlarging the page file masks nothing here."
   }
 ]

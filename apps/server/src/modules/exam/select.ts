@@ -4,7 +4,12 @@ import type { SelectionStrategy } from "./modes";
 
 export { buildChoiceOrders } from "../quiz/grade";
 
-const PBQ_ORDER: Record<string, number> = { order: 0, match: 0, terminal: 0, mc: 1 };
+/**
+ * Sort key for front-loading performance-based questions, as the real exam
+ * does. Only the three interactive types count as PBQs — multiple-response
+ * ("Select TWO") is a discrete question and sits with standard mc.
+ */
+const PBQ_ORDER: Record<string, number> = { order: 0, match: 0, terminal: 0, mc: 1, multi: 1 };
 
 /**
  * Distributes `total` across `weights` proportionally, using largest-remainder

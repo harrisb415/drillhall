@@ -358,5 +358,72 @@
     "choices": ["Dumpster diving", "Shoulder surfing", "Vishing", "Tailgating"],
     "answerIndex": 0,
     "explanation": "Dumpster diving is recovering sensitive information from improperly discarded trash. Shoulder surfing is observing a screen or keypad directly, which isn't what happened here."
+  },
+  {
+    "id": "netplus-d4-mc-032",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A new switch is being installed in a branch office. Beyond changing the default administrator password, which hardening step MOST directly prevents an unauthorized person from plugging a laptop into an empty wall jack and reaching the network?",
+    "choices": [
+      "Disable unused switch ports",
+      "Enable jumbo frames",
+      "Increase the DHCP lease time",
+      "Configure a larger MTU"
+    ],
+    "answerIndex": 0,
+    "explanation": "Disabling unused ports removes the easy physical path onto the network. Port security and 802.1X harden it further, but disabling what isn't in use is the direct, no-cost control for an empty jack."
+  },
+  {
+    "id": "netplus-d4-mc-033",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization encrypts data at rest and in transit across many systems. Which practice covers securely generating, storing, rotating, and revoking the encryption keys that make all of it work?",
+    "choices": ["Key management", "Content filtering", "Port mirroring", "MAC filtering"],
+    "answerIndex": 0,
+    "explanation": "Key management is the lifecycle discipline around encryption keys — generation, secure storage (often an HSM), rotation, and revocation. Encryption is only as strong as the handling of its keys."
+  },
+  {
+    "id": "netplus-d4-mc-034",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A small office restricts wireless access by entering the MAC address of each approved laptop into the access point. Which statement BEST describes this control?",
+    "choices": [
+      "MAC filtering — a weak control, because MAC addresses can be spoofed once observed",
+      "MAC filtering — a strong control equivalent to 802.1X authentication",
+      "Port security — it authenticates the user, not the device",
+      "Network access control that validates device health before admission"
+    ],
+    "answerIndex": 0,
+    "explanation": "MAC filtering deters casual connection but is easily bypassed: MAC addresses travel in the clear and can be cloned. It's a low-assurance control, not a substitute for 802.1X."
+  },
+  {
+    "id": "netplus-d4-multi-001",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A technician is hardening a newly delivered network switch before putting it into production. Which TWO actions are basic device-hardening steps?",
+    "choices": [
+      "Change the default administrative credentials",
+      "Disable unused ports and services",
+      "Enable Telnet for easier remote management",
+      "Leave the default SNMP community string of 'public' in place",
+      "Widen the MTU to 9000 bytes"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Changing default credentials and disabling what isn't used are core hardening steps. Enabling Telnet (cleartext) and keeping the default community string both weaken the device; MTU is a performance setting, not a security one."
+  },
+  {
+    "id": "netplus-d4-multi-002",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A security review flags several attacks that work by impersonating a trusted network service. Which TWO of the following attacks rely on the attacker posing as a legitimate infrastructure service?",
+    "choices": [
+      "Rogue DHCP server",
+      "Evil twin access point",
+      "MAC flooding",
+      "Denial-of-service (DoS)",
+      "Dumpster diving"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A rogue DHCP server impersonates the DHCP service, and an evil twin impersonates a legitimate SSID — both trick clients into trusting the attacker. MAC flooding overwhelms a switch's CAM table, DoS exhausts capacity, and dumpster diving isn't a network-service impersonation at all."
   }
 ]

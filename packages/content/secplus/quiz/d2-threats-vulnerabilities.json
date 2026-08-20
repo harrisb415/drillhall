@@ -373,5 +373,133 @@
     "choices": ["Sideloading", "Jailbreaking", "Pretexting", "Typosquatting"],
     "answerIndex": 0,
     "explanation": "Sideloading is installing apps from outside the official store. It's a distinct risk from jailbreaking/rooting — a stock, non-jailbroken device can still be exposed to sideloading risk if it's permitted."
+  },
+  {
+    "id": "secplus-d2-mc-041",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A SIEM shows a user account authenticating successfully from an office in Chicago at 09:12, then successfully again from an IP geolocated to Singapore at 09:31. Which indicator BEST describes this?",
+    "choices": [
+      "Impossible travel",
+      "Concurrent session usage",
+      "Out-of-cycle logging",
+      "Resource consumption"
+    ],
+    "answerIndex": 0,
+    "explanation": "No one physically travels Chicago to Singapore in 19 minutes, so at least one authentication used stolen credentials. Concurrent session usage would mean two simultaneous active sessions; here it's the geographic impossibility between two logins that's the tell."
+  },
+  {
+    "id": "secplus-d2-mc-042",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "While investigating a suspected compromise, an analyst finds that the server's security event log has no entries at all between 02:00 and 04:15, though the server was online and busy. What does this MOST likely indicate?",
+    "choices": [
+      "Log tampering — an attacker likely cleared entries to hide activity",
+      "The server was correctly configured to skip logging overnight",
+      "A false positive from the vulnerability scanner",
+      "Normal log rotation, which never leaves gaps"
+    ],
+    "answerIndex": 0,
+    "explanation": "Missing logs across a window when the system was demonstrably active is treated as evidence of tampering, not a glitch. It's a core argument for forwarding logs to a separate SIEM, which an attacker on the host can't retroactively clear."
+  },
+  {
+    "id": "secplus-d2-mc-043",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Users report that shared files will no longer open and the file server's shares are unreachable, though the server itself is powered on and responding to ping. Which indicator category does this fit, and what should be suspected FIRST?",
+    "choices": [
+      "Resource inaccessibility — suspect ransomware encryption or a denial-of-service condition",
+      "Resource consumption — suspect a cryptominer",
+      "Out-of-cycle logging — suspect a scheduled task",
+      "Impossible travel — suspect credential theft"
+    ],
+    "answerIndex": 0,
+    "explanation": "Inaccessibility means access is being denied rather than capacity being eaten — the hallmark of ransomware encryption or a DoS. Resource consumption (high CPU from a miner) would show as slowness, not unreachable files."
+  },
+  {
+    "id": "secplus-d2-mc-044",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker sends small DNS queries to thousands of open resolvers while spoofing the victim's source IP, so each resolver returns a much larger response to the victim. Which attack is this?",
+    "choices": [
+      "An amplified DDoS",
+      "An on-path attack",
+      "A downgrade attack",
+      "A credential replay attack"
+    ],
+    "answerIndex": 0,
+    "explanation": "Spoofing the victim's address so third parties reply to them is reflection; choosing a protocol where the reply is far larger than the request adds amplification, multiplying the attacker's bandwidth against the target."
+  },
+  {
+    "id": "secplus-d2-mc-045",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker registers a domain that closely resembles a well-known bank's, copies its logo and styling exactly, and emails customers from it. Beyond typosquatting the domain name, which technique describes the impersonation of the bank's visual identity?",
+    "choices": [
+      "Brand impersonation",
+      "Pretexting",
+      "Watering hole attack",
+      "Business email compromise"
+    ],
+    "answerIndex": 0,
+    "explanation": "Brand impersonation copies an organization's identity — logos, styling, tone — to inherit its trust. Typosquatting covers the lookalike domain; BEC specifically compromises or spoofs an internal executive's account."
+  },
+  {
+    "id": "secplus-d2-mc-046",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "During a regional emergency, coordinated accounts spread deliberately false claims about which evacuation routes are closed, intending to cause confusion. What is the BEST term for the deliberate spread of information known to be false?",
+    "choices": [
+      "Disinformation",
+      "Misinformation",
+      "Pretexting",
+      "Impersonation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Disinformation is false information spread deliberately, with intent to deceive. Misinformation is false information spread without knowing it's false — the difference is intent, and the exam tests exactly that distinction."
+  },
+  {
+    "id": "secplus-d2-mc-047",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Attackers gain entry to a data center and disable the cooling system, causing servers to overheat and shut down. Which attack category does this represent?",
+    "choices": [
+      "An environmental attack",
+      "A logic bomb",
+      "A supply chain attack",
+      "A reflected DDoS"
+    ],
+    "answerIndex": 0,
+    "explanation": "An environmental attack manipulates physical conditions — cooling, power, humidity — to harm availability without touching the network. It's grouped with physical attacks like brute force and RFID cloning."
+  },
+  {
+    "id": "secplus-d2-multi-001",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A SOC analyst is triaging alerts for a possible account compromise. Which TWO indicators MOST directly suggest that valid credentials are being used by someone other than the account owner?",
+    "choices": [
+      "Impossible travel between two successful logins",
+      "Concurrent session usage from two distinct geographic locations",
+      "A spike in CPU usage on a build server",
+      "A vulnerability scan reporting an unpatched library",
+      "Log rotation completing on schedule"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Impossible travel and concurrent sessions from different places both indicate the same credentials in two people's hands. CPU spikes suggest resource consumption (a miner), an unpatched library is a vulnerability rather than an active compromise, and scheduled log rotation is normal."
+  },
+  {
+    "id": "secplus-d2-multi-002",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO of the following are cryptographic attacks that specifically target hashing?",
+    "choices": [
+      "Collision attack",
+      "Birthday attack",
+      "Downgrade attack",
+      "Password spraying",
+      "Directory traversal"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A collision is two inputs producing the same hash; the birthday attack is the statistical method that finds collisions far faster than intuition suggests. Downgrade attacks target protocol negotiation, spraying targets passwords, and directory traversal targets file paths."
   }
 ]

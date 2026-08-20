@@ -259,5 +259,67 @@
     "choices": ["Directive", "Deterrent", "Compensating", "Corrective"],
     "answerIndex": 0,
     "explanation": "A directive control mandates a specific required action — compliance isn't optional, unlike a deterrent, which only discourages without commanding a specific response."
+  },
+  {
+    "id": "secplus-d1-mc-026",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A security team plants a document named 'Q4_Executive_Salaries.xlsx' on a file server. Nobody has any legitimate reason to open it, and an alert fires the moment anyone does. What is this?",
+    "choices": ["A honeyfile", "A honeynet", "A honeypot", "A data loss prevention rule"],
+    "answerIndex": 0,
+    "explanation": "A honeyfile is a decoy file that should never be legitimately accessed, so any access is a high-fidelity intrusion signal. A honeypot is a decoy system and a honeynet a whole decoy network — this is file-level, so it's a honeyfile."
+  },
+  {
+    "id": "secplus-d1-mc-027",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An organization embeds a fake set of credentials in a database that no application ever uses, purely so that any attempt to authenticate with them proves the database was stolen. What is this decoy called?",
+    "choices": ["A honeytoken", "A honeypot", "A salt", "A canary build"],
+    "answerIndex": 0,
+    "explanation": "A honeytoken is fake data — credentials, records, API keys — planted so that its use anywhere reveals a breach. It's decoy data rather than a decoy system."
+  },
+  {
+    "id": "secplus-d1-mc-028",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "In a Zero Trust control plane, which concept describes deliberately narrowing what any single authenticated identity is able to reach, so that a compromised credential yields the smallest possible blast radius?",
+    "choices": [
+      "Threat scope reduction",
+      "Adaptive identity",
+      "Implicit trust zones",
+      "Policy enforcement point"
+    ],
+    "answerIndex": 0,
+    "explanation": "Threat scope reduction limits what one identity can access, shrinking the damage from any single compromise. Adaptive identity adjusts trust by context; implicit trust zones and the policy enforcement point are data-plane concepts."
+  },
+  {
+    "id": "secplus-d1-multi-001",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A security architect is deploying deception technology. Which TWO of the following are decoy *data* rather than decoy systems or networks?",
+    "choices": [
+      "Honeyfile",
+      "Honeytoken",
+      "Honeypot",
+      "Honeynet",
+      "Screened subnet"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A honeyfile (decoy document) and honeytoken (decoy credentials/records) are planted data. A honeypot is a decoy system, a honeynet a decoy network, and a screened subnet is a real network segment, not deception at all."
+  },
+  {
+    "id": "secplus-d1-multi-002",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "An auditor asks which security controls are classified as *physical* rather than technical or managerial. Select TWO physical controls.",
+    "choices": [
+      "Bollards at the building entrance",
+      "An access control vestibule",
+      "A password complexity policy",
+      "Full-disk encryption",
+      "A background check procedure"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Bollards and an access control vestibule (mantrap) are physical controls — barriers in the real world. Password policy and background checks are managerial; full-disk encryption is technical."
   }
 ]

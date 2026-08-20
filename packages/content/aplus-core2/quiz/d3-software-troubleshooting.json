@@ -390,5 +390,48 @@
       { "left": "Corrupt protected system files", "right": "sfc /scannow" }
     ],
     "explanation": "Match the tool to the layer: application faults surface in the Application log, autoruns in Task Manager, filesystem structure in chkdsk, and OS file integrity in SFC."
+  },
+  {
+    "id": "core2-mc-200",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A Windows workstation began blue-screening immediately after a driver update was installed yesterday. It will not boot normally. What should the technician try FIRST?",
+    "choices": [
+      "Boot into Safe Mode and roll back the driver",
+      "Perform a clean installation of Windows",
+      "Replace the hard drive",
+      "Reset the BIOS to factory defaults"
+    ],
+    "answerIndex": 0,
+    "explanation": "The fault correlates directly with a known recent change, so undoing that change is the targeted first step — Safe Mode loads minimal drivers precisely so a bad one can be rolled back. A clean install or hardware swap discards data and time for no diagnostic reason."
+  },
+  {
+    "id": "core2-mc-201",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An Android user reports their phone battery now drains within a few hours, starting shortly after they installed several apps from a third-party site. Which is the LEAST likely explanation?",
+    "choices": [
+      "The screen resolution is set too high",
+      "A malicious app is running background processes",
+      "An app is continuously polling GPS or the network",
+      "The battery has degraded and needs replacement"
+    ],
+    "answerIndex": 0,
+    "explanation": "Resolution is fixed by the hardware and isn't a user-adjustable drain source that would suddenly change. Sideloaded apps running background processes or constantly polling GPS/network are classic causes, and battery degradation is always a candidate."
+  },
+  {
+    "id": "core2-multi-003",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A workstation is running noticeably slowly. Which TWO steps BEST help identify the cause before making changes?",
+    "choices": [
+      "Review resource usage in Task Manager to identify what is consuming CPU, memory, or disk",
+      "Check Event Viewer for recurring errors or warnings",
+      "Immediately reinstall the operating system",
+      "Replace the RAM without testing it",
+      "Delete files from the user's Documents folder"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Task Manager shows what's actually consuming resources and Event Viewer surfaces recurring faults — both gather information before acting, which is step one of the methodology. Reinstalling, swapping parts, and deleting user data are all changes made without a diagnosis."
   }
 ]

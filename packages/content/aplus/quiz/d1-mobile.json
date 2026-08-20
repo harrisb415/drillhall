@@ -287,5 +287,34 @@
     ],
     "answerIndex": 0,
     "explanation": "Biometrics (fingerprint/face) is one physical security component; a near-field scanner reading a contactless badge is a separate one — both are listed replaceable mobile hardware security components on the exam."
+  },
+  {
+    "id": "aplus-mc-208",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user's company phone was left in a taxi and contains sensitive client data. What should the technician do FIRST?",
+    "choices": [
+      "Issue a remote wipe through the MDM console",
+      "File a police report and wait for the device to be recovered",
+      "Change the user's email password and take no further action",
+      "Order a replacement handset"
+    ],
+    "answerIndex": 0,
+    "explanation": "With sensitive data on a lost device, protecting that data comes first — a remote wipe removes it before anyone can access it. Reporting and replacing the handset matter, but neither stops the data being read in the meantime."
+  },
+  {
+    "id": "aplus-multi-006",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A technician is configuring corporate email on a new mobile device. Which TWO pieces of information are required to set up the outgoing mail connection?",
+    "choices": [
+      "SMTP server address",
+      "Port number and security type (SSL/TLS)",
+      "The device's IMEI",
+      "The phone's screen resolution",
+      "The user's IMSI"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Outgoing mail needs the SMTP server address plus the port and encryption setting. IMEI and IMSI identify the handset and SIM subscriber respectively, and resolution is irrelevant to mail configuration."
   }
 ]

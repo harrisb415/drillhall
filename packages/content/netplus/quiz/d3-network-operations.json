@@ -386,5 +386,48 @@
     ],
     "answerIndex": 0,
     "explanation": "A baseline configuration is the known-good, documented device configuration used as the reference point for change management and drift detection — distinct from a traffic baseline, which tracks normal bandwidth/latency levels instead."
+  },
+  {
+    "id": "netplus-d3-mc-037",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A security team wants DNS responses cryptographically signed so a resolver can detect forged records, without necessarily encrypting the queries themselves. Which technology BEST fits this specific goal?",
+    "choices": [
+      "DNSSEC",
+      "DNS over HTTPS (DoH)",
+      "DNS over TLS (DoT)",
+      "A hosts file"
+    ],
+    "answerIndex": 0,
+    "explanation": "DNSSEC signs DNS records so tampering is detectable (integrity/authenticity). DoH and DoT encrypt the query in transit (confidentiality) but don't sign the records — different goals, and the question specifically asks about detecting forged records."
+  },
+  {
+    "id": "netplus-d3-mc-038",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A privacy-focused deployment wants DNS queries encrypted in transit so an on-path observer can't read which sites users look up. Which BEST addresses this?",
+    "choices": [
+      "DNS over HTTPS (DoH) or DNS over TLS (DoT)",
+      "DNSSEC signing",
+      "Increasing the DNS TTL",
+      "Switching to a hosts file"
+    ],
+    "answerIndex": 0,
+    "explanation": "DoH/DoT encrypt DNS queries in transit, hiding them from on-path observers. DNSSEC protects record integrity but leaves queries readable — it solves a different problem."
+  },
+  {
+    "id": "netplus-d3-multi-001",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "An administrator is configuring a DHCP scope for a new subnet. Which TWO of the following are legitimate DHCP scope settings they would configure?",
+    "choices": [
+      "Lease time",
+      "Address exclusions (addresses within the range the server won't hand out)",
+      "The OSPF administrative distance",
+      "The switch's spanning-tree root bridge priority",
+      "The fiber connector type"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Lease time and exclusions are core DHCP scope settings (along with the range, reservations, and options like gateway/DNS). Administrative distance, STP priority, and connector type belong to routing, switching, and physical media respectively."
   }
 ]

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { and, desc, eq } from "drizzle-orm";
 import { z } from "zod";
-import type { McQuestion, QuizQuestion } from "@comptia/content";
+import type { McQuestion, MultiQuestion, QuizQuestion } from "@comptia/content";
 import type {
   ExamHistoryItem,
   ExamModeDto,
@@ -18,6 +18,7 @@ import {
   AnswerTypeMismatchError,
   applyChoiceOrder,
   buildLayout,
+  displayToOriginalIndex,
   grade,
   solutionFor,
   toPublicQuestion,
@@ -38,6 +39,7 @@ const StartBody = z.object({
 
 const AnswerSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("mc"), choiceIndex: z.number().int().min(0) }),
+  z.object({ type: z.literal("multi"), choiceIndices: z.array(z.number().int().min(0)).min(1).max(20) }),
   z.object({ type: z.literal("order"), order: z.array(z.string()).min(2).max(50) }),
   z.object({ type: z.literal("match"), pairs: z.record(z.string().max(500)) }),
   z.object({ type: z.literal("terminal"), command: z.string().min(1).max(500) }),
@@ -339,17 +341,29 @@ export function examRoutes(deps: ApiDeps): Router {
         return;
       }
 
-      // Map the displayed choice index back through this session's shuffle.
+      // Map the displayed choice index/indices back through this session's shuffle.
       let answer = body.answer;
       if (answer.type === "mc" && question.type === "mc") {
         const orders = JSON.parse(session.choiceOrders ?? "{}") as Record<string, number[]>;
-        const order = orders[question.id];
-        const original = order ? order[answer.choiceIndex] : answer.choiceIndex;
+        const original = displayToOriginalIndex(orders[question.id], answer.choiceIndex);
         if (original === undefined) {
           res.status(400).json({ error: "choiceIndex out of range" });
           return;
         }
         answer = { type: "mc", choiceIndex: original };
+      } else if (answer.type === "multi" && question.type === "multi") {
+        const orders = JSON.parse(session.choiceOrders ?? "{}") as Record<string, number[]>;
+        const order = orders[question.id];
+        const originals: number[] = [];
+        for (const displayIdx of answer.choiceIndices) {
+          const original = displayToOriginalIndex(order, displayIdx);
+          if (original === undefined) {
+            res.status(400).json({ error: "choiceIndex out of range" });
+            return;
+          }
+          originals.push(original);
+        }
+        answer = { type: "multi", choiceIndices: originals };
       }
 
       let correct: boolean;
@@ -506,7 +520,9 @@ export function examRoutes(deps: ApiDeps): Router {
             given: attempt?.answer ? JSON.parse(attempt.answer) : null,
             solution: solutionFor(q),
             explanation: q.explanation,
-            ...(q.type === "mc" ? { choices: (q as McQuestion).choices } : {}),
+            ...(q.type === "mc" || q.type === "multi"
+              ? { choices: (q as McQuestion | MultiQuestion).choices }
+              : {}),
           },
         ];
       });

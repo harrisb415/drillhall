@@ -134,10 +134,14 @@ describe("exam session lifecycle", () => {
     const core2 = stack.content.certIdByCode.get("aplus-core2")!;
     const session = await startExam(stack, cookie, { certId: core2, examMode: "full" });
 
+    // "Performance-based" means the three interactive types specifically.
+    // Multiple-response ("Select TWO") is not performance-based — it sits
+    // with standard multiple choice, exactly as on the real exam.
+    const PBQ = new Set(["order", "match", "terminal"]);
     const types = session.questions.map((q) => q.type);
-    const lastPbq = types.map((t) => t !== "mc").lastIndexOf(true);
-    const firstMc = types.indexOf("mc");
-    if (lastPbq >= 0 && firstMc >= 0) expect(lastPbq).toBeLessThan(firstMc);
+    const lastPbq = types.map((t) => PBQ.has(t)).lastIndexOf(true);
+    const firstNonPbq = types.findIndex((t) => !PBQ.has(t));
+    if (lastPbq >= 0 && firstNonPbq >= 0) expect(lastPbq).toBeLessThan(firstNonPbq);
   });
 
   it("lets answers be changed and cleared before submit", async () => {
@@ -271,6 +275,15 @@ describe("scoring and review", () => {
           const shown = (q as Extract<typeof q, { type: "mc" }>).choices;
           const correctText = source.choices[source.answerIndex]!;
           answer = { type: "mc", choiceIndex: shown.indexOf(correctText) };
+          break;
+        }
+        case "multi": {
+          // Same shuffle problem as mc, but for the whole correct set.
+          const shown = (q as Extract<typeof q, { type: "multi" }>).choices;
+          answer = {
+            type: "multi",
+            choiceIndices: source.answerIndices.map((i) => shown.indexOf(source.choices[i]!)),
+          };
           break;
         }
         case "order":

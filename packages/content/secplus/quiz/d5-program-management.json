@@ -341,5 +341,133 @@
     "choices": ["Offboarding", "Onboarding", "Due diligence", "Third-party risk management"],
     "answerIndex": 0,
     "explanation": "Offboarding must promptly revoke access when someone leaves. A delayed offboarding — an account still active well past departure — is one of the most common real-world governance failures."
+  },
+  {
+    "id": "secplus-d5-mc-036",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A risk register tracks a metric that signals when a particular risk is trending toward becoming unacceptable, so leadership can act before it materializes. What is this metric called?",
+    "choices": [
+      "A key risk indicator (KRI)",
+      "The annualized loss expectancy",
+      "The exposure factor",
+      "The recovery point objective"
+    ],
+    "answerIndex": 0,
+    "explanation": "A KRI is a forward-looking early-warning metric for a specific risk. ALE and exposure factor quantify expected loss, and RPO is a recovery target — none of them serve as a trend warning."
+  },
+  {
+    "id": "secplus-d5-mc-037",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization defines the specific level a given risk must not exceed before mandatory action is triggered. Which term describes this defined line?",
+    "choices": [
+      "Risk threshold",
+      "Risk appetite",
+      "Risk transference",
+      "Residual risk"
+    ],
+    "answerIndex": 0,
+    "explanation": "A risk threshold is the specific quantitative line that triggers action for a given risk. Risk appetite is the organization's broader willingness to take on risk overall — the threshold is the concrete boundary, the appetite is the posture."
+  },
+  {
+    "id": "secplus-d5-mc-038",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "During vendor selection, a procurement officer discovers the manager scoring the bids holds equity in one of the bidding companies. Which vendor-selection concern does this raise?",
+    "choices": [
+      "Conflict of interest",
+      "Due diligence",
+      "Right-to-audit clause",
+      "Rules of engagement"
+    ],
+    "answerIndex": 0,
+    "explanation": "A conflict of interest exists when a decision-maker has a personal stake that could bias their judgment. Due diligence is the investigation of the vendor itself; a right-to-audit clause is a contract term."
+  },
+  {
+    "id": "secplus-d5-mc-039",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two organizations sign a document formally stating shared goals and each party's intended contributions for a joint project, in more detail than a simple MOU but without the pricing terms of a full contract. Which agreement type is this?",
+    "choices": [
+      "Memorandum of agreement (MOA)",
+      "Master service agreement (MSA)",
+      "Statement of work (SOW)",
+      "Non-disclosure agreement (NDA)"
+    ],
+    "answerIndex": 0,
+    "explanation": "An MOA formalizes agreed roles and contributions — more binding and specific than an MOU. An MSA sets overarching commercial terms, and a SOW defines the deliverables of one specific engagement under it."
+  },
+  {
+    "id": "secplus-d5-mc-040",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A regulated healthcare provider repeatedly fails compliance audits. Beyond fines and reputational damage, which consequence would MOST directly end its ability to operate?",
+    "choices": [
+      "Loss of license",
+      "A sanction on a single business unit",
+      "Contractual penalties with one vendor",
+      "An internal audit finding"
+    ],
+    "answerIndex": 0,
+    "explanation": "Losing the license to operate is existential — fines and reputational damage are survivable, but a revoked license removes the legal ability to do business at all in a regulated industry."
+  },
+  {
+    "id": "secplus-d5-mc-041",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A board establishes a dedicated internal body that oversees the audit function, reviews findings independently of operational management, and reports directly to the board. What is this?",
+    "choices": [
+      "An audit committee",
+      "An independent third-party audit",
+      "A regulatory examination",
+      "A self-assessment"
+    ],
+    "answerIndex": 0,
+    "explanation": "An audit committee is an internal governance body providing independent oversight of auditing, reporting to the board rather than to operational management. Third-party audits and regulatory examinations are external by definition."
+  },
+  {
+    "id": "secplus-d5-mc-042",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A security awareness program trains staff to notice and report colleagues behaving in ways that are risky, unexpected, or unintentional. Which awareness practice is this?",
+    "choices": [
+      "Anomalous behavior recognition",
+      "Phishing campaign simulation",
+      "Operational security training",
+      "Password management guidance"
+    ],
+    "answerIndex": 0,
+    "explanation": "Anomalous behavior recognition trains users to spot risky, unexpected, and unintentional behaviour — the three categories the objectives name — turning staff into a detection layer for insider risk."
+  },
+  {
+    "id": "secplus-d5-multi-001",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Under privacy regulations such as GDPR, which TWO roles describe organizations that handle personal data, as distinct from the individual the data is about?",
+    "choices": [
+      "Data controller",
+      "Data processor",
+      "Data subject",
+      "Data custodian's manager",
+      "Data classification"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The controller decides why and how personal data is processed; the processor handles it on the controller's behalf. The data subject is the individual the data describes, and classification is a labeling activity, not a role."
+  },
+  {
+    "id": "secplus-d5-multi-002",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A CISO is quantifying risk for a business case. Which TWO values are required to calculate the annualized loss expectancy (ALE)?",
+    "choices": [
+      "Single loss expectancy (SLE)",
+      "Annualized rate of occurrence (ARO)",
+      "Recovery time objective (RTO)",
+      "Mean time between failures (MTBF)",
+      "The CVSS base score"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "ALE = SLE × ARO: the cost of one occurrence multiplied by how many times per year it's expected. RTO and MTBF are recovery and reliability metrics, and CVSS rates technical severity rather than financial loss."
   }
 ]

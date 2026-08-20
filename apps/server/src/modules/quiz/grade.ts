@@ -52,6 +52,15 @@ export function toPublicQuestion(q: QuizQuestion, layout?: QuestionLayout): Quiz
   switch (q.type) {
     case "mc":
       return { id: q.id, domainCode: q.domainCode, type: "mc", prompt: q.prompt, choices: q.choices };
+    case "multi":
+      return {
+        id: q.id,
+        domainCode: q.domainCode,
+        type: "multi",
+        prompt: q.prompt,
+        choices: q.choices,
+        selectCount: q.answerIndices.length,
+      };
     case "order":
       return {
         id: q.id,
@@ -78,6 +87,8 @@ export function solutionFor(q: QuizQuestion): Solution {
   switch (q.type) {
     case "mc":
       return { type: "mc", answerIndex: q.answerIndex };
+    case "multi":
+      return { type: "multi", answerIndices: q.answerIndices };
     case "order":
       return { type: "order", order: q.items };
     case "match":
@@ -96,34 +107,52 @@ export function solutionFor(q: QuizQuestion): Solution {
 export function buildChoiceOrders(questions: QuizQuestion[]): Record<string, number[]> {
   const orders: Record<string, number[]> = {};
   for (const q of questions) {
-    if (q.type !== "mc") continue;
+    if (q.type !== "mc" && q.type !== "multi") continue;
     orders[q.id] = shuffle(q.choices.map((_, i) => i));
   }
   return orders;
 }
 
-/** Reorders an mc question's choices per the session's stored permutation. */
+/** Reorders an mc/multi question's choices per the session's stored permutation. */
 export function applyChoiceOrder(
   question: QuizQuestionPublic,
   orders: Record<string, number[]>,
 ): QuizQuestionPublic {
-  if (question.type !== "mc") return question;
+  if (question.type !== "mc" && question.type !== "multi") return question;
   const order = orders[question.id];
   if (!order) return question;
   return { ...question, choices: order.map((orig) => question.choices[orig]!) };
 }
 
-/** Expresses an mc solution's answerIndex in the same display order the client was shown. */
+/**
+ * Maps a submitted display index back to the original (file-order) index
+ * through a session's stored permutation. `order[displayIndex] === originalIndex`.
+ * Returns undefined if the display index is out of range.
+ */
+export function displayToOriginalIndex(
+  order: number[] | undefined,
+  displayIndex: number,
+): number | undefined {
+  return order ? order[displayIndex] : displayIndex;
+}
+
+/** Expresses an mc/multi solution's answer index/indices in the display order the client saw. */
 export function applySolutionOrder(
   solution: Solution,
   orders: Record<string, number[]>,
   questionId: string,
 ): Solution {
-  if (solution.type !== "mc") return solution;
   const order = orders[questionId];
   if (!order) return solution;
-  const display = order.indexOf(solution.answerIndex);
-  return display === -1 ? solution : { ...solution, answerIndex: display };
+  if (solution.type === "mc") {
+    const display = order.indexOf(solution.answerIndex);
+    return display === -1 ? solution : { ...solution, answerIndex: display };
+  }
+  if (solution.type === "multi") {
+    const display = solution.answerIndices.map((orig) => order.indexOf(orig)).filter((d) => d !== -1);
+    return { ...solution, answerIndices: display };
+  }
+  return solution;
 }
 
 export function normalizeCommand(input: string): string {
@@ -142,6 +171,14 @@ export function grade(q: QuizQuestion, answer: AttemptAnswer): boolean {
     case "mc": {
       if (q.type !== "mc") return false;
       return answer.choiceIndex === q.answerIndex;
+    }
+    case "multi": {
+      if (q.type !== "multi") return false;
+      // All-or-nothing: the set of picked indices must equal the answer set
+      // exactly — no partial credit, and picking extra choices fails it.
+      const picked = new Set(answer.choiceIndices);
+      const correct = new Set(q.answerIndices);
+      return picked.size === correct.size && [...correct].every((i) => picked.has(i));
     }
     case "order": {
       if (q.type !== "order") return false;

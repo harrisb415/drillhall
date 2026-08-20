@@ -469,5 +469,130 @@
     "choices": ["IDS", "IPS", "NAC", "IAM"],
     "answerIndex": 0,
     "explanation": "An IDS (Intrusion Detection System) monitors and alerts only. An IPS (Intrusion Prevention System) sits inline and can actively block traffic — the detect-vs-prevent distinction is the whole point of the question."
+  },
+  {
+    "id": "netplus-d1-mc-043",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A site-to-site tunnel must carry a routing protocol that plain IPsec can't transport on its own, and the traffic inside also needs to be encrypted. Which combination BEST fits?",
+    "choices": [
+      "GRE for the tunnel, wrapped inside IPsec for encryption",
+      "GRE alone, since GRE encrypts its payload",
+      "IPsec AH alone, since AH encrypts the payload",
+      "A plain HTTP tunnel with TLS disabled"
+    ],
+    "answerIndex": 0,
+    "explanation": "GRE can tunnel protocols IPsec can't carry directly, but GRE provides no encryption on its own — so GRE-over-IPsec is the standard pairing. AH authenticates but does not encrypt; ESP is the piece that encrypts."
+  },
+  {
+    "id": "netplus-d1-mc-044",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which IPsec component is responsible for encrypting the packet payload (as opposed to only authenticating it)?",
+    "choices": ["ESP (Encapsulating Security Payload)", "AH (Authentication Header)", "IKE (Internet Key Exchange)", "GRE"],
+    "answerIndex": 0,
+    "explanation": "ESP encrypts (and can also authenticate) the payload. AH provides authentication and integrity only, with no encryption. IKE negotiates the keys ESP/AH then use."
+  },
+  {
+    "id": "netplus-d1-mc-045",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A streaming company wants video to load from a server geographically close to each viewer instead of always crossing the internet to the origin. Which is the BEST fit?",
+    "choices": ["A content delivery network (CDN)", "A VPN concentrator", "A NAT gateway", "A load balancer inside one data center"],
+    "answerIndex": 0,
+    "explanation": "A CDN caches content on edge nodes near users, cutting latency and origin load. A single-data-center load balancer spreads requests but doesn't move content closer to distant users."
+  },
+  {
+    "id": "netplus-d1-mc-046",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "On a congested WAN link, voice calls break up while a large file transfer runs. Which mechanism is designed to prioritize the latency-sensitive traffic so this stops happening?",
+    "choices": ["QoS (Quality of Service)", "TTL", "A CDN", "Jumbo frames"],
+    "answerIndex": 0,
+    "explanation": "QoS prioritizes chosen traffic classes (like VoIP) on a congested link so they aren't stuck behind bulk transfers. TTL is a packet hop counter; jumbo frames increase frame size and would not help voice latency."
+  },
+  {
+    "id": "netplus-d1-mc-047",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Instances in a cloud private subnet need to download OS updates from the internet, but must NOT be directly reachable from the internet. Which cloud construct provides exactly this?",
+    "choices": ["A NAT gateway", "An internet gateway attached directly to the subnet", "A VPC peering connection", "A customer gateway"],
+    "answerIndex": 0,
+    "explanation": "A NAT gateway lets private-subnet instances initiate outbound connections without being reachable inbound — the cloud equivalent of home-router NAT. An internet gateway on the subnet would make the instances publicly reachable."
+  },
+  {
+    "id": "netplus-d1-multi-001",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A network designer is documenting the pieces of an IPsec VPN. Which TWO of the following are components defined within the IPsec suite?",
+    "choices": [
+      "Authentication Header (AH)",
+      "Encapsulating Security Payload (ESP)",
+      "Generic Routing Encapsulation (GRE)",
+      "Quality of Service (QoS)",
+      "Content Delivery Network (CDN)"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "AH and ESP are both IPsec components (authentication-only and encryption, respectively). GRE is a separate tunneling protocol often paired with IPsec but not part of it; QoS and CDN are unrelated to IPsec."
+  },
+  {
+    "id": "netplus-d1-multi-002",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A cloud architect is choosing which service models hand OS management to the provider rather than the customer. Which TWO service models leave the customer NOT responsible for patching the underlying operating system?",
+    "choices": [
+      "PaaS (Platform as a Service)",
+      "SaaS (Software as a Service)",
+      "IaaS (Infrastructure as a Service)",
+      "On-premises bare metal"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "With PaaS and SaaS the provider manages the OS (and more). With IaaS the customer still patches the guest OS themselves, and on-prem bare metal is entirely the customer's responsibility."
+  },
+  {
+    "id": "netplus-d1-mc-048",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A large multi-tenant data center has exhausted the ~4,000-VLAN ceiling of 802.1Q and needs to stretch Layer 2 segments across a routed backbone between sites. Which technology is designed for this?",
+    "choices": [
+      "VXLAN",
+      "A larger native VLAN",
+      "Spanning Tree Protocol",
+      "A collapsed core design"
+    ],
+    "answerIndex": 0,
+    "explanation": "VXLAN wraps Layer 2 frames in UDP with a 24-bit identifier (16M+ segments) and tunnels them across a Layer 3 backbone — used for data center interconnect and scaling past the 12-bit VLAN limit. STP and native VLANs don't address the ceiling."
+  },
+  {
+    "id": "netplus-d1-mc-049",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "In a Zero Trust Architecture, a request is evaluated by the policy engine and a decision is issued, then a gateway actually blocks or permits the traffic based on that decision. The gateway enforcing the decision is part of which plane?",
+    "choices": ["The data plane", "The control plane", "The management plane", "The presentation plane"],
+    "answerIndex": 0,
+    "explanation": "In ZTA the control plane decides (policy engine/administrator) and the data plane enforces (policy enforcement point). The gateway gating traffic is the enforcement point — the data plane."
+  },
+  {
+    "id": "netplus-d1-mc-050",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company wants remote users to get both SD-WAN connectivity and a full stack of cloud-delivered security (firewall, secure web gateway, zero-trust enforcement) from a single edge service instead of backhauling traffic to headquarters. What describes this converged model?",
+    "choices": ["SASE (Secure Access Service Edge)", "VXLAN", "A three-tier hierarchical model", "MPLS"],
+    "answerIndex": 0,
+    "explanation": "SASE converges networking (SD-WAN) and security services into one cloud-delivered edge. SSE is the security-only subset of SASE; VXLAN and MPLS are transport technologies, not converged security."
+  },
+  {
+    "id": "netplus-d1-mc-051",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A network team stores device configurations in a version-controlled central repository and uses templates to push changes, so every change is tracked and a bad one can be rolled back. What practice is this?",
+    "choices": [
+      "Infrastructure as Code (IaC)",
+      "Out-of-band management",
+      "Spanning tree",
+      "Port mirroring"
+    ],
+    "answerIndex": 0,
+    "explanation": "IaC treats network/device configuration like software: templates/playbooks, version control, drift detection, and rollback. The whole point is that a config change goes through the same review-and-revert discipline as code."
   }
 ]

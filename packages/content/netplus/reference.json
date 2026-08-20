@@ -17,21 +17,66 @@
   {
     "id": "common-ports",
     "title": "Common TCP/UDP Ports",
+    "description": "Every port/protocol pair named in the N10-009 objectives, plus the two mail-retrieval ports.",
     "columns": ["Port", "Protocol", "Service"],
     "rows": [
       ["20/21", "TCP", "FTP data/control"],
-      ["22", "TCP", "SSH/SFTP"],
+      ["22", "TCP", "SSH and SFTP (SFTP runs over SSH)"],
       ["23", "TCP", "Telnet (unencrypted, legacy)"],
-      ["25", "TCP", "SMTP"],
+      ["25", "TCP", "SMTP (mail transfer between servers)"],
       ["53", "TCP/UDP", "DNS"],
-      ["67/68", "UDP", "DHCP"],
+      ["67/68", "UDP", "DHCP (server/client)"],
+      ["69", "UDP", "TFTP (trivial file transfer — no authentication)"],
       ["80", "TCP", "HTTP"],
       ["110", "TCP", "POP3"],
+      ["123", "UDP", "NTP (time synchronization)"],
       ["143", "TCP", "IMAP"],
-      ["161/162", "UDP", "SNMP"],
+      ["161/162", "UDP", "SNMP (polling / traps)"],
+      ["389", "TCP/UDP", "LDAP (directory queries, cleartext)"],
       ["443", "TCP", "HTTPS"],
       ["445", "TCP", "SMB"],
-      ["3389", "TCP/UDP", "RDP"]
+      ["514", "UDP", "Syslog"],
+      ["587", "TCP", "SMTPS / mail submission with TLS"],
+      ["636", "TCP", "LDAPS (LDAP over TLS)"],
+      ["1433", "TCP", "Microsoft SQL Server"],
+      ["3389", "TCP/UDP", "RDP"],
+      ["5060/5061", "TCP/UDP", "SIP (VoIP signaling — 5061 is the TLS-secured variant)"]
+    ]
+  },
+  {
+    "id": "ip-protocol-types",
+    "title": "IP Protocol Types & Traffic Types",
+    "columns": ["Item", "What it is"],
+    "rows": [
+      ["ICMP", "Control/diagnostic messages — what ping and traceroute rely on"],
+      ["TCP", "Connection-oriented, ordered, retransmits lost segments"],
+      ["UDP", "Connectionless, no delivery guarantee — used for voice, video, DNS queries"],
+      ["GRE", "Tunnels traffic (including protocols IPsec can't carry alone) — no encryption of its own"],
+      ["IPsec — AH", "Authentication and integrity, no encryption"],
+      ["IPsec — ESP", "Encrypts the payload, can also authenticate it"],
+      ["IPsec — IKE", "Negotiates and manages the keys AH/ESP use"],
+      ["Unicast", "One sender to one specific receiver"],
+      ["Broadcast", "One sender to every device on the local segment"],
+      ["Multicast", "One sender to a subscribed group of receivers"],
+      ["Anycast", "One address routed to the nearest of several advertising servers"]
+    ]
+  },
+  {
+    "id": "modern-network-environments",
+    "title": "Modern & Evolving Network Environments",
+    "columns": ["Term", "Meaning"],
+    "rows": [
+      ["SDN", "Separates the control plane (centralized decisions) from the data plane (forwarding)"],
+      ["SD-WAN", "Centrally managed WAN across multiple transport types, steering traffic by policy"],
+      ["VXLAN", "Layer 2 frames encapsulated in UDP with a 24-bit ID — 16M+ segments, stretched over a Layer 3 backbone"],
+      ["DCI", "Data Center Interconnect — the VXLAN use case of linking sites at Layer 2"],
+      ["ZTA — control plane", "Policy engine/administrator, adaptive identity, threat scope reduction, policy-driven access control"],
+      ["ZTA — data plane", "Policy enforcement point, implicit trust zones, subject/system"],
+      ["SASE", "SD-WAN + cloud-delivered security (FW, SWG, ZTA, CASB) converged at the edge"],
+      ["SSE", "The security-only subset of SASE"],
+      ["IaC — automation", "Playbooks/templates, configuration drift detection, dynamic inventories"],
+      ["IaC — source control", "Version control, central repository, conflict identification, branching"],
+      ["IPv6 transition", "Tunneling, dual stack, and NAT64 to bridge IPv4 and IPv6"]
     ]
   },
   {

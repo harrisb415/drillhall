@@ -382,5 +382,48 @@
       { "left": "WAN", "right": "Multiple sites, potentially worldwide" }
     ],
     "explanation": "The network types scale up by geographic reach: PAN is device-to-device on one person, LAN covers a site, MAN covers a metro area, and WAN spans multiple sites."
+  },
+  {
+    "id": "aplus-mc-205",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An employee working from a hotel needs to reach internal file shares that are not exposed to the internet. Which is the BEST solution?",
+    "choices": [
+      "Connect through the company VPN",
+      "Ask a colleague to email the files",
+      "Enable file sharing on the hotel Wi-Fi network",
+      "Forward the file server's port through the hotel router"
+    ],
+    "answerIndex": 0,
+    "explanation": "A VPN builds an encrypted tunnel into the corporate network, making internal resources reachable as if on-site. Emailing files bypasses access controls, and exposing the server or enabling sharing on untrusted Wi-Fi creates real risk."
+  },
+  {
+    "id": "aplus-mc-206",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Users on one floor report the wireless is slow at peak times, though signal strength shows full bars. What should the technician investigate FIRST?",
+    "choices": [
+      "Channel overlap and co-channel interference from neighboring access points",
+      "Replacing every user's wireless adapter",
+      "Reinstalling the operating system on affected laptops",
+      "Increasing each access point's transmit power to maximum"
+    ],
+    "answerIndex": 0,
+    "explanation": "Strong signal with poor throughput at busy times points at contention, not coverage. Overlapping channels force devices to share airtime — and raising transmit power usually worsens co-channel interference rather than helping."
+  },
+  {
+    "id": "aplus-multi-004",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A small office is replacing its wireless. Which TWO settings should the technician configure to secure the new access point?",
+    "choices": [
+      "Enable WPA3 (or WPA2 with AES) encryption",
+      "Change the default administrator credentials",
+      "Disable encryption to simplify guest connections",
+      "Leave the default SSID and admin password so support can assist",
+      "Enable WEP for backward compatibility"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Modern encryption and non-default admin credentials are the two baseline hardening steps. WEP is broken, disabling encryption exposes all traffic, and keeping vendor defaults is one of the most exploited weaknesses in small-office gear."
   }
 ]

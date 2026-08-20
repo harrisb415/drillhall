@@ -9,6 +9,7 @@ import { useCert } from "@/lib/cert-context";
 import { cn } from "@/lib/utils";
 import { useExamStore } from "@/stores/exam";
 import { McQuestionView } from "../quiz/questions/McQuestionView";
+import { MultiQuestionView } from "../quiz/questions/MultiQuestionView";
 import { MatchQuestionView } from "../quiz/questions/MatchQuestionView";
 import { OrderQuestionView } from "../quiz/questions/OrderQuestionView";
 import { TerminalQuestionView } from "../quiz/questions/TerminalQuestionView";
@@ -16,6 +17,7 @@ import { ExamTimer } from "./ExamTimer";
 
 const TYPE_LABELS: Record<string, string> = {
   mc: "Multiple choice",
+  multi: "Multiple response",
   order: "Ordering",
   match: "Matching",
   terminal: "Terminal",
@@ -201,6 +203,16 @@ export function ExamRunner() {
         <CardContent>
           {question.type === "mc" && (
             <McQuestionView question={question} given={given} busy={false} onSubmit={submitAnswer} />
+          )}
+          {question.type === "multi" && (
+            <MultiQuestionView
+              key={question.id}
+              question={question}
+              given={given}
+              busy={false}
+              onSubmit={submitAnswer}
+              autoSubmit
+            />
           )}
           {question.type === "order" && (
             <OrderQuestionView

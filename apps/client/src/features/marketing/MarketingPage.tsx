@@ -10,6 +10,7 @@ import { ReadinessPreview } from "./ReadinessPreview";
 
 const TYPE_LABELS: Record<string, string> = {
   mc: "Multiple choice",
+  multi: "Multiple response",
   order: "Drag-to-order",
   match: "Matching",
   terminal: "Terminal sim",
@@ -28,7 +29,7 @@ const FEATURES = [
   },
   {
     title: "Performance-based questions, not just A/B/C/D",
-    body: "Drag the malware-removal steps into order, match attacks to their descriptions, or type the actual command into a real terminal. The same question types the exam uses.",
+    body: "Drag the malware-removal steps into order, match attacks to their descriptions, or type the actual command into a real terminal — plus \"Select TWO\" multiple-response questions that enforce the exact count, the way the real exam does.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-5">
         <rect x="2" y="4" width="20" height="16" rx="2" />

@@ -529,5 +529,49 @@
     "choices": ["Color gamut", "Refresh rate", "Pixel density", "Screen resolution"],
     "answerIndex": 0,
     "explanation": "Color gamut is the range of colors a display can reproduce — a narrower gamut looks duller and less vivid regardless of resolution or refresh rate, which affect sharpness and motion smoothness instead."
+  },
+  {
+    "id": "aplus-multi-001",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A technician is specifying storage for a workstation that must survive a single drive failure without losing data. Which TWO RAID levels meet this requirement?",
+    "choices": [
+      "RAID 1",
+      "RAID 5",
+      "RAID 0",
+      "JBOD",
+      "A single large SSD"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "RAID 1 mirrors every write to a second disk, and RAID 5 uses distributed parity — both survive one drive failing. RAID 0 stripes with no redundancy (one failure loses everything), and JBOD and a single SSD provide no fault tolerance at all."
+  },
+  {
+    "id": "aplus-multi-002",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A build calls for connectors used with fiber optic cabling. Select TWO fiber connector types.",
+    "choices": [
+      "LC (Local Connector)",
+      "SC (Subscriber Connector)",
+      "RJ45",
+      "F-type",
+      "Molex"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "LC and SC are both fiber optic connectors (LC being the small modern type common in data centers). RJ45 is twisted-pair Ethernet, F-type is coaxial, and Molex is an internal power connector."
+  },
+  {
+    "id": "aplus-mc-202",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user reports their laptop display is extremely dim but an image is faintly visible when a bright light is shone at the screen. What should the technician check FIRST?",
+    "choices": [
+      "The backlight or inverter, since the panel is still producing an image",
+      "The graphics driver, and reinstall it immediately",
+      "The motherboard, and replace it",
+      "The operating system, and perform a clean install"
+    ],
+    "answerIndex": 0,
+    "explanation": "A faint but present image under external light proves the LCD panel and video pipeline are working — only the illumination has failed. That isolates the fault to the backlight or its inverter, not the driver, board, or OS."
   }
 ]

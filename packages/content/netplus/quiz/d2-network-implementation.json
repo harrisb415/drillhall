@@ -435,5 +435,84 @@
     "choices": ["A generator", "A second Ethernet cable", "Jumbo frames", "A VIP"],
     "answerIndex": 0,
     "explanation": "A UPS rides through short outages and buys time for a clean shutdown, but a generator is what covers extended outages. Redundant power supplies protect against one PSU failing, not a utility-wide outage."
+  },
+  {
+    "id": "netplus-d2-mc-037",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A Layer 3 switch must route between VLANs without a separate physical router. What is configured on each VLAN to give it a routable IP address on the switch?",
+    "choices": ["A switch virtual interface (SVI)", "A native VLAN", "A trunk port", "A loopback cable"],
+    "answerIndex": 0,
+    "explanation": "An SVI is a virtual Layer 3 interface tied to a VLAN, giving it an IP so a Layer 3 switch can route between VLANs internally — this is what makes a Layer 3 switch both a switch and a router."
+  },
+  {
+    "id": "netplus-d2-mc-038",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A company wants VoIP phone traffic kept separate from workstation data traffic on the same physical switch ports so voice gets consistent QoS. What should be configured?",
+    "choices": ["A voice VLAN", "A larger MTU", "Port mirroring", "A collapsed core"],
+    "answerIndex": 0,
+    "explanation": "A voice VLAN segregates phone traffic from data on the same port (the phone tags voice onto its VLAN while the attached PC uses the data VLAN), so voice can be prioritized independently."
+  },
+  {
+    "id": "netplus-d2-mc-039",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A router has two routes for a packet destined to 10.1.1.5: one to 10.1.0.0/16 and one to 10.1.1.0/24. Which does it use, and why?",
+    "choices": [
+      "10.1.1.0/24, because the longest (most specific) prefix match wins",
+      "10.1.0.0/16, because a shorter prefix has lower administrative distance",
+      "Whichever has the higher metric",
+      "It load-balances equally across both"
+    ],
+    "answerIndex": 0,
+    "explanation": "Longest-prefix match overrides administrative distance and metric: the router always forwards toward the most specific matching route, so the /24 wins over the /16 for 10.1.1.5."
+  },
+  {
+    "id": "netplus-d2-mc-040",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "In a 'router on a stick' design, one physical router interface carries several VLANs from a switch trunk. What is configured on the router, one per VLAN, to route between them?",
+    "choices": ["Subinterfaces", "Additional SVIs", "Native VLANs", "Loopback interfaces"],
+    "answerIndex": 0,
+    "explanation": "A subinterface is a logical division of one physical router interface, each carrying one VLAN with its own IP — letting a single physical link route between multiple VLANs."
+  },
+  {
+    "id": "netplus-d2-mc-041",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A coffee shop wants guests to accept terms and enter internet access without a shared Wi-Fi password. Which wireless feature provides the login/acceptance page?",
+    "choices": ["A captive portal", "A pre-shared key (PSK)", "Band steering", "802.11h DFS"],
+    "answerIndex": 0,
+    "explanation": "A captive portal redirects a newly connected client to a web page for login, terms acceptance, or payment before granting access — exactly the hotel/coffee-shop guest pattern."
+  },
+  {
+    "id": "netplus-d2-mc-042",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An enterprise wants each employee to have individually revocable wireless credentials rather than one shared password everyone knows. Which authentication approach is the BEST fit?",
+    "choices": [
+      "WPA2/WPA3-Enterprise (802.1X with RADIUS)",
+      "WPA2-Personal with a pre-shared key",
+      "An open guest network",
+      "Disabling SSID broadcast"
+    ],
+    "answerIndex": 0,
+    "explanation": "Enterprise mode authenticates each user against a RADIUS server via 802.1X, so a single person's access can be revoked without changing everyone's key. A PSK is one shared secret with no per-user accountability."
+  },
+  {
+    "id": "netplus-d2-multi-001",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A wireless engineer is labeling wireless identifiers in a multi-AP deployment. Which TWO statements are correct?",
+    "choices": [
+      "The BSSID is a specific AP radio's MAC address",
+      "The ESSID is the shared network name presented across multiple APs",
+      "The SSID is the encryption key used by WPA3",
+      "The BSSID is the same on every AP in the network",
+      "The ESSID is unique to each individual radio"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The BSSID identifies one AP radio (its MAC); the ESSID is the shared name across all APs so roaming feels seamless. The SSID is the network name, not an encryption key, and the BSSID differs per radio."
   }
 ]

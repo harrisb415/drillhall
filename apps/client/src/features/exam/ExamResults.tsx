@@ -23,6 +23,19 @@ function GivenAnswer({ item }: { item: ExamReviewItem }) {
         </p>
       );
     }
+    case "multi": {
+      const given = item.given;
+      return (
+        <div>
+          <p className="text-muted-foreground">Your answers:</p>
+          <ul className="mt-1 list-disc pl-5">
+            {given.choiceIndices.map((idx) => (
+              <li key={idx}>{item.choices?.[idx] ?? `option ${idx + 1}`}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
     case "terminal":
       return (
         <p className="font-mono text-xs">
@@ -66,6 +79,19 @@ function CorrectAnswer({ item }: { item: ExamReviewItem }) {
           {item.choices?.[item.solution.answerIndex] ?? `option ${item.solution.answerIndex + 1}`}
         </p>
       );
+    case "multi": {
+      const solution = item.solution;
+      return (
+        <div>
+          <p className="text-muted-foreground">Correct answers:</p>
+          <ul className="mt-1 list-disc pl-5">
+            {solution.answerIndices.map((idx) => (
+              <li key={idx}>{item.choices?.[idx] ?? `option ${idx + 1}`}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
     case "terminal":
       return (
         <p className="font-mono text-xs">

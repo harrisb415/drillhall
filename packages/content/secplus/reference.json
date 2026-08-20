@@ -145,5 +145,70 @@
       ["SAML", "Carries an authentication assertion between systems — enables SSO"],
       ["OAuth", "Authorization framework — grants limited access without sharing a password"]
     ]
+  },
+  {
+    "id": "indicators-of-malicious-activity",
+    "title": "Indicators of Malicious Activity",
+    "description": "Objective 2.4's named indicators, matched to what each one usually means.",
+    "columns": ["Indicator", "What it typically means"],
+    "rows": [
+      ["Account lockout", "Brute force or password spraying — one account is usually the user, many at once is spraying"],
+      ["Concurrent session usage", "Same account active in two places — credential compromise"],
+      ["Impossible travel", "Logins too geographically distant for the time elapsed — stolen credentials, unambiguously"],
+      ["Blocked content", "A control stopped something — worth investigating what tried to run"],
+      ["Resource consumption", "Something is eating capacity — cryptominer (CPU), exfiltration (outbound bandwidth)"],
+      ["Resource inaccessibility", "Access is being denied — ransomware encryption or a successful DoS"],
+      ["Out-of-cycle logging", "Activity at times that don't fit normal patterns — the timing itself is the anomaly"],
+      ["Missing logs", "A gap where entries should be — treated as log tampering, not a glitch"],
+      ["Published/documented", "The indicator matches a publicly reported campaign, advisory, or CVE"]
+    ]
+  },
+  {
+    "id": "vulnerability-management-lifecycle",
+    "title": "Vulnerability Management Lifecycle",
+    "columns": ["Stage", "Key items"],
+    "rows": [
+      ["Identification", "Vulnerability scan, static/dynamic analysis, package monitoring, threat feeds (OSINT, proprietary, ISAC, dark web), penetration test, responsible disclosure / bug bounty, system audit"],
+      ["Confirmation", "False positive (flagged a non-issue — wastes effort) vs. false negative (missed a real flaw — silent risk)"],
+      ["Prioritization", "CVE identifies, CVSS scores; adjusted by environmental variables, exposure factor, industry/organizational impact, risk tolerance"],
+      ["Response", "Patching, insurance, segmentation, compensating controls, documented exceptions/exemptions"],
+      ["Validation", "Rescanning, audit, verification — an unverified fix is an assumption"],
+      ["Reporting", "Close the finding on paper as well as in the system"]
+    ]
+  },
+  {
+    "id": "risk-management-terms",
+    "title": "Risk Management & Governance Terms",
+    "columns": ["Term", "Meaning"],
+    "rows": [
+      ["SLE", "Single loss expectancy — cost of one occurrence (asset value × exposure factor)"],
+      ["ARO", "Annualized rate of occurrence — expected times per year"],
+      ["ALE", "Annualized loss expectancy = SLE × ARO"],
+      ["Exposure factor", "Percentage of the asset lost in a single occurrence"],
+      ["Risk appetite", "Overall willingness to take on risk — expansionary, conservative, or neutral"],
+      ["Risk tolerance", "Acceptable variation around the appetite"],
+      ["Risk threshold", "The specific line for one risk that triggers mandatory action"],
+      ["Key risk indicator (KRI)", "Forward-looking metric warning that a risk is trending toward unacceptable"],
+      ["Risk register", "The tracked list of risks, with owners, thresholds, and KRIs"],
+      ["Transfer / Accept / Avoid / Mitigate", "Move the impact (insurance) / absorb it / stop the activity / reduce likelihood or impact"],
+      ["Controller vs. processor", "Decides why/how data is processed vs. handles it on the controller's behalf"],
+      ["Data subject", "The individual the personal data is about"]
+    ]
+  },
+  {
+    "id": "third-party-agreements",
+    "title": "Third-Party Agreements",
+    "columns": ["Agreement", "What it governs"],
+    "rows": [
+      ["SLA", "Measurable service commitments — uptime, response and resolution times"],
+      ["MOU", "General, often non-binding statement of intent between parties"],
+      ["MOA", "Formalized agreed roles and contributions — more specific and binding than an MOU"],
+      ["MSA", "Overarching commercial terms for an ongoing relationship"],
+      ["SOW / Work order", "Deliverables and scope of one specific engagement under an MSA"],
+      ["NDA", "Confidentiality of information shared between the parties"],
+      ["BPA", "Business partners agreement — terms of a shared business venture"],
+      ["Right-to-audit clause", "Contractual right to inspect the vendor's controls"],
+      ["Rules of engagement", "Scope, timing, and limits for penetration testing"]
+    ]
   }
 ]

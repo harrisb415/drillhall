@@ -329,5 +329,142 @@
     "choices": ["OAuth", "SAML", "RADIUS", "Kerberos"],
     "answerIndex": 0,
     "explanation": "OAuth is an authorization framework that grants a third party limited access to specific resources on a user's behalf, without sharing credentials — distinct from SAML, which is about proving identity (authentication), not granting scoped access."
+  },
+  {
+    "id": "secplus-d4-mc-052",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A vulnerability scan reports a system as clean, but a penetration tester later exploits a real flaw on that same system that the scanner never reported. What is this scanner result called, and why does it matter MOST?",
+    "choices": [
+      "A false negative — the risk goes unnoticed because nothing ever alerted",
+      "A false positive — effort is wasted investigating a non-issue",
+      "An exception — the finding was formally accepted",
+      "A compensating control — another control offset the risk"
+    ],
+    "answerIndex": 0,
+    "explanation": "A false negative is a missed real vulnerability. It's more dangerous than a false positive precisely because it's silent: the organization believes it is secure and takes no action."
+  },
+  {
+    "id": "secplus-d4-mc-053",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A SOC finds analysts are ignoring an alert channel because it fires hundreds of times daily with almost no true positives. What is the BEST corrective action?",
+    "choices": [
+      "Alert tuning — adjust thresholds and rules so the channel signals meaningfully",
+      "Disable the alert channel entirely to reduce noise",
+      "Add more alert channels to increase coverage",
+      "Escalate every alert to management"
+    ],
+    "answerIndex": 0,
+    "explanation": "Alert tuning fixes the underlying signal-to-noise problem that causes alert fatigue. Disabling the channel removes visibility, and adding more channels or escalating everything worsens the fatigue that caused the problem."
+  },
+  {
+    "id": "secplus-d4-mc-054",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization wants to measure its server hardening against a published, industry-recognized secure-configuration standard. What should it use?",
+    "choices": [
+      "Benchmarks (such as the CIS Benchmarks)",
+      "A CVE identifier",
+      "A penetration test report",
+      "A risk register"
+    ],
+    "answerIndex": 0,
+    "explanation": "Benchmarks are published secure-configuration baselines used as the measuring stick for hardening. A CVE names a specific vulnerability, and a risk register tracks organizational risks — neither defines a configuration standard."
+  },
+  {
+    "id": "secplus-d4-mc-055",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A web application sets its session cookie with the HttpOnly and Secure attributes. What does this specifically defend against?",
+    "choices": [
+      "Session token theft via cross-site scripting, and interception over unencrypted HTTP",
+      "SQL injection against the login form",
+      "Brute-force password guessing",
+      "Directory traversal of the web root"
+    ],
+    "answerIndex": 0,
+    "explanation": "HttpOnly blocks JavaScript from reading the cookie, defeating XSS-based token theft; Secure prevents it being sent over plain HTTP. Neither affects SQL injection, brute force, or path traversal."
+  },
+  {
+    "id": "secplus-d4-mc-056",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company monitors its third-party software dependencies so it learns immediately when a newly disclosed vulnerability affects a library it uses. Which application-security activity is this?",
+    "choices": [
+      "Package monitoring",
+      "Static code analysis",
+      "Dynamic code analysis",
+      "Input validation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Package monitoring tracks third-party dependencies for newly disclosed flaws — the supply-chain side of application security. Static and dynamic analysis examine your own code at rest and at runtime."
+  },
+  {
+    "id": "secplus-d4-mc-057",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A privileged account is granted elevated rights that automatically expire after a single maintenance task, leaving no standing admin access. Which PAM technique BEST describes the credentials themselves?",
+    "choices": [
+      "Ephemeral credentials",
+      "Password vaulting",
+      "Identity proofing",
+      "Attestation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Ephemeral credentials exist only for the duration of a specific task, so there's nothing durable to steal. Password vaulting stores long-lived credentials securely; identity proofing verifies who someone is at enrollment."
+  },
+  {
+    "id": "secplus-d4-mc-058",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Before issuing credentials to a new remote employee, an organization verifies their government ID and validates it against authoritative records. Which IAM activity is this?",
+    "choices": ["Identity proofing", "Federation", "Attestation", "Provisioning"],
+    "answerIndex": 0,
+    "explanation": "Identity proofing establishes that a person is who they claim to be *before* an identity is issued. Provisioning creates the account afterward; attestation is the periodic review that existing access is still appropriate."
+  },
+  {
+    "id": "secplus-d4-mc-059",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A tool baselines each employee's normal working hours, systems accessed, and data volumes, then flags a finance user who begins downloading engineering repositories at 3 a.m. using entirely valid credentials. What technology is this?",
+    "choices": [
+      "User behavior analytics (UBA)",
+      "A vulnerability scanner",
+      "Data loss prevention (DLP)",
+      "A host-based firewall"
+    ],
+    "answerIndex": 0,
+    "explanation": "UBA detects deviations from a learned behavioural baseline, which is what catches valid credentials being misused — nothing about the authentication is invalid, but the pattern is wrong for that person."
+  },
+  {
+    "id": "secplus-d4-multi-001",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A security manager wants outside researchers to be able to report vulnerabilities safely and legally. Which TWO mechanisms support this goal?",
+    "choices": [
+      "A responsible disclosure program",
+      "A bug bounty program",
+      "A penetration test performed by internal staff only",
+      "Disabling the security contact email address",
+      "A non-disclosure agreement with all customers"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Responsible disclosure gives researchers a defined, safe reporting channel; a bug bounty adds payment for valid findings. Internal-only testing and removing the reporting channel both close off outside reports entirely."
+  },
+  {
+    "id": "secplus-d4-multi-002",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "An analyst is distinguishing CVE from CVSS while triaging scan output. Select TWO correct statements.",
+    "choices": [
+      "CVE is the unique identifier assigned to a specific known vulnerability",
+      "CVSS is the numeric severity score used to help rank a vulnerability",
+      "CVSS assigns the unique identifier and CVE provides the score",
+      "A high CVSS score always makes a finding the top remediation priority regardless of context",
+      "CVE scores vulnerabilities from 0 to 10"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "CVE names it, CVSS rates it. And the raw score isn't the whole priority: environmental variables, exposure factor, and organizational impact adjust it — a 9.8 on an isolated lab box can matter less than a 6.5 on a public payment server."
   }
 ]

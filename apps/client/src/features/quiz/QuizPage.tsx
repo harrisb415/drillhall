@@ -13,6 +13,7 @@ import { useOneShot } from "@/lib/milestones";
 import { cn } from "@/lib/utils";
 import { useQuizStore } from "@/stores/quiz";
 import { McQuestionView } from "./questions/McQuestionView";
+import { MultiQuestionView } from "./questions/MultiQuestionView";
 import { MatchQuestionView } from "./questions/MatchQuestionView";
 import { OrderQuestionView } from "./questions/OrderQuestionView";
 import { TerminalQuestionView } from "./questions/TerminalQuestionView";
@@ -21,6 +22,7 @@ const COUNT_OPTIONS = [5, 10, 20];
 
 const TYPE_LABELS: Record<string, string> = {
   mc: "Multiple choice",
+  multi: "Multiple response",
   order: "Ordering",
   match: "Matching",
   terminal: "Terminal",
@@ -48,8 +50,8 @@ function SetupPhase() {
       <CardHeader>
         <CardTitle>New quiz</CardTitle>
         <CardDescription>
-          Questions from the {cert.name} pool — multiple choice plus performance-based (ordering,
-          matching, terminal). Graded as you go.
+          Questions from the {cert.name} pool — multiple choice, multiple response ("Select TWO"),
+          and performance-based (ordering, matching, terminal). Graded as you go.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -147,6 +149,7 @@ function PlayingPhase() {
         </CardHeader>
         <CardContent>
           {question.type === "mc" && <McQuestionView question={question} {...viewProps} />}
+          {question.type === "multi" && <MultiQuestionView question={question} {...viewProps} />}
           {question.type === "order" && <OrderQuestionView question={question} {...viewProps} />}
           {question.type === "match" && <MatchQuestionView question={question} {...viewProps} />}
           {question.type === "terminal" && (

@@ -16,13 +16,14 @@ import {
   applyChoiceOrder,
   applySolutionOrder,
   buildChoiceOrders,
+  displayToOriginalIndex,
   grade,
   shuffle,
   solutionFor,
   toPublicQuestion,
 } from "./grade";
 
-const QUESTION_TYPES = ["mc", "order", "match", "terminal"] as const;
+const QUESTION_TYPES = ["mc", "multi", "order", "match", "terminal"] as const;
 
 const StartBody = z.object({
   certId: z.number().int(),
@@ -33,6 +34,7 @@ const StartBody = z.object({
 
 const AnswerSchema = z.discriminatedUnion("type", [
   z.object({ type: z.literal("mc"), choiceIndex: z.number().int().min(0) }),
+  z.object({ type: z.literal("multi"), choiceIndices: z.array(z.number().int().min(0)).min(1).max(20) }),
   z.object({ type: z.literal("order"), order: z.array(z.string()).min(2).max(50) }),
   z.object({ type: z.literal("match"), pairs: z.record(z.string().max(500)) }),
   z.object({ type: z.literal("terminal"), command: z.string().min(1).max(500) }),
@@ -135,17 +137,28 @@ export function quizRoutes(deps: ApiDeps): Router {
         return;
       }
 
-      // Map the displayed choice index back through this session's shuffle.
+      // Map the displayed choice index/indices back through this session's shuffle.
       const choiceOrders = JSON.parse(session.choiceOrders ?? "{}") as Record<string, number[]>;
       let answer = body.answer;
       if (answer.type === "mc" && question.type === "mc") {
-        const order = choiceOrders[question.id];
-        const original = order ? order[answer.choiceIndex] : answer.choiceIndex;
+        const original = displayToOriginalIndex(choiceOrders[question.id], answer.choiceIndex);
         if (original === undefined) {
           res.status(400).json({ error: "choiceIndex out of range" });
           return;
         }
         answer = { type: "mc", choiceIndex: original };
+      } else if (answer.type === "multi" && question.type === "multi") {
+        const order = choiceOrders[question.id];
+        const originals: number[] = [];
+        for (const displayIdx of answer.choiceIndices) {
+          const original = displayToOriginalIndex(order, displayIdx);
+          if (original === undefined) {
+            res.status(400).json({ error: "choiceIndex out of range" });
+            return;
+          }
+          originals.push(original);
+        }
+        answer = { type: "multi", choiceIndices: originals };
       }
 
       const existing = deps.db

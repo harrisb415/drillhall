@@ -592,5 +592,34 @@
     "choices": ["Licensing assignment", "Identity synchronization", "Sync/folder settings", "Image deployment"],
     "answerIndex": 0,
     "explanation": "Cloud productivity suites are licensed per-user; reassigning or reclaiming a license as people join or leave is now a routine onboarding/offboarding task, not a one-time server-room job."
+  },
+  {
+    "id": "core2-mc-204",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must install Windows on 40 identical new workstations with the same applications and settings. Which deployment method is the BEST fit?",
+    "choices": [
+      "Image deployment from a prepared reference image",
+      "Installing each machine manually from USB media",
+      "An in-place upgrade on each machine",
+      "A repair installation on each machine"
+    ],
+    "answerIndex": 0,
+    "explanation": "Imaging captures a fully configured reference build and clones it, giving identical, fast, repeatable deployments across many identical machines. Manual installs don't scale, and upgrade/repair installs assume an existing OS to preserve."
+  },
+  {
+    "id": "core2-multi-006",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A technician is preparing a workstation for a clean Windows installation. Which TWO steps should be completed BEFORE beginning the installation?",
+    "choices": [
+      "Back up the user's data to separate media",
+      "Verify the hardware meets the edition's minimum requirements",
+      "Defragment the drive that is about to be formatted",
+      "Create a system restore point on the drive being wiped",
+      "Disable the antivirus permanently"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Backing up data and confirming hardware compatibility both prevent avoidable failures. Defragmenting or creating a restore point on a drive that is about to be formatted accomplishes nothing, and permanently disabling antivirus is never a prerequisite."
   }
 ]

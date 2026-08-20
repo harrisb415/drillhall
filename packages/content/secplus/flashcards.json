@@ -220,5 +220,113 @@
     "domainCode": "5.0",
     "front": "PCI DSS vs HIPAA vs ISO 27001?",
     "back": "PCI DSS: required for anyone handling payment card data. HIPAA: governs US healthcare/PHI. ISO 27001: a general, certifiable information security management framework, not tied to one industry or data type."
+  },
+  {
+    "id": "secplus-fc-038",
+    "domainCode": "1.0",
+    "front": "Honeypot vs. honeynet vs. honeyfile vs. honeytoken?",
+    "back": "Honeypot: a decoy system. Honeynet: a whole decoy network of them. Honeyfile: a decoy document nobody should ever open, so access is an alert. Honeytoken: decoy data (fake credentials/records) whose use anywhere proves a breach."
+  },
+  {
+    "id": "secplus-fc-039",
+    "domainCode": "2.0",
+    "front": "Impossible travel — what is it and what does it prove?",
+    "back": "The same account authenticates from two locations too far apart for the time elapsed (Chicago 09:12, Singapore 09:31). Geography makes it unambiguous: at least one login used stolen credentials."
+  },
+  {
+    "id": "secplus-fc-040",
+    "domainCode": "2.0",
+    "front": "Resource consumption vs. resource inaccessibility — which attacks does each suggest?",
+    "back": "Consumption = something is eating capacity (cryptominer spiking CPU, exfiltration spiking outbound bandwidth). Inaccessibility = access is being denied (ransomware encryption, or a successful DoS)."
+  },
+  {
+    "id": "secplus-fc-041",
+    "domainCode": "2.0",
+    "front": "Why are missing logs treated as evidence rather than a glitch?",
+    "back": "Attackers clear logs to hide activity, so an unexplained gap during a period the system was demonstrably active indicates tampering. It's the core argument for forwarding logs to a separate SIEM the attacker can't retroactively clear."
+  },
+  {
+    "id": "secplus-fc-042",
+    "domainCode": "2.0",
+    "front": "Reflected vs. amplified DDoS?",
+    "back": "Reflected: the attacker spoofs the victim's source IP so third-party servers send their replies to the victim. Amplified: the same trick, but choosing a protocol where the reply is far larger than the request — amplification is reflection plus a size multiplier."
+  },
+  {
+    "id": "secplus-fc-043",
+    "domainCode": "2.0",
+    "front": "Misinformation vs. disinformation?",
+    "back": "Both are false. Misinformation is spread without knowing it's false; disinformation is spread deliberately, with intent to deceive. The difference is intent, and that's exactly what the exam tests."
+  },
+  {
+    "id": "secplus-fc-044",
+    "domainCode": "3.0",
+    "front": "What does a cloud responsibility matrix define?",
+    "back": "Which security duties belong to the provider and which stay with the customer. The boundary shifts by service model — with IaaS you patch the guest OS; with SaaS the provider handles nearly all of it — which is why it's documented explicitly."
+  },
+  {
+    "id": "secplus-fc-045",
+    "domainCode": "3.0",
+    "front": "Fail-open vs. fail-closed?",
+    "back": "Fail-open passes traffic when the security device fails — availability preserved, protection lost. Fail-closed blocks traffic on failure — data protected, service down. High-security environments generally choose fail-closed."
+  },
+  {
+    "id": "secplus-fc-046",
+    "domainCode": "3.0",
+    "front": "Snapshots, replication, and journaling — what does each protect against?",
+    "back": "Snapshot: a point-in-time image, good for rolling back a bad change. Replication: a live copy elsewhere, protects against site loss. Journaling: sequential logging of every transaction, enables point-in-time recovery of a database."
+  },
+  {
+    "id": "secplus-fc-047",
+    "domainCode": "4.0",
+    "front": "False positive vs. false negative — which is worse, and why?",
+    "back": "A false positive flags a non-issue: it wastes effort and erodes trust in the tool. A false negative misses a real vulnerability: far more dangerous, because nothing alerts and the organization believes it's secure."
+  },
+  {
+    "id": "secplus-fc-048",
+    "domainCode": "4.0",
+    "front": "CVE vs. CVSS?",
+    "back": "CVE is the unique identifier for a specific known vulnerability. CVSS is the numeric severity score (roughly 0–10). CVE names it, CVSS rates it — and the raw score is adjusted by environmental variables, exposure factor, and organizational impact before it sets priority."
+  },
+  {
+    "id": "secplus-fc-049",
+    "domainCode": "4.0",
+    "front": "What is alert tuning, and what problem does it solve?",
+    "back": "Adjusting alert thresholds and rules so a channel signals meaningfully instead of firing constantly. It prevents alert fatigue — where analysts start ignoring a noisy channel and the one real alert gets ignored along with the noise."
+  },
+  {
+    "id": "secplus-fc-050",
+    "domainCode": "4.0",
+    "front": "What does User Behavior Analytics (UBA) detect that authentication controls can't?",
+    "back": "Valid credentials being used abnormally. UBA baselines each user's normal hours, systems, and data volumes, then flags deviations — nothing about the login is technically invalid, but the pattern is wrong for that person."
+  },
+  {
+    "id": "secplus-fc-051",
+    "domainCode": "4.0",
+    "front": "Identity proofing vs. provisioning vs. attestation?",
+    "back": "Identity proofing verifies a person really is who they claim, before an identity is issued. Provisioning creates the account and assigns access. Attestation is the periodic review confirming existing access is still appropriate."
+  },
+  {
+    "id": "secplus-fc-052",
+    "domainCode": "5.0",
+    "front": "Risk appetite vs. risk tolerance vs. risk threshold?",
+    "back": "Appetite: how much risk the organization is willing to take on overall (expansionary/conservative/neutral). Tolerance: the acceptable variation around that. Threshold: the specific line for a given risk that triggers mandatory action."
+  },
+  {
+    "id": "secplus-fc-053",
+    "domainCode": "5.0",
+    "front": "How is ALE calculated, and what do SLE and ARO mean?",
+    "back": "ALE = SLE × ARO. SLE (single loss expectancy) is the cost of one occurrence — asset value × exposure factor. ARO (annualized rate of occurrence) is how many times per year it's expected to happen."
+  },
+  {
+    "id": "secplus-fc-054",
+    "domainCode": "5.0",
+    "front": "MOU vs. MOA vs. MSA vs. SOW?",
+    "back": "MOU: a general, often non-binding statement of intent. MOA: formalizes agreed roles and contributions, more specific and binding. MSA: overarching commercial terms for an ongoing relationship. SOW: the deliverables of one specific engagement under an MSA."
+  },
+  {
+    "id": "secplus-fc-055",
+    "domainCode": "5.0",
+    "front": "Data controller vs. data processor vs. data subject?",
+    "back": "Controller: decides why and how personal data is processed. Processor: handles it on the controller's behalf. Data subject: the individual the data is about. Controllers carry the primary compliance obligation."
   }
 ]

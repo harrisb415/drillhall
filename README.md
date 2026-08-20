@@ -2,15 +2,16 @@
 
 Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express + better-sqlite3 server, Better Auth (email/password + Google), content shipped as validated data packs.
 
-**Status: v1.11.2 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1201), A+ Core 2 (220-1202), Network+ (N10-009), Security+ (SY0-701).
+**Status: v1.12.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1201), A+ Core 2 (220-1202), Network+ (N10-009), Security+ (SY0-701).
 
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
+- **Multiple-response questions** ("Select TWO") as a first-class type alongside multiple choice and the PBQ engines — graded all-or-nothing, with the exact-count enforcement the real exam uses. See below.
 - **Phase 3** — public marketing homepage at `/` (dashboard moved to `/dashboard`), password reset flow, friendly auth errors, password visibility toggle, return-to-destination after login, verification-email resend.
 - **Exam simulator** (Phase 2 addendum) — five randomized, timed exam types with server-authoritative timing and CompTIA-style scaled scoring. See below.
 - **Phase 4** — exam planner, notification preferences page, and an in-process `node-cron` scheduler sending exam reminders, inactivity nudges, and a weekly digest. See below.
 - **Phase 5** — gamification (XP, streaks, levels) with the race-safe transaction the spec calls for, per-user timezone-aware notification delivery, nightly backup automation, a low-confidence indicator on readiness, and Playwright e2e coverage.
-- **Network+ and Security+ packs**, each grown to ~180+ questions, and a practice-mode fix so multiple-choice option order shuffles per session instead of favoring the first-listed choice.
+- **Network+ and Security+ packs**, each grown past 240 questions and audited against CompTIA's real objectives PDFs, plus a practice-mode fix so multiple-choice option order shuffles per session instead of favoring the first-listed choice.
 - **Self-service account deletion** at `/settings` — cascades through every owned table, including unlinking Google.
 - **Self-service progress reset** at `/settings` — wipes XP, level, streaks, and every quiz/exam/flashcard/course record back to a fresh account, without touching the account itself, notification settings, or a booked exam date. A second option resets just one cert's quiz/exam/flashcard/course records, leaving every other cert (and XP/level/streak, which are cross-cert) untouched.
 - **Visual identity** — charcoal-and-brass palette, radial mastery gauges, score sparklines, rank insignia and a tiered streak flame. See below.
@@ -71,11 +72,14 @@ Question types (one `QuizQuestionSchema` discriminated union, all graded server-
 | Type | Shape | Client |
 |---|---|---|
 | `mc` | `choices[]` + `answerIndex` | radio-style buttons |
+| `multi` | `choices[]` + `answerIndices[]` | checkboxes; "Select TWO" enforced client-side, graded all-or-nothing |
 | `order` | `items[]` in correct order | `@hello-pangea/dnd`, server shuffles before sending |
 | `match` | `pairs[]` of `{left, right}` | `@hello-pangea/dnd`, server shuffles the rights |
 | `terminal` | `expected[]` acceptable commands | `xterm.js`, case/whitespace-insensitive match |
 
 Answers and explanations never reach the client until after grading.
+
+**Multiple-response (`multi`)** mirrors the real exam's "Select TWO/THREE": the count comes from `answerIndices.length` (no second field to drift), the client disables the remaining options once that many are ticked, and Submit stays disabled until exactly that many are picked. Grading is **all-or-nothing** — a partial selection and an over-selection both fail, with no partial credit. The validator rejects duplicate indices, out-of-range indices, and any question where every choice is correct. Note that `multi` is *not* performance-based: exams front-load the three interactive PBQ types, and a multi-select question sits with standard multiple choice.
 
 ## Admin
 
@@ -110,14 +114,14 @@ Each cert declares only four numbers (`exam` in `cert.json`); the modes are deri
 
 **Randomization.** Every attempt draws a fresh weighted sample, deprioritizes questions from your last three exams, and shuffles multiple-choice option order so a repeat sighting can't be answered from position memory. The shuffle is stored per session and mapped back at grading time. Practice mode (not just exam mode) shuffles the same way — `buildChoiceOrders`/`applyChoiceOrder` in `modules/quiz/grade.ts` are shared by both.
 
-Novelty is bounded by pool size — two exams of N questions from a bank of B must share at least `2N − B`. With ~180+ questions per cert, **every mode currently has zero forced repeat**, including a back-to-back pair of full 90-question mocks. The PBQ gauntlet is deliberately capped at half the PBQ pool for the same reason, since performance-based questions are the most expensive to author.
+Novelty is bounded by pool size — two exams of N questions from a bank of B must share at least `2N − B`. With 228+ questions per cert, **every mode currently has zero forced repeat**, including a back-to-back pair of full 90-question mocks. The PBQ gauntlet is deliberately capped at half the PBQ pool for the same reason, since performance-based questions are the most expensive to author.
 
-| Cert | Questions | of which PBQ | Full mock forced repeat |
-|---|---|---|---|
-| A+ Core 1 (220-1201) | 215 | 16 | 0% |
-| A+ Core 2 (220-1202) | 217 | 20 | 0% |
-| Network+ (N10-009) | 218 | 10 | 0% |
-| Security+ (SY0-701) | 219 | 10 | 0% |
+| Cert | Questions | of which PBQ | of which multi-response | Full mock forced repeat |
+|---|---|---|---|---|
+| A+ Core 1 (220-1201) | 228 | 14 | 6 | 0% |
+| A+ Core 2 (220-1202) | 230 | 20 | 6 | 0% |
+| Network+ (N10-009) | 248 | 12 | 7 | 0% |
+| Security+ (SY0-701) | 257 | 12 | 9 | 0% |
 
 **Timing is server-authoritative.** The deadline lives in the database; answers are rejected after it and a reload resumes with the correct remaining time rather than restarting the clock. Unanswered questions count as incorrect, as they would on the real exam.
 

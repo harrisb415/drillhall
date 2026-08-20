@@ -62,6 +62,41 @@ describe("shipped content packs", () => {
     const pack = CertPackSchema.parse(loadPackDir(path.join(CONTENT_ROOT, "aplus")));
     expect(pack.quiz.some((q) => q.type === "terminal")).toBe(false);
   });
+
+  // The real exams use multiple-response ("Select TWO") questions in every
+  // domain, so a pack with none — or with them clustered in one domain —
+  // isn't representative of the sitting.
+  it("every pack has multiple-response questions in every domain", () => {
+    for (const dir of SHIPPED_PACKS) {
+      const pack = CertPackSchema.parse(loadPackDir(path.join(CONTENT_ROOT, dir)));
+      const multi = pack.quiz.filter((q) => q.type === "multi");
+      expect(multi.length, `${dir} has no multi-response questions`).toBeGreaterThan(0);
+      for (const domain of pack.domains) {
+        const inDomain = multi.filter((q) => q.domainCode === domain.code);
+        expect(
+          inDomain.length,
+          `${dir} domain ${domain.code} has no multi-response question`,
+        ).toBeGreaterThan(0);
+      }
+    }
+  });
+
+  it("every multi-response question is answerable and has a wrong option", () => {
+    for (const dir of SHIPPED_PACKS) {
+      const pack = CertPackSchema.parse(loadPackDir(path.join(CONTENT_ROOT, dir)));
+      for (const q of pack.quiz) {
+        if (q.type !== "multi") continue;
+        expect(q.answerIndices.length, `${q.id} must require 2+ selections`).toBeGreaterThanOrEqual(2);
+        expect(
+          q.answerIndices.length,
+          `${q.id} must leave at least one incorrect choice`,
+        ).toBeLessThan(q.choices.length);
+        expect(new Set(q.answerIndices).size, `${q.id} has duplicate answerIndices`).toBe(
+          q.answerIndices.length,
+        );
+      }
+    }
+  });
 });
 
 describe("validator catches deliberately broken packs", () => {
@@ -124,6 +159,87 @@ describe("validator catches deliberately broken packs", () => {
     expect(result.success).toBe(false);
     if (!result.success) {
       expect(result.error.issues.some((i) => i.message.includes("out of range"))).toBe(true);
+    }
+  });
+
+  function packWithMulti(multi: Record<string, unknown>) {
+    const raw = loadPackDir(path.join(FIXTURES, "broken-missing-weight")) as Record<string, unknown>;
+    return {
+      ...raw,
+      exam: { questionCount: 90, minutes: 90, passingScaledScore: 675, passingRawPercent: 75 },
+      domains: [{ code: "1.0", name: "D", weight: 100 }],
+      flashcards: [{ id: "f1", domainCode: "1.0", front: "Q", back: "A" }],
+      quiz: [multi],
+      reference: [],
+    };
+  }
+
+  it("accepts a well-formed multi-response question", () => {
+    const result = CertPackSchema.safeParse(
+      packWithMulti({
+        id: "m1",
+        type: "multi",
+        domainCode: "1.0",
+        prompt: "Select TWO",
+        choices: ["A", "B", "C"],
+        answerIndices: [0, 1],
+        explanation: "ok",
+      }),
+    );
+    expect(result.success, JSON.stringify(result.success ? [] : result.error.issues)).toBe(true);
+  });
+
+  it("rejects a multi question with duplicate answerIndices", () => {
+    const result = CertPackSchema.safeParse(
+      packWithMulti({
+        id: "m1",
+        type: "multi",
+        domainCode: "1.0",
+        prompt: "Select TWO",
+        choices: ["A", "B", "C"],
+        answerIndices: [1, 1],
+        explanation: "dup",
+      }),
+    );
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.some((i) => i.message.includes("duplicate"))).toBe(true);
+    }
+  });
+
+  it("rejects a multi question with an answerIndex out of range", () => {
+    const result = CertPackSchema.safeParse(
+      packWithMulti({
+        id: "m1",
+        type: "multi",
+        domainCode: "1.0",
+        prompt: "Select TWO",
+        choices: ["A", "B", "C"],
+        answerIndices: [0, 9],
+        explanation: "oob",
+      }),
+    );
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.some((i) => i.message.includes("out of range"))).toBe(true);
+    }
+  });
+
+  it("rejects a multi question where every choice is correct", () => {
+    const result = CertPackSchema.safeParse(
+      packWithMulti({
+        id: "m1",
+        type: "multi",
+        domainCode: "1.0",
+        prompt: "Select all",
+        choices: ["A", "B", "C"],
+        answerIndices: [0, 1, 2],
+        explanation: "no wrong answer",
+      }),
+    );
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues.some((i) => i.message.includes("incorrect choice"))).toBe(true);
     }
   });
 });

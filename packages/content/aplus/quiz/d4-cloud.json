@@ -236,5 +236,34 @@
     "choices": ["File synchronization", "Multitenancy", "Elasticity", "Resource pooling"],
     "answerIndex": 0,
     "explanation": "File synchronization keeps the same file consistent across a user's devices automatically, backed by cloud storage — separate from multitenancy or elasticity, which describe how the provider's infrastructure is shared and scaled."
+  },
+  {
+    "id": "aplus-multi-005",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A company is evaluating cloud characteristics for a seasonal retail workload that spikes each December. Which TWO characteristics MOST directly describe the ability to expand and then contract capacity to match that demand?",
+    "choices": [
+      "Elasticity",
+      "Rapid scalability",
+      "Multitenancy",
+      "File synchronization",
+      "Measured service"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Elasticity is capacity growing and shrinking automatically with demand, and rapid scalability is how quickly it can do so — together they're what serves a seasonal spike. Multitenancy is shared infrastructure, and file sync keeps user files consistent."
+  },
+  {
+    "id": "aplus-mc-207",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A hospital must keep patient records on infrastructure it exclusively controls for regulatory reasons, but wants to burst non-sensitive analytics workloads onto public cloud capacity. Which deployment model BEST fits?",
+    "choices": [
+      "Hybrid cloud",
+      "Public cloud only",
+      "Community cloud",
+      "Private cloud only"
+    ],
+    "answerIndex": 0,
+    "explanation": "Hybrid combines private infrastructure for regulated data with public capacity for burst workloads. A community cloud is shared among organizations with common concerns, which isn't what's described — the hospital wants exclusive control of the sensitive half."
   }
 ]

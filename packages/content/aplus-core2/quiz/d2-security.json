@@ -589,5 +589,63 @@
     "choices": ["Just-in-time access (PAM)", "Directory services", "SAML", "IAM provisioning"],
     "answerIndex": 0,
     "explanation": "Just-in-time access, part of Privileged Access Management, grants elevated rights only for a limited window tied to a specific task rather than holding standing admin rights — shrinking the exposure if the account is ever compromised."
+  },
+  {
+    "id": "core2-mc-198",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user reports their screen is displaying a full-screen message demanding payment in cryptocurrency, and their documents will no longer open. What should the technician do FIRST?",
+    "choices": [
+      "Quarantine the machine by disconnecting it from the network",
+      "Pay the ransom to recover the files quickly",
+      "Run a full antivirus scan while the machine stays online",
+      "Reimage the machine immediately without further investigation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Ransomware spreads laterally, so containment comes first — CompTIA's malware removal procedure puts quarantine immediately after identifying symptoms. Scanning while connected risks further spread, and reimaging first destroys evidence."
+  },
+  {
+    "id": "core2-mc-199",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An organization wants to prevent employees from installing unapproved software on company workstations. Which is the BEST control?",
+    "choices": [
+      "Remove local administrator rights from standard user accounts",
+      "Send a company-wide email asking staff not to install software",
+      "Increase the frequency of antivirus scans",
+      "Enable the screensaver lock after five minutes"
+    ],
+    "answerIndex": 0,
+    "explanation": "Without local admin rights, most installers simply cannot run — a technical control that enforces the policy rather than relying on compliance. An email is a directive with no enforcement, and scanning or screen locks address different risks entirely."
+  },
+  {
+    "id": "core2-multi-001",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A technician is hardening a new Windows workstation before deployment. Which TWO actions directly reduce the account-based attack surface?",
+    "choices": [
+      "Disable or rename the built-in Administrator account",
+      "Require strong, unique passwords with an account lockout policy",
+      "Set the desktop wallpaper to the corporate logo",
+      "Defragment the system drive",
+      "Increase the display timeout to 60 minutes"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Disabling/renaming the well-known Administrator account and enforcing strong passwords with lockout both harden authentication directly. Wallpaper and defragmentation are cosmetic and maintenance tasks, and a longer display timeout weakens security."
+  },
+  {
+    "id": "core2-multi-002",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A user's browser suddenly shows a new toolbar, redirects searches, and displays frequent pop-ups. Which TWO steps are appropriate early in CompTIA's malware removal procedure?",
+    "choices": [
+      "Quarantine the infected system",
+      "Disable System Restore before remediation",
+      "Immediately re-enable System Restore and create a restore point",
+      "Educate the end user about safe browsing",
+      "Schedule future scans and updates"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The order is: investigate and verify, quarantine, disable System Restore, then remediate. Re-enabling System Restore, scheduling scans, and educating the user all come after remediation — they're steps five through seven, not early ones."
   }
 ]

@@ -528,5 +528,63 @@
     "choices": ["Plagiarism / appropriate-use policy violation", "A licensing violation", "A data breach", "A hallucination"],
     "answerIndex": 0,
     "explanation": "Presenting AI-generated work as one's own original work is a plagiarism and appropriate-use concern — a policy issue distinct from whether the AI's content was itself accurate."
+  },
+  {
+    "id": "core2-mc-202",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "While repairing a user's laptop, a technician discovers files that appear to show illegal activity. What should the technician do FIRST?",
+    "choices": [
+      "Preserve the device as found and report it through the proper chain of custody",
+      "Delete the files to protect the company from liability",
+      "Copy the files to a personal drive as evidence",
+      "Confront the user directly about the files"
+    ],
+    "answerIndex": 0,
+    "explanation": "Prohibited content requires preserving the evidence exactly as found and escalating through documented chain of custody. Deleting destroys evidence, personal copies break custody, and confronting the user can prompt destruction of evidence."
+  },
+  {
+    "id": "core2-mc-203",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A change that will briefly interrupt a production service has been requested. Which document specifies how the system will be returned to its prior state if the change fails?",
+    "choices": [
+      "The rollback plan",
+      "The acceptable use policy",
+      "The service-level agreement",
+      "The end-user license agreement"
+    ],
+    "answerIndex": 0,
+    "explanation": "A rollback (backout) plan defines how to revert if the change goes wrong, and must exist before implementation rather than being improvised during an outage. The AUP, SLA, and EULA govern conduct, service targets, and licensing."
+  },
+  {
+    "id": "core2-multi-004",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "An organization is decommissioning drives that held regulated customer data. Which TWO methods render the data unrecoverable?",
+    "choices": [
+      "Degaussing a magnetic hard drive",
+      "Physical destruction such as shredding or incineration",
+      "Performing a quick format",
+      "Deleting the files and emptying the Recycle Bin",
+      "Renaming the partition"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Degaussing destroys the magnetic domains on a platter drive, and shredding/incineration destroys the medium outright. Quick formats, deletions, and renaming only remove pointers — the underlying data remains recoverable with common tools."
+  },
+  {
+    "id": "core2-multi-005",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A technician is called to a workstation that is smoking and smells of burning plastic. Which TWO actions are correct immediate responses?",
+    "choices": [
+      "Disconnect power to the equipment if it is safe to do so",
+      "Use a Class C (electrical-rated) fire extinguisher if the equipment ignites",
+      "Pour water on the equipment to cool it",
+      "Continue working and monitor the smell",
+      "Open the case immediately to inspect the components"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Removing power addresses the energy source, and Class C extinguishers are rated for energized electrical fires. Water conducts electricity and is dangerous here, ignoring it risks a fire, and opening a smoking case exposes the technician to burns."
   }
 ]

@@ -100,20 +100,25 @@ export interface SaveLessonFlagRequest {
 }
 
 // ---- quiz ----
-export type QuizQuestionType = "mc" | "order" | "match" | "terminal";
+export type QuizQuestionType = "mc" | "multi" | "order" | "match" | "terminal";
 
 /**
  * A question as sent to the client: no answers, no explanation.
  * `order` items and `match` rights arrive pre-shuffled by the server.
+ *
+ * `multi` is a multiple-response question ("Select TWO"): `selectCount` tells
+ * the client exactly how many choices to pick, without revealing which.
  */
 export type QuizQuestionPublic =
   | { id: string; domainCode: string; type: "mc"; prompt: string; choices: string[] }
+  | { id: string; domainCode: string; type: "multi"; prompt: string; choices: string[]; selectCount: number }
   | { id: string; domainCode: string; type: "order"; prompt: string; items: string[] }
   | { id: string; domainCode: string; type: "match"; prompt: string; lefts: string[]; rights: string[] }
   | { id: string; domainCode: string; type: "terminal"; prompt: string };
 
 export type AttemptAnswer =
   | { type: "mc"; choiceIndex: number }
+  | { type: "multi"; choiceIndices: number[] }
   | { type: "order"; order: string[] }
   | { type: "match"; pairs: Record<string, string> }
   | { type: "terminal"; command: string };
@@ -121,6 +126,7 @@ export type AttemptAnswer =
 /** The correct answer, revealed after grading. */
 export type Solution =
   | { type: "mc"; answerIndex: number }
+  | { type: "multi"; answerIndices: number[] }
   | { type: "order"; order: string[] }
   | { type: "match"; pairs: { left: string; right: string }[] }
   | { type: "terminal"; expected: string[] };

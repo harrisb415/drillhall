@@ -250,5 +250,77 @@
     "domainCode": "5.0",
     "front": "What is the CompTIA troubleshooting methodology's first step?",
     "back": "Identify the problem — gather information, question users, determine what changed, and back up configuration before making any change."
+  },
+  {
+    "id": "netplus-fc-043",
+    "domainCode": "1.0",
+    "front": "IPsec: what do AH, ESP, and IKE each do?",
+    "back": "AH (Authentication Header) authenticates and protects integrity but does not encrypt. ESP (Encapsulating Security Payload) encrypts the payload and can also authenticate it. IKE (Internet Key Exchange) negotiates and manages the keys AH/ESP then use."
+  },
+  {
+    "id": "netplus-fc-044",
+    "domainCode": "1.0",
+    "front": "GRE vs. IPsec — what's the difference, and why are they often combined?",
+    "back": "GRE tunnels traffic (including protocols IPsec can't carry directly) but provides no encryption. IPsec provides the encryption. GRE-over-IPsec is the standard pairing: GRE carries it, IPsec secures it."
+  },
+  {
+    "id": "netplus-fc-045",
+    "domainCode": "1.0",
+    "front": "In a cloud VPC, what's the difference between an internet gateway and a NAT gateway?",
+    "back": "An internet gateway makes a subnet's instances publicly reachable in both directions. A NAT gateway lets private-subnet instances initiate outbound connections (updates, API calls) without being reachable inbound."
+  },
+  {
+    "id": "netplus-fc-046",
+    "domainCode": "1.0",
+    "front": "Why does VXLAN exist?",
+    "back": "802.1Q's VLAN ID is 12 bits — a ceiling of ~4,094 VLANs, too few for multi-tenant data centers. VXLAN wraps Layer 2 frames in UDP with a 24-bit ID (16M+ segments) and tunnels them over a Layer 3 backbone, enabling data center interconnect."
+  },
+  {
+    "id": "netplus-fc-047",
+    "domainCode": "1.0",
+    "front": "Zero Trust Architecture: what's the difference between the control plane and the data plane?",
+    "back": "The control plane decides — policy engine and policy administrator evaluate the request using adaptive identity, threat scope reduction, and policy-driven access control. The data plane enforces — the policy enforcement point gates the actual traffic."
+  },
+  {
+    "id": "netplus-fc-048",
+    "domainCode": "1.0",
+    "front": "What is SASE, and how does SSE differ?",
+    "back": "SASE (Secure Access Service Edge) converges SD-WAN networking with cloud-delivered security (firewall, secure web gateway, ZTA, CASB) at the edge. SSE (Security Service Edge) is the security-only subset — SASE minus the networking half."
+  },
+  {
+    "id": "netplus-fc-049",
+    "domainCode": "2.0",
+    "front": "What is an SVI, and what problem does it solve?",
+    "back": "A Switch Virtual Interface is a virtual Layer 3 interface configured on a VLAN, giving that VLAN an IP address so a Layer 3 switch can route between VLANs internally — no separate physical router needed."
+  },
+  {
+    "id": "netplus-fc-050",
+    "domainCode": "2.0",
+    "front": "Route selection: how do administrative distance, metric, and prefix length interact?",
+    "back": "Longest (most specific) prefix always wins first. Among routes with the same prefix, lower administrative distance wins (that's the trust rating between different protocols). Among routes from the same protocol, the better metric wins."
+  },
+  {
+    "id": "netplus-fc-051",
+    "domainCode": "2.0",
+    "front": "SSID vs. BSSID vs. ESSID?",
+    "back": "SSID is the network name a user picks. BSSID is one specific AP radio's MAC address (different on every radio). ESSID is the shared name presented across all APs, which is what makes roaming between them feel seamless."
+  },
+  {
+    "id": "netplus-fc-052",
+    "domainCode": "2.0",
+    "front": "Wireless PSK vs. Enterprise authentication — when does Enterprise become necessary?",
+    "back": "PSK uses one shared password for everyone: simple, but no per-user accountability, and a leak forces a rotation for all. Enterprise (802.1X + RADIUS) issues individual credentials, so one person's access can be revoked without touching anyone else."
+  },
+  {
+    "id": "netplus-fc-053",
+    "domainCode": "5.0",
+    "front": "Interface counters: what do CRC errors, runts, and giants each indicate?",
+    "back": "CRC errors — frames arriving corrupted (bad termination, damaged cable, interference). Runts — frames below the 64-byte minimum, often collisions or a duplex mismatch. Giants — frames exceeding the MTU, often an MTU mismatch."
+  },
+  {
+    "id": "netplus-fc-054",
+    "domainCode": "5.0",
+    "front": "A switch port reads 'err-disabled'. What does that mean, and what should you do first?",
+    "back": "The switch protectively shut the port down after a violation — commonly port security (unexpected MAC) or BPDU guard (a switch plugged into an access port). Identify the triggering violation before re-enabling; blindly re-enabling just recreates it."
   }
 ]

@@ -29,6 +29,18 @@ export const McQuestionSchema = z.object({
   answerIndex: z.number().int().min(0),
 });
 
+/**
+ * Multiple-response ("Select TWO/THREE"): more than one correct choice, graded
+ * all-or-nothing. The count the candidate must pick is derived from
+ * `answerIndices.length` — no separate field to drift out of sync.
+ */
+export const MultiQuestionSchema = z.object({
+  ...quizBase,
+  type: z.literal("multi"),
+  choices: z.array(z.string().min(1)).min(3),
+  answerIndices: z.array(z.number().int().min(0)).min(2),
+});
+
 export const OrderQuestionSchema = z.object({
   ...quizBase,
   type: z.literal("order"),
@@ -51,6 +63,7 @@ export const TerminalQuestionSchema = z.object({
 
 export const QuizQuestionSchema = z.discriminatedUnion("type", [
   McQuestionSchema,
+  MultiQuestionSchema,
   OrderQuestionSchema,
   MatchQuestionSchema,
   TerminalQuestionSchema,
@@ -160,6 +173,33 @@ export const CertPackSchema = z
           message: `answerIndex ${q.answerIndex} out of range for ${q.choices.length} choices`,
         });
       }
+      if (q.type === "multi") {
+        const uniq = new Set(q.answerIndices);
+        if (uniq.size !== q.answerIndices.length) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["quiz", i, "answerIndices"],
+            message: "answerIndices contains duplicates",
+          });
+        }
+        for (const idx of q.answerIndices) {
+          if (idx >= q.choices.length) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              path: ["quiz", i, "answerIndices"],
+              message: `answerIndex ${idx} out of range for ${q.choices.length} choices`,
+            });
+          }
+        }
+        // A multi-response question with every choice correct isn't a question.
+        if (uniq.size >= q.choices.length) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["quiz", i, "answerIndices"],
+            message: "multi question must have at least one incorrect choice",
+          });
+        }
+      }
     });
     pack.course.forEach((l, i) => {
       checkId(l.id, ["course", i, "id"]);
@@ -182,6 +222,7 @@ export type ExamConfig = z.infer<typeof ExamConfigSchema>;
 export type CertDomain = z.infer<typeof DomainSchema>;
 export type Flashcard = z.infer<typeof FlashcardSchema>;
 export type McQuestion = z.infer<typeof McQuestionSchema>;
+export type MultiQuestion = z.infer<typeof MultiQuestionSchema>;
 export type OrderQuestion = z.infer<typeof OrderQuestionSchema>;
 export type MatchQuestion = z.infer<typeof MatchQuestionSchema>;
 export type TerminalQuestion = z.infer<typeof TerminalQuestionSchema>;
