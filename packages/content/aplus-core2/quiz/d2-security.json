@@ -467,5 +467,127 @@
       { "left": "Defence in depth", "right": "Layering independent controls so one failure isn't fatal" }
     ],
     "explanation": "Authentication and authorisation are sequential and often confused; least privilege scopes the second, and defence in depth is the design philosophy surrounding both."
+  },
+  {
+    "id": "core2-mc-186",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A home router lets devices automatically open inbound ports for themselves — a game console, a smart TV app — without any admin approval. What feature is responsible, and why is it usually recommended to disable it?",
+    "choices": [
+      "UPnP — convenient, but malware can also use it to open ports without approval",
+      "Port forwarding — it should never be used under any circumstances",
+      "Screened subnet — it's only for business networks",
+      "IP filtering — it only affects outbound traffic"
+    ],
+    "answerIndex": 0,
+    "explanation": "UPnP lets devices automatically request open ports with no admin approval step — convenient for legitimate devices, but it also gives malware on the network the same automatic capability, which is why disabling it is a common hardening step."
+  },
+  {
+    "id": "core2-mc-176",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician sets up a SOHO router and, beyond changing the default admin password, wants to update the router's software to patch known vulnerabilities. What should they check?",
+    "choices": ["Firmware updates", "SSID broadcast settings", "Port forwarding rules", "Guest access configuration"],
+    "answerIndex": 0,
+    "explanation": "Firmware updates patch real vulnerabilities in the router's own software. A router that's never been updated since installation is a common exam red flag distinct from password hygiene."
+  },
+  {
+    "id": "core2-mc-177",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A small business wants visitors to get internet access on the office Wi-Fi without ever reaching internal file shares or printers. What router feature provides this?",
+    "choices": ["Guest access (a separate SSID/network)", "Disabling SSID broadcast", "Port forwarding", "IP filtering on the WAN interface"],
+    "answerIndex": 0,
+    "explanation": "Guest access puts visitor devices on a separate SSID/VLAN, isolated from the internal network — visitors get internet without a path to internal resources."
+  },
+  {
+    "id": "core2-mc-178",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user downloads an installer from a vendor's official site, and the site also publishes a hash value alongside the download link. What is the hash for?",
+    "choices": [
+      "Verifying the downloaded file wasn't tampered with or corrupted",
+      "Encrypting the file during download",
+      "Automatically scanning the file for viruses",
+      "Speeding up the download"
+    ],
+    "answerIndex": 0,
+    "explanation": "Comparing the downloaded file's hash to the publisher's published value confirms the file matches exactly what they released — tampering or corruption would produce a different hash."
+  },
+  {
+    "id": "core2-mc-179",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A privacy-conscious user wants their DNS queries encrypted in transit so they can't be easily read or logged by their ISP or someone on the network. What browser/OS setting addresses this?",
+    "choices": ["Secure DNS", "Private-browsing mode", "A pop-up blocker", "Clearing browsing data"],
+    "answerIndex": 0,
+    "explanation": "Secure DNS (DNS over HTTPS/TLS) encrypts DNS queries in transit. Private-browsing mode only affects local history/cookies — it does nothing to protect DNS traffic on the network."
+  },
+  {
+    "id": "core2-mc-180",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Malware is discovered running entirely in memory using legitimate PowerShell commands, with no new file ever written to disk. What category of malware is this?",
+    "choices": ["Fileless malware", "A boot sector virus", "Stalkerware", "A rootkit specifically"],
+    "answerIndex": 0,
+    "explanation": "Fileless malware runs entirely in memory using legitimate system tools rather than dropping a file, evading traditional file-scanning antivirus the same way memory injection does."
+  },
+  {
+    "id": "core2-mc-181",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A PC's storage drive is infected in a way that loads malicious code before the operating system itself even starts, making it resistant to scans run from within a normally-booted OS. What type of infection is this?",
+    "choices": ["A boot sector virus", "Fileless malware", "A cryptominer", "Adware"],
+    "answerIndex": 0,
+    "explanation": "A boot sector virus infects the disk's boot sector so it loads before the OS, which is exactly why it often requires offline or preinstallation-environment scanning to remove — a normally-running OS can't easily see or touch its own boot process."
+  },
+  {
+    "id": "core2-mc-182",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An app was covertly installed on someone's phone specifically to track their location and read their messages without their knowledge, by someone with physical access to the device. What is this called?",
+    "choices": ["Stalkerware", "Ransomware", "A cryptominer", "A boot sector virus"],
+    "answerIndex": 0,
+    "explanation": "Stalkerware is covertly installed to monitor a specific person's activity, location, and communications — a privacy and personal-safety issue as much as a technical one."
+  },
+  {
+    "id": "core2-mc-183",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A poster in a coffee shop has a QR code claiming to link to free Wi-Fi, but scanning it takes users to a fake login page that harvests credentials. What social engineering technique is this?",
+    "choices": ["QR code phishing (quishing)", "Vishing", "Typosquatting", "Tailgating"],
+    "answerIndex": 0,
+    "explanation": "QR code phishing substitutes a malicious QR code for a phishing link — the phone camera can't preview the destination URL the way hovering over a text link can, making it harder to spot before scanning."
+  },
+  {
+    "id": "core2-mc-184",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Apple pushes an urgent, small security fix to iPhones for a critical vulnerability, installed automatically without waiting for the next full iOS version. What is this delivery mechanism called?",
+    "choices": ["RSR (Rapid Security Response)", "OTA update", "Jailbreak patch", "MDM policy push"],
+    "answerIndex": 0,
+    "explanation": "RSR is Apple's mechanism for pushing critical security fixes between normal OS updates — smaller and faster than waiting for the next full iOS/macOS release."
+  },
+  {
+    "id": "core2-match-008",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each MFA delivery method to its factor category.",
+    "pairs": [
+      { "left": "Authenticator app generating a TOTP", "right": "Something you have" },
+      { "left": "SMS code", "right": "Something you have" },
+      { "left": "Fingerprint scan", "right": "Something you are" },
+      { "left": "PIN", "right": "Something you know" }
+    ],
+    "explanation": "TOTP apps and SMS both deliver a code to a device you possess — different mechanisms, same underlying factor category. Biometrics are always \"something you are,\" and a PIN is \"something you know,\" same as a password."
+  },
+  {
+    "id": "core2-mc-185",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A database admin is granted elevated access to production only for the 30 minutes needed to run an approved maintenance task, then it's automatically revoked. What security approach is this?",
+    "choices": ["Just-in-time access (PAM)", "Directory services", "SAML", "IAM provisioning"],
+    "answerIndex": 0,
+    "explanation": "Just-in-time access, part of Privileged Access Management, grants elevated rights only for a limited window tied to a specific task rather than holding standing admin rights — shrinking the exposure if the account is ever compromised."
   }
 ]

@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.11.0] — 2026-08-19
+
+### Added
+- **Line-by-line audit of A+ Core 2 against CompTIA's actual official 220-1202 V15 objectives document** (the real PDF, all 24 sub-objectives across four domains) — the same treatment v1.10.0 gave Core 1. Found real gaps a summary-based pass had missed:
+  - Domain weights were off: the pack had been running 31/25/22/22, corrected to the real V15 split 28/28/23/21 (Operating Systems / Security / Software Troubleshooting / Operational Procedures).
+  - Four sub-objectives had no coverage at all: 1.11 (Chrome OS, ext4/XFS, cloud productivity suites — identity sync, licensing assignment), 2.10/2.11 (SOHO router hardening — UPnP, screened subnet, port forwarding, guest access — and browser security — secure DNS, password managers, pop-up/ad blockers), 4.8 (scripting file types and their risks — .bat/.ps1/.vbs/.sh/.js/.py), 4.9 (remote access technologies — RDP/VNC/SSH/RMM/SPICE/WinRM), and 4.10 (AI basics — hallucination, bias, private-vs-public data). Added 6 new lessons covering all of them.
+  - Named terms with no coverage anywhere: fileless malware, boot sector virus, stalkerware, QR code phishing ("quishing"), RSR (Apple Rapid Security Response), SAML, JIT/PAM access, IAM, directory services, and the full MFA factor breakdown (hardware token, authenticator app/TOTP, SMS, voice call, email code) beyond just "something you know/have/are" in the abstract.
+  - Net: +6 lessons, +27 quiz questions, +7 flashcards, +4 reference groups (scripting file types, remote access tools, SOHO/browser security settings, identity & access terms), all schema-validated.
+
+This closes out the primary-source audit pass across both A+ packs — same method as v1.10.0, applied to Core 2. Network+ and Security+ have only had the earlier web-summary audit (v1.9.0); a primary-source PDF pass for those is a candidate for later, not yet requested.
+
 ## [1.10.0] — 2026-08-19
 
 ### Fixed

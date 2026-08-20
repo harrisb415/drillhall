@@ -202,5 +202,47 @@
     "domainCode": "4.0",
     "front": "Professional communication basics with a frustrated user?",
     "back": "Listen without interrupting, stay calm and avoid being defensive, don't use jargon, set honest expectations for the fix and timeline, follow up. Never argue or minimize the problem."
+  },
+  {
+    "id": "core2-fc-035",
+    "domainCode": "2.0",
+    "front": "Fileless malware vs. boot sector virus vs. stalkerware — what distinguishes each?",
+    "back": "Fileless malware runs entirely in memory via legitimate tools like PowerShell, no file written. A boot sector virus infects the disk boot sector, loading before the OS. Stalkerware is covertly installed by someone with physical access to track a specific person."
+  },
+  {
+    "id": "core2-fc-036",
+    "domainCode": "2.0",
+    "front": "What is RSR (Rapid Security Response)?",
+    "back": "Apple's mechanism for pushing critical, small security fixes to iOS/macOS between full OS version releases, applied automatically without waiting on the next major update."
+  },
+  {
+    "id": "core2-fc-037",
+    "domainCode": "2.0",
+    "front": "SAML vs. IAM vs. PAM vs. JIT access — how do they relate?",
+    "back": "IAM (Identity and Access Management) is the overall discipline of managing identities and their access. SAML is a protocol for federated single sign-on. PAM (Privileged Access Management) controls elevated accounts specifically, and JIT (just-in-time) access is a PAM technique granting elevated rights only for a limited task window."
+  },
+  {
+    "id": "core2-fc-038",
+    "domainCode": "2.0",
+    "front": "List the common MFA factor delivery methods and their factor category.",
+    "back": "Something you have: hardware token, authenticator app (TOTP), SMS code, voice call, email code. Something you are: biometrics. Something you know: password/PIN. SMS and email are weaker due to interception/account-takeover risk."
+  },
+  {
+    "id": "core2-fc-039",
+    "domainCode": "4.0",
+    "front": "Script file types and their platform: .bat, .ps1, .vbs, .sh, .js, .py?",
+    "back": ".bat — Windows command-line batch. .ps1 — Windows PowerShell (objects/cmdlets). .vbs — legacy Windows VBScript. .sh — macOS/Linux shell. .js — JavaScript, cross-platform (Node or browser). .py — Python, cross-platform."
+  },
+  {
+    "id": "core2-fc-040",
+    "domainCode": "4.0",
+    "front": "Remote access tools — RDP, VNC, SSH, RMM, SPICE, WinRM — pick the right one for the job?",
+    "back": "RDP/VNC — interactive remote desktop for a person. SSH — remote command-line/shell. RMM — centralized, at-scale management of many endpoints. SPICE — VM console access with USB/multimedia redirection. WinRM — native Windows remote command/PowerShell management."
+  },
+  {
+    "id": "core2-fc-041",
+    "domainCode": "4.0",
+    "front": "Key limitations to plan around before deploying an AI tool at work?",
+    "back": "Hallucinations (confident but wrong output — needs human review), bias inherited from training data, accuracy not guaranteed, and data privacy (public tools may retain submitted data) — plus policy concerns like plagiarism if AI output is passed off as original work."
   }
 ]

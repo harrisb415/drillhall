@@ -1,6 +1,6 @@
 [
-  { "code": "1.0", "name": "Operating Systems", "weight": 31 },
-  { "code": "2.0", "name": "Security", "weight": 25 },
-  { "code": "3.0", "name": "Software Troubleshooting", "weight": 22 },
-  { "code": "4.0", "name": "Operational Procedures", "weight": 22 }
+  { "code": "1.0", "name": "Operating Systems", "weight": 28 },
+  { "code": "2.0", "name": "Security", "weight": 28 },
+  { "code": "3.0", "name": "Software Troubleshooting", "weight": 23 },
+  { "code": "4.0", "name": "Operational Procedures", "weight": 21 }
 ]

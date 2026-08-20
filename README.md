@@ -2,7 +2,7 @@
 
 Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express + better-sqlite3 server, Better Auth (email/password + Google), content shipped as validated data packs.
 
-**Status: v1.10.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1201), A+ Core 2 (220-1202), Network+ (N10-009), Security+ (SY0-701).
+**Status: v1.11.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1201), A+ Core 2 (220-1202), Network+ (N10-009), Security+ (SY0-701).
 
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
@@ -63,7 +63,7 @@ packages/shared-types  API DTOs shared client↔server
 
 Edit `packages/content/<pack>/*.json`, then `npm run validate`. A new cert = a new folder with `cert.json`, `domains.json`, `flashcards.json`, `quiz.json`, `reference.json`, and optionally `course.json` — **zero code changes**. `course.json` is optional; packs without it validate fine and the Course page shows an empty state for that cert.
 
-Any part may be either a single `<part>.json` array **or** a `<part>/` folder of JSON arrays that get concatenated (files are read in filename order). The A+ banks use `quiz/d1-mobile.json`, `quiz/d3-hardware.json`, and so on, so a 190-question bank stays reviewable per domain instead of living in one unmergeable array. Duplicate ids across files fail validation rather than silently merging. The server seeds it on boot (matching rows by `code`, so ids stay stable) and it appears in the cert switcher. `aplus-core2` was added exactly this way.
+Any part may be either a single `<part>.json` array **or** a `<part>/` folder of JSON arrays that get concatenated (files are read in filename order). The A+ banks use `quiz/d1-mobile.json`, `quiz/d3-hardware.json`, and so on, so a 200+-question bank stays reviewable per domain instead of living in one unmergeable array. Duplicate ids across files fail validation rather than silently merging. The server seeds it on boot (matching rows by `code`, so ids stay stable) and it appears in the cert switcher. `aplus-core2` was added exactly this way.
 
 Question types (one `QuizQuestionSchema` discriminated union, all graded server-side):
 
@@ -114,7 +114,7 @@ Novelty is bounded by pool size — two exams of N questions from a bank of B mu
 | Cert | Questions | of which PBQ | Full mock forced repeat |
 |---|---|---|---|
 | A+ Core 1 (220-1201) | 215 | 16 | 0% |
-| A+ Core 2 (220-1202) | 190 | 19 | 0% |
+| A+ Core 2 (220-1202) | 217 | 20 | 0% |
 | Network+ (N10-009) | 218 | 10 | 0% |
 | Security+ (SY0-701) | 219 | 10 | 0% |
 

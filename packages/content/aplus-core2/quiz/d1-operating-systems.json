@@ -556,5 +556,41 @@
     "choices": ["MDM (Mobile Device Management)", "A VPN profile", "Airplane mode", "Developer mode"],
     "answerIndex": 0,
     "explanation": "MDM enrollment during setup lets IT manage or \"supervise\" a device centrally — push configuration, restrict installs, and wipe it remotely if lost or an employee leaves. A VPN profile only secures network traffic; it doesn't give IT device-level control."
+  },
+  {
+    "id": "core2-mc-172",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A school deploys inexpensive laptops that boot straight into a browser-like interface, run mostly web and Android apps, and update themselves silently in the background with almost no local file management. What OS is this?",
+    "choices": ["Chrome OS", "Windows 11 S mode", "iPadOS", "A Linux live CD"],
+    "answerIndex": 0,
+    "explanation": "Chrome OS is Google's lightweight, browser-centric OS built around web and Android apps with automatic background updates — a common fit for low-maintenance, low-cost deployments like schools."
+  },
+  {
+    "id": "core2-mc-173",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A new enterprise Linux storage server needs a filesystem known for strong performance with very large files. Which filesystem is purpose-built for this, distinct from the Linux default?",
+    "choices": ["XFS", "ext4", "APFS", "ReFS"],
+    "answerIndex": 0,
+    "explanation": "XFS is a high-performance filesystem common on enterprise Linux and large storage servers, particularly strong with very large files. ext4 is the general-purpose Linux default; APFS and ReFS belong to macOS and Windows Server respectively."
+  },
+  {
+    "id": "core2-mc-174",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An IT admin wants a new employee's Active Directory account to automatically control their access to the company's cloud email and productivity suite too, without maintaining two separate sets of credentials. What is this called?",
+    "choices": ["Identity synchronization", "Licensing assignment", "Metered connection configuration", "Zero-touch deployment"],
+    "answerIndex": 0,
+    "explanation": "Identity synchronization keeps an on-prem directory account in sync with its cloud identity, so one set of credentials works across both — Azure AD Connect is the classic example."
+  },
+  {
+    "id": "core2-mc-175",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An employee leaves the company, and IT needs to reclaim their Microsoft 365 seat so it can be assigned to the next new hire instead of paying for an unused subscription. What task is this?",
+    "choices": ["Licensing assignment", "Identity synchronization", "Sync/folder settings", "Image deployment"],
+    "answerIndex": 0,
+    "explanation": "Cloud productivity suites are licensed per-user; reassigning or reclaiming a license as people join or leave is now a routine onboarding/offboarding task, not a one-time server-room job."
   }
 ]

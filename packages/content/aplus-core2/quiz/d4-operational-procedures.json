@@ -409,5 +409,124 @@
       { "left": "3-2-1 rule", "right": "Three copies, two media types, one off-site" }
     ],
     "explanation": "Incremental backs up least but chains longest on restore; differential trades larger backups for a two-step restore; 3-2-1 describes where the copies live."
+  },
+  {
+    "id": "core2-mc-187",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician needs to write a quick script to rename a batch of files on a Windows server, using cmdlets and objects rather than plain text commands. Which file type should it be saved as?",
+    "choices": [".ps1", ".bat", ".vbs", ".sh"],
+    "answerIndex": 0,
+    "explanation": "A .ps1 file is a PowerShell script, which works with structured objects and cmdlets — a step up from the plain-text command chaining of a .bat file."
+  },
+  {
+    "id": "core2-mc-188",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician downloads a script from an internet forum to quickly fix a printer issue and is about to run it with elevated privileges. What is the biggest risk here?",
+    "choices": [
+      "The script's actual behaviour is unknown until it's reviewed, and it could do damage while running with elevated rights",
+      "Scripts from forums always run slower than official tools",
+      ".bat files cannot be run with elevated privileges",
+      "Scripts downloaded from the internet are automatically digitally signed"
+    ],
+    "answerIndex": 0,
+    "explanation": "An unreviewed script run with elevated privileges can do anything a technician's own admin rights allow — deleting files, changing settings, exfiltrating data — which is why source trust and code review matter before execution, not after."
+  },
+  {
+    "id": "core2-mc-189",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An admin wants a script that runs identically on a macOS server and a Linux server, using the systems' built-in shell. What file extension fits?",
+    "choices": [".sh", ".bat", ".ps1", ".vbs"],
+    "answerIndex": 0,
+    "explanation": "A .sh file is a shell script, portable across macOS and Linux since both ship a POSIX-compatible shell. .bat and .ps1 are Windows-specific; .vbs (VBScript) is legacy Windows only."
+  },
+  {
+    "id": "core2-mc-190",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A help desk technician needs to view and control a remote user's desktop in real time, with the user watching and able to take back control at any moment, to walk them through a settings change. What best fits this specific need?",
+    "choices": ["RDP or a screen-sharing/remote-support tool", "SSH", "A scripted RMM task", "WinRM"],
+    "answerIndex": 0,
+    "explanation": "RDP-style remote desktop or a dedicated remote-support tool gives an interactive, watchable session — SSH is command-line only, and RMM/WinRM are for scripted or headless management, not a guided walkthrough."
+  },
+  {
+    "id": "core2-mc-191",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An admin needs to manage dozens of Windows servers from the command line remotely, using Windows' native remote-management protocol rather than a third-party tool. What should they use?",
+    "choices": ["WinRM", "VNC", "SPICE", "Telnet"],
+    "answerIndex": 0,
+    "explanation": "WinRM (Windows Remote Management) is Microsoft's built-in protocol for remote command-line and PowerShell administration of Windows systems, used heavily for at-scale server management."
+  },
+  {
+    "id": "core2-mc-192",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A virtualization platform needs a remote display protocol optimized for accessing a virtual machine's console, including USB redirection and better multimedia performance than a generic screen-share. What protocol fits this use case?",
+    "choices": ["SPICE", "RDP", "SSH", "VNC"],
+    "answerIndex": 0,
+    "explanation": "SPICE is a remote display protocol purpose-built for virtual machine consoles, offering better multimedia and USB redirection than general-purpose screen sharing."
+  },
+  {
+    "id": "core2-mc-193",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An MSP wants to remotely deploy patches, run scripts, and monitor hundreds of client endpoints from one central console, without a technician manually connecting to each one. What kind of tool is this?",
+    "choices": ["RMM (Remote Monitoring and Management)", "VNC", "SSH", "A single-session screen-share tool"],
+    "answerIndex": 0,
+    "explanation": "RMM platforms are built for at-scale, centralized management of many endpoints — patching, scripting, and monitoring in bulk — distinct from the one-to-one nature of VNC or SSH."
+  },
+  {
+    "id": "core2-mc-194",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Before opening any remote access session to a client's machine — RDP, VNC, or a third-party tool — what security consideration applies across all of them?",
+    "choices": [
+      "Authentication and encryption in transit, so the session can't be hijacked or credentials sniffed",
+      "Remote access tools never need authentication if used internally",
+      "Only SSH sessions need to be encrypted",
+      "Screen-sharing tools are exempt from security policy since no files are transferred"
+    ],
+    "answerIndex": 0,
+    "explanation": "Every remote access method carries the same core risks — an unauthenticated or unencrypted session can be hijacked or eavesdropped — so strong authentication and encryption are baseline requirements regardless of which specific tool is used."
+  },
+  {
+    "id": "core2-mc-195",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A support team wants to add an AI chatbot to their ticketing system so it can draft first-response replies to common issues. Before deploying it, what limitation should they specifically plan around?",
+    "choices": [
+      "The AI can hallucinate — generate confident-sounding but incorrect information — so responses need human review",
+      "AI chatbots cannot be integrated with ticketing systems",
+      "AI tools require no policy since they only draft text, never send it",
+      "AI-generated text is always factually accurate if the training data was accurate"
+    ],
+    "answerIndex": 0,
+    "explanation": "Hallucination — confident, fluent, but wrong output — is a core limitation of generative AI tools, which is why human review before a response goes to a customer is a standard safeguard, not optional."
+  },
+  {
+    "id": "core2-mc-196",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company's acceptable use policy says employees may use the internal, company-hosted AI assistant for drafting internal documents, but forbids pasting customer PII into any public AI chatbot. What is this policy primarily protecting against?",
+    "choices": [
+      "Sensitive data being sent to and retained by a third party outside the company's control",
+      "The AI assistant running out of storage space",
+      "Employees plagiarizing their own previous work",
+      "Public AI chatbots being slower than internal tools"
+    ],
+    "answerIndex": 0,
+    "explanation": "Public AI tools may log, retain, or use submitted data for training — pasting customer PII into one can mean sensitive data leaves the company's control entirely, a data-privacy and compliance risk distinct from accuracy concerns."
+  },
+  {
+    "id": "core2-mc-197",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A student submits an essay that was entirely generated by an AI tool and presents it as their own original work. Beyond accuracy concerns, what policy issue does this raise?",
+    "choices": ["Plagiarism / appropriate-use policy violation", "A licensing violation", "A data breach", "A hallucination"],
+    "answerIndex": 0,
+    "explanation": "Presenting AI-generated work as one's own original work is a plagiarism and appropriate-use concern — a policy issue distinct from whether the AI's content was itself accurate."
   }
 ]

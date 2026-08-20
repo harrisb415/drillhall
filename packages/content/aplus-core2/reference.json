@@ -90,7 +90,10 @@
       ["Ransomware", "Encrypts data, demands payment", "Offline + tested backups, patching"],
       ["Spyware / keylogger", "Steals input, credentials, and activity", "Anti-malware, MFA"],
       ["Rootkit", "Hides deep with admin rights, survives reboots", "Boot-time/offline scans, reimage"],
-      ["Cryptominer", "Steals CPU/GPU for mining", "Anti-malware, watch for heat/slowness"]
+      ["Cryptominer", "Steals CPU/GPU for mining", "Anti-malware, watch for heat/slowness"],
+      ["Fileless malware", "Runs entirely in memory via legitimate tools (e.g., PowerShell), no file dropped", "Behavioral/EDR detection, not signature scanning"],
+      ["Boot sector virus", "Infects the disk boot sector, loads before the OS", "Offline/preinstallation-environment scan"],
+      ["Stalkerware", "Covertly installed with physical access to track a specific person", "Device audit, factory reset, physical security"]
     ]
   },
   {
@@ -144,6 +147,68 @@
       ["5", "Schedule scans and run updates"],
       ["6", "Enable System Restore and create a restore point"],
       ["7", "Educate the end user"]
+    ]
+  },
+  {
+    "id": "soho-browser-security",
+    "title": "SOHO Router & Browser Security Settings",
+    "columns": ["Setting", "Purpose"],
+    "rows": [
+      ["Change default admin password", "Prevents trivial takeover via published default credentials"],
+      ["Firmware updates", "Patches known vulnerabilities in the router's own software"],
+      ["Disable UPnP", "Stops devices/malware from auto-opening inbound ports without approval"],
+      ["Screened subnet (DMZ)", "Isolates internet-facing services from the internal LAN"],
+      ["Guest access (separate SSID)", "Gives visitors internet without a path to internal resources"],
+      ["Disable unused ports / review port forwarding", "Shrinks the attack surface exposed to the WAN"],
+      ["IP / content filtering", "Blocks traffic by address or category (e.g., malicious sites)"],
+      ["Secure DNS (DoH/DoT)", "Encrypts DNS queries in transit"],
+      ["Password manager", "Generates/stores unique credentials, resists reuse-based compromise"],
+      ["Ad blocker / pop-up blocker", "Reduces exposure to malvertising and forced pop-up scams"],
+      ["Verify valid certificates", "Confirms the site is who it claims to be before entering data"],
+      ["Private browsing", "Clears local history/cookies at session end — does not hide traffic on the network"]
+    ]
+  },
+  {
+    "id": "scripting-file-types",
+    "title": "Scripting File Types",
+    "columns": ["Extension", "Language", "Typical platform"],
+    "rows": [
+      [".bat", "Batch", "Windows (legacy command-line chaining)"],
+      [".ps1", "PowerShell", "Windows (cmdlets, structured objects)"],
+      [".vbs", "VBScript", "Windows (legacy, largely deprecated)"],
+      [".sh", "Shell script", "macOS / Linux (POSIX shell)"],
+      [".js", "JavaScript", "Cross-platform (browser or Node.js)"],
+      [".py", "Python", "Cross-platform"]
+    ]
+  },
+  {
+    "id": "remote-access-tools",
+    "title": "Remote Access Technologies",
+    "columns": ["Technology", "Best for"],
+    "rows": [
+      ["RDP", "Interactive Windows remote desktop for a person"],
+      ["VNC", "Cross-platform interactive remote desktop"],
+      ["SSH", "Remote command-line/shell access, encrypted"],
+      ["VPN", "Encrypted tunnel into a private network before accessing resources"],
+      ["RMM", "Centralized, at-scale management of many endpoints (patching, scripting, monitoring)"],
+      ["SPICE", "VM console access with USB redirection and better multimedia"],
+      ["WinRM", "Native Windows remote command-line/PowerShell management"]
+    ]
+  },
+  {
+    "id": "identity-access-terms",
+    "title": "Identity & Access Management Terms",
+    "columns": ["Term", "Meaning"],
+    "rows": [
+      ["IAM", "Identity and Access Management — the overall discipline of managing identities and what they can access"],
+      ["SAML", "Protocol enabling federated single sign-on between an identity provider and a service"],
+      ["PAM", "Privileged Access Management — controls and monitors elevated/admin accounts specifically"],
+      ["JIT access", "Just-in-time — grants elevated rights only for a limited window tied to a specific task"],
+      ["Directory services", "Centralized store of user/device identities (e.g., Active Directory) used to authenticate and authorize"],
+      ["RSR", "Apple's Rapid Security Response — pushes critical fixes between full OS releases"],
+      ["MFA — something you have", "Hardware token, authenticator app (TOTP), SMS code, voice call, email code"],
+      ["MFA — something you are", "Biometrics (fingerprint, face)"],
+      ["MFA — something you know", "Password or PIN"]
     ]
   }
 ]
