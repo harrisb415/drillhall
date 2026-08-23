@@ -661,5 +661,501 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "PowerShell (.ps1) and batch (.bat) both run natively on Windows. .sh is a Unix shell script, .apk is an Android package, and .dmg is a macOS disk image."
+  },
+  {
+    "id": "core2-mc-252",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A change to a production system is proposed. Which document must exist BEFORE implementation?",
+    "choices": [
+      "A rollback plan describing how to revert if it fails",
+      "A post-implementation report",
+      "A user satisfaction survey",
+      "An asset disposal certificate"
+    ],
+    "answerIndex": 0,
+    "explanation": "Improvising a way back during an outage is exactly the failure change management exists to prevent. The rollback plan is prepared in advance."
+  },
+  {
+    "id": "core2-mc-253",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which document defines measurable service commitments such as response and resolution times?",
+    "choices": [
+      "SLA",
+      "AUP",
+      "NDA",
+      "MOU"
+    ],
+    "answerIndex": 0,
+    "explanation": "Measurability is what distinguishes an SLA. An AUP governs user conduct, an NDA confidentiality, and an MOU is a general statement of intent."
+  },
+  {
+    "id": "core2-mc-254",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician is asked to work on a live server during business hours. What is the MOST appropriate response?",
+    "choices": [
+      "Request a scheduled maintenance window and notify affected users",
+      "Proceed immediately since the fix is straightforward",
+      "Refuse the work outright",
+      "Make the change and document it afterwards"
+    ],
+    "answerIndex": 0,
+    "explanation": "Even a correct change causes an outage if unannounced. Scheduling and notification are part of the process, not optional courtesies."
+  },
+  {
+    "id": "core2-mc-255",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A server rack begins smoking and staff reach for the nearest extinguisher, which is water-based. What should the technician say?",
+    "choices": [
+      "Do not use it — water conducts electricity; use a Class C rated extinguisher and cut power if safe",
+      "Use it immediately, since cooling is the priority",
+      "Use it only on the cables, not the chassis",
+      "Water is safe once the smoke has stopped"
+    ],
+    "answerIndex": 0,
+    "explanation": "Water on energised equipment creates a conduction path to whoever is holding the extinguisher. Removing the energy source and using a Class C agent is the correct response."
+  },
+  {
+    "id": "core2-mc-256",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which document should be consulted for safe handling and disposal instructions for a cleaning solvent?",
+    "choices": [
+      "The Safety Data Sheet",
+      "The end-user licence agreement",
+      "The service level agreement",
+      "The asset inventory"
+    ],
+    "answerIndex": 0,
+    "explanation": "An SDS documents hazards, handling, first aid, and disposal for a specific chemical product. The others govern software, service, and equipment tracking."
+  },
+  {
+    "id": "core2-mc-257",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A UPS is specified for a small server. Which capability does it provide that a surge protector does not?",
+    "choices": [
+      "Battery runtime allowing a clean shutdown during an outage",
+      "Protection against voltage spikes",
+      "Additional power outlets",
+      "Cable management"
+    ],
+    "answerIndex": 0,
+    "explanation": "Both absorb surges; only a UPS carries the load through an outage. If a scenario requires continued operation during a power cut, only a UPS qualifies."
+  },
+  {
+    "id": "core2-mc-258",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is the correct disposal route for a swollen lithium-ion laptop battery?",
+    "choices": [
+      "Remove it from service and send it to a battery recycler, without puncturing it",
+      "Place it in general waste",
+      "Compress it and continue using the laptop",
+      "Freeze it and dispose of it at home"
+    ],
+    "answerIndex": 0,
+    "explanation": "A swollen cell is a fire hazard and regulated waste. Puncturing risks thermal runaway, and general waste is never an acceptable route."
+  },
+  {
+    "id": "core2-mc-259",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician discovers material on a user's machine that appears to breach company policy. What should they do FIRST?",
+    "choices": [
+      "Preserve the device as found and report through the documented chain of custody",
+      "Delete the material",
+      "Discuss it with colleagues",
+      "Copy it to personal media as evidence"
+    ],
+    "answerIndex": 0,
+    "explanation": "Preserve and escalate. Deleting destroys evidence, discussion breaches confidentiality, and personal copies break chain of custody."
+  },
+  {
+    "id": "core2-mc-260",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which behaviour BEST demonstrates professionalism with a frustrated user?",
+    "choices": [
+      "Listen without interrupting, then restate the problem to confirm understanding",
+      "Explain the fault using detailed technical terminology",
+      "Point out that the user caused the problem",
+      "Take a personal call while diagnosing"
+    ],
+    "answerIndex": 0,
+    "explanation": "Active listening and confirming understanding de-escalate and improve diagnosis. Jargon, blame, and distraction all undermine the interaction."
+  },
+  {
+    "id": "core2-mc-261",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which backup scheme requires restoring the last full backup plus every increment taken since?",
+    "choices": [
+      "Incremental",
+      "Differential",
+      "Full only",
+      "Synthetic full"
+    ],
+    "answerIndex": 0,
+    "explanation": "Incremental captures changes since the last backup of any type, so the chain must be replayed in order — fastest to write, slowest and most fragile to restore."
+  },
+  {
+    "id": "core2-mc-262",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which backup practice specifically addresses ransomware reaching the backups themselves?",
+    "choices": [
+      "Keeping at least one copy offline or immutable",
+      "Increasing backup frequency",
+      "Storing backups on a mapped network drive",
+      "Compressing the backups"
+    ],
+    "answerIndex": 0,
+    "explanation": "Ransomware encrypts what it can reach, and a permanently mounted writable share is reachable. Offline or immutable copies are what survive."
+  },
+  {
+    "id": "core2-mc-263",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organisation keeps three backup copies on two media types with one off-site, yet still loses data to ransomware. Which requirement was MOST likely missed?",
+    "choices": [
+      "At least one copy must be offline or immutable, not permanently writable",
+      "Backups should have been compressed",
+      "More than three copies were needed",
+      "The copies should all have been on the same media type"
+    ],
+    "answerIndex": 0,
+    "explanation": "3-2-1 addresses media failure and site loss, not an attacker with write access. Ransomware encrypts every reachable copy, so survivability depends on one being offline or immutable."
+  },
+  {
+    "id": "core2-mc-264",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which regulation governs the handling of protected health information in the United States?",
+    "choices": [
+      "HIPAA",
+      "PCI DSS",
+      "GDPR",
+      "ISO 27001"
+    ],
+    "answerIndex": 0,
+    "explanation": "HIPAA covers PHI in US healthcare. PCI DSS governs cardholder data, GDPR EU personal data, and ISO 27001 is a general management framework."
+  },
+  {
+    "id": "core2-mc-265",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician must run a script from an internet forum with administrative rights. What is the correct action?",
+    "choices": [
+      "Review the script line by line and test it on a non-production machine first",
+      "Run it immediately, since it is widely shared",
+      "Disable the execution policy and run it",
+      "Run it on the production server to save time"
+    ],
+    "answerIndex": 0,
+    "explanation": "An unreviewed script executes with the technician's full privilege on every target. Review and isolated testing are what separate automation from an incident."
+  },
+  {
+    "id": "core2-mc-266",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which AI limitation MOST requires human review before output is sent to a customer?",
+    "choices": [
+      "Hallucination — confident output that is factually wrong",
+      "Slow response times",
+      "Limited file format support",
+      "High licensing cost"
+    ],
+    "answerIndex": 0,
+    "explanation": "Generative output reads authoritatively regardless of accuracy, so a person must verify anything factual before it leaves the organisation."
+  },
+  {
+    "id": "core2-mc-267",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is the primary risk of pasting customer records into a public AI chatbot?",
+    "choices": [
+      "The data leaves the organisation's control and may be retained by a third party",
+      "The chatbot will respond more slowly",
+      "The output will be formatted incorrectly",
+      "The licence cost increases"
+    ],
+    "answerIndex": 0,
+    "explanation": "Once submitted to a public service the data is outside the organisation's control, which is a data-protection and compliance problem independent of answer quality."
+  },
+  {
+    "id": "core2-multi-039",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A change was implemented successfully. Which TWO steps complete the change management process?",
+    "choices": [
+      "Verify the outcome against what the change was meant to achieve",
+      "Update the affected documentation and diagrams",
+      "Delete the original change request",
+      "Disable monitoring on the changed system",
+      "Skip notification since the change worked"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A change is not finished when it is applied — it is finished when the result is confirmed and the records reflect the new reality. The remaining options destroy the audit trail or the ability to notice a delayed failure."
+  },
+  {
+    "id": "core2-multi-040",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A technician is working inside a desktop chassis. Which TWO safety steps apply?",
+    "choices": [
+      "Unplug the system and hold the power button to discharge residual power",
+      "Wear an anti-static wrist strap connected to the chassis",
+      "Wear an anti-static strap while opening the power supply",
+      "Work on a carpeted floor",
+      "Keep the system running to test as you go"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Removing power and equalising static are the two prerequisites. A PSU must never be opened at all, and carpet worsens static build-up."
+  },
+  {
+    "id": "core2-multi-041",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO are appropriate uses of scripting in a support role?",
+    "choices": [
+      "Mapping network drives consistently at logon across many machines",
+      "Collecting inventory or configuration data from many systems",
+      "Bypassing the organisation's change management process",
+      "Running unreviewed code from a forum on production",
+      "Disabling audit logging"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Scripting earns its place through scale and consistency. The remaining options describe using automation to circumvent controls, which multiplies risk rather than work."
+  },
+  {
+    "id": "core2-order-005",
+    "type": "order",
+    "domainCode": "4.0",
+    "prompt": "Place the steps of handling discovered prohibited content in the correct order.",
+    "items": [
+      "Identify the apparent policy or legal violation",
+      "Stop work and leave the system exactly as found",
+      "Report through the documented chain of command",
+      "Record who handled the device and when, establishing chain of custody",
+      "Hand the matter to security or legal for a decision"
+    ],
+    "explanation": "The technician identifies, preserves, and escalates — and does not investigate further, delete anything, or confront the user. Every step after identification is about keeping the evidence and its handling defensible."
+  },
+  {
+    "id": "core2-mc-295",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An employee is found running a personal cryptocurrency miner on their work laptop. Which document does this MOST directly breach, and who decides the consequence?",
+    "choices": [
+      "The acceptable use policy — the decision belongs to HR and management, not the technician",
+      "The service level agreement — the service desk decides",
+      "The non-disclosure agreement — the customer decides",
+      "The safety data sheet — facilities decides"
+    ],
+    "answerIndex": 0,
+    "explanation": "Misuse of company equipment is an AUP matter. The technician's role is to report through the proper channel, not to adjudicate or discipline."
+  },
+  {
+    "id": "core2-mc-296",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician is asked to install software on 40 machines for which the company holds 25 licences. What is the correct response?",
+    "choices": [
+      "Decline and escalate, because installing beyond the licence count is not the technician's call",
+      "Install on all 40 and note it in the ticket",
+      "Install on 25 and choose which staff miss out",
+      "Install trial versions repeatedly"
+    ],
+    "answerIndex": 0,
+    "explanation": "Licence compliance is a business and legal matter, not a technical one. Escalating puts the decision where the authority and liability sit."
+  },
+  {
+    "id": "core2-mc-297",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is the correct handling of a customer's confidential data encountered during a repair?",
+    "choices": [
+      "Access only what the task requires and disclose nothing",
+      "Copy it for safekeeping",
+      "Discuss it with colleagues for a second opinion",
+      "Post about it anonymously"
+    ],
+    "answerIndex": 0,
+    "explanation": "Confidentiality applies to anything encountered on a user's machine, and is bound by both the AUP and any NDA."
+  },
+  {
+    "id": "core2-mc-298",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which describes the value of a knowledge base article after resolving an unusual fault?",
+    "choices": [
+      "It saves the next technician from diagnosing the same problem from scratch",
+      "It satisfies the SLA automatically",
+      "It replaces the need for a rollback plan",
+      "It removes the need for change approval"
+    ],
+    "answerIndex": 0,
+    "explanation": "Documentation exists for whoever meets the fault next, including you in six months. It does not substitute for any other process step."
+  },
+  {
+    "id": "core2-mc-299",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician arrives late to a scheduled appointment. What is the professional response?",
+    "choices": [
+      "Notify the customer as soon as the delay is known and give a realistic new time",
+      "Arrive without comment and start work",
+      "Blame traffic and the previous ticket",
+      "Reschedule silently in the ticket system"
+    ],
+    "answerIndex": 0,
+    "explanation": "Setting and meeting expectations is a named professional behaviour. Early notification lets the customer plan; silence does not."
+  },
+  {
+    "id": "core2-mc-300",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which statement about a differential backup is accurate?",
+    "choices": [
+      "It captures everything changed since the last full backup",
+      "It captures everything changed since the last backup of any type",
+      "It replaces the need for a full backup",
+      "It cannot be restored without every prior differential"
+    ],
+    "answerIndex": 0,
+    "explanation": "Differential measures from the last full, so a restore needs the full plus only the latest differential. Incremental measures from the last backup of any type."
+  },
+  {
+    "id": "core2-mc-301",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which describes the primary purpose of an asset inventory?",
+    "choices": [
+      "To track what equipment exists, where it is, and its warranty status",
+      "To define acceptable use",
+      "To guarantee uptime",
+      "To record chemical hazards"
+    ],
+    "answerIndex": 0,
+    "explanation": "Asset inventories underpin lifecycle management, procurement, and loss detection. The other options describe an AUP, an SLA, and an SDS."
+  },
+  {
+    "id": "core2-mc-302",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is the MOST appropriate use of a generative AI assistant in a support role?",
+    "choices": [
+      "Drafting a first-response reply that a technician then reviews before sending",
+      "Sending its output directly to customers unreviewed",
+      "Pasting customer records into a public tool for analysis",
+      "Running its suggested commands on production without review"
+    ],
+    "answerIndex": 0,
+    "explanation": "AI is best used where review is cheap and errors are catchable. The other three each remove the human check that its limitations require."
+  },
+  {
+    "id": "core2-multi-048",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO items are regulated waste requiring specialist disposal?",
+    "choices": [
+      "Lithium-ion batteries",
+      "CRT monitors",
+      "Cardboard packaging",
+      "Plastic cable ties",
+      "Paper printouts"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Batteries and CRTs both contain hazardous materials and are regulated in most jurisdictions. The remaining items are ordinary recycling or waste."
+  },
+  {
+    "id": "core2-multi-049",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO pieces of information make a support ticket genuinely useful to the next technician who reads it?",
+    "choices": [
+      "The symptom as observed, including what the user was doing at the time",
+      "What was tried, what the result was, and what finally resolved it",
+      "The technician's personal opinion of the user",
+      "The colour of the workstation",
+      "The time the technician took a break"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A ticket earns its keep by recording the observed symptom and the path to resolution, which is what makes a recurring pattern visible later. Everything else is noise."
+  },
+  {
+    "id": "core2-mc-325",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which describes the correct handling of a hard drive being sent for external repair while it still holds regulated data?",
+    "choices": [
+      "Confirm the vendor agreement covers data handling, or remove and retain the drive",
+      "Send it as-is and rely on the vendor's discretion",
+      "Delete the files and send it",
+      "Quick format it and send it"
+    ],
+    "answerIndex": 0,
+    "explanation": "Regulated data leaving the organisation requires a contractual basis, and deletion or quick formatting leaves it recoverable. Retaining the drive is often simplest."
+  },
+  {
+    "id": "core2-mc-326",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is the MOST appropriate response to a user asking a technician to install software they downloaded from a personal account?",
+    "choices": [
+      "Decline and explain the licensing and security policy, escalating if the need is genuine",
+      "Install it and note it in the ticket",
+      "Install it only if it appears legitimate",
+      "Install it on a test machine first, then theirs"
+    ],
+    "answerIndex": 0,
+    "explanation": "Licensing and provenance are policy matters. Escalation routes a genuine business need to whoever can authorise it."
+  },
+  {
+    "id": "core2-mc-327",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which describes the value of an incident report after a security event?",
+    "choices": [
+      "It records what happened and what was done, feeding both compliance and future prevention",
+      "It replaces the need for backups",
+      "It satisfies the licence agreement",
+      "It removes liability from the organisation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Incident records support regulatory obligations and the lessons-learned step. They neither remove liability nor substitute for technical controls."
+  },
+  {
+    "id": "core2-mc-328",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician needs to move 400 GB of user data between servers, preserving permissions and resuming if interrupted. Which tool is BEST?",
+    "choices": [
+      "robocopy",
+      "copy",
+      "xcopy",
+      "del"
+    ],
+    "answerIndex": 0,
+    "explanation": "robocopy is the robust option, preserving attributes and ACLs and resuming after interruption. xcopy is its older, less capable predecessor."
+  },
+  {
+    "id": "core2-multi-055",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO describe appropriate use of a generative AI tool under a typical corporate policy?",
+    "choices": [
+      "Drafting internal documentation that a person reviews before publication",
+      "Using an internally hosted or approved tool when the content is sensitive",
+      "Pasting customer personal data into a public chatbot",
+      "Sending AI output to customers without review",
+      "Presenting AI-generated work as entirely one's own"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Review before use and choosing an approved tool for sensitive content are the two behaviours policy requires. The remaining options breach data protection, quality, or plagiarism rules."
   }
 ]

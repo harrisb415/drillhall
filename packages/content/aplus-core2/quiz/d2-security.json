@@ -737,5 +737,583 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "The order is investigate, quarantine, disable System Restore, remediate, then schedule scans/updates, re-enable System Restore with a fresh restore point, and educate the user. The last three options all precede remediation."
+  },
+  {
+    "id": "core2-mc-205",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user receives a call from someone claiming to be IT, asking them to confirm their password to 'clear a mailbox fault'. Which technique is being used?",
+    "choices": [
+      "Vishing",
+      "Smishing",
+      "Tailgating",
+      "Shoulder surfing"
+    ],
+    "answerIndex": 0,
+    "explanation": "Voice-call fraud is vishing. Smishing arrives by SMS, and the other two are physical observation or entry techniques."
+  },
+  {
+    "id": "core2-mc-206",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the primary security value of running users as standard accounts rather than local administrators?",
+    "choices": [
+      "Most installers and system changes fail without elevation, blocking a large share of malware",
+      "It prevents all phishing attacks",
+      "It encrypts the user's files automatically",
+      "It removes the need for antivirus"
+    ],
+    "answerIndex": 0,
+    "explanation": "Removing admin rights is a technical control that stops the change from happening rather than relying on the user to decline it. It does nothing about phishing or encryption."
+  },
+  {
+    "id": "core2-mc-207",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A workstation in a public area should lock itself quickly when unattended. Which setting achieves this?",
+    "choices": [
+      "A short screen lock timeout requiring re-authentication",
+      "A longer password expiry",
+      "Disabling the screensaver",
+      "Increasing the DHCP lease"
+    ],
+    "answerIndex": 0,
+    "explanation": "An unattended unlocked session is an open door. A short timeout with re-authentication closes it without depending on the user remembering."
+  },
+  {
+    "id": "core2-mc-208",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which Windows feature encrypts an entire volume so a stolen laptop's data cannot be read by removing the drive?",
+    "choices": [
+      "BitLocker",
+      "EFS",
+      "Windows Defender Firewall",
+      "User Account Control"
+    ],
+    "answerIndex": 0,
+    "explanation": "BitLocker encrypts the whole volume and is typically bound to the TPM. EFS encrypts individual files or folders rather than the volume."
+  },
+  {
+    "id": "core2-mc-209",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A shared folder has NTFS permissions of Modify and share permissions of Read. What effective access does a user get across the network?",
+    "choices": [
+      "Read",
+      "Modify",
+      "Full Control",
+      "No access"
+    ],
+    "answerIndex": 0,
+    "explanation": "When both apply, the more restrictive wins — so network users get Read. A user at the local console bypasses the share entirely and would get Modify."
+  },
+  {
+    "id": "core2-mc-210",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user is a member of two groups: one granted Modify on a folder, the other explicitly denied Write. What is the result?",
+    "choices": [
+      "Write is denied, because an explicit deny overrides any allow",
+      "Modify applies, because allows are cumulative",
+      "Full Control applies",
+      "Access is removed entirely"
+    ],
+    "answerIndex": 0,
+    "explanation": "Deny always overrides allow in NTFS. Permissions are otherwise cumulative across group memberships, which is what makes an explicit deny such a blunt instrument."
+  },
+  {
+    "id": "core2-mc-211",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the MOST secure method of authenticating users to a corporate wireless network?",
+    "choices": [
+      "WPA3 Enterprise with 802.1X against a RADIUS server",
+      "WPA3 Personal with a shared passphrase",
+      "MAC address filtering",
+      "A hidden SSID with WPA2"
+    ],
+    "answerIndex": 0,
+    "explanation": "Enterprise mode issues individual credentials, so one person's access can be revoked without changing anything for anyone else. A shared PSK offers no per-user accountability."
+  },
+  {
+    "id": "core2-mc-212",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician is asked to configure a workstation so that removable drives cannot automatically run programs. Which setting should be changed?",
+    "choices": [
+      "Disable AutoRun and AutoPlay",
+      "Enable Fast Startup",
+      "Increase the page file",
+      "Disable the firewall"
+    ],
+    "answerIndex": 0,
+    "explanation": "AutoRun historically executed code from removable media without user action, which made USB a reliable infection path. Disabling it closes that path."
+  },
+  {
+    "id": "core2-mc-213",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which best describes a rootkit?",
+    "choices": [
+      "Malware that hides itself with high privilege and typically survives reboots",
+      "Malware that encrypts files for ransom",
+      "Software that displays unwanted advertising",
+      "A tool that recovers lost passwords"
+    ],
+    "answerIndex": 0,
+    "explanation": "Rootkits embed deeply with elevated privilege and conceal their presence, which is why offline scanning or reimaging is often the only reliable removal."
+  },
+  {
+    "id": "core2-mc-214",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user's browser shows a certificate warning on a banking site that normally works fine. What should they be told to do?",
+    "choices": [
+      "Stop and not proceed, then report it",
+      "Click through and continue, since the site normally works",
+      "Disable certificate checking in the browser",
+      "Clear cookies and proceed"
+    ],
+    "answerIndex": 0,
+    "explanation": "A certificate warning means the site's identity cannot be verified, which is exactly the condition an interception attack produces. Proceeding defeats the control."
+  },
+  {
+    "id": "core2-mc-215",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Staff in an open-plan reception area handle customer records on screen. Which control MOST directly addresses shoulder surfing?",
+    "choices": [
+      "Privacy screen filters on the monitors",
+      "A longer password expiry interval",
+      "Full-disk encryption",
+      "A firewall rule blocking outbound traffic"
+    ],
+    "answerIndex": 0,
+    "explanation": "Shoulder surfing is direct visual observation, so the countermeasure has to be visual. Encryption and firewall rules protect stored and transmitted data, not what is legible over someone's shoulder."
+  },
+  {
+    "id": "core2-mc-216",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the LEAST effective control against a stolen laptop's data being read?",
+    "choices": [
+      "A strong Windows login password",
+      "Full-disk encryption with BitLocker",
+      "A TPM-bound encryption key",
+      "Remote wipe through MDM"
+    ],
+    "answerIndex": 0,
+    "explanation": "A login password protects the running OS, but the drive can simply be removed and read elsewhere. Only encryption makes the stored data unreadable."
+  },
+  {
+    "id": "core2-mc-217",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician needs to grant a contractor access to one folder for two weeks. Which approach BEST follows least privilege?",
+    "choices": [
+      "Grant access to that folder only, and diarise its removal at the end of the engagement",
+      "Add them to the Domain Admins group temporarily",
+      "Share the folder with Everyone / Full Control",
+      "Give them the manager's credentials"
+    ],
+    "answerIndex": 0,
+    "explanation": "Least privilege means the minimum access for the minimum time. Sharing credentials also destroys accountability, since actions can no longer be attributed."
+  },
+  {
+    "id": "core2-mc-218",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the purpose of Windows Defender Firewall on a workstation?",
+    "choices": [
+      "It filters inbound and outbound traffic at the host, limiting lateral movement",
+      "It scans files for malware signatures",
+      "It encrypts the disk",
+      "It manages Windows updates"
+    ],
+    "answerIndex": 0,
+    "explanation": "A host firewall controls what can reach the machine and what it can reach, which matters most for containing an attacker already inside the network."
+  },
+  {
+    "id": "core2-mc-219",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A phishing email asks a user to log in via a link to verify their account. Which is the strongest technical control if the user does enter their password?",
+    "choices": [
+      "Multifactor authentication on the account",
+      "A longer password expiry",
+      "A stronger password complexity rule",
+      "Disabling the browser's password manager"
+    ],
+    "answerIndex": 0,
+    "explanation": "MFA means a stolen password alone is insufficient. Complexity and expiry do nothing once the credential has been handed over."
+  },
+  {
+    "id": "core2-mc-220",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the correct order of the first three steps of CompTIA's malware removal procedure?",
+    "choices": [
+      "Investigate and verify symptoms, quarantine the system, disable System Restore",
+      "Quarantine the system, educate the user, scan and remove",
+      "Disable System Restore, educate the user, quarantine",
+      "Scan and remove, quarantine, document"
+    ],
+    "answerIndex": 0,
+    "explanation": "Verification precedes containment, and System Restore is disabled before remediation so a restore point cannot reintroduce the infection."
+  },
+  {
+    "id": "core2-mc-221",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes a logic bomb?",
+    "choices": [
+      "Malicious code that lies dormant until a specific condition triggers it",
+      "Malware that spreads without user action",
+      "Software bundled with a legitimate installer",
+      "A tool that captures keystrokes"
+    ],
+    "answerIndex": 0,
+    "explanation": "A logic bomb waits for a trigger — a date, or an employee record being deleted. That delay is what makes it hard to attribute to whoever planted it."
+  },
+  {
+    "id": "core2-mc-222",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A small office wants to stop staff reaching known-malicious websites with minimal cost and complexity. Which is the MOST practical control?",
+    "choices": [
+      "DNS filtering at the router or via a filtering resolver",
+      "Full-disk encryption on every workstation",
+      "Disabling all USB ports",
+      "Replacing the switch"
+    ],
+    "answerIndex": 0,
+    "explanation": "DNS filtering blocks resolution of bad domains before a connection is made, protecting every protocol at once with no endpoint software to deploy."
+  },
+  {
+    "id": "core2-multi-029",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A workstation is suspected of being infected with ransomware. Which TWO actions should be taken IMMEDIATELY?",
+    "choices": [
+      "Disconnect the machine from the network",
+      "Preserve the machine's state rather than reimaging straight away",
+      "Pay the ransom to recover the files",
+      "Run a defragmentation",
+      "Delete the encrypted files"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Containment stops lateral spread, and preserving state keeps evidence and any decryption options open. Paying funds the attacker with no guarantee, and deleting destroys any chance of recovery."
+  },
+  {
+    "id": "core2-multi-030",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO measures directly protect data on a laptop that may be lost or stolen?",
+    "choices": [
+      "BitLocker full-disk encryption",
+      "Enrolment in MDM with remote wipe capability",
+      "A longer password expiry interval",
+      "Disabling the trackpad",
+      "A brighter screen"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Encryption makes the stored data unreadable and remote wipe removes it. Password expiry and hardware settings do nothing about a drive removed and read elsewhere."
+  },
+  {
+    "id": "core2-multi-031",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO are characteristics of a worm as distinct from a virus?",
+    "choices": [
+      "It self-propagates across a network without user action",
+      "It does not need to attach itself to a host file",
+      "It always encrypts data for ransom",
+      "It only runs when a user opens an infected document",
+      "It cannot spread beyond the machine it infects"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Self-propagation and independence from a host file are what define a worm. Needing a user to open something describes a virus."
+  },
+  {
+    "id": "core2-multi-032",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A company is hardening its SOHO router. Which TWO changes reduce exposure the most?",
+    "choices": [
+      "Change the default administrator credentials",
+      "Disable UPnP",
+      "Enable the DMZ host setting for a workstation",
+      "Disable WPA3 in favour of WEP",
+      "Broadcast the SSID"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Default credentials are published, and UPnP lets any device — including malware — open inbound ports without approval. The DMZ host setting and WEP both increase exposure sharply."
+  },
+  {
+    "id": "core2-term-009",
+    "type": "terminal",
+    "domainCode": "2.0",
+    "prompt": "Type the Windows command that displays the current user's account name, group memberships, and privileges.",
+    "expected": [
+      "whoami /all",
+      "whoami /groups"
+    ],
+    "explanation": "whoami /all reports the signed-in identity along with its group memberships and privileges, which is how you confirm what access an account actually holds rather than what it is assumed to hold."
+  },
+  {
+    "id": "core2-mc-278",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the security purpose of disabling the built-in Administrator account?",
+    "choices": [
+      "It removes a universally known account name that attackers try first",
+      "It encrypts the disk",
+      "It prevents phishing",
+      "It disables the firewall"
+    ],
+    "answerIndex": 0,
+    "explanation": "A known account name gives an attacker half the credential for free. Disabling or renaming it removes that starting point."
+  },
+  {
+    "id": "core2-mc-279",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A company wants to prevent staff installing unapproved software while still allowing approved applications. Which control fits BEST?",
+    "choices": [
+      "An application allow list",
+      "Antivirus signature updates",
+      "A longer screen timeout",
+      "Disabling the firewall"
+    ],
+    "answerIndex": 0,
+    "explanation": "An allow list permits only approved executables to run, which is more precise than blocking known-bad. Antivirus catches malware but not unapproved legitimate software."
+  },
+  {
+    "id": "core2-mc-280",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the risk of connecting to an open public Wi-Fi network without a VPN?",
+    "choices": [
+      "Traffic can be observed or altered by others on the same network",
+      "The device's battery drains faster",
+      "The screen resolution changes",
+      "The device cannot use Bluetooth"
+    ],
+    "answerIndex": 0,
+    "explanation": "An open network provides no encryption between the device and the access point, so anyone nearby can observe traffic. A VPN restores confidentiality over that hop."
+  },
+  {
+    "id": "core2-mc-281",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user reports receiving an SMS claiming a parcel is held and asking them to tap a link. What is this?",
+    "choices": [
+      "Smishing",
+      "Vishing",
+      "Whaling",
+      "Tailgating"
+    ],
+    "answerIndex": 0,
+    "explanation": "SMS-delivered phishing is smishing. The parcel pretext is one of the most common because almost everyone is expecting a delivery at some point."
+  },
+  {
+    "id": "core2-mc-282",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the correct response when a user reports they have already entered credentials into a suspected phishing site?",
+    "choices": [
+      "Change the password immediately and review the account for unauthorised activity",
+      "Take no action unless money is missing",
+      "Delete the email and move on",
+      "Disable the user's account permanently"
+    ],
+    "answerIndex": 0,
+    "explanation": "Speed limits the window of use, and reviewing activity establishes whether the credential was already exploited. Ignoring it leaves a live compromise in place."
+  },
+  {
+    "id": "core2-mc-283",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which authentication approach BEST resists credential phishing?",
+    "choices": [
+      "A FIDO2 security key, which verifies the site's origin before releasing a credential",
+      "A longer password",
+      "An SMS one-time code",
+      "A security question"
+    ],
+    "answerIndex": 0,
+    "explanation": "A security key will not release its credential to a lookalike domain, which a human — or a TOTP code typed into a fake page — cannot detect."
+  },
+  {
+    "id": "core2-mc-284",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the effect of enabling Secure Boot?",
+    "choices": [
+      "Only bootloaders and drivers with trusted signatures are permitted to load",
+      "The disk is encrypted",
+      "Windows Update runs automatically",
+      "The firewall is enabled"
+    ],
+    "answerIndex": 0,
+    "explanation": "Secure Boot verifies signatures during startup, blocking bootkits and unsigned boot code. It is a boot-integrity control, not an encryption or update feature."
+  },
+  {
+    "id": "core2-mc-285",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must securely wipe a hard drive that will be redeployed internally rather than destroyed. Which method is appropriate?",
+    "choices": [
+      "A multi-pass or vendor secure-erase overwrite of the entire drive",
+      "A quick format",
+      "Deleting the partitions",
+      "Emptying the Recycle Bin"
+    ],
+    "answerIndex": 0,
+    "explanation": "Redeployment requires the drive to remain usable, so overwriting is correct. Formats and partition deletion leave the underlying data recoverable."
+  },
+  {
+    "id": "core2-mc-286",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the MOST significant weakness of using SMS for multifactor authentication?",
+    "choices": [
+      "Codes can be intercepted or redirected through SIM swapping",
+      "It requires a smartphone",
+      "It is slower than a hardware token",
+      "It cannot be used internationally"
+    ],
+    "answerIndex": 0,
+    "explanation": "SIM swapping and interception mean the possession factor can be taken over remotely. SMS is still far better than no second factor, but it is the weakest common option."
+  },
+  {
+    "id": "core2-mc-287",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which action BEST reduces the impact of a compromised standard user account?",
+    "choices": [
+      "Least privilege, so the account can reach only what its role requires",
+      "A longer password expiry",
+      "Disabling the screensaver",
+      "Increasing the DHCP lease"
+    ],
+    "answerIndex": 0,
+    "explanation": "The blast radius of any compromise is defined by what the account could reach. Least privilege shrinks it before anything goes wrong."
+  },
+  {
+    "id": "core2-multi-044",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO indicate that a workstation may be compromised rather than simply old?",
+    "choices": [
+      "Security software is disabled and refuses to re-enable",
+      "Unfamiliar processes make persistent outbound connections",
+      "Boot takes slightly longer than when new",
+      "The disk is 70 percent full",
+      "The user has many browser tabs open"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Disabled defences and unexplained outbound traffic both indicate something actively resisting inspection. The remaining three are ordinary conditions."
+  },
+  {
+    "id": "core2-multi-045",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO are true of multifactor authentication?",
+    "choices": [
+      "It requires factors from different categories to qualify",
+      "A password plus a security question is not MFA",
+      "Any two-step login qualifies as MFA",
+      "It replaces the need for account lockout",
+      "It makes password strength irrelevant"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Category diversity is the defining requirement, which is why two knowledge factors do not count. MFA complements rather than replaces other controls."
+  },
+  {
+    "id": "core2-mc-320",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must verify that a downloaded installer has not been tampered with. What should they do?",
+    "choices": [
+      "Compare the file's hash against the value published by the vendor",
+      "Check the file size only",
+      "Scan it with one antivirus product",
+      "Rename the file to something trusted"
+    ],
+    "answerIndex": 0,
+    "explanation": "A matching hash proves the file is byte-identical to what the publisher released, catching both tampering and corruption. File size alone is trivially matched."
+  },
+  {
+    "id": "core2-mc-321",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the risk of leaving UPnP enabled on a small office router?",
+    "choices": [
+      "Any device, including malware, can open inbound ports without administrative approval",
+      "It slows the wireless network",
+      "It prevents DHCP from working",
+      "It disables the firewall entirely"
+    ],
+    "answerIndex": 0,
+    "explanation": "UPnP removes the approval step from port forwarding. That convenience is available to malicious software on the network exactly as it is to a games console."
+  },
+  {
+    "id": "core2-mc-322",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the correct interpretation of private browsing mode?",
+    "choices": [
+      "It clears local history and cookies for that session only",
+      "It hides traffic from the network and ISP",
+      "It encrypts all traffic",
+      "It prevents websites identifying the user"
+    ],
+    "answerIndex": 0,
+    "explanation": "Private browsing protects against someone using the same computer afterwards. It does nothing against the network, the ISP, or the destination site."
+  },
+  {
+    "id": "core2-mc-323",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A company wants to prevent data being copied to USB drives on workstations. Which control is MOST appropriate?",
+    "choices": [
+      "Group Policy restricting removable storage write access",
+      "A stronger Wi-Fi passphrase",
+      "A longer screen timeout",
+      "Disabling the print spooler"
+    ],
+    "answerIndex": 0,
+    "explanation": "Removable-media restrictions are enforced centrally through policy. The other options address unrelated risks entirely."
+  },
+  {
+    "id": "core2-mc-324",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the purpose of an executable's digital signature?",
+    "choices": [
+      "It confirms the publisher's identity and that the file has not been altered since signing",
+      "It compresses the file",
+      "It encrypts the file's contents",
+      "It grants the file administrative rights"
+    ],
+    "answerIndex": 0,
+    "explanation": "Code signing provides origin and integrity, which is what makes a malicious update detectable. It does not encrypt or elevate anything."
+  },
+  {
+    "id": "core2-multi-054",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO settings should be changed on a newly installed SOHO wireless router before it goes into service?",
+    "choices": [
+      "The default administrator password",
+      "The default SSID name",
+      "The DHCP lease time",
+      "The router's physical orientation",
+      "The firmware language"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Default credentials are published, and a default SSID often reveals the make and model, which tells an attacker which defaults to try. Lease time and orientation are not security settings."
   }
 ]

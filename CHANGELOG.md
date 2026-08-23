@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.16.0] — 2026-08-20
+
+### Added
+- **A+ Core 2 question bank expanded from 252 to 407** — pack two of four. Distributed in proportion to the official domain weights (1.0 → 117, 2.0 → 109, 3.0 → 86, 4.0 → 95), and **90-question mocks before the bank repeats went from 2.8 to 4.5**.
+  - Multiple-response ratio at **13.5%**, and PBQ coverage grew to 24 across ordering, matching, and terminal.
+  - New coverage weighted toward the areas the pack was thinnest on relative to weight: software troubleshooting methodology, credential and profile faults, and the operational-procedures material around change management, evidence handling, and AI use.
+
+### Fixed
+- **Fourteen near-duplicate questions**, all caught by the detector added in 1.15.0 — including two exact matches (score 1.0) against questions written months apart. Each was replaced with a question testing a genuinely different point rather than reworded, so the bank gained coverage rather than just losing a collision.
+  - The replacements are often better than what they displaced, because the constraint forced a sharper question: the duplicated "which extinguisher class" recall item became a scenario about someone reaching for a water extinguisher at a smoking rack, and a second identical change-management ordering question became the chain-of-custody sequence for discovered prohibited content.
+
+### Notes
+- Totals across all four packs: **1,424 questions**. Network+ and Security+ remain at 271 and 279.
+
 ## [1.15.0] — 2026-08-20
 
 ### Added

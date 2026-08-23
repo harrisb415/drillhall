@@ -711,5 +711,583 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Cloud suites are licensed per user and identities are typically synchronized from the on-prem directory, so both are standard onboarding steps. The others are hardware or disposal tasks unrelated to onboarding."
+  },
+  {
+    "id": "core2-mc-223",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows utility would a technician use to create, resize, or delete partitions through a graphical interface?",
+    "choices": [
+      "Disk Management",
+      "Device Manager",
+      "Task Scheduler",
+      "Event Viewer"
+    ],
+    "answerIndex": 0,
+    "explanation": "Disk Management handles partitions and volumes graphically; diskpart is the command-line equivalent. Device Manager deals with hardware and drivers."
+  },
+  {
+    "id": "core2-mc-224",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician needs to see which services are set to start automatically and change one to manual. Which console is appropriate?",
+    "choices": [
+      "services.msc",
+      "Event Viewer",
+      "Resource Monitor",
+      "Disk Cleanup"
+    ],
+    "answerIndex": 0,
+    "explanation": "The Services console lists every service with its startup type and lets it be changed. Event Viewer and Resource Monitor report rather than configure."
+  },
+  {
+    "id": "core2-mc-225",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which file system should be selected to format a 64 GB USB drive that must hold files larger than 4 GB and work on both Windows and macOS?",
+    "choices": [
+      "exFAT",
+      "FAT32",
+      "NTFS",
+      "ext4"
+    ],
+    "answerIndex": 0,
+    "explanation": "FAT32 caps individual files at 4 GB. exFAT removes that limit and is read/write on both platforms, whereas NTFS is typically read-only on macOS without extra software."
+  },
+  {
+    "id": "core2-mc-226",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A remote worker needs colleagues to connect INTO their Windows machine using Remote Desktop. Which edition requirement applies?",
+    "choices": [
+      "Pro or higher, because only those editions can act as an RDP host",
+      "Any edition, since all can host RDP",
+      "Home, because RDP hosting is a consumer feature",
+      "No edition supports incoming RDP without third-party software"
+    ],
+    "answerIndex": 0,
+    "explanation": "Every edition can run the RDP client and connect out. Only Pro and above can accept incoming sessions as a host — the distinction the exam draws."
+  },
+  {
+    "id": "core2-mc-227",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows tool shows a timeline of system failures alongside recent installations and updates?",
+    "choices": [
+      "Reliability Monitor",
+      "Disk Management",
+      "Task Manager",
+      "Registry Editor"
+    ],
+    "answerIndex": 0,
+    "explanation": "Reliability Monitor correlates failures with changes over time, which answers 'what changed?' directly — the highest-yield troubleshooting question."
+  },
+  {
+    "id": "core2-mc-228",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must deploy Windows to 60 identical machines with the same applications and settings. Which method is MOST efficient?",
+    "choices": [
+      "Capture a reference image and deploy it to each machine",
+      "Install manually from USB on each machine",
+      "Perform an in-place upgrade on each machine",
+      "Use a repair installation on each machine"
+    ],
+    "answerIndex": 0,
+    "explanation": "Imaging clones a fully prepared build, giving identical, repeatable deployments. Manual installation does not scale, and upgrade or repair paths assume an existing OS."
+  },
+  {
+    "id": "core2-mc-229",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A macOS user cannot open an application they downloaded, and macOS reports it is from an unidentified developer. Which feature is responsible?",
+    "choices": [
+      "Gatekeeper",
+      "FileVault",
+      "Time Machine",
+      "Spotlight"
+    ],
+    "answerIndex": 0,
+    "explanation": "Gatekeeper checks code signing and notarisation before allowing an application to launch. It is the macOS equivalent of the trust check behind SmartScreen on Windows."
+  },
+  {
+    "id": "core2-mc-230",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which macOS utility transfers accounts, files, and settings from an old machine during setup?",
+    "choices": [
+      "Migration Assistant",
+      "Disk Utility",
+      "Keychain Access",
+      "Activity Monitor"
+    ],
+    "answerIndex": 0,
+    "explanation": "Migration Assistant moves a user's environment across during or after setup. Disk Utility handles volumes and Keychain stores credentials."
+  },
+  {
+    "id": "core2-mc-231",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A Linux administrator needs to run a single command with elevated privileges without logging in as root. Which should be used?",
+    "choices": [
+      "sudo",
+      "chmod",
+      "grep",
+      "df"
+    ],
+    "answerIndex": 0,
+    "explanation": "sudo elevates one command under the user's own identity, which also preserves an audit trail. Logging in as root removes that attribution."
+  },
+  {
+    "id": "core2-mc-232",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A Linux server is running slowly and an administrator needs to see which processes are consuming the most CPU right now, updating live. Which command should be used?",
+    "choices": [
+      "top",
+      "df -h",
+      "chmod",
+      "cat"
+    ],
+    "answerIndex": 0,
+    "explanation": "top is the live process monitor, refreshing continuously. ps gives a static snapshot, df reports disk space, and the others are unrelated to process load."
+  },
+  {
+    "id": "core2-mc-233",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician needs to check available disk space on a Linux server in human-readable units. Which command applies?",
+    "choices": [
+      "df -h",
+      "du -sh",
+      "ps aux",
+      "top"
+    ],
+    "answerIndex": 0,
+    "explanation": "df reports filesystem-level free space, and -h formats it readably. du measures the size of specific directories instead."
+  },
+  {
+    "id": "core2-mc-234",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which describes the purpose of an in-place upgrade compared with a clean installation?",
+    "choices": [
+      "It preserves applications, settings, and files while replacing the OS",
+      "It erases everything and installs fresh",
+      "It only updates drivers",
+      "It converts a 32-bit installation to 64-bit"
+    ],
+    "answerIndex": 0,
+    "explanation": "In-place upgrades retain the user environment, which is why they are attractive — and why they can also carry forward existing problems. Architecture changes require a clean install."
+  },
+  {
+    "id": "core2-mc-235",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which is the LEAST appropriate step before performing an in-place upgrade?",
+    "choices": [
+      "Defragmenting the drive that will be upgraded",
+      "Backing up user data",
+      "Verifying hardware meets the requirements",
+      "Checking application compatibility"
+    ],
+    "answerIndex": 0,
+    "explanation": "Defragmentation does nothing for upgrade success. Backup, hardware compatibility, and application compatibility are all genuine prerequisites."
+  },
+  {
+    "id": "core2-mc-236",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A standard user attempts to install an application and is prompted for administrator credentials rather than being refused outright. Which Windows feature produced that prompt?",
+    "choices": [
+      "User Account Control",
+      "Windows Defender Firewall",
+      "BitLocker",
+      "Storage Sense"
+    ],
+    "answerIndex": 0,
+    "explanation": "UAC intercepts an action needing elevation and asks for consent or credentials, rather than silently allowing or blocking it. Disabling UAC removes the boundary that makes the standard/administrator split meaningful."
+  },
+  {
+    "id": "core2-mc-237",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A domain-joined workstation cannot log users in, and the error mentions no logon servers being available. Which is the MOST likely cause?",
+    "choices": [
+      "The workstation cannot reach a domain controller, often a DNS or connectivity fault",
+      "The user's mailbox is full",
+      "The printer is offline",
+      "The screen resolution is wrong"
+    ],
+    "answerIndex": 0,
+    "explanation": "Domain logon depends on locating a domain controller via DNS SRV records. Pointing a domain member at a public resolver breaks logon in a way that looks nothing like DNS."
+  },
+  {
+    "id": "core2-multi-033",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO conditions must be satisfied to upgrade a machine to Windows 11?",
+    "choices": [
+      "TPM 2.0 present and enabled",
+      "UEFI firmware with Secure Boot capability",
+      "A discrete graphics card",
+      "At least two physical drives",
+      "A wired network connection"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "TPM and UEFI/Secure Boot are the firmware requirements that block most otherwise-capable machines — often because the features are present but disabled rather than absent."
+  },
+  {
+    "id": "core2-multi-034",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A Windows workstation takes several minutes to reach the desktop. Which TWO checks BEST identify the cause before making changes?",
+    "choices": [
+      "Review the Startup tab in Task Manager for auto-launching applications",
+      "Check the boot drive's health and free space",
+      "Change the desktop wallpaper",
+      "Increase the monitor refresh rate",
+      "Rename the computer"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Startup load and drive condition are the two dominant causes of slow boot, and both are read-only checks. The remaining options change nothing relevant."
+  },
+  {
+    "id": "core2-multi-035",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO file systems can macOS use as its own boot volume?",
+    "choices": [
+      "APFS",
+      "HFS+",
+      "NTFS",
+      "ext4",
+      "FAT32"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "APFS is the current macOS default and HFS+ its predecessor. NTFS and ext4 belong to Windows and Linux, and FAT32 is not a supported macOS boot filesystem."
+  },
+  {
+    "id": "core2-term-010",
+    "type": "terminal",
+    "domainCode": "1.0",
+    "prompt": "Type the Windows command that repairs the component store System File Checker draws its clean copies from.",
+    "expected": [
+      "DISM /Online /Cleanup-Image /RestoreHealth",
+      "dism /online /cleanup-image /restorehealth"
+    ],
+    "explanation": "sfc repairs protected system files using the component store as its source, so when that store is itself damaged sfc cannot fix anything. DISM repairs the store — which is why the correct sequence is DISM first, then sfc."
+  },
+  {
+    "id": "core2-mc-268",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician needs to change the startup type of a Windows service so it no longer launches at boot. Which value should be selected to prevent it starting at all?",
+    "choices": [
+      "Disabled",
+      "Manual",
+      "Automatic (Delayed Start)",
+      "Automatic"
+    ],
+    "answerIndex": 0,
+    "explanation": "Disabled prevents the service starting by any means. Manual still permits another process or a user to start it on demand."
+  },
+  {
+    "id": "core2-mc-269",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows tool would a technician use to view a driver's status and roll it back to a previous version?",
+    "choices": [
+      "Device Manager",
+      "Disk Management",
+      "Task Scheduler",
+      "Event Viewer"
+    ],
+    "answerIndex": 0,
+    "explanation": "Device Manager exposes each device's driver tab, including update, roll back, and uninstall. Event Viewer reports on failures but cannot change drivers."
+  },
+  {
+    "id": "core2-mc-270",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must confirm which Group Policy settings actually applied to a domain workstation. Which command reports this?",
+    "choices": [
+      "gpresult /r",
+      "gpupdate /force",
+      "ipconfig /all",
+      "sfc /scannow"
+    ],
+    "answerIndex": 0,
+    "explanation": "gpresult reports the resultant set of policy — what actually applied. gpupdate reapplies policy but does not tell you the outcome."
+  },
+  {
+    "id": "core2-mc-271",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows feature keeps versions of files in user folders so an earlier copy can be recovered?",
+    "choices": [
+      "File History",
+      "BitLocker",
+      "Storage Spaces",
+      "Disk Cleanup"
+    ],
+    "answerIndex": 0,
+    "explanation": "File History versions files in the user's libraries to another drive. System Restore rolls back system files and settings, not user documents."
+  },
+  {
+    "id": "core2-mc-272",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A workstation must boot from a USB drive for imaging. Where is the boot order changed?",
+    "choices": [
+      "UEFI/BIOS firmware settings",
+      "Device Manager",
+      "Disk Cleanup",
+      "Task Manager"
+    ],
+    "answerIndex": 0,
+    "explanation": "Boot order is a firmware setting, evaluated before any operating system loads. No Windows tool can influence it at that stage."
+  },
+  {
+    "id": "core2-mc-273",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A Linux administrator needs to see the last 20 lines of a growing log file and keep watching as new entries arrive. Which command is appropriate?",
+    "choices": [
+      "tail -f",
+      "cat",
+      "grep",
+      "chmod"
+    ],
+    "answerIndex": 0,
+    "explanation": "tail shows the end of a file and -f follows it live as it grows, which is how logs are monitored during a fault. cat dumps the whole file once."
+  },
+  {
+    "id": "core2-mc-274",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which macOS utility partitions, formats, and repairs volumes?",
+    "choices": [
+      "Disk Utility",
+      "Time Machine",
+      "Mission Control",
+      "Keychain Access"
+    ],
+    "answerIndex": 0,
+    "explanation": "Disk Utility is the macOS counterpart to Disk Management plus chkdsk, offering First Aid for repairs."
+  },
+  {
+    "id": "core2-mc-275",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user wants their macOS settings and files backed up automatically to an external drive. Which feature provides this?",
+    "choices": [
+      "Time Machine",
+      "FileVault",
+      "Spotlight",
+      "Gatekeeper"
+    ],
+    "answerIndex": 0,
+    "explanation": "Time Machine performs incremental backups to an external or network disk. FileVault encrypts, Spotlight indexes, and Gatekeeper vets applications."
+  },
+  {
+    "id": "core2-mc-276",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which describes the practical difference between a workgroup and a domain?",
+    "choices": [
+      "A workgroup uses per-machine accounts; a domain centralises authentication and policy",
+      "A workgroup supports more computers than a domain",
+      "A domain cannot use Group Policy",
+      "A workgroup requires a dedicated server"
+    ],
+    "answerIndex": 0,
+    "explanation": "Workgroups decentralise accounts to each machine, which stops scaling quickly. A domain centralises identity and policy, which is why Pro or above is required to join one."
+  },
+  {
+    "id": "core2-mc-277",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which is the LEAST likely reason a Windows machine cannot install a feature update?",
+    "choices": [
+      "The default browser is out of date",
+      "Insufficient free disk space",
+      "Unsupported CPU or missing TPM",
+      "A corrupt component store"
+    ],
+    "answerIndex": 0,
+    "explanation": "Browser version is unrelated to OS updates. Space, hardware eligibility, and component store corruption are all genuine blockers."
+  },
+  {
+    "id": "core2-multi-042",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A technician is preparing a Windows machine for reassignment to another department. Which TWO steps belong in that process?",
+    "choices": [
+      "Back up or migrate the outgoing user's data as required by policy",
+      "Remove the outgoing user's profile and revoke their access",
+      "Leave the previous user's account signed in for convenience",
+      "Disable Windows Update to avoid changes",
+      "Remove the machine from the asset inventory"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Reassignment is an offboarding step for the outgoing user and an onboarding step for the new one. Leaving the old profile active is a data-protection failure, and the asset stays on the inventory under a new owner."
+  },
+  {
+    "id": "core2-multi-043",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO are valid reasons to choose a clean installation over an in-place upgrade?",
+    "choices": [
+      "The machine has accumulated software problems that should not be carried forward",
+      "The architecture is changing from 32-bit to 64-bit",
+      "User data must be preserved without a backup",
+      "Applications must remain installed",
+      "It is always faster than an upgrade"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A clean install discards accumulated problems and is required for an architecture change. It also removes applications and data, which is exactly why a backup comes first."
+  },
+  {
+    "id": "core2-mc-312",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which Windows tool would a technician use to convert a basic disk to dynamic, or extend an existing volume?",
+    "choices": [
+      "Disk Management",
+      "Device Manager",
+      "File Explorer Options",
+      "Credential Manager"
+    ],
+    "answerIndex": 0,
+    "explanation": "Disk Management handles volume operations graphically. Extending requires contiguous unallocated space immediately after the volume."
+  },
+  {
+    "id": "core2-mc-313",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician needs a Windows machine to obtain its address automatically but always receive the same one. What should be configured?",
+    "choices": [
+      "A DHCP reservation on the server for that machine's MAC address",
+      "A static address on the workstation",
+      "A shorter lease time",
+      "APIPA"
+    ],
+    "answerIndex": 0,
+    "explanation": "A reservation keeps the device on DHCP — and therefore centrally managed — while guaranteeing a consistent address. A static address bypasses management entirely."
+  },
+  {
+    "id": "core2-mc-314",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which describes the purpose of Windows Credential Manager?",
+    "choices": [
+      "It stores saved credentials for websites, applications, and network resources",
+      "It encrypts the whole disk",
+      "It manages installed drivers",
+      "It schedules background tasks"
+    ],
+    "answerIndex": 0,
+    "explanation": "Credential Manager is the local vault for saved logons. Stale entries there are a common cause of repeated authentication prompts to a share."
+  },
+  {
+    "id": "core2-mc-315",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user's Windows machine repeatedly prompts for credentials when reaching a file share, despite correct details. What is the MOST likely cause?",
+    "choices": [
+      "A stale saved credential in Credential Manager",
+      "The monitor cable is loose",
+      "The page file is too small",
+      "The BIOS needs updating"
+    ],
+    "answerIndex": 0,
+    "explanation": "Windows presents the saved credential first, so an out-of-date entry produces repeated failures. Clearing it lets fresh details be supplied."
+  },
+  {
+    "id": "core2-mc-316",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which macOS feature stores passwords and certificates for the user?",
+    "choices": [
+      "Keychain Access",
+      "Time Machine",
+      "Mission Control",
+      "Disk Utility"
+    ],
+    "answerIndex": 0,
+    "explanation": "Keychain is the macOS credential store. Time Machine backs up, Mission Control manages windows, and Disk Utility handles volumes."
+  },
+  {
+    "id": "core2-mc-317",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which describes the effect of enabling Fast Startup in Windows?",
+    "choices": [
+      "The system hibernates the kernel session on shutdown so the next boot is quicker",
+      "It disables all startup applications",
+      "It encrypts the boot volume",
+      "It prevents firmware settings being changed"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fast Startup performs a partial hibernate rather than a full shutdown, which is why a genuine restart is sometimes needed to apply changes or reach firmware."
+  },
+  {
+    "id": "core2-mc-318",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician needs to access UEFI firmware settings on a machine with Fast Startup enabled. What is the MOST reliable method?",
+    "choices": [
+      "Use Restart, or Windows' advanced startup options, rather than Shut Down then power on",
+      "Unplug the machine at the wall",
+      "Delete the page file",
+      "Disable the antivirus"
+    ],
+    "answerIndex": 0,
+    "explanation": "With Fast Startup, a shutdown is a partial hibernate and may skip the firmware key window. A true restart or the advanced startup menu reaches it reliably."
+  },
+  {
+    "id": "core2-mc-319",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which is the LEAST appropriate reason to edit the Windows Registry directly?",
+    "choices": [
+      "To change a setting that has a supported interface in Settings or Group Policy",
+      "To apply a vendor-documented fix with no other interface",
+      "To remove a leftover key a vendor's uninstaller documented",
+      "To apply a documented change under a change request"
+    ],
+    "answerIndex": 0,
+    "explanation": "The registry is powerful and unforgiving, so it is a last resort. If a supported interface exists, use it — the risk is not worth the equivalence."
+  },
+  {
+    "id": "core2-multi-052",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO steps should precede a clean installation of Windows on a user's existing machine?",
+    "choices": [
+      "Back up the user's data to separate media",
+      "Confirm licence entitlement and activation method",
+      "Defragment the drive that is about to be formatted",
+      "Create a restore point on the drive being wiped",
+      "Disable the antivirus permanently"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Data protection and licensing are the two genuine prerequisites. Defragmenting or creating a restore point on a volume about to be formatted accomplishes nothing."
+  },
+  {
+    "id": "core2-multi-053",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO describe a domain environment compared with a workgroup?",
+    "choices": [
+      "Authentication is centralised at a domain controller",
+      "Group Policy can enforce settings across many machines",
+      "Each machine holds its own independent account database",
+      "It requires Windows Home edition",
+      "It removes the need for local administrator accounts entirely"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Centralised authentication and policy enforcement are the defining benefits. Per-machine account databases describe a workgroup, and domain join requires Pro or above."
   }
 ]

@@ -508,5 +508,540 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Malicious extensions are the usual mechanism for persistent redirects, and a scan catches accompanying malware. Font size, bookmarks, and orientation have no bearing on the hijack."
+  },
+  {
+    "id": "core2-mc-238",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A Windows machine blue-screens on every boot immediately after a driver update. Safe Mode still works. What is the MOST appropriate action?",
+    "choices": [
+      "Boot to Safe Mode and roll the driver back",
+      "Perform a clean installation of Windows",
+      "Replace the storage drive",
+      "Reset the BIOS to defaults"
+    ],
+    "answerIndex": 0,
+    "explanation": "The fault correlates with a known change, and Safe Mode exists precisely so a bad driver can be removed. Reinstalling or replacing hardware is disproportionate."
+  },
+  {
+    "id": "core2-mc-239",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An application crashes on launch for one user but works for everyone else on identical machines. Which test BEST isolates the cause?",
+    "choices": [
+      "Sign in with a newly created local profile and try again",
+      "Replace the workstation's memory",
+      "Reimage every machine in the department",
+      "Increase the page file size"
+    ],
+    "answerIndex": 0,
+    "explanation": "If the fault follows a new profile, it is machine-wide; if it does not, the user's profile is corrupt. One test splits the possibilities cleanly."
+  },
+  {
+    "id": "core2-mc-240",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user reports Windows Update repeatedly fails with the same error. Which built-in step addresses corrupted update components?",
+    "choices": [
+      "Run DISM to repair the component store, then sfc /scannow",
+      "Defragment the drive",
+      "Disable the firewall",
+      "Delete the user profile"
+    ],
+    "answerIndex": 0,
+    "explanation": "Update failures frequently trace to a damaged component store. DISM repairs the store and sfc then repairs protected files from it — in that order."
+  },
+  {
+    "id": "core2-mc-241",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which symptom MOST strongly indicates that a Windows system file integrity problem exists rather than an application bug?",
+    "choices": [
+      "Multiple built-in utilities fail to launch with missing or corrupt DLL errors",
+      "One third-party application crashes on save",
+      "The printer is out of paper",
+      "The user forgot their password"
+    ],
+    "answerIndex": 0,
+    "explanation": "When several OS components fail together with missing-file errors, the operating system's own files are suspect — which is what sfc is designed to repair."
+  },
+  {
+    "id": "core2-mc-242",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A workstation is slow, and Task Manager shows disk at 100% with low throughput on a mechanical drive. Which is the LEAST likely explanation?",
+    "choices": [
+      "The monitor's refresh rate is set too high",
+      "The drive is failing",
+      "A background indexing or update task is running",
+      "Insufficient RAM is forcing heavy paging"
+    ],
+    "answerIndex": 0,
+    "explanation": "Refresh rate affects the display pipeline, not disk I/O. The other three all produce sustained disk saturation."
+  },
+  {
+    "id": "core2-mc-243",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which tool would a technician use to determine which process is holding a file open and preventing deletion?",
+    "choices": [
+      "Resource Monitor's associated handles search",
+      "Disk Cleanup",
+      "Device Manager",
+      "Registry Editor"
+    ],
+    "answerIndex": 0,
+    "explanation": "Resource Monitor can search loaded handles by filename and name the owning process. The other tools do not expose file handles."
+  },
+  {
+    "id": "core2-mc-244",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user's mapped network drive shows a red cross and is inaccessible, though they can browse the server by UNC path. What is the MOST likely cause?",
+    "choices": [
+      "The mapping is stale and needs reconnecting or recreating",
+      "The server is offline",
+      "The user's account is disabled",
+      "DNS has failed entirely"
+    ],
+    "answerIndex": 0,
+    "explanation": "Successful UNC browsing proves the server, credentials, and name resolution all work. That isolates the fault to the drive mapping itself."
+  },
+  {
+    "id": "core2-mc-245",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which is the correct FIRST step when a workstation displays a fake 'your computer is infected' pop-up with a phone number?",
+    "choices": [
+      "Close the browser without interacting with the pop-up, then scan the system",
+      "Call the number to verify the alert",
+      "Enter administrator credentials into the dialog",
+      "Reinstall Windows immediately"
+    ],
+    "answerIndex": 0,
+    "explanation": "It is a scam page, not a system alert. Closing the browser removes it; calling the number or entering credentials is exactly what the scam is engineered to obtain."
+  },
+  {
+    "id": "core2-mc-246",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An Android device shows an app requesting permissions far beyond its stated function. What should the technician advise?",
+    "choices": [
+      "Deny the permissions and consider removing the app",
+      "Grant them so the app works correctly",
+      "Root the device to manage permissions",
+      "Factory reset immediately"
+    ],
+    "answerIndex": 0,
+    "explanation": "Excessive permission requests relative to function are a recognised warning sign. Denying and reviewing is proportionate; rooting would remove the platform's own protections."
+  },
+  {
+    "id": "core2-mc-247",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user reports that their phone shows unusually high mobile data usage with no change in habits. Which security concern does this MOST suggest?",
+    "choices": [
+      "A background process may be exfiltrating data",
+      "The battery is degrading",
+      "The screen resolution changed",
+      "The SIM is faulty"
+    ],
+    "answerIndex": 0,
+    "explanation": "Traffic without corresponding user activity is a named indicator of compromise on mobile. Battery, display, and SIM faults do not generate data volume."
+  },
+  {
+    "id": "core2-mc-248",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which action should a technician take FIRST when a workstation shows signs of active malware?",
+    "choices": [
+      "Disconnect it from the network",
+      "Run a full defragmentation",
+      "Install additional antivirus products",
+      "Delete the user's profile"
+    ],
+    "answerIndex": 0,
+    "explanation": "Containment precedes cleanup, because malware spreads to shares and other hosts while you work. It is step two of CompTIA's procedure for exactly that reason."
+  },
+  {
+    "id": "core2-mc-249",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A browser's home page and search provider revert to an unwanted site after every correction. What is the MOST likely cause?",
+    "choices": [
+      "A malicious browser extension or adware is re-applying the change",
+      "The monitor cable is loose",
+      "The system clock is wrong",
+      "The printer driver is corrupt"
+    ],
+    "answerIndex": 0,
+    "explanation": "Settings that restore themselves indicate something running with the ability to re-apply them. Auditing extensions and scanning is the correct response."
+  },
+  {
+    "id": "core2-mc-250",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which describes the correct use of System Restore during malware remediation?",
+    "choices": [
+      "Disable it before cleaning, then re-enable it and create a fresh point afterwards",
+      "Leave it enabled throughout to allow rollback",
+      "Restore to an earlier point before scanning",
+      "Delete the System Restore service"
+    ],
+    "answerIndex": 0,
+    "explanation": "Restore points can contain the infection, so cleaning while they remain risks reinfection on a later restore. Disable, clean, then re-enable with a clean point."
+  },
+  {
+    "id": "core2-mc-251",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user reports their laptop is unusually slow only when running on battery. What is the MOST likely explanation?",
+    "choices": [
+      "A power plan is reducing CPU performance to save energy",
+      "The hard drive is failing",
+      "The network adapter is misconfigured",
+      "The display panel is faulty"
+    ],
+    "answerIndex": 0,
+    "explanation": "Power plans deliberately throttle performance on battery. A hardware fault would not correlate so cleanly with the power source."
+  },
+  {
+    "id": "core2-multi-036",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A Windows workstation will not boot past the loading screen. Which TWO recovery options are appropriate before considering a reinstall?",
+    "choices": [
+      "Startup Repair from the Windows Recovery Environment",
+      "System Restore to a point before the problem began",
+      "Formatting the system partition",
+      "Deleting the user's documents",
+      "Replacing the motherboard"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both are non-destructive and target the likely causes — damaged boot files or a bad recent change. The others destroy data or hardware without diagnosis."
+  },
+  {
+    "id": "core2-multi-037",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO symptoms would lead a technician to suspect a corrupt user profile rather than a machine-wide fault?",
+    "choices": [
+      "The problem follows the user to other machines only when using their account",
+      "A newly created local profile on the same machine works correctly",
+      "Every user on the machine sees the same error",
+      "The machine fails POST",
+      "The network switch is offline"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Profile faults are bound to the account, not the hardware. A fault affecting every user, or one occurring before the OS loads, points elsewhere."
+  },
+  {
+    "id": "core2-multi-038",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A mobile device is draining its battery unusually fast. Which TWO are appropriate diagnostic steps?",
+    "choices": [
+      "Review per-app battery usage in device settings",
+      "Check whether recently installed apps are running background activity",
+      "Replace the display assembly",
+      "Factory reset before investigating",
+      "Disable the SIM"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The OS reports consumption per app, which names the culprit directly. Hardware replacement and a reset are disproportionate before identifying the cause."
+  },
+  {
+    "id": "core2-term-011",
+    "type": "terminal",
+    "domainCode": "3.0",
+    "prompt": "Type the Windows command that scans all protected operating system files and repairs corrupted ones.",
+    "expected": [
+      "sfc /scannow"
+    ],
+    "explanation": "System File Checker verifies protected system files against known-good copies in the component store and replaces any that are corrupt. If it reports it cannot repair them, the store itself needs DISM first."
+  },
+  {
+    "id": "core2-mc-288",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user reports Windows Search returns no results for files they know exist. Which is the MOST likely cause?",
+    "choices": [
+      "The search index is corrupt or the location is not indexed",
+      "The monitor is faulty",
+      "The network cable is unplugged",
+      "The BIOS needs updating"
+    ],
+    "answerIndex": 0,
+    "explanation": "Windows Search relies on an index. Rebuilding it, or adding the location to the indexed set, resolves the common case."
+  },
+  {
+    "id": "core2-mc-289",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An application worked yesterday and fails today, with no updates installed on the workstation. Which question is MOST useful FIRST?",
+    "choices": [
+      "What changed elsewhere — a server, a password, a network path, or permissions?",
+      "How old is the workstation?",
+      "What is the screen resolution?",
+      "How large is the hard drive?"
+    ],
+    "answerIndex": 0,
+    "explanation": "If nothing changed locally, something changed somewhere the application depends on. Determining what changed is the highest-yield step in the methodology."
+  },
+  {
+    "id": "core2-mc-290",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which is the correct interpretation of a Windows 'The referenced account is currently locked out' message?",
+    "choices": [
+      "Repeated failed sign-in attempts tripped the lockout policy",
+      "The account has been deleted",
+      "The password has expired",
+      "The machine is not on the domain"
+    ],
+    "answerIndex": 0,
+    "explanation": "Lockout follows failed attempts, which may be the user mistyping or an attack in progress. Expiry and deletion produce different messages."
+  },
+  {
+    "id": "core2-mc-291",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A workstation cannot print to a shared printer while others can. Which check isolates the fault fastest?",
+    "choices": [
+      "Confirm whether the printer is installed and reachable from that workstation specifically",
+      "Restart the print server",
+      "Replace the printer",
+      "Reinstall Windows on the workstation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Others printing successfully proves the printer, queue, and server are healthy. The fault is local to that machine, so start there."
+  },
+  {
+    "id": "core2-mc-292",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which describes the correct use of Safe Mode with Networking?",
+    "choices": [
+      "It loads minimal drivers plus network support, allowing tools or updates to be downloaded",
+      "It disables the network entirely",
+      "It repairs the boot sector automatically",
+      "It reinstalls Windows"
+    ],
+    "answerIndex": 0,
+    "explanation": "The networking variant keeps connectivity available, which matters when remediation requires downloading a tool or updated definitions."
+  },
+  {
+    "id": "core2-mc-293",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user's OneDrive files show a sync error and stop updating. Which is the MOST likely first cause to check?",
+    "choices": [
+      "Storage quota exhausted or a file locked by another application",
+      "The CPU is overheating",
+      "The keyboard driver is corrupt",
+      "The BIOS battery is dead"
+    ],
+    "answerIndex": 0,
+    "explanation": "Quota and file locks are the dominant causes of sync stalls. The remaining options have no relationship to a cloud sync client."
+  },
+  {
+    "id": "core2-mc-294",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which is the LEAST appropriate first action for a workstation showing frequent application crashes?",
+    "choices": [
+      "Reinstalling Windows",
+      "Checking Event Viewer for the faulting module",
+      "Testing with a new user profile",
+      "Running a memory diagnostic"
+    ],
+    "answerIndex": 0,
+    "explanation": "Reinstalling is the most destructive and least informative option. The other three gather evidence before any change is made."
+  },
+  {
+    "id": "core2-multi-046",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A browser is redirecting searches despite the home page being reset. Which TWO actions address the cause?",
+    "choices": [
+      "Audit and remove unrecognised browser extensions",
+      "Run a reputable anti-malware scan",
+      "Increase the browser's font size",
+      "Delete the user's bookmarks",
+      "Change the desktop wallpaper"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Persistent redirects almost always come from a rogue extension, often accompanied by other malware. The remaining options change nothing relevant."
+  },
+  {
+    "id": "core2-multi-047",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO symptoms suggest a mobile device may be running stalkerware?",
+    "choices": [
+      "Unexplained location tracking or camera and microphone activity",
+      "Unfamiliar device administrator apps the user did not install",
+      "The battery lasts longer than expected",
+      "The screen brightness auto-adjusts",
+      "The device receives OS updates"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Covert monitoring and unexpected device-administrator privileges are the two indicators that distinguish stalkerware from ordinary battery or performance complaints."
+  },
+  {
+    "id": "core2-mc-303",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A workstation displays 'Inaccessible Boot Device' after a storage controller driver change. Which recovery step is MOST likely to succeed?",
+    "choices": [
+      "Boot to WinRE and use System Restore to revert to the point before the change",
+      "Reformat the system partition",
+      "Replace the CPU",
+      "Reset the display driver"
+    ],
+    "answerIndex": 0,
+    "explanation": "The fault correlates exactly with a driver change, and System Restore reverts drivers and settings without touching user data."
+  },
+  {
+    "id": "core2-mc-304",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user reports that a specific website fails to load in Chrome but works in Edge on the same machine. What is the MOST reasonable first step?",
+    "choices": [
+      "Clear Chrome's cache and cookies for that site, and test with extensions disabled",
+      "Reinstall Windows",
+      "Replace the network cable",
+      "Flush the DNS cache and reboot the router"
+    ],
+    "answerIndex": 0,
+    "explanation": "Working in another browser on the same machine proves connectivity and DNS. That isolates the fault to browser-local state or an extension."
+  },
+  {
+    "id": "core2-mc-305",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which describes the correct order when repairing Windows system file corruption?",
+    "choices": [
+      "Run DISM to repair the component store, then run sfc /scannow",
+      "Run sfc /scannow, then chkdsk /r",
+      "Run chkdsk /f, then reinstall Windows",
+      "Run sfc /scannow twice"
+    ],
+    "answerIndex": 0,
+    "explanation": "sfc sources its clean copies from the component store, so if that store is damaged sfc cannot repair anything. DISM restores the store first."
+  },
+  {
+    "id": "core2-mc-306",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A machine shows the correct time but every HTTPS site reports an invalid certificate. Which is the MOST likely cause?",
+    "choices": [
+      "The system date is wrong even though the time appears correct, or a filtering proxy is intercepting TLS",
+      "The mouse driver is corrupt",
+      "The printer is offline",
+      "The page file is too small"
+    ],
+    "answerIndex": 0,
+    "explanation": "Certificate validity is bounded by date as well as time, and an intercepting proxy substitutes its own certificate. Both produce site-wide certificate errors."
+  },
+  {
+    "id": "core2-mc-307",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An iOS device will not install an app update, reporting insufficient storage despite showing free space. What should be tried FIRST?",
+    "choices": [
+      "Free additional space, since updates need working room beyond the final size",
+      "Replace the battery",
+      "Factory reset the device",
+      "Replace the SIM card"
+    ],
+    "answerIndex": 0,
+    "explanation": "An update needs temporary space for the download and staging as well as the installed result. Freeing more space resolves the common case."
+  },
+  {
+    "id": "core2-mc-308",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which is the LEAST likely explanation for a Windows machine that reboots spontaneously with no blue screen displayed?",
+    "choices": [
+      "A corrupt browser profile",
+      "Overheating triggering a protective shutdown",
+      "A failing power supply",
+      "Automatic restart on system failure hiding the BSOD"
+    ],
+    "answerIndex": 0,
+    "explanation": "Browser profiles cannot restart a machine. Thermal, power, and the setting that auto-restarts before a stop code is readable are all genuine causes."
+  },
+  {
+    "id": "core2-mc-309",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user cannot access a shared folder they could reach last week, and other users still can. What should be checked FIRST?",
+    "choices": [
+      "Whether that user's group membership or permissions changed",
+      "Whether the server needs rebooting",
+      "Whether the switch has failed",
+      "Whether the folder was deleted"
+    ],
+    "answerIndex": 0,
+    "explanation": "Other users succeeding proves the share, server, and network are healthy. A change scoped to one user points at their access rights."
+  },
+  {
+    "id": "core2-mc-310",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which describes the appropriate use of Event Viewer when troubleshooting an application crash?",
+    "choices": [
+      "Review the Application log for the faulting module and error code",
+      "Use it to reinstall the application",
+      "Use it to defragment the drive",
+      "Use it to change the application's permissions"
+    ],
+    "answerIndex": 0,
+    "explanation": "Event Viewer reports rather than repairs, and the Application log names the component that failed — which is the fastest route to a targeted fix."
+  },
+  {
+    "id": "core2-mc-311",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A laptop's touchpad has stopped working entirely, though an external mouse works. Which is the MOST likely first check?",
+    "choices": [
+      "Whether the touchpad has been disabled by its function key or in settings",
+      "Whether the CPU is overheating",
+      "Whether the hard drive is failing",
+      "Whether the RAM is faulty"
+    ],
+    "answerIndex": 0,
+    "explanation": "Most laptops have a key combination that toggles the touchpad, and it is easily pressed by accident. It costs nothing to rule out first."
+  },
+  {
+    "id": "core2-multi-050",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A Windows workstation is running slowly. Which TWO checks gather evidence before any change is made?",
+    "choices": [
+      "Sort Task Manager by CPU, memory, and disk to find what is consuming resources",
+      "Check available free space on the system drive",
+      "Reinstall the operating system",
+      "Replace the memory modules",
+      "Delete the user's documents"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both are read-only observations that identify the constraint. The remaining options make destructive changes without a diagnosis."
+  },
+  {
+    "id": "core2-multi-051",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO would indicate that a Windows update, rather than hardware, caused a new fault?",
+    "choices": [
+      "The problem began immediately after the update installed",
+      "Uninstalling the update restores normal behaviour",
+      "The machine fails POST",
+      "S.M.A.R.T. reports reallocated sectors",
+      "The power supply fan has stopped"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Timing plus reversibility together implicate the update. POST failures, drive health warnings, and a dead fan all point at hardware instead."
   }
 ]
