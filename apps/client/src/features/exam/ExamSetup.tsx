@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import type { ExamModeId } from "@comptia/shared-types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,8 +17,11 @@ export function ExamSetup() {
   const start = useStartExam();
   const begin = useExamStore((s) => s.begin);
 
+  const [searchParams] = useSearchParams();
   const [selected, setSelected] = useState<ExamModeId>("full");
   const [domains, setDomains] = useState<string[]>([]);
+  // Arriving from the dashboard's bank-coverage card, e.g. /exam?unseen=1.
+  const [unseenOnly, setUnseenOnly] = useState(() => searchParams.get("unseen") === "1");
 
   if (isPending || !options) {
     return (
@@ -104,6 +108,31 @@ export function ExamSetup() {
         </div>
       )}
 
+      <div>
+        <div className="mb-2 text-sm font-medium">Question pool</div>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            size="sm"
+            variant={unseenOnly ? "ghost" : "secondary"}
+            onClick={() => setUnseenOnly(false)}
+          >
+            All questions
+          </Button>
+          <Button
+            size="sm"
+            variant={unseenOnly ? "secondary" : "ghost"}
+            onClick={() => setUnseenOnly(true)}
+          >
+            Only ones I haven't seen
+          </Button>
+        </div>
+        <p className="mt-2 text-xs text-muted-foreground">
+          {unseenOnly
+            ? "Drawn only from questions you have never been asked — the closest this can get to sitting cold."
+            : "Questions seen in your last few exams are already drawn last, but repeats are still possible."}
+        </p>
+      </div>
+
       {start.isError && <p className="text-sm text-destructive">{(start.error as Error).message}</p>}
 
       <div className="flex items-center gap-3">
@@ -116,6 +145,7 @@ export function ExamSetup() {
                 certId: cert.id,
                 examMode: selected,
                 domainCodes: mode.picksDomains ? domains : undefined,
+                unseenOnly: unseenOnly || undefined,
               },
               { onSuccess: begin },
             )

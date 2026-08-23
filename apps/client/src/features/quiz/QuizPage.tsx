@@ -40,6 +40,9 @@ function SetupPhase() {
     const d = searchParams.get("domain");
     return d ? [d] : [];
   });
+  // Arriving from the dashboard's bank-coverage card pre-selects unseen-only,
+  // e.g. /quiz?unseen=1 — read once on mount, same as the domain filter.
+  const [unseenOnly, setUnseenOnly] = useState(() => searchParams.get("unseen") === "1");
 
   function toggleDomain(code: string) {
     setDomains((d) => (d.includes(code) ? d.filter((c) => c !== code) : [...d, code]));
@@ -85,6 +88,31 @@ function SetupPhase() {
             ))}
           </div>
         </div>
+        <div>
+          <div className="mb-2 text-sm font-medium">Question pool</div>
+          <div className="flex flex-wrap gap-2">
+            <Button
+              size="sm"
+              variant={unseenOnly ? "ghost" : "secondary"}
+              onClick={() => setUnseenOnly(false)}
+            >
+              All questions
+            </Button>
+            <Button
+              size="sm"
+              variant={unseenOnly ? "secondary" : "ghost"}
+              onClick={() => setUnseenOnly(true)}
+            >
+              Only ones I haven't seen
+            </Button>
+          </div>
+          {unseenOnly && (
+            <p className="mt-2 text-xs text-muted-foreground">
+              Drawn only from questions you have never been asked, so the result reflects
+              knowledge rather than recall.
+            </p>
+          )}
+        </div>
         {start.isError && (
           <p className="text-sm text-destructive">{(start.error as Error).message}</p>
         )}
@@ -93,7 +121,12 @@ function SetupPhase() {
           disabled={start.isPending}
           onClick={() =>
             start.mutate(
-              { certId: cert.id, count, domainCodes: domains.length ? domains : undefined },
+              {
+                certId: cert.id,
+                count,
+                domainCodes: domains.length ? domains : undefined,
+                unseenOnly: unseenOnly || undefined,
+              },
               { onSuccess: begin },
             )
           }

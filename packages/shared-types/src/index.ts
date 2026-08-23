@@ -136,6 +136,8 @@ export interface StartSessionRequest {
   domainCodes?: string[];
   types?: QuizQuestionType[];
   count?: number;
+  /** draw only from questions never attempted in this cert */
+  unseenOnly?: boolean;
 }
 
 export interface StartSessionResponse {
@@ -212,6 +214,8 @@ export interface StartExamRequest {
   certId: number;
   examMode: ExamModeId;
   domainCodes?: string[];
+  /** draw only from questions never attempted in this cert */
+  unseenOnly?: boolean;
 }
 
 /** Live exam state — never carries answers, grading, or explanations. */
@@ -373,6 +377,24 @@ export interface DashboardStats {
     perDomain: DashboardDomainStat[];
   };
   gamification: GamificationDto;
+  /**
+   * How much of the question bank has actually been met. Readiness alone
+   * overstates knowledge once a bank is exhausted, because accuracy starts
+   * measuring recall of specific questions instead of the material.
+   */
+  bank: {
+    total: number;
+    seen: number;
+    unseen: number;
+    /** percent 0-100 */
+    coverage: number;
+    /** true once accuracy is drawing mostly on questions already met */
+    highCoverage: boolean;
+    /** readiness over each question's first encounter only — memorisation-resistant */
+    firstSeenReadiness: number | null;
+    /** how many distinct questions that figure rests on */
+    firstSeenAttempts: number;
+  };
   exams: {
     attempts: number;
     passed: number;

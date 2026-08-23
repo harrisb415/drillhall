@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { RadialGauge } from "@/components/ui/radial-gauge";
 import { Sparkline } from "@/components/ui/sparkline";
 import { Spinner } from "@/components/ui/spinner";
+import { BankCoverageCard } from "@/features/dashboard/BankCoverageCard";
 import { CourseProgressCard } from "@/features/course/CourseProgressCard";
 import { ExamPlanCard } from "@/features/planner/ExamPlanCard";
 import { LevelUpToast } from "@/features/gamification/LevelUpToast";
@@ -65,6 +66,14 @@ export function DashboardPage() {
                   low confidence
                 </Badge>
               )}
+              {data.quiz.readinessConfident && data.bank.highCoverage && (
+                <Badge
+                  variant="outline"
+                  title={`You have seen ${data.bank.coverage}% of this bank, so this figure partly measures recall`}
+                >
+                  mostly seen
+                </Badge>
+              )}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -94,9 +103,13 @@ export function DashboardPage() {
               )}
             </div>
             <p className="text-xs leading-relaxed text-muted-foreground">
-              {data.quiz.readiness === null || data.quiz.readinessConfident
+              {data.quiz.readiness === null
                 ? "recency-weighted mastery × exam weights"
-                : `Based on very few answers — roughly ${data.quiz.attemptsForConfidence} more would make this trustworthy.`}
+                : !data.quiz.readinessConfident
+                  ? `Based on very few answers — roughly ${data.quiz.attemptsForConfidence} more would make this trustworthy.`
+                  : data.bank.highCoverage
+                    ? `Drawn largely from questions you have already met — see bank coverage below.`
+                    : "recency-weighted mastery × exam weights"}
             </p>
           </CardContent>
         </Card>
@@ -148,6 +161,7 @@ export function DashboardPage() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
+        <BankCoverageCard bank={data.bank} readiness={data.quiz.readiness} />
         <ExamPlanCard readinessPercent={data.quiz.readiness} />
         <StreakCard stats={data.gamification} />
         <CourseProgressCard stats={data} />

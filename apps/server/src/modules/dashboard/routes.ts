@@ -10,6 +10,7 @@ import {
 } from "../../db/schema";
 import { h } from "../../lib/handler";
 import { CONFIDENT_ATTEMPTS, computeReadiness, type AttemptLite } from "../analytics/readiness";
+import { bankCoverage, firstEncounterReadiness, type AttemptRecord } from "../analytics/coverage";
 import { getStats } from "../gamification/service";
 import { xpForLevel, xpIntoCurrentLevel } from "../gamification/levels";
 import { isSameUtcDay } from "../../lib/dates";
@@ -52,8 +53,9 @@ export function dashboardRoutes(deps: ApiDeps): Router {
         }
       }
 
-      const attemptRows = deps.db
+      const attemptRows: AttemptRecord[] = deps.db
         .select({
+          questionId: quizAttempts.questionId,
           domainCode: quizAttempts.domainCode,
           correct: quizAttempts.correct,
           answeredAt: quizAttempts.answeredAt,
@@ -70,6 +72,8 @@ export function dashboardRoutes(deps: ApiDeps): Router {
       }
       const readiness = computeReadiness(pack.domains, byDomain);
       const readinessByCode = new Map(readiness.perDomain.map((d) => [d.code, d]));
+      const coverage = bankCoverage(pack.quiz.length, attemptRows);
+      const firstSeen = firstEncounterReadiness(pack.domains, attemptRows);
 
       const recent = deps.db
         .select()
@@ -175,6 +179,15 @@ export function dashboardRoutes(deps: ApiDeps): Router {
             activeToday: !!lastActive && isSameUtcDay(lastActive, new Date()),
           };
         })(),
+        bank: {
+          total: coverage.total,
+          seen: coverage.seen,
+          unseen: coverage.unseen,
+          coverage: coverage.coverage,
+          highCoverage: coverage.highCoverage,
+          firstSeenReadiness: firstSeen.readiness,
+          firstSeenAttempts: firstSeen.attempts,
+        },
         exams: {
           attempts: examRows.length,
           passed: examRows.filter((s) => s.passed).length,

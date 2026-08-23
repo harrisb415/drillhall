@@ -30,6 +30,8 @@ const StartBody = z.object({
   domainCodes: z.array(z.string()).optional(),
   types: z.array(z.enum(QUESTION_TYPES)).optional(),
   count: z.number().int().min(1).max(50).default(10),
+  /** draw only from questions this user has never attempted in this cert */
+  unseenOnly: z.boolean().default(false),
 });
 
 const AnswerSchema = z.discriminatedUnion("type", [
@@ -70,6 +72,29 @@ export function quizRoutes(deps: ApiDeps): Router {
       if (pool.length === 0) {
         res.status(400).json({ error: "No questions match the selected filters" });
         return;
+      }
+      // Unseen-only exists because a bank this size is exhausted after a few
+      // mocks, and accuracy on questions you have already met measures recall
+      // rather than knowledge. Strict rather than best-effort: silently topping
+      // the set up with seen questions would defeat the point of asking.
+      if (body.unseenOnly) {
+        const seen = new Set(
+          deps.db
+            .selectDistinct({ questionId: quizAttempts.questionId })
+            .from(quizAttempts)
+            .where(
+              and(eq(quizAttempts.userId, req.user!.id), eq(quizAttempts.certId, body.certId)),
+            )
+            .all()
+            .map((r) => r.questionId),
+        );
+        pool = pool.filter((q) => !seen.has(q.id));
+        if (pool.length === 0) {
+          res.status(400).json({
+            error: "You have already seen every question matching these filters",
+          });
+          return;
+        }
       }
       const chosen = shuffle(pool).slice(0, body.count);
       // Stored so grading can map the display index back to the original

@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.14.0] — 2026-08-20
+
+### Added
+- **Question bank coverage, on the dashboard.** Readiness is measured on the questions you answer, so once a bank is exhausted it quietly stops meaning "how ready am I" and starts meaning "how well do I remember these particular questions". The new card shows how much of the pack you have actually met, and how many questions you have never been asked.
+- **First-encounter readiness.** The same readiness calculation, run over only each question's *earliest* attempt — the closest available proxy for meeting the material cold. The gap between it and headline readiness is the part of your score that is recall rather than knowledge. Verified against a simulated drill: after memorising 118 questions, headline readiness read **100%** while first-encounter readiness read **20%** — an 80-point gap the dashboard now states outright instead of reporting "ready".
+  - Deliberately not implemented as a damping factor on the headline score. Multiplying readiness by an invented constant would produce a made-up number wearing the costume of a measurement; two real figures shown side by side is honest and more useful.
+- **Unseen-only mode for quizzes and mock exams.** Draws exclusively from questions never attempted in that cert, so a session reflects knowledge rather than recall. Strict rather than best-effort: it refuses with a clear message when the filtered pool is exhausted, because quietly topping the set up with repeats would defeat the point of asking. Exams already deprioritised recently-seen questions; this makes avoidance absolute. Reachable from the coverage card via `/quiz?unseen=1` and `/exam?unseen=1`.
+
+### Notes
+- Coverage is derived from existing attempt history, so it is accurate retroactively — no migration, and your past answers already count.
+- Coverage clamps to the pack size, since content is edited between releases and an old attempt can outlive the question it referenced.
+
 ## [1.13.0] — 2026-08-20
 
 ### Fixed

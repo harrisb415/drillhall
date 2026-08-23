@@ -35,6 +35,8 @@ const StartBody = z.object({
   certId: z.number().int(),
   examMode: z.enum(EXAM_MODE_IDS),
   domainCodes: z.array(z.string()).optional(),
+  /** draw only from questions never attempted in this cert */
+  unseenOnly: z.boolean().default(false),
 });
 
 const AnswerSchema = z.discriminatedUnion("type", [
@@ -118,6 +120,28 @@ export function examRoutes(deps: ApiDeps): Router {
       if (pool.length === 0) {
         res.status(400).json({ error: "This cert has no questions for that exam type yet" });
         return;
+      }
+
+      // A mock drawn entirely from questions already met scores recall, not
+      // readiness. This makes that avoidable outright rather than merely
+      // deprioritised the way `recentlySeen` does below.
+      if (body.unseenOnly) {
+        const seen = new Set(
+          deps.db
+            .selectDistinct({ questionId: quizAttempts.questionId })
+            .from(quizAttempts)
+            .where(and(eq(quizAttempts.userId, userId), eq(quizAttempts.certId, body.certId)))
+            .all()
+            .map((r) => r.questionId),
+        );
+        const fresh = pool.filter((q) => !seen.has(q.id));
+        if (fresh.length === 0) {
+          res.status(400).json({
+            error: "You have already seen every question available for this exam type",
+          });
+          return;
+        }
+        pool = fresh;
       }
 
       // Anti-repeat: what did they see in their last few exams?
