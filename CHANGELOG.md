@@ -2,6 +2,20 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.15.0] — 2026-08-20
+
+### Added
+- **A+ Core 1 question bank expanded from 250 to 467** — the first pack taken through the bank-size work, one pack at a time. Questions are distributed in proportion to the official domain weights (1.0 → 61, 2.0 → 104, 3.0 → 118, 4.0 → 50, 5.0 → 134), so the sampling a mock does now matches the real blueprint more closely at every size.
+  - **The metric that matters: 90-question mocks before the bank repeats went from 2.8 to 5.2.** Three mocks used to exhaust the pack, at which point accuracy measured recall rather than knowledge. That was the specific failure the 1.14.0 coverage work exposed, and this is the fix for it.
+  - Multiple-response ratio held at **14.1%**, and every domain keeps its multi and PBQ coverage.
+- **Near-duplicate detection, enforced in CI.** Exact-id collisions already failed validation, but nothing caught two questions asking the same thing in different words — which inflates the apparent size of a bank without adding coverage and makes mocks feel repetitive for a reason the counts do not explain. `findSimilarPairs` compares prompts by token overlap within a domain (deliberately lexical, not semantic: no model, runs in milliseconds, never flakes) and the test suite fails on any pair scoring 0.6 or above.
+
+### Fixed
+- **Eleven near-duplicate questions**, ten of them caught by the new detector during this expansion and one pre-existing. The pre-existing pair was two Core 2 questions both asking which TWO methods render drive data unrecoverable; one has been rewritten to test the SSD distinction instead — degaussing does nothing to flash storage, and overwrite utilities written for platters are unreliable against wear levelling.
+
+### Notes
+- Remaining to target on this pack is 33 questions; the repetition goal is already met, so the next pack matters more than rounding this one to 500.
+
 ## [1.14.0] — 2026-08-20
 
 ### Added

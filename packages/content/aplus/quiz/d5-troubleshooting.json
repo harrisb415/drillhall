@@ -492,5 +492,641 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "A working USB printer isolates the fault to the network path or the shared queue, so check the printer's link and address and the server-side queue. RAM, password policy, and refresh rate are unrelated."
+  },
+  {
+    "id": "aplus-mc-209",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A desktop powers off abruptly after 20 minutes of video rendering, then restarts normally and idles fine for hours. Which is the MOST likely cause?",
+    "choices": [
+      "Thermal shutdown from inadequate CPU cooling",
+      "A corrupt user profile",
+      "An outdated network driver",
+      "An incorrect DNS server"
+    ],
+    "answerIndex": 0,
+    "explanation": "Load-correlated shutdown that clears on cooldown is the signature of a thermal fault. Profiles, drivers, and DNS have no relationship to temperature."
+  },
+  {
+    "id": "aplus-mc-210",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation's case fans spin at full speed constantly, even at idle, and the system is loud but stable. What should the technician check FIRST?",
+    "choices": [
+      "Temperature readings and fan curve settings in UEFI/BIOS",
+      "The graphics driver version",
+      "The Windows page file size",
+      "The monitor's refresh rate"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fans respond to reported temperature. Either the system really is hot (blocked airflow, failed heatsink contact) or a sensor/fan curve is misconfigured — firmware shows which, and it costs nothing to look."
+  },
+  {
+    "id": "aplus-mc-211",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "After adding a high-end graphics card, a PC reboots whenever a game loads but is stable in desktop use. The PSU is 450 W. What is the MOST likely cause?",
+    "choices": [
+      "The power supply cannot meet peak demand under load",
+      "The graphics card driver is corrupt",
+      "The monitor cable is faulty",
+      "The CPU is overclocked"
+    ],
+    "answerIndex": 0,
+    "explanation": "A GPU's transient draw can far exceed its average. A supply adequate at idle can collapse the moment the card loads, producing exactly this reboot-under-load pattern."
+  },
+  {
+    "id": "aplus-mc-212",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician measures a PSU rail with a multimeter while the system is idle and it reads within tolerance, yet the machine still crashes under load. What is the BEST next step?",
+    "choices": [
+      "Re-measure the rail while the system is under sustained load",
+      "Conclude the PSU is healthy and replace the motherboard",
+      "Reinstall the operating system",
+      "Replace the CMOS battery"
+    ],
+    "answerIndex": 0,
+    "explanation": "A marginal supply fails only when drawn upon. Measuring at idle proves almost nothing about behaviour at load, which is precisely when the fault appears."
+  },
+  {
+    "id": "aplus-mc-213",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user reports a burning smell and the PC has shut down and will not power on. What should the technician do FIRST?",
+    "choices": [
+      "Disconnect it from mains power and inspect before attempting to power on again",
+      "Press the power button repeatedly to confirm the fault",
+      "Replace the CMOS battery",
+      "Reinstall Windows from recovery media"
+    ],
+    "answerIndex": 0,
+    "explanation": "A burning smell means something has failed electrically. Removing power is the safety step, and repeated power-on attempts risk further damage or fire."
+  },
+  {
+    "id": "aplus-mc-214",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A PC displays 'CMOS checksum error' and the clock resets every time it is unplugged overnight. What is the MOST likely fix?",
+    "choices": [
+      "Replace the CMOS battery",
+      "Replace the hard drive",
+      "Reinstall the operating system",
+      "Replace the power supply"
+    ],
+    "answerIndex": 0,
+    "explanation": "The CMOS battery maintains firmware settings and the real-time clock when mains power is absent. A dying cell produces exactly this pair of symptoms."
+  },
+  {
+    "id": "aplus-mc-215",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A system that previously booted normally now reports 'No boot device found' after a power outage. The drive is healthy and detected in firmware. What should the technician check NEXT?",
+    "choices": [
+      "Boot order and whether boot mode switched between UEFI and Legacy",
+      "The RAM seating",
+      "The monitor input source",
+      "The network cable"
+    ],
+    "answerIndex": 0,
+    "explanation": "An outage can clear firmware settings. A GPT drive installed under UEFI simply will not be found in Legacy mode — the drive is fine, the firmware is looking the wrong way."
+  },
+  {
+    "id": "aplus-mc-216",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A newly built PC has fans spinning and power LEDs lit, but there is no video and no beep codes. Which is the MOST commonly overlooked cause?",
+    "choices": [
+      "The 4/8-pin CPU power connector is not attached",
+      "The SATA data cable is reversed",
+      "The case fan is in the wrong header",
+      "The front panel audio is unplugged"
+    ],
+    "answerIndex": 0,
+    "explanation": "The 24-pin powers the board enough to light up and spin fans, but the CPU needs its own EPS connector to run. Forgetting it produces power without POST — a classic first-build fault."
+  },
+  {
+    "id": "aplus-mc-217",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician is troubleshooting a no-POST desktop. Which approach BEST isolates the fault?",
+    "choices": [
+      "Strip to essentials — one RAM module, no drives, no add-in cards — and add components back",
+      "Replace the motherboard immediately",
+      "Reinstall the operating system",
+      "Update the graphics driver from another machine"
+    ],
+    "answerIndex": 0,
+    "explanation": "Reducing to minimum viable hardware removes variables, and adding parts back identifies the offender. The OS is irrelevant when the machine never reaches POST."
+  },
+  {
+    "id": "aplus-mc-218",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation POSTs and begins loading Windows, then blue-screens before reaching the desktop. It boots successfully into Safe Mode. What does this MOST strongly suggest?",
+    "choices": [
+      "A third-party driver or startup service is at fault",
+      "The power supply has failed",
+      "The CPU is defective",
+      "The RAM is not seated"
+    ],
+    "answerIndex": 0,
+    "explanation": "Safe Mode loads a minimal driver and service set. Booting there but not normally points squarely at something loaded in the normal path — hardware faults would break Safe Mode too."
+  },
+  {
+    "id": "aplus-mc-219",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user reports files occasionally fail to open and the system freezes for several seconds at a time. S.M.A.R.T. reports a rising reallocated sector count. What should the technician do FIRST?",
+    "choices": [
+      "Back up the user's data immediately",
+      "Run a full defragmentation",
+      "Reinstall the operating system",
+      "Increase the page file"
+    ],
+    "answerIndex": 0,
+    "explanation": "Rising reallocated sectors means the drive is consuming its spare capacity and failing. Securing the data comes before anything that adds wear or takes time."
+  },
+  {
+    "id": "aplus-mc-220",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which symptom is LEAST likely to indicate a failing mechanical hard drive?",
+    "choices": [
+      "The system fan runs louder than usual",
+      "Repetitive clicking from the drive",
+      "Long freezes while accessing files",
+      "S.M.A.R.T. warnings at boot"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fan noise reflects cooling demand, not storage health. Clicking, I/O stalls, and S.M.A.R.T. warnings are all direct drive-failure indicators."
+  },
+  {
+    "id": "aplus-mc-221",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A RAID 5 array reports one failed drive. The array is still serving data. What is the correct description and priority?",
+    "choices": [
+      "Degraded — replace the failed drive urgently, because a second failure now loses the array",
+      "Failed — restore from backup immediately",
+      "Healthy — no action required",
+      "Rebuilt — the array has already self-repaired"
+    ],
+    "answerIndex": 0,
+    "explanation": "RAID 5 survives one failure. Running degraded means zero remaining protection, so replacement is urgent rather than routine — and the rebuild itself stresses the surviving drives."
+  },
+  {
+    "id": "aplus-mc-222",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An external USB drive is detected in Disk Management but has no drive letter and does not appear in File Explorer. What is the MOST likely fix?",
+    "choices": [
+      "Assign a drive letter to the volume",
+      "Replace the USB cable",
+      "Reinstall the USB controller driver",
+      "Format the system drive"
+    ],
+    "answerIndex": 0,
+    "explanation": "Disk Management seeing the volume proves the cable, controller, and drive are all working. A volume with no letter simply is not mounted for the user to browse."
+  },
+  {
+    "id": "aplus-mc-223",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician needs to confirm whether a slow workstation's bottleneck is the storage device. Which is the BEST first check?",
+    "choices": [
+      "Task Manager's disk column and active time under normal workload",
+      "The installed RAM total",
+      "The monitor resolution",
+      "The DNS server setting"
+    ],
+    "answerIndex": 0,
+    "explanation": "Disk active time pegged near 100% with low throughput identifies storage as the constraint directly, rather than inferring it from general slowness."
+  },
+  {
+    "id": "aplus-mc-224",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laptop screen is black, but an external monitor connected to it displays the desktop correctly. Which component is LEAST likely at fault?",
+    "choices": [
+      "The graphics processor",
+      "The laptop's backlight",
+      "The display panel",
+      "The display ribbon cable"
+    ],
+    "answerIndex": 0,
+    "explanation": "The GPU is demonstrably working — it is driving the external display. That leaves the panel, its backlight, and the cable running through the hinge."
+  },
+  {
+    "id": "aplus-mc-225",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A monitor displays a picture that is stretched and slightly blurry. Text looks soft compared with another identical monitor. What should be checked FIRST?",
+    "choices": [
+      "Whether the display is running at its native resolution",
+      "The graphics card's temperature",
+      "The monitor's power cable",
+      "The system's page file size"
+    ],
+    "answerIndex": 0,
+    "explanation": "LCD panels have one native resolution; anything else is interpolated, which produces exactly this softness and distortion. It is a settings check before any hardware suspicion."
+  },
+  {
+    "id": "aplus-mc-226",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user reports that their screen flickers only when the laptop lid is moved to certain angles. What is the MOST likely cause?",
+    "choices": [
+      "A damaged display ribbon cable in the hinge",
+      "A failing power supply",
+      "An outdated BIOS",
+      "Insufficient RAM"
+    ],
+    "answerIndex": 0,
+    "explanation": "Symptoms that track physical lid position point at the cable flexing through the hinge, which is the component that endures mechanical stress on every open and close."
+  },
+  {
+    "id": "aplus-mc-227",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Several dead pixels appear as permanently black dots on an LCD. What is the appropriate response?",
+    "choices": [
+      "Check the manufacturer's warranty policy, since dead pixel thresholds vary",
+      "Reinstall the graphics driver",
+      "Reduce the refresh rate",
+      "Replace the video cable"
+    ],
+    "answerIndex": 0,
+    "explanation": "Dead pixels are a physical panel defect that software cannot correct. Manufacturers publish how many are required before a panel qualifies for replacement."
+  },
+  {
+    "id": "aplus-mc-228",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation has an address of 169.254.14.22 and cannot reach the internet. What does this indicate?",
+    "choices": [
+      "The client could not reach a DHCP server and self-assigned an APIPA address",
+      "The DNS server is misconfigured",
+      "The default gateway is unreachable but DHCP worked",
+      "The subnet mask is too small"
+    ],
+    "answerIndex": 0,
+    "explanation": "A 169.254 address means the DHCP request went unanswered. The fault is upstream — the server, the path to it, or a missing relay on that subnet."
+  },
+  {
+    "id": "aplus-mc-229",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation can ping its default gateway but cannot ping any public IP address such as 8.8.8.8. Which is the MOST likely fault?",
+    "choices": [
+      "Routing or the internet connection beyond the gateway",
+      "The workstation's network cable",
+      "The workstation's network adapter driver",
+      "The local switch port"
+    ],
+    "answerIndex": 0,
+    "explanation": "Reaching the gateway proves the cable, adapter, switch port, and local addressing all work. The failure therefore lies past the gateway — the router's upstream link or the ISP."
+  },
+  {
+    "id": "aplus-mc-230",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two workstations on the same subnet intermittently lose connectivity, and Windows reports an address conflict. What is the MOST likely cause?",
+    "choices": [
+      "A static address was assigned inside the DHCP scope",
+      "The switch is failing",
+      "The DNS cache is stale",
+      "The gateway is overloaded"
+    ],
+    "answerIndex": 0,
+    "explanation": "A statically configured address that overlaps the DHCP pool gets handed to a second device, and both then work erratically. Reservations exist to avoid exactly this."
+  },
+  {
+    "id": "aplus-mc-231",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A wired workstation shows no link light on both the NIC and the switch port. Which is the MOST appropriate first action?",
+    "choices": [
+      "Test with a known-good patch cable",
+      "Reinstall the network driver",
+      "Flush the DNS cache",
+      "Reset the TCP/IP stack"
+    ],
+    "answerIndex": 0,
+    "explanation": "No link light at either end is a physical-layer symptom, and the OS is not involved. Substituting the cheapest suspect component first is the efficient move."
+  },
+  {
+    "id": "aplus-mc-232",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Users in one area report Wi-Fi drops when walking between two access points, while stationary users are unaffected. What is the MOST likely cause?",
+    "choices": [
+      "Roaming misconfiguration or insufficient cell overlap between the APs",
+      "A failed DHCP server",
+      "An incorrect subnet mask",
+      "A faulty patch panel"
+    ],
+    "answerIndex": 0,
+    "explanation": "A fault that appears only in motion is about handoff between access points. Stationary users being fine rules out addressing and backhaul problems."
+  },
+  {
+    "id": "aplus-mc-233",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Printed pages from a laser printer show a repeating smudge at regular intervals down the page. What does the interval indicate?",
+    "choices": [
+      "The circumference of a damaged roller or drum",
+      "The paper tray is overloaded",
+      "The toner cartridge is empty",
+      "The print driver is wrong"
+    ],
+    "answerIndex": 0,
+    "explanation": "A defect that repeats at a fixed distance corresponds to one rotation of a component. Measuring the interval identifies which roller or drum is damaged."
+  },
+  {
+    "id": "aplus-mc-234",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A shared network printer shows jobs queued but nothing prints, while the printer's own display shows Ready. What should the technician try FIRST?",
+    "choices": [
+      "Clear the stuck jobs and restart the print spooler service",
+      "Replace the toner cartridge",
+      "Reinstall the printer's firmware",
+      "Replace the network cable"
+    ],
+    "answerIndex": 0,
+    "explanation": "A printer reporting Ready while a queue backs up points at the spooler holding the jobs, not the hardware. Clearing and restarting it resolves most cases."
+  },
+  {
+    "id": "aplus-mc-235",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Pages from a laser printer come out with the toner image intact but able to be rubbed off with a finger. Which component should be investigated?",
+    "choices": [
+      "The fuser",
+      "The pickup rollers",
+      "The transfer belt",
+      "The paper tray guides"
+    ],
+    "answerIndex": 0,
+    "explanation": "Toner that reached the page but never bonded means the fusing stage failed to apply sufficient heat or pressure. Everything before fusing evidently worked."
+  },
+  {
+    "id": "aplus-mc-236",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laser printer output shows a faint duplicate of the previous page's image appearing on subsequent pages. What is this defect called, and which stage is at fault?",
+    "choices": [
+      "Ghosting — the cleaning stage is leaving residual charge or toner on the drum",
+      "Banding — the print head nozzles are clogged",
+      "Smearing — the fuser is not reaching temperature",
+      "Streaking — the paper guides are misaligned"
+    ],
+    "answerIndex": 0,
+    "explanation": "A faint repeat of an earlier image means the drum was not fully cleared before the next rotation, which is the cleaning stage's job. Banding is an inkjet fault, and smearing points at fusing."
+  },
+  {
+    "id": "aplus-mc-237",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A printer repeatedly pulls several sheets of paper at once. Which is the LEAST likely cause?",
+    "choices": [
+      "An incorrect print driver",
+      "Worn pickup rollers",
+      "Humidity causing sheets to stick together",
+      "Paper loaded above the tray's fill line"
+    ],
+    "answerIndex": 0,
+    "explanation": "Multi-feed is a mechanical and media problem. A wrong driver produces garbled output or wrong formatting, not sheets sticking together."
+  },
+  {
+    "id": "aplus-mc-238",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A phone's touchscreen responds inaccurately in one region of the display, though the image is perfect. Which component is at fault?",
+    "choices": [
+      "The digitizer",
+      "The backlight",
+      "The battery",
+      "The SIM card"
+    ],
+    "answerIndex": 0,
+    "explanation": "A perfect image with faulty touch isolates the fault to the digitizer layer, which senses touch independently of the panel producing the picture."
+  },
+  {
+    "id": "aplus-mc-239",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A tablet will not charge with a known-good cable and charger, and the port looks slightly obstructed. What should the technician do FIRST?",
+    "choices": [
+      "Carefully clear debris from the charging port with a non-conductive tool",
+      "Replace the battery",
+      "Perform a factory reset",
+      "Replace the mainboard"
+    ],
+    "answerIndex": 0,
+    "explanation": "With cable and charger already eliminated, the port is the remaining link, and compacted pocket lint is an extremely common cause. It is also the cheapest thing to rule out."
+  },
+  {
+    "id": "aplus-mc-240",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A phone becomes noticeably hot and drains rapidly, starting the day after the user installed several apps from an unofficial source. What is the MOST appropriate first step?",
+    "choices": [
+      "Review per-app battery and background activity, then remove the suspect apps",
+      "Replace the battery",
+      "Factory reset immediately without investigation",
+      "Replace the charging port"
+    ],
+    "answerIndex": 0,
+    "explanation": "The timing points at software, and the OS reports per-app consumption directly. Identify the offender before resorting to hardware replacement or a wipe."
+  },
+  {
+    "id": "aplus-multi-029",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A desktop intermittently blue-screens with varying stop codes and no consistent trigger. Which TWO steps BEST isolate a memory fault?",
+    "choices": [
+      "Run an extended memory diagnostic such as MemTest86",
+      "Test with one module at a time in the primary slot",
+      "Replace the power supply",
+      "Defragment the system drive",
+      "Lower the display resolution"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Varying stop codes are characteristic of bad memory. A dedicated test and single-module isolation both identify the offending stick directly; the rest change nothing relevant."
+  },
+  {
+    "id": "aplus-multi-030",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A user's workstation cannot reach any network resource. Which TWO checks establish whether the fault is physical before touching any configuration?",
+    "choices": [
+      "Confirm the link lights on the NIC and switch port",
+      "Test the run with a known-good patch cable",
+      "Flush the DNS resolver cache",
+      "Reset the TCP/IP stack",
+      "Renew the DHCP lease"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Link lights and cable substitution both test Layer 1, which must be sound before configuration matters. The other three are software steps that assume a working physical link."
+  },
+  {
+    "id": "aplus-multi-031",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A laptop runs hot and throttles under sustained load. Which TWO physical causes should be investigated?",
+    "choices": [
+      "Dust obstructing the heat sink fins or fan intake",
+      "Degraded thermal paste between the CPU and heat sink",
+      "An outdated network driver",
+      "A nearly full hard drive",
+      "An incorrect time zone setting"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both listed causes directly impede heat transfer away from the CPU. Drivers, disk capacity, and clock settings have no thermal effect."
+  },
+  {
+    "id": "aplus-multi-032",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A laser printer is producing entirely blank pages. Which TWO should be checked?",
+    "choices": [
+      "Whether the toner cartridge is empty or its sealing tape is still in place",
+      "Whether the transfer roller or corona is failing to move toner to the paper",
+      "The paper tray guide width",
+      "The network print queue length",
+      "The printer's display brightness"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A blank page means toner never reached or never transferred to the paper. Tray guides affect feeding, and queue length and display settings cannot produce blank output."
+  },
+  {
+    "id": "aplus-mc-332",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user's workstation freezes completely at random and only a hard power cycle recovers it. Event Viewer shows no consistent application error. Which hardware cause should be investigated FIRST?",
+    "choices": [
+      "Memory, using an extended diagnostic",
+      "The printer driver",
+      "The default browser",
+      "The keyboard layout"
+    ],
+    "answerIndex": 0,
+    "explanation": "Full lock-ups with no software pattern point at hardware, and memory is the most common and cheapest to test. A dedicated diagnostic gives a definite answer."
+  },
+  {
+    "id": "aplus-mc-333",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which sequence correctly reflects CompTIA's troubleshooting methodology after a theory has been established?",
+    "choices": [
+      "Test the theory, then establish a plan of action",
+      "Implement the fix, then test the theory",
+      "Document findings, then test the theory",
+      "Verify functionality, then establish a theory"
+    ],
+    "answerIndex": 0,
+    "explanation": "Testing precedes planning and implementation. Acting on an untested theory is the failure mode the methodology exists to prevent."
+  },
+  {
+    "id": "aplus-mc-334",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician resolves a fault on a production server during business hours without notifying anyone, causing an unexpected outage. Which step was skipped?",
+    "choices": [
+      "Establishing a plan of action and identifying potential effects",
+      "Documenting findings",
+      "Verifying full system functionality",
+      "Identifying the problem"
+    ],
+    "answerIndex": 0,
+    "explanation": "Step four explicitly includes identifying what else the change might affect, which is what drives scheduling and notification on production systems."
+  },
+  {
+    "id": "aplus-mc-335",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A newly installed SATA drive does not appear in File Explorer, and Disk Management shows it as 'Not initialized'. What is the correct action?",
+    "choices": [
+      "Initialise the disk, create a volume, and format it",
+      "Replace the SATA cable",
+      "Update the motherboard firmware",
+      "Return the drive as faulty"
+    ],
+    "answerIndex": 0,
+    "explanation": "A brand-new drive has no partition table. Initialising, partitioning, and formatting is the expected setup, not a fault."
+  },
+  {
+    "id": "aplus-mc-336",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which symptom would MOST clearly indicate a duplex mismatch rather than a failing cable?",
+    "choices": [
+      "The link is up but throughput collapses under load, with rising error counters",
+      "There is no link light at either end",
+      "The port is administratively down",
+      "The drive reports S.M.A.R.T. errors"
+    ],
+    "answerIndex": 0,
+    "explanation": "A duplex mismatch still establishes a link — it only falls apart under simultaneous traffic. No link light at all is a physical fault instead."
+  },
+  {
+    "id": "aplus-mc-337",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user reports their laptop is extremely slow, and Task Manager shows memory at 95% with heavy disk activity. What is happening?",
+    "choices": [
+      "The system is paging to disk because physical memory is exhausted",
+      "The CPU is overheating",
+      "The network adapter has failed",
+      "The display driver has crashed"
+    ],
+    "answerIndex": 0,
+    "explanation": "When RAM runs out the OS swaps to the page file, and disk is orders of magnitude slower. The combination of high memory and high disk is the signature."
+  },
+  {
+    "id": "aplus-mc-338",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which action should a technician take BEFORE opening a desktop chassis to replace a component?",
+    "choices": [
+      "Unplug the system and hold the power button to discharge residual power",
+      "Update the operating system",
+      "Defragment the drive",
+      "Change the administrator password"
+    ],
+    "answerIndex": 0,
+    "explanation": "Removing mains power and bleeding residual charge protects both the technician and the components. Software tasks are irrelevant to a physical repair."
+  },
+  {
+    "id": "aplus-multi-051",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A monitor displays no image while the PC is clearly running. Which TWO should be verified FIRST?",
+    "choices": [
+      "The monitor's selected input source matches the cable used",
+      "The video cable is seated at both ends",
+      "The Windows page file size",
+      "The installed antivirus version",
+      "The printer queue"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Input source and cable seating are the two cheapest, most common causes of a blank display. The remaining options cannot affect video output at all."
+  },
+  {
+    "id": "aplus-multi-052",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Following a resolved incident, which TWO actions complete CompTIA's methodology?",
+    "choices": [
+      "Verify full system functionality and apply preventive measures where possible",
+      "Document the findings, actions, and outcomes",
+      "Immediately close the ticket without testing",
+      "Replace the component that was suspected but ruled out",
+      "Disable logging to reduce noise"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Verification and documentation are steps five and six. Closing without testing risks a callback, and the other two are actively unhelpful."
   }
 ]

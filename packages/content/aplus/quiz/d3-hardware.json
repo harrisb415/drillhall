@@ -663,5 +663,785 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Head cleaning and alignment, and ink drying out during idle periods, are inkjet-specific. Fusers, transfer belts, and toner handling all belong to laser printers."
+  },
+  {
+    "id": "aplus-mc-241",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A motherboard has four DIMM slots colour-coded in two pairs. A technician installing two modules should populate which slots?",
+    "choices": [
+      "The two slots of the same colour, to enable dual-channel operation",
+      "The two slots nearest the CPU regardless of colour",
+      "Any two adjacent slots",
+      "The two slots furthest from the CPU"
+    ],
+    "answerIndex": 0,
+    "explanation": "Matching colours indicate channel pairing. Populating a matched pair enables dual-channel, which roughly doubles memory bandwidth and matters most for integrated graphics."
+  },
+  {
+    "id": "aplus-mc-242",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A server requires memory that can detect and correct single-bit errors automatically. Which type is required?",
+    "choices": [
+      "ECC",
+      "Non-ECC DDR5",
+      "SODIMM",
+      "Dual-channel DDR4"
+    ],
+    "answerIndex": 0,
+    "explanation": "Error-correcting code memory carries extra bits allowing single-bit errors to be corrected in flight. Form factor and channel configuration are unrelated properties."
+  },
+  {
+    "id": "aplus-mc-243",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician installs a DDR5 module into a board that accepts DDR4. What will happen?",
+    "choices": [
+      "It will not physically fit, because the keying notch is in a different position",
+      "It will fit and run at DDR4 speeds",
+      "It will fit but only half the capacity will be usable",
+      "It will fit and the board will update its firmware automatically"
+    ],
+    "answerIndex": 0,
+    "explanation": "Generations are keyed differently on purpose — they run at different voltages, and allowing the wrong module to seat would damage hardware."
+  },
+  {
+    "id": "aplus-mc-244",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A workstation reports only 8 GB usable of 16 GB installed. Which is the MOST likely explanation?",
+    "choices": [
+      "A 32-bit operating system is installed",
+      "The page file is too small",
+      "The GPU is faulty",
+      "The drive is nearly full"
+    ],
+    "answerIndex": 0,
+    "explanation": "32-bit Windows cannot address beyond roughly 4 GB, and reports correspondingly less usable memory. The fix is a 64-bit installation, which requires a reinstall."
+  },
+  {
+    "id": "aplus-mc-245",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which drive interface would a technician expect on an enterprise server requiring higher reliability and dual-port connectivity than consumer drives provide?",
+    "choices": [
+      "SAS",
+      "SATA",
+      "IDE",
+      "USB 3.0"
+    ],
+    "answerIndex": 0,
+    "explanation": "Serial Attached SCSI targets enterprise workloads with higher duty cycles, deeper command queuing, and dual-port paths for redundancy. SATA is the consumer counterpart."
+  },
+  {
+    "id": "aplus-mc-246",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs the highest sequential throughput available for a single internal boot drive. Which should be selected?",
+    "choices": [
+      "An M.2 NVMe SSD in a PCIe x4 slot",
+      "A 2.5-inch SATA SSD",
+      "A 7200 RPM SATA hard drive",
+      "An external USB 3.0 SSD"
+    ],
+    "answerIndex": 0,
+    "explanation": "NVMe over four PCIe lanes far exceeds SATA III's roughly 6 Gbps ceiling. The other options are all bounded by SATA or USB bandwidth."
+  },
+  {
+    "id": "aplus-mc-247",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which RAID level offers no fault tolerance whatsoever?",
+    "choices": [
+      "RAID 0",
+      "RAID 1",
+      "RAID 5",
+      "RAID 6"
+    ],
+    "answerIndex": 0,
+    "explanation": "RAID 0 stripes for speed with no redundancy — losing any single member destroys the array. The zero is a useful mnemonic for zero protection."
+  },
+  {
+    "id": "aplus-mc-248",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A four-drive array must survive two simultaneous drive failures. Which RAID level is required?",
+    "choices": [
+      "RAID 6",
+      "RAID 5",
+      "RAID 1",
+      "RAID 0"
+    ],
+    "answerIndex": 0,
+    "explanation": "RAID 6 carries a second parity block specifically to tolerate two concurrent failures. RAID 5 survives only one, which is why large arrays with long rebuild windows prefer RAID 6."
+  },
+  {
+    "id": "aplus-mc-249",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which statement about RAID is TRUE?",
+    "choices": [
+      "RAID protects against drive failure but is not a substitute for backups",
+      "RAID protects against accidental file deletion",
+      "RAID protects against ransomware encryption",
+      "RAID removes the need for off-site copies"
+    ],
+    "answerIndex": 0,
+    "explanation": "RAID addresses hardware failure only. A deletion, an encryption event, or a fire is faithfully applied to every member at once — which is exactly what backups exist for."
+  },
+  {
+    "id": "aplus-mc-250",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A capture card is installed in a PCIe x1 slot on a board whose x16 slot is occupied. What is the practical consequence?",
+    "choices": [
+      "It works, but is limited to the bandwidth of a single PCIe lane",
+      "It will not physically fit in the smaller slot",
+      "The board will refuse to POST",
+      "The card will run at x16 speeds regardless of slot size"
+    ],
+    "answerIndex": 0,
+    "explanation": "PCIe slots are forward and backward compatible in function — a smaller slot carries a card at reduced lane count rather than refusing it. Whether that matters depends on the card's bandwidth appetite."
+  },
+  {
+    "id": "aplus-mc-251",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs to fit a motherboard into a compact case that accepts only one expansion card. Which form factor is MOST appropriate?",
+    "choices": [
+      "Mini-ITX",
+      "ATX",
+      "Extended ATX",
+      "microATX"
+    ],
+    "answerIndex": 0,
+    "explanation": "Mini-ITX is the smallest common desktop standard and provides a single expansion slot. microATX and ATX are progressively larger with more slots."
+  },
+  {
+    "id": "aplus-mc-252",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which motherboard header would a technician connect the case power button to?",
+    "choices": [
+      "The front panel header",
+      "The SATA header",
+      "The fan header",
+      "The USB header"
+    ],
+    "answerIndex": 0,
+    "explanation": "The front panel header carries power switch, reset, power LED, and drive activity LED. Mis-wiring it is a common cause of a machine that will not power on at all."
+  },
+  {
+    "id": "aplus-mc-253",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which firmware feature verifies that only signed, trusted code runs during startup?",
+    "choices": [
+      "Secure Boot",
+      "A BIOS supervisor password",
+      "TPM key storage",
+      "Fast Boot"
+    ],
+    "answerIndex": 0,
+    "explanation": "Secure Boot checks digital signatures on bootloaders and drivers before executing them. A supervisor password restricts access to firmware settings, which is a different control."
+  },
+  {
+    "id": "aplus-mc-254",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician is reinstalling a CPU cooler that was removed. What must be done before reseating it?",
+    "choices": [
+      "Clean off the old thermal paste and apply fresh compound",
+      "Update the BIOS",
+      "Reformat the boot drive",
+      "Replace the CMOS battery"
+    ],
+    "answerIndex": 0,
+    "explanation": "Disturbed thermal paste no longer makes uniform contact, so it must be cleaned off with isopropyl alcohol and reapplied. Reusing a disturbed layer causes overheating."
+  },
+  {
+    "id": "aplus-mc-255",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which cooling approach moves heat to a radiator away from the CPU socket, typically allowing higher sustained loads in a compact case?",
+    "choices": [
+      "A liquid cooling loop",
+      "A passive heat sink",
+      "A larger case fan",
+      "Thermal paste alone"
+    ],
+    "answerIndex": 0,
+    "explanation": "Liquid cooling transports heat to a radiator that can be mounted where airflow is best. A passive sink and case fans still rely on air at the socket itself."
+  },
+  {
+    "id": "aplus-mc-256",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A CPU is running at reduced clock speeds under load and temperatures are at the maximum rating. What is occurring?",
+    "choices": [
+      "Thermal throttling",
+      "Memory paging",
+      "Disk thrashing",
+      "Driver rollback"
+    ],
+    "answerIndex": 0,
+    "explanation": "Processors deliberately reduce frequency to stay within thermal limits. It is protective behaviour, and the underlying cause is a cooling deficiency."
+  },
+  {
+    "id": "aplus-mc-257",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which connector carries both video and data and can also deliver power to a connected device over a single reversible cable?",
+    "choices": [
+      "USB-C with Thunderbolt",
+      "HDMI",
+      "DVI-D",
+      "VGA"
+    ],
+    "answerIndex": 0,
+    "explanation": "USB-C carrying Thunderbolt combines display output, data, and power delivery in one reversible connector. HDMI and DVI carry video only, and VGA is analogue video."
+  },
+  {
+    "id": "aplus-mc-258",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician must connect a legacy projector that accepts only an analogue signal. Which cable is required?",
+    "choices": [
+      "VGA",
+      "DisplayPort",
+      "HDMI",
+      "USB-C"
+    ],
+    "answerIndex": 0,
+    "explanation": "VGA is the analogue standard. The others are digital, so an active converter would be required to drive an analogue-only display."
+  },
+  {
+    "id": "aplus-mc-259",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which peripheral interface is designed specifically to let one keyboard, monitor, and mouse control several computers?",
+    "choices": [
+      "A KVM switch",
+      "A USB hub",
+      "A docking station",
+      "A port replicator"
+    ],
+    "answerIndex": 0,
+    "explanation": "A KVM switch shares one set of input and display peripherals across multiple machines. Hubs, docks, and replicators all serve a single host."
+  },
+  {
+    "id": "aplus-mc-260",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A user needs to connect four USB devices to a laptop with two ports, and two of the devices are external drives. What should the technician recommend?",
+    "choices": [
+      "A powered USB hub",
+      "An unpowered USB hub",
+      "A KVM switch",
+      "A longer USB cable"
+    ],
+    "answerIndex": 0,
+    "explanation": "External drives draw meaningful current. An unpowered hub divides the host port's budget and causes drives to disconnect intermittently; a powered hub supplies its own."
+  },
+  {
+    "id": "aplus-mc-261",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which display panel technology offers the fastest response times but the narrowest viewing angles?",
+    "choices": [
+      "TN",
+      "IPS",
+      "VA",
+      "OLED"
+    ],
+    "answerIndex": 0,
+    "explanation": "Twisted nematic panels switch quickly, which suits competitive gaming, but colour shifts noticeably off-axis. IPS trades response time for colour accuracy and viewing angle."
+  },
+  {
+    "id": "aplus-mc-262",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A designer requires a monitor that reproduces the widest possible range of colours accurately. Which specification matters MOST?",
+    "choices": [
+      "Colour gamut coverage",
+      "Refresh rate",
+      "Response time",
+      "Contrast ratio alone"
+    ],
+    "answerIndex": 0,
+    "explanation": "Gamut describes the range of colours the panel can reproduce, which is what colour-critical work depends on. Refresh rate and response time govern motion, not accuracy."
+  },
+  {
+    "id": "aplus-mc-263",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which printer technology is the only one capable of producing genuine multi-part carbon copy forms?",
+    "choices": [
+      "Impact (dot matrix)",
+      "Laser",
+      "Inkjet",
+      "Thermal"
+    ],
+    "answerIndex": 0,
+    "explanation": "Impact printing physically strikes the paper, which is what transfers through carbon layers. Laser, inkjet, and thermal all image the top sheet only."
+  },
+  {
+    "id": "aplus-mc-264",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A thermal receipt printer produces faded output. What is the MOST likely cause?",
+    "choices": [
+      "The heating element needs cleaning, or the paper is old or heat-damaged",
+      "The toner cartridge is low",
+      "The fuser has failed",
+      "The print head nozzles are clogged"
+    ],
+    "answerIndex": 0,
+    "explanation": "Thermal printers use no ink or toner at all — the image comes from heat applied to sensitive paper. Toner, fusers, and nozzles belong to other technologies."
+  },
+  {
+    "id": "aplus-mc-265",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which page description language would be preferred for complex graphics and precise font rendering in a design workflow?",
+    "choices": [
+      "PostScript",
+      "PCL",
+      "ASCII",
+      "PDL-free raw output"
+    ],
+    "answerIndex": 0,
+    "explanation": "PostScript handles complex vector graphics and font precision, which is why prepress workflows favour it. PCL is lighter and faster for ordinary office documents."
+  },
+  {
+    "id": "aplus-mc-266",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A 3D print detaches from the bed partway through the job. What should be checked FIRST?",
+    "choices": [
+      "Bed levelling and first-layer adhesion",
+      "The filament colour",
+      "The printer's network address",
+      "The slicer's file name"
+    ],
+    "answerIndex": 0,
+    "explanation": "Adhesion failures trace to the first layer, which depends on bed levelling, height, and surface preparation. The remaining options cannot affect adhesion."
+  },
+  {
+    "id": "aplus-multi-033",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A technician is specifying a workstation that must drive three 4K monitors at 60 Hz. Which TWO requirements matter MOST?",
+    "choices": [
+      "A graphics card with enough outputs supporting the required bandwidth",
+      "Cables and ports rated for 4K at 60 Hz, such as DisplayPort 1.4 or HDMI 2.0+",
+      "A larger power supply than the GPU requires",
+      "An ECC memory configuration",
+      "A RAID 1 boot array"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both the card and the cabling must carry the required bandwidth — an HDMI 1.4 cable caps 4K at 30 Hz regardless of the GPU. ECC and RAID address reliability, not display capability."
+  },
+  {
+    "id": "aplus-multi-034",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO components should be handled with an anti-static wrist strap and stored in anti-static packaging?",
+    "choices": [
+      "A memory module",
+      "An expansion card",
+      "A power supply unit",
+      "A CRT monitor",
+      "A case fan filter"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Boards and modules carry ESD-sensitive components. A PSU and a CRT both store dangerous charge and must never be opened or worn-strapped to; a fan filter is inert."
+  },
+  {
+    "id": "aplus-multi-035",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A technician is choosing storage for a laptop that must be fast and resistant to physical shock. Which TWO characteristics favour an SSD over a mechanical drive?",
+    "choices": [
+      "No moving parts, so shock resistance is far higher",
+      "Substantially lower access latency",
+      "Higher capacity per pound at every tier",
+      "Immunity to data loss without backups",
+      "Lower cost per terabyte"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Shock resistance and latency are genuine SSD advantages. Mechanical drives still lead on cost per terabyte, and no storage technology removes the need for backups."
+  },
+  {
+    "id": "aplus-multi-036",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO are valid reasons to select a laser printer over an inkjet for a busy office?",
+    "choices": [
+      "Lower cost per page at high volume",
+      "Faster output for large text documents",
+      "Better photo reproduction on glossy media",
+      "Lower purchase price",
+      "No consumables required"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Laser wins on running cost and speed at volume. Inkjet generally reproduces photographs better and costs less to buy, and every printer consumes something."
+  },
+  {
+    "id": "aplus-mc-305",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which storage form factor is keyed so it can carry either SATA or PCIe signalling depending on the slot and module?",
+    "choices": [
+      "M.2",
+      "2.5-inch SATA",
+      "3.5-inch SATA",
+      "U.2 only"
+    ],
+    "answerIndex": 0,
+    "explanation": "M.2 keying determines the interface — a B-keyed module typically speaks SATA while an M-keyed one carries PCIe lanes for NVMe. The same physical slot family covers both."
+  },
+  {
+    "id": "aplus-mc-306",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician must add a second graphics output to a workstation whose only free slot is PCIe x1. What is the practical constraint?",
+    "choices": [
+      "The card must be one that fits and functions acceptably within a single lane's bandwidth",
+      "No graphics card will physically fit",
+      "The board will refuse to POST",
+      "The card will negotiate x16 automatically"
+    ],
+    "answerIndex": 0,
+    "explanation": "A x1 slot physically accepts a x1 card and can accept larger ones in an open-ended slot, but bandwidth is limited to one lane — fine for a basic display output, not for gaming."
+  },
+  {
+    "id": "aplus-mc-307",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which specification determines how many frames per second a monitor can display?",
+    "choices": [
+      "Refresh rate",
+      "Colour gamut",
+      "Contrast ratio",
+      "Panel size"
+    ],
+    "answerIndex": 0,
+    "explanation": "Refresh rate, in hertz, is how many times per second the panel updates. Gamut and contrast describe colour and tonal range instead."
+  },
+  {
+    "id": "aplus-mc-308",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs to confirm a power supply can deliver stable voltage while the system is under heavy load. Which tool is MOST appropriate?",
+    "choices": [
+      "A multimeter measuring the rails during sustained load",
+      "A basic PSU tester with the system off",
+      "A cable tester",
+      "A tone generator"
+    ],
+    "answerIndex": 0,
+    "explanation": "A marginal supply fails under draw. Measuring live rails during load catches what a no-load bench test cannot."
+  },
+  {
+    "id": "aplus-mc-309",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which is the correct way to clean toner spilled inside a printer?",
+    "choices": [
+      "An ESD-safe toner vacuum",
+      "A standard household vacuum",
+      "A damp cloth",
+      "Compressed air only"
+    ],
+    "answerIndex": 0,
+    "explanation": "Toner particles pass straight through an ordinary vacuum filter into the air, and the fine dust can generate static inside the machine. A toner-rated ESD-safe vacuum is the correct tool."
+  },
+  {
+    "id": "aplus-mc-310",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A database server needs heavy write performance and fast recovery after a disk failure. Why might RAID 10 be preferred over RAID 5 here?",
+    "choices": [
+      "It avoids parity calculation on writes and rebuilds by copying from the surviving mirror",
+      "It provides more usable capacity from the same drives",
+      "It tolerates more simultaneous failures in every case",
+      "It requires fewer drives to implement"
+    ],
+    "answerIndex": 0,
+    "explanation": "RAID 5's parity write penalty hurts write-heavy workloads, and its rebuild must read every surviving drive. RAID 10 simply copies a mirror — faster and far less stressful on the array. The cost is half the raw capacity."
+  },
+  {
+    "id": "aplus-mc-311",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A workstation used for CAD needs error detection on memory to prevent silent data corruption. Which is required?",
+    "choices": [
+      "ECC memory and a board and CPU that support it",
+      "Faster DDR5 modules",
+      "A larger page file",
+      "Dual-channel configuration"
+    ],
+    "answerIndex": 0,
+    "explanation": "ECC requires support across memory, board, and processor — fitting ECC modules to a board without support does not give you error correction."
+  },
+  {
+    "id": "aplus-mc-312",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which connector supplies supplementary power directly to the CPU on a modern ATX board?",
+    "choices": [
+      "The 4/8-pin EPS connector",
+      "The 24-pin main connector",
+      "A SATA power connector",
+      "A Molex connector"
+    ],
+    "answerIndex": 0,
+    "explanation": "The 24-pin powers the board generally; the CPU draws its own supply through the EPS connector near the socket. Forgetting it produces power with no POST."
+  },
+  {
+    "id": "aplus-multi-045",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A technician is selecting a display for colour-critical photo editing. Which TWO specifications matter MOST?",
+    "choices": [
+      "Wide colour gamut coverage",
+      "An IPS panel for consistent colour across viewing angles",
+      "A 240 Hz refresh rate",
+      "The lowest possible response time",
+      "The largest possible screen size"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Gamut and panel technology determine colour accuracy and consistency. Refresh rate and response time govern motion handling, which is a gaming concern rather than a colour one."
+  },
+  {
+    "id": "aplus-multi-046",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO are true of NVMe storage compared with SATA SSDs?",
+    "choices": [
+      "It communicates over PCIe lanes rather than the SATA bus",
+      "It offers substantially higher sequential throughput",
+      "It is always physically larger",
+      "It requires no drivers on any operating system",
+      "It cannot be used as a boot device"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "NVMe's advantage comes from using PCIe directly instead of a bus designed for mechanical drives. M.2 NVMe modules are typically smaller than 2.5-inch SATA drives, and they boot normally."
+  },
+  {
+    "id": "aplus-mc-349",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which describes the primary advantage of a solid-state drive over a mechanical drive for an operating system volume?",
+    "choices": [
+      "Far lower access latency, so the system feels dramatically more responsive",
+      "Higher capacity for the same price",
+      "Longer warranty in all cases",
+      "Immunity to file corruption"
+    ],
+    "answerIndex": 0,
+    "explanation": "Access latency dominates the feel of an OS volume, and SSDs are orders of magnitude better. Mechanical drives still lead on cost per terabyte."
+  },
+  {
+    "id": "aplus-mc-350",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician is installing a CPU. Which precaution prevents bent pins and poor contact?",
+    "choices": [
+      "Align the orientation marker and let the CPU seat under its own weight before latching",
+      "Press the CPU down firmly with a tool",
+      "Apply thermal paste to the socket first",
+      "Install the cooler before the CPU"
+    ],
+    "answerIndex": 0,
+    "explanation": "Modern sockets are zero-insertion-force by design; the chip drops in when correctly aligned. Any force at all means it is oriented wrongly."
+  },
+  {
+    "id": "aplus-mc-351",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which specification describes how much of the sRGB or DCI-P3 range a monitor can reproduce?",
+    "choices": [
+      "Colour gamut",
+      "Refresh rate",
+      "Response time",
+      "Pixel pitch"
+    ],
+    "answerIndex": 0,
+    "explanation": "Gamut coverage is stated against a standard colour space and determines how faithfully colours reproduce. The others describe motion handling and pixel density."
+  },
+  {
+    "id": "aplus-mc-352",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which is the correct method to dispose of a failed CRT monitor?",
+    "choices": [
+      "Take it to a facility that handles leaded glass and regulated electronic waste",
+      "Place it in general commercial waste",
+      "Disassemble it and recycle the plastics only",
+      "Store it indefinitely in a plant room"
+    ],
+    "answerIndex": 0,
+    "explanation": "CRTs contain leaded glass and store high voltage. They require specialist recycling and must never enter general waste."
+  },
+  {
+    "id": "aplus-mc-353",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which internal component would a technician replace to resolve a system that loses firmware settings whenever it is unplugged?",
+    "choices": [
+      "The CMOS battery",
+      "The power supply",
+      "The system memory",
+      "The storage drive"
+    ],
+    "answerIndex": 0,
+    "explanation": "The CMOS cell preserves firmware settings and the clock when mains power is absent. Its depletion is the direct cause of that symptom."
+  },
+  {
+    "id": "aplus-mc-354",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician needs a printer for high-volume black text output at the lowest cost per page. Which technology is MOST appropriate?",
+    "choices": [
+      "Laser",
+      "Inkjet",
+      "Thermal",
+      "Impact"
+    ],
+    "answerIndex": 0,
+    "explanation": "Laser leads on cost per page and speed at volume for text. Inkjet costs less to buy but more to run; thermal and impact serve niche purposes."
+  },
+  {
+    "id": "aplus-multi-055",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO would cause a newly installed graphics card to fail to display anything?",
+    "choices": [
+      "The supplementary PCIe power connectors are not attached",
+      "The monitor is connected to the motherboard's output rather than the card",
+      "The system has insufficient storage",
+      "The OS needs defragmenting",
+      "The keyboard is unplugged"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both are extremely common install mistakes. Once a discrete card is fitted, the motherboard's video output is usually disabled, so the cable must move to the card."
+  },
+  {
+    "id": "aplus-multi-056",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO practices protect components from electrostatic discharge during a repair?",
+    "choices": [
+      "Wearing an anti-static wrist strap connected to the chassis",
+      "Storing removed components in anti-static bags",
+      "Working on a carpeted floor in dry conditions",
+      "Holding boards by their edge connectors",
+      "Wearing a wrist strap while working inside a CRT"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Equalising potential and using proper packaging are the core controls. Carpet in dry air worsens static, contacts should never be touched, and a strap inside a CRT is dangerous."
+  },
+  {
+    "id": "aplus-mc-376",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A technician must add a fourth display to a workstation whose graphics card supports three. What is the MOST appropriate solution?",
+    "choices": [
+      "Install a second graphics card or replace it with one supporting four outputs",
+      "Use a passive splitter on one output",
+      "Increase the system RAM",
+      "Install a larger power supply"
+    ],
+    "answerIndex": 0,
+    "explanation": "Output count is a property of the card. A passive splitter duplicates a signal rather than creating an independent display."
+  },
+  {
+    "id": "aplus-mc-377",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which best describes the purpose of a TPM on a modern motherboard?",
+    "choices": [
+      "It stores cryptographic keys and measures boot integrity in hardware",
+      "It increases memory bandwidth",
+      "It supplies power to the CPU",
+      "It manages fan speeds"
+    ],
+    "answerIndex": 0,
+    "explanation": "The Trusted Platform Module holds keys and boot measurements in tamper-resistant hardware, which is what backs BitLocker and Windows 11's requirements."
+  },
+  {
+    "id": "aplus-mc-378",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A workstation needs to boot from a drive larger than 2 TB. Which combination is required?",
+    "choices": [
+      "UEFI firmware with a GPT-partitioned drive",
+      "Legacy BIOS with an MBR-partitioned drive",
+      "Legacy BIOS with a GPT-partitioned drive",
+      "Any firmware with an MBR-partitioned drive"
+    ],
+    "answerIndex": 0,
+    "explanation": "MBR cannot address beyond 2 TB, and GPT booting requires UEFI. The pairing is what makes large boot volumes possible."
+  },
+  {
+    "id": "aplus-mc-379",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which describes the role of the transfer roller in a laser printer?",
+    "choices": [
+      "It applies a charge that pulls toner from the drum onto the paper",
+      "It melts toner into the paper",
+      "It feeds sheets from the tray",
+      "It cleans residual toner from the drum"
+    ],
+    "answerIndex": 0,
+    "explanation": "Transfer moves toner from drum to page; fusing melts it in place; pickup rollers feed; cleaning clears the drum. Each stage has one job."
+  },
+  {
+    "id": "aplus-mc-380",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which is the LEAST relevant specification when selecting a power supply for a build?",
+    "choices": [
+      "The number of SATA data ports on the motherboard",
+      "Total wattage under peak load",
+      "Available PCIe power connectors",
+      "Physical form factor and mounting"
+    ],
+    "answerIndex": 0,
+    "explanation": "Data ports have nothing to do with power delivery. Wattage, connectors, and form factor all determine whether the supply fits and can drive the build."
+  },
+  {
+    "id": "aplus-multi-063",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO facts must be verified before ordering a replacement laptop battery?",
+    "choices": [
+      "The exact model or part number the chassis accepts",
+      "The voltage and connector type match the original",
+      "The installed operating system version",
+      "The screen resolution",
+      "The Wi-Fi standard supported"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Batteries are chassis-specific, and voltage or connector mismatches make a part unusable or unsafe. Software and display specifications are unrelated."
+  },
+  {
+    "id": "aplus-multi-064",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO would justify choosing a SAN over a NAS for a virtualization host cluster?",
+    "choices": [
+      "Block-level storage that hosts can treat as local disks",
+      "Higher performance for virtual machine disk I/O",
+      "Simpler setup for general office file sharing",
+      "Lower cost for a small office",
+      "No dedicated storage network required"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "SAN presents block storage with the performance profile virtualization needs. NAS is simpler and cheaper, which is exactly why it suits general file sharing instead."
   }
 ]

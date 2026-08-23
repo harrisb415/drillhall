@@ -301,5 +301,319 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "A dedicated memory test and testing modules individually both isolate a bad stick directly. Replacing the PSU is a shotgun swap, defragmentation addresses fragmentation rather than stability, and enlarging the page file masks nothing here."
+  },
+  {
+    "id": "aplus-mc-295",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation boots to a black screen with a blinking cursor and no operating system loads, though firmware detects the drive. Which is the MOST likely cause?",
+    "choices": [
+      "Corrupted boot files or a damaged boot sector",
+      "A failed power supply",
+      "Insufficient RAM",
+      "An unplugged monitor"
+    ],
+    "answerIndex": 0,
+    "explanation": "Firmware finding the drive but the OS never loading points at the boot record or boot files. A PSU or monitor fault would prevent reaching this stage at all."
+  },
+  {
+    "id": "aplus-mc-296",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician suspects a failing stick of RAM in a four-module system. What is the MOST efficient isolation method?",
+    "choices": [
+      "Test with one module at a time in the same known-good slot",
+      "Replace all four modules at once",
+      "Reinstall the operating system",
+      "Increase the page file size"
+    ],
+    "answerIndex": 0,
+    "explanation": "Rotating single modules through one slot separates a bad module from a bad slot. Replacing everything works but identifies nothing and costs four parts."
+  },
+  {
+    "id": "aplus-mc-297",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which is the LEAST likely cause of a laptop that runs only when plugged in and shuts off the instant the charger is removed?",
+    "choices": [
+      "A corrupted graphics driver",
+      "A failed battery",
+      "Battery contacts that are dirty or unseated",
+      "A battery at the end of its charge cycle life"
+    ],
+    "answerIndex": 0,
+    "explanation": "The symptom is purely about power delivery from the battery. Graphics drivers cannot cause a machine to lose power the moment mains is removed."
+  },
+  {
+    "id": "aplus-mc-298",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user reports the mouse cursor jumps erratically across the screen while typing on a laptop. What is the MOST likely cause?",
+    "choices": [
+      "The palm is brushing the touchpad while typing",
+      "A failing hard drive",
+      "An incorrect DNS setting",
+      "A dying CMOS battery"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cursor jumps correlated with typing is the classic accidental touchpad contact. Most laptops offer a palm-rejection or disable-while-typing setting."
+  },
+  {
+    "id": "aplus-mc-299",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "After a Windows update, a workstation loses network connectivity while other machines are unaffected. What should the technician try FIRST?",
+    "choices": [
+      "Roll back or reinstall the network adapter driver",
+      "Replace the network switch",
+      "Reimage the workstation",
+      "Replace the network cable"
+    ],
+    "answerIndex": 0,
+    "explanation": "A fault appearing immediately after an update on one machine points at what the update changed. Undoing that change is targeted; the alternatives are disproportionate."
+  },
+  {
+    "id": "aplus-mc-300",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A projector displays an image with a distinct colour cast and one primary colour appears missing entirely. What should be checked FIRST?",
+    "choices": [
+      "The video cable and its seating at both ends",
+      "The projector's remote control batteries",
+      "The workstation's page file",
+      "The network connection"
+    ],
+    "answerIndex": 0,
+    "explanation": "A missing colour channel is the signature of a bent pin or partially seated video connector. It is the cheapest and most likely cause to eliminate."
+  },
+  {
+    "id": "aplus-mc-301",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An external monitor connected via HDMI displays nothing, though the laptop's own screen works. What should be tried FIRST?",
+    "choices": [
+      "Cycle the display output mode with the Fn key or projection shortcut",
+      "Replace the laptop's motherboard",
+      "Reinstall Windows",
+      "Replace the internal display panel"
+    ],
+    "answerIndex": 0,
+    "explanation": "Laptops default to internal-only until display mode is switched. It costs one keystroke to rule out before suspecting any hardware."
+  },
+  {
+    "id": "aplus-mc-302",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician finds a workstation's system clock is consistently hours wrong after every shutdown, and firmware settings also revert. What should be replaced?",
+    "choices": [
+      "The CMOS battery",
+      "The power supply",
+      "The hard drive",
+      "The RAM"
+    ],
+    "answerIndex": 0,
+    "explanation": "Losing both the clock and firmware settings across power cycles is precisely what a depleted CMOS cell causes."
+  },
+  {
+    "id": "aplus-mc-303",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which tool would a technician use to determine how far along a buried cable run a break is located?",
+    "choices": [
+      "A time domain reflectometer (TDR)",
+      "A tone generator and probe",
+      "A multimeter",
+      "A loopback plug"
+    ],
+    "answerIndex": 0,
+    "explanation": "A TDR measures the time a signal takes to reflect off a fault and reports the distance. A toner identifies which cable is which but not where it is broken."
+  },
+  {
+    "id": "aplus-mc-304",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user reports that printed output is consistently shifted so the bottom of each page is cut off. Which is the MOST likely cause?",
+    "choices": [
+      "The paper size configured in the driver does not match the paper loaded",
+      "The fuser is failing",
+      "The toner cartridge is low",
+      "The pickup rollers are worn"
+    ],
+    "answerIndex": 0,
+    "explanation": "A driver set to Letter while A4 is loaded (or the reverse) shifts the printable area and clips an edge. Fuser, toner, and roller faults produce smearing, fading, and feed errors instead."
+  },
+  {
+    "id": "aplus-multi-043",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A laptop will not power on at all with the charger connected. Which TWO should be verified FIRST?",
+    "choices": [
+      "That the charger's LED indicates it is supplying power",
+      "That the DC jack and connector are undamaged and fully seated",
+      "The installed Windows edition",
+      "The screen resolution setting",
+      "The default printer"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both checks establish whether power is actually reaching the board, which must be true before anything else matters. The remaining options are software settings on a machine that will not start."
+  },
+  {
+    "id": "aplus-multi-044",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A workstation's storage performance has degraded badly. Which TWO checks help distinguish a failing drive from a software cause?",
+    "choices": [
+      "Review S.M.A.R.T. status for reallocated sectors or warnings",
+      "Check Task Manager for a process saturating disk I/O",
+      "Change the desktop wallpaper",
+      "Adjust the monitor refresh rate",
+      "Rename the computer"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "S.M.A.R.T. reports the drive's own health, and Task Manager reveals whether something is simply hammering it. Together they separate hardware failure from workload."
+  },
+  {
+    "id": "aplus-order-004",
+    "type": "order",
+    "domainCode": "5.0",
+    "prompt": "Place the laser imaging process stages in the order they occur.",
+    "items": [
+      "Processing",
+      "Charging",
+      "Exposing",
+      "Developing",
+      "Transferring",
+      "Fusing",
+      "Cleaning"
+    ],
+    "explanation": "The page is rendered, the drum is charged uniformly, the laser discharges the image, toner is attracted to those areas, it moves to the paper, heat and pressure bond it, and residual toner is cleared for the next page."
+  },
+  {
+    "id": "aplus-mc-362",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A desktop's front USB ports do nothing while the rear ports work normally. What should be checked FIRST?",
+    "choices": [
+      "The front panel USB header connection on the motherboard",
+      "The power supply wattage",
+      "The graphics driver",
+      "The DNS configuration"
+    ],
+    "answerIndex": 0,
+    "explanation": "Front ports depend on an internal header cable that is easily left off or knocked loose. Rear ports working proves the controller and drivers are fine."
+  },
+  {
+    "id": "aplus-mc-363",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation reports 'Operating system not found' immediately after a technician replaced the storage drive. Which step was MOST likely missed?",
+    "choices": [
+      "The operating system was never installed on the new drive",
+      "The RAM was not reseated",
+      "The CMOS battery was not replaced",
+      "The monitor input was not changed"
+    ],
+    "answerIndex": 0,
+    "explanation": "A replacement drive is blank. Firmware finds it and reports no operating system because there genuinely is not one yet."
+  },
+  {
+    "id": "aplus-mc-364",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which is the LEAST likely cause of a printer producing completely blank pages?",
+    "choices": [
+      "An incorrect paper size setting",
+      "An empty toner cartridge",
+      "Sealing tape left on a new cartridge",
+      "A failed transfer roller"
+    ],
+    "answerIndex": 0,
+    "explanation": "Paper size mismatches clip or shift the image, they do not remove it entirely. The other three all prevent toner reaching the page at all."
+  },
+  {
+    "id": "aplus-mc-365",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laptop's fan runs constantly and the chassis is hot even at idle, and Task Manager shows a process at sustained high CPU. What should the technician investigate?",
+    "choices": [
+      "The identity and legitimacy of that process",
+      "The monitor refresh rate",
+      "The installed printer drivers",
+      "The BIOS boot order"
+    ],
+    "answerIndex": 0,
+    "explanation": "Heat at idle traced to a specific process points at software — a runaway task or a cryptominer. Identify what it is before treating the symptom as a cooling fault."
+  },
+  {
+    "id": "aplus-mc-366",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two devices on a network intermittently drop off, and the switch shows the same MAC address appearing on two ports. What is the MOST likely cause?",
+    "choices": [
+      "A network loop, or a duplicated MAC address",
+      "A failing power supply",
+      "An exhausted DHCP scope",
+      "An incorrect DNS server"
+    ],
+    "answerIndex": 0,
+    "explanation": "A MAC flapping between ports means frames are arriving by two paths, which is the signature of a loop. DHCP exhaustion prevents addressing rather than causing flapping."
+  },
+  {
+    "id": "aplus-mc-367",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician needs to verify that a network port on a switch can transmit and receive without connecting another device. Which tool is appropriate?",
+    "choices": [
+      "A loopback plug",
+      "A tone generator",
+      "A multimeter",
+      "An OTDR"
+    ],
+    "answerIndex": 0,
+    "explanation": "A loopback plug wires transmit back to receive so the port tests its own circuitry in isolation. The other tools trace cables, measure electrical properties, or test fibre."
+  },
+  {
+    "id": "aplus-mc-368",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which best describes the correct response when a technician's theory is disproved by testing?",
+    "choices": [
+      "Establish a new theory, or escalate if it is beyond their access or expertise",
+      "Implement the fix anyway",
+      "Close the ticket as unresolvable",
+      "Replace the most expensive component"
+    ],
+    "answerIndex": 0,
+    "explanation": "The methodology explicitly forks here: new theory, or escalate. Escalation is a legitimate outcome rather than an admission of failure."
+  },
+  {
+    "id": "aplus-multi-059",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A workstation blue-screens only when a specific USB device is attached. Which TWO are the MOST reasonable next steps?",
+    "choices": [
+      "Update or roll back that device's driver",
+      "Test the device on a known-good machine to isolate device from host",
+      "Replace the workstation's power supply",
+      "Reformat the system drive",
+      "Increase the page file"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The fault is bound to one device, so the driver and the device itself are the two variables worth isolating. Wholesale changes to the host address nothing specific."
+  },
+  {
+    "id": "aplus-multi-060",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Users report intermittent wireless drops in one corner of an office. Which TWO would help diagnose the cause?",
+    "choices": [
+      "Survey signal strength and channel usage in that area with a Wi-Fi analyser",
+      "Check for new sources of 2.4 GHz interference nearby",
+      "Reinstall the operating system on affected laptops",
+      "Replace the office switch",
+      "Increase the DHCP lease duration"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A location-specific fault is an RF problem, so measure coverage and look for interference. Rebuilding endpoints and swapping wired infrastructure address the wrong layer."
   }
 ]

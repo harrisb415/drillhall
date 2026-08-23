@@ -2,6 +2,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { CertPackSchema } from "../src/schema";
+import { findSimilarPairs } from "../src/similarity";
 import { CONTENT_ROOT, listPackDirs, loadPackDir } from "../src/loader";
 
 const FIXTURES = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "fixtures");
@@ -78,6 +79,24 @@ describe("shipped content packs", () => {
           `${dir} domain ${domain.code} has no multi-response question`,
         ).toBeGreaterThan(0);
       }
+    }
+  });
+
+  // Exact-id collisions already fail validation. This catches the subtler
+  // failure that appears as a bank grows: two questions asking the same thing
+  // in different words, which inflate the count without adding coverage and
+  // make mocks feel repetitive for a reason the numbers do not explain.
+  it("has no near-duplicate questions within a domain", () => {
+    for (const dir of SHIPPED_PACKS) {
+      const pack = CertPackSchema.parse(loadPackDir(path.join(CONTENT_ROOT, dir)));
+      const pairs = findSimilarPairs(pack.quiz, 0.6);
+      const detail = pairs
+        .map((p) => `
+  ${p.score} ${p.a} ~ ${p.b}
+    A: ${p.aPrompt}
+    B: ${p.bPrompt}`)
+        .join("");
+      expect(pairs, `${dir} has near-duplicate questions:${detail}`).toEqual([]);
     }
   });
 

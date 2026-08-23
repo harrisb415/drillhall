@@ -591,16 +591,16 @@
     "id": "core2-multi-024",
     "type": "multi",
     "domainCode": "4.0",
-    "prompt": "A technician must dispose of drives that held regulated data. Which TWO methods reliably render the data unrecoverable?",
+    "prompt": "A company is retiring a batch of solid-state drives that held regulated data. Which TWO disposal methods are appropriate for SSDs specifically?",
     "choices": [
-      "Physical destruction by shredding or incineration",
-      "Degaussing a magnetic platter drive",
-      "Performing a quick format",
-      "Deleting the partition table",
-      "Moving the files to the Recycle Bin and emptying it"
+      "Physical destruction by shredding the drive",
+      "A manufacturer-supported secure erase (ATA Secure Erase or cryptographic erase)",
+      "Degaussing the drives",
+      "A single-pass overwrite utility written for platter drives",
+      "Removing the asset label and reselling the unit"
     ],
     "answerIndices": [0, 1],
-    "explanation": "Shredding destroys the medium and degaussing destroys the magnetic domains of a platter drive. Quick formats, partition deletion, and emptying the Recycle Bin all leave recoverable data behind."
+    "explanation": "Degaussing does nothing to an SSD — there are no magnetic domains to disrupt, and that is the distinction the exam draws. Overwrite utilities written for platters are also unreliable here, because wear levelling means the controller may not overwrite the cells you intended. Shredding, or a vendor secure/cryptographic erase, are the sound options."
   },
   {
     "id": "core2-multi-025",

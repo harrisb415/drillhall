@@ -500,5 +500,728 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "MX directs inbound mail to the correct mail servers, and TXT holds the SPF, DKIM, and DMARC values that authorize and authenticate outbound mail. A and CNAME map names to addresses and aliases, and PTR handles reverse lookups."
+  },
+  {
+    "id": "aplus-mc-267",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which port does LDAP use for unencrypted directory queries?",
+    "choices": [
+      "389",
+      "636",
+      "443",
+      "3389"
+    ],
+    "answerIndex": 0,
+    "explanation": "LDAP listens on 389 in the clear; LDAPS wraps the same protocol in TLS on 636. Confusing the pair means sending bind credentials unencrypted."
+  },
+  {
+    "id": "aplus-mc-268",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A device needs to pull a firmware image at boot with no authentication and minimal overhead. Which protocol is designed for this?",
+    "choices": [
+      "TFTP",
+      "SFTP",
+      "FTPS",
+      "SMB"
+    ],
+    "answerIndex": 0,
+    "explanation": "TFTP is deliberately minimal — UDP, no authentication — so a device with almost no software can fetch an image. That same minimalism makes it unsuitable for anything sensitive."
+  },
+  {
+    "id": "aplus-mc-269",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which protocol and port would a technician open to allow encrypted directory authentication?",
+    "choices": [
+      "LDAPS on 636",
+      "LDAP on 389",
+      "SMB on 445",
+      "Telnet on 23"
+    ],
+    "answerIndex": 0,
+    "explanation": "LDAPS carries directory queries and bind credentials inside TLS. Plain LDAP transmits them readable on the wire."
+  },
+  {
+    "id": "aplus-mc-270",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which service uses port 123 and, when broken, can cause domain logons and certificate validation to fail?",
+    "choices": [
+      "NTP",
+      "DNS",
+      "DHCP",
+      "SNMP"
+    ],
+    "answerIndex": 0,
+    "explanation": "Time synchronisation looks cosmetic until clocks drift: Kerberos rejects tickets outside its tolerance and certificates appear invalid. That makes NTP a surprisingly common root cause."
+  },
+  {
+    "id": "aplus-mc-271",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must permit Windows file and printer sharing through a firewall. Which port is required?",
+    "choices": [
+      "445",
+      "443",
+      "389",
+      "161"
+    ],
+    "answerIndex": 0,
+    "explanation": "SMB uses TCP 445. 443 is HTTPS, 389 is LDAP, and 161 is SNMP polling."
+  },
+  {
+    "id": "aplus-mc-272",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which protocol carries VoIP call setup and teardown signalling?",
+    "choices": [
+      "SIP",
+      "SMTP",
+      "SNMP",
+      "RDP"
+    ],
+    "answerIndex": 0,
+    "explanation": "Session Initiation Protocol establishes, modifies, and ends voice and video sessions on 5060/5061. The media stream itself travels separately."
+  },
+  {
+    "id": "aplus-mc-273",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A branch office needs its own network segment isolated from the head office LAN while sharing the same physical switches. What should be configured?",
+    "choices": [
+      "A separate VLAN",
+      "A longer DHCP lease",
+      "A static IP range only",
+      "A second default gateway on each host"
+    ],
+    "answerIndex": 0,
+    "explanation": "VLANs create separate broadcast domains on shared hardware, which is exactly the isolation described. Addressing alone provides no separation."
+  },
+  {
+    "id": "aplus-mc-274",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which wireless encryption standard should be selected on new equipment where all clients support it?",
+    "choices": [
+      "WPA3",
+      "WPA2 with TKIP",
+      "WPA",
+      "WEP"
+    ],
+    "answerIndex": 0,
+    "explanation": "WPA3's SAE handshake resists offline dictionary attacks against the passphrase. WEP is broken outright and TKIP is a deprecated stopgap."
+  },
+  {
+    "id": "aplus-mc-275",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician needs internet access at a remote site with no wired infrastructure and no cellular coverage. Which connection type is MOST appropriate?",
+    "choices": [
+      "Satellite",
+      "Fibre to the premises",
+      "Cable broadband",
+      "DSL"
+    ],
+    "answerIndex": 0,
+    "explanation": "Satellite is the option that requires no terrestrial infrastructure at the site, at the cost of latency. The others all depend on cabling that does not exist there."
+  },
+  {
+    "id": "aplus-mc-276",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A Layer 3 switch is installed to route between VLANs without a separate router. What must be configured to give each VLAN a gateway?",
+    "choices": [
+      "A switch virtual interface (SVI) with an IP address per VLAN",
+      "A trunk port on every access port",
+      "A DHCP reservation for each VLAN",
+      "A second default gateway on each host"
+    ],
+    "answerIndex": 0,
+    "explanation": "An SVI is a virtual Layer 3 interface on the VLAN itself, acting as that VLAN's gateway inside the switch. That is what lets a Layer 3 switch route internally at hardware speed."
+  },
+  {
+    "id": "aplus-mc-277",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A small office wants visitors online without any path to internal file shares. What is the correct configuration?",
+    "choices": [
+      "A separate guest SSID isolated from the internal network",
+      "The same SSID with a different password",
+      "Disabling SSID broadcast",
+      "MAC filtering on the main SSID"
+    ],
+    "answerIndex": 0,
+    "explanation": "Guest isolation puts visitors on their own segment with internet access only. A different password on the same network still lands them among internal resources."
+  },
+  {
+    "id": "aplus-mc-278",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which technology assigns a device the same IP address every time while keeping it centrally managed?",
+    "choices": [
+      "A DHCP reservation",
+      "A static address configured on the device",
+      "APIPA",
+      "NAT"
+    ],
+    "answerIndex": 0,
+    "explanation": "A reservation binds an address to a MAC on the server, so the device stays on DHCP and remains manageable while its address never changes. This is the right answer for printers."
+  },
+  {
+    "id": "aplus-mc-279",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which of the following is a valid public IPv4 address?",
+    "choices": [
+      "172.32.5.10",
+      "172.16.5.10",
+      "10.5.5.10",
+      "192.168.5.10"
+    ],
+    "answerIndex": 0,
+    "explanation": "RFC 1918 reserves 172.16 through 172.31 — 172.32 falls outside that block and is public. The 10 and 192.168 addresses are private."
+  },
+  {
+    "id": "aplus-mc-280",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user's laptop connects to Wi-Fi with full signal but throughput is poor only during busy periods. What is the MOST likely cause?",
+    "choices": [
+      "Channel contention with neighbouring access points",
+      "A failing wireless adapter",
+      "An incorrect subnet mask",
+      "A dead CMOS battery"
+    ],
+    "answerIndex": 0,
+    "explanation": "Strong signal with time-correlated slowness is congestion, not coverage. Separating channels or steering clients to 5 GHz addresses it; more transmit power usually makes it worse."
+  },
+  {
+    "id": "aplus-mc-281",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which cable would a technician select to connect a switch to a router 250 metres away in a separate building?",
+    "choices": [
+      "Single-mode or multimode fibre",
+      "Cat 6 twisted pair",
+      "Cat 5e twisted pair",
+      "RG-6 coaxial"
+    ],
+    "answerIndex": 0,
+    "explanation": "Copper Ethernet is limited to 100 m and carries lightning risk between buildings. Fibre spans the distance and is electrically isolated."
+  },
+  {
+    "id": "aplus-multi-037",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A technician is configuring a new SOHO router. Which TWO steps most directly reduce the risk of remote compromise?",
+    "choices": [
+      "Change the default administrator credentials",
+      "Disable remote management from the WAN interface",
+      "Enable UPnP for easier device setup",
+      "Broadcast the SSID for easier client discovery",
+      "Extend the DHCP lease time"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Default credentials are published for every model, and WAN-side management exposes the admin interface to the internet. UPnP and SSID broadcast are convenience features, and lease time is unrelated."
+  },
+  {
+    "id": "aplus-multi-038",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO pieces of information must a client have to reach a host on a different subnet?",
+    "choices": [
+      "A correctly configured default gateway",
+      "A subnet mask that correctly identifies the local network",
+      "The destination host's MAC address",
+      "A DHCP reservation",
+      "An open SNMP community string"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The mask tells the host the destination is remote and the gateway is where to send it. The destination MAC is only relevant on the local segment, and the other two are unrelated."
+  },
+  {
+    "id": "aplus-multi-039",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO symptoms would point a technician toward a DNS problem rather than a connectivity problem?",
+    "choices": [
+      "Websites fail by name but load by IP address",
+      "nslookup returns no answer for a known-good hostname",
+      "The NIC shows no link light",
+      "The workstation has a 169.254 address",
+      "The switch port is administratively down"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both listed symptoms isolate the fault to name resolution while proving connectivity works. The other three are physical or DHCP failures that would break IP access too."
+  },
+  {
+    "id": "aplus-mc-313",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which protocol retrieves email while leaving messages and folder structure on the server so several devices stay in sync?",
+    "choices": [
+      "IMAP",
+      "POP3",
+      "SMTP",
+      "SNMP"
+    ],
+    "answerIndex": 0,
+    "explanation": "IMAP keeps server-side state, so a phone and a laptop see the same mailbox. POP3 traditionally downloads and removes, which breaks multi-device use."
+  },
+  {
+    "id": "aplus-mc-314",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician needs to allow secure remote command-line administration of a Linux server through a firewall. Which port should be opened?",
+    "choices": [
+      "22",
+      "23",
+      "25",
+      "110"
+    ],
+    "answerIndex": 0,
+    "explanation": "SSH listens on TCP 22 and encrypts the session. Port 23 is Telnet, which sends credentials in the clear and should not be used."
+  },
+  {
+    "id": "aplus-mc-315",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which record type would be created to point a subdomain at another hostname rather than at an IP address?",
+    "choices": [
+      "CNAME",
+      "A",
+      "MX",
+      "PTR"
+    ],
+    "answerIndex": 0,
+    "explanation": "A CNAME aliases one name to another name. An A record maps a name directly to an IPv4 address."
+  },
+  {
+    "id": "aplus-mc-316",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A point-to-point link between two routers needs exactly two usable addresses and no waste. Which prefix should be assigned?",
+    "choices": [
+      "/30",
+      "/29",
+      "/28",
+      "/24"
+    ],
+    "answerIndex": 0,
+    "explanation": "A /30 gives four addresses: one network, one broadcast, and exactly two usable — one for each router. That precise fit is why /30 became the traditional choice for router-to-router links."
+  },
+  {
+    "id": "aplus-mc-317",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which wireless band offers the most non-overlapping channels but the shortest effective range?",
+    "choices": [
+      "6 GHz",
+      "5 GHz",
+      "2.4 GHz",
+      "900 MHz"
+    ],
+    "answerIndex": 0,
+    "explanation": "Higher frequencies carry more spectrum and penetrate obstacles less. 6 GHz has the cleanest, widest channel selection and the least reach."
+  },
+  {
+    "id": "aplus-mc-318",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must terminate a cable into a patch panel. Which tool is required?",
+    "choices": [
+      "A punchdown tool",
+      "A crimper",
+      "A cable tester",
+      "A tone generator"
+    ],
+    "answerIndex": 0,
+    "explanation": "Punchdown tools seat conductors into insulation-displacement contacts on panels and keystone jacks. Crimpers attach connectors to cable ends instead."
+  },
+  {
+    "id": "aplus-mc-319",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which network device operates purely at Layer 1 and repeats incoming signals out every port?",
+    "choices": [
+      "A hub",
+      "A switch",
+      "A router",
+      "A firewall"
+    ],
+    "answerIndex": 0,
+    "explanation": "A hub repeats electrical signals with no knowledge of addresses, which is why it shares bandwidth and creates collisions. Switches forward selectively by MAC."
+  },
+  {
+    "id": "aplus-mc-320",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which service would a technician configure to allow a device on one subnet to obtain an address from a DHCP server on another?",
+    "choices": [
+      "A DHCP relay agent (IP helper) on the router",
+      "A second DHCP scope on the client",
+      "A static route on every workstation",
+      "A longer lease time"
+    ],
+    "answerIndex": 0,
+    "explanation": "DHCP Discover is a broadcast, and routers do not forward broadcasts. A relay converts it to a unicast aimed at the remote server."
+  },
+  {
+    "id": "aplus-mc-321",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which of these represents a valid APIPA address?",
+    "choices": [
+      "169.254.10.5",
+      "192.168.1.5",
+      "172.20.10.5",
+      "10.1.1.5"
+    ],
+    "answerIndex": 0,
+    "explanation": "APIPA self-assigns from 169.254.0.0/16 when no DHCP server answers. The others are all RFC 1918 private ranges that a DHCP server or admin would assign deliberately."
+  },
+  {
+    "id": "aplus-mc-322",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician is asked to reduce broadcast traffic on a large flat network. What is the MOST appropriate change?",
+    "choices": [
+      "Segment it into multiple VLANs",
+      "Increase the DHCP lease time",
+      "Replace the switches with hubs",
+      "Disable DNS caching"
+    ],
+    "answerIndex": 0,
+    "explanation": "Each VLAN is its own broadcast domain, so segmenting directly reduces broadcast scope. Hubs would make the problem dramatically worse."
+  },
+  {
+    "id": "aplus-multi-047",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO ports must typically be reachable for a mail client to both send and receive using modern encrypted settings?",
+    "choices": [
+      "587 for outbound submission",
+      "993 for IMAP over TLS",
+      "23 for Telnet",
+      "69 for TFTP",
+      "161 for SNMP"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Submission on 587 handles sending and IMAPS on 993 handles retrieval. Telnet, TFTP, and SNMP have nothing to do with mail."
+  },
+  {
+    "id": "aplus-multi-048",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A technician is asked why plain FTP should be replaced. Which TWO statements are accurate?",
+    "choices": [
+      "Credentials and data are transmitted unencrypted",
+      "SFTP provides the same function tunnelled over SSH",
+      "FTP cannot transfer binary files",
+      "FTP requires a dedicated physical link",
+      "SFTP uses UDP for speed"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "FTP's weakness is that everything travels in the clear, and SFTP solves it by running over SSH on port 22. FTP handles binary fine and needs no special link."
+  },
+  {
+    "id": "aplus-mc-339",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A single connector must carry many fibre strands between two high-density patch panels. Which type is designed for this?",
+    "choices": [
+      "MPO",
+      "LC",
+      "ST",
+      "RJ45"
+    ],
+    "answerIndex": 0,
+    "explanation": "Multi-fibre push-on carries several strands in one ferrule, which is what makes high-density trunking practical. LC and ST terminate one or two strands each."
+  },
+  {
+    "id": "aplus-mc-340",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must run cable through a ceiling space used to circulate building air. Which requirement applies?",
+    "choices": [
+      "The cable must be plenum-rated",
+      "The cable must be shielded",
+      "The cable must be Cat 8",
+      "The cable must be direct-burial rated"
+    ],
+    "answerIndex": 0,
+    "explanation": "Plenum-rated jacketing produces less toxic smoke when burning and is required by fire code in air-handling spaces. Category and shielding are performance choices, not code ones."
+  },
+  {
+    "id": "aplus-mc-341",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the function of a proxy server?",
+    "choices": [
+      "It makes requests on clients' behalf, allowing caching and content filtering",
+      "It assigns IP addresses to clients",
+      "It resolves hostnames to addresses",
+      "It supplies power over Ethernet"
+    ],
+    "answerIndex": 0,
+    "explanation": "A proxy sits between clients and destinations, which is what enables caching, filtering, and hiding internal addresses. Addressing and name resolution are DHCP and DNS."
+  },
+  {
+    "id": "aplus-mc-342",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A company needs a device that inspects traffic inline and can actively block malicious packets. Which is required?",
+    "choices": [
+      "An IPS",
+      "An IDS",
+      "A hub",
+      "A patch panel"
+    ],
+    "answerIndex": 0,
+    "explanation": "An intrusion prevention system sits in the traffic path and can drop packets. An IDS only observes and alerts, because it is not inline."
+  },
+  {
+    "id": "aplus-mc-343",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the MOST secure remaining option when a legacy device supports only unencrypted management protocols?",
+    "choices": [
+      "Isolate the device on its own restricted network segment",
+      "Accept the risk and manage it normally",
+      "Disable all logging on the device",
+      "Expose it to the internet for vendor support"
+    ],
+    "answerIndex": 0,
+    "explanation": "When the device itself cannot be secured, segmentation is the compensating control. The other options increase exposure rather than reducing it."
+  },
+  {
+    "id": "aplus-mc-344",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user needs to reach an internal application from home, and the application is not published to the internet. What should be provided?",
+    "choices": [
+      "VPN access into the corporate network",
+      "A port forward from the router to the application server",
+      "The application's internal IP address",
+      "A guest Wi-Fi account"
+    ],
+    "answerIndex": 0,
+    "explanation": "A VPN gives an encrypted path into the network so internal resources become reachable without publishing them. Port forwarding would expose the server directly."
+  },
+  {
+    "id": "aplus-mc-345",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the purpose of a captive portal on a guest wireless network?",
+    "choices": [
+      "It intercepts the first web request to require login or acceptance of terms",
+      "It encrypts all traffic on the guest network",
+      "It assigns static IP addresses",
+      "It blocks all outbound traffic"
+    ],
+    "answerIndex": 0,
+    "explanation": "Captive portals gate access behind an authentication or acceptance step. They do not themselves provide encryption, which is a common misconception."
+  },
+  {
+    "id": "aplus-mc-346",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the LEAST effective wireless security measure?",
+    "choices": [
+      "Disabling SSID broadcast",
+      "Using WPA3 encryption",
+      "Using Enterprise authentication with RADIUS",
+      "Isolating guests on a separate network"
+    ],
+    "answerIndex": 0,
+    "explanation": "Hiding the SSID stops it appearing in a casual scan, but the name is still present in client traffic and trivially recovered. The others are genuine controls."
+  },
+  {
+    "id": "aplus-mc-347",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician needs to identify which wall jack corresponds to an unlabelled cable in a wiring closet. Which tool set is designed for this?",
+    "choices": [
+      "A tone generator and probe",
+      "A multimeter",
+      "A loopback plug",
+      "A protocol analyser"
+    ],
+    "answerIndex": 0,
+    "explanation": "The generator injects an audible signal at one end and the probe locates it at the other, tracing a specific cable through a bundle without visual continuity."
+  },
+  {
+    "id": "aplus-mc-348",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which statement about PoE is accurate?",
+    "choices": [
+      "It delivers DC power and data over the same Ethernet cable",
+      "It doubles available bandwidth",
+      "It extends the maximum cable run beyond 100 m",
+      "It encrypts traffic at Layer 2"
+    ],
+    "answerIndex": 0,
+    "explanation": "Power over Ethernet lets a camera, phone, or access point run from one cable with no local outlet. It changes nothing about bandwidth, distance, or encryption."
+  },
+  {
+    "id": "aplus-multi-053",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A technician is asked to justify replacing Telnet with SSH on network devices. Which TWO reasons are correct?",
+    "choices": [
+      "Telnet transmits credentials and commands in cleartext",
+      "SSH encrypts the entire session",
+      "Telnet cannot manage more than one device",
+      "SSH requires no authentication",
+      "Telnet is limited to 10 Mbps links"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The distinction is purely about encryption — Telnet exposes everything on the wire while SSH protects it. The other three statements are simply untrue."
+  },
+  {
+    "id": "aplus-multi-054",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO would a technician configure to give a small office both internet access and internal name resolution?",
+    "choices": [
+      "A DHCP scope supplying gateway and DNS server settings",
+      "A DNS forwarder or resolver reachable by clients",
+      "A dedicated public IP for every workstation",
+      "A hub in place of the switch",
+      "Disabled NAT on the router"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Clients need addressing with the right pointers, and something to resolve names. Public IPs per workstation and disabling NAT defeat the design, and hubs are obsolete."
+  },
+  {
+    "id": "aplus-mc-369",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which port does the Remote Desktop Protocol use by default?",
+    "choices": [
+      "3389",
+      "22",
+      "23",
+      "443"
+    ],
+    "answerIndex": 0,
+    "explanation": "RDP listens on 3389. Exposing it directly to the internet is heavily scanned and brute-forced, which is why it belongs behind a VPN."
+  },
+  {
+    "id": "aplus-mc-370",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A technician must configure a device to send log messages to a central collector. Which protocol and port apply?",
+    "choices": [
+      "Syslog on 514",
+      "SNMP on 161",
+      "NTP on 123",
+      "LDAP on 389"
+    ],
+    "answerIndex": 0,
+    "explanation": "Syslog on UDP 514 is the standard for shipping log messages centrally, which also protects them from being cleared on a compromised host."
+  },
+  {
+    "id": "aplus-mc-371",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes the function of a load balancer?",
+    "choices": [
+      "It distributes incoming requests across several servers",
+      "It assigns IP addresses to clients",
+      "It resolves hostnames",
+      "It supplies power to access points"
+    ],
+    "answerIndex": 0,
+    "explanation": "Load balancing spreads work so no single server is overwhelmed and one failure does not take the service down."
+  },
+  {
+    "id": "aplus-mc-372",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A cable run between two switches must carry 10 Gbps over 90 metres. Which cable category is required?",
+    "choices": [
+      "Cat 6a",
+      "Cat 5e",
+      "Cat 6",
+      "Cat 3"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cat 6a carries 10 Gbps for the full 100 m. Cat 6 manages 10 Gbps only to about 55 m, and Cat 5e tops out at 1 Gbps."
+  },
+  {
+    "id": "aplus-mc-373",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which describes network-attached storage (NAS) as distinct from a storage area network (SAN)?",
+    "choices": [
+      "NAS presents file-level storage over the existing network",
+      "NAS presents block-level storage to servers",
+      "NAS requires fibre channel",
+      "NAS cannot be accessed by more than one client"
+    ],
+    "answerIndex": 0,
+    "explanation": "NAS serves files over the network like a shared drive. SAN presents block storage that a server treats as a local disk, typically for databases and virtualization."
+  },
+  {
+    "id": "aplus-mc-374",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which is the MOST appropriate use of a screened subnet in a small business network?",
+    "choices": [
+      "Hosting a public-facing web server isolated from the internal LAN",
+      "Placing all workstations for better performance",
+      "Storing backups",
+      "Hosting the domain controller"
+    ],
+    "answerIndex": 0,
+    "explanation": "A screened subnet isolates internet-facing services so a compromise there does not land the attacker among internal systems. Domain controllers and backups belong on the protected side."
+  },
+  {
+    "id": "aplus-mc-375",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user reports their new laptop cannot see the corporate Wi-Fi network, though older laptops connect fine. Which is the MOST likely cause?",
+    "choices": [
+      "The network is on a band or channel the new adapter is not configured to use",
+      "The user's password has expired",
+      "The DHCP scope is full",
+      "The switch is misconfigured"
+    ],
+    "answerIndex": 0,
+    "explanation": "A device-specific visibility problem points at band or channel compatibility — for example a 5 GHz-only or DFS channel the adapter is not scanning. Address and switch issues would affect everyone."
+  },
+  {
+    "id": "aplus-multi-061",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO statements about NAT are accurate?",
+    "choices": [
+      "It lets many private addresses share one public address",
+      "It tracks sessions so replies return to the correct internal host",
+      "It encrypts traffic leaving the network",
+      "It resolves hostnames to addresses",
+      "It assigns addresses to clients"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "NAT rewrites addresses and maintains a translation table so return traffic finds its way back. Encryption, name resolution, and addressing are TLS, DNS, and DHCP respectively."
+  },
+  {
+    "id": "aplus-multi-062",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO would improve wireless performance in an office where signal is strong but throughput is poor at peak times?",
+    "choices": [
+      "Assign non-overlapping channels across neighbouring access points",
+      "Move capable clients to the 5 GHz or 6 GHz band",
+      "Increase transmit power on every access point",
+      "Widen all 2.4 GHz channels to 40 MHz",
+      "Disable encryption to reduce overhead"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Strong signal with peak-time slowness is contention. Channel planning and band steering both reduce it; raising power and widening 2.4 GHz channels increase interference, and disabling encryption is never the answer."
   }
 ]

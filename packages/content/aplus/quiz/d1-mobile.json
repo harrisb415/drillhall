@@ -361,5 +361,346 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Business-class laptops keep memory and storage in serviceable sockets and slots. Modern CPUs and integrated GPUs are soldered to the board, and the embedded controller firmware chip is not a user-serviceable part."
+  },
+  {
+    "id": "aplus-mc-282",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which mobile technology allows two devices to exchange data by being tapped together?",
+    "choices": [
+      "NFC",
+      "Bluetooth",
+      "Wi-Fi Direct",
+      "Infrared"
+    ],
+    "answerIndex": 0,
+    "explanation": "NFC works over a few centimetres, and that extremely short range is itself the security property that makes it acceptable for payments."
+  },
+  {
+    "id": "aplus-mc-283",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A personally owned phone is enrolled under a BYOD policy. When the employee leaves, what does a selective (container) wipe do?",
+    "choices": [
+      "Removes corporate data and profiles while leaving personal photos and apps intact",
+      "Erases the entire device including personal content",
+      "Locks the device permanently until IT unlocks it",
+      "Removes only the SIM configuration"
+    ],
+    "answerIndex": 0,
+    "explanation": "MDM containerisation separates corporate data so it can be removed on its own. That separation is what makes BYOD workable — a full wipe of a personal device would rarely be acceptable."
+  },
+  {
+    "id": "aplus-mc-284",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which component in a laptop converts the digitiser's touch input into coordinates the OS can use?",
+    "choices": [
+      "The digitiser controller",
+      "The inverter",
+      "The backlight",
+      "The Wi-Fi antenna"
+    ],
+    "answerIndex": 0,
+    "explanation": "The digitiser layer and its controller sense and translate touch. The inverter and backlight illuminate the panel, and the antenna handles radio."
+  },
+  {
+    "id": "aplus-mc-285",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A laptop's Wi-Fi reception became noticeably worse after a screen replacement. What is the MOST likely cause?",
+    "choices": [
+      "The antenna leads running through the hinge were pinched or left disconnected",
+      "The wireless driver was corrupted",
+      "The battery was not reseated",
+      "The BIOS needs updating"
+    ],
+    "answerIndex": 0,
+    "explanation": "Laptop Wi-Fi antennas run up the sides of the lid, so a display job that disturbs them degrades reception. The timing makes the mechanical cause far more likely than a driver."
+  },
+  {
+    "id": "aplus-mc-286",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which mobile deployment model gives the organisation full ownership and control while permitting limited personal use?",
+    "choices": [
+      "COPE",
+      "BYOD",
+      "CYOD",
+      "COBO"
+    ],
+    "answerIndex": 0,
+    "explanation": "Corporate-owned, personally enabled means the company owns and manages the device but allows some personal use. COBO forbids it, and BYOD reverses ownership entirely."
+  },
+  {
+    "id": "aplus-mc-287",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A phone shows 'No SIM' after being dropped, though it powers on normally. What should be checked FIRST?",
+    "choices": [
+      "That the SIM tray is properly seated and the SIM undamaged",
+      "The battery health",
+      "The screen digitiser",
+      "The Wi-Fi antenna"
+    ],
+    "answerIndex": 0,
+    "explanation": "A drop can unseat a tray. Checking the cheapest, most likely mechanical cause precedes any component replacement."
+  },
+  {
+    "id": "aplus-mc-288",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which is the LEAST likely reason a mobile device fails to connect to a known Wi-Fi network?",
+    "choices": [
+      "The device's screen brightness is set too high",
+      "The stored passphrase is stale after a network key change",
+      "The device is out of range",
+      "Airplane mode is enabled"
+    ],
+    "answerIndex": 0,
+    "explanation": "Brightness draws power but has no bearing on radio association. The other three are all standard causes of a failed connection."
+  },
+  {
+    "id": "aplus-multi-040",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A company issues tablets that must be recoverable if lost. Which TWO controls should be enforced through MDM?",
+    "choices": [
+      "Device encryption",
+      "Remote wipe capability",
+      "A custom wallpaper",
+      "Disabling the camera flash",
+      "Increasing the screen timeout"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Encryption protects the data at rest and remote wipe removes it on loss. The remaining options are cosmetic or actively unhelpful."
+  },
+  {
+    "id": "aplus-multi-041",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO are genuine advantages of eSIM over a physical SIM card?",
+    "choices": [
+      "A carrier can be provisioned or changed without swapping hardware",
+      "It frees internal space and removes a physical ingress point",
+      "It provides faster cellular data speeds",
+      "It works without any carrier account",
+      "It removes the need for a data plan"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "eSIM is about provisioning and physical design, not throughput. Speed depends on the network and radio, and a carrier account is still required."
+  },
+  {
+    "id": "aplus-mc-323",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which laptop feature allows the display to fold fully behind the keyboard for tablet-style use?",
+    "choices": [
+      "A 2-in-1 convertible hinge",
+      "A docking station",
+      "A port replicator",
+      "A KVM switch"
+    ],
+    "answerIndex": 0,
+    "explanation": "Convertible designs hinge or detach so one device serves as both laptop and tablet. Docks and replicators only add connectivity."
+  },
+  {
+    "id": "aplus-mc-324",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician must replace a laptop battery that has swollen. What is the correct handling procedure?",
+    "choices": [
+      "Remove it from service immediately, never puncture it, and dispose of it through battery recycling",
+      "Compress it back into shape and reinstall it",
+      "Dispose of it in general waste",
+      "Freeze it before handling"
+    ],
+    "answerIndex": 0,
+    "explanation": "A swollen lithium-ion cell is a fire hazard. Puncturing risks thermal runaway, and it is regulated waste rather than general rubbish."
+  },
+  {
+    "id": "aplus-mc-325",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which mobile synchronisation method requires no cable and no local computer?",
+    "choices": [
+      "Synchronisation to a cloud account over the network",
+      "Synchronisation to a desktop over USB",
+      "Synchronisation via a docking station",
+      "Synchronisation over a serial console"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cloud sync needs only an account and a data connection. The other three all depend on physically attaching the device to something."
+  },
+  {
+    "id": "aplus-mc-326",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user's laptop display is dim but a faint image is visible when a bright torch is shone at the panel. Which component has MOST likely failed?",
+    "choices": [
+      "The backlight or its inverter",
+      "The graphics processor",
+      "The system memory",
+      "The hard drive"
+    ],
+    "answerIndex": 0,
+    "explanation": "A visible image under external light proves the panel and video pipeline work — only the illumination has failed. That isolates the fault to the backlight or, on older CCFL panels, its inverter."
+  },
+  {
+    "id": "aplus-mc-327",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which is the LEAST likely consequence of enabling a mobile hotspot on a company phone?",
+    "choices": [
+      "The phone's screen resolution decreases",
+      "Cellular data allowance is consumed more quickly",
+      "Battery drains noticeably faster",
+      "It may create an unmanaged path around corporate network controls"
+    ],
+    "answerIndex": 0,
+    "explanation": "Hotspot use affects data, battery, and network governance. Screen resolution is fixed by the hardware and unrelated."
+  },
+  {
+    "id": "aplus-multi-049",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO components inside a laptop lid may need to be transferred when replacing a display assembly?",
+    "choices": [
+      "The webcam module",
+      "The Wi-Fi antenna leads",
+      "The SODIMM memory",
+      "The CPU heat sink",
+      "The M.2 SSD"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The lid houses the camera and the antennas, which run through the hinge. Memory, cooling, and storage all live in the chassis base."
+  },
+  {
+    "id": "aplus-mc-355",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A user cannot hear audio through newly paired Bluetooth headphones, though the pairing shows as connected. What should be checked FIRST?",
+    "choices": [
+      "That the headphones are selected as the active audio output device",
+      "The phone's SIM card",
+      "The Wi-Fi passphrase",
+      "The screen brightness"
+    ],
+    "answerIndex": 0,
+    "explanation": "Pairing and routing are separate steps — a connected device is not automatically the active output. It is the first and cheapest thing to check."
+  },
+  {
+    "id": "aplus-mc-356",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which laptop component would a technician replace to resolve a keyboard where several keys have stopped responding, assuming no liquid damage elsewhere?",
+    "choices": [
+      "The keyboard assembly",
+      "The system board",
+      "The display panel",
+      "The battery"
+    ],
+    "answerIndex": 0,
+    "explanation": "Laptop keyboards are field-replaceable assemblies. Replacing the board for a keyboard fault is disproportionate unless the connector itself is damaged."
+  },
+  {
+    "id": "aplus-mc-357",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which is the MOST appropriate first step when a company-owned phone is reported stolen and holds sensitive client data?",
+    "choices": [
+      "Issue a remote wipe through MDM",
+      "Order a replacement handset",
+      "File the insurance claim",
+      "Change the office door codes"
+    ],
+    "answerIndex": 0,
+    "explanation": "Protecting the data is time-critical and comes before administrative follow-up. A remote wipe removes it before anyone can extract it."
+  },
+  {
+    "id": "aplus-mc-358",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which mobile accessory port type is reversible and can carry power, data, and video simultaneously?",
+    "choices": [
+      "USB-C",
+      "Micro-USB",
+      "Lightning",
+      "Mini-USB"
+    ],
+    "answerIndex": 0,
+    "explanation": "USB-C is reversible and supports power delivery, data, and alternate modes for video on one connector."
+  },
+  {
+    "id": "aplus-multi-057",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO steps should precede replacing any internal laptop component?",
+    "choices": [
+      "Disconnect the AC adapter and remove or disconnect the battery",
+      "Ground yourself against the chassis or use a wrist strap",
+      "Defragment the storage drive",
+      "Update the operating system",
+      "Change the BIOS boot order"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Removing all power sources and controlling static are the two safety prerequisites for any internal work. The remaining options are software tasks irrelevant to a physical repair."
+  },
+  {
+    "id": "aplus-mc-381",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which is the MOST likely reason a company would choose CYOD over BYOD?",
+    "choices": [
+      "It keeps hardware standardised and company-owned while offering users some choice",
+      "It removes the need for any mobile device management",
+      "It eliminates all hardware cost",
+      "It allows unrestricted personal use"
+    ],
+    "answerIndex": 0,
+    "explanation": "Choose Your Own Device restricts selection to an approved, company-owned list, which keeps support and security manageable while still giving users a say."
+  },
+  {
+    "id": "aplus-mc-382",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A tablet screen responds to touch in the wrong location, offset consistently from where the user taps. What is the MOST appropriate first action?",
+    "choices": [
+      "Recalibrate the digitiser, or remove a poorly fitted screen protector",
+      "Replace the battery",
+      "Reinstall the operating system",
+      "Replace the charging port"
+    ],
+    "answerIndex": 0,
+    "explanation": "A consistent offset suggests calibration or an interfering overlay rather than a failed panel. Both are cheap to rule out before any replacement."
+  },
+  {
+    "id": "aplus-mc-383",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which laptop port would a technician use to attach a single cable providing display output, data, and charging?",
+    "choices": [
+      "USB-C with Thunderbolt or DisplayPort alt mode",
+      "HDMI",
+      "RJ45",
+      "3.5 mm audio"
+    ],
+    "answerIndex": 0,
+    "explanation": "USB-C carrying Thunderbolt or DisplayPort alternate mode combines all three on one reversible connector, which is what makes single-cable docking possible."
+  },
+  {
+    "id": "aplus-multi-065",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO are appropriate uses of airplane mode as a troubleshooting step?",
+    "choices": [
+      "Forcing every radio to reinitialise by toggling it on and off",
+      "Confirming a fault is radio-related by observing behaviour with radios disabled",
+      "Improving battery capacity permanently",
+      "Increasing cellular signal strength",
+      "Resolving a failing storage drive"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Toggling airplane mode restarts every radio at once and can isolate whether a symptom is radio-related. It cannot change hardware capacity, signal strength, or storage health."
   }
 ]

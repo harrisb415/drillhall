@@ -295,5 +295,289 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Metered billing and on-demand provisioning are defining cloud traits. The customer gives up physical control, security is explicitly a shared responsibility, and cloud makes connectivity more critical rather than less."
+  },
+  {
+    "id": "aplus-mc-289",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which cloud characteristic describes capacity that expands and contracts automatically with demand?",
+    "choices": [
+      "Elasticity",
+      "Multitenancy",
+      "Measured service",
+      "Broad network access"
+    ],
+    "answerIndex": 0,
+    "explanation": "Elasticity is the automatic two-way adjustment to load. Scalability is the ability to grow; multitenancy describes shared infrastructure."
+  },
+  {
+    "id": "aplus-mc-290",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Under an IaaS deployment, who is responsible for patching the guest operating system?",
+    "choices": [
+      "The customer",
+      "The cloud provider",
+      "Neither — patching is automatic",
+      "The hardware vendor"
+    ],
+    "answerIndex": 0,
+    "explanation": "IaaS hands over virtual hardware; everything from the OS upward remains the customer's responsibility. Under PaaS and SaaS that boundary moves to the provider."
+  },
+  {
+    "id": "aplus-mc-291",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Several hospitals share a cloud environment built to meet the healthcare regulations they all face. Which deployment model is this?",
+    "choices": [
+      "Community cloud",
+      "Public cloud",
+      "Private cloud",
+      "Hybrid cloud"
+    ],
+    "answerIndex": 0,
+    "explanation": "A community cloud serves multiple organisations with common regulatory or operational concerns. Hybrid describes mixing private and public for one organisation."
+  },
+  {
+    "id": "aplus-mc-292",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is a genuine disadvantage of moving a file server to cloud storage?",
+    "choices": [
+      "Access depends entirely on internet connectivity and available bandwidth",
+      "Files can no longer be shared between users",
+      "No redundancy is provided",
+      "A dedicated server room becomes mandatory"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cloud makes the internet link a single point of failure for the ability to work. Sharing and redundancy are strengths of cloud storage, not weaknesses."
+  },
+  {
+    "id": "aplus-mc-293",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician must run a legacy application requiring an unsupported OS on modern hardware. What is the BEST approach?",
+    "choices": [
+      "Run the legacy OS in an isolated virtual machine",
+      "Downgrade the physical workstation permanently",
+      "Run the application in a web browser",
+      "Install the legacy OS alongside in a dual boot"
+    ],
+    "answerIndex": 0,
+    "explanation": "A VM contains the legacy system while the host stays current and secure. Dual booting sacrifices the machine's availability and still exposes the legacy OS to the hardware directly."
+  },
+  {
+    "id": "aplus-mc-294",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What does a virtual machine snapshot actually provide?",
+    "choices": [
+      "A point-in-time state the VM can be rolled back to",
+      "An off-site backup of the guest",
+      "A permanent archive independent of the host",
+      "A copy of the host's firmware settings"
+    ],
+    "answerIndex": 0,
+    "explanation": "Snapshots capture state for rollback and live with the VM on the same storage. They fail with the datastore, which is exactly why they are not backups."
+  },
+  {
+    "id": "aplus-multi-042",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A team needs disposable, identical test environments that can be reset between runs. Which TWO capabilities make virtualization the right fit?",
+    "choices": [
+      "Cloning a prepared template so every environment starts identical",
+      "Reverting to a snapshot in seconds after each test",
+      "Eliminating the need to patch the guest systems",
+      "Removing the need for network configuration",
+      "Guaranteeing higher performance than bare metal"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Templates give repeatability and snapshots give fast reset. Guests still need patching and networking, and virtualization costs a little performance rather than adding it."
+  },
+  {
+    "id": "aplus-mc-328",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which cloud service model requires the customer to manage the operating system, runtime, and application, but not the physical hardware?",
+    "choices": [
+      "IaaS",
+      "PaaS",
+      "SaaS",
+      "On-premises"
+    ],
+    "answerIndex": 0,
+    "explanation": "Infrastructure as a Service supplies virtual hardware and leaves everything above it to the customer. PaaS takes over the OS and runtime as well."
+  },
+  {
+    "id": "aplus-mc-329",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician needs to analyse suspected malware without risking the host. Which combination BEST provides containment?",
+    "choices": [
+      "A virtual machine on an isolated network, reverted to a snapshot afterwards",
+      "A virtual machine bridged to the production network",
+      "A second user account on the host",
+      "Running the sample with antivirus temporarily disabled"
+    ],
+    "answerIndex": 0,
+    "explanation": "Isolation needs both halves: the guest kept off the production network so nothing spreads, and a snapshot rollback to discard whatever the sample changed. A bridged VM puts the malware straight onto the real network."
+  },
+  {
+    "id": "aplus-mc-330",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A virtual machine must be reachable by other devices on the physical network with its own IP address. Which adapter mode should be selected?",
+    "choices": [
+      "Bridged",
+      "NAT",
+      "Host-only",
+      "Internal"
+    ],
+    "answerIndex": 0,
+    "explanation": "Bridged mode places the guest directly on the physical network as its own device. NAT shares the host's address and needs forwarding for inbound traffic."
+  },
+  {
+    "id": "aplus-mc-331",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A virtual machine has been powered off for six months and is now started. Which is the MOST important action before putting it back into service?",
+    "choices": [
+      "Apply the operating system and application updates released while it was offline",
+      "Increase its allocated memory",
+      "Delete its snapshots",
+      "Change its virtual adapter to host-only"
+    ],
+    "answerIndex": 0,
+    "explanation": "A dormant guest wakes with six months of missing patches and is immediately exposed. Being a VM changes nothing about that — it needs the same patching discipline as a physical machine."
+  },
+  {
+    "id": "aplus-multi-050",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO must be true before a Type 2 hypervisor can run a 64-bit guest operating system?",
+    "choices": [
+      "CPU virtualization extensions are present",
+      "Those extensions are enabled in UEFI/BIOS",
+      "The host has a discrete graphics card",
+      "The host is running a server OS",
+      "The guest is stored on an SSD"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Hardware-assisted virtualization must be both present and enabled — it ships disabled on many machines, which is the most common reason a new VM refuses to start."
+  },
+  {
+    "id": "aplus-mc-359",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which characteristic makes public cloud economical for the provider and creates an isolation consideration for the customer?",
+    "choices": [
+      "Multitenancy — many customers served from shared physical infrastructure",
+      "Measured service",
+      "Broad network access",
+      "On-demand self-service"
+    ],
+    "answerIndex": 0,
+    "explanation": "Sharing hardware is what drives the cost down, and it is also why isolation failures between tenants are a genuine concern rather than a theoretical one."
+  },
+  {
+    "id": "aplus-mc-360",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company keeps regulated records on infrastructure it controls while running public-facing analytics in a provider's cloud. Which model describes this?",
+    "choices": [
+      "Hybrid cloud",
+      "Public cloud",
+      "Private cloud",
+      "Community cloud"
+    ],
+    "answerIndex": 0,
+    "explanation": "Hybrid connects private and public so workloads sit where their requirements dictate. Community means several separate organisations sharing for common regulatory reasons."
+  },
+  {
+    "id": "aplus-mc-361",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is the defining characteristic of desktop virtualization (VDI)?",
+    "choices": [
+      "Desktops run centrally in the data centre and are streamed to endpoints",
+      "Each user requires a high-specification local workstation",
+      "It removes the need for any network",
+      "User data is stored only on the endpoint device"
+    ],
+    "answerIndex": 0,
+    "explanation": "VDI keeps the desktop and its data central, which is its security appeal. The trade is that the network becomes a hard dependency."
+  },
+  {
+    "id": "aplus-multi-058",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A finance team stores regulated customer records with a cloud provider. Which TWO responsibilities remain with the customer regardless of service model?",
+    "choices": [
+      "Classifying the data and deciding who may access it",
+      "Ensuring the arrangement satisfies applicable data residency rules",
+      "Patching the provider's hypervisors",
+      "Maintaining the provider's physical data centre security",
+      "Replacing failed drives in the provider's storage array"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The shared responsibility boundary moves with the service model, but the data itself and who can reach it never leave the customer. Hypervisors, physical security, and hardware are the provider's side of the line in every model."
+  },
+  {
+    "id": "aplus-mc-384",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which describes rapid elasticity in a cloud context?",
+    "choices": [
+      "Capacity scales up and back down automatically as demand changes",
+      "Usage is metered and billed",
+      "Many tenants share the same hardware",
+      "Resources are reachable over the network"
+    ],
+    "answerIndex": 0,
+    "explanation": "Elasticity is the automatic two-way response to load. Metering, multitenancy, and broad network access are separate defining characteristics."
+  },
+  {
+    "id": "aplus-mc-385",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A technician must give a developer an environment where they deploy code without administering the operating system. Which model fits?",
+    "choices": [
+      "PaaS",
+      "IaaS",
+      "SaaS",
+      "On-premises"
+    ],
+    "answerIndex": 0,
+    "explanation": "Platform as a Service supplies the OS, runtime, and scaling so the developer supplies only code and data. IaaS would leave the OS to them."
+  },
+  {
+    "id": "aplus-mc-386",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is the MOST significant security consideration when running a virtual machine bridged to the production network?",
+    "choices": [
+      "It is a real host on that network and needs the same patching and controls as a physical machine",
+      "It cannot be reached by other devices",
+      "It is automatically exempt from firewall rules",
+      "It requires no antivirus"
+    ],
+    "answerIndex": 0,
+    "explanation": "A bridged guest occupies an address on the real network and is exposed exactly like any physical host. \"It is only a VM\" is not a security posture."
+  },
+  {
+    "id": "aplus-multi-066",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO describe legitimate limitations of virtual machine snapshots?",
+    "choices": [
+      "They live on the same storage as the VM, so a datastore failure takes both",
+      "Retaining them for long periods degrades performance",
+      "They cannot capture the guest's disk state",
+      "They replace the need for backups",
+      "They require a second physical host"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Snapshots share the VM's fate and slow it down the longer they are kept, which is precisely why they are not backups. They do capture disk state and need no second host."
   }
 ]
