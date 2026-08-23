@@ -469,5 +469,65 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "ALE = SLE × ARO: the cost of one occurrence multiplied by how many times per year it's expected. RTO and MTBF are recovery and reliability metrics, and CVSS rates technical severity rather than financial loss."
+  },
+  {
+    "id": "secplus-d5-multi-003",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO are quantitative risk analysis values rather than qualitative judgements?",
+    "choices": [
+      "Annualized loss expectancy expressed in currency",
+      "Annualized rate of occurrence expressed as a number of events per year",
+      "A red/amber/green heat map rating",
+      "A subjective 'high impact' label from a workshop",
+      "An analyst's professional opinion of severity"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "ALE and ARO are numeric, calculable values — the hallmark of quantitative analysis. Heat maps, descriptive labels, and expert opinion are qualitative."
+  },
+  {
+    "id": "secplus-d5-multi-004",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO agreements would a company put in place before a third-party vendor accesses its systems?",
+    "choices": [
+      "A non-disclosure agreement covering confidential information",
+      "A service-level agreement defining measurable performance commitments",
+      "An acceptable use policy for its own employees",
+      "A software end-user licence agreement",
+      "An internal onboarding checklist"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "NDAs protect shared confidential information and SLAs set measurable expectations with the vendor. AUPs and onboarding checklists govern internal staff, and an EULA governs software use."
+  },
+  {
+    "id": "secplus-d5-multi-005",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO consequences of regulatory non-compliance are external and imposed by an authority?",
+    "choices": [
+      "Regulatory fines",
+      "Loss of the licence to operate",
+      "An internal audit finding",
+      "A drop in employee morale",
+      "An increase in help desk tickets"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Fines and licence revocation are imposed externally by regulators. Internal findings, morale, and ticket volume are internal effects, not sanctions."
+  },
+  {
+    "id": "secplus-d5-multi-006",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO practices belong to an effective security awareness programme?",
+    "choices": [
+      "Running simulated phishing campaigns and reporting results",
+      "Training staff to recognize and report anomalous behaviour",
+      "Publishing all administrator passwords internally for transparency",
+      "Disabling multifactor authentication to reduce user friction",
+      "Removing the mechanism for reporting suspicious messages"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Simulations plus anomalous-behaviour recognition build and measure the human layer. The other three each dismantle a control the programme is meant to reinforce."
   }
 ]

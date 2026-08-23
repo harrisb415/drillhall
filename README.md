@@ -2,7 +2,7 @@
 
 Drillhall is a self-hosted, multi-user CompTIA exam prep platform. React + Vite client, Express + better-sqlite3 server, Better Auth (email/password + Google), content shipped as validated data packs.
 
-**Status: v1.12.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1201), A+ Core 2 (220-1202), Network+ (N10-009), Security+ (SY0-701).
+**Status: v1.13.0 — Phases 1–5 complete**, plus the exam simulator addendum (see `comptia-platform-build-spec.md` §13 for the phase plan and [CHANGELOG.md](CHANGELOG.md) for release history). Four cert packs shipped: A+ Core 1 (220-1201), A+ Core 2 (220-1202), Network+ (N10-009), Security+ (SY0-701).
 
 - **Phase 1** — auth, flashcards, MC quiz, reference sheets, dashboard, content validator, committed migrations + boot-time fail-fast check, rate limiting, structured logging, `/health`, CI.
 - **Phase 2** — second cert pack (A+ Core 2) proving the schema generalizes, cert switcher, all three PBQ engines (drag-to-order, drag-to-match, terminal sim), recency-weighted readiness scoring.
@@ -114,14 +114,14 @@ Each cert declares only four numbers (`exam` in `cert.json`); the modes are deri
 
 **Randomization.** Every attempt draws a fresh weighted sample, deprioritizes questions from your last three exams, and shuffles multiple-choice option order so a repeat sighting can't be answered from position memory. The shuffle is stored per session and mapped back at grading time. Practice mode (not just exam mode) shuffles the same way — `buildChoiceOrders`/`applyChoiceOrder` in `modules/quiz/grade.ts` are shared by both.
 
-Novelty is bounded by pool size — two exams of N questions from a bank of B must share at least `2N − B`. With 228+ questions per cert, **every mode currently has zero forced repeat**, including a back-to-back pair of full 90-question mocks. The PBQ gauntlet is deliberately capped at half the PBQ pool for the same reason, since performance-based questions are the most expensive to author.
+Novelty is bounded by pool size — two exams of N questions from a bank of B must share at least `2N − B`. With 250+ questions per cert, **every mode currently has zero forced repeat**, including a back-to-back pair of full 90-question mocks. The PBQ gauntlet is deliberately capped at half the PBQ pool for the same reason, since performance-based questions are the most expensive to author.
 
 | Cert | Questions | of which PBQ | of which multi-response | Full mock forced repeat |
 |---|---|---|---|---|
-| A+ Core 1 (220-1201) | 228 | 14 | 6 | 0% |
-| A+ Core 2 (220-1202) | 230 | 20 | 6 | 0% |
-| Network+ (N10-009) | 248 | 12 | 7 | 0% |
-| Security+ (SY0-701) | 257 | 12 | 9 | 0% |
+| A+ Core 1 (220-1201) | 250 | 14 | 28 | 0% |
+| A+ Core 2 (220-1202) | 252 | 20 | 28 | 0% |
+| Network+ (N10-009) | 271 | 12 | 30 | 0% |
+| Security+ (SY0-701) | 279 | 12 | 31 | 0% |
 
 **Timing is server-authoritative.** The deadline lives in the database; answers are rejected after it and a reload resumes with the correct remaining time rather than restarting the clock. Unanswered questions count as incorrect, as they would on the real exam.
 

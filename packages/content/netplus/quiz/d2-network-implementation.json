@@ -514,5 +514,80 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "The BSSID identifies one AP radio (its MAC); the ESSID is the shared name across all APs so roaming feels seamless. The SSID is the network name, not an encryption key, and the BSSID differs per radio."
+  },
+  {
+    "id": "netplus-d2-multi-002",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A switch port must carry traffic for several VLANs to another switch. Which TWO must be configured?",
+    "choices": [
+      "The port must be set as a trunk",
+      "802.1Q tagging must be enabled with matching allowed VLANs on both ends",
+      "The port must be set as an access port",
+      "The port must have PoE enabled",
+      "The port must be assigned a single voice VLAN only"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Inter-switch links carrying several VLANs are trunks using 802.1Q tags, and both ends must agree on allowed VLANs and the native VLAN. An access port carries one untagged VLAN, and PoE is unrelated."
+  },
+  {
+    "id": "netplus-d2-multi-003",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO steps directly improve throughput in a dense office where clients show full signal but poor speeds?",
+    "choices": [
+      "Assign non-overlapping channels across neighbouring access points",
+      "Steer capable clients to the 5 GHz or 6 GHz band",
+      "Increase every access point's transmit power to maximum",
+      "Widen every channel to 80 MHz on 2.4 GHz",
+      "Disable WPA3 to reduce overhead"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Full signal with poor speed is contention, so separating channels and moving clients to less crowded bands both help. Raising power worsens co-channel interference, wide 2.4 GHz channels make it worse still, and disabling encryption is never the fix."
+  },
+  {
+    "id": "netplus-d2-multi-004",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO are required for a Layer 3 switch to route between two VLANs it hosts?",
+    "choices": [
+      "An SVI configured with an IP address for each VLAN",
+      "IP routing enabled on the switch",
+      "A dedicated external router for every VLAN pair",
+      "A crossover cable between two of its own ports",
+      "Spanning tree disabled globally"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Each VLAN needs a switch virtual interface acting as its gateway, and routing must be enabled for the switch to forward between them. An external router is exactly what this design avoids, and the other options are unrelated or harmful."
+  },
+  {
+    "id": "netplus-d2-multi-005",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO physical installation factors most directly affect equipment reliability in a network closet?",
+    "choices": [
+      "Adequate cooling and airflow, including correct port-side exhaust orientation",
+      "Sufficient power capacity, typically via a UPS and PDU sized to the load",
+      "The colour of the patch cables",
+      "The brand of the rack screws",
+      "The height of the ceiling tiles"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Heat and power are the two environmental factors that actually determine whether gear stays up. Cable colour, screw brand, and ceiling height have no bearing on reliability."
+  },
+  {
+    "id": "netplus-d2-multi-006",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A wireless network must give each employee individually revocable credentials. Which TWO are required?",
+    "choices": [
+      "WPA2/WPA3 Enterprise mode",
+      "A RADIUS server performing 802.1X authentication",
+      "A single strong pre-shared key shared by all staff",
+      "MAC address filtering as the sole control",
+      "An open network with a captive portal only"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Per-user credentials require Enterprise mode backed by RADIUS/802.1X. A shared PSK cannot be revoked per person, MAC filtering is trivially spoofed, and an open network provides no credentials at all."
   }
 ]

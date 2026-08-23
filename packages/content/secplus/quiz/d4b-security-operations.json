@@ -466,5 +466,95 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "CVE names it, CVSS rates it. And the raw score isn't the whole priority: environmental variables, exposure factor, and organizational impact adjust it — a 9.8 on an isolated lab box can matter less than a 6.5 on a public payment server."
+  },
+  {
+    "id": "secplus-d4-multi-003",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO activities are part of validating that a vulnerability has actually been remediated?",
+    "choices": [
+      "Rescanning the affected system",
+      "Independent verification or audit of the fix",
+      "Filing the original scan report",
+      "Adding the finding to the risk register",
+      "Notifying the vendor of the CVE"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Validation means proving the fix worked: rescan and verify. Filing reports, registering risk, and vendor notification are documentation and disclosure steps, not evidence of remediation."
+  },
+  {
+    "id": "secplus-d4-multi-004",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO are hardening steps for a newly deployed server?",
+    "choices": [
+      "Disabling unnecessary ports, protocols, and services",
+      "Removing default accounts or changing default credentials",
+      "Granting all users administrative access for convenience",
+      "Disabling host-based logging",
+      "Opening all inbound firewall ports for troubleshooting"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Reducing the attack surface and eliminating default credentials are core hardening actions. The other three each expand exposure substantially."
+  },
+  {
+    "id": "secplus-d4-multi-005",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO belong to the containment phase of incident response rather than eradication or recovery?",
+    "choices": [
+      "Isolating the affected host from the network",
+      "Disabling the compromised account to stop further use",
+      "Rebuilding the host from a known-good image",
+      "Restoring data from backup and returning to service",
+      "Conducting the lessons-learned review"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Containment stops the bleeding — isolating hosts and disabling credentials. Rebuilding is eradication, restoring is recovery, and lessons learned closes the process out."
+  },
+  {
+    "id": "secplus-d4-multi-006",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO email authentication mechanisms help a receiving server decide whether a message genuinely came from the claimed domain?",
+    "choices": [
+      "SPF",
+      "DKIM",
+      "IMAP",
+      "POP3",
+      "SNMP"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "SPF publishes which servers may send for the domain and DKIM cryptographically signs the message; DMARC ties them together with a policy. IMAP and POP3 retrieve mail, and SNMP monitors devices."
+  },
+  {
+    "id": "secplus-d4-multi-007",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO are benefits of automating security operations tasks?",
+    "choices": [
+      "Consistent enforcement of baseline configurations",
+      "Faster reaction time to routine events",
+      "Elimination of the need for any monitoring",
+      "Removal of all technical debt",
+      "Guaranteed absence of single points of failure"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Automation enforces baselines consistently and reacts faster than humans can. It does not remove the need for monitoring, and it can actually introduce technical debt and single points of failure."
+  },
+  {
+    "id": "secplus-d4-multi-008",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO access control models base authorization on something other than the individual user's identity?",
+    "choices": [
+      "Role-based access control, which grants rights by job function",
+      "Attribute-based access control, which evaluates attributes such as time, location, and device",
+      "Discretionary access control, where the data owner assigns rights per user",
+      "A local password policy",
+      "A CAPTCHA challenge"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "RBAC assigns by role and ABAC evaluates contextual attributes, so neither hinges on the specific individual. DAC is owner-assigned per user, and password policy and CAPTCHA are authentication mechanisms, not authorization models."
   }
 ]

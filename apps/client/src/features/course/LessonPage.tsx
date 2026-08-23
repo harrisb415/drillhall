@@ -1,4 +1,5 @@
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -85,7 +86,20 @@ export function LessonPage() {
 
       <Card>
         <CardContent className="prose-lesson pt-6">
-          <Markdown>{lesson.body}</Markdown>
+          <Markdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              // A wide table has to scroll inside its own box; without this a
+              // 4-column table pushes the entire lesson column sideways on a phone.
+              table: ({ children, ...props }) => (
+                <div className="table-scroll">
+                  <table {...props}>{children}</table>
+                </div>
+              ),
+            }}
+          >
+            {lesson.body}
+          </Markdown>
         </CardContent>
       </Card>
 

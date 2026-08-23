@@ -265,5 +265,35 @@
     ],
     "answerIndex": 0,
     "explanation": "Hybrid combines private infrastructure for regulated data with public capacity for burst workloads. A community cloud is shared among organizations with common concerns, which isn't what's described — the hospital wants exclusive control of the sensitive half."
+  },
+  {
+    "id": "aplus-multi-021",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A developer needs to run three isolated test operating systems on one workstation simultaneously. Which TWO host requirements matter MOST?",
+    "choices": [
+      "Enough RAM to allocate to each guest plus the host",
+      "CPU virtualization extensions enabled in UEFI/BIOS",
+      "A dedicated sound card",
+      "A second monitor",
+      "A dial-up modem"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Each guest consumes its own RAM allocation, and hardware-assisted virtualization (Intel VT-x or AMD-V) must be enabled for a hypervisor to run 64-bit guests properly. Sound, displays, and modems are irrelevant to hosting VMs."
+  },
+  {
+    "id": "aplus-multi-022",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO statements correctly describe public cloud service as opposed to on-premises infrastructure?",
+    "choices": [
+      "Resources are metered, so the customer pays for what is consumed",
+      "Capacity can be provisioned on demand without buying hardware",
+      "The customer retains full physical control of the hardware",
+      "Security ceases to be a shared responsibility",
+      "Internet connectivity becomes irrelevant"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Metered billing and on-demand provisioning are defining cloud traits. The customer gives up physical control, security is explicitly a shared responsibility, and cloud makes connectivity more critical rather than less."
   }
 ]

@@ -586,5 +586,80 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Removing power addresses the energy source, and Class C extinguishers are rated for energized electrical fires. Water conducts electricity and is dangerous here, ignoring it risks a fire, and opening a smoking case exposes the technician to burns."
+  },
+  {
+    "id": "core2-multi-024",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A technician must dispose of drives that held regulated data. Which TWO methods reliably render the data unrecoverable?",
+    "choices": [
+      "Physical destruction by shredding or incineration",
+      "Degaussing a magnetic platter drive",
+      "Performing a quick format",
+      "Deleting the partition table",
+      "Moving the files to the Recycle Bin and emptying it"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Shredding destroys the medium and degaussing destroys the magnetic domains of a platter drive. Quick formats, partition deletion, and emptying the Recycle Bin all leave recoverable data behind."
+  },
+  {
+    "id": "core2-multi-025",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO items belong in a properly documented change request before a change is implemented?",
+    "choices": [
+      "A rollback (backout) plan",
+      "A risk and impact analysis",
+      "The technician's personal phone number only",
+      "A screenshot of the desktop wallpaper",
+      "The office's coffee order"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Change management requires knowing how to revert and what the change risks before approval. The remaining options are not part of any change record."
+  },
+  {
+    "id": "core2-multi-026",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A technician discovers apparent prohibited content on a user's company workstation. Which TWO are correct immediate actions?",
+    "choices": [
+      "Preserve the device and its contents exactly as found",
+      "Report through the documented chain of custody to the appropriate authority",
+      "Delete the files to prevent further exposure",
+      "Post about the discovery internally on a team chat",
+      "Copy the files to a personal USB drive for safekeeping"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Prohibited content requires preserving evidence unaltered and escalating through documented chain of custody. Deleting destroys evidence, broadcasting breaches confidentiality, and personal copies break custody."
+  },
+  {
+    "id": "core2-multi-027",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO practices demonstrate professional communication when handling a frustrated end user?",
+    "choices": [
+      "Listening without interrupting and confirming your understanding of the problem",
+      "Setting realistic expectations for the fix and following up as promised",
+      "Explaining the fault using as much technical jargon as possible",
+      "Telling the user the problem was their own fault",
+      "Taking a personal call in the middle of the visit"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Active listening and honest, followed-through expectations are the core of professional conduct. Jargon, blame, and personal distractions all undermine it."
+  },
+  {
+    "id": "core2-multi-028",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A technician is asked to script a repetitive administrative task on Windows. Which TWO file types are appropriate?",
+    "choices": [
+      ".ps1",
+      ".bat",
+      ".sh",
+      ".apk",
+      ".dmg"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "PowerShell (.ps1) and batch (.bat) both run natively on Windows. .sh is a Unix shell script, .apk is an Android package, and .dmg is a macOS disk image."
   }
 ]

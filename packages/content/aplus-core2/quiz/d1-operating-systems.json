@@ -621,5 +621,95 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Backing up data and confirming hardware compatibility both prevent avoidable failures. Defragmenting or creating a restore point on a drive that is about to be formatted accomplishes nothing, and permanently disabling antivirus is never a prerequisite."
+  },
+  {
+    "id": "core2-multi-007",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A technician must recover files from a Windows workstation that will no longer boot to the desktop. Which TWO approaches allow access to the file system without a working installed OS session?",
+    "choices": [
+      "Boot to Windows Recovery Environment and use the command prompt",
+      "Boot from external installation or live media and copy the data off",
+      "Run System File Checker from the failed desktop session",
+      "Open Task Manager and end the failing process",
+      "Change the screen resolution in Safe Mode"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "WinRE and external boot media both give a working environment independent of the broken installation. The other options all presuppose a desktop session that will not start."
+  },
+  {
+    "id": "core2-multi-008",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO file systems can Windows 11 format a volume as during a standard installation or in Disk Management?",
+    "choices": [
+      "NTFS",
+      "exFAT",
+      "ext4",
+      "APFS",
+      "HFS+"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Windows natively formats NTFS and exFAT (plus FAT32). ext4 is Linux, and APFS and HFS+ are macOS — Windows cannot format them without third-party tools."
+  },
+  {
+    "id": "core2-multi-009",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A technician needs to confirm a Windows machine's edition and build number before applying a feature update. Which TWO will show this?",
+    "choices": [
+      "winver",
+      "Settings > System > About",
+      "ping localhost",
+      "chkdsk /f",
+      "sfc /scannow"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "winver and the About page both report edition, version, and build. ping tests connectivity, and chkdsk and sfc repair the file system and system files respectively."
+  },
+  {
+    "id": "core2-multi-010",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO account types can be used to sign in to a standard Windows 11 workstation?",
+    "choices": [
+      "A local account stored on that machine",
+      "A Microsoft account or Entra ID (Azure AD) account",
+      "A macOS Keychain identity",
+      "An Android Google account",
+      "A Linux root account"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Windows supports local accounts and cloud-backed Microsoft/Entra ID accounts. Keychain, Google, and Linux root identities belong to other platforms entirely."
+  },
+  {
+    "id": "core2-multi-011",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A user's roaming profile is failing to load on a domain workstation. Which TWO should the technician check FIRST?",
+    "choices": [
+      "Network connectivity to the domain controller and profile share",
+      "Available free disk space on the local workstation",
+      "The user's monitor refresh rate",
+      "The printer's toner level",
+      "The BIOS boot order"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A roaming profile must be fetched over the network and written locally, so reachability of the share and free space are the two usual failure points. Display, printer, and boot order are unrelated."
+  },
+  {
+    "id": "core2-multi-012",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO tasks are routinely required when onboarding a user to a cloud productivity suite?",
+    "choices": [
+      "Assigning the user a license",
+      "Provisioning the account and synchronizing it with the on-premises directory",
+      "Reflashing the workstation BIOS",
+      "Replacing the network switch",
+      "Degaussing the user's previous hard drive"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Cloud suites are licensed per user and identities are typically synchronized from the on-prem directory, so both are standard onboarding steps. The others are hardware or disposal tasks unrelated to onboarding."
   }
 ]

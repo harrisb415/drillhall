@@ -321,5 +321,50 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Bollards and an access control vestibule (mantrap) are physical controls — barriers in the real world. Password policy and background checks are managerial; full-disk encryption is technical."
+  },
+  {
+    "id": "secplus-d1-multi-003",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO controls are classified as deterrent rather than preventive?",
+    "choices": [
+      "Warning signage announcing video surveillance",
+      "Visible security lighting around a perimeter",
+      "A locked server cabinet",
+      "Full-disk encryption",
+      "An access control vestibule"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Deterrent controls discourage an attempt without physically stopping it — signage and lighting. Locks, encryption, and vestibules actively prevent the action."
+  },
+  {
+    "id": "secplus-d1-multi-004",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO properties does a digital signature provide?",
+    "choices": [
+      "Integrity — proof the message was not altered",
+      "Non-repudiation — the signer cannot credibly deny signing",
+      "Confidentiality of the message contents",
+      "Guaranteed availability of the service",
+      "Automatic key escrow"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Signatures prove the content is unaltered and bind it to the signer's private key. They do not encrypt the payload, so confidentiality requires separate encryption; availability and escrow are unrelated."
+  },
+  {
+    "id": "secplus-d1-multi-005",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO are part of the Zero Trust control plane rather than the data plane?",
+    "choices": [
+      "The policy engine that evaluates each access request",
+      "Adaptive identity that adjusts trust based on context",
+      "The policy enforcement point that gates the traffic",
+      "Implicit trust zones",
+      "The subject or system making the request"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The control plane decides: policy engine, policy administrator, adaptive identity, threat scope reduction. The enforcement point, implicit trust zones, and the subject all sit in the data plane, where decisions are applied."
   }
 ]

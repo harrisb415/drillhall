@@ -425,5 +425,65 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "A rogue DHCP server impersonates the DHCP service, and an evil twin impersonates a legitimate SSID — both trick clients into trusting the attacker. MAC flooding overwhelms a switch's CAM table, DoS exhausts capacity, and dumpster diving isn't a network-service impersonation at all."
+  },
+  {
+    "id": "netplus-d4-multi-003",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO controls specifically prevent an unauthorized device that is physically plugged into a wall jack from gaining network access?",
+    "choices": [
+      "802.1X port-based authentication",
+      "Switch port security limiting or pinning permitted MAC addresses",
+      "A strong wireless passphrase",
+      "An outbound content filter",
+      "A longer DHCP lease time"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "802.1X requires the device to authenticate before the port passes traffic, and port security restricts which MACs may use it. Wireless passphrases, content filtering, and lease duration do not gate wired admission."
+  },
+  {
+    "id": "netplus-d4-multi-004",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO attacks specifically target the switching layer?",
+    "choices": [
+      "VLAN hopping",
+      "MAC flooding",
+      "DNS poisoning",
+      "Phishing",
+      "A reflected DDoS"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "VLAN hopping abuses trunking or double tagging, and MAC flooding overwhelms the switch's CAM table. DNS poisoning targets name resolution, phishing targets people, and a reflected DDoS targets availability from outside."
+  },
+  {
+    "id": "netplus-d4-multi-005",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO belong in a defence-in-depth design for a public-facing web server?",
+    "choices": [
+      "Placing the server in a screened subnet separated from the internal LAN",
+      "Restricting traffic from that subnet into the internal network with explicit firewall rules",
+      "Hosting the server on the same VLAN as user workstations",
+      "Disabling logging to improve performance",
+      "Granting the server domain administrator rights"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Isolating the server and tightly controlling what it may reach inward is the standard pattern. Co-locating it with workstations, disabling logs, and over-privileging it all worsen the blast radius."
+  },
+  {
+    "id": "netplus-d4-multi-006",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO terms describe a weakness and the means of taking advantage of it, respectively?",
+    "choices": [
+      "Vulnerability",
+      "Exploit",
+      "Threat",
+      "Risk",
+      "Asset"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A vulnerability is the weakness; an exploit is the method or code that leverages it. A threat is the actor or event, risk is likelihood times impact, and an asset is what is being protected."
   }
 ]

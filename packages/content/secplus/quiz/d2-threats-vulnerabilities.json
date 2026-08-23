@@ -501,5 +501,80 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "A collision is two inputs producing the same hash; the birthday attack is the statistical method that finds collisions far faster than intuition suggests. Downgrade attacks target protocol negotiation, spraying targets passwords, and directory traversal targets file paths."
+  },
+  {
+    "id": "secplus-d2-multi-003",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO threat actor attributes best distinguish a nation-state actor from an unskilled attacker?",
+    "choices": [
+      "Very high level of sophistication and capability",
+      "Substantial resources and sustained funding",
+      "Exclusive reliance on publicly available scripts",
+      "Motivation limited to petty financial gain",
+      "Operating only from inside the target organization"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Nation-state actors are defined by sophistication and deep funding, enabling long campaigns and custom tooling. Reliance on public scripts describes the unskilled attacker, and the other two mischaracterize both."
+  },
+  {
+    "id": "secplus-d2-multi-004",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO vulnerabilities are specific to virtualized environments?",
+    "choices": [
+      "Virtual machine escape",
+      "Resource reuse exposing another tenant's residual data",
+      "SQL injection",
+      "Cross-site scripting",
+      "Dumpster diving"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "VM escape breaks guest isolation and resource reuse leaks residual data between tenants — both are virtualization-specific. SQLi and XSS are web application flaws, and dumpster diving is physical."
+  },
+  {
+    "id": "secplus-d2-multi-005",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO indicators would MOST suggest ransomware rather than a cryptominer?",
+    "choices": [
+      "Files across shares becoming unreadable",
+      "A ransom note demanding payment for a decryption key",
+      "Sustained near-100 percent CPU utilization with no other symptoms",
+      "Slightly elevated electricity usage",
+      "A gradual increase in fan noise during idle periods"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Ransomware denies access and demands payment — resource inaccessibility. Sustained CPU load, power draw, and fan noise without data loss point to a cryptominer consuming resources instead."
+  },
+  {
+    "id": "secplus-d2-multi-006",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO social engineering techniques rely on the attacker fabricating a scenario or identity to extract information?",
+    "choices": [
+      "Pretexting",
+      "Impersonation",
+      "Dumpster diving",
+      "Shoulder surfing",
+      "Tailgating"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Pretexting invents a believable scenario and impersonation adopts a false identity — both are fabrications used to elicit information. The other three are observational or physical techniques."
+  },
+  {
+    "id": "secplus-d2-multi-007",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO mitigation techniques limit how far an attacker can move after compromising one host?",
+    "choices": [
+      "Network segmentation",
+      "Least privilege applied to accounts and services",
+      "Increasing the display timeout",
+      "Disabling logging on the compromised host",
+      "Assigning every user local administrator rights"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Segmentation limits reachable systems and least privilege limits what a stolen credential can do — both constrain lateral movement. The other three either do nothing or actively help the attacker."
   }
 ]

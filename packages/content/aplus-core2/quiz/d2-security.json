@@ -647,5 +647,95 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "The order is: investigate and verify, quarantine, disable System Restore, then remediate. Re-enabling System Restore, scheduling scans, and educating the user all come after remediation — they're steps five through seven, not early ones."
+  },
+  {
+    "id": "core2-multi-013",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A technician is configuring a workstation so a standard user cannot install software. Which TWO measures enforce this technically?",
+    "choices": [
+      "Remove the user from the local Administrators group",
+      "Apply an application allow list through policy",
+      "Email the user the acceptable use policy",
+      "Set a longer screen saver timeout",
+      "Enable a guest Wi-Fi network"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Removing admin rights blocks most installers outright, and an allow list restricts what may execute at all. Emailing a policy is a directive with no enforcement, and the other two address unrelated risks."
+  },
+  {
+    "id": "core2-multi-014",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO indicators would MOST strongly suggest a workstation is infected with malware rather than simply aging?",
+    "choices": [
+      "The browser home page and search provider change back after being reset",
+      "Unfamiliar processes making persistent outbound network connections",
+      "The machine takes slightly longer to boot than when it was new",
+      "The hard drive is 70 percent full",
+      "The user has many browser tabs open"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Settings that revert themselves and unexplained persistent outbound connections both indicate active malicious software. Gradual slowdown, disk usage, and open tabs are ordinary conditions."
+  },
+  {
+    "id": "core2-multi-015",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A company wants to protect data on laptops that may be lost or stolen. Which TWO controls directly protect the data at rest?",
+    "choices": [
+      "BitLocker full-disk encryption",
+      "Encrypting File System (EFS) on sensitive folders",
+      "A longer login password expiry interval",
+      "Disabling the touchpad",
+      "A louder audible alarm on boot"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Full-disk encryption and EFS both render the stored data unreadable without the key, which is exactly the loss/theft scenario. Password expiry, touchpad state, and alarms do not protect the bits on the disk."
+  },
+  {
+    "id": "core2-multi-016",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO practices reduce the risk of a successful phishing attack reaching and fooling end users?",
+    "choices": [
+      "Security awareness training with simulated phishing campaigns",
+      "Email filtering with SPF, DKIM, and DMARC validation",
+      "Increasing the monitor brightness",
+      "Disabling the Windows firewall",
+      "Granting all users local administrator rights"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Training addresses the human layer and authenticated mail filtering addresses the delivery layer. The remaining options either do nothing or actively weaken security."
+  },
+  {
+    "id": "core2-multi-017",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO are appropriate uses of a guest wireless network in a small office?",
+    "choices": [
+      "Providing visitors internet access isolated from internal resources",
+      "Keeping personal devices off the network segment that hosts company file shares",
+      "Hosting the company's primary domain controller",
+      "Storing customer payment records",
+      "Providing the only path for company backups"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A guest network exists to give internet access while isolating visitors and personal devices from internal systems. Domain controllers, payment data, and backups all belong on the protected internal network."
+  },
+  {
+    "id": "core2-multi-018",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Following CompTIA's malware removal procedure, which TWO steps come AFTER remediating the infected system?",
+    "choices": [
+      "Schedule scans and run updates",
+      "Enable System Restore and create a restore point",
+      "Quarantine the infected system",
+      "Disable System Restore",
+      "Investigate and verify malware symptoms"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The order is investigate, quarantine, disable System Restore, remediate, then schedule scans/updates, re-enable System Restore with a fresh restore point, and educate the user. The last three options all precede remediation."
   }
 ]

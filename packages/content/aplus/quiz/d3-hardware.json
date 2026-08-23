@@ -573,5 +573,95 @@
     ],
     "answerIndex": 0,
     "explanation": "A faint but present image under external light proves the LCD panel and video pipeline are working — only the illumination has failed. That isolates the fault to the backlight or its inverter, not the driver, board, or OS."
+  },
+  {
+    "id": "aplus-multi-015",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A technician is adding memory to a desktop. Which TWO facts must be verified before ordering the modules?",
+    "choices": [
+      "The memory generation the board accepts (for example DDR4 vs DDR5)",
+      "The maximum capacity per slot and in total that the board supports",
+      "The wattage rating of the power supply",
+      "The number of SATA ports on the board",
+      "The socket type of the CPU cooler"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "RAM generations are physically and electrically incompatible, and every board caps capacity per slot and overall. PSU wattage, SATA count, and cooler socket have no bearing on which memory modules will work."
+  },
+  {
+    "id": "aplus-multi-016",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO connectors would a technician expect to run directly from a modern ATX power supply to components inside a desktop?",
+    "choices": [
+      "24-pin main board connector",
+      "PCIe 6+2 pin power for a graphics card",
+      "RJ45",
+      "HDMI",
+      "M.2 keying notch"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The 24-pin feeds the motherboard and the PCIe 6+2 pin feeds a discrete GPU. RJ45 and HDMI are data and display connectors, and M.2 keying is a slot feature rather than a power connector."
+  },
+  {
+    "id": "aplus-multi-017",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A laser printer is producing pages whose toner smears off when touched. Which TWO should the technician evaluate FIRST?",
+    "choices": [
+      "The fuser assembly",
+      "Whether the fuser is reaching correct temperature and pressure",
+      "The pickup rollers",
+      "The network print queue",
+      "The paper tray guides"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Toner that never bonded to the page means fusing failed — the fuser assembly and whether it is reaching correct temperature and pressure. Rollers cause feed problems, and the queue and tray guides cannot affect toner adhesion."
+  },
+  {
+    "id": "aplus-multi-018",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO storage interfaces provide meaningfully higher throughput than SATA III for an internal drive?",
+    "choices": [
+      "NVMe over PCIe",
+      "An M.2 slot wired for PCIe x4",
+      "SATA II",
+      "USB 2.0",
+      "IDE/PATA"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "NVMe over PCIe and an M.2 slot wired for PCIe x4 both far exceed SATA III's roughly 6 Gbps ceiling. SATA II, USB 2.0, and IDE are all slower than SATA III, not faster."
+  },
+  {
+    "id": "aplus-multi-019",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A video-editing workstation needs fault tolerance and strong read performance from four identical drives. Which TWO RAID levels satisfy both goals?",
+    "choices": [
+      "RAID 5",
+      "RAID 10",
+      "RAID 0",
+      "JBOD",
+      "A single drive with scheduled backups"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "RAID 5 (distributed parity) and RAID 10 (mirrored stripes) both survive a drive loss while reading faster than one disk. RAID 0 and JBOD offer no redundancy, and a single drive with backups is recovery rather than fault tolerance."
+  },
+  {
+    "id": "aplus-multi-020",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO maintenance concerns are specific to inkjet printers rather than laser printers?",
+    "choices": [
+      "Print heads may require cleaning and alignment",
+      "Ink can dry in the cartridge if the printer sits unused",
+      "A fuser must be replaced periodically",
+      "A transfer belt must be recalibrated",
+      "Spilled toner requires an ESD-safe vacuum"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Head cleaning and alignment, and ink drying out during idle periods, are inkjet-specific. Fusers, transfer belts, and toner handling all belong to laser printers."
   }
 ]

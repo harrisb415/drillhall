@@ -316,5 +316,50 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Outgoing mail needs the SMTP server address plus the port and encryption setting. IMEI and IMSI identify the handset and SIM subscriber respectively, and resolution is irrelevant to mail configuration."
+  },
+  {
+    "id": "aplus-multi-007",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A user's laptop screen is cracked and must be replaced. Which TWO components are part of the laptop display assembly that a technician may need to transfer or replace along with the panel?",
+    "choices": [
+      "The webcam module",
+      "The Wi-Fi antenna wires routed through the lid",
+      "The CPU heat sink",
+      "The SODIMM memory modules",
+      "The M.2 storage drive"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Laptop lids house the webcam and the Wi-Fi antennas, which run up through the hinge — both must be handled when replacing a display assembly. The heat sink, RAM, and storage all live in the chassis base, not the lid."
+  },
+  {
+    "id": "aplus-multi-008",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A field technician needs a company phone to keep its corporate mail, contacts, and calendar current without ever connecting it to a workstation. Which TWO items are required?",
+    "choices": [
+      "A synchronization account configured against the corporate mail service",
+      "An active network connection (cellular or Wi-Fi)",
+      "A USB-C to Lightning cable",
+      "A docking station",
+      "A replacement SIM tray"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Over-the-air sync needs an account to sync against and a live data path. Cables and docks are exactly what the requirement rules out, and the SIM tray is hardware, not configuration."
+  },
+  {
+    "id": "aplus-multi-009",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO of the following are field-replaceable in most modern business-class laptops without replacing the entire system board?",
+    "choices": [
+      "The SODIMM memory",
+      "The M.2 SSD",
+      "The soldered CPU",
+      "The integrated GPU",
+      "The embedded controller firmware chip"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Business-class laptops keep memory and storage in serviceable sockets and slots. Modern CPUs and integrated GPUs are soldered to the board, and the embedded controller firmware chip is not a user-serviceable part."
   }
 ]

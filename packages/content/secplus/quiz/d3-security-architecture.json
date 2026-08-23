@@ -371,5 +371,65 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Offsite backups and geographic replication both put a copy beyond the primary site. Local snapshots, same-volume journaling, and RAID all live with the original hardware — they survive a disk failure, not a site loss."
+  },
+  {
+    "id": "secplus-d3-multi-002",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO architectural choices reduce the impact of losing a single data center?",
+    "choices": [
+      "Geographic dispersion of sites",
+      "Replication of data to a second region",
+      "Increasing the local RAID level",
+      "Adding more RAM to each server",
+      "Extending the local UPS runtime"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Only measures that place capability outside the failing site help: dispersion and cross-region replication. RAID, RAM, and UPS runtime all improve resilience within the site that is being lost."
+  },
+  {
+    "id": "secplus-d3-multi-003",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO describe data that must be protected while it is being actively processed in memory?",
+    "choices": [
+      "Data in use",
+      "Techniques such as confidential computing or secure enclaves apply",
+      "Data at rest",
+      "Full-disk encryption is the primary control",
+      "TLS is the primary control"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Data in use is the state where information is decrypted in memory for processing, protected by enclaves or confidential computing. Full-disk encryption protects data at rest and TLS protects data in transit."
+  },
+  {
+    "id": "secplus-d3-multi-004",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO are true of an air-gapped system?",
+    "choices": [
+      "It has no physical or logical network connection to other networks",
+      "Data transfer requires removable media, which becomes the main risk vector",
+      "It is immune to all forms of compromise",
+      "It receives automatic patches from the vendor",
+      "It relies on a firewall rule for its isolation"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "An air gap removes network connectivity entirely, which shifts risk to the removable media used to move data in and out. It is not immune (Stuxnet is the classic counterexample), gets no automatic patches, and uses physical isolation rather than a firewall rule."
+  },
+  {
+    "id": "secplus-d3-multi-005",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO considerations argue for a fail-closed design on a security appliance protecting regulated data?",
+    "choices": [
+      "Confidentiality of the protected data outweighs uptime",
+      "An outage is preferable to passing unfiltered traffic",
+      "Availability is the overriding requirement",
+      "Users must never experience an interruption",
+      "The appliance has no logging capability"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Fail-closed is chosen when protecting the data matters more than staying online, accepting an outage rather than passing uninspected traffic. The availability-first arguments describe fail-open instead."
   }
 ]

@@ -425,5 +425,80 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Modern encryption and non-default admin credentials are the two baseline hardening steps. WEP is broken, disabling encryption exposes all traffic, and keeping vendor defaults is one of the most exploited weaknesses in small-office gear."
+  },
+  {
+    "id": "aplus-multi-010",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A technician is running a new network drop through a suspended ceiling that also serves as the building's return air path. Which TWO requirements apply to the cable selected?",
+    "choices": [
+      "It must be plenum-rated",
+      "It must be rated for the required Ethernet speed over the run length",
+      "It must be shielded coaxial",
+      "It must terminate in an F-type connector",
+      "It must be direct-burial rated"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A ceiling used as a return air plenum requires plenum-rated jacketing by fire code, and the category must still support the intended speed over that distance. Coax and F-type are the wrong medium, and direct burial is for outdoor underground runs."
+  },
+  {
+    "id": "aplus-multi-011",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO services normally rely on UDP rather than TCP?",
+    "choices": [
+      "DHCP",
+      "DNS queries",
+      "HTTPS web browsing",
+      "SMB file sharing",
+      "RDP remote desktop"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "DHCP and ordinary DNS lookups use UDP — both are short request/response exchanges where speed beats guaranteed delivery. HTTPS, SMB, and RDP all need TCP's ordered, reliable stream."
+  },
+  {
+    "id": "aplus-multi-012",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A small office needs one device providing internet routing, wireless access, and basic firewalling. Which TWO functions must it perform to let multiple internal PCs share a single public IP address?",
+    "choices": [
+      "Network address translation (NAT)",
+      "DHCP address assignment to internal clients",
+      "Acting as an authoritative DNS server for the internet",
+      "Providing PoE to every desktop",
+      "Terminating a fiber backbone with an SFP"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Sharing one public IP requires NAT, and the internal clients need addresses, which DHCP supplies. Hosting authoritative public DNS, PoE to desktops, and fiber termination are not required for basic internet sharing."
+  },
+  {
+    "id": "aplus-multi-013",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A technician must connect a workstation to a switch about 40 m (130 ft) away at 1 Gbps. Which TWO cable choices satisfy this?",
+    "choices": [
+      "Cat 5e",
+      "Cat 6",
+      "Cat 3",
+      "A 3-foot patch cable",
+      "Thicknet coaxial"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both Cat 5e and Cat 6 carry 1 Gbps to the full 100 m, so 40 m is well within spec. Cat 3 tops out far below 1 Gbps, a 3-foot cable will not reach, and coax is not used for modern Ethernet drops."
+  },
+  {
+    "id": "aplus-multi-014",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO DNS record types would a technician configure to get a company's email delivered and to prove the domain is authorized to send it?",
+    "choices": [
+      "MX",
+      "TXT",
+      "A",
+      "CNAME",
+      "PTR"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "MX directs inbound mail to the correct mail servers, and TXT holds the SPF, DKIM, and DMARC values that authorize and authenticate outbound mail. A and CNAME map names to addresses and aliases, and PTR handles reverse lookups."
   }
 ]

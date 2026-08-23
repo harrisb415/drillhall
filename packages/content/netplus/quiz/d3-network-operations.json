@@ -429,5 +429,65 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Lease time and exclusions are core DHCP scope settings (along with the range, reservations, and options like gateway/DNS). Administrative distance, STP priority, and connector type belong to routing, switching, and physical media respectively."
+  },
+  {
+    "id": "netplus-d3-multi-002",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO monitoring approaches would identify which internal host is consuming the most WAN bandwidth?",
+    "choices": [
+      "Flow data collection such as NetFlow",
+      "Packet capture at the WAN edge",
+      "Reading the switch's serial number",
+      "Checking the UPS battery runtime",
+      "Reviewing the rack diagram"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Flow data summarizes conversations by host and volume, and a capture shows the traffic directly. Serial numbers, UPS runtime, and rack diagrams describe assets and facilities, not traffic."
+  },
+  {
+    "id": "netplus-d3-multi-003",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO SNMP characteristics make version 3 preferable to v2c on a production network?",
+    "choices": [
+      "Per-user authentication rather than a shared community string",
+      "Optional encryption of the SNMP payload",
+      "A larger MIB structure",
+      "Faster polling intervals by default",
+      "Automatic device discovery"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "SNMPv3 adds real authentication and optional encryption, closing the cleartext community-string weakness of v1/v2c. MIB size, polling rate, and discovery are not version-three distinctions."
+  },
+  {
+    "id": "netplus-d3-multi-004",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO documents would a technician consult before physically re-cabling a rack?",
+    "choices": [
+      "The rack diagram showing device positions by rack unit",
+      "Cable maps documenting which jack terminates to which patch panel port",
+      "The acceptable use policy",
+      "The employee handbook",
+      "The software licensing inventory"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Rack diagrams and cable maps describe exactly what is where physically. Usage policies, handbooks, and licence inventories have no bearing on a cabling change."
+  },
+  {
+    "id": "netplus-d3-multi-005",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO metrics define recovery expectations in a disaster recovery plan?",
+    "choices": [
+      "RPO — the maximum acceptable amount of data loss, measured in time",
+      "RTO — the maximum acceptable time to restore service",
+      "MTBF — the average interval between failures",
+      "CRC — the frame checksum",
+      "MTU — the maximum frame size"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "RPO and RTO define how much data may be lost and how quickly service must return. MTBF is a reliability statistic, and CRC and MTU are frame-level networking concepts."
   }
 ]

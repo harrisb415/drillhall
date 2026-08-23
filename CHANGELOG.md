@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.13.0] — 2026-08-20
+
+### Fixed
+- **Course tables never rendered.** `react-markdown` was configured with no plugins, and tables are a GitHub-Flavored Markdown feature — so every markdown table in the course content displayed as raw pipe-delimited text. Added `remark-gfm`, and wrote the table styles that had never existed because nobody could see a table to style. Tables now sit in an `overflow-x` wrapper so a wide one scrolls inside its own box instead of pushing the whole lesson column sideways on a phone.
+- **Two competing sets of table CSS.** A stale `.prose-lesson table` block set `display: block` with full gridlines on every cell, fighting the new rules and producing a muddled hybrid once tables started rendering. Consolidated into one authoritative block.
+- **Reading times were inflated four to five times over.** Lessons claiming "7 min read" held 200–400 words, which is under two minutes. `estimatedMinutes` is now derived from the actual word count.
+
+### Changed
+- **Multiple-response questions were too rare to encounter.** At 28 questions across 963 (~3%), a 10-question exam had a **76% chance** of containing none and a 20-question exam **57%** — so a user could sit several exams and never meet the question type added in 1.12.0. This was density, not a selection bug: no exam mode filters `multi` out. Raised to **117 questions (11.1% of every pack)**, spread across every domain. A 20-question exam now includes at least one about **90%** of the time, verified by simulating 12 exams per pack.
+- **Course content roughly doubled: 22,326 → 47,678 words across 65 lessons** (average 343 → 734). Every lesson was rewritten with fuller explanation, worked examples, comparison tables, and an "Exam habit" callout naming the trap the exam actually sets. The thinnest lessons had been 172–200 words; the floor is now 550. Notable additions: worked subnetting method, the laser imaging process mapped to its faults, RAID rebuild-window reasoning, the PSU load-versus-idle diagnostic, Zero Trust's control/data plane split, quantitative risk formulas with a worked ALE, and incident-response phase boundaries.
+
 ## [1.12.0] — 2026-08-20
 
 ### Added

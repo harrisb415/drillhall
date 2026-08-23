@@ -338,31 +338,56 @@ h3 {
   color: var(--muted-foreground);
 }
 
+/* Tables only began rendering once remark-gfm was wired in, so these had
+   never been written. Wrapper scrolls rather than letting a wide table
+   push the whole lesson column sideways on narrow screens. */
+.prose-lesson .table-scroll {
+  overflow-x: auto;
+  margin: 0 0 1rem;
+}
+
+.prose-lesson table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.prose-lesson thead th {
+  border-bottom: 2px solid var(--border);
+  background: var(--secondary);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.prose-lesson tbody td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 0.75rem;
+  vertical-align: top;
+}
+
+.prose-lesson tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose-lesson tbody tr:nth-child(even) {
+  background: color-mix(in oklab, var(--secondary) 45%, transparent);
+}
+
+/* First column is the term/label in nearly every lesson table. */
+.prose-lesson tbody td:first-child {
+  font-weight: 500;
+  color: var(--foreground);
+}
+
 .prose-lesson hr {
   margin: 1.5rem 0;
   border: none;
   border-top: 1px solid var(--border);
 }
 
-.prose-lesson table {
-  display: block;
-  overflow-x: auto;
-  border-collapse: collapse;
-  margin: 0 0 1rem;
-  font-size: 0.9em;
-}
-
-.prose-lesson th,
-.prose-lesson td {
-  border: 1px solid var(--border);
-  padding: 0.4rem 0.6rem;
-  text-align: left;
-}
-
-.prose-lesson th {
-  background: var(--secondary);
-  font-weight: 600;
-}
 
 /* ---- motion ----------------------------------------------------------
    Every animation in the app is defined here and every one is disabled by

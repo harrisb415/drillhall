@@ -594,5 +594,80 @@
     ],
     "answerIndex": 0,
     "explanation": "IaC treats network/device configuration like software: templates/playbooks, version control, drift detection, and rollback. The whole point is that a config change goes through the same review-and-revert discipline as code."
+  },
+  {
+    "id": "netplus-d1-multi-003",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO OSI layers would a technician examine when a host has a valid IP address but cannot reach a service on a remote server that is confirmed running?",
+    "choices": [
+      "Layer 3 (Network) — routing and reachability to the remote subnet",
+      "Layer 4 (Transport) — whether the destination port is permitted and listening",
+      "Layer 1 (Physical) — the link is already confirmed up",
+      "Layer 7 (Application) — the service is confirmed running",
+      "Layer 2 (Data Link) — local MAC delivery is already working"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A valid address rules out Layers 1 and 2, and a confirmed running service rules out Layer 7. That leaves routing to the remote network and whether the port is open and reachable."
+  },
+  {
+    "id": "netplus-d1-multi-004",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO are true of IPv6 relative to IPv4?",
+    "choices": [
+      "It uses 128-bit addresses, effectively eliminating address exhaustion",
+      "It supports stateless address autoconfiguration (SLAAC) without a DHCP server",
+      "It relies on broadcast traffic more heavily than IPv4",
+      "It requires NAT for every host to reach the internet",
+      "It reduces the address length to 16 bits"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "IPv6's 128-bit space and SLAAC are two of its defining features. IPv6 replaces broadcast with multicast, is designed to remove the need for NAT, and is far longer than IPv4, not shorter."
+  },
+  {
+    "id": "netplus-d1-multi-005",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A design calls for a tunnel that both encapsulates traffic and encrypts it. Which TWO components together achieve this?",
+    "choices": [
+      "GRE for the encapsulation",
+      "IPsec for the encryption",
+      "A CDN for the encapsulation",
+      "QoS for the encryption",
+      "TTL for the encryption"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "GRE tunnels traffic but provides no confidentiality, so it is routinely wrapped in IPsec, which supplies the encryption. CDN, QoS, and TTL serve entirely different purposes."
+  },
+  {
+    "id": "netplus-d1-multi-006",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO cloud constructs let instances in a private subnet reach the internet for updates without being directly reachable from it?",
+    "choices": [
+      "A NAT gateway",
+      "Route table entries directing outbound traffic to that gateway",
+      "An internet gateway attached directly to the private subnet",
+      "A network security list permitting all inbound traffic",
+      "Assigning every instance a public IP address"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A NAT gateway plus routes pointing at it gives outbound-only access. Attaching an internet gateway, allowing all inbound, or assigning public IPs would all make the instances directly reachable — the opposite of the requirement."
+  },
+  {
+    "id": "netplus-d1-multi-007",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO traffic types deliver a single sender's packets to more than one receiver?",
+    "choices": [
+      "Multicast",
+      "Broadcast",
+      "Unicast",
+      "Anycast",
+      "Loopback"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Multicast reaches a subscribed group and broadcast reaches every host on the segment. Unicast is one-to-one, anycast routes to the single nearest advertiser, and loopback never leaves the host."
   }
 ]

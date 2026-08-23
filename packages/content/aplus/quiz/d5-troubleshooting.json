@@ -402,5 +402,95 @@
       { "left": "Faded print across the whole page", "right": "Low toner cartridge" }
     ],
     "explanation": "Unfused toner means the fuser isn't melting it; repeating defects trace to a roller or drum; misfeeds are the pickup assembly; uniform fading is simply low toner."
+  },
+  {
+    "id": "aplus-multi-023",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A desktop repeatedly fails to boot, emitting a repeating beep pattern with no video. Which TWO are appropriate early diagnostic steps?",
+    "choices": [
+      "Consult the motherboard vendor's beep code reference",
+      "Reseat the memory modules",
+      "Immediately replace the power supply",
+      "Reinstall the operating system",
+      "Replace the CMOS battery as the first action"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Beep codes are the board reporting what failed, so look them up, and reseating RAM addresses the most common cause of POST beep failures. Swapping the PSU, reinstalling the OS, or changing the CMOS battery are all guesses at this stage."
+  },
+  {
+    "id": "aplus-multi-024",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A hard drive is making a repetitive clicking noise and the system intermittently fails to detect it. Which TWO actions should the technician take?",
+    "choices": [
+      "Back up any accessible data immediately",
+      "Plan to replace the drive",
+      "Defragment the drive to reorganize the platters",
+      "Run chkdsk repeatedly until the noise stops",
+      "Increase the page file size"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Clicking with intermittent detection signals imminent mechanical failure: get the data off first, then replace the drive. Defragmenting or repeatedly scanning a dying drive adds wear and risks the remaining data."
+  },
+  {
+    "id": "aplus-multi-025",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A workstation shuts down under sustained CPU load but runs fine at idle. Which TWO causes are MOST likely?",
+    "choices": [
+      "A dust-clogged heat sink or failed case fan",
+      "Degraded or improperly applied thermal paste",
+      "A corrupted user profile",
+      "An outdated web browser",
+      "An incorrect DNS server setting"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Load-correlated shutdowns are thermal: obstructed cooling and failed thermal interface material are the two usual causes. Profiles, browsers, and DNS have no relationship to temperature-triggered shutdown."
+  },
+  {
+    "id": "aplus-multi-026",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A user cannot reach any website, but can successfully ping the default gateway by IP address. Which TWO causes should the technician investigate?",
+    "choices": [
+      "The client's DNS server settings",
+      "A firewall or content filter blocking outbound web traffic",
+      "A faulty patch cable to the wall jack",
+      "A failed network interface card",
+      "An incorrect subnet mask breaking local traffic"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A successful gateway ping proves the cable, NIC, and local addressing all work, so the fault lies beyond that: name resolution or outbound filtering. The other three would have broken the gateway ping as well."
+  },
+  {
+    "id": "aplus-multi-027",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A projector is displaying an image with visibly wrong colors and periodic flicker. Which TWO should be checked?",
+    "choices": [
+      "The video cable and its seating at both ends",
+      "The projector's lamp condition and remaining life",
+      "The workstation's antivirus definitions",
+      "The print spooler service",
+      "The user's mapped network drives"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Color distortion and flicker point at the signal path or the light source — a partially seated or damaged cable, or an aging lamp. Antivirus, print spooler, and mapped drives cannot affect projected image quality."
+  },
+  {
+    "id": "aplus-multi-028",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Users report a shared network printer is offline, while a directly connected USB printer in the same room prints normally. Which TWO should the technician verify FIRST?",
+    "choices": [
+      "The network printer's IP address and network link status",
+      "Whether the print server or shared queue for that printer is running",
+      "The workstation's installed RAM capacity",
+      "The password complexity policy",
+      "The monitor's refresh rate"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A working USB printer isolates the fault to the network path or the shared queue, so check the printer's link and address and the server-side queue. RAM, password policy, and refresh rate are unrelated."
   }
 ]

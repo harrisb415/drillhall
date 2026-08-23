@@ -416,5 +416,80 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "A toner and probe identifies which physical cable is which; a cable tester verifies continuity, opens, shorts, and wire mapping. Protocol analyzers, spectrum analyzers, and flow collectors examine traffic or RF, not the physical cable path."
+  },
+  {
+    "id": "netplus-d5-multi-002",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Following the troubleshooting methodology, which TWO actions belong to the FIRST step, 'identify the problem'?",
+    "choices": [
+      "Question the user about what changed",
+      "Gather information and identify symptoms",
+      "Implement the permanent fix",
+      "Document the outcome",
+      "Verify full system functionality"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Questioning users and gathering symptoms are both part of identifying the problem. Implementing, verifying, and documenting are later steps — jumping to the fix is the classic exam trap."
+  },
+  {
+    "id": "netplus-d5-multi-003",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A fiber link is down between two buildings. Which TWO tools are appropriate for diagnosing the physical fiber run?",
+    "choices": [
+      "An OTDR to locate a break by distance",
+      "A visual fault locator to reveal breaks or tight bends",
+      "A tone generator and probe",
+      "A multimeter set to measure resistance",
+      "A WiFi analyzer"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "OTDRs and visual fault locators are fiber-specific. Toners and multimeters are copper tools — fiber carries light, not current — and a WiFi analyzer examines RF."
+  },
+  {
+    "id": "netplus-d5-multi-004",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Users on one VLAN cannot reach a server on another, though both hosts have correct addresses and can reach their own gateways. Which TWO should be examined?",
+    "choices": [
+      "Access control lists filtering traffic between the two VLANs",
+      "The routing table and default routes on the Layer 3 device",
+      "The Wi-Fi passphrase on the guest network",
+      "The users' monitor resolutions",
+      "The printer spooler service"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both hosts reaching their gateways proves local addressing works, so the fault sits in inter-VLAN routing or a filter between them. Wireless credentials, displays, and print services are unrelated."
+  },
+  {
+    "id": "netplus-d5-multi-005",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A user reports intermittent connectivity, and the switch port shows rising CRC errors and drops. Which TWO physical causes are MOST likely?",
+    "choices": [
+      "A damaged or improperly terminated cable",
+      "Electromagnetic interference along the cable run",
+      "An expired user password",
+      "An incorrect default gateway",
+      "A full mailbox quota"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "CRC errors mean frames are arriving corrupted, which points to the physical path: bad termination or interference. Passwords, gateways, and mailbox quotas cannot corrupt frames on the wire."
+  },
+  {
+    "id": "netplus-d5-multi-006",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A PoE camera fails to power on while others on the same switch work. Which TWO are plausible causes?",
+    "choices": [
+      "The camera requires a higher PoE standard than the port supplies",
+      "The patch cable or port serving that camera is faulty",
+      "The switch has run out of VLAN IDs",
+      "The network's MTU is set to 1500",
+      "DNS resolution is failing for the camera's hostname"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "With other cameras working, the fault is specific to this device's power requirement or its physical path. VLAN IDs, standard MTU, and DNS have nothing to do with delivering power."
   }
 ]

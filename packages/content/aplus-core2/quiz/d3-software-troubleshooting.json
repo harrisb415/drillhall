@@ -433,5 +433,80 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Task Manager shows what's actually consuming resources and Event Viewer surfaces recurring faults — both gather information before acting, which is step one of the methodology. Reinstalling, swapping parts, and deleting user data are all changes made without a diagnosis."
+  },
+  {
+    "id": "core2-multi-019",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A Windows application crashes on launch for one user but works for everyone else on identical hardware. Which TWO are the MOST reasonable early steps?",
+    "choices": [
+      "Review Event Viewer's Application log for the faulting module",
+      "Test with a newly created local profile to see if the issue follows the user",
+      "Replace the workstation's motherboard",
+      "Reimage every workstation in the department",
+      "Increase the office switch's port speed"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The log names the failing component, and testing another profile isolates whether the fault is user-specific or machine-wide. Board swaps, mass reimaging, and switch changes are disproportionate and unfocused."
+  },
+  {
+    "id": "core2-multi-020",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A workstation displays 'No boot device found' after a power outage. Which TWO should the technician check FIRST?",
+    "choices": [
+      "Whether the boot drive is detected in UEFI/BIOS",
+      "Whether the boot order or boot mode (UEFI vs Legacy) has changed",
+      "The user's email quota",
+      "The installed antivirus signature date",
+      "The default printer setting"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The firmware either sees the drive or it does not, and a cleared CMOS after an outage commonly resets boot order or mode. Email, antivirus, and printers cannot affect whether firmware finds a boot device."
+  },
+  {
+    "id": "core2-multi-021",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A mobile device is consuming its battery unusually fast since the user installed several apps. Which TWO are appropriate troubleshooting steps?",
+    "choices": [
+      "Review per-app battery usage in device settings",
+      "Uninstall or restrict background activity for the offending apps",
+      "Replace the device's display assembly",
+      "Factory reset the device as the first action",
+      "Turn off the device permanently"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The battery usage screen names the culprit and restricting or removing it addresses the cause directly. Replacing hardware or resetting immediately are disproportionate before identifying the app."
+  },
+  {
+    "id": "core2-multi-022",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO symptoms suggest a Windows system file corruption problem that sfc /scannow is designed to address?",
+    "choices": [
+      "System utilities fail to launch with missing or corrupt DLL errors",
+      "Windows features behave inconsistently after an interrupted update",
+      "The printer is out of paper",
+      "The monitor cable is unplugged",
+      "The user forgot their password"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Missing or corrupt system components and misbehaviour after a failed update are exactly what System File Checker repairs. Paper, cables, and passwords are not system file integrity issues."
+  },
+  {
+    "id": "core2-multi-023",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "A browser is redirecting searches and displaying pop-ups even after the user resets the home page. Which TWO actions should the technician take?",
+    "choices": [
+      "Review and remove unrecognized browser extensions",
+      "Run a reputable anti-malware scan on the system",
+      "Increase the browser's font size",
+      "Clear only the browser bookmarks",
+      "Switch the monitor to portrait orientation"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Malicious extensions are the usual mechanism for persistent redirects, and a scan catches accompanying malware. Font size, bookmarks, and orientation have no bearing on the hijack."
   }
 ]
