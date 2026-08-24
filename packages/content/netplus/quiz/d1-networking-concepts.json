@@ -669,5 +669,682 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Multicast reaches a subscribed group and broadcast reaches every host on the segment. Unicast is one-to-one, anycast routes to the single nearest advertiser, and loopback never leaves the host."
+  },
+  {
+    "id": "netplus-d1-mc-052",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician is documenting which OSI layer defines connector pinouts, voltage levels, and how bits are represented as electrical or optical signals on the medium. Which layer is this?",
+    "choices": [
+      "Layer 1, Physical",
+      "Layer 2, Data Link",
+      "Layer 3, Network",
+      "Layer 4, Transport"
+    ],
+    "answerIndex": 0,
+    "explanation": "The Physical layer covers everything about putting raw bits on the wire or fiber: connectors, pinouts, voltage and light levels, and signal encoding. It has no concept of addresses or frames."
+  },
+  {
+    "id": "netplus-d1-mc-053",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What is the Protocol Data Unit at the Transport layer when TCP is in use?",
+    "choices": [
+      "A segment",
+      "A datagram",
+      "A frame",
+      "A packet"
+    ],
+    "answerIndex": 0,
+    "explanation": "TCP's PDU is the segment. UDP's is called a datagram, the Network layer's is a packet, and the Data Link layer's is a frame — the name changes at each layer as headers are added."
+  },
+  {
+    "id": "netplus-d1-mc-054",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An old passive hub floods every incoming signal out all other ports with no awareness of MAC addresses. At which OSI layer does a hub operate?",
+    "choices": [
+      "Layer 1, Physical",
+      "Layer 2, Data Link",
+      "Layer 3, Network",
+      "Layer 7, Application"
+    ],
+    "answerIndex": 0,
+    "explanation": "A hub is a multiport repeater: it regenerates electrical signals without inspecting any header, so it works purely at the Physical layer. That is why every port on a hub shares one collision domain."
+  },
+  {
+    "id": "netplus-d1-mc-055",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Which OSI layer is responsible for translating data into a format the application can use, including character encoding, compression, and encryption?",
+    "choices": [
+      "Layer 6, Presentation",
+      "Layer 5, Session",
+      "Layer 7, Application",
+      "Layer 4, Transport"
+    ],
+    "answerIndex": 0,
+    "explanation": "The Presentation layer handles data formatting and translation — character sets, compression, and encryption or decryption — so the receiving application sees data in a form it understands."
+  },
+  {
+    "id": "netplus-d1-mc-056",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A packet is caught in a routing loop and its TTL field is decremented to zero. What does the router do?",
+    "choices": [
+      "Discards the packet and may return an ICMP Time Exceeded message to the source",
+      "Forwards the packet one final time and then withdraws the route",
+      "Resets the TTL to its original value and continues forwarding",
+      "Fragments the packet so each piece receives a fresh TTL"
+    ],
+    "answerIndex": 0,
+    "explanation": "Every router decrements TTL by one; at zero the packet is discarded and an ICMP Time Exceeded is typically sent back. This both stops routing loops and is the mechanism traceroute exploits to map a path."
+  },
+  {
+    "id": "netplus-d1-mc-057",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A mail client submits outgoing messages to the organization's mail server over an encrypted connection negotiated with STARTTLS. Which port is the modern standard for authenticated mail submission?",
+    "choices": [
+      "587",
+      "25",
+      "110",
+      "143"
+    ],
+    "answerIndex": 0,
+    "explanation": "Port 587 is the message submission port used by clients, normally with STARTTLS and authentication. Port 25 is reserved for server-to-server relay and is widely blocked outbound by ISPs to limit spam."
+  },
+  {
+    "id": "netplus-d1-mc-058",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An application must query Active Directory over an encrypted LDAP connection. Which port should be permitted through the firewall?",
+    "choices": [
+      "636",
+      "389",
+      "445",
+      "3268"
+    ],
+    "answerIndex": 0,
+    "explanation": "LDAPS, which is LDAP wrapped in TLS, uses TCP 636. Plain unencrypted LDAP uses 389, which would expose directory queries and bind credentials to anyone capturing the traffic."
+  },
+  {
+    "id": "netplus-d1-mc-059",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A monitoring server polls network devices for interface statistics, and those devices also send unsolicited alerts back when a link fails. Which port pair does SNMP use for these two directions?",
+    "choices": [
+      "161 for polling the agent, 162 for traps sent to the manager",
+      "162 for polling the agent, 161 for traps sent to the manager",
+      "161 for both polling and traps",
+      "514 for polling and 161 for traps"
+    ],
+    "answerIndex": 0,
+    "explanation": "The SNMP agent listens on UDP 161 for GET and SET requests from the manager. Traps and informs flow the other way, to the manager's UDP 162 — a distinction that matters when writing firewall rules in each direction."
+  },
+  {
+    "id": "netplus-d1-mc-060",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A network team centralizes log messages from routers, switches, and firewalls onto a collector. Which default port does syslog use?",
+    "choices": [
+      "UDP 514",
+      "TCP 22",
+      "UDP 123",
+      "TCP 443"
+    ],
+    "answerIndex": 0,
+    "explanation": "Syslog traditionally uses UDP 514. Because UDP has no delivery guarantee, busy networks sometimes use TCP 514 or TLS-protected 6514 instead so log messages are not silently lost."
+  },
+  {
+    "id": "netplus-d1-mc-061",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A web application cannot reach its Microsoft SQL Server backend after a firewall change. Which default port should the technician verify is permitted?",
+    "choices": [
+      "1433",
+      "3306",
+      "1521",
+      "5432"
+    ],
+    "answerIndex": 0,
+    "explanation": "Microsoft SQL Server listens on TCP 1433 by default. 3306 is MySQL, 1521 is Oracle, and 5432 is PostgreSQL — all common distractors on the exam."
+  },
+  {
+    "id": "netplus-d1-mc-062",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An administrator connects to a Windows server's graphical desktop remotely. Which port must be reachable?",
+    "choices": [
+      "3389",
+      "23",
+      "5900",
+      "22"
+    ],
+    "answerIndex": 0,
+    "explanation": "Remote Desktop Protocol uses TCP 3389. Port 5900 is VNC, 22 is SSH, and 23 is Telnet — RDP is the Microsoft-native graphical remote access protocol."
+  },
+  {
+    "id": "netplus-d1-mc-063",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A VoIP deployment signals call setup and teardown using SIP, and the security team requires that signaling be encrypted with TLS. Which port carries SIP over TLS?",
+    "choices": [
+      "5061",
+      "5060",
+      "5004",
+      "1720"
+    ],
+    "answerIndex": 0,
+    "explanation": "SIP uses 5060 in the clear and 5061 when secured with TLS. Note that SIP only handles signaling — the actual audio streams travel separately over RTP."
+  },
+  {
+    "id": "netplus-d1-mc-064",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "During a DHCP transaction, which UDP ports do the client and the server use?",
+    "choices": [
+      "The client uses 68 and the server uses 67",
+      "The client uses 67 and the server uses 68",
+      "Both the client and the server use 67",
+      "The client uses 69 and the server uses 68"
+    ],
+    "answerIndex": 0,
+    "explanation": "The DHCP server listens on UDP 67 and the client on UDP 68. Because the client has no address yet, the initial DISCOVER is broadcast from 0.0.0.0 to 255.255.255.255."
+  },
+  {
+    "id": "netplus-d1-mc-065",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A data center patch panel uses a small fiber connector that holds two fibers in a single squeeze-latch housing, roughly half the width of the older square push-pull design. Which connector is this?",
+    "choices": [
+      "LC",
+      "SC",
+      "ST",
+      "MPO"
+    ],
+    "answerIndex": 0,
+    "explanation": "The LC, or Lucent Connector, is a small form factor connector, typically duplex, that allows much higher port density than SC. Its size is why LC is standard on SFP and SFP+ transceivers."
+  },
+  {
+    "id": "netplus-d1-mc-066",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An older fiber installation uses a round connector secured with a spring-loaded bayonet twist-and-lock, carrying one fiber per connector. Which connector type is this?",
+    "choices": [
+      "ST",
+      "LC",
+      "SC",
+      "F-type"
+    ],
+    "answerIndex": 0,
+    "explanation": "The ST, or Straight Tip, connector uses a bayonet mount twisted a quarter turn to lock. It is a simplex connector, so a duplex link needs two of them, and it is mostly found in legacy multimode installations."
+  },
+  {
+    "id": "netplus-d1-mc-067",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician terminates the coaxial drop from a cable internet provider onto a modem using a threaded screw-on connector. Which connector is this?",
+    "choices": [
+      "F-type",
+      "BNC",
+      "RJ11",
+      "SC"
+    ],
+    "answerIndex": 0,
+    "explanation": "F-type connectors screw onto coax and are standard for cable television and cable modem service. BNC is a bayonet coax connector found in older 10BASE2 Ethernet and in video equipment."
+  },
+  {
+    "id": "netplus-d1-mc-068",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "How does an RJ11 connector differ physically from an RJ45?",
+    "choices": [
+      "RJ11 is narrower and holds up to 6 positions, while RJ45 holds 8",
+      "RJ11 holds 8 positions and RJ45 holds 6",
+      "They are the same size but RJ11 is keyed differently",
+      "RJ11 is used for fiber and RJ45 for copper"
+    ],
+    "answerIndex": 0,
+    "explanation": "RJ11 is a 6-position connector used for analog telephone lines and DSL; RJ45 is the wider 8-position connector used for Ethernet. An RJ11 plug will fit loosely into an RJ45 jack, which is a common wiring mistake."
+  },
+  {
+    "id": "netplus-d1-mc-069",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A cabling contractor must run Ethernet through the space above a suspended ceiling that is also used to circulate return air for the building's HVAC system. What cable rating is required?",
+    "choices": [
+      "Plenum-rated (CMP)",
+      "Riser-rated (CMR)",
+      "Direct burial",
+      "Shielded twisted pair"
+    ],
+    "answerIndex": 0,
+    "explanation": "Plenum spaces circulate breathable air, so cable there must use a jacket that produces less smoke and fewer toxic fumes when burning. Plenum rating is a fire-code requirement, not a performance one."
+  },
+  {
+    "id": "netplus-d1-mc-070",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A campus needs a copper run between two buildings, placed in a trench without conduit. What cable characteristic is required?",
+    "choices": [
+      "A direct burial rating, with a gel-filled moisture barrier and rugged jacket",
+      "A plenum rating for fire safety",
+      "A riser rating for vertical shafts",
+      "A higher category rating such as Cat8"
+    ],
+    "answerIndex": 0,
+    "explanation": "Direct burial cable is built with a heavy jacket and water-blocking compound to survive soil moisture, temperature swings, and crush forces. Note that fiber is often preferred between buildings anyway, to avoid ground potential differences."
+  },
+  {
+    "id": "netplus-d1-mc-071",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A technician needs to build a crossover cable to connect two legacy devices directly. How should the ends be terminated?",
+    "choices": [
+      "One end to T568A and the other to T568B",
+      "Both ends to T568A",
+      "Both ends to T568B",
+      "One end to T568B and the other reversed pin-for-pin, 8 to 1"
+    ],
+    "answerIndex": 0,
+    "explanation": "Terminating one end A and the other B swaps the transmit and receive pairs, producing a crossover. Wiring both ends the same way makes a straight-through cable, and reversing all eight pins makes a rollover console cable."
+  },
+  {
+    "id": "netplus-d1-mc-072",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An installer is planning 10GBASE-T runs of about 90 meters. Why is Cat6a specified rather than Cat6?",
+    "choices": [
+      "Cat6 only supports 10 Gbps to roughly 55 meters, while Cat6a supports it to the full 100 meters",
+      "Cat6 cannot carry 10 Gbps at any distance",
+      "Cat6a is required for Power over Ethernet and Cat6 is not",
+      "Cat6 is not rated for installation inside walls"
+    ],
+    "answerIndex": 0,
+    "explanation": "Both categories can carry 10 Gbps, but Cat6 is limited to about 55 meters, less in tightly bundled runs, because of alien crosstalk. Cat6a adds tighter twists and often shielding to hold 10 Gbps across a full 100 meter channel."
+  },
+  {
+    "id": "netplus-d1-mc-073",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A data center needs 40 Gbps copper connections between top-of-rack switches and servers a few meters apart. Which cable category is designed for this short, high-speed role?",
+    "choices": [
+      "Cat8, rated for 25 and 40 Gbps over roughly 30 meters",
+      "Cat5e, rated for 40 Gbps over 100 meters",
+      "Cat6, rated for 40 Gbps over 55 meters",
+      "Cat3, rated for high-frequency data center use"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cat8 pushes to 2 GHz to support 25GBASE-T and 40GBASE-T, but only to about 30 meters. That distance limit is why it is an in-rack data center cable rather than a horizontal building cable."
+  },
+  {
+    "id": "netplus-d1-mc-074",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Two switches in the same rack are connected using a factory-assembled cable with transceivers permanently attached at both ends. What is this assembly called?",
+    "choices": [
+      "A direct attach copper (DAC) twinax cable",
+      "A rollover cable",
+      "A plenum-rated patch cable",
+      "A single-mode fiber jumper"
+    ],
+    "answerIndex": 0,
+    "explanation": "A DAC twinax assembly bonds the cable and both transceivers into one unit. It is cheaper and lower-power than optics, but it is a fixed length and only works over a few meters."
+  },
+  {
+    "id": "netplus-d1-mc-075",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "How many usable host addresses does a 192.168.4.0/26 subnet provide?",
+    "choices": [
+      "62",
+      "64",
+      "30",
+      "126"
+    ],
+    "answerIndex": 0,
+    "explanation": "A /26 leaves 6 host bits, giving 2^6 = 64 total addresses. Subtracting the network address and the broadcast address leaves 62 usable for hosts."
+  },
+  {
+    "id": "netplus-d1-mc-076",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A host is configured with the address 172.16.35.200/21. What is the network address of its subnet?",
+    "choices": [
+      "172.16.32.0",
+      "172.16.35.0",
+      "172.16.34.0",
+      "172.16.0.0"
+    ],
+    "answerIndex": 0,
+    "explanation": "A /21 mask is 255.255.248.0, so the third octet increments in blocks of 8: 32, 40, 48. The value 35 falls inside the block starting at 32, making 172.16.32.0 the network address."
+  },
+  {
+    "id": "netplus-d1-mc-077",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A WAN link joins two routers and needs only the two router interface addresses. Which prefix length wastes the fewest addresses while still following classic subnetting rules?",
+    "choices": [
+      "/30",
+      "/29",
+      "/28",
+      "/24"
+    ],
+    "answerIndex": 0,
+    "explanation": "A /30 provides four addresses: a network address, two usable host addresses, and a broadcast address — exactly right for a point-to-point pair. A /29 would waste six addresses on the same link."
+  },
+  {
+    "id": "netplus-d1-mc-078",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Some modern point-to-point router links are configured with a /31 prefix. How is this possible when a /31 leaves no room for a network or broadcast address?",
+    "choices": [
+      "RFC 3021 allows both addresses in a /31 to be used as host addresses on point-to-point links",
+      "The router silently borrows an address from the neighboring subnet",
+      "A /31 automatically expands to a /30 when applied to a serial interface",
+      "Broadcast traffic is disabled globally whenever a /31 is configured"
+    ],
+    "answerIndex": 0,
+    "explanation": "On a point-to-point link there is only ever one possible destination, so broadcast has no meaning and RFC 3021 permits using both addresses as hosts. This halves the address consumption of WAN links compared with /30."
+  },
+  {
+    "id": "netplus-d1-mc-079",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What is the broadcast address of the subnet 10.10.8.0/22?",
+    "choices": [
+      "10.10.11.255",
+      "10.10.8.255",
+      "10.10.255.255",
+      "10.10.12.255"
+    ],
+    "answerIndex": 0,
+    "explanation": "A /22 mask means the third octet increments in blocks of 4, so this subnet spans 10.10.8.0 through 10.10.11.255. The last address in that range, 10.10.11.255, is the broadcast address."
+  },
+  {
+    "id": "netplus-d1-mc-080",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A workstation shows the address 169.254.18.7 with mask 255.255.0.0 and no default gateway. What does this indicate?",
+    "choices": [
+      "The client could not reach a DHCP server and self-assigned an APIPA address",
+      "The client received a valid lease from a DHCP server on a different subnet",
+      "The client has been assigned a public routable address",
+      "The client's IPv6 stack has taken over from IPv4"
+    ],
+    "answerIndex": 0,
+    "explanation": "The 169.254.0.0/16 range is APIPA, self-assigned when DHCP fails. It permits communication with other APIPA hosts on the same segment but provides no gateway, so nothing beyond the local link is reachable."
+  },
+  {
+    "id": "netplus-d1-mc-081",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A host needs the MAC address matching an IPv4 address on its own subnet, so it sends an ARP request. Which traffic type does that request use?",
+    "choices": [
+      "Broadcast",
+      "Unicast",
+      "Multicast",
+      "Anycast"
+    ],
+    "answerIndex": 0,
+    "explanation": "An ARP request is broadcast to ff:ff:ff:ff:ff:ff because the sender does not yet know which host owns the address. The reply comes back as a unicast directly to the requester."
+  },
+  {
+    "id": "netplus-d1-mc-082",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An organization places a device in front of its own web servers to terminate TLS, cache responses, and hide the real server addresses from clients. What is this device acting as?",
+    "choices": [
+      "A reverse proxy",
+      "A forward proxy",
+      "A jump server",
+      "A network tap"
+    ],
+    "answerIndex": 0,
+    "explanation": "A reverse proxy sits in front of servers and answers on their behalf, so clients never contact the origin directly. A forward proxy does the opposite job, sitting in front of clients to control and cache their outbound requests."
+  },
+  {
+    "id": "netplus-d1-mc-083",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A load balancer distributes requests across a pool of web servers, but a shopping cart application breaks when a user's requests land on different servers mid-session. Which load balancer feature resolves this?",
+    "choices": [
+      "Session persistence, also called sticky sessions",
+      "Round robin scheduling",
+      "Health checking of the server pool",
+      "TLS offloading"
+    ],
+    "answerIndex": 0,
+    "explanation": "Session persistence pins a client to the same backend server for the life of their session, usually by cookie or source address. Without it, an application storing state locally on one server loses that state when the next request is balanced elsewhere."
+  },
+  {
+    "id": "netplus-d1-mc-084",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "What is the fundamental difference between network attached storage (NAS) and a storage area network (SAN)?",
+    "choices": [
+      "NAS presents shared storage at the file level, while a SAN presents raw block-level volumes to servers",
+      "NAS presents block-level volumes, while a SAN presents file shares",
+      "NAS is always faster than a SAN because it avoids Ethernet",
+      "A SAN can only be built with iSCSI, and NAS only with Fibre Channel"
+    ],
+    "answerIndex": 0,
+    "explanation": "NAS speaks file protocols such as SMB and NFS and appears as a network share. A SAN delivers raw block devices over Fibre Channel or iSCSI that a server formats as if they were local disks."
+  },
+  {
+    "id": "netplus-d1-mc-085",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Several unrelated customer organizations run workloads on the same underlying cloud provider hardware, logically isolated from one another. What is this property called?",
+    "choices": [
+      "Multitenancy",
+      "Elasticity",
+      "Federation",
+      "Redundancy"
+    ],
+    "answerIndex": 0,
+    "explanation": "Multitenancy means one physical infrastructure serves many independent tenants with logical separation. It is what makes public cloud economics work, and it is also why isolation controls matter so much there."
+  },
+  {
+    "id": "netplus-d1-mc-086",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A cloud workload automatically adds instances during a traffic spike and removes them an hour later when demand drops. Which cloud characteristic does this describe?",
+    "choices": [
+      "Elasticity",
+      "Multitenancy",
+      "Portability",
+      "Metered billing"
+    ],
+    "answerIndex": 0,
+    "explanation": "Elasticity is the ability to expand and, critically, contract capacity automatically as demand changes. Scalability describes the capacity to grow, but elasticity emphasises that resources are released again when no longer needed."
+  },
+  {
+    "id": "netplus-d1-mc-087",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A cloud engineer attaches a stateful rule set to a virtual machine's interface that permits inbound TCP 443 and denies everything else. What is this construct generally called?",
+    "choices": [
+      "A network security group",
+      "A VPC peering connection",
+      "An internet gateway",
+      "A transit gateway"
+    ],
+    "answerIndex": 0,
+    "explanation": "Network security groups act as stateful virtual firewalls attached to instances or interfaces. Because they are stateful, permitting an inbound request automatically allows the matching return traffic."
+  },
+  {
+    "id": "netplus-d1-mc-088",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Several hospitals with identical regulatory requirements jointly fund and share a cloud environment restricted to their group. Which deployment model is this?",
+    "choices": [
+      "Community cloud",
+      "Public cloud",
+      "Private cloud",
+      "Hybrid cloud"
+    ],
+    "answerIndex": 0,
+    "explanation": "A community cloud is shared by organizations with common concerns such as compliance or mission, splitting cost while keeping outsiders out. It sits between a private cloud's exclusivity and a public cloud's open tenancy."
+  },
+  {
+    "id": "netplus-d1-mc-089",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "In a three-tier hierarchical campus design, what is the role of the access layer?",
+    "choices": [
+      "Connecting end devices to the network and enforcing port-level policy",
+      "Aggregating access switches and applying routing policy between them",
+      "Providing high-speed backbone forwarding between distribution blocks",
+      "Terminating the organization's internet and WAN circuits"
+    ],
+    "answerIndex": 0,
+    "explanation": "The access layer is where end devices plug in, so it handles port security, PoE, and VLAN assignment. Distribution aggregates and applies policy, while core forwards traffic between distribution blocks as fast as possible."
+  },
+  {
+    "id": "netplus-d1-mc-090",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A switch uplink must run at 10 Gbps over multimode fiber. Which transceiver form factor is appropriate?",
+    "choices": [
+      "SFP+",
+      "SFP",
+      "QSFP+",
+      "An RJ45 GBIC"
+    ],
+    "answerIndex": 0,
+    "explanation": "SFP+ is the 10 Gbps evolution of the 1 Gbps SFP, in the same physical footprint. QSFP+ is the quad form factor used for 40 Gbps, effectively four 10 Gbps lanes in one module."
+  },
+  {
+    "id": "netplus-d1-multi-008",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A technician is classifying protocols by OSI layer for a design document. Which TWO of the following operate at the Transport layer?",
+    "choices": [
+      "TCP",
+      "UDP",
+      "ICMP",
+      "GRE",
+      "ARP"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "TCP and UDP are the two Transport layer protocols, distinguished by port numbers. ICMP and GRE ride directly on IP at the Network layer, and ARP maps addresses at the Data Link boundary."
+  },
+  {
+    "id": "netplus-d1-multi-009",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A firewall rule must allow a mail client to retrieve mail with IMAP over TLS and submit outgoing mail securely. Which TWO ports are required?",
+    "choices": [
+      "993",
+      "587",
+      "143",
+      "25",
+      "110"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "IMAP over TLS uses 993 and authenticated submission uses 587. Ports 143 and 110 are the unencrypted IMAP and POP3 equivalents, and 25 is server-to-server relay rather than client submission."
+  },
+  {
+    "id": "netplus-d1-multi-010",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A PAT-enabled router translates an internal host's outbound web session. Which TWO header fields does it rewrite on the way out?",
+    "choices": [
+      "The source IP address",
+      "The source port number",
+      "The destination IP address",
+      "The destination port number",
+      "The MAC address of the original host"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "PAT rewrites the source IP to the router's public address and the source port to a unique value, so many internal hosts can share one public address. The destination fields must stay intact or the packet would never reach the intended server."
+  },
+  {
+    "id": "netplus-d1-multi-011",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO properties of UDP make it the preferred transport for live voice traffic?",
+    "choices": [
+      "It has no connection setup handshake, so there is less startup delay",
+      "It does not retransmit lost packets, avoiding delay from late-arriving audio",
+      "It guarantees in-order delivery of every packet",
+      "It dynamically reduces its sending rate whenever loss is detected",
+      "It encrypts payloads by default"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "For live audio a packet that arrives late is worse than one that never arrives at all, so UDP's lack of handshake and retransmission is a feature. Guaranteed ordering and congestion backoff are TCP behaviours, and neither transport encrypts on its own."
+  },
+  {
+    "id": "netplus-d1-multi-012",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO devices make their forwarding decisions using MAC addresses?",
+    "choices": [
+      "A switch",
+      "A bridge",
+      "A router",
+      "A hub",
+      "A media converter"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Switches and bridges both build a MAC address table and forward frames at Layer 2. Routers forward on IP addresses at Layer 3, while hubs and media converters simply repeat or convert signals with no addressing awareness."
+  },
+  {
+    "id": "netplus-d1-multi-013",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A network team moves device provisioning to infrastructure as code. Which TWO benefits does this directly provide?",
+    "choices": [
+      "Deployments become repeatable, producing identical configurations every time",
+      "Configuration changes are version controlled, so they can be reviewed and rolled back",
+      "Physical cabling errors are automatically detected and corrected",
+      "Bandwidth on existing WAN circuits increases",
+      "Encryption is automatically applied to all management traffic"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Defining infrastructure as code removes the configuration drift that comes from manual changes, and puts every change under source control with history and review. It says nothing about physical media, link capacity, or encryption."
+  },
+  {
+    "id": "netplus-d1-multi-014",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "A user reports no network access. Which TWO observations together indicate the workstation failed to obtain a DHCP lease?",
+    "choices": [
+      "The address begins with 169.254",
+      "No default gateway is listed in the IP configuration",
+      "The address is within the 10.0.0.0/8 range",
+      "The DNS suffix matches the corporate domain",
+      "The interface reports a 1 Gbps link speed"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "An APIPA address in 169.254.0.0/16 combined with no default gateway is the signature of DHCP failure, because APIPA self-assignment never provides gateway or DNS settings. A 10.x address and a correct DNS suffix would indicate the opposite."
+  },
+  {
+    "id": "netplus-d1-match-003",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each connector to its description.",
+    "pairs": [
+      {"left": "LC", "right": "A compact fiber connector with a squeeze latch, usually duplex, standard on SFP modules"},
+      {"left": "ST", "right": "A round simplex fiber connector locked with a bayonet twist"},
+      {"left": "MPO", "right": "A rectangular fiber connector carrying twelve or more strands in one ferrule"},
+      {"left": "F-type", "right": "A threaded screw-on connector used to terminate coaxial cable"}
+    ],
+    "explanation": "Connector recognition is a common exam task. LC is the small duplex fiber connector on SFPs, ST twists to lock, MPO bundles many fibers for high-density trunks, and F-type screws onto coax for cable service."
+  },
+  {
+    "id": "netplus-d1-match-004",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each copper cable category to the speed and distance it supports.",
+    "pairs": [
+      {"left": "Cat5e", "right": "1 Gbps to 100 meters"},
+      {"left": "Cat6", "right": "10 Gbps to approximately 55 meters"},
+      {"left": "Cat6a", "right": "10 Gbps to the full 100 meters"},
+      {"left": "Cat8", "right": "40 Gbps to approximately 30 meters"}
+    ],
+    "explanation": "Category ratings pair a speed with a maximum distance, and the distance is what usually gets forgotten. Cat6 supports 10 Gbps only on short runs, Cat6a extends that to a full channel, and Cat8 trades distance for very high data center speeds."
   }
 ]

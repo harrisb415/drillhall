@@ -589,5 +589,639 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Per-user credentials require Enterprise mode backed by RADIUS/802.1X. A shared PSK cannot be revoked per person, MAC filtering is trivially spoofed, and an open network provides no credentials at all."
+  },
+  {
+    "id": "netplus-d2-mc-043",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A branch router has no specific route for a destination and forwards the traffic to its ISP instead of dropping it. Which route makes this possible?",
+    "choices": [
+      "A default route to 0.0.0.0/0",
+      "A host route to 0.0.0.0/32",
+      "A summary route to 255.255.255.255/32",
+      "A directly connected route"
+    ],
+    "answerIndex": 0,
+    "explanation": "A default route, written 0.0.0.0/0, matches any destination and is used only when nothing more specific exists. It is often called the gateway of last resort for exactly that reason."
+  },
+  {
+    "id": "netplus-d2-mc-044",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A router learns the same destination prefix from OSPF, EIGRP, and RIP simultaneously. Which value does it use to decide which protocol's route to install?",
+    "choices": [
+      "Administrative distance",
+      "The metric of each protocol",
+      "The interface bandwidth",
+      "The TTL of the advertisement"
+    ],
+    "answerIndex": 0,
+    "explanation": "Administrative distance ranks the trustworthiness of the source protocol and is compared first. Metric only breaks ties between multiple routes learned from the same protocol."
+  },
+  {
+    "id": "netplus-d2-mc-045",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which list places these route sources in order from most trusted to least trusted by administrative distance?",
+    "choices": [
+      "Directly connected, static, EIGRP internal, OSPF, RIP",
+      "RIP, OSPF, EIGRP internal, static, directly connected",
+      "Static, directly connected, RIP, OSPF, EIGRP internal",
+      "OSPF, RIP, static, EIGRP internal, directly connected"
+    ],
+    "answerIndex": 0,
+    "explanation": "The common defaults are connected 0, static 1, EIGRP internal 90, OSPF 110, and RIP 120 — lower is more trusted. A directly connected interface is the most reliable knowledge a router can have about a network."
+  },
+  {
+    "id": "netplus-d2-mc-046",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Why is RIP unsuitable as the routing protocol for a large enterprise network?",
+    "choices": [
+      "It counts a route as unreachable beyond 15 hops, limiting network diameter",
+      "It cannot advertise subnet masks in any version",
+      "It requires every router to be in a single OSPF area",
+      "It only supports a maximum of four routers per network"
+    ],
+    "answerIndex": 0,
+    "explanation": "RIP treats 16 hops as infinity, so the network can be at most 15 hops across. Its slow convergence and hop-count-only metric, which ignores link speed, also make it a poor fit at scale."
+  },
+  {
+    "id": "netplus-d2-mc-047",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "In a multi-area OSPF design, what is the role of area 0?",
+    "choices": [
+      "It is the backbone area, and all other areas must connect to it",
+      "It contains only external routes redistributed from other protocols",
+      "It is a stub area that receives only a default route",
+      "It is reserved for the designated router election and carries no user traffic"
+    ],
+    "answerIndex": 0,
+    "explanation": "OSPF requires a hub-and-spoke area structure with area 0 as the backbone. Traffic between two non-backbone areas must transit area 0, which is why a discontiguous backbone breaks inter-area routing."
+  },
+  {
+    "id": "netplus-d2-mc-048",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A WAN link is oversubscribed and the network team wants excess traffic buffered and released smoothly rather than dropped outright. Which technique should be used?",
+    "choices": [
+      "Traffic shaping",
+      "Traffic policing",
+      "Port mirroring",
+      "Link aggregation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Shaping queues traffic that exceeds the configured rate and sends it later, smoothing bursts at the cost of added delay. Policing simply discards or re-marks the excess, which is harsher but adds no latency."
+  },
+  {
+    "id": "netplus-d2-mc-049",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which field does a router examine to apply Layer 3 quality of service classification to a packet?",
+    "choices": [
+      "The DSCP value in the IP header's DS field",
+      "The 802.1p CoS bits in the Ethernet header",
+      "The TCP window size",
+      "The source MAC address"
+    ],
+    "answerIndex": 0,
+    "explanation": "DSCP marks priority in the IP header so the classification survives across routed hops. CoS lives in the 802.1Q tag and is lost the moment the frame leaves a trunk, making it a Layer 2 marking only."
+  },
+  {
+    "id": "netplus-d2-mc-050",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A router-on-a-stick configuration requires each subinterface to be told which VLAN its traffic belongs to. What must be configured on the subinterface?",
+    "choices": [
+      "802.1Q encapsulation with the VLAN ID",
+      "A static ARP entry for each VLAN gateway",
+      "A separate default route per VLAN",
+      "Port security with a MAC limit"
+    ],
+    "answerIndex": 0,
+    "explanation": "Each subinterface is bound to a VLAN with dot1q encapsulation and given the gateway IP for that subnet. Without the encapsulation statement the router cannot tell which tagged frames belong to which subinterface."
+  },
+  {
+    "id": "netplus-d2-mc-051",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Two routers provide gateway redundancy using a Cisco-proprietary protocol in which one router is elected active and another standby for a shared virtual IP. Which protocol is this?",
+    "choices": [
+      "HSRP",
+      "VRRP",
+      "LACP",
+      "STP"
+    ],
+    "answerIndex": 0,
+    "explanation": "HSRP is Cisco's proprietary first hop redundancy protocol using active and standby roles. VRRP is the open-standard equivalent with master and backup roles, and GLBP adds load balancing across gateways."
+  },
+  {
+    "id": "netplus-d2-mc-052",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A security team needs a copy of all traffic passing through a specific switch port delivered to an intrusion detection sensor. Which switch feature provides this?",
+    "choices": [
+      "Port mirroring, also called SPAN",
+      "Port security",
+      "Link aggregation",
+      "Flow control"
+    ],
+    "answerIndex": 0,
+    "explanation": "Port mirroring copies frames from a source port or VLAN to a destination port where a sensor or analyzer is attached. Without it, a switch would only forward frames to their intended destination port and the sensor would see nothing."
+  },
+  {
+    "id": "netplus-d2-mc-053",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "How does a switch build its MAC address table?",
+    "choices": [
+      "By recording the source MAC address and ingress port of every frame it receives",
+      "By reading the destination MAC address of each frame and storing it",
+      "By querying each connected host with an ARP request at startup",
+      "By downloading the table from the network's DHCP server"
+    ],
+    "answerIndex": 0,
+    "explanation": "A switch learns from source addresses: whatever MAC sent a frame must be reachable through the port it arrived on. Destination addresses are used for forwarding lookups, and unknown destinations are flooded until a reply teaches the switch where that host lives."
+  },
+  {
+    "id": "netplus-d2-mc-054",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A device is moved from one switch port to another, and traffic to it is briefly flooded out all ports before normal forwarding resumes. Which switch behaviour explains the eventual cleanup of the old entry?",
+    "choices": [
+      "The MAC address table ages out entries that have not been seen for a set interval",
+      "The switch reboots the affected VLAN to clear its table",
+      "Spanning tree recalculates and purges all address tables network-wide",
+      "The switch requests a table refresh from the default gateway"
+    ],
+    "answerIndex": 0,
+    "explanation": "MAC table entries carry an aging timer, commonly five minutes, and are removed if no frames are seen from that address. Until the entry ages out or the host transmits from its new port, the switch may still point at the stale port."
+  },
+  {
+    "id": "netplus-d2-mc-055",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An access port connected to a single workstation takes about 30 seconds to begin forwarding after the PC boots, delaying DHCP. Which feature should be enabled on that port?",
+    "choices": [
+      "PortFast, so the port skips the listening and learning states",
+      "BPDU guard, so the port ignores spanning tree entirely",
+      "Root guard, so the port cannot become a root port",
+      "Flow control, so the port negotiates faster"
+    ],
+    "answerIndex": 0,
+    "explanation": "PortFast moves an access port straight to forwarding, eliminating the spanning tree delay that causes DHCP timeouts on boot. It should only ever be used on ports facing end devices, never on switch-to-switch links."
+  },
+  {
+    "id": "netplus-d2-mc-056",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A PortFast-enabled access port receives a BPDU because a user plugged in an unauthorized switch. Which feature shuts that port down to protect the topology?",
+    "choices": [
+      "BPDU guard",
+      "PortFast",
+      "Port security",
+      "Storm control"
+    ],
+    "answerIndex": 0,
+    "explanation": "BPDU guard disables a port the moment it receives a BPDU, on the assumption that an edge port should never see one. It is the standard companion to PortFast, preventing a rogue switch from influencing the spanning tree."
+  },
+  {
+    "id": "netplus-d2-mc-057",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Two switches are bundled with four links using LACP, but the bundle never forms. Both ends are configured in passive mode. What is the problem?",
+    "choices": [
+      "At least one side must be in active mode to initiate LACP negotiation",
+      "LACP requires all ports to be in passive mode on both sides",
+      "LACP cannot bundle more than two links",
+      "LACP requires the links to run at different speeds"
+    ],
+    "answerIndex": 0,
+    "explanation": "Passive mode waits for the other side to start negotiating, so passive-to-passive never forms a bundle. Active-to-passive or active-to-active both work, which is why active is the safer default."
+  },
+  {
+    "id": "netplus-d2-mc-058",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A network team needs to power an outdoor pan-tilt-zoom camera with heaters that draws roughly 60 watts. Which PoE standard is required?",
+    "choices": [
+      "802.3bt (PoE++), which supplies up to about 60 or 90 watts",
+      "802.3af (PoE), which supplies up to about 15.4 watts",
+      "802.3at (PoE+), which supplies up to about 30 watts",
+      "802.3ab, which supplies up to about 100 watts"
+    ],
+    "answerIndex": 0,
+    "explanation": "802.3bt defines Type 3 at roughly 60 W and Type 4 at roughly 90 W at the source, energizing all four pairs. 802.3ab is not a power standard at all — it defines 1000BASE-T over copper."
+  },
+  {
+    "id": "netplus-d2-mc-059",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A gigabit link between a switch and a server shows a steady rise in late collisions and CRC errors, and throughput is far below expectation. One side is hard-coded to full duplex while the other is left on autonegotiate. What is the result?",
+    "choices": [
+      "A duplex mismatch, because the autonegotiating side falls back to half duplex",
+      "A speed mismatch, because the link drops to 10 Mbps",
+      "A VLAN mismatch, because untagged frames are discarded",
+      "An MTU mismatch, because oversized frames are dropped"
+    ],
+    "answerIndex": 0,
+    "explanation": "When one side is hard-coded, the other cannot detect duplex through negotiation and defaults to half duplex. The full-duplex side transmits whenever it likes, which the half-duplex side registers as collisions — the classic signature of late collisions on a switch port."
+  },
+  {
+    "id": "netplus-d2-mc-060",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "In the 2.4 GHz band in North America, which set of channels can be used together without overlapping?",
+    "choices": [
+      "1, 6, and 11",
+      "1, 5, and 9",
+      "2, 7, and 12",
+      "1, 4, 8, and 11"
+    ],
+    "answerIndex": 0,
+    "explanation": "Each 2.4 GHz channel is 22 MHz wide but centers are spaced 5 MHz apart, so only 1, 6, and 11 stay clear of one another. Any other combination causes co-channel interference that degrades every AP involved."
+  },
+  {
+    "id": "netplus-d2-mc-061",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which Wi-Fi generation first extended operation into the 6 GHz band?",
+    "choices": [
+      "Wi-Fi 6E (802.11ax in 6 GHz)",
+      "Wi-Fi 6 (802.11ax)",
+      "Wi-Fi 5 (802.11ac)",
+      "Wi-Fi 4 (802.11n)"
+    ],
+    "answerIndex": 0,
+    "explanation": "Wi-Fi 6E is the 6 GHz extension of the 802.11ax standard, adding a large block of clean spectrum with many wide non-overlapping channels. Wi-Fi 5 is 5 GHz only, and Wi-Fi 6 without the E covers 2.4 and 5 GHz."
+  },
+  {
+    "id": "netplus-d2-mc-062",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the difference between an SSID and a BSSID?",
+    "choices": [
+      "The SSID is the human-readable network name, while the BSSID is the MAC address of a specific AP radio",
+      "The SSID is the MAC address of the AP, while the BSSID is the network name",
+      "The SSID identifies a client, while the BSSID identifies the controller",
+      "They are two names for the same value, used by different vendors"
+    ],
+    "answerIndex": 0,
+    "explanation": "One SSID is typically broadcast by many APs, and the BSSID is what distinguishes each individual radio serving it. When troubleshooting roaming, the BSSID is how you tell which physical AP a client actually associated with."
+  },
+  {
+    "id": "netplus-d2-mc-063",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A dual-band capable client keeps associating to the congested 2.4 GHz radio even where 5 GHz coverage is strong. Which AP feature encourages it onto the faster band?",
+    "choices": [
+      "Band steering",
+      "Channel bonding",
+      "Beamforming",
+      "Fast roaming"
+    ],
+    "answerIndex": 0,
+    "explanation": "Band steering delays or withholds responses on 2.4 GHz for clients seen to be dual-band capable, nudging them to associate at 5 GHz. It only influences client behaviour, since the final association decision always belongs to the client."
+  },
+  {
+    "id": "netplus-d2-mc-064",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A guest wireless network must let visitors reach the internet but never reach corporate servers or one another. Which combination best achieves this?",
+    "choices": [
+      "Placing the guest SSID on an isolated VLAN with client isolation enabled",
+      "Hiding the guest SSID so it is not broadcast",
+      "Using a longer WPA2 pre-shared key on the guest SSID",
+      "Assigning guests static IP addresses from the corporate subnet"
+    ],
+    "answerIndex": 0,
+    "explanation": "An isolated VLAN keeps guest traffic away from corporate subnets at Layer 3, and client isolation stops guests from reaching each other within the same SSID. Hiding an SSID and lengthening a passphrase do nothing about lateral reach."
+  },
+  {
+    "id": "netplus-d2-mc-065",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An outdoor point-to-point wireless bridge must span three kilometers between two buildings. Which antenna type is most appropriate?",
+    "choices": [
+      "A parabolic dish, which concentrates the signal into a narrow high-gain beam",
+      "An omnidirectional antenna, which radiates equally in all horizontal directions",
+      "A patch antenna mounted flat against an interior wall",
+      "A rubber duck antenna integrated into the access point"
+    ],
+    "answerIndex": 0,
+    "explanation": "A long point-to-point link needs maximum gain in one direction, which is exactly what a parabolic dish provides. Omnidirectional antennas spread energy through 360 degrees and waste nearly all of it on a link like this."
+  },
+  {
+    "id": "netplus-d2-mc-066",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What does channel bonding do in a wireless deployment?",
+    "choices": [
+      "Combines adjacent channels into a wider channel for more throughput per client",
+      "Bundles two access points into one logical radio",
+      "Aggregates multiple wired uplinks from an access point",
+      "Links the 2.4 GHz and 5 GHz radios into a single SSID"
+    ],
+    "answerIndex": 0,
+    "explanation": "Bonding joins adjacent 20 MHz channels into 40, 80, or 160 MHz to raise throughput. The cost is fewer non-overlapping channels, so aggressive bonding in a dense deployment often makes performance worse overall."
+  },
+  {
+    "id": "netplus-d2-mc-067",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A campus wants wireless clients to move between access points without re-authenticating from scratch, so voice calls survive the transition. Which capability is needed?",
+    "choices": [
+      "Fast roaming, such as 802.11r key caching",
+      "Band steering between 2.4 and 5 GHz",
+      "MU-MIMO on each access point",
+      "A captive portal on the wireless SSID"
+    ],
+    "answerIndex": 0,
+    "explanation": "802.11r fast transition caches key material so a roaming client skips the full authentication exchange, keeping the handoff short enough that a call does not break. Without it, a full 802.1X exchange at every AP causes audible gaps."
+  },
+  {
+    "id": "netplus-d2-mc-068",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "In a building's network hierarchy, what distinguishes the MDF from an IDF?",
+    "choices": [
+      "The MDF is the main facility where external circuits terminate, and IDFs are intermediate closets that feed back to it",
+      "The MDF holds only patch panels, while IDFs hold all active equipment",
+      "The MDF serves wireless clients and IDFs serve wired clients",
+      "IDFs terminate the ISP handoff and MDFs distribute to floors"
+    ],
+    "answerIndex": 0,
+    "explanation": "The main distribution frame is the building's central point, where carrier circuits and core equipment live. Intermediate distribution frames are floor or wing closets that aggregate local drops and uplink to the MDF."
+  },
+  {
+    "id": "netplus-d2-mc-069",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Equipment rack space is measured in rack units. What is the height of one rack unit?",
+    "choices": [
+      "1.75 inches",
+      "1 inch",
+      "2.5 inches",
+      "3.5 inches"
+    ],
+    "answerIndex": 0,
+    "explanation": "A rack unit, written 1U, is 1.75 inches of vertical space in a standard 19-inch rack. A full-height 42U rack is therefore roughly 73.5 inches of usable equipment space."
+  },
+  {
+    "id": "netplus-d2-mc-070",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Why does equipment airflow direction matter when mounting switches in a data center rack?",
+    "choices": [
+      "Airflow must match the room's hot aisle and cold aisle layout so exhaust is not drawn into another device's intake",
+      "Airflow direction determines the maximum supported cable length",
+      "Reversed airflow causes electromagnetic interference on copper ports",
+      "Airflow direction sets which side of the rack can be grounded"
+    ],
+    "answerIndex": 0,
+    "explanation": "Hot aisle and cold aisle containment only works if every device pulls from the cold side and exhausts to the hot side. A single reversed unit ingests its neighbours' hot exhaust and can overheat despite adequate room cooling."
+  },
+  {
+    "id": "netplus-d2-mc-071",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A rack of network equipment needs multiple metered outlets, remote power cycling, and per-outlet current reporting. Which device provides this?",
+    "choices": [
+      "An intelligent PDU",
+      "A UPS with a single outlet strip",
+      "A KVM switch",
+      "A patch panel"
+    ],
+    "answerIndex": 0,
+    "explanation": "An intelligent, or switched, PDU distributes rack power with per-outlet control and measurement, letting a remote administrator reboot a hung device. It distributes power but does not itself provide battery backup."
+  },
+  {
+    "id": "netplus-d2-mc-072",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A telephony technician terminates voice pairs onto a punch-down block that supports higher frequencies and is standard for structured cabling. Which block is this?",
+    "choices": [
+      "A 110 block",
+      "A 66 block",
+      "An RJ48 block",
+      "A demarcation block"
+    ],
+    "answerIndex": 0,
+    "explanation": "The 110 block superseded the older 66 block for data-grade structured cabling because it maintains pair twist and supports higher frequencies. 66 blocks are largely limited to legacy analog voice."
+  },
+  {
+    "id": "netplus-d2-mc-073",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "What is the demarcation point in a building's network?",
+    "choices": [
+      "The boundary where the service provider's responsibility ends and the customer's begins",
+      "The point where the LAN transitions from copper to fiber",
+      "The switch port that connects the access layer to the distribution layer",
+      "The location of the building's main grounding bar"
+    ],
+    "answerIndex": 0,
+    "explanation": "The demarc is a contractual and physical boundary, often a smartjack in the MDF. Knowing where it sits determines who a fault gets reported to when a circuit goes down."
+  },
+  {
+    "id": "netplus-d2-mc-074",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A network closet in a warehouse repeatedly loses equipment to condensation and dust. Which addition most directly addresses the underlying cause?",
+    "choices": [
+      "Environmental monitoring with humidity and temperature sensors and appropriate filtration",
+      "A larger UPS with extended runtime batteries",
+      "Replacing copper patch cables with fiber jumpers",
+      "Adding a second uplink to a different distribution switch"
+    ],
+    "answerIndex": 0,
+    "explanation": "Sensors let the team detect humidity and temperature excursions before hardware fails, and filtration keeps particulates out. More battery runtime or extra uplinks address availability, not the environmental cause of the damage."
+  },
+  {
+    "id": "netplus-d2-mc-075",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An administrator needs to see which IP addresses a router has resolved to MAC addresses on a connected segment. Which table holds this mapping?",
+    "choices": [
+      "The ARP table",
+      "The MAC address table",
+      "The routing table",
+      "The DHCP lease table"
+    ],
+    "answerIndex": 0,
+    "explanation": "The ARP table maps IP addresses to MAC addresses so frames can be built for local delivery. A switch's MAC address table is different — it maps MAC addresses to physical ports and contains no IP information."
+  },
+  {
+    "id": "netplus-d2-mc-076",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which statement correctly describes how a switch handles a frame whose destination MAC address is not in its table?",
+    "choices": [
+      "It floods the frame out every port in that VLAN except the one it arrived on",
+      "It drops the frame and sends an ICMP unreachable to the source",
+      "It forwards the frame to the default gateway for routing",
+      "It buffers the frame until an ARP reply identifies the destination"
+    ],
+    "answerIndex": 0,
+    "explanation": "Unknown unicast flooding is how a switch avoids dropping traffic for a host it has not learned yet. The reply teaches the switch which port that MAC lives on, so the flooding stops after the first exchange."
+  },
+  {
+    "id": "netplus-d2-mc-077",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A voice VLAN is configured on an access port so an IP phone and the PC daisy-chained behind it can share one cable. How is the traffic separated?",
+    "choices": [
+      "The phone tags its own voice traffic with the voice VLAN while PC traffic stays untagged on the access VLAN",
+      "Both devices tag their traffic and the switch strips both tags",
+      "The switch assigns VLANs by inspecting the IP address of each device",
+      "The phone and PC alternate transmission windows on the shared link"
+    ],
+    "answerIndex": 0,
+    "explanation": "The switch tells the phone the voice VLAN ID, usually over CDP or LLDP-MED, and the phone tags only its own traffic. The PC behind it is unaware of any of this and sends untagged frames that land on the data VLAN."
+  },
+  {
+    "id": "netplus-d2-mc-078",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which statement about a switch's native VLAN on an 802.1Q trunk is a security concern?",
+    "choices": [
+      "Native VLAN traffic is untagged, so a mismatch between trunk ends can let frames leak between VLANs",
+      "Native VLAN traffic is double-tagged, which exhausts the VLAN ID space",
+      "The native VLAN cannot be changed from VLAN 1 on any switch",
+      "Native VLAN frames bypass the switch MAC address table entirely"
+    ],
+    "answerIndex": 0,
+    "explanation": "Because the native VLAN is carried untagged, a mismatch or a crafted double-tagged frame can move traffic into a VLAN the sender should not reach — the basis of VLAN hopping. Best practice is to set the native VLAN to an unused ID and tag it explicitly."
+  },
+  {
+    "id": "netplus-d2-multi-007",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A router must choose between several candidate routes to the same destination. Which TWO criteria does it evaluate before comparing metrics?",
+    "choices": [
+      "The longest matching prefix",
+      "The administrative distance of the source protocol",
+      "The MTU of the outgoing interface",
+      "The TTL remaining on the packet",
+      "The MAC address of the next hop"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The most specific prefix wins outright, and among routes of equal prefix length the lowest administrative distance is preferred. Metric is only consulted last, to break ties within a single protocol."
+  },
+  {
+    "id": "netplus-d2-multi-008",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO conditions must be true for an EtherChannel or link aggregation group to form successfully?",
+    "choices": [
+      "All member ports must run at the same speed and duplex",
+      "All member ports must belong to the same VLAN configuration or trunk mode",
+      "Each member port must have a unique VLAN assignment",
+      "Member ports must be spread across two different switches without any stacking or MLAG technology",
+      "Each member port must have its own IP address"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Aggregation requires consistent Layer 1 and Layer 2 settings across every member, or the bundle is refused. Assigning member ports different VLANs or individual IP addresses contradicts the idea of one logical link."
+  },
+  {
+    "id": "netplus-d2-multi-009",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A new access port for a workstation should be protected against a user attaching a rogue switch. Which TWO features address this directly?",
+    "choices": [
+      "BPDU guard",
+      "Port security with a MAC address limit",
+      "Jumbo frame support",
+      "Link aggregation",
+      "Traffic shaping on the uplink"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "BPDU guard shuts the port if it hears spanning tree traffic, which an added switch would generate, and port security caps how many MAC addresses may appear behind the port. Neither jumbo frames nor aggregation nor shaping has any bearing on a rogue device."
+  },
+  {
+    "id": "netplus-d2-multi-010",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO statements about the 5 GHz band compared with 2.4 GHz are correct?",
+    "choices": [
+      "It offers substantially more non-overlapping channels",
+      "Its signals attenuate faster through walls and other obstructions",
+      "It penetrates building materials better over long distances",
+      "It is limited to three usable channels in most regions",
+      "It cannot support channel bonding"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "5 GHz trades range for capacity: many more clean channels, but higher free-space and material attenuation. That combination is why dense deployments favour 5 GHz with lower transmit power and more access points."
+  },
+  {
+    "id": "netplus-d2-multi-011",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "A wireless site survey reveals interference in the 2.4 GHz band from non-802.11 sources. Which TWO devices are likely contributors?",
+    "choices": [
+      "A microwave oven in the adjacent break room",
+      "A legacy cordless phone operating at 2.4 GHz",
+      "A gigabit fiber uplink in the ceiling",
+      "A shielded Cat6a run to a nearby workstation",
+      "A 5 GHz access point three rooms away"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Microwave ovens and 2.4 GHz cordless phones emit broadband energy right across the ISM band, raising the noise floor without producing recognizable Wi-Fi frames. Fiber and shielded copper radiate nothing, and a 5 GHz AP is in a different band entirely."
+  },
+  {
+    "id": "netplus-d2-multi-012",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO characteristics distinguish traffic policing from traffic shaping?",
+    "choices": [
+      "Policing drops or re-marks traffic that exceeds the rate rather than delaying it",
+      "Policing adds no buffering delay, while shaping does",
+      "Policing always requires a hardware queue on every interface",
+      "Policing can only be applied to outbound traffic",
+      "Policing guarantees delivery of every conforming and non-conforming packet"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Policing enforces a rate by discarding or re-marking the excess immediately, so it introduces no latency but does cause loss. Shaping buffers the excess and releases it later, trading delay for reduced loss."
+  },
+  {
+    "id": "netplus-d2-order-002",
+    "type": "order",
+    "domainCode": "2.0",
+    "prompt": "Place the steps of a wireless client joining a WPA2-Enterprise network in the order they occur.",
+    "items": [
+      "The client scans and receives beacons or probe responses from nearby access points",
+      "The client authenticates and associates with the chosen access point",
+      "802.1X authentication is performed against the RADIUS server",
+      "The four-way handshake derives the encryption keys",
+      "The client requests an IP address from the DHCP server"
+    ],
+    "explanation": "Association happens before authentication in the 802.11 sense, and only after 802.1X succeeds do the four-way handshake and key derivation occur. Addressing is last — which is why a client showing an APIPA address on Wi-Fi has usually already passed the wireless authentication stages."
+  },
+  {
+    "id": "netplus-d2-match-001",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each first hop redundancy or aggregation protocol to its description.",
+    "pairs": [
+      {"left": "HSRP", "right": "Cisco-proprietary gateway redundancy using active and standby routers"},
+      {"left": "VRRP", "right": "Open-standard gateway redundancy using master and backup routers"},
+      {"left": "GLBP", "right": "Cisco-proprietary gateway redundancy that also load balances across multiple routers"},
+      {"left": "LACP", "right": "The IEEE standard for negotiating a bundle of physical links into one logical link"}
+    ],
+    "explanation": "The three FHRPs all present a virtual IP as the gateway but differ in ownership and whether they load balance. LACP is unrelated to gateway redundancy and instead aggregates physical links for bandwidth and resilience."
+  },
+  {
+    "id": "netplus-d2-match-002",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each routing protocol to its classification.",
+    "pairs": [
+      {"left": "OSPF", "right": "An open-standard interior link-state protocol"},
+      {"left": "EIGRP", "right": "A Cisco-originated interior protocol using an advanced distance-vector algorithm"},
+      {"left": "RIPv2", "right": "An interior distance-vector protocol limited to 15 hops"},
+      {"left": "BGP", "right": "The exterior path-vector protocol that routes between autonomous systems"}
+    ],
+    "explanation": "Interior protocols run inside one administrative domain and optimize for fast convergence; BGP runs between domains and optimizes for policy control and stability across a very large table."
   }
 ]

@@ -485,5 +485,342 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "A vulnerability is the weakness; an exploit is the method or code that leverages it. A threat is the actor or event, risk is likelihood times impact, and an asset is what is being protected."
+  },
+  {
+    "id": "netplus-d4-mc-035",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization needs administrator logins to network devices authenticated centrally, with each individual command the administrator types logged and authorized separately. Which protocol is designed for this?",
+    "choices": [
+      "TACACS+",
+      "RADIUS",
+      "LDAP",
+      "Kerberos"
+    ],
+    "answerIndex": 0,
+    "explanation": "TACACS+ separates authentication, authorization, and accounting, which allows per-command authorization and detailed command logging. RADIUS combines authentication and authorization and cannot filter individual commands, which is why TACACS+ dominates device administration."
+  },
+  {
+    "id": "netplus-d4-mc-036",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What does TACACS+ encrypt that RADIUS traditionally does not?",
+    "choices": [
+      "The entire packet body, rather than only the password field",
+      "Only the username, leaving the password in the clear",
+      "The accounting records, leaving authentication unencrypted",
+      "Nothing; TACACS+ relies entirely on IPsec for confidentiality"
+    ],
+    "answerIndex": 0,
+    "explanation": "TACACS+ encrypts the whole payload, while classic RADIUS protects only the password attribute and leaves usernames and authorization data readable. This is a frequently tested comparison between the two."
+  },
+  {
+    "id": "netplus-d4-mc-037",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "In an 802.1X deployment, what role does the switch play?",
+    "choices": [
+      "The authenticator, relaying credentials between the client and the authentication server",
+      "The supplicant, presenting credentials on the client's behalf",
+      "The authentication server, validating credentials against a directory",
+      "The certificate authority, issuing client certificates"
+    ],
+    "answerIndex": 0,
+    "explanation": "802.1X has three roles: the supplicant is the client software, the authenticator is the switch or AP controlling port access, and the authentication server is usually RADIUS. The switch never validates credentials itself; it enforces the answer it receives."
+  },
+  {
+    "id": "netplus-d4-mc-038",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A user signs into an identity provider once and is then admitted to several third-party SaaS applications, which receive signed assertions about that user. Which standard is being used?",
+    "choices": [
+      "SAML",
+      "RADIUS",
+      "TACACS+",
+      "802.1X"
+    ],
+    "answerIndex": 0,
+    "explanation": "SAML exchanges XML assertions between an identity provider and service providers, which is the mechanism behind most enterprise web single sign-on. RADIUS and TACACS+ serve network access and device administration rather than web applications."
+  },
+  {
+    "id": "netplus-d4-mc-039",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A company restricts access to its administrative portal so that logins are only accepted from within the country where it operates. What is this control called?",
+    "choices": [
+      "Geofencing",
+      "Time-based authentication",
+      "Role-based access control",
+      "Certificate pinning"
+    ],
+    "answerIndex": 0,
+    "explanation": "Geofencing evaluates the geographic origin of a request and denies those outside the permitted area. It is a useful coarse filter, but because location can be disguised with a VPN it should be layered with stronger controls rather than relied on alone."
+  },
+  {
+    "id": "netplus-d4-mc-040",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A contractor account is configured so that it can only be used between 08:00 and 18:00 on weekdays. What kind of control is this?",
+    "choices": [
+      "Time-based authentication restriction",
+      "Multifactor authentication",
+      "Least privilege",
+      "Certificate-based authentication"
+    ],
+    "answerIndex": 0,
+    "explanation": "Time-based restrictions limit when valid credentials will be accepted, shrinking the window available to an attacker who steals them. It complements least privilege, which limits what the account can do rather than when."
+  },
+  {
+    "id": "netplus-d4-mc-041",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An internal test server presents a certificate the organization generated itself rather than one issued by a public authority. What is the practical consequence?",
+    "choices": [
+      "Clients will warn about an untrusted certificate unless the internal CA is added to their trust store",
+      "The connection cannot be encrypted at all",
+      "The certificate cannot include a validity period",
+      "The certificate will only work over IPv6"
+    ],
+    "answerIndex": 0,
+    "explanation": "A self-signed certificate encrypts just as well but proves nothing about identity to a client that does not already trust its issuer. Distributing the internal CA certificate to managed devices is the standard way to resolve the warning without weakening trust."
+  },
+  {
+    "id": "netplus-d4-mc-042",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What is the primary function of a certificate revocation list?",
+    "choices": [
+      "To publish certificates that should no longer be trusted before their expiry date",
+      "To list all certificates a certificate authority has ever issued",
+      "To store the private keys of expired certificates",
+      "To define which cipher suites a server will accept"
+    ],
+    "answerIndex": 0,
+    "explanation": "A CRL lets clients learn that a certificate was compromised or superseded ahead of its natural expiry. OCSP serves the same purpose with a real-time query rather than a periodically downloaded list."
+  },
+  {
+    "id": "netplus-d4-mc-043",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Why is key rotation an important part of key management?",
+    "choices": [
+      "It limits how much data a single compromised key can expose",
+      "It increases the effective length of the encryption key",
+      "It removes the need to protect keys at rest",
+      "It allows the same key to be shared across more systems safely"
+    ],
+    "answerIndex": 0,
+    "explanation": "Rotating keys bounds the blast radius in time: a key that is retired regularly protects only the traffic encrypted during its window. It does not change the strength of the algorithm or reduce the need to store keys securely."
+  },
+  {
+    "id": "netplus-d4-mc-044",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization places its public web and mail servers in a network segment reachable from the internet but separated from the internal LAN by a second firewall boundary. What is this segment called?",
+    "choices": [
+      "A screened subnet",
+      "A trusted zone",
+      "A management VLAN",
+      "A honeynet"
+    ],
+    "answerIndex": 0,
+    "explanation": "A screened subnet, historically called a DMZ, hosts services that must be publicly reachable while preventing a compromise there from reaching internal systems directly. The defining feature is the boundary on both sides of the segment."
+  },
+  {
+    "id": "netplus-d4-mc-045",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A firewall rule set permits several specific flows and ends without an explicit final rule. Traffic that matches nothing is dropped. What accounts for this?",
+    "choices": [
+      "The implicit deny at the end of the access control list",
+      "The stateful inspection table timing the session out",
+      "The default route being absent from the firewall",
+      "The rule set being evaluated from bottom to top"
+    ],
+    "answerIndex": 0,
+    "explanation": "Access control lists are evaluated top to bottom and end with an implicit deny for anything not matched. It also means rule order matters enormously — a broad permit placed early can silently shadow more specific rules below it."
+  },
+  {
+    "id": "netplus-d4-mc-046",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An attacker sets up an access point broadcasting the same SSID as the corporate network, in the hope that employees' devices associate with it. What is this attack called?",
+    "choices": [
+      "An evil twin",
+      "A rogue DHCP server",
+      "MAC flooding",
+      "VLAN hopping"
+    ],
+    "answerIndex": 0,
+    "explanation": "An evil twin impersonates a legitimate SSID to capture traffic or credentials from clients that connect. It works because most clients choose networks by name and signal strength rather than verifying the AP's identity."
+  },
+  {
+    "id": "netplus-d4-mc-047",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Clients on a subnet suddenly receive addresses from an unexpected range along with an attacker-controlled default gateway. Which attack has occurred?",
+    "choices": [
+      "A rogue DHCP server on the segment",
+      "ARP cache poisoning",
+      "DNS zone transfer abuse",
+      "A smurf attack"
+    ],
+    "answerIndex": 0,
+    "explanation": "An unauthorized DHCP server can hand clients a gateway and DNS server it controls, putting itself on-path for their traffic. DHCP snooping on the switch is the standard mitigation, permitting DHCP replies only from designated trusted ports."
+  },
+  {
+    "id": "netplus-d4-mc-048",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An attacker sends unsolicited replies associating their own MAC address with the default gateway's IP, so that hosts send their traffic to the attacker. Which attack is this?",
+    "choices": [
+      "ARP spoofing, also called ARP cache poisoning",
+      "DNS poisoning",
+      "MAC flooding",
+      "A deauthentication attack"
+    ],
+    "answerIndex": 0,
+    "explanation": "ARP has no authentication, so a host will accept a gratuitous reply and update its cache. Dynamic ARP inspection, which validates ARP packets against the DHCP snooping binding table, is the switch-level defence."
+  },
+  {
+    "id": "netplus-d4-mc-049",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An attacker crafts a frame with two 802.1Q tags so that the outer tag is stripped by the first switch and the inner tag delivers the frame into a VLAN the attacker should not reach. Which attack is this?",
+    "choices": [
+      "Double-tagging VLAN hopping",
+      "Switch spoofing using DTP",
+      "MAC flooding",
+      "STP root bridge takeover"
+    ],
+    "answerIndex": 0,
+    "explanation": "Double tagging exploits the fact that the native VLAN is carried untagged, so the first switch removes the outer tag and forwards the frame with the inner tag intact. Assigning an unused native VLAN and tagging it explicitly closes this hole."
+  },
+  {
+    "id": "netplus-d4-mc-050",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An unauthorized person follows an employee through a badge-controlled door without presenting credentials. What is this called?",
+    "choices": [
+      "Tailgating",
+      "Shoulder surfing",
+      "Phishing",
+      "Dumpster diving"
+    ],
+    "answerIndex": 0,
+    "explanation": "Tailgating exploits ordinary courtesy to bypass an access control that is otherwise sound. Mantraps, turnstiles, and security awareness training are the usual countermeasures."
+  },
+  {
+    "id": "netplus-d4-mc-051",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An attacker stands behind an administrator in a shared workspace and watches them type a device password. What is this technique called?",
+    "choices": [
+      "Shoulder surfing",
+      "Tailgating",
+      "Whaling",
+      "Pretexting"
+    ],
+    "answerIndex": 0,
+    "explanation": "Shoulder surfing is direct visual observation of credentials or sensitive data. Privacy screens, screen positioning, and simple awareness are the practical defences."
+  },
+  {
+    "id": "netplus-d4-mc-052",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An email appears to come from the CFO, addresses a specific finance manager by name, and requests an urgent wire transfer. Which attack does this describe?",
+    "choices": [
+      "Spear phishing, targeted at a specific individual using researched details",
+      "Bulk phishing sent indiscriminately to a large list",
+      "Vishing conducted over a voice call",
+      "Smishing conducted over text message"
+    ],
+    "answerIndex": 0,
+    "explanation": "Spear phishing is tailored to its target using researched details, which makes it far more convincing than a bulk campaign. When the target is a senior executive specifically, the same technique is called whaling."
+  },
+  {
+    "id": "netplus-d4-mc-053",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A network access control system quarantines a laptop into a remediation VLAN because it is missing recent security updates. What is this assessment called?",
+    "choices": [
+      "A posture assessment",
+      "A penetration test",
+      "A vulnerability scan of the network",
+      "A site survey"
+    ],
+    "answerIndex": 0,
+    "explanation": "Posture assessment checks a device's health — patch level, antivirus state, configuration — before granting normal network access. The remediation VLAN gives the device somewhere to fix itself without exposing the production network."
+  },
+  {
+    "id": "netplus-d4-multi-007",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO statements correctly describe the difference between authentication and authorization?",
+    "choices": [
+      "Authentication establishes who the user is",
+      "Authorization determines what that user is permitted to do",
+      "Authentication records what the user did during the session",
+      "Authorization verifies the user's identity against a directory",
+      "Authentication assigns the user's IP address"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Authentication proves identity, authorization grants permissions, and accounting records activity — the three A's. Confusing the first two is the most common mistake, and the exam tests the distinction directly."
+  },
+  {
+    "id": "netplus-d4-multi-008",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A switch must be protected against an attacker manipulating the Layer 2 infrastructure. Which TWO features specifically defend against ARP and DHCP-based attacks?",
+    "choices": [
+      "DHCP snooping, which permits DHCP replies only on trusted ports",
+      "Dynamic ARP inspection, which validates ARP packets against the snooping bindings",
+      "Jumbo frame support on all access ports",
+      "Enabling DTP so trunks negotiate automatically",
+      "Increasing the MAC address table aging timer"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "DHCP snooping builds a trusted table of address bindings, and dynamic ARP inspection uses that table to discard forged ARP messages. Enabling DTP actually creates risk, since it allows an attacker to negotiate a trunk port."
+  },
+  {
+    "id": "netplus-d4-multi-009",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO physical or procedural controls most directly reduce the risk of an intruder reaching network equipment inside a building?",
+    "choices": [
+      "A mantrap or access-controlled vestibule at the entrance to the equipment area",
+      "Badge readers with logging on network closet doors",
+      "A longer wireless pre-shared key on the guest SSID",
+      "Encrypting data at rest on file servers",
+      "Increasing the switch MAC address table size"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Vestibules stop tailgating and badge readers both restrict and record entry to the space itself. Wireless keys and disk encryption protect data, but neither prevents someone from standing in front of a switch."
+  },
+  {
+    "id": "netplus-d4-match-003",
+    "type": "match",
+    "domainCode": "4.0",
+    "prompt": "Match each authentication or access protocol to its primary use.",
+    "pairs": [
+      {"left": "RADIUS", "right": "Centralized authentication for network access, combining authentication and authorization"},
+      {"left": "TACACS+", "right": "Device administration with per-command authorization and full payload encryption"},
+      {"left": "SAML", "right": "Browser-based single sign-on using signed assertions between identity and service providers"},
+      {"left": "802.1X", "right": "Port-based access control that gates a switch or wireless port until the client authenticates"}
+    ],
+    "explanation": "These four are routinely confused. RADIUS and TACACS+ both talk to a central server, but only TACACS+ separates authorization per command; SAML is a web SSO standard, and 802.1X is the framework that puts the port itself behind authentication."
+  },
+  {
+    "id": "netplus-d4-match-004",
+    "type": "match",
+    "domainCode": "4.0",
+    "prompt": "Match each attack to the layer or service it targets.",
+    "pairs": [
+      {"left": "MAC flooding", "right": "Overwhelms the switch address table so frames are flooded to all ports"},
+      {"left": "ARP spoofing", "right": "Corrupts the mapping between IP addresses and MAC addresses on hosts"},
+      {"left": "DNS poisoning", "right": "Inserts false name resolution answers so clients reach the wrong server"},
+      {"left": "Evil twin", "right": "Impersonates a legitimate wireless SSID to lure clients into associating"}
+    ],
+    "explanation": "Each of these attacks abuses a protocol that was designed without authentication. Recognizing which service is being subverted is what points you at the right mitigation — port security, dynamic ARP inspection, DNSSEC, or wireless intrusion detection respectively."
   }
 ]

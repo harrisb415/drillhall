@@ -431,5 +431,627 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Fail-closed is chosen when protecting the data matters more than staying online, accepting an outage rather than passing uninspected traffic. The availability-first arguments describe fail-open instead."
+  },
+  {
+    "id": "secplus-d3-mc-036",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "In a Software as a Service arrangement, which security responsibility remains with the customer?",
+    "choices": [
+      "Managing user identities, access rights, and the data they place in the service",
+      "Patching the underlying operating system the application runs on",
+      "Securing the physical data center facility",
+      "Maintaining the hypervisor the service runs on"
+    ],
+    "answerIndex": 0,
+    "explanation": "SaaS pushes nearly all infrastructure responsibility to the provider, but identity, access, and data governance never transfer. Most publicized SaaS breaches trace back to the customer's side of that line rather than the provider's."
+  },
+  {
+    "id": "secplus-d3-mc-037",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A firewall is described as operating at Layer 7. What does this allow it to do that a Layer 4 firewall cannot?",
+    "choices": [
+      "Inspect and filter based on the actual application content and commands within the traffic",
+      "Filter based on source and destination port numbers",
+      "Track the state of established TCP connections",
+      "Route packets between two different subnets"
+    ],
+    "answerIndex": 0,
+    "explanation": "A Layer 7 firewall understands application protocols, so it can distinguish a permitted HTTP request from a malicious one on the same port. A Layer 4 firewall sees only addresses, ports, and connection state."
+  },
+  {
+    "id": "secplus-d3-mc-038",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which security appliance is designed specifically to inspect HTTP and HTTPS requests for attacks such as SQL injection and cross-site scripting before they reach a web server?",
+    "choices": [
+      "A web application firewall",
+      "A network intrusion detection system",
+      "A forward proxy",
+      "A load balancer"
+    ],
+    "answerIndex": 0,
+    "explanation": "A WAF understands web application semantics, which is what lets it recognize injection patterns that a network firewall would simply forward. It complements rather than replaces secure coding, since it is a filter over an application it cannot fix."
+  },
+  {
+    "id": "secplus-d3-mc-039",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What distinguishes a next-generation firewall from a traditional stateful firewall?",
+    "choices": [
+      "It adds application awareness, user identity awareness, and integrated intrusion prevention",
+      "It operates only at Layer 3 and Layer 4",
+      "It replaces the need for any endpoint protection",
+      "It cannot inspect encrypted traffic under any circumstances"
+    ],
+    "answerIndex": 0,
+    "explanation": "An NGFW makes decisions about applications and users rather than only addresses and ports. It still relies on the rest of the security stack, and inspecting encrypted traffic requires deliberate TLS interception with its own tradeoffs."
+  },
+  {
+    "id": "secplus-d3-mc-040",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A monitoring sensor is connected to a network tap and receives a copy of traffic without sitting in the forwarding path. What is the operational consequence?",
+    "choices": [
+      "It can detect and alert on malicious traffic but cannot block it",
+      "It can block malicious traffic but cannot log it",
+      "It becomes a single point of failure for the network path",
+      "It must terminate TLS in order to see any traffic"
+    ],
+    "answerIndex": 0,
+    "explanation": "A passive, out-of-band sensor observes only, which is the classic IDS position — no risk of interrupting production, but no ability to stop an attack either. Blocking requires an inline device that traffic actually passes through."
+  },
+  {
+    "id": "secplus-d3-mc-041",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization places a security appliance inline so all traffic passes through it. Which risk does this introduce that a passive deployment does not?",
+    "choices": [
+      "The appliance becomes a potential single point of failure and a performance bottleneck",
+      "The appliance can no longer generate alerts",
+      "The appliance loses the ability to inspect application-layer content",
+      "The appliance can only monitor a single VLAN"
+    ],
+    "answerIndex": 0,
+    "explanation": "Inline placement is what enables blocking, but it means an appliance failure or overload directly affects production traffic. This is exactly why the fail-open versus fail-closed decision matters so much for inline devices."
+  },
+  {
+    "id": "secplus-d3-mc-042",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "In an 802.1X deployment, what is the role of EAP?",
+    "choices": [
+      "It is the framework that carries the actual authentication exchange between supplicant and server",
+      "It encrypts the wireless traffic after authentication completes",
+      "It assigns the client's IP address once access is granted",
+      "It defines the physical port numbering on the switch"
+    ],
+    "answerIndex": 0,
+    "explanation": "EAP is a flexible container for many authentication methods, which is why variants such as EAP-TLS and PEAP differ so much in what they require. The 802.1X framework transports EAP across the port; it does not define the credential exchange itself."
+  },
+  {
+    "id": "secplus-d3-mc-043",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which EAP method provides the strongest authentication by requiring a digital certificate on both the client and the server?",
+    "choices": [
+      "EAP-TLS",
+      "PEAP with MSCHAPv2",
+      "EAP-MD5",
+      "EAP-FAST with a shared secret"
+    ],
+    "answerIndex": 0,
+    "explanation": "Mutual certificate authentication removes passwords from the exchange entirely, which defeats credential theft and rogue server attacks. Its cost is the PKI needed to issue and manage a certificate for every client device."
+  },
+  {
+    "id": "secplus-d3-mc-044",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company runs redundant application servers behind a device that distributes incoming requests among them, and removes any server that fails a health check. Which high availability approach is this?",
+    "choices": [
+      "Load balancing",
+      "Clustering with a shared quorum",
+      "Journaling",
+      "Cold site failover"
+    ],
+    "answerIndex": 0,
+    "explanation": "Load balancing spreads active work across independent nodes and routes around failures. Clustering differs in that nodes coordinate as one logical system, often sharing storage and maintaining state between members."
+  },
+  {
+    "id": "secplus-d3-mc-045",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Why would an organization deliberately run its critical workload across two different cloud providers?",
+    "choices": [
+      "To avoid dependence on a single provider's availability, pricing, or policy decisions",
+      "To reduce the total cost of the workload",
+      "To eliminate the need for backups entirely",
+      "To simplify the operational and monitoring burden"
+    ],
+    "answerIndex": 0,
+    "explanation": "Multi-cloud is a resilience and vendor-independence strategy, protecting against provider-wide outages and lock-in. It reliably increases cost and complexity, which is the tradeoff being accepted."
+  },
+  {
+    "id": "secplus-d3-mc-046",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization intentionally runs its web tier on one vendor's operating system and its database tier on another. What benefit does this provide?",
+    "choices": [
+      "Platform diversity, so a single vendor's vulnerability cannot compromise every tier",
+      "Reduced licensing cost across the environment",
+      "Simplified patch management for the operations team",
+      "Elimination of the need for network segmentation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Homogeneous environments fail homogeneously — one critical flaw affects everything at once. Diversity limits that correlated risk, at the cost of requiring expertise in more platforms."
+  },
+  {
+    "id": "secplus-d3-mc-047",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "During continuity planning, a team calculates how many trained staff, how much compute, and how much bandwidth will be needed to run operations at a recovery site. What is this activity called?",
+    "choices": [
+      "Capacity planning",
+      "A gap analysis",
+      "A tabletop exercise",
+      "Risk transference"
+    ],
+    "answerIndex": 0,
+    "explanation": "Capacity planning covers people, technology, and infrastructure, and the people dimension is the one most often overlooked. A recovery site with adequate hardware and nobody trained to operate it does not actually deliver recovery."
+  },
+  {
+    "id": "secplus-d3-mc-048",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization keeps three copies of its data on two different media types with one copy stored off site. Which backup principle does this describe?",
+    "choices": [
+      "The 3-2-1 rule",
+      "Continuous journaling",
+      "Snapshot chaining",
+      "Synchronous replication"
+    ],
+    "answerIndex": 0,
+    "explanation": "The 3-2-1 rule guards against the correlated failures that defeat simpler schemes — media failure, site loss, and single-technology flaws. Ransomware resilience has since pushed many organizations to add an offline or immutable copy as well."
+  },
+  {
+    "id": "secplus-d3-mc-049",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Why is it important that backup media itself be encrypted?",
+    "choices": [
+      "Because backups contain the same sensitive data as production but are often transported and stored outside controlled facilities",
+      "Because encryption reduces the storage space the backup consumes",
+      "Because unencrypted backups cannot be restored reliably",
+      "Because encryption removes the need to test restores"
+    ],
+    "answerIndex": 0,
+    "explanation": "A backup is a complete copy of the organization's data with none of production's access controls around it, which makes lost or stolen media a full breach. Key management then becomes critical, since a backup whose key is lost is no backup at all."
+  },
+  {
+    "id": "secplus-d3-mc-050",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A storage system captures a point-in-time image of a volume almost instantly, recording only subsequent changes. What is this called?",
+    "choices": [
+      "A snapshot",
+      "A full backup",
+      "Synchronous replication",
+      "A differential backup"
+    ],
+    "answerIndex": 0,
+    "explanation": "Snapshots are fast and cheap because they reference the original blocks rather than copying them, which makes them excellent for quick rollback. That same dependency means a snapshot is not a substitute for an independent backup copy."
+  },
+  {
+    "id": "secplus-d3-mc-051",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the practical difference between synchronous and asynchronous replication?",
+    "choices": [
+      "Synchronous confirms the write at both sites before acknowledging it, so no data is lost but distance adds latency",
+      "Synchronous copies data once daily, while asynchronous copies continuously",
+      "Synchronous only works within a single server, while asynchronous works between sites",
+      "Synchronous requires tape media, while asynchronous requires disk"
+    ],
+    "answerIndex": 0,
+    "explanation": "Synchronous replication gives an effective RPO of zero at the cost of write latency proportional to distance. Asynchronous tolerates distance by allowing the remote copy to lag slightly, accepting a small potential data loss."
+  },
+  {
+    "id": "secplus-d3-mc-052",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "During an extended utility outage, which equipment allows a data center to continue running for days rather than minutes?",
+    "choices": [
+      "A generator with an on-site fuel supply",
+      "An uninterruptible power supply",
+      "A power distribution unit",
+      "A surge protector"
+    ],
+    "answerIndex": 0,
+    "explanation": "A UPS bridges only the seconds or minutes needed for a graceful shutdown or for a generator to start. Sustained operation requires a generator, and its practical limit becomes fuel delivery rather than the equipment itself."
+  },
+  {
+    "id": "secplus-d3-mc-053",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An industrial facility's programmable logic controllers cannot tolerate the delay introduced by security scanning or unplanned reboots. Which architectural consideration does this illustrate?",
+    "choices": [
+      "Responsiveness and availability requirements that constrain which controls can be applied",
+      "The need for full-disk encryption on every controller",
+      "A requirement to expose the controllers to the internet for monitoring",
+      "The elimination of network segmentation in favour of flat addressing"
+    ],
+    "answerIndex": 0,
+    "explanation": "Operational technology inverts the usual priority ordering, placing availability and safety above confidentiality. Controls that would be routine on an office network can cause physical consequences here, which is why compensating controls and segmentation dominate."
+  },
+  {
+    "id": "secplus-d3-mc-054",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A medical device runs a real-time operating system that the manufacturer will not permit to be modified, and regulatory approval prevents third-party patching. Which consideration does this represent?",
+    "choices": [
+      "Inability to patch, requiring compensating controls such as isolation and monitoring",
+      "A cryptographic vulnerability in the device firmware",
+      "Excessive attack surface from unnecessary services",
+      "A supply chain compromise of the manufacturer"
+    ],
+    "answerIndex": 0,
+    "explanation": "When patching is genuinely unavailable, the risk must be managed around the device instead of on it. Network isolation, strict access control, and heightened monitoring are the standard compensating set."
+  },
+  {
+    "id": "secplus-d3-mc-055",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company chooses a cloud service specifically because provisioning a new environment takes minutes rather than weeks. Which architectural consideration is being prioritized?",
+    "choices": [
+      "Ease of deployment",
+      "Data sovereignty",
+      "Risk transference",
+      "Platform diversity"
+    ],
+    "answerIndex": 0,
+    "explanation": "Speed of provisioning is one of the primary drivers of cloud adoption, and it is a legitimate architectural consideration alongside cost and resilience. The security caution is that the same speed lets misconfigured resources appear just as quickly."
+  },
+  {
+    "id": "secplus-d3-mc-056",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization buys insurance to cover the financial impact of a breach rather than eliminating the risk. Which architectural or risk consideration does this represent?",
+    "choices": [
+      "Risk transference to a third party",
+      "Risk avoidance by ceasing the activity",
+      "Risk mitigation through additional controls",
+      "Risk acceptance without further action"
+    ],
+    "answerIndex": 0,
+    "explanation": "Transference moves the financial consequence to another party, but the operational and reputational consequences stay with the organization. Insurance therefore complements controls rather than replacing them."
+  },
+  {
+    "id": "secplus-d3-mc-057",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which category best describes a company's proprietary manufacturing process that gives it competitive advantage and is protected by keeping it secret?",
+    "choices": [
+      "A trade secret",
+      "Regulated data",
+      "Public information",
+      "Human-readable data"
+    ],
+    "answerIndex": 0,
+    "explanation": "Trade secrets derive their protection from secrecy itself rather than from registration, so disclosure destroys the protection permanently. That irreversibility is why access to them is normally tightly restricted."
+  },
+  {
+    "id": "secplus-d3-mc-058",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which data type is subject to specific legal handling requirements imposed by an external authority, such as health or payment card information?",
+    "choices": [
+      "Regulated data",
+      "Trade secret data",
+      "Non-human-readable data",
+      "Public data"
+    ],
+    "answerIndex": 0,
+    "explanation": "Regulated data carries obligations defined by law or industry standard rather than by internal policy alone. Non-compliance brings external consequences such as fines and loss of the ability to process payments."
+  },
+  {
+    "id": "secplus-d3-mc-059",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A data classification scheme labels information as Public, Internal, Confidential, and Restricted. What is the primary purpose of applying these labels?",
+    "choices": [
+      "To determine what handling, access, and protection each piece of data requires",
+      "To determine how long each file may be stored before deletion",
+      "To identify which department created the document",
+      "To decide which backup media type to use"
+    ],
+    "answerIndex": 0,
+    "explanation": "Classification drives control selection, so it is the mechanism that lets an organization protect data proportionately rather than treating everything identically. Retention is a related but separate policy dimension."
+  },
+  {
+    "id": "secplus-d3-mc-060",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization must ensure that customer data remains subject to the laws of the country where the customers reside, regardless of where processing is technically convenient. Which concept is this?",
+    "choices": [
+      "Data sovereignty",
+      "Data masking",
+      "Data retention",
+      "Data tokenization"
+    ],
+    "answerIndex": 0,
+    "explanation": "Data sovereignty means the data is governed by the laws of the jurisdiction it resides in, which constrains where it may legally be stored and processed. Cloud regions exist largely to let customers satisfy these requirements."
+  },
+  {
+    "id": "secplus-d3-mc-061",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A support representative viewing a customer record sees a payment card number displayed as XXXX-XXXX-XXXX-4471. Which protection method is this?",
+    "choices": [
+      "Data masking",
+      "Full-disk encryption",
+      "Hashing",
+      "Data sovereignty enforcement"
+    ],
+    "answerIndex": 0,
+    "explanation": "Masking shows only what the task actually requires, so the representative can verify the card without ever seeing the full value. The underlying data remains intact, unlike hashing which is irreversible."
+  },
+  {
+    "id": "secplus-d3-mc-062",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which state of data describes information currently loaded in a server's memory and being actively operated on by an application?",
+    "choices": [
+      "Data in use",
+      "Data at rest",
+      "Data in transit",
+      "Data in archive"
+    ],
+    "answerIndex": 0,
+    "explanation": "Data in use is the hardest state to protect because it must be readable for processing to occur. Confidential computing and secure enclaves exist specifically to narrow that exposure."
+  },
+  {
+    "id": "secplus-d3-mc-063",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company restricts access to a sensitive application so that only devices connecting from within approved countries may reach it. Which data protection method is this?",
+    "choices": [
+      "A geographic restriction",
+      "Data masking",
+      "Tokenization",
+      "Journaling"
+    ],
+    "answerIndex": 0,
+    "explanation": "Geographic restrictions reduce exposure by refusing connections from regions with no legitimate business need. It is a useful coarse filter, though not one to rely on alone since location can be disguised."
+  },
+  {
+    "id": "secplus-d3-mc-064",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A file share is configured so that only members of the finance group can open payroll documents. Which data protection method is this?",
+    "choices": [
+      "Permission restrictions",
+      "Data masking",
+      "Obfuscation",
+      "Geographic restriction"
+    ],
+    "answerIndex": 0,
+    "explanation": "Permission restrictions enforce access at the resource itself, which is the most direct expression of least privilege for stored data. They depend on group membership being maintained, which is why access reviews matter."
+  },
+  {
+    "id": "secplus-d3-mc-065",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Why does placing a security appliance in a fail-open configuration create risk?",
+    "choices": [
+      "If the appliance fails, traffic passes uninspected and the protection silently disappears",
+      "If the appliance fails, all business traffic stops immediately",
+      "It prevents the appliance from generating any log data",
+      "It requires the appliance to be deployed passively"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fail-open preserves availability at the cost of security, and the dangerous part is that the loss of protection is not obvious to users. Which mode is correct depends entirely on whether availability or protection matters more for that traffic."
+  },
+  {
+    "id": "secplus-d3-mc-066",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization defines network zones as untrusted, screened, and trusted, and controls all traffic crossing between them. What is the primary security benefit?",
+    "choices": [
+      "Traffic between zones can be inspected and restricted, containing a compromise within one zone",
+      "Devices within each zone no longer require patching",
+      "Encryption becomes unnecessary within the trusted zone",
+      "Each zone can use overlapping IP address ranges safely"
+    ],
+    "answerIndex": 0,
+    "explanation": "Zones establish enforcement points where policy can be applied and violations observed. Containment is the practical payoff: a foothold in the screened subnet does not automatically grant reach into the trusted zone."
+  },
+  {
+    "id": "secplus-d3-mc-067",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company hosts a public API and wants to reduce its attack surface. Which action most directly achieves that?",
+    "choices": [
+      "Exposing only the endpoints that are actually required and removing unused ones",
+      "Increasing the logging verbosity on the API server",
+      "Adding more application servers behind the load balancer",
+      "Extending the TLS certificate's validity period"
+    ],
+    "answerIndex": 0,
+    "explanation": "Attack surface is the total set of reachable entry points, so removing unneeded endpoints eliminates risk rather than merely observing or absorbing it. The other options affect visibility, capacity, and certificate management instead."
+  },
+  {
+    "id": "secplus-d3-mc-068",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which statement best describes containerization compared with full virtualization?",
+    "choices": [
+      "Containers share the host kernel, making them lighter but placing more reliance on kernel-level isolation",
+      "Containers each run a complete guest operating system with its own kernel",
+      "Containers provide stronger isolation than separate virtual machines",
+      "Containers cannot be orchestrated or scaled automatically"
+    ],
+    "answerIndex": 0,
+    "explanation": "Sharing a kernel is what makes containers fast and small, and it is also the reason a kernel vulnerability has wider consequences than in a hypervisor model. Choosing between them is largely a tradeoff between density and isolation strength."
+  },
+  {
+    "id": "secplus-d3-mc-069",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization runs security tooling that requires no software installed on the monitored host, instead connecting remotely with credentials. What is this approach called?",
+    "choices": [
+      "Agentless monitoring",
+      "Agent-based monitoring",
+      "Passive tap monitoring",
+      "Inline inspection"
+    ],
+    "answerIndex": 0,
+    "explanation": "Agentless approaches avoid deployment overhead but generally see less detail and depend on maintaining privileged credentials. Agent-based tooling gives richer, continuous telemetry at the cost of managing software on every endpoint."
+  },
+  {
+    "id": "secplus-d3-mc-070",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which architectural approach keeps a system physically disconnected from all untrusted networks, with data moved only by controlled manual means?",
+    "choices": [
+      "An air gap",
+      "A screened subnet",
+      "A jump server",
+      "Logical segmentation with VLANs"
+    ],
+    "answerIndex": 0,
+    "explanation": "An air gap removes the network path entirely, which is why it is reserved for the highest-value systems. Its practical weaknesses are removable media and the human processes that bridge the gap."
+  },
+  {
+    "id": "secplus-d3-mc-071",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A company must decide between a design with lower cost and one with faster recovery from failure. Which pair of architectural considerations is being traded off?",
+    "choices": [
+      "Cost against ease of recovery",
+      "Data sovereignty against tokenization",
+      "Patch availability against masking",
+      "Attack surface against classification"
+    ],
+    "answerIndex": 0,
+    "explanation": "Resilience is generally purchasable, so most availability decisions reduce to how much recovery speed is worth. Making that tradeoff explicit is what business impact analysis is for."
+  },
+  {
+    "id": "secplus-d3-multi-006",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO responsibilities belong to the cloud provider rather than the customer under an Infrastructure as a Service model?",
+    "choices": [
+      "Securing the physical data center facilities",
+      "Maintaining and patching the hypervisor",
+      "Patching the guest operating system on each virtual machine",
+      "Configuring network security groups around the customer's instances",
+      "Managing user accounts and their permissions in the customer's environment"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "IaaS gives the customer control from the guest operating system upward, so the provider retains the physical layer and the virtualization platform. The other three items sit squarely on the customer's side of the shared responsibility model."
+  },
+  {
+    "id": "secplus-d3-multi-007",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO characteristics distinguish a jump server from a standard administrative workstation?",
+    "choices": [
+      "It is a hardened, tightly monitored single entry point for administrative access",
+      "All administrative sessions to protected systems are funnelled through it and logged",
+      "It grants users elevated privileges automatically without authentication",
+      "It is placed directly on the untrusted internet-facing network with no controls",
+      "It removes the need for multifactor authentication on administrative accounts"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A jump server concentrates administrative access into one controlled, observable choke point. That concentration is also why it must be hardened and monitored intensively — it becomes a very high-value target."
+  },
+  {
+    "id": "secplus-d3-multi-008",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO measures protect data specifically while it is in transit?",
+    "choices": [
+      "TLS for application traffic between client and server",
+      "An IPsec tunnel between two sites",
+      "Full-disk encryption on the file server",
+      "Database transparent data encryption",
+      "Secure deletion of decommissioned drives"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "TLS and IPsec both protect data as it crosses a network. The remaining options all address data at rest, which is a distinct state requiring different controls."
+  },
+  {
+    "id": "secplus-d3-multi-009",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO conditions would make an organization's disaster recovery site ineffective despite being fully equipped?",
+    "choices": [
+      "It is located close enough to the primary site to be affected by the same regional event",
+      "Failover has never been tested, so nobody knows whether the process actually works",
+      "It uses a different hardware vendor from the primary site",
+      "It maintains its own independent internet connectivity",
+      "It is staffed by employees trained on the recovery procedures"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Geographic proximity defeats the purpose when the disaster is regional, and an untested plan is an assumption rather than a capability. The other three options describe a recovery site working as intended."
+  },
+  {
+    "id": "secplus-d3-multi-010",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO are valid reasons to tokenize payment card data rather than encrypt it in place?",
+    "choices": [
+      "The token has no mathematical relationship to the original value, so compromise of the token store reveals nothing",
+      "Systems handling only tokens can be removed from the scope of payment compliance requirements",
+      "Tokenization compresses the data, reducing storage costs",
+      "Tokenization removes the need to control access to the tokenization service",
+      "Tokens can be reversed by any system without additional authorization"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Tokens are surrogate values with no derivable link to the original, which limits both breach impact and compliance scope. The mapping service that can reverse them becomes the sensitive component and must be protected accordingly."
+  },
+  {
+    "id": "secplus-d3-multi-011",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO are genuine security concerns introduced by infrastructure as code?",
+    "choices": [
+      "A single misconfigured template can propagate the same flaw across the entire environment instantly",
+      "Secrets committed into the template repository become widely accessible",
+      "Deployments become less consistent than manual configuration",
+      "Changes can no longer be reviewed before being applied",
+      "The environment can no longer be rebuilt after a failure"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Automation amplifies both correct and incorrect configuration, so a template defect scales instantly. Credential handling is the other classic pitfall, which is why secrets belong in a vault referenced by the template rather than inside it."
+  },
+  {
+    "id": "secplus-d3-order-002",
+    "type": "order",
+    "domainCode": "3.0",
+    "prompt": "Place these recovery approaches in order from the shortest achievable recovery time to the longest.",
+    "items": [
+      "An active-active configuration where both sites already serve production traffic",
+      "A hot site kept synchronized and ready to assume the load",
+      "A warm site with hardware in place but data requiring restoration",
+      "A cold site providing only space, power, and connectivity",
+      "Rebuilding on newly procured hardware from off-site backup media"
+    ],
+    "explanation": "Recovery time and cost move together across this spectrum, so the right choice comes from the RTO the business actually requires. Paying for an active-active design to protect a system that could tolerate a day of downtime is as much a failure of analysis as the opposite."
+  },
+  {
+    "id": "secplus-d3-match-001",
+    "type": "match",
+    "domainCode": "3.0",
+    "prompt": "Match each network security appliance to its defining function.",
+    "pairs": [
+      {"left": "WAF", "right": "Filters HTTP and HTTPS requests for application-layer attacks against web servers"},
+      {"left": "IPS", "right": "Sits inline and actively drops traffic matching malicious patterns"},
+      {"left": "Proxy", "right": "Forwards client requests on their behalf, enabling caching and content control"},
+      {"left": "Load balancer", "right": "Distributes client requests across a pool of backend servers"},
+      {"left": "UTM", "right": "Bundles firewall, antivirus, filtering, and intrusion prevention into one appliance"}
+    ],
+    "explanation": "These appliances are separated by what traffic they see and whether they can act on it. The pair most often confused is IPS with IDS, which differ only in whether the device is inline and therefore able to block rather than merely alert."
   }
 ]

@@ -576,5 +576,712 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Segmentation limits reachable systems and least privilege limits what a stolen credential can do — both constrain lateral movement. The other three either do nothing or actively help the attacker."
+  },
+  {
+    "id": "secplus-d2-mc-048",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A marketing department signs up for a cloud file-sharing service on a corporate credit card without involving IT, and begins storing customer data there. What does this represent?",
+    "choices": [
+      "Shadow IT",
+      "A supply chain compromise",
+      "An advanced persistent threat",
+      "A watering hole attack"
+    ],
+    "answerIndex": 0,
+    "explanation": "Shadow IT is technology adopted outside the sanctioned process, so it sits outside patching, monitoring, and data governance entirely. The people involved are usually well-intentioned, which is why the answer is a better approval path rather than punishment."
+  },
+  {
+    "id": "secplus-d2-mc-049",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A foreign intelligence service maintains covert access to a defense contractor's network for two years, quietly copying design documents. Which motivation best describes this activity?",
+    "choices": [
+      "Espionage",
+      "Financial gain",
+      "Service disruption",
+      "Philosophical or political belief"
+    ],
+    "answerIndex": 0,
+    "explanation": "Espionage seeks long-term intelligence collection rather than immediate profit or visible damage, which is why it prizes staying undetected. That patience is exactly what makes nation-state intrusions hard to find."
+  },
+  {
+    "id": "secplus-d2-mc-050",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Attackers threaten to publish stolen internal emails unless a company pays them. Which motivation does this represent?",
+    "choices": [
+      "Blackmail",
+      "Espionage",
+      "Ethical disclosure",
+      "Service disruption"
+    ],
+    "answerIndex": 0,
+    "explanation": "Blackmail leverages the threat of disclosure rather than the denial of access, which is why it works even against organizations with excellent backups. Modern ransomware often combines both to increase pressure."
+  },
+  {
+    "id": "secplus-d2-mc-051",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A recently terminated system administrator uses retained credentials to delete production data out of anger at their dismissal. Which motivation applies?",
+    "choices": [
+      "Revenge",
+      "Financial gain",
+      "Espionage",
+      "War"
+    ],
+    "answerIndex": 0,
+    "explanation": "Revenge motivates a disproportionate, destructive act with no profit motive, which is characteristic of insider incidents following a grievance. Prompt deprovisioning at termination is the control that addresses it."
+  },
+  {
+    "id": "secplus-d2-mc-052",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A researcher probes a company's systems with written authorization and reports the flaws they find so they can be fixed. Which description applies to this actor?",
+    "choices": [
+      "An authorized, ethical actor operating within agreed rules of engagement",
+      "An unskilled attacker running downloaded tools",
+      "A hacktivist pursuing a political agenda",
+      "An organized crime group seeking payment"
+    ],
+    "answerIndex": 0,
+    "explanation": "What distinguishes ethical activity is prior authorization and defined scope, not the techniques used — the tools are frequently identical to an attacker's. Without that written authorization, the same actions are simply an intrusion."
+  },
+  {
+    "id": "secplus-d2-mc-053",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker pairs with an unattended conference room speakerphone over an unsecured short-range wireless connection and captures audio. Which threat vector was used?",
+    "choices": [
+      "Bluetooth",
+      "An open service port",
+      "A removable device",
+      "A watering hole"
+    ],
+    "answerIndex": 0,
+    "explanation": "Bluetooth is an easily overlooked vector because devices are often left discoverable and paired with default PINs. Disabling discovery and requiring authenticated pairing addresses most of the practical risk."
+  },
+  {
+    "id": "secplus-d2-mc-054",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A vulnerability scan of an internet-facing server reveals a database management port reachable from any address. What kind of threat vector is this?",
+    "choices": [
+      "An open service port exposing an unnecessary attack surface",
+      "A supply chain vulnerability in the database vendor",
+      "A misconfigured email gateway",
+      "A jailbroken device on the network"
+    ],
+    "answerIndex": 0,
+    "explanation": "Every reachable port is attack surface, and management services should never be exposed publicly. Closing the port or restricting it to a management network removes the exposure without touching the application."
+  },
+  {
+    "id": "secplus-d2-mc-055",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An organization deploys dozens of network cameras but never changes the manufacturer's administrative password. Which threat vector does this create?",
+    "choices": [
+      "Default credentials, which are published and widely scanned for",
+      "A race condition in the camera firmware",
+      "A cryptographic downgrade attack",
+      "A directory traversal vulnerability"
+    ],
+    "answerIndex": 0,
+    "explanation": "Default credentials for common devices are documented publicly and tested automatically by scanning botnets within minutes of a device appearing online. Changing them is among the cheapest and highest-value hardening steps available."
+  },
+  {
+    "id": "secplus-d2-mc-056",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An employee receives a phone call from someone claiming to be from the IT help desk, who invents a plausible story about an urgent audit to extract the employee's password. Which technique is this?",
+    "choices": [
+      "Pretexting delivered by voice, commonly called vishing",
+      "Smishing delivered by text message",
+      "A watering hole attack",
+      "Typosquatting"
+    ],
+    "answerIndex": 0,
+    "explanation": "Pretexting is the fabricated scenario that makes the request seem legitimate, and delivering it by phone makes it vishing. Verifying requests through a known-good channel is the practical defence."
+  },
+  {
+    "id": "secplus-d2-mc-057",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker impersonates a delivery courier to gain physical entry to an office, then plugs a device into an unused network jack. Which two techniques were combined?",
+    "choices": [
+      "Impersonation and a removable or rogue device attached to the network",
+      "Typosquatting and a supply chain compromise",
+      "A watering hole and a logic bomb",
+      "Smishing and privilege escalation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Social engineering provides the physical access and the device provides the persistent network foothold. Port security and network access control limit what an attacker can accomplish once a cable is plugged in."
+  },
+  {
+    "id": "secplus-d2-mc-058",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Malware spreads automatically across a network by exploiting a service vulnerability, without requiring any user to open or run anything. Which malware type is this?",
+    "choices": [
+      "A worm",
+      "A trojan",
+      "A logic bomb",
+      "Spyware"
+    ],
+    "answerIndex": 0,
+    "explanation": "Self-propagation without user interaction is the defining characteristic of a worm, which is why worm outbreaks move so much faster than malware requiring a click. Patching the exploited service is what stops the spread."
+  },
+  {
+    "id": "secplus-d2-mc-059",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Malicious code attaches itself to a legitimate executable and runs whenever a user launches that program. Which malware type is this?",
+    "choices": [
+      "A virus",
+      "A worm",
+      "A rootkit",
+      "A logic bomb"
+    ],
+    "answerIndex": 0,
+    "explanation": "A virus requires a host file and user execution to spread, unlike a worm which propagates on its own. The distinction is tested frequently and turns entirely on whether user action is needed."
+  },
+  {
+    "id": "secplus-d2-mc-060",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A new laptop ships with numerous manufacturer-installed applications the user never wanted, which consume resources and expand the attack surface. What is this software called?",
+    "choices": [
+      "Bloatware",
+      "Spyware",
+      "A rootkit",
+      "Ransomware"
+    ],
+    "answerIndex": 0,
+    "explanation": "Bloatware is unwanted preinstalled software that is not malicious by intent but still adds unpatched code to the system. Removing it is a standard part of building a workstation baseline image."
+  },
+  {
+    "id": "secplus-d2-mc-061",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Software silently collects a user's browsing habits and transmits them to a third party for advertising purposes. Which malware category is this?",
+    "choices": [
+      "Spyware",
+      "A worm",
+      "Ransomware",
+      "A logic bomb"
+    ],
+    "answerIndex": 0,
+    "explanation": "Spyware's purpose is covert data collection about the user rather than damage or extortion. It often arrives bundled with software the user installed deliberately, which is why it evades suspicion."
+  },
+  {
+    "id": "secplus-d2-mc-062",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A web application concatenates user input directly into a database query, allowing an attacker to submit input that alters the query's logic and returns other users' records. Which attack is this?",
+    "choices": [
+      "SQL injection",
+      "Cross-site scripting",
+      "Directory traversal",
+      "Cross-site request forgery"
+    ],
+    "answerIndex": 0,
+    "explanation": "SQL injection succeeds when input is treated as code rather than data, and parameterized queries are the definitive fix. Input validation helps but is not sufficient on its own, since it depends on anticipating every dangerous pattern."
+  },
+  {
+    "id": "secplus-d2-mc-063",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker exploits a software flaw for which no patch exists and which the vendor has not yet acknowledged. What is this called?",
+    "choices": [
+      "A zero-day vulnerability",
+      "A misconfiguration",
+      "A legacy system vulnerability",
+      "A race condition"
+    ],
+    "answerIndex": 0,
+    "explanation": "A zero-day is unknown to the defender and unpatched by definition, so signature-based detection is unlikely to catch it. Behaviour-based detection, segmentation, and least privilege are what limit the damage instead."
+  },
+  {
+    "id": "secplus-d2-mc-064",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A hardware appliance still in production has reached the manufacturer's end of life, and no further firmware updates will ever be issued. What is the security consequence?",
+    "choices": [
+      "Any newly discovered vulnerability in it will remain permanently unpatched",
+      "The device will stop functioning on the announced date",
+      "The device automatically fails closed and blocks all traffic",
+      "The device's existing vulnerabilities are removed from public databases"
+    ],
+    "answerIndex": 0,
+    "explanation": "End of life converts every future vulnerability into a permanent one, which is why continued use requires compensating controls such as isolation. The risk grows steadily over time rather than appearing all at once."
+  },
+  {
+    "id": "secplus-d2-mc-065",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An application uses a hashing algorithm with known collision weaknesses to verify the integrity of downloaded updates. What class of vulnerability is this?",
+    "choices": [
+      "A cryptographic vulnerability arising from a deprecated algorithm",
+      "A misconfiguration of the update server",
+      "A race condition during file verification",
+      "A supply chain compromise of the vendor"
+    ],
+    "answerIndex": 0,
+    "explanation": "Using an algorithm whose collision resistance is broken means an attacker can craft a different file with a matching digest, defeating the integrity check. Migrating to a current algorithm is the fix, since no amount of configuration repairs a broken primitive."
+  },
+  {
+    "id": "secplus-d2-mc-066",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A cloud storage container holding customer records is discovered to permit anonymous read access because an administrator changed a permission during testing and never reverted it. Which vulnerability category applies?",
+    "choices": [
+      "Misconfiguration",
+      "A zero-day vulnerability",
+      "A supply chain compromise",
+      "A cryptographic weakness"
+    ],
+    "answerIndex": 0,
+    "explanation": "Misconfiguration is the introduction of risk through settings rather than defective code, and it is among the most common causes of cloud data exposure. Configuration enforcement and drift detection are the systematic controls for it."
+  },
+  {
+    "id": "secplus-d2-mc-067",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Multiple user accounts are locked out within minutes of each other, and authentication logs show hundreds of failed attempts per account. Which activity does this indicate?",
+    "choices": [
+      "A brute-force password attack against multiple accounts",
+      "A password spraying attack using one password per account",
+      "An impossible travel condition",
+      "A pass-the-hash attack using stolen credential material"
+    ],
+    "answerIndex": 0,
+    "explanation": "Many failures against each of several accounts is brute force, and lockout is the control doing its job. Password spraying is the quieter inverse — one or two attempts per account, deliberately staying under the lockout threshold."
+  },
+  {
+    "id": "secplus-d2-mc-068",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A SIEM alert fires because a single user account is logged in simultaneously from two workstations in different offices. Which indicator is this?",
+    "choices": [
+      "Concurrent session usage",
+      "Impossible travel",
+      "Out-of-cycle logging",
+      "Missing logs"
+    ],
+    "answerIndex": 0,
+    "explanation": "Concurrent sessions suggest a shared or stolen credential being used alongside the legitimate owner. It differs from impossible travel, which turns on the physical impracticability of the distance within the elapsed time."
+  },
+  {
+    "id": "secplus-d2-mc-069",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An analyst notices that a server's security event log has a two-hour gap during the period an intrusion is suspected, with no entries at all. What does this most likely indicate?",
+    "choices": [
+      "Log tampering by an attacker attempting to hide their activity",
+      "Normal log rotation during a maintenance window",
+      "A time synchronization drift on the logging server",
+      "An overly aggressive alert tuning configuration"
+    ],
+    "answerIndex": 0,
+    "explanation": "Missing logs covering exactly the period of interest is itself a strong indicator, since attackers routinely clear traces. Forwarding logs off the host in real time is what preserves evidence an attacker can no longer reach."
+  },
+  {
+    "id": "secplus-d2-mc-070",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A batch job that normally runs at 02:00 is observed executing at 14:30 with elevated privileges, and no change was scheduled. Which indicator category does this fall under?",
+    "choices": [
+      "Out-of-cycle logging or activity occurring outside its expected schedule",
+      "Account lockout following repeated failures",
+      "Blocked content reported by the web filter",
+      "Resource consumption exceeding baseline"
+    ],
+    "answerIndex": 0,
+    "explanation": "Activity outside its normal window is anomalous by definition and worth investigating even when nothing else looks wrong. This is precisely why establishing a behavioural baseline has practical detection value."
+  },
+  {
+    "id": "secplus-d2-mc-071",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A workstation's CPU sits at 100 percent overnight, its fans run constantly, and network traffic to an unfamiliar pool address is sustained. Which activity is most consistent with these indicators?",
+    "choices": [
+      "Cryptomining malware consuming system resources",
+      "Ransomware encrypting local files",
+      "A logic bomb awaiting its trigger condition",
+      "A keylogger recording user input"
+    ],
+    "answerIndex": 0,
+    "explanation": "Sustained maximum resource consumption plus traffic to a mining pool is the cryptominer signature. Ransomware produces a burst of file modification and then a ransom note rather than an indefinite CPU load."
+  },
+  {
+    "id": "secplus-d2-mc-072",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A web filter reports repeated blocked requests from one internal host to domains associated with known command and control infrastructure. What should this be treated as?",
+    "choices": [
+      "An indicator that the host may already be compromised and attempting to call home",
+      "A false positive, since the requests were blocked successfully",
+      "Normal user browsing behaviour requiring no action",
+      "Evidence that the web filter needs its block list reduced"
+    ],
+    "answerIndex": 0,
+    "explanation": "The block prevented the connection but does not explain why the host tried to make it, and repeated attempts point to resident malware. Treating a blocked outbound attempt as a closed matter is a common and costly triage error."
+  },
+  {
+    "id": "secplus-d2-mc-073",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An organization divides its network so that the payment processing systems sit in their own zone, reachable only through tightly controlled paths. Which mitigation technique is this?",
+    "choices": [
+      "Segmentation",
+      "Application allow listing",
+      "Patching",
+      "Least privilege"
+    ],
+    "answerIndex": 0,
+    "explanation": "Segmentation limits lateral movement, so a compromise elsewhere on the network does not automatically reach the sensitive zone. It also narrows compliance scope, which is why it is standard practice for payment environments."
+  },
+  {
+    "id": "secplus-d2-mc-074",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A workstation is configured so that only explicitly approved executables may run, and everything else is denied by default. Which mitigation is this?",
+    "choices": [
+      "Application allow listing",
+      "Antivirus signature scanning",
+      "Host-based intrusion detection",
+      "Full-disk encryption"
+    ],
+    "answerIndex": 0,
+    "explanation": "Allow listing inverts the default from permit to deny, which blocks unknown malware without needing a signature for it. The operational cost is maintaining the list as legitimate software changes."
+  },
+  {
+    "id": "secplus-d2-mc-075",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A compromised laptop is immediately disconnected from the corporate network and placed on a restricted segment while it is investigated. Which mitigation technique is this?",
+    "choices": [
+      "Isolation",
+      "Decommissioning",
+      "Encryption",
+      "Configuration enforcement"
+    ],
+    "answerIndex": 0,
+    "explanation": "Isolation stops ongoing damage and lateral movement while preserving the system for analysis. Simply powering the machine off would destroy volatile evidence that is often central to the investigation."
+  },
+  {
+    "id": "secplus-d2-mc-076",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A tool continuously checks that every server's settings still match the approved secure baseline, and automatically reverts unauthorized deviations. Which mitigation technique is this?",
+    "choices": [
+      "Configuration enforcement",
+      "Application allow listing",
+      "Segmentation",
+      "Patch management"
+    ],
+    "answerIndex": 0,
+    "explanation": "Configuration enforcement addresses drift, where systems slowly diverge from their intended hardened state through ad hoc changes. Detection alone helps, but automatic remediation is what keeps the estate consistent at scale."
+  },
+  {
+    "id": "secplus-d2-mc-077",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which hardening step most directly reduces the number of network services an attacker can reach on a server?",
+    "choices": [
+      "Disabling unnecessary ports and protocols",
+      "Enabling full-disk encryption on the server",
+      "Increasing the password complexity requirement",
+      "Configuring log forwarding to a SIEM"
+    ],
+    "answerIndex": 0,
+    "explanation": "Every listening service is potential attack surface, so turning off what is not needed removes entire classes of risk at once. Encryption, passwords, and logging are all valuable but do not shrink the network-reachable surface."
+  },
+  {
+    "id": "secplus-d2-mc-078",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A security team deploys software on every endpoint that continuously records process activity, detects suspicious behaviour, and allows an analyst to isolate the host remotely. Which technology is this?",
+    "choices": [
+      "Endpoint detection and response",
+      "A host-based firewall",
+      "Full-disk encryption",
+      "A vulnerability scanner"
+    ],
+    "answerIndex": 0,
+    "explanation": "EDR provides behavioural telemetry, detection, and remote response on the endpoint itself. That last capability matters during an incident, when reaching a machine physically may be impractical."
+  },
+  {
+    "id": "secplus-d2-mc-079",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which control specifically restricts which network connections an individual workstation will accept or initiate, independent of the network's perimeter firewall?",
+    "choices": [
+      "A host-based firewall",
+      "A network intrusion detection system",
+      "A web application firewall",
+      "A unified threat management appliance"
+    ],
+    "answerIndex": 0,
+    "explanation": "A host firewall enforces policy at the endpoint, which still applies when the device leaves the corporate network or when an attacker is already inside the perimeter. Perimeter devices do nothing about traffic between two hosts on the same segment."
+  },
+  {
+    "id": "secplus-d2-mc-080",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An attacker who has compromised a low-privileged account exploits a flaw to obtain system-level rights on the same machine. Which mitigation most directly limits the value of the initial account?",
+    "choices": [
+      "Least privilege, so the initial account holds only the rights it genuinely needs",
+      "Full-disk encryption on the compromised machine",
+      "Increasing the log retention period",
+      "Deploying a web application firewall"
+    ],
+    "answerIndex": 0,
+    "explanation": "Least privilege reduces what an attacker starts with, which constrains what they can reach even before escalation is attempted. It does not prevent an escalation flaw from existing, which is why patching remains necessary alongside it."
+  },
+  {
+    "id": "secplus-d2-mc-081",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An organization discovers an unsupported server still running a business application. Patching is impossible. Which combination of responses is most appropriate?",
+    "choices": [
+      "Isolate the system through segmentation and apply compensating controls while planning replacement",
+      "Accept the risk without documentation since no patch exists",
+      "Expose the system publicly so users can reach it directly",
+      "Remove all monitoring from the system to reduce alert noise"
+    ],
+    "answerIndex": 0,
+    "explanation": "When the primary control is unavailable, you compensate and contain while working toward removal. Documenting the exception and its expiry is what prevents a temporary arrangement from quietly becoming permanent."
+  },
+  {
+    "id": "secplus-d2-mc-082",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A managed service provider with remote access into many client networks is compromised, and the attacker uses that access to reach the clients. Which threat vector does this illustrate?",
+    "choices": [
+      "A supply chain attack through a trusted third-party provider",
+      "A watering hole attack on an industry website",
+      "A brute-force attack against client credentials",
+      "A physical intrusion at the client site"
+    ],
+    "answerIndex": 0,
+    "explanation": "Compromising one provider yields access to many downstream victims, which makes providers a disproportionately attractive target. Limiting provider access to only what is needed, and monitoring it, is the practical mitigation."
+  },
+  {
+    "id": "secplus-d2-mc-083",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A user is sent a document that appears benign but contains an embedded macro that downloads additional malware when enabled. Which threat vector is this?",
+    "choices": [
+      "A file-based vector delivered as an email attachment",
+      "An open service port on the mail server",
+      "A Bluetooth pairing vulnerability",
+      "A cryptographic downgrade attack"
+    ],
+    "answerIndex": 0,
+    "explanation": "Documents carrying active content remain among the most successful delivery mechanisms, since they arrive looking like ordinary business correspondence. Disabling macros by policy removes most of this vector at once."
+  },
+  {
+    "id": "secplus-d2-mc-084",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Two applications write to the same temporary file, and an attacker exploits the brief interval between a permission check and the file's use to substitute their own file. Which vulnerability class is this?",
+    "choices": [
+      "A race condition, specifically time-of-check to time-of-use",
+      "A buffer overflow in the file handling routine",
+      "A directory traversal in the file path",
+      "A memory injection into the running process"
+    ],
+    "answerIndex": 0,
+    "explanation": "TOCTOU exploits the gap between validating a resource and acting on it, so the thing checked is not the thing used. These bugs are subtle because the code looks correct when read sequentially."
+  },
+  {
+    "id": "secplus-d2-mc-085",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "An organization removes a decommissioned application's servers, revokes its certificates, deletes its DNS entries, and disables its service accounts. Which mitigation technique does this describe?",
+    "choices": [
+      "Decommissioning, removing the asset and its dependencies from the environment",
+      "Isolation of a compromised host",
+      "Configuration enforcement against a baseline",
+      "Segmentation of the production network"
+    ],
+    "answerIndex": 0,
+    "explanation": "Proper decommissioning removes the whole footprint, not just the hardware — leftover DNS records and service accounts are recurring sources of forgotten exposure. Orphaned credentials in particular tend to outlive the systems they were created for."
+  },
+  {
+    "id": "secplus-d2-mc-086",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "A monitoring platform alerts when a host's outbound data volume rises far above its established norm. Which attacker activity is this most likely to reveal?",
+    "choices": [
+      "Data exfiltration",
+      "A password spraying campaign",
+      "A downgrade attack on TLS",
+      "Physical tampering with the device"
+    ],
+    "answerIndex": 0,
+    "explanation": "Bulk collection has to leave the network eventually, and volume anomalies are one of the few reliable signals of that stage. This is why baselining normal traffic per host has direct investigative value."
+  },
+  {
+    "id": "secplus-d2-mc-087",
+    "type": "mc",
+    "domainCode": "2.0",
+    "prompt": "Which statement best distinguishes a vulnerability from an exploit?",
+    "choices": [
+      "A vulnerability is the weakness itself, while an exploit is the technique or code that takes advantage of it",
+      "A vulnerability is malicious code, while an exploit is a configuration error",
+      "A vulnerability applies only to software, while an exploit applies only to hardware",
+      "A vulnerability is always publicly known, while an exploit is always secret"
+    ],
+    "answerIndex": 0,
+    "explanation": "The weakness can exist for years with no exploit written for it, which is part of why prioritization considers exploit availability. A vulnerability with public working exploit code is far more urgent than one without."
+  },
+  {
+    "id": "secplus-d2-multi-008",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO characteristics most clearly distinguish an insider threat from an external attacker?",
+    "choices": [
+      "The insider already holds legitimate authorized access",
+      "The insider's activity may closely resemble normal business use, making detection harder",
+      "The insider is always more technically sophisticated",
+      "The insider must first bypass the perimeter firewall",
+      "The insider can only act during scheduled maintenance windows"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Insiders start inside the trust boundary, so the perimeter controls that stop outsiders are simply not in the path. Detecting them depends on behavioural analysis rather than intrusion detection, because the access itself is authorized."
+  },
+  {
+    "id": "secplus-d2-multi-009",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO indicators would most strongly suggest a password spraying attack rather than conventional brute force?",
+    "choices": [
+      "A small number of failed attempts spread across very many accounts",
+      "Failures originating from a single source within a short window against a wide account list",
+      "Hundreds of failures against one individual account",
+      "Repeated account lockouts on a single privileged account",
+      "A successful login followed immediately by a password change by the legitimate user"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Spraying deliberately stays below lockout thresholds by trying one or two common passwords against many accounts. The breadth across accounts combined with low per-account volume is the signature, and it is easy to miss if you alert only on lockouts."
+  },
+  {
+    "id": "secplus-d2-multi-010",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO vulnerabilities are specific to mobile devices?",
+    "choices": [
+      "Jailbreaking or rooting, which removes the platform's security restrictions",
+      "Sideloading applications from outside the official app store",
+      "Virtual machine escape from a guest to the hypervisor",
+      "Directory traversal in a web application",
+      "SQL injection against a backend database"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Both jailbreaking and sideloading defeat the vetting and sandboxing that mobile platforms depend on for their security model. The other three are application and virtualization issues that are not mobile-specific."
+  },
+  {
+    "id": "secplus-d2-multi-011",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO conditions make a wireless network an effective attack vector?",
+    "choices": [
+      "Use of an outdated encryption protocol such as WEP or WPA",
+      "An open network with no authentication, allowing anyone within range to join",
+      "Use of WPA3 with SAE for the pre-shared key exchange",
+      "802.1X authentication against a RADIUS server",
+      "Client isolation enabled on the guest SSID"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Broken encryption and no authentication both let an attacker within radio range reach the network without any physical access. The remaining three options are controls that make wireless harder to attack, not vectors."
+  },
+  {
+    "id": "secplus-d2-multi-012",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO indicators would most suggest that an attacker has achieved privilege escalation?",
+    "choices": [
+      "A standard user account suddenly performing administrative actions",
+      "New accounts appearing in privileged groups without a corresponding change ticket",
+      "An increase in blocked outbound requests from a workstation",
+      "A rise in inbound port scan attempts at the perimeter",
+      "A user failing authentication several times before succeeding"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Escalation shows up as an identity doing things it should not be able to do, or as privileged group membership changing outside the approval process. Scans and blocked requests indicate activity but say nothing about acquired privilege."
+  },
+  {
+    "id": "secplus-d2-multi-013",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO mitigations would most directly limit an attacker's lateral movement after compromising a single workstation?",
+    "choices": [
+      "Network segmentation separating workstations from server and management zones",
+      "Least privilege, so the compromised account cannot access unrelated systems",
+      "Increasing the log retention period on the SIEM",
+      "Deploying a web application firewall in front of the public website",
+      "Enabling full-disk encryption on all workstations"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Segmentation restricts where the attacker can reach and least privilege restricts what their stolen credentials unlock. Longer retention aids investigation afterwards, and the other two controls address entirely different attack paths."
+  },
+  {
+    "id": "secplus-d2-multi-014",
+    "type": "multi",
+    "domainCode": "2.0",
+    "prompt": "Which TWO statements about zero-day vulnerabilities are accurate?",
+    "choices": [
+      "Signature-based detection is unlikely to identify the exploit before a signature exists",
+      "Defence relies on behavioural detection, segmentation, and least privilege rather than patching",
+      "They can be remediated immediately by applying the vendor's patch",
+      "They are always exploited by nation-state actors exclusively",
+      "They are automatically listed in the CVE database before exploitation begins"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The defining problem is that neither a patch nor a signature exists yet, so controls that do not depend on prior knowledge of the specific threat are what remain. A CVE identifier is normally assigned only once the flaw becomes known."
+  },
+  {
+    "id": "secplus-d2-order-001",
+    "type": "order",
+    "domainCode": "2.0",
+    "prompt": "Place the stages of a typical ransomware incident in the order they occur.",
+    "items": [
+      "Initial access is gained, often through phishing or an exposed service",
+      "The attacker escalates privilege and moves laterally to reach valuable systems",
+      "Sensitive data is located and exfiltrated for later extortion leverage",
+      "Backups and shadow copies are located and destroyed",
+      "Files are encrypted across the environment and a ransom demand is presented"
+    ],
+    "explanation": "Understanding the sequence matters because everything before the encryption stage is where detection is still possible and cheap. By the time the ransom note appears, the attacker has usually held access for days or weeks."
+  },
+  {
+    "id": "secplus-d2-match-001",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each malware type to its defining behaviour.",
+    "pairs": [
+      {"left": "Worm", "right": "Spreads across systems automatically without any user interaction"},
+      {"left": "Trojan", "right": "Disguises itself as desirable software the user installs willingly"},
+      {"left": "Rootkit", "right": "Modifies low-level system components to conceal its own presence"},
+      {"left": "Logic bomb", "right": "Remains dormant until a specific condition or date triggers it"},
+      {"left": "Keylogger", "right": "Records the keystrokes a user types, capturing credentials"}
+    ],
+    "explanation": "These distinctions turn on propagation method and purpose rather than on damage caused. The pairs most often confused are worm with virus, which differ on whether user action is required, and rootkit with trojan, which differ on concealment versus disguise."
+  },
+  {
+    "id": "secplus-d2-match-002",
+    "type": "match",
+    "domainCode": "2.0",
+    "prompt": "Match each social engineering technique to its description.",
+    "pairs": [
+      {"left": "Phishing", "right": "A fraudulent message sent broadly by email to harvest credentials or deliver malware"},
+      {"left": "Vishing", "right": "A fraudulent approach made over a voice call"},
+      {"left": "Smishing", "right": "A fraudulent approach delivered by text message"},
+      {"left": "Watering hole", "right": "Compromising a site the intended victims are known to visit"},
+      {"left": "Typosquatting", "right": "Registering a misspelled domain to catch users who mistype a real one"}
+    ],
+    "explanation": "All five exploit trust rather than a technical flaw, which is why technical controls alone never fully address them. The delivery channel is what separates the first three, and the last two rely on the victim arriving at attacker-controlled infrastructure themselves."
   }
 ]

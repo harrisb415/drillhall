@@ -2,6 +2,23 @@
 
 All notable changes to this project are documented here. Format loosely follows [Keep a Changelog](https://keepachangelog.com/). Versions are kept in lockstep across every workspace `package.json` (root + `apps/*` + `packages/*`).
 
+## [1.17.0] — 2026-08-24
+
+### Added
+- **Network+ expanded from 271 to 500 questions and Security+ from 279 to 500** — packs three and four, completing the bank-size work across all four certs. Both now sit **exactly on their official domain weights** (Network+ 115/100/95/70/120 against 23/20/19/14/24; Security+ 60/110/90/140/100 against 12/22/18/28/20), so a weighted mock draws in the same proportions the real blueprint uses at every exam size.
+  - **90-question mocks before the bank repeats: 3.0 → 5.6 for Network+ and 3.1 → 5.6 for Security+.**
+  - Multiple-response ratio at **12.0%** in both packs; PBQ coverage grew to 27 in Network+ and 24 in Security+ across ordering, matching, and terminal.
+  - Network+ additions concentrated on the areas the pack under-served relative to weight: troubleshooting methodology and tooling (the 24% domain), port and connector recall, subnetting arithmetic, and the operations material around SNMP internals, flow data, DNS record types, and recovery metrics.
+  - Security+ additions concentrated on Security Operations (the 28% domain) — asset lifecycle, authentication factors and password guidance, federation versus delegated authorization, digital forensics and order of volatility, and automation tradeoffs — plus governance depth in agreements, audit types, and penetration-test framing.
+
+### Fixed
+- **Three near-duplicate questions**, all caught by the detector added in 1.15.0 before they reached the bank. Two were structural mirrors of existing items — a troubleshooting-methodology ordering question already present in Network+, and a containment-versus-eradication multi already present in Security+ — and each was replaced with a question testing something different rather than reworded.
+  - The replacements carry their own weight: the duplicated methodology ordering became a trace of the events in a routed cross-VLAN connection, and the duplicated incident-response multi became a post-incident review question about what that review should actually produce.
+- A fourth item was replaced on the same principle despite scoring below the CI threshold: a terminal question asking for the routing-table command duplicated an adjacent recall question, and became continuous ping instead.
+
+### Notes
+- Totals across all four packs: **1,874 questions** (A+ Core 1 467, A+ Core 2 407, Network+ 500, Security+ 500), up from 1,052 when this work began.
+
 ## [1.16.0] — 2026-08-20
 
 ### Added

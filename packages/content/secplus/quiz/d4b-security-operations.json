@@ -556,5 +556,880 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "RBAC assigns by role and ABAC evaluates contextual attributes, so neither hinges on the specific individual. DAC is owner-assigned per user, and password policy and CAPTCHA are authentication mechanisms, not authorization models."
+  },
+  {
+    "id": "secplus-d4-mc-060",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization requires that every purchase of new hardware or software pass through a defined evaluation of the vendor and the product's security posture. Which asset management phase is this?",
+    "choices": [
+      "Acquisition and procurement",
+      "Assignment and accounting",
+      "Monitoring and tracking",
+      "Disposal and decommissioning"
+    ],
+    "answerIndex": 0,
+    "explanation": "Security review at procurement is far cheaper than remediating a product already embedded in operations. It is also the last point at which walking away from a vendor costs nothing."
+  },
+  {
+    "id": "secplus-d4-mc-061",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Every device in an organization is recorded with an assigned owner responsible for its use and classification. Which asset management practice is this?",
+    "choices": [
+      "Assignment and accounting of ownership",
+      "Sanitization prior to disposal",
+      "Enumeration through network scanning",
+      "Certification of destruction"
+    ],
+    "answerIndex": 0,
+    "explanation": "A named owner is what makes decisions about an asset possible — patching, classification, and eventual retirement all need someone accountable. Unowned assets are the ones that quietly go unpatched for years."
+  },
+  {
+    "id": "secplus-d4-mc-062",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A security team runs periodic network scans to discover devices that are not present in the official asset inventory. What is this process called?",
+    "choices": [
+      "Enumeration to identify unknown or unmanaged assets",
+      "Sanitization of decommissioned media",
+      "Attestation of user access rights",
+      "Tokenization of asset identifiers"
+    ],
+    "answerIndex": 0,
+    "explanation": "You cannot protect what you do not know exists, and inventories drift out of date almost immediately without active discovery. Devices found this way are frequently shadow IT or forgotten test systems."
+  },
+  {
+    "id": "secplus-d4-mc-063",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A decommissioned drive containing sensitive data is physically shredded, and the vendor provides a signed document recording the serial numbers destroyed. What does that document provide?",
+    "choices": [
+      "Certification of destruction, providing auditable evidence the data was rendered unrecoverable",
+      "A data retention schedule for the destroyed records",
+      "A chain of custody for an active investigation",
+      "An attestation of the user's access rights"
+    ],
+    "answerIndex": 0,
+    "explanation": "Certification turns a physical action into evidence you can present to an auditor or regulator. Without it, the organization has performed the control but cannot demonstrate it."
+  },
+  {
+    "id": "secplus-d4-mc-064",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What is the difference between sanitization and destruction when retiring storage media?",
+    "choices": [
+      "Sanitization removes the data while leaving the media reusable, whereas destruction renders the media itself unusable",
+      "Sanitization applies only to paper records and destruction only to digital media",
+      "Sanitization is performed by the vendor and destruction by the customer",
+      "Sanitization is reversible and destruction is not"
+    ],
+    "answerIndex": 0,
+    "explanation": "The choice depends on whether the media has residual value and how sensitive the data was. Destruction is the safer option for highly sensitive data, since it removes any question about the effectiveness of the wipe."
+  },
+  {
+    "id": "secplus-d4-mc-065",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A policy states that financial records must be kept for seven years and then deleted. What is this policy called?",
+    "choices": [
+      "A data retention policy",
+      "A data classification policy",
+      "An acceptable use policy",
+      "A change management policy"
+    ],
+    "answerIndex": 0,
+    "explanation": "Retention policies define both the minimum period required, often by regulation, and the point at which data becomes a liability rather than an asset. Keeping data indefinitely enlarges the impact of any future breach."
+  },
+  {
+    "id": "secplus-d4-mc-066",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A user authenticates with a password and a fingerprint. Which two authentication factor categories does this combine?",
+    "choices": [
+      "Something you know and something you are",
+      "Something you have and something you are",
+      "Something you know and something you have",
+      "Something you are and somewhere you are"
+    ],
+    "answerIndex": 0,
+    "explanation": "A password is knowledge and a fingerprint is an inherent characteristic, so this qualifies as genuine multifactor authentication. Two passwords, by contrast, would be two instances of the same factor and provide much less additional protection."
+  },
+  {
+    "id": "secplus-d4-mc-067",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A user carries a small physical device that generates a rotating numeric code independent of any network connection. Which authentication implementation is this?",
+    "choices": [
+      "A hardware token",
+      "A software token application",
+      "A security key using FIDO2",
+      "A biometric scanner"
+    ],
+    "answerIndex": 0,
+    "explanation": "A hardware token is a dedicated physical device generating time-based codes, useful where phones are not permitted. A software token does the same job as an app, trading some assurance for convenience."
+  },
+  {
+    "id": "secplus-d4-mc-068",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization deploys FIDO2 security keys that perform an origin-bound cryptographic challenge with the site being visited. What advantage does this provide over one-time codes?",
+    "choices": [
+      "It resists phishing, because the key will not authenticate to a look-alike domain",
+      "It removes the need to enrol users in the authentication system",
+      "It works without any physical device in the user's possession",
+      "It eliminates the need to protect the account's recovery process"
+    ],
+    "answerIndex": 0,
+    "explanation": "Because the challenge is bound to the origin, a proxied phishing site cannot obtain a usable response — a property one-time codes lack entirely. Account recovery then becomes the weakest remaining path and needs equivalent protection."
+  },
+  {
+    "id": "secplus-d4-mc-069",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which characteristic is a genuine limitation of biometric authentication compared with passwords?",
+    "choices": [
+      "A compromised biometric cannot be reissued the way a password can be changed",
+      "Biometrics cannot be used as part of multifactor authentication",
+      "Biometrics are always slower to present than a typed password",
+      "Biometric systems never produce false rejections"
+    ],
+    "answerIndex": 0,
+    "explanation": "You can issue a new password but not a new fingerprint, which is why biometric templates warrant strong protection. Practical systems also have to balance the false acceptance and false rejection rates against each other."
+  },
+  {
+    "id": "secplus-d4-mc-070",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Modern password guidance favours longer passphrases over shorter passwords with forced complexity rules. What is the primary reasoning?",
+    "choices": [
+      "Length contributes more to resistance against guessing, and complexity rules push users toward predictable patterns",
+      "Complexity rules are computationally impossible to enforce",
+      "Longer passwords are easier for systems to hash",
+      "Complexity rules prevent the use of password managers"
+    ],
+    "answerIndex": 0,
+    "explanation": "Mandated substitutions produce predictable transformations that cracking tools model directly, while length raises the search space genuinely. This is why current guidance emphasises length, screening against breached passwords, and dropping arbitrary complexity mandates."
+  },
+  {
+    "id": "secplus-d4-mc-071",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Why does current guidance discourage mandatory periodic password expiration for ordinary user accounts?",
+    "choices": [
+      "Frequent forced changes lead users to choose weaker, incrementally modified passwords",
+      "Expiration prevents the use of multifactor authentication",
+      "Expiration makes password hashes easier to crack",
+      "Expiration is technically impossible to enforce in a directory service"
+    ],
+    "answerIndex": 0,
+    "explanation": "Routine expiration produces predictable increments such as appending a number, weakening rather than strengthening the credential. Changing passwords on evidence of compromise remains entirely appropriate."
+  },
+  {
+    "id": "secplus-d4-mc-072",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization deploys a password manager for all staff. Which risk does this most directly reduce?",
+    "choices": [
+      "Password reuse across multiple services",
+      "Phishing of the master password itself",
+      "Compromise of the underlying operating system",
+      "Weaknesses in the service's password hashing"
+    ],
+    "answerIndex": 0,
+    "explanation": "Password managers make unique credentials per site practical, which limits a single breach to a single account. The master credential then becomes the critical asset and warrants multifactor protection."
+  },
+  {
+    "id": "secplus-d4-mc-073",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A system authenticates users with a device-bound cryptographic credential and a biometric, with no password stored anywhere. What is this approach called?",
+    "choices": [
+      "Passwordless authentication",
+      "Single sign-on",
+      "Federation",
+      "Privileged access management"
+    ],
+    "answerIndex": 0,
+    "explanation": "Passwordless removes the shared secret entirely, so there is nothing to phish, reuse, or leak in a breach. Recovery flows become the security-critical path, since they are the remaining way to obtain access without the enrolled device."
+  },
+  {
+    "id": "secplus-d4-mc-074",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An employee signs into their corporate account and can then access a partner organization's application without a separate account there. Which concept enables this?",
+    "choices": [
+      "Federation, where one organization trusts another's identity assertions",
+      "Discretionary access control on the partner's resources",
+      "Privileged access management with credential vaulting",
+      "Network access control based on device posture"
+    ],
+    "answerIndex": 0,
+    "explanation": "Federation extends trust across organizational boundaries so identities are managed once at their source. It also means the trusting party's security now depends on the identity provider's practices."
+  },
+  {
+    "id": "secplus-d4-mc-075",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which protocol is designed specifically to grant a third-party application limited delegated access to a resource without sharing the user's credentials?",
+    "choices": [
+      "OAuth 2.0",
+      "SAML",
+      "LDAP",
+      "RADIUS"
+    ],
+    "answerIndex": 0,
+    "explanation": "OAuth issues scoped access tokens for delegated authorization, which is why consent screens list specific permissions. SAML addresses authentication and single sign-on rather than delegated authorization, and the two are frequently confused."
+  },
+  {
+    "id": "secplus-d4-mc-076",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "What is the primary function of LDAP in an identity infrastructure?",
+    "choices": [
+      "Providing a directory service that stores and allows querying of identity and group information",
+      "Issuing signed assertions for browser-based single sign-on",
+      "Granting scoped delegated access tokens to third-party applications",
+      "Enforcing port-based network access control on switches"
+    ],
+    "answerIndex": 0,
+    "explanation": "LDAP is the query protocol for the directory that holds users, groups, and attributes — the data other systems rely on. It should always be deployed as LDAPS, since plain LDAP exposes bind credentials on the wire."
+  },
+  {
+    "id": "secplus-d4-mc-077",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Before issuing credentials to a new employee, an organization verifies their identity documents and confirms their employment record. What is this process called?",
+    "choices": [
+      "Identity proofing",
+      "Attestation of access rights",
+      "Federation of identity",
+      "Privilege escalation review"
+    ],
+    "answerIndex": 0,
+    "explanation": "Identity proofing establishes that the person is who they claim to be before any credential exists. Weak proofing undermines everything built on top of it, which is why it receives particular attention for remote onboarding."
+  },
+  {
+    "id": "secplus-d4-mc-078",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Managers periodically review and formally confirm that each of their staff still requires the access they hold. What is this process called?",
+    "choices": [
+      "Attestation, also called an access review or recertification",
+      "Identity proofing of the manager",
+      "Provisioning of new accounts",
+      "Federation with an external identity provider"
+    ],
+    "answerIndex": 0,
+    "explanation": "Attestation counteracts privilege creep, where access accumulates as people change roles but is never removed. Making the manager formally confirm each entitlement is what forces genuine review rather than passive approval."
+  },
+  {
+    "id": "secplus-d4-mc-079",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An employee moves from the finance department to marketing and retains their finance system access alongside their new permissions. What is this problem called?",
+    "choices": [
+      "Privilege creep",
+      "Privilege escalation",
+      "Federation drift",
+      "Credential stuffing"
+    ],
+    "answerIndex": 0,
+    "explanation": "Privilege creep accumulates access through role changes without corresponding removals, gradually turning ordinary accounts into highly privileged ones. Role-based provisioning tied to the HR record is the systematic fix."
+  },
+  {
+    "id": "secplus-d4-mc-080",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which access control model assigns permissions based on labels and clearances, with the system enforcing the policy so that even data owners cannot override it?",
+    "choices": [
+      "Mandatory access control",
+      "Discretionary access control",
+      "Role-based access control",
+      "Attribute-based access control"
+    ],
+    "answerIndex": 0,
+    "explanation": "MAC enforces a central policy that users cannot alter, which is why it dominates in military and high-assurance environments. DAC is the opposite, letting the resource owner grant access at their discretion."
+  },
+  {
+    "id": "secplus-d4-mc-081",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "In a discretionary access control model, who decides who may access a given file?",
+    "choices": [
+      "The owner of the resource",
+      "The system security policy administrator",
+      "The user's assigned role definition",
+      "An evaluation of contextual attributes"
+    ],
+    "answerIndex": 0,
+    "explanation": "DAC delegates access decisions to resource owners, which is flexible and is the default model in common file systems. That flexibility is also its weakness, since a single owner's error can expose sensitive data."
+  },
+  {
+    "id": "secplus-d4-mc-082",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A firewall policy grants access based on conditions such as source network and time of day, applied uniformly rather than per user. Which access control model is this?",
+    "choices": [
+      "Rule-based access control",
+      "Discretionary access control",
+      "Mandatory access control",
+      "Role-based access control"
+    ],
+    "answerIndex": 0,
+    "explanation": "Rule-based control applies global conditions regardless of the individual identity involved. It is commonly combined with other models rather than used alone."
+  },
+  {
+    "id": "secplus-d4-mc-083",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization restricts a contractor's account so it functions only between 09:00 and 17:00 on weekdays. Which control is this?",
+    "choices": [
+      "Time-of-day restrictions",
+      "Attribute-based access control on device posture",
+      "Mandatory access control using clearance labels",
+      "Just-in-time privilege elevation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Time-of-day restrictions narrow the window in which stolen credentials are usable, which is a meaningful reduction for predictable work patterns. It complements rather than replaces limits on what the account can do."
+  },
+  {
+    "id": "secplus-d4-mc-084",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Before deploying wireless access points in a new warehouse, engineers measure signal propagation and identify sources of interference throughout the space. What is this activity?",
+    "choices": [
+      "A site survey",
+      "A vulnerability scan",
+      "A tabletop exercise",
+      "An access review"
+    ],
+    "answerIndex": 0,
+    "explanation": "A site survey grounds AP placement and power settings in measurement rather than guesswork. Its output typically includes a heat map showing predicted or measured coverage across the floor plan."
+  },
+  {
+    "id": "secplus-d4-mc-085",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which wireless security configuration provides individual user accountability and revocable credentials in an enterprise deployment?",
+    "choices": [
+      "WPA3-Enterprise with 802.1X authentication against a RADIUS server",
+      "WPA3-Personal with a shared passphrase",
+      "WPA2-Personal with a long pre-shared key",
+      "An open network with a captive portal"
+    ],
+    "answerIndex": 0,
+    "explanation": "Enterprise mode authenticates each user separately, so revoking one person's access does not require rekeying everyone. With a shared passphrase, any departure ideally means changing the key on every device."
+  },
+  {
+    "id": "secplus-d4-mc-086",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A development team submits code to a tool that examines the source for security flaws without executing it. Which technique is this?",
+    "choices": [
+      "Static application security testing",
+      "Dynamic application security testing",
+      "Fuzzing",
+      "Penetration testing"
+    ],
+    "answerIndex": 0,
+    "explanation": "Static analysis inspects source or bytecode and can run early in development, before anything is deployable. It sees code paths a running test might never reach, but produces more false positives because it lacks runtime context."
+  },
+  {
+    "id": "secplus-d4-mc-087",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A testing tool submits large volumes of malformed and unexpected input to an application to see whether it crashes or misbehaves. What is this technique called?",
+    "choices": [
+      "Fuzzing",
+      "Static code analysis",
+      "Code signing",
+      "Input validation"
+    ],
+    "answerIndex": 0,
+    "explanation": "Fuzzing finds the input-handling defects that structured test cases miss, precisely because it tries things no reasonable person would. Crashes it uncovers frequently indicate exploitable memory-safety bugs."
+  },
+  {
+    "id": "secplus-d4-mc-088",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization requires that all remote administration use SSH rather than Telnet, and all web traffic use HTTPS rather than HTTP. Which practice does this represent?",
+    "choices": [
+      "Secure protocol selection, replacing cleartext protocols with encrypted equivalents",
+      "Network segmentation between management and user traffic",
+      "Application allow listing on administrative workstations",
+      "Certificate pinning for administrative sessions"
+    ],
+    "answerIndex": 0,
+    "explanation": "Choosing protocols that protect credentials and data in transit removes an entire class of interception risk. The related decisions are which port to use and whether the transport itself is authenticated as well as encrypted."
+  },
+  {
+    "id": "secplus-d4-mc-089",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A control prevents workstations from resolving domains known to host malware, returning a blocked response instead. Which capability is this?",
+    "choices": [
+      "DNS filtering",
+      "File integrity monitoring",
+      "Data loss prevention",
+      "Network access control"
+    ],
+    "answerIndex": 0,
+    "explanation": "DNS filtering intercepts the name resolution step, blocking access before any connection is attempted. It is inexpensive and broad, though it can be bypassed by malware that uses hardcoded addresses or its own encrypted resolver."
+  },
+  {
+    "id": "secplus-d4-mc-090",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization enforces web filtering through software installed on each laptop rather than through a network appliance. What advantage does this provide?",
+    "choices": [
+      "Policy continues to apply when the device is used outside the corporate network",
+      "It removes the need to update filtering categories",
+      "It allows the device to bypass filtering when travelling",
+      "It eliminates the need for endpoint protection software"
+    ],
+    "answerIndex": 0,
+    "explanation": "Agent-based filtering follows the device, which matters when most work happens outside the office. A centralized proxy only sees traffic that actually traverses the corporate network."
+  },
+  {
+    "id": "secplus-d4-mc-091",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A web filter blocks a site because it belongs to a category the organization prohibits, even though that specific URL has never been seen before. Which filtering mechanism is this?",
+    "choices": [
+      "Content categorization",
+      "A static URL block list",
+      "File integrity monitoring",
+      "Certificate pinning"
+    ],
+    "answerIndex": 0,
+    "explanation": "Categorization generalizes policy to classes of site rather than individual addresses, so new sites are covered automatically. Reputation scoring works alongside it, judging sites by observed behaviour and history."
+  },
+  {
+    "id": "secplus-d4-mc-092",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An administrator centrally enforces password policy, screen lock timeouts, and software restrictions across all domain-joined Windows workstations. Which mechanism is used?",
+    "choices": [
+      "Group Policy",
+      "SELinux policy modules",
+      "A host-based firewall rule set",
+      "A vulnerability scanner profile"
+    ],
+    "answerIndex": 0,
+    "explanation": "Group Policy applies configuration centrally and reapplies it periodically, which counters local drift. SELinux serves a comparable enforcement role on Linux, though through mandatory access control rather than configuration management."
+  },
+  {
+    "id": "secplus-d4-mc-093",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "During an investigation, an organization receives notice of pending litigation and must immediately suspend routine deletion of potentially relevant data. What is this obligation called?",
+    "choices": [
+      "A legal hold",
+      "Chain of custody",
+      "Data sanitization",
+      "An attestation"
+    ],
+    "answerIndex": 0,
+    "explanation": "A legal hold overrides normal retention schedules to preserve evidence. Continuing to delete data after a hold is issued can amount to spoliation, with consequences separate from the underlying case."
+  },
+  {
+    "id": "secplus-d4-mc-094",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Why must an investigator document every person who handled a piece of evidence, along with the time and purpose?",
+    "choices": [
+      "To maintain chain of custody so the evidence remains admissible and its integrity demonstrable",
+      "To calculate the recovery time objective for the affected system",
+      "To satisfy the data retention schedule for the organization",
+      "To determine the exposure factor for the risk register"
+    ],
+    "answerIndex": 0,
+    "explanation": "An unbroken custody record is what allows evidence to be trusted, since any gap raises the possibility of tampering. This is why the documentation begins at the moment of acquisition rather than later."
+  },
+  {
+    "id": "secplus-d4-mc-095",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "When acquiring evidence from a running system, which data should be collected first?",
+    "choices": [
+      "Volatile data such as memory contents and active network connections",
+      "The contents of the system's backup tapes",
+      "Archived log files stored on a remote server",
+      "The system's installed application list"
+    ],
+    "answerIndex": 0,
+    "explanation": "The order of volatility dictates collecting what disappears first — RAM, running processes, network state — before shutting anything down. Powering the machine off before capturing memory destroys evidence that is often decisive."
+  },
+  {
+    "id": "secplus-d4-mc-096",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization creates a bit-for-bit copy of a suspect drive and works from that copy rather than the original. Why?",
+    "choices": [
+      "To preserve the original unchanged as evidence while analysis proceeds on the image",
+      "Because analysis tools cannot read original media directly",
+      "To reduce the storage required for the investigation",
+      "Because the original must be destroyed once imaged"
+    ],
+    "answerIndex": 0,
+    "explanation": "Analysis alters a live filesystem, so working on an image preserves the original in its found state. Hashing both before and after imaging demonstrates the copy is faithful and unmodified."
+  },
+  {
+    "id": "secplus-d4-mc-097",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A legal team requests all emails between two employees over a six-month period as part of a lawsuit. Which process governs identifying and producing this material?",
+    "choices": [
+      "E-discovery",
+      "Sanitization",
+      "Tokenization",
+      "Attestation"
+    ],
+    "answerIndex": 0,
+    "explanation": "E-discovery covers the identification, preservation, and production of electronically stored information for legal proceedings. It depends on the organization actually knowing what data it holds and where."
+  },
+  {
+    "id": "secplus-d4-mc-098",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An incident response team runs a facilitated discussion of a simulated breach scenario, walking through decisions without touching production systems. Which testing type is this?",
+    "choices": [
+      "A tabletop exercise",
+      "A full failover test",
+      "A penetration test",
+      "A vulnerability scan"
+    ],
+    "answerIndex": 0,
+    "explanation": "Tabletops test decision-making, communication, and role clarity at very low cost and risk. They reliably expose gaps in who decides what, which technical testing alone does not surface."
+  },
+  {
+    "id": "secplus-d4-mc-099",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Why does an incident response plan include a training component for staff outside the security team?",
+    "choices": [
+      "Because detection and reporting often depend on ordinary employees recognizing and escalating something unusual",
+      "Because only trained staff are legally permitted to use company systems",
+      "Because training replaces the need for technical detection controls",
+      "Because untrained staff cannot be granted network access"
+    ],
+    "answerIndex": 0,
+    "explanation": "Many incidents begin with someone noticing something odd, and the speed of that report shapes the whole response. Staff who do not know how to report, or fear blame for doing so, delay detection substantially."
+  },
+  {
+    "id": "secplus-d4-mc-100",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A security platform automatically creates a ticket, enriches it with threat intelligence, and quarantines the affected host when a high-severity alert fires. Which automation benefit is most directly realized?",
+    "choices": [
+      "Faster reaction time, reducing the window in which an attacker can operate",
+      "Elimination of the need for any human analyst",
+      "A reduction in the total number of security tools required",
+      "Removal of the requirement to maintain playbooks"
+    ],
+    "answerIndex": 0,
+    "explanation": "Automation compresses the interval between detection and containment, which is where most of the damage happens. It amplifies analysts rather than replacing them, since judgement is still needed for anything ambiguous."
+  },
+  {
+    "id": "secplus-d4-mc-101",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization uses automation to enforce that every newly provisioned cloud resource conforms to approved security settings before it can be used. What is this pattern commonly called?",
+    "choices": [
+      "Guard rails that enforce a secure baseline automatically",
+      "A tabletop exercise for cloud operations",
+      "Continuous integration of application code",
+      "Federated identity provisioning"
+    ],
+    "answerIndex": 0,
+    "explanation": "Guard rails make the secure configuration the default path rather than something applied afterwards. This scales far better than reviewing each deployment manually and prevents drift from occurring in the first place."
+  },
+  {
+    "id": "secplus-d4-mc-102",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which is a genuine risk of heavily automating security operations?",
+    "choices": [
+      "The automation platform itself becomes a single point of failure and a high-value target",
+      "Response times to incidents necessarily increase",
+      "Baseline configurations become impossible to enforce",
+      "Security tools can no longer integrate with one another"
+    ],
+    "answerIndex": 0,
+    "explanation": "Automation concentrates capability and privilege into one system, so its compromise or failure has outsized consequences. Complexity, cost, and long-term supportability are the other considerations weighed against the efficiency gained."
+  },
+  {
+    "id": "secplus-d4-mc-103",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "New employee accounts are created automatically from the HR system with permissions matching their job role, and disabled automatically on their departure date. Which automation use case is this?",
+    "choices": [
+      "User provisioning and deprovisioning",
+      "Continuous integration and testing",
+      "Guard rail enforcement on cloud resources",
+      "Ticket escalation routing"
+    ],
+    "answerIndex": 0,
+    "explanation": "Tying account lifecycle to the authoritative HR record removes the delay and human error that leave orphaned accounts active. Those forgotten accounts are a recurring finding in access audits."
+  },
+  {
+    "id": "secplus-d4-mc-104",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which log source would most directly show whether a specific outbound connection was permitted or denied at the network perimeter?",
+    "choices": [
+      "Firewall logs",
+      "Application logs from the web server",
+      "Endpoint antivirus logs",
+      "Operating system authentication logs"
+    ],
+    "answerIndex": 0,
+    "explanation": "Firewall logs record the allow or deny decision for each connection along with the addresses and ports involved. The other sources describe what happened on a host rather than what crossed the boundary."
+  },
+  {
+    "id": "secplus-d4-mc-105",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An analyst needs to determine which user account authenticated to a Windows server at a specific time and whether the attempt succeeded. Which log should be examined?",
+    "choices": [
+      "The operating system security log",
+      "The firewall connection log",
+      "The application error log",
+      "The DNS query log"
+    ],
+    "answerIndex": 0,
+    "explanation": "Security event logs record authentication successes and failures with the account and source involved. This is why forwarding them off the host matters, since an attacker with sufficient privilege can clear the local copy."
+  },
+  {
+    "id": "secplus-d4-mc-106",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "Which data source provides the complete contents of network traffic, allowing an analyst to reconstruct exactly what was transferred?",
+    "choices": [
+      "A full packet capture",
+      "NetFlow records",
+      "SNMP interface counters",
+      "A vulnerability scan report"
+    ],
+    "answerIndex": 0,
+    "explanation": "Packet capture preserves payloads, which is what allows reconstruction of the actual content. Its storage cost is high, so many organizations keep flow records long-term and full captures only briefly."
+  },
+  {
+    "id": "secplus-d4-mc-107",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A SOC uses a standardized specification to express security configuration checklists and vulnerability data so tools from different vendors can interoperate. Which standard is this?",
+    "choices": [
+      "SCAP, the Security Content Automation Protocol",
+      "SAML, the Security Assertion Markup Language",
+      "SNMP, the Simple Network Management Protocol",
+      "SIEM, security information and event management"
+    ],
+    "answerIndex": 0,
+    "explanation": "SCAP provides common formats and enumerations so scanners, benchmarks, and reporting tools can exchange content. It is what allows a published hardening benchmark to be consumed automatically by a scanning tool."
+  },
+  {
+    "id": "secplus-d4-mc-108",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "After investigating a recurring alert and determining it reflects normal backup activity, an analyst adjusts the detection rule to exclude that pattern. What is this practice called?",
+    "choices": [
+      "Alert tuning",
+      "Alert escalation",
+      "Log archiving",
+      "Quarantine"
+    ],
+    "answerIndex": 0,
+    "explanation": "Tuning removes known-benign noise so the remaining alerts warrant attention. Untuned detection produces volumes analysts eventually stop reading, which is worse than fewer, higher-quality alerts."
+  },
+  {
+    "id": "secplus-d4-mc-109",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "An organization moves logs older than 90 days to lower-cost long-term storage rather than deleting them. Which activity is this?",
+    "choices": [
+      "Archiving",
+      "Alert tuning",
+      "Sanitization",
+      "Quarantine"
+    ],
+    "answerIndex": 0,
+    "explanation": "Archiving retains data for compliance and future investigation while keeping the active search index manageable. Investigations frequently reach back further than anyone anticipated when setting retention."
+  },
+  {
+    "id": "secplus-d4-mc-110",
+    "type": "mc",
+    "domainCode": "4.0",
+    "prompt": "A suspicious file detected on an endpoint is automatically moved to an isolated location where it cannot execute, pending analysis. What is this action called?",
+    "choices": [
+      "Quarantine",
+      "Sanitization",
+      "Attestation",
+      "Archiving"
+    ],
+    "answerIndex": 0,
+    "explanation": "Quarantine neutralizes the immediate threat while preserving the file for examination. Deleting it outright would stop the threat but destroy the evidence needed to understand the incident."
+  },
+  {
+    "id": "secplus-d4-multi-009",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO combinations qualify as genuine multifactor authentication?",
+    "choices": [
+      "A password and a code from a hardware token",
+      "A fingerprint and a PIN",
+      "A password and the answer to a security question",
+      "Two separate passwords for the same account",
+      "A username and a password"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "True multifactor requires factors from different categories — knowledge, possession, and inherence. Security questions and second passwords are both knowledge, so combining them adds little against an attacker who has compromised what the user knows."
+  },
+  {
+    "id": "secplus-d4-multi-010",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO practices belong to privileged access management?",
+    "choices": [
+      "Vaulting administrative credentials so they are checked out rather than known",
+      "Granting elevated rights only for the duration of a specific approved task",
+      "Assigning permanent administrator rights to all IT staff for convenience",
+      "Sharing one administrator password among the operations team",
+      "Disabling logging on administrative sessions to reduce noise"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Vaulting and just-in-time elevation both shrink the window and the number of people holding standing privilege. The other three options are precisely the practices PAM exists to eliminate."
+  },
+  {
+    "id": "secplus-d4-multi-011",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO statements accurately distinguish SAML from OAuth?",
+    "choices": [
+      "SAML is primarily used for browser-based single sign-on and authentication assertions",
+      "OAuth is primarily used to grant scoped delegated access to resources",
+      "SAML issues bearer tokens for API authorization",
+      "OAuth was designed as an authentication protocol for enterprise directory logins",
+      "Both are directory query protocols that replace LDAP"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "SAML answers who the user is for a service provider, while OAuth answers what an application is permitted to do on the user's behalf. Conflating the two is a common source of insecure implementations, which is what OpenID Connect was created to address."
+  },
+  {
+    "id": "secplus-d4-multi-012",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "A review is held with everyone involved once a security incident has been fully resolved. Which TWO outcomes should that review produce?",
+    "choices": [
+      "Specific improvements to detection and controls, each with an owner and a deadline",
+      "Updates to the response plan and playbooks reflecting what actually happened",
+      "A determination of which individual employee was at fault",
+      "Deletion of the investigation's evidence to free storage",
+      "A decision to stop reporting similar events in future to reduce noise"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The review earns its value by converting the experience into assigned, dated improvements and into a plan that reflects reality rather than the original assumptions. Making it about individual blame reliably destroys the candour the review depends on, and people stop reporting early."
+  },
+  {
+    "id": "secplus-d4-multi-013",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO practices strengthen the integrity of log data against an attacker who compromises a host?",
+    "choices": [
+      "Forwarding logs in near real time to a separate, hardened collector",
+      "Applying write-once or immutable storage to the collected logs",
+      "Increasing the local log file size limit on the host",
+      "Reducing the logging verbosity to save disk space",
+      "Storing logs only on the host that generated them"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Getting logs off the host quickly means an attacker who clears local traces cannot reach the forwarded copy, and immutability prevents alteration afterwards. Local-only retention leaves the evidence under the control of whoever compromised the system."
+  },
+  {
+    "id": "secplus-d4-multi-014",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO are appropriate responses to a vulnerability that cannot be patched because the vendor no longer supports the product?",
+    "choices": [
+      "Isolate the system through segmentation and restrict access to it tightly",
+      "Document a formal, time-limited exception with a plan to replace the system",
+      "Remove monitoring from the system to reduce alert volume",
+      "Mark the finding as a false positive and close it",
+      "Expose the system to a wider user base to justify replacement funding"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Containment plus a documented, expiring exception keeps the risk visible and bounded while replacement is planned. Closing the finding or reducing visibility hides the risk without changing it."
+  },
+  {
+    "id": "secplus-d4-multi-015",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO characteristics describe a secure baseline?",
+    "choices": [
+      "It defines a documented, approved configuration standard for a class of system",
+      "It must be actively maintained and reapplied as systems drift or requirements change",
+      "It is established once at deployment and never revisited",
+      "It applies identically to every system regardless of role or exposure",
+      "It replaces the need for patch management"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A baseline is a living standard: defined, deployed, and then continuously maintained against drift and evolving threats. Different system roles usually warrant different baselines, and none of this removes the need to patch."
+  },
+  {
+    "id": "secplus-d4-multi-016",
+    "type": "multi",
+    "domainCode": "4.0",
+    "prompt": "Which TWO conditions indicate that a security alert is a false positive rather than a true positive?",
+    "choices": [
+      "Investigation confirms the triggering activity was legitimate and authorized",
+      "The activity matches a documented business process running on schedule",
+      "The alert fired outside normal business hours",
+      "The alert has a high severity rating assigned by the vendor",
+      "The affected host is running an unsupported operating system"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A false positive means the detection fired but no malicious activity occurred, which only investigation can establish. Severity ratings, timing, and platform age all raise suspicion but none of them determine whether the specific alert was accurate."
+  },
+  {
+    "id": "secplus-d4-order-002",
+    "type": "order",
+    "domainCode": "4.0",
+    "prompt": "Place these digital forensic evidence sources in the order they should be collected, following the order of volatility.",
+    "items": [
+      "CPU registers and cache",
+      "System memory and running process state",
+      "Active network connections and routing tables",
+      "Temporary file systems and swap space",
+      "Data on persistent disk storage",
+      "Archived backups and off-site media"
+    ],
+    "explanation": "Collecting in order of volatility captures what would otherwise disappear first, since each action taken on a live system risks destroying more of it. Powering a machine off before memory is acquired forfeits process state, injected code, and encryption keys that may exist nowhere else."
+  },
+  {
+    "id": "secplus-d4-match-003",
+    "type": "match",
+    "domainCode": "4.0",
+    "prompt": "Match each identity and access technology to its primary purpose.",
+    "pairs": [
+      {"left": "SAML", "right": "Passes signed authentication assertions to enable browser-based single sign-on"},
+      {"left": "OAuth 2.0", "right": "Grants an application scoped, delegated access on a user's behalf"},
+      {"left": "LDAP", "right": "Queries a directory for user, group, and attribute information"},
+      {"left": "RADIUS", "right": "Authenticates users requesting network access, with accounting"},
+      {"left": "PAM", "right": "Vaults and time-limits the use of privileged administrative credentials"}
+    ],
+    "explanation": "Each answers a different question: who the user is, what an app may do for them, what the directory knows, whether network access is permitted, and how administrative privilege is constrained. SAML and OAuth are the pair most often conflated, and doing so leads directly to insecure designs."
+  },
+  {
+    "id": "secplus-d4-term-002",
+    "type": "terminal",
+    "domainCode": "4.0",
+    "prompt": "An analyst suspects a process on a Windows host is communicating with an external server. Type the command that lists all active network connections together with the process ID that owns each one.",
+    "expected": [
+      "netstat -ano",
+      "netstat -no",
+      "netstat -aon"
+    ],
+    "explanation": "netstat -ano lists connections with the owning process ID, which lets an analyst tie a suspicious connection back to the process responsible. Cross-referencing that PID against the task list is a standard first step when investigating a possibly compromised host."
   }
 ]

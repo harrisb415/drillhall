@@ -366,5 +366,272 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "The control plane decides: policy engine, policy administrator, adaptive identity, threat scope reduction. The enforcement point, implicit trust zones, and the subject all sit in the data plane, where decisions are applied."
+  },
+  {
+    "id": "secplus-d1-mc-029",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A ransomware attack encrypts a company's files, and although no data is stolen, the business cannot operate for two days. Which element of the CIA triad was primarily affected?",
+    "choices": [
+      "Availability",
+      "Confidentiality",
+      "Integrity",
+      "Non-repudiation"
+    ],
+    "answerIndex": 0,
+    "explanation": "The data was neither disclosed nor altered in a way the attacker cared about — it simply became unusable, which is an availability loss. Ransomware that also exfiltrates data before encrypting is the variant that additionally attacks confidentiality."
+  },
+  {
+    "id": "secplus-d1-mc-030",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An attacker modifies a financial record in a database without authorization. Which element of the CIA triad has been violated?",
+    "choices": [
+      "Integrity",
+      "Confidentiality",
+      "Availability",
+      "Authentication"
+    ],
+    "answerIndex": 0,
+    "explanation": "Integrity concerns whether data is accurate and unaltered by unauthorized parties. Hashing and digital signatures are the usual technical controls for detecting exactly this kind of change."
+  },
+  {
+    "id": "secplus-d1-mc-031",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A signed contract cannot later be repudiated by the signer because the signature can only have been produced with their private key. Which security property does this provide?",
+    "choices": [
+      "Non-repudiation",
+      "Confidentiality",
+      "Availability",
+      "Redundancy"
+    ],
+    "answerIndex": 0,
+    "explanation": "Non-repudiation means a party cannot credibly deny having performed an action. It depends on the private key genuinely being private, which is why key compromise destroys non-repudiation along with everything else."
+  },
+  {
+    "id": "secplus-d1-mc-032",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "In the AAA framework, what does the third A, accounting, provide?",
+    "choices": [
+      "A record of what an authenticated user actually did during their session",
+      "Verification of the user's claimed identity",
+      "A decision about which resources the user may access",
+      "Assignment of the user's network address"
+    ],
+    "answerIndex": 0,
+    "explanation": "Accounting produces the audit trail — session duration, commands issued, resources touched — that supports investigation and billing. Authentication proves identity and authorization grants access, in that order."
+  },
+  {
+    "id": "secplus-d1-mc-033",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An organization compares its current security controls against the requirements of a framework it intends to adopt, and documents every place it falls short. What is this exercise called?",
+    "choices": [
+      "A gap analysis",
+      "A penetration test",
+      "A business impact analysis",
+      "A risk transfer"
+    ],
+    "answerIndex": 0,
+    "explanation": "Gap analysis measures the distance between the present state and a defined target state, producing the remediation roadmap. It precedes certification work because it tells you what has to be built before an audit is worth attempting."
+  },
+  {
+    "id": "secplus-d1-mc-034",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A change management process requires that every proposed change identify who is responsible for it and who must sign off before it proceeds. Which two elements does this describe?",
+    "choices": [
+      "Ownership and approval",
+      "Impact analysis and test results",
+      "Backout plan and maintenance window",
+      "Version control and dependencies"
+    ],
+    "answerIndex": 0,
+    "explanation": "Every change needs a named owner accountable for the outcome and a defined approver who authorizes it. Without both, changes proceed with nobody clearly answerable when they go wrong."
+  },
+  {
+    "id": "secplus-d1-mc-035",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A change request document describes exactly how the system will be returned to its previous state if the change causes problems. What is this component called?",
+    "choices": [
+      "The backout plan",
+      "The impact analysis",
+      "The maintenance window",
+      "The standard operating procedure"
+    ],
+    "answerIndex": 0,
+    "explanation": "A backout plan is the tested path back to a known-good state, and a change should not be approved without one. It is what separates a controlled change from a gamble."
+  },
+  {
+    "id": "secplus-d1-mc-036",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Why does a change management process specify a maintenance window rather than allowing changes at any time?",
+    "choices": [
+      "To confine any resulting disruption to a period when business impact is lowest and staff are prepared",
+      "To ensure the change can be performed by a single administrator",
+      "To reduce the number of approvals the change requires",
+      "To avoid the need for a backout plan"
+    ],
+    "answerIndex": 0,
+    "explanation": "A window concentrates risk into a predictable period with the right people available and users forewarned. It does not reduce the need for approvals or a rollback path — those requirements are unchanged."
+  },
+  {
+    "id": "secplus-d1-mc-037",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A proposed change would update a shared authentication library used by six applications. Which part of the change process is specifically intended to surface this?",
+    "choices": [
+      "Dependency analysis, identifying what else relies on the component being changed",
+      "The maintenance window scheduling",
+      "The standard operating procedure",
+      "The version control commit message"
+    ],
+    "answerIndex": 0,
+    "explanation": "Dependencies determine the true blast radius of a change, and unmapped dependencies are why changes that look small cause wide outages. Legacy applications are a frequent complication, since they often depend on component versions nothing else still uses."
+  },
+  {
+    "id": "secplus-d1-mc-038",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An organization holds a copy of employees' file encryption keys in a secured system so encrypted data remains recoverable if an employee leaves. What is this practice called?",
+    "choices": [
+      "Key escrow",
+      "Key stretching",
+      "Perfect forward secrecy",
+      "Certificate pinning"
+    ],
+    "answerIndex": 0,
+    "explanation": "Key escrow deliberately stores a recoverable copy of keys with a trusted party, trading some risk for business continuity. The escrow store itself becomes a very high-value target, which is why it demands strict controls."
+  },
+  {
+    "id": "secplus-d1-mc-039",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A laptop's entire drive, including the operating system and swap file, is encrypted so that nothing is readable if the device is stolen. Which encryption level is this?",
+    "choices": [
+      "Full-disk encryption",
+      "File-level encryption",
+      "Database encryption",
+      "Transport encryption"
+    ],
+    "answerIndex": 0,
+    "explanation": "Full-disk encryption protects everything on the volume at rest, which is the right control for a device that may be physically lost. It provides no protection once the system is booted and unlocked, which is why it is layered with other controls."
+  },
+  {
+    "id": "secplus-d1-mc-040",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company must protect a small number of specific columns in a customer table, such as national identifiers, while leaving the rest of the table queryable in the clear. Which encryption level fits?",
+    "choices": [
+      "Record or field-level encryption within the database",
+      "Full-disk encryption on the database server",
+      "Transport encryption between the application and the database",
+      "Partition encryption on the data volume"
+    ],
+    "answerIndex": 0,
+    "explanation": "Encrypting selected fields protects the sensitive values even from someone with database access, at the cost of complicating queries against those fields. Disk and transport encryption protect data at rest and in motion respectively, but leave the values readable to anyone querying the running database."
+  },
+  {
+    "id": "secplus-d1-mc-041",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "Two parties who have never communicated before need to agree on a shared symmetric key over an untrusted network. Which cryptographic mechanism accomplishes this?",
+    "choices": [
+      "A key exchange algorithm such as Diffie-Hellman",
+      "A hashing algorithm such as SHA-256",
+      "A block cipher such as AES in CBC mode",
+      "A message authentication code such as HMAC"
+    ],
+    "answerIndex": 0,
+    "explanation": "Key exchange lets both sides derive the same secret without ever transmitting it, which is what makes encrypted sessions possible between strangers. Ephemeral variants go further and provide forward secrecy, so a later key compromise cannot decrypt past sessions."
+  },
+  {
+    "id": "secplus-d1-mc-042",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A password is deliberately processed through thousands of iterations of a hashing function before being stored. What is the purpose of this technique?",
+    "choices": [
+      "Key stretching, which makes brute-force guessing far more expensive per attempt",
+      "Salting, which ensures identical passwords hash differently",
+      "Tokenization, which replaces the password with a surrogate value",
+      "Key escrow, which allows the password to be recovered"
+    ],
+    "answerIndex": 0,
+    "explanation": "Key stretching multiplies the cost of every guess an attacker makes, which is what turns a fast hash into one suitable for passwords. Salting solves a different problem — preventing identical passwords from producing identical hashes — and the two are used together."
+  },
+  {
+    "id": "secplus-d1-mc-043",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "An administrator generates a file containing the server's public key and identifying details, then submits it to a certificate authority. What is this file?",
+    "choices": [
+      "A certificate signing request",
+      "A certificate revocation list",
+      "A private key backup",
+      "A root of trust anchor"
+    ],
+    "answerIndex": 0,
+    "explanation": "The CSR carries the public key and subject information for the CA to sign, while the private key never leaves the server. If the private key were transmitted with the request, the resulting certificate would prove nothing."
+  },
+  {
+    "id": "secplus-d1-mc-044",
+    "type": "mc",
+    "domainCode": "1.0",
+    "prompt": "A company needs one certificate to secure www.example.com, mail.example.com, and shop.example.com without listing each name individually. Which certificate type applies?",
+    "choices": [
+      "A wildcard certificate for *.example.com",
+      "A self-signed certificate for each host",
+      "An extended validation certificate for example.com",
+      "A code signing certificate for example.com"
+    ],
+    "answerIndex": 0,
+    "explanation": "A wildcard covers all first-level subdomains of a single domain with one certificate and one key. The tradeoff is that compromising that one key exposes every host it covers, and it does not cover deeper subdomains."
+  },
+  {
+    "id": "secplus-d1-multi-006",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO statements correctly describe the difference between symmetric and asymmetric encryption?",
+    "choices": [
+      "Symmetric encryption uses one shared key for both encryption and decryption",
+      "Asymmetric encryption is substantially slower, so it is typically used to exchange a symmetric key rather than bulk data",
+      "Asymmetric encryption uses one shared key held by both parties",
+      "Symmetric encryption provides non-repudiation without any additional mechanism",
+      "Symmetric algorithms require a certificate authority to distribute keys"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The single shared key makes symmetric encryption fast but creates the distribution problem, which asymmetric cryptography solves at much greater computational cost. Hybrid systems such as TLS use asymmetric methods to establish a symmetric session key, getting both properties."
+  },
+  {
+    "id": "secplus-d1-multi-007",
+    "type": "multi",
+    "domainCode": "1.0",
+    "prompt": "Which TWO are obfuscation techniques that make data less useful to an unauthorized viewer without necessarily encrypting it?",
+    "choices": [
+      "Data masking, which shows only part of a value such as the last four digits",
+      "Tokenization, which substitutes a meaningless surrogate value for the real one",
+      "Key stretching, which slows down password guessing",
+      "Salting, which randomizes stored password hashes",
+      "Certificate pinning, which restricts which certificates a client accepts"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Masking and tokenization both let a system operate on data without exposing the real values, which is why they are common in payment and support systems. The other three are protections around credentials and certificates rather than obfuscation methods."
+  },
+  {
+    "id": "secplus-d1-match-003",
+    "type": "match",
+    "domainCode": "1.0",
+    "prompt": "Match each cryptographic hardware or storage component to its role.",
+    "pairs": [
+      {"left": "TPM", "right": "A chip on the motherboard that stores keys and measurements for a single host"},
+      {"left": "HSM", "right": "A dedicated tamper-resistant appliance that generates and protects keys at scale"},
+      {"left": "Secure enclave", "right": "An isolated processor region that keeps biometric and key material away from the main OS"},
+      {"left": "Key management system", "right": "A centralized service that handles key generation, distribution, rotation, and retirement"}
+    ],
+    "explanation": "These four are frequently confused because all of them protect keys. The distinction is scope: a TPM serves one machine, a secure enclave serves one processor's sensitive workloads, an HSM serves many systems as shared infrastructure, and a KMS manages the key lifecycle as a service."
   }
 ]

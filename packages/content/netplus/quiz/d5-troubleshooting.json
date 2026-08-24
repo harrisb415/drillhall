@@ -491,5 +491,927 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "With other cameras working, the fault is specific to this device's power requirement or its physical path. VLAN IDs, standard MTU, and DNS have nothing to do with delivering power."
+  },
+  {
+    "id": "netplus-d5-mc-039",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Following the CompTIA troubleshooting methodology, what must a technician do immediately after establishing a theory of probable cause?",
+    "choices": [
+      "Test the theory to determine the cause",
+      "Establish a plan of action to resolve the problem",
+      "Implement the solution",
+      "Document findings, actions, and outcomes"
+    ],
+    "answerIndex": 0,
+    "explanation": "Testing comes before planning: an untested theory can send you into a plan of action that fixes nothing. If testing disproves the theory, you return to establishing a new one or escalate."
+  },
+  {
+    "id": "netplus-d5-mc-040",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician's theory about the cause of an outage is disproved by testing. According to the troubleshooting methodology, what are the two correct next options?",
+    "choices": [
+      "Establish a new theory, or escalate the problem",
+      "Implement the original plan anyway and monitor the result",
+      "Document the findings and close the ticket",
+      "Verify full system functionality and implement preventive measures"
+    ],
+    "answerIndex": 0,
+    "explanation": "A disproved theory sends you back to the theory stage, or to someone with more expertise or access. Proceeding with a plan built on a theory you have already disproved is how small outages become long ones."
+  },
+  {
+    "id": "netplus-d5-mc-041",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "What is the final step of the CompTIA troubleshooting methodology?",
+    "choices": [
+      "Document findings, actions, outcomes, and lessons learned",
+      "Verify full system functionality",
+      "Implement preventive measures",
+      "Establish a plan of action"
+    ],
+    "answerIndex": 0,
+    "explanation": "Documentation is last, and it is the step most often skipped. It is also what turns a one-off fix into organizational knowledge the next technician can use."
+  },
+  {
+    "id": "netplus-d5-mc-042",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician begins troubleshooting a failed application by checking whether the application service is running, then works down toward the physical link. Which approach is this?",
+    "choices": [
+      "Top-down",
+      "Bottom-up",
+      "Divide and conquer",
+      "Substitution"
+    ],
+    "answerIndex": 0,
+    "explanation": "Top-down starts at the Application layer and works toward the Physical layer, which suits problems where the physical infrastructure is known to be healthy. Divide and conquer starts in the middle, typically at Layer 3, and moves in whichever direction the evidence points."
+  },
+  {
+    "id": "netplus-d5-mc-043",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "During the identify-the-problem step, why does the methodology emphasise asking what recently changed?",
+    "choices": [
+      "Because most faults follow a change, so recent changes are the highest-yield starting point",
+      "Because change records are required before any ticket can be opened",
+      "Because users are generally unreliable sources of information",
+      "Because changes must be reversed before troubleshooting can begin"
+    ],
+    "answerIndex": 0,
+    "explanation": "A network that worked yesterday and fails today usually differs by something someone did. Checking the change log first frequently identifies the cause before any diagnostic tool comes out."
+  },
+  {
+    "id": "netplus-d5-mc-044",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A 10 Gbps link between two switches will not come up. One end has a 10GBASE-SR transceiver on multimode fiber and the other has a 10GBASE-LR transceiver. What is the fault?",
+    "choices": [
+      "A transceiver mismatch, since the two optics use different wavelengths and fiber types",
+      "A duplex mismatch between the two switch ports",
+      "An MTU mismatch preventing link negotiation",
+      "A VLAN mismatch on the trunk"
+    ],
+    "answerIndex": 0,
+    "explanation": "SR optics use 850 nm over multimode and LR optics use 1310 nm over single-mode, so the two cannot interoperate even though both are 10 Gbps. Optics must match in speed, wavelength, and fiber type at both ends."
+  },
+  {
+    "id": "netplus-d5-mc-045",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A new switch reports that a third-party transceiver is unsupported and keeps the port down, though the optic is physically correct. What is the most likely cause?",
+    "choices": [
+      "The switch is enforcing vendor coding on the transceiver's EEPROM",
+      "The transceiver is rated for a longer distance than the fiber run",
+      "The fiber patch cable has reversed TX and RX strands",
+      "The port is configured with the wrong VLAN"
+    ],
+    "answerIndex": 0,
+    "explanation": "Many vendors read an identification string from the optic and refuse modules that are not coded for their platform. The fix is either a vendor-coded optic or, on platforms that allow it, enabling unsupported transceiver support explicitly."
+  },
+  {
+    "id": "netplus-d5-mc-046",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A switch has a 370 watt PoE budget. Nine access points drawing 30 watts each already run on it, and a tenth is added but never powers up, while the existing nine are unaffected. What has happened?",
+    "choices": [
+      "The PoE power budget has been exhausted, so the newest device is denied power",
+      "The switch has run out of MAC address table entries",
+      "The tenth port has been placed in the wrong VLAN",
+      "Spanning tree has blocked the tenth port"
+    ],
+    "answerIndex": 0,
+    "explanation": "Total PoE draw is limited by the switch's power supply, independent of what any single port can deliver. Switches generally allocate power in port order or by configured priority, so the last device added is the one left unpowered."
+  },
+  {
+    "id": "netplus-d5-mc-047",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An IP phone requiring 802.3at power connects to a switch port that only supports 802.3af. What is the likely outcome?",
+    "choices": [
+      "The phone either fails to power on or operates in a reduced-power mode",
+      "The switch automatically increases the port to 802.3at",
+      "The phone powers normally but negotiates half duplex",
+      "The port shuts down every other PoE device on the switch"
+    ],
+    "answerIndex": 0,
+    "explanation": "802.3af caps delivery at about 15.4 watts at the source, below what an at-class device requires. Powered devices signal their class during negotiation, which is why some degrade gracefully rather than failing outright."
+  },
+  {
+    "id": "netplus-d5-mc-048",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A switch port's link LED is off entirely on both ends of a newly run cable, and the cable tests good. What should be checked next?",
+    "choices": [
+      "Whether the port is administratively shut down or disabled",
+      "Whether the port's VLAN assignment is correct",
+      "Whether the DHCP scope has available addresses",
+      "Whether DNS resolution is working for the host"
+    ],
+    "answerIndex": 0,
+    "explanation": "No link light at all means the problem is below Layer 3 — an administratively disabled port produces exactly this symptom with a perfectly good cable. VLAN, DHCP, and DNS issues all require a link to be established first."
+  },
+  {
+    "id": "netplus-d5-mc-049",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A switch port shows a solid amber link LED rather than green. On most platforms, what does this typically indicate?",
+    "choices": [
+      "The port is up physically but blocked by spanning tree or otherwise not forwarding",
+      "The port is negotiating at its maximum speed",
+      "The port is delivering PoE power correctly",
+      "The port has no cable attached"
+    ],
+    "answerIndex": 0,
+    "explanation": "Amber conventionally indicates a link that exists but is not forwarding, most often because spanning tree has blocked it. LED conventions vary by vendor, which is why the documentation should be checked before drawing conclusions."
+  },
+  {
+    "id": "netplus-d5-mc-050",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Users on a VLAN can reach servers on their own subnet, but a specific application on a remote subnet fails while ping to that same server succeeds. What is the most likely cause?",
+    "choices": [
+      "An access control list is permitting ICMP but blocking the application's port",
+      "The default gateway is misconfigured on the client",
+      "The subnet mask on the server is incorrect",
+      "The DNS server is returning the wrong address"
+    ],
+    "answerIndex": 0,
+    "explanation": "Ping succeeding proves routing and Layer 3 reachability are intact, so the failure is selective by port — the signature of an ACL or firewall rule. A gateway or mask error would break ping as well."
+  },
+  {
+    "id": "netplus-d5-mc-051",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A router has no entry for a destination network and no default route configured. What happens to packets for that network?",
+    "choices": [
+      "They are dropped, and the router may return an ICMP destination unreachable",
+      "They are flooded out every interface except the one they arrived on",
+      "They are queued until a matching route is learned",
+      "They are forwarded to the nearest broadcast address"
+    ],
+    "answerIndex": 0,
+    "explanation": "Routers drop what they cannot match; unlike switches, they never flood. The ICMP destination unreachable returned to the source is often the first clue that a route is missing."
+  },
+  {
+    "id": "netplus-d5-mc-052",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two hosts are configured as 192.168.10.20/24 and 192.168.10.200/26. They cannot communicate reliably even though both are physically on the same segment. What is the cause?",
+    "choices": [
+      "Mismatched subnet masks, so each host disagrees about which addresses are local",
+      "Duplicate IP addresses on the segment",
+      "A VLAN mismatch between the two switch ports",
+      "An expired DHCP lease on one of the hosts"
+    ],
+    "answerIndex": 0,
+    "explanation": "With a /26, the second host believes the local subnet spans only 192.168.10.192 to 192.168.10.255, so it sends traffic for .20 to its gateway instead of directly. Communication may work in one direction and fail in the other, which is the classic asymmetric signature of a mask mismatch."
+  },
+  {
+    "id": "netplus-d5-mc-053",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A workstation has a correct address and mask but a default gateway set to an address that does not exist on the subnet. What symptom results?",
+    "choices": [
+      "Local communication works, but nothing beyond the subnet is reachable",
+      "The workstation cannot reach anything, including local hosts",
+      "The workstation receives an APIPA address instead",
+      "Only DNS resolution fails, while direct IP access works"
+    ],
+    "answerIndex": 0,
+    "explanation": "Local traffic never touches the gateway, so it continues working normally. Anything requiring routing fails silently, since the host ARPs for a gateway that never answers."
+  },
+  {
+    "id": "netplus-d5-mc-054",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A host can ping external IP addresses successfully but cannot resolve any hostnames, and the configured DNS server address is on a subnet that no longer exists. What is the fault?",
+    "choices": [
+      "An incorrect DNS server setting on the client",
+      "A missing default gateway",
+      "An incorrect subnet mask",
+      "An exhausted DHCP scope"
+    ],
+    "answerIndex": 0,
+    "explanation": "Successful pings by address prove routing works, isolating the problem to name resolution. Pointing at an unreachable resolver produces exactly this split between working IP connectivity and failing name lookups."
+  },
+  {
+    "id": "netplus-d5-mc-055",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two devices on a network are found to have been manually assigned the same IP address. What symptom is most characteristic?",
+    "choices": [
+      "Intermittent connectivity for both hosts as ARP entries flip between them",
+      "Both hosts lose all connectivity permanently and immediately",
+      "Both hosts receive APIPA addresses",
+      "Traffic between the two hosts is silently encrypted"
+    ],
+    "answerIndex": 0,
+    "explanation": "Other devices cache whichever MAC answered most recently, so traffic oscillates between the two hosts as their ARP entries compete. The intermittent, alternating nature of the symptom is what distinguishes it from a hard failure."
+  },
+  {
+    "id": "netplus-d5-mc-056",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A cloned virtual machine and its source both come online and network connectivity for both becomes erratic, with switch logs reporting the same MAC address flapping between two ports. What is the cause?",
+    "choices": [
+      "A duplicate MAC address between the two virtual machines",
+      "A duplicate IP address between the two virtual machines",
+      "A spanning tree loop between the hypervisor uplinks",
+      "An MTU mismatch on the virtual switch"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cloning without regenerating the virtual NIC address produces two hosts claiming one MAC, and the switch cannot keep a stable table entry for it. The MAC-flapping log message is the distinguishing clue, since duplicate IP problems appear at Layer 3 instead."
+  },
+  {
+    "id": "netplus-d5-mc-057",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A laptop that worked yesterday now has no address after being left off overnight, and the DHCP server logs show no requests from it at all. Its switch port shows no link. Where should troubleshooting focus?",
+    "choices": [
+      "The physical layer, since without link no DHCP request can be sent",
+      "The DHCP scope, which has likely been exhausted",
+      "The DNS configuration on the client",
+      "The default gateway configuration on the router"
+    ],
+    "answerIndex": 0,
+    "explanation": "No link means nothing above Layer 1 can function, so DHCP, DNS, and gateway settings are all irrelevant until the link is restored. Working bottom-up here avoids a long detour through service configuration."
+  },
+  {
+    "id": "netplus-d5-mc-058",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A file transfer between two sites achieves only a fraction of the circuit's rated speed, while latency measures 180 ms. Which factor most likely limits throughput?",
+    "choices": [
+      "High latency limiting TCP throughput given the window size",
+      "Insufficient DHCP addresses on the remote subnet",
+      "An incorrect subnet mask on the receiving host",
+      "A VLAN mismatch on the WAN interface"
+    ],
+    "answerIndex": 0,
+    "explanation": "TCP throughput is bounded by window size divided by round-trip time, so a long path throttles a single stream regardless of available bandwidth. Window scaling or parallel streams are the usual remedies for a high bandwidth-delay product."
+  },
+  {
+    "id": "netplus-d5-mc-059",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Monitoring shows a WAN circuit consistently at 98 percent utilization during business hours, with rising queue drops. Which term best describes this condition?",
+    "choices": [
+      "Congestion, where offered load exceeds available capacity",
+      "Jitter, where packet arrival times vary",
+      "Attenuation, where signal strength decreases over distance",
+      "Latency introduced by the routing protocol"
+    ],
+    "answerIndex": 0,
+    "explanation": "Congestion is the condition where demand exceeds the link's capacity, and queue drops are its direct consequence. The practical responses are adding capacity or applying QoS so that important traffic is queued preferentially."
+  },
+  {
+    "id": "netplus-d5-mc-060",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "In a network path, one 100 Mbps link sits between several gigabit segments, and all traffic through that path is limited to roughly 100 Mbps. What is this link called?",
+    "choices": [
+      "A bottleneck",
+      "A broadcast domain",
+      "A collision domain",
+      "A demarcation point"
+    ],
+    "answerIndex": 0,
+    "explanation": "The slowest link in a path determines end-to-end throughput regardless of how fast the surrounding segments are. Identifying it is why hop-by-hop throughput testing is more useful than testing only the endpoints."
+  },
+  {
+    "id": "netplus-d5-mc-061",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A voice call has consistent 40 ms latency, but users report choppy audio. Packet capture shows inter-arrival times varying between 5 ms and 90 ms. Which impairment is responsible?",
+    "choices": [
+      "Jitter",
+      "Attenuation",
+      "Packet loss",
+      "Duplex mismatch"
+    ],
+    "answerIndex": 0,
+    "explanation": "Jitter is variation in delay rather than delay itself, and it defeats the fixed-size buffers voice endpoints use to smooth playback. A larger jitter buffer helps at the cost of added latency, but QoS at the congested hop is the real fix."
+  },
+  {
+    "id": "netplus-d5-mc-062",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A wireless client sits at the edge of coverage and repeatedly drops off the network and reconnects. Which condition describes this behaviour?",
+    "choices": [
+      "Client disassociation caused by insufficient signal strength",
+      "Channel overlap between two adjacent access points",
+      "An SSID mismatch on the client",
+      "A DHCP scope exhaustion event"
+    ],
+    "answerIndex": 0,
+    "explanation": "Once the signal falls below the threshold the radio needs, the client is disassociated and must reassociate when the signal recovers. The cycle repeats at the coverage edge, which is why survey-driven AP placement matters."
+  },
+  {
+    "id": "netplus-d5-mc-063",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user walking through a building keeps a connection to a distant access point at poor signal rather than moving to a nearer one with a strong signal. What is this behaviour called?",
+    "choices": [
+      "Sticky client behaviour, a roaming misconfiguration issue",
+      "Band steering working as designed",
+      "Co-channel interference between the two access points",
+      "A captive portal timeout"
+    ],
+    "answerIndex": 0,
+    "explanation": "Clients decide when to roam, and many hold an existing association well past the point where a better AP is available. Tuning minimum data rates and roaming-assist thresholds nudges clients to let go earlier."
+  },
+  {
+    "id": "netplus-d5-mc-064",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A new Wi-Fi 6 access point is deployed, but an older laptop connects at only 54 Mbps and cannot use the wider channels. What explains this?",
+    "choices": [
+      "An access point and client capability mismatch, since the laptop supports an older 802.11 standard",
+      "The access point is transmitting at too high a power level",
+      "The laptop is being rejected by MAC filtering",
+      "The SSID is hidden, forcing a slower connection"
+    ],
+    "answerIndex": 0,
+    "explanation": "A client can only use the features its own radio implements, so an 802.11a or g client caps out at 54 Mbps regardless of the AP. Mixed environments also drag down overall cell performance, since legacy rates occupy more airtime per frame."
+  },
+  {
+    "id": "netplus-d5-mc-065",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An office deploys many access points at maximum transmit power to maximize coverage, and performance gets worse rather than better. Why?",
+    "choices": [
+      "Overlapping cells at high power increase co-channel interference and contention",
+      "High transmit power reduces the number of available SSIDs",
+      "High transmit power forces all clients onto the 2.4 GHz band",
+      "High transmit power disables channel bonding"
+    ],
+    "answerIndex": 0,
+    "explanation": "Turning every radio up makes each cell larger, so more clients contend for the same airtime and hear more interference from neighbouring APs. Dense deployments perform better with lower power and smaller, well-separated cells."
+  },
+  {
+    "id": "netplus-d5-mc-066",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which command-line tool shows each router hop along the path to a destination along with the latency at each hop?",
+    "choices": [
+      "traceroute or tracert",
+      "ping",
+      "netstat",
+      "arp"
+    ],
+    "answerIndex": 0,
+    "explanation": "Traceroute maps the path by sending packets with incrementing TTL values and recording which router returns each Time Exceeded message. It reveals where in the path latency or loss begins, which a simple ping cannot."
+  },
+  {
+    "id": "netplus-d5-mc-067",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician needs detailed DNS query output, including the authority and additional sections, from a specific name server. Which tool is best suited?",
+    "choices": [
+      "dig",
+      "ping",
+      "netstat",
+      "arp"
+    ],
+    "answerIndex": 0,
+    "explanation": "dig gives full, structured DNS output and lets you direct the query at a chosen server, which is essential when comparing what different resolvers return. nslookup is the more limited, though widely available, alternative."
+  },
+  {
+    "id": "netplus-d5-mc-068",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which command displays and allows manipulation of the local IP-to-MAC address mapping table?",
+    "choices": [
+      "arp",
+      "route",
+      "netstat",
+      "nslookup"
+    ],
+    "answerIndex": 0,
+    "explanation": "The arp command lists cached IP-to-MAC mappings and can delete stale entries, which is useful when a device has been replaced but traffic still follows the old hardware address. Clearing the entry forces a fresh resolution."
+  },
+  {
+    "id": "netplus-d5-mc-069",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which command displays the local routing table on a host, showing the default gateway and any static routes?",
+    "choices": [
+      "route print on Windows, or ip route on Linux",
+      "arp -a on either platform",
+      "netstat -b on either platform",
+      "nslookup on either platform"
+    ],
+    "answerIndex": 0,
+    "explanation": "The routing table shows exactly where the host will send traffic for each destination, which quickly settles questions about a wrong gateway or a leftover static route. On Linux the older equivalent is the route command."
+  },
+  {
+    "id": "netplus-d5-mc-070",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician needs to capture and inspect packets from the command line on a Linux router with no graphical interface. Which tool is appropriate?",
+    "choices": [
+      "tcpdump",
+      "nmap",
+      "nslookup",
+      "iperf"
+    ],
+    "answerIndex": 0,
+    "explanation": "tcpdump captures live traffic with BPF filters and can write to a file for later analysis in a graphical analyzer. nmap probes for open ports rather than observing traffic in flight."
+  },
+  {
+    "id": "netplus-d5-mc-071",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician wants to confirm whether a remote server is listening on TCP port 25 without installing new software on a Windows workstation. Which quick check can be used?",
+    "choices": [
+      "Attempting a Telnet connection to the host on port 25",
+      "Running ipconfig /all on the workstation",
+      "Running arp -a against the server address",
+      "Pinging the server and observing the TTL"
+    ],
+    "answerIndex": 0,
+    "explanation": "Telnet to an arbitrary port succeeds only if something is listening and reachable, which makes it a fast reachability test for a single port. Modern equivalents include the PowerShell cmdlet Test-NetConnection and netcat on Unix systems."
+  },
+  {
+    "id": "netplus-d5-mc-072",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which tool is used to identify wireless channel utilization, overlapping networks, and signal strength across a coverage area?",
+    "choices": [
+      "A Wi-Fi analyzer",
+      "A tone generator and probe",
+      "A time domain reflectometer",
+      "A protocol analyzer on a wired span port"
+    ],
+    "answerIndex": 0,
+    "explanation": "A Wi-Fi analyzer surveys the RF environment, showing which channels are congested and how neighbouring networks overlap. A spectrum analyzer goes further and reveals non-802.11 interference that a Wi-Fi analyzer cannot see."
+  },
+  {
+    "id": "netplus-d5-mc-073",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "What advantage does a passive network tap have over a switch port mirror for capturing traffic?",
+    "choices": [
+      "It cannot drop frames under load and does not consume switch resources",
+      "It can capture traffic from any VLAN on the switch without configuration",
+      "It automatically decrypts TLS sessions for inspection",
+      "It requires no physical access to the cable path"
+    ],
+    "answerIndex": 0,
+    "explanation": "A mirror port competes for switch resources and silently drops frames when the aggregate source traffic exceeds the destination port's capacity. A tap sits inline in the physical path and is therefore unaffected by switch load, at the cost of requiring a cable break to install."
+  },
+  {
+    "id": "netplus-d5-mc-074",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician needs to determine whether an internal link can actually sustain its rated throughput between two hosts. Which tool is designed for this measurement?",
+    "choices": [
+      "iperf, which generates traffic between a client and server endpoint",
+      "arp, which resolves addresses on the local segment",
+      "nslookup, which queries DNS records",
+      "tracert, which maps hops along a path"
+    ],
+    "answerIndex": 0,
+    "explanation": "iperf generates controlled TCP or UDP streams and measures achieved throughput, jitter, and loss between two endpoints. Testing against an internet speed test measures the internet path instead, which is a different question."
+  },
+  {
+    "id": "netplus-d5-mc-075",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which tool identifies which physical cable in a bundle corresponds to a known end, by injecting an audible signal onto the conductor?",
+    "choices": [
+      "A tone generator and inductive probe",
+      "A cable certifier",
+      "An optical power meter",
+      "A loopback plug"
+    ],
+    "answerIndex": 0,
+    "explanation": "The toner injects a signal at one end and the probe finds it at the other by induction, without needing to connect to both ends simultaneously. A certifier instead measures whether an installed run meets its category specification."
+  },
+  {
+    "id": "netplus-d5-mc-076",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A newly installed fiber link shows a receive level of minus 28 dBm against a transceiver minimum of minus 20 dBm. What does this indicate?",
+    "choices": [
+      "Excessive optical loss in the link, from dirty connectors, tight bends, or excessive length",
+      "That the transmitter is over-driving the receiver",
+      "That the wrong VLAN is configured on the port",
+      "That the fiber pairs are reversed between TX and RX"
+    ],
+    "answerIndex": 0,
+    "explanation": "A receive level below the transceiver's sensitivity means too much light is being lost along the path. Dirty or damaged connectors are the most common cause by a wide margin, which is why cleaning is always the first step."
+  },
+  {
+    "id": "netplus-d5-mc-077",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "After a switch is replaced, a group of users lose access to a server they previously reached, while other users on the same switch are unaffected. What should be checked first?",
+    "choices": [
+      "The VLAN assignments on the affected users' ports",
+      "The DNS records for the server",
+      "The DHCP lease duration on the scope",
+      "The server's disk capacity"
+    ],
+    "answerIndex": 0,
+    "explanation": "A partial failure that follows a hardware swap almost always traces to configuration that did not carry over, and port VLAN assignment is the most common omission. That other users are unaffected rules out anything shared, like the uplink or the server itself."
+  },
+  {
+    "id": "netplus-d5-mc-078",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A network experiences a broadcast storm, and switch CPU utilization spikes to 100 percent across several devices. What is the most likely cause?",
+    "choices": [
+      "A Layer 2 loop where spanning tree is disabled or has failed",
+      "A duplicate IP address on the management VLAN",
+      "An exhausted DHCP scope",
+      "An MTU mismatch on the core uplinks"
+    ],
+    "answerIndex": 0,
+    "explanation": "Without spanning tree, a redundant Layer 2 path lets broadcasts circulate endlessly, multiplying with each pass. The traffic saturates links and CPUs network-wide, which is why the symptom rarely stays confined to one switch."
+  },
+  {
+    "id": "netplus-d5-mc-079",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Spanning tree recalculates repeatedly across a network, causing brief outages every few minutes. Investigation shows a switch under a user's desk has a lower bridge priority than the intended root. What has happened?",
+    "choices": [
+      "An unauthorized switch has become the root bridge, destabilizing the topology",
+      "The core switch has exhausted its MAC address table",
+      "A duplex mismatch is generating late collisions",
+      "The access ports are missing their voice VLAN assignment"
+    ],
+    "answerIndex": 0,
+    "explanation": "Spanning tree elects the lowest bridge ID as root, so any switch introduced with a better priority takes the role and reshapes the topology around itself. Root guard on access ports prevents this by rejecting superior BPDUs."
+  },
+  {
+    "id": "netplus-d5-mc-080",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A trunk between two switches carries VLANs 10 and 20 correctly, but VLAN 30 traffic never passes. What should be checked?",
+    "choices": [
+      "Whether VLAN 30 is in the allowed VLAN list on the trunk and exists on both switches",
+      "Whether the trunk ports have PortFast enabled",
+      "Whether the DHCP scope for VLAN 30 has free addresses",
+      "Whether the trunk is using the correct duplex setting"
+    ],
+    "answerIndex": 0,
+    "explanation": "Trunks carry only the VLANs they are permitted to carry, and a VLAN missing from the allowed list or absent from the VLAN database is silently dropped. That only one VLAN is affected rules out physical and duplex problems."
+  },
+  {
+    "id": "netplus-d5-mc-081",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Users report the network is slow, and monitoring shows a single host generating tens of thousands of small packets per second to sequential addresses. What is the most likely explanation?",
+    "choices": [
+      "A compromised host scanning or generating malicious traffic",
+      "A DHCP scope nearing exhaustion",
+      "An access point transmitting at excessive power",
+      "A misconfigured NTP client"
+    ],
+    "answerIndex": 0,
+    "explanation": "Sequential-address, high-rate traffic from one host is the signature of scanning or worm propagation rather than normal application behaviour. Isolating that host is both a performance fix and a security response."
+  },
+  {
+    "id": "netplus-d5-mc-082",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A branch site's users report that internal applications are fast but all internet browsing is slow, and the WAN link shows low utilization. Where should investigation focus next?",
+    "choices": [
+      "The proxy or internet-facing security appliance handling outbound requests",
+      "The access switch's MAC address table size",
+      "The spanning tree topology within the branch LAN",
+      "The PoE budget on the branch switch"
+    ],
+    "answerIndex": 0,
+    "explanation": "Internal traffic being healthy while only internet-bound traffic suffers points at the devices unique to that path, and low link utilization rules out congestion. A saturated proxy or inspection appliance is a common culprit."
+  },
+  {
+    "id": "netplus-d5-mc-083",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "After a change to a firewall rule set, one application breaks while everything else continues to work. What is the most efficient first diagnostic step?",
+    "choices": [
+      "Review the change against the rule set, checking for a broad rule shadowing a specific one",
+      "Reboot the firewall to clear its state table",
+      "Replace the firewall with a spare unit",
+      "Increase the MTU on the firewall's inside interface"
+    ],
+    "answerIndex": 0,
+    "explanation": "A fault that appears immediately after a change and affects only one flow is almost always caused by that change, and rule ordering is the usual mechanism. Rebooting or swapping hardware discards evidence and is disproportionate to the symptom."
+  },
+  {
+    "id": "netplus-d5-mc-084",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A remote user's VPN connects successfully, but they cannot reach any internal resource by name while IP addresses work. What is the most likely cause?",
+    "choices": [
+      "The VPN is not pushing internal DNS servers or the correct search suffix to the client",
+      "The VPN tunnel is using the wrong encryption algorithm",
+      "The user's account lacks permission to establish the tunnel",
+      "The client's default gateway is missing entirely"
+    ],
+    "answerIndex": 0,
+    "explanation": "A working tunnel with functioning IP reachability isolates the fault to name resolution, and split-tunnel configurations frequently leave the client using its home resolver. Pushing internal DNS servers and suffixes to the client resolves it."
+  },
+  {
+    "id": "netplus-d5-mc-085",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Only some websites fail to load over a newly established site-to-site VPN, and the failures correlate with pages containing large images. Smaller pages work. What should be adjusted?",
+    "choices": [
+      "The MTU or MSS on the tunnel, to account for encapsulation overhead",
+      "The DNS server assigned to the remote subnet",
+      "The DHCP lease duration at the remote site",
+      "The spanning tree priority on the remote switch"
+    ],
+    "answerIndex": 0,
+    "explanation": "Tunnel headers reduce the space available for payload, so full-size packets exceed the path MTU and are dropped when fragmentation is blocked. Lowering the MTU or clamping the TCP MSS on the tunnel interface is the standard fix."
+  },
+  {
+    "id": "netplus-d5-mc-086",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A technician replaces a suspected faulty patch cable with a known-good one and the problem disappears. Which troubleshooting technique is this?",
+    "choices": [
+      "Substitution with a known-good component",
+      "Divide and conquer",
+      "Top-down analysis",
+      "Baseline comparison"
+    ],
+    "answerIndex": 0,
+    "explanation": "Substitution isolates a fault by swapping one variable at a time for a component known to work. Its value depends on changing only one thing, since swapping several at once leaves you unable to say which was responsible."
+  },
+  {
+    "id": "netplus-d5-mc-087",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Users complain that a service is intermittently unavailable, but the technician cannot reproduce it. What is the most productive next step?",
+    "choices": [
+      "Gather data on when it occurs, correlating user reports with monitoring and logs",
+      "Reboot the servers involved during business hours",
+      "Replace the network equipment along the path",
+      "Close the ticket as unable to reproduce"
+    ],
+    "answerIndex": 0,
+    "explanation": "Intermittent faults are solved by finding the pattern — time of day, specific users, specific paths — and correlating it with recorded data. Acting before the pattern is established usually changes the symptom without fixing the cause."
+  },
+  {
+    "id": "netplus-d5-mc-088",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A switch interface counter shows a rising number of giants. What does this indicate?",
+    "choices": [
+      "Frames are arriving larger than the configured MTU for the interface",
+      "Frames are arriving smaller than the 64-byte minimum",
+      "The interface is dropping frames because its buffers are full",
+      "The interface has negotiated half duplex"
+    ],
+    "answerIndex": 0,
+    "explanation": "Giants exceed the interface's maximum frame size, which usually means one side has jumbo frames enabled and the other does not. Runts are the opposite condition and typically indicate collisions or a faulty transmitter."
+  },
+  {
+    "id": "netplus-d5-mc-089",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A user reports that they lose network connectivity every few days and it returns after they reboot. The workstation uses DHCP with a three-day lease. What should be investigated?",
+    "choices": [
+      "Whether the DHCP lease is failing to renew, leaving the client without a valid address",
+      "Whether the workstation's subnet mask is incorrect",
+      "Whether the switch port has PortFast disabled",
+      "Whether the default gateway is missing from the scope options"
+    ],
+    "answerIndex": 0,
+    "explanation": "A failure whose interval matches the lease period points directly at renewal, since a reboot forces a fresh DHCP exchange that temporarily restores service. Renewal failures often trace to a relay agent or an unreachable server rather than the client."
+  },
+  {
+    "id": "netplus-d5-mc-090",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which condition would cause a host to receive a valid IP address but still be unable to reach any host on any other subnet, while the gateway itself responds to ping?",
+    "choices": [
+      "An access control list on the router blocking transit traffic from that subnet",
+      "An incorrect DNS server address on the host",
+      "A duplicate MAC address on the local segment",
+      "An exhausted DHCP scope on the router"
+    ],
+    "answerIndex": 0,
+    "explanation": "Reaching the gateway proves local connectivity and correct gateway configuration, so the block is happening at the router as it forwards. An ACL applied in the wrong direction or missing a needed permit produces exactly this."
+  },
+  {
+    "id": "netplus-d5-mc-091",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A monitoring alert reports that a core switch's uptime has reset to a few minutes, with no change ticket recorded. What should the technician check first?",
+    "choices": [
+      "The device logs and power source, to determine whether it crashed or lost power",
+      "The DNS records pointing at the switch's management address",
+      "The DHCP scope serving the management VLAN",
+      "The spanning tree cost on each access port"
+    ],
+    "answerIndex": 0,
+    "explanation": "An unexplained reset is either a software crash or a power event, and the device log plus the UPS log distinguish the two quickly. Establishing which one occurred determines whether the next step is a firmware investigation or an electrical one."
+  },
+  {
+    "id": "netplus-d5-multi-007",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Users report that voice calls sound choppy and words drop out, while file transfers over the same link are unaffected. Which TWO measurements should be examined first?",
+    "choices": [
+      "Jitter, the variation in packet arrival times",
+      "Packet loss along the path carrying the voice traffic",
+      "The DHCP lease duration configured on the voice VLAN",
+      "The MAC address table size on the access switch",
+      "The DNS resolution time for the call server's hostname"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Voice is far more sensitive to jitter and loss than bulk transfers are, which is exactly why one degrades while the other looks fine. TCP simply retransmits what it loses, so a link can be unusable for calls while file copies still complete."
+  },
+  {
+    "id": "netplus-d5-multi-008",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A fiber link between two switches will not come up. Which TWO causes should be checked first?",
+    "choices": [
+      "A transceiver mismatch in wavelength or fiber type between the two ends",
+      "Dirty or damaged connector end faces on the patch cables",
+      "An incorrect DHCP scope on the management VLAN",
+      "An expired TLS certificate on the switch web interface",
+      "A missing DNS record for the far-end switch"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Optics that do not match and contaminated end faces account for the large majority of fiber links that fail to establish. Addressing, certificates, and DNS all operate above a link that does not yet exist."
+  },
+  {
+    "id": "netplus-d5-multi-009",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO symptoms together most strongly suggest a duplex mismatch on a copper link?",
+    "choices": [
+      "Late collisions counted on the half-duplex side",
+      "Throughput far below the negotiated link speed",
+      "The port failing to establish link at all",
+      "The port receiving frames larger than the configured MTU",
+      "The switch reporting the same MAC address on two ports"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A duplex mismatch still establishes link, which is what makes it easy to miss — the giveaways are late collisions and throughput that collapses under load. No link at all is a physical problem, and MAC flapping indicates a duplicate address or a loop."
+  },
+  {
+    "id": "netplus-d5-multi-010",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO tools would help determine why an installed copper run fails certification?",
+    "choices": [
+      "A cable certifier that measures the run against its category specification",
+      "A time domain reflectometer to locate the distance to a fault",
+      "A protocol analyzer capturing application traffic",
+      "An optical power meter measuring receive levels",
+      "A Wi-Fi analyzer surveying channel usage"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Certification failures are physical-layer problems, so the tools must measure the cable itself: a certifier judges compliance and a TDR pinpoints where the fault is. Optical meters apply to fiber, and the other two operate well above Layer 1."
+  },
+  {
+    "id": "netplus-d5-multi-011",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Users on one floor report slow wireless while the wired network performs normally. Which TWO causes are most plausible?",
+    "choices": [
+      "Co-channel interference from access points reusing the same channel",
+      "A non-802.11 interference source raising the noise floor on that floor",
+      "An exhausted DHCP scope serving the entire building",
+      "A duplex mismatch on the building's core uplink",
+      "An expired certificate on the wireless controller's web interface"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The problem being wireless-only and floor-specific points at the RF environment in that area. A building-wide DHCP issue or a core uplink fault would affect wired users too."
+  },
+  {
+    "id": "netplus-d5-multi-012",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO conditions would cause a DHCP client to fail to obtain an address on a remote subnet?",
+    "choices": [
+      "No DHCP relay agent or helper address configured on the router interface",
+      "The DHCP scope for that subnet having no free addresses remaining",
+      "An incorrect DNS suffix configured in the scope options",
+      "A lease duration set longer than 24 hours",
+      "The client having a static route to the DHCP server"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "DHCP discovery is broadcast and does not cross a router without a relay, and a scope with no free addresses has nothing to offer. Suffixes and lease durations affect what a client receives, not whether it receives anything."
+  },
+  {
+    "id": "netplus-d5-multi-013",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "A technician needs to prove whether packet loss on a path is occurring inside the corporate network or beyond the ISP handoff. Which TWO approaches provide that evidence?",
+    "choices": [
+      "Running a continuous path analysis tool such as pathping or mtr to see loss per hop",
+      "Testing to the ISP's first hop and comparing loss against tests to a destination beyond it",
+      "Checking the DHCP scope utilization on the local subnet",
+      "Reviewing the DNS resolution time for the destination hostname",
+      "Verifying the certificate chain presented by the destination server"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Per-hop loss statistics and a comparison of near versus far test points both localize where loss begins. Addressing, name resolution, and certificates are unrelated to packet loss along a path."
+  },
+  {
+    "id": "netplus-d5-multi-014",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO conditions on a switch would cause frames from one VLAN to be delivered into a different VLAN?",
+    "choices": [
+      "A native VLAN mismatch between the two ends of a trunk",
+      "An access port assigned to the wrong VLAN",
+      "PortFast enabled on an access port",
+      "Jumbo frames enabled on the uplink",
+      "An access control list applied to a routed interface"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Untagged native VLAN traffic landing in a different VLAN at the far end, and a port simply configured for the wrong VLAN, are the two straightforward ways traffic ends up somewhere it should not be. PortFast and jumbo frames affect timing and frame size, not VLAN membership."
+  },
+  {
+    "id": "netplus-d5-order-002",
+    "type": "order",
+    "domainCode": "5.0",
+    "prompt": "A host on VLAN 10 opens a connection to a server on VLAN 20 by hostname, with the two VLANs routed by a Layer 3 switch. Place these events in the order they occur.",
+    "items": [
+      "The host queries its DNS server and receives the server's IP address",
+      "The host compares the destination against its own subnet mask and decides the target is remote",
+      "The host ARPs for its default gateway and builds a frame addressed to the gateway's MAC",
+      "The Layer 3 switch routes the packet from the VLAN 10 interface to the VLAN 20 interface",
+      "The switch ARPs for the destination host on VLAN 20 and delivers the frame"
+    ],
+    "explanation": "Tracing this sequence is what lets you place a failure precisely: a name that will not resolve fails at step one, while a host that resolves fine but cannot reach the gateway fails at step three. Note that the destination MAC changes at each routed hop while the IP addresses stay the same end to end."
+  },
+  {
+    "id": "netplus-d5-order-003",
+    "type": "order",
+    "domainCode": "5.0",
+    "prompt": "A user reports that a workstation cannot reach an internal web server. Place these diagnostic checks in a sensible bottom-up order.",
+    "items": [
+      "Confirm the switch port shows link and the cable is seated",
+      "Confirm the workstation has a valid IP address, mask, and gateway",
+      "Ping the default gateway to confirm local Layer 3 reachability",
+      "Ping the web server by IP address to confirm routing",
+      "Resolve the web server's hostname to confirm DNS is working",
+      "Connect to the server's port to confirm the service is listening"
+    ],
+    "explanation": "Bottom-up moves from the physical link upward, so each successful check narrows what remains. Reaching the server by address but not by name, for instance, isolates the fault to DNS without touching anything below it."
+  },
+  {
+    "id": "netplus-d5-term-002",
+    "type": "terminal",
+    "domainCode": "5.0",
+    "prompt": "Type the Windows command that displays the local ARP cache, showing IP-to-MAC address mappings.",
+    "expected": [
+      "arp -a"
+    ],
+    "explanation": "arp -a lists the cached IP-to-MAC mappings the host is using for local delivery. When a device has been replaced but traffic still follows the old hardware address, deleting the stale entry with arp -d forces a fresh resolution."
+  },
+  {
+    "id": "netplus-d5-term-003",
+    "type": "terminal",
+    "domainCode": "5.0",
+    "prompt": "Type the Windows command that releases the current DHCP lease on all adapters.",
+    "expected": [
+      "ipconfig /release"
+    ],
+    "explanation": "ipconfig /release surrenders the current lease, and ipconfig /renew requests a new one. The pair is the standard way to force a client to re-run DHCP after a scope or reservation change."
+  },
+  {
+    "id": "netplus-d5-term-004",
+    "type": "terminal",
+    "domainCode": "5.0",
+    "prompt": "Type the Windows command that pings the address 10.0.0.1 continuously until it is manually interrupted.",
+    "expected": [
+      "ping -t 10.0.0.1",
+      "ping 10.0.0.1 -t"
+    ],
+    "explanation": "The -t switch makes Windows ping run without a count limit, which is how you watch for the brief drops that characterize an intermittent fault. Ctrl+Break prints running statistics without stopping it, and Ctrl+C ends the run."
   }
 ]

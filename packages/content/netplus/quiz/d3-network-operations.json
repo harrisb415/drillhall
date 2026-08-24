@@ -489,5 +489,652 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "RPO and RTO define how much data may be lost and how quickly service must return. MTBF is a reliability statistic, and CRC and MTU are frame-level networking concepts."
+  },
+  {
+    "id": "netplus-d3-mc-039",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "In SNMP, what is a MIB?",
+    "choices": [
+      "A structured database defining the objects a device can report, each identified by an OID",
+      "A log file containing every trap a device has sent",
+      "The encryption key used to protect SNMPv3 messages",
+      "The queue holding unacknowledged SNMP informs"
+    ],
+    "answerIndex": 0,
+    "explanation": "The Management Information Base defines the hierarchy of manageable objects, and each leaf has an Object Identifier the manager uses to poll a specific value. Loading a vendor MIB is what turns a raw numeric OID into a readable metric name."
+  },
+  {
+    "id": "netplus-d3-mc-040",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A monitoring platform needs to poll a specific value, such as the input error count on interface 3, from a switch. What does it reference in the SNMP GET request?",
+    "choices": [
+      "The OID for that object",
+      "The device's community string only",
+      "The trap destination address",
+      "The syslog facility code"
+    ],
+    "answerIndex": 0,
+    "explanation": "An OID is the dotted-numeric path to one object inside the MIB tree, which is what makes the request unambiguous. The community string authenticates the request in v1 and v2c but does not select what is being read."
+  },
+  {
+    "id": "netplus-d3-mc-041",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A network team wants to know which conversations are consuming WAN bandwidth, including source, destination, ports, and byte counts, without capturing full packet payloads. Which technology provides this?",
+    "choices": [
+      "Flow data such as NetFlow, sFlow, or IPFIX",
+      "A full packet capture on the WAN interface",
+      "SNMP interface counters",
+      "Syslog messages from the WAN router"
+    ],
+    "answerIndex": 0,
+    "explanation": "Flow records summarize conversations by their header tuple and byte counts, which is exactly the top-talker view needed here at a fraction of the storage cost. SNMP counters show only aggregate throughput per interface, with no breakdown of who is responsible."
+  },
+  {
+    "id": "netplus-d3-mc-042",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "How does sFlow differ fundamentally from traditional NetFlow?",
+    "choices": [
+      "sFlow samples a subset of packets statistically, while NetFlow accounts for every flow",
+      "sFlow captures full packet payloads, while NetFlow captures only headers",
+      "sFlow works only on wireless networks, while NetFlow works only on wired",
+      "sFlow requires SNMPv3 while NetFlow requires syslog"
+    ],
+    "answerIndex": 0,
+    "explanation": "sFlow takes a statistical sample, typically one packet in several hundred, which scales cheaply to very high speeds at the cost of exactness. NetFlow maintains state for each flow, which is more precise but places more load on the device."
+  },
+  {
+    "id": "netplus-d3-mc-043",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Switches on a network automatically discover the identity, model, and port of their directly connected neighbours using a vendor-neutral Layer 2 protocol. Which protocol is this?",
+    "choices": [
+      "LLDP",
+      "CDP",
+      "OSPF",
+      "SNMP"
+    ],
+    "answerIndex": 0,
+    "explanation": "Link Layer Discovery Protocol is the IEEE 802.1AB standard for neighbour discovery, and LLDP-MED extends it to signal voice VLAN and PoE requirements to IP phones. CDP does the same job but is Cisco-proprietary."
+  },
+  {
+    "id": "netplus-d3-mc-044",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A NOC dashboard reports simply whether each site's router is reachable and how long it has been up, expressed as a percentage over the month. Which category of monitoring is this?",
+    "choices": [
+      "Availability monitoring",
+      "Performance monitoring",
+      "Configuration monitoring",
+      "Flow analysis"
+    ],
+    "answerIndex": 0,
+    "explanation": "Availability monitoring answers the binary question of whether a service is up, and rolls that into uptime figures against an SLA. Performance monitoring goes further, tracking latency, throughput, and error rates while a device is still technically up."
+  },
+  {
+    "id": "netplus-d3-mc-045",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A modern monitoring platform retrieves data from a cloud provider by making authenticated HTTPS calls to documented endpoints rather than polling SNMP. What is this integration method called?",
+    "choices": [
+      "API integration",
+      "Trap forwarding",
+      "Port mirroring",
+      "Zone transfer"
+    ],
+    "answerIndex": 0,
+    "explanation": "Cloud resources generally expose no SNMP agent at all, so monitoring is done through the provider's REST API. This is why modern monitoring tools are increasingly built around API connectors alongside traditional polling."
+  },
+  {
+    "id": "netplus-d3-mc-046",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A security team collects logs from firewalls, servers, and switches into one platform that correlates events across sources and raises alerts on suspicious patterns. What is this platform?",
+    "choices": [
+      "A SIEM",
+      "A syslog relay",
+      "A network TAP",
+      "An IPAM system"
+    ],
+    "answerIndex": 0,
+    "explanation": "Security information and event management adds correlation, retention, and alerting on top of plain log aggregation. A syslog server simply stores what it is sent, without cross-source analysis."
+  },
+  {
+    "id": "netplus-d3-mc-047",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A vendor publishes that a switch model has a mean time to repair of four hours. What does this figure describe?",
+    "choices": [
+      "The average time to restore the device to service after a failure",
+      "The average time the device runs before failing",
+      "The maximum data loss tolerated during an outage",
+      "The warranty period during which repairs are free"
+    ],
+    "answerIndex": 0,
+    "explanation": "MTTR measures how long recovery takes once something has broken, so it drives spare-parts and support-contract decisions. MTBF is the complementary figure describing how long the device is expected to run between failures."
+  },
+  {
+    "id": "netplus-d3-mc-048",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A disaster recovery site is fully equipped with hardware, current data replicas, and staff, and can take over production within minutes. What kind of site is this?",
+    "choices": [
+      "A hot site",
+      "A warm site",
+      "A cold site",
+      "A mobile site"
+    ],
+    "answerIndex": 0,
+    "explanation": "A hot site is a running duplicate of production with data kept current, which is why failover is nearly immediate and also why it is the most expensive option. A warm site has hardware in place but needs data restoration and configuration before it can take over."
+  },
+  {
+    "id": "netplus-d3-mc-049",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A disaster recovery site has racks, network connectivity, and servers installed, but data must be restored from backup before it can run production workloads. What kind of site is this?",
+    "choices": [
+      "A warm site",
+      "A hot site",
+      "A cold site",
+      "A cloud region"
+    ],
+    "answerIndex": 0,
+    "explanation": "A warm site sits between the two extremes: the hardware is ready but the data is stale, so recovery takes hours rather than minutes. It is the usual compromise when a hot site cannot be justified financially."
+  },
+  {
+    "id": "netplus-d3-mc-050",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A recovery team gathers in a conference room and talks through their response to a simulated ransomware outage, without touching any production system. What kind of exercise is this?",
+    "choices": [
+      "A tabletop exercise",
+      "A failover validation test",
+      "A penetration test",
+      "A vulnerability scan"
+    ],
+    "answerIndex": 0,
+    "explanation": "A tabletop is a discussion-based walkthrough that tests whether the plan and the people make sense, at very low cost and risk. A validation test actually fails services over to prove the plan works in practice."
+  },
+  {
+    "id": "netplus-d3-mc-051",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A retired switch is being removed from service. Which step is most important before it leaves the building?",
+    "choices": [
+      "Wiping the configuration, including credentials, keys, and any stored logs",
+      "Updating it to the latest firmware release",
+      "Reassigning its management IP address to the replacement device",
+      "Applying a new asset tag to the chassis"
+    ],
+    "answerIndex": 0,
+    "explanation": "A decommissioned device often still holds SNMP strings, RADIUS secrets, VPN keys, and a complete picture of the network's addressing. Sanitizing the configuration is the control that prevents that information from walking out with the hardware."
+  },
+  {
+    "id": "netplus-d3-mc-052",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A vendor announces that a router has reached end of support. What does this specifically mean?",
+    "choices": [
+      "The vendor will no longer provide patches, updates, or technical assistance for it",
+      "The vendor will no longer sell the model, but will continue patching it",
+      "The device will stop functioning on a set date",
+      "The device may no longer be resold on the secondary market"
+    ],
+    "answerIndex": 0,
+    "explanation": "End of support ends security patching and assistance, which turns the device into a permanent unpatched vulnerability on the network. End of sale is the earlier, milder milestone where the vendor stops selling but keeps supporting existing units."
+  },
+  {
+    "id": "netplus-d3-mc-053",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A DHCP administrator wants one particular printer to always receive the same address from the DHCP server, while still being managed centrally. What should be configured?",
+    "choices": [
+      "A DHCP reservation tied to the printer's MAC address",
+      "A static IP address configured on the printer itself",
+      "An exclusion range covering the printer's address",
+      "A shorter lease time on the scope"
+    ],
+    "answerIndex": 0,
+    "explanation": "A reservation keeps the address consistent while leaving DNS, gateway, and other options under central control. Configuring the address on the device instead removes it from that central management and is easy to forget when the subnet is renumbered."
+  },
+  {
+    "id": "netplus-d3-mc-054",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Why would an administrator configure an exclusion range within a DHCP scope?",
+    "choices": [
+      "To keep the server from handing out addresses already assigned statically to infrastructure",
+      "To reserve one address for a specific MAC address",
+      "To shorten the lease duration for guest devices",
+      "To forward DHCP requests to a server on another subnet"
+    ],
+    "answerIndex": 0,
+    "explanation": "Excluding the block used by routers, switches, and printers prevents duplicate address conflicts. A reservation is the different mechanism used to pin one address to one device."
+  },
+  {
+    "id": "netplus-d3-mc-055",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A conference centre's guest network serves hundreds of short-lived visitor devices each day and the scope keeps filling up. Which DHCP setting best addresses this?",
+    "choices": [
+      "Shortening the lease duration so addresses return to the pool quickly",
+      "Lengthening the lease duration to reduce renewal traffic",
+      "Adding more DNS server options to the scope",
+      "Enabling a DHCP relay agent on the guest VLAN"
+    ],
+    "answerIndex": 0,
+    "explanation": "Short leases return abandoned addresses to the pool quickly, which suits a high-churn transient population. Long leases are appropriate for stable office devices, where they reduce unnecessary renewal traffic."
+  },
+  {
+    "id": "netplus-d3-mc-056",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Wireless access points need to find their controller automatically when they boot on a network where the controller is on a different subnet. Which mechanism commonly delivers that controller address?",
+    "choices": [
+      "A DHCP option carrying the controller address",
+      "An exclusion range on the scope",
+      "A shorter lease duration",
+      "A reverse DNS lookup of the AP's own address"
+    ],
+    "answerIndex": 0,
+    "explanation": "DHCP options carry configuration beyond addressing, and vendor-specific options are the standard way APs and phones learn their controller or provisioning server. Option 66 and vendor option 43 are the ones most often referenced in this context."
+  },
+  {
+    "id": "netplus-d3-mc-057",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An IPv6 host builds its own address from a prefix advertised by the router, without any DHCPv6 server involved. What is this mechanism called?",
+    "choices": [
+      "SLAAC, stateless address autoconfiguration",
+      "Stateful DHCPv6",
+      "APIPA",
+      "NDP relay"
+    ],
+    "answerIndex": 0,
+    "explanation": "SLAAC lets the host combine the advertised prefix with a locally generated interface identifier. Because no server tracks the assignment, it is stateless, which is why DHCPv6 is sometimes still added to supply DNS and other options."
+  },
+  {
+    "id": "netplus-d3-mc-058",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which DNS record type maps a hostname to an IPv6 address?",
+    "choices": [
+      "AAAA",
+      "A",
+      "CNAME",
+      "PTR"
+    ],
+    "answerIndex": 0,
+    "explanation": "An A record holds a 32-bit IPv4 address and an AAAA record holds a 128-bit IPv6 address — four times the size, which is the mnemonic for the four A's. CNAME creates an alias to another name rather than to an address."
+  },
+  {
+    "id": "netplus-d3-mc-059",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A domain needs www.example.com to resolve to the same host as web01.example.com, so that changing the target only requires one edit. Which record type does this?",
+    "choices": [
+      "CNAME",
+      "A",
+      "NS",
+      "SOA"
+    ],
+    "answerIndex": 0,
+    "explanation": "A CNAME is an alias pointing one name at another name, so the address only needs maintaining in one place. A CNAME cannot coexist with other record types at the same name, which is why the zone apex usually cannot be a CNAME."
+  },
+  {
+    "id": "netplus-d3-mc-060",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Which DNS record identifies the authoritative name servers for a zone?",
+    "choices": [
+      "NS",
+      "SOA",
+      "MX",
+      "SRV"
+    ],
+    "answerIndex": 0,
+    "explanation": "NS records list the servers authoritative for the zone and are what a parent zone returns during delegation. The SOA record is a single record holding the zone's serial number and timing parameters."
+  },
+  {
+    "id": "netplus-d3-mc-061",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A VoIP client needs to discover which server and port provide SIP service for a domain. Which DNS record type carries this information?",
+    "choices": [
+      "SRV",
+      "MX",
+      "TXT",
+      "CNAME"
+    ],
+    "answerIndex": 0,
+    "explanation": "An SRV record advertises the hostname, port, priority, and weight for a named service, which is how clients locate SIP, LDAP, and Active Directory domain controllers. MX does the same job but only for mail, and only names a host rather than a port."
+  },
+  {
+    "id": "netplus-d3-mc-062",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What does the serial number in a zone's SOA record control?",
+    "choices": [
+      "Whether secondary servers pull an updated copy of the zone",
+      "How long resolvers cache records from the zone",
+      "Which name server is preferred for queries",
+      "The maximum size of the zone file"
+    ],
+    "answerIndex": 0,
+    "explanation": "Secondaries compare the master's serial to their own and transfer the zone only when it has increased. Forgetting to increment the serial after an edit is a classic cause of a change that never propagates."
+  },
+  {
+    "id": "netplus-d3-mc-063",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A DNS record's TTL is set to 300 seconds. What does this control?",
+    "choices": [
+      "How long resolvers may cache the record before querying again",
+      "How long the authoritative server keeps the record before deleting it",
+      "How many hops the DNS response may traverse",
+      "How long a client waits before timing out the query"
+    ],
+    "answerIndex": 0,
+    "explanation": "TTL governs caching duration downstream, so lowering it ahead of a planned migration shortens the window in which stale answers are served. It has nothing to do with the packet TTL field in the IP header, despite the shared name."
+  },
+  {
+    "id": "netplus-d3-mc-064",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What distinguishes an authoritative DNS server from a recursive resolver?",
+    "choices": [
+      "An authoritative server holds the actual zone data, while a recursive resolver queries others on a client's behalf",
+      "An authoritative server caches answers, while a recursive resolver never caches",
+      "An authoritative server serves only internal clients, while a recursive resolver serves only external clients",
+      "An authoritative server uses TCP while a recursive resolver uses UDP"
+    ],
+    "answerIndex": 0,
+    "explanation": "Authoritative servers are the source of truth for their zones and answer only for those zones. Recursive resolvers own no zone data; they chase referrals from the root down and cache what they learn."
+  },
+  {
+    "id": "netplus-d3-mc-065",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "An organization runs one DNS view for internal clients showing private addresses, and a separate public zone showing only externally reachable hosts. What is this design called?",
+    "choices": [
+      "Split-horizon DNS",
+      "DNS round robin",
+      "A stub zone",
+      "A reverse lookup zone"
+    ],
+    "answerIndex": 0,
+    "explanation": "Split-horizon, or split-brain, DNS serves different answers depending on where the query came from, keeping internal naming and addressing out of public view. It is a common way to avoid leaking an internal topology map through DNS."
+  },
+  {
+    "id": "netplus-d3-mc-066",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What is the practical difference between DNS over TLS and DNS over HTTPS?",
+    "choices": [
+      "DoT uses its own port 853, while DoH tunnels queries inside normal HTTPS traffic on 443",
+      "DoT encrypts queries while DoH only signs them",
+      "DoH uses port 853 while DoT uses port 443",
+      "DoT works only with IPv6 and DoH only with IPv4"
+    ],
+    "answerIndex": 0,
+    "explanation": "Both encrypt queries, but DoT is distinguishable on the network because it uses a dedicated port, while DoH blends in with ordinary web traffic. That difference is exactly why network administrators often find DoH harder to control."
+  },
+  {
+    "id": "netplus-d3-mc-067",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A network team wants clocks synchronized and the synchronization messages themselves cryptographically authenticated. Which technology addresses this?",
+    "choices": [
+      "NTS, Network Time Security",
+      "PTP, Precision Time Protocol",
+      "SNTP",
+      "NTPv3 with a broadcast client"
+    ],
+    "answerIndex": 0,
+    "explanation": "Network Time Security adds authentication to NTP so a client can verify the server's identity, preventing an attacker from shifting a host's clock. PTP addresses precision rather than authenticity."
+  },
+  {
+    "id": "netplus-d3-mc-068",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "In an NTP hierarchy, what does a stratum 1 server refer to?",
+    "choices": [
+      "A server synchronized directly to a reference clock such as GPS or an atomic clock",
+      "A server that has never successfully synchronized",
+      "The client furthest from the reference clock",
+      "A server that only serves time within a single subnet"
+    ],
+    "answerIndex": 0,
+    "explanation": "Stratum counts distance from the reference clock, with the reference itself being stratum 0 and directly attached servers stratum 1. Each layer downstream adds one, and accuracy degrades slightly with each hop."
+  },
+  {
+    "id": "netplus-d3-mc-069",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A service level agreement guarantees 99.9 percent availability per month. Roughly how much downtime does that permit?",
+    "choices": [
+      "About 43 minutes",
+      "About 7 hours",
+      "About 4 hours",
+      "About 5 minutes"
+    ],
+    "answerIndex": 0,
+    "explanation": "Three nines allows roughly 0.1 percent of a 30-day month, which works out to about 43 minutes. Adding a nine to reach 99.99 percent cuts that to a little over four minutes, which is why each additional nine costs so much."
+  },
+  {
+    "id": "netplus-d3-mc-070",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "What information does an asset inventory add that a network diagram does not?",
+    "choices": [
+      "Per-device details such as serial numbers, warranty status, owner, and purchase date",
+      "The physical path each cable takes between closets",
+      "The logical VLAN and subnet assignments in use",
+      "The spanning tree topology and root bridge placement"
+    ],
+    "answerIndex": 0,
+    "explanation": "Diagrams show relationships between devices; the inventory tracks the lifecycle facts about each individual unit. It is the record that drives warranty renewals, refresh budgets, and end-of-support planning."
+  },
+  {
+    "id": "netplus-d3-mc-071",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "After completing a wireless site survey, an engineer produces a document recording measured signal levels, noise, channel usage, and recommended AP placement. What is this deliverable?",
+    "choices": [
+      "A site survey report",
+      "A rack diagram",
+      "An IPAM export",
+      "A logical network diagram"
+    ],
+    "answerIndex": 0,
+    "explanation": "The survey report captures what was measured and what is recommended, and becomes the reference for validating coverage after installation. A heat map is one visual component of that report rather than the whole document."
+  },
+  {
+    "id": "netplus-d3-mc-072",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A firmware update to a core switch introduces a serious bug and must be reversed during the maintenance window. What should have been prepared in advance as part of the change process?",
+    "choices": [
+      "A documented rollback plan with the previous image staged and verified",
+      "A longer maintenance window on the following weekend",
+      "An updated rack diagram reflecting the new firmware version",
+      "A tabletop exercise scheduled for the following quarter"
+    ],
+    "answerIndex": 0,
+    "explanation": "A change is not fully planned until the path back is defined and the old image is confirmed available. Without that, an unsuccessful change turns a controlled window into an unplanned outage."
+  },
+  {
+    "id": "netplus-d3-mc-073",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "Why does patch management for network devices typically follow a staged approach, testing on non-critical devices before core equipment?",
+    "choices": [
+      "Because firmware defects are best discovered where the blast radius is small",
+      "Because vendors only license patches for a limited number of devices at a time",
+      "Because core devices cannot be patched without replacing hardware",
+      "Because patches applied to access switches propagate automatically to the core"
+    ],
+    "answerIndex": 0,
+    "explanation": "Staging exposes regressions on equipment whose failure affects few users, before the same code reaches devices that would take down the whole site. It is the same reasoning behind pilot groups for operating system updates."
+  },
+  {
+    "id": "netplus-d3-mc-074",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A monitoring system alerts on a switch port only after it has been down for five consecutive polls, rather than immediately. What problem does this address?",
+    "choices": [
+      "Alert fatigue from transient conditions that resolve on their own",
+      "Insufficient storage for historical performance data",
+      "The inability of SNMP to report interface state",
+      "Excessive bandwidth consumed by flow exports"
+    ],
+    "answerIndex": 0,
+    "explanation": "Requiring a condition to persist filters out momentary blips that would otherwise bury real problems in noise. A team that stops reading alerts because most are meaningless is worse off than one with fewer, more trustworthy alerts."
+  },
+  {
+    "id": "netplus-d3-mc-075",
+    "type": "mc",
+    "domainCode": "3.0",
+    "prompt": "A network engineer captures traffic for several weeks to establish normal utilization, latency, and error rates before defining alert thresholds. What is the resulting reference called?",
+    "choices": [
+      "A performance baseline",
+      "A rack diagram",
+      "A service level agreement",
+      "A change request"
+    ],
+    "answerIndex": 0,
+    "explanation": "A baseline defines what normal looks like for this specific network, which is the only way to judge whether a current reading is actually abnormal. Thresholds set without one tend to be either constantly triggering or never useful."
+  },
+  {
+    "id": "netplus-d3-multi-006",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO pieces of information are recorded in a DNS zone's SOA record?",
+    "choices": [
+      "The zone serial number used to trigger transfers",
+      "The refresh and retry timers for secondary servers",
+      "The MAC address of the authoritative server",
+      "The list of all A records in the zone",
+      "The TLS certificate used for DNS over HTTPS"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The SOA carries zone-wide administrative values: serial number, refresh, retry, expire, and minimum TTL. Individual host records live elsewhere in the zone, and the SOA holds nothing about hardware addresses or certificates."
+  },
+  {
+    "id": "netplus-d3-multi-007",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO actions are appropriate when decommissioning network hardware?",
+    "choices": [
+      "Erasing the configuration and any stored credentials or keys",
+      "Updating the asset inventory and network documentation to remove the device",
+      "Leaving the management IP configured so the device can be found later",
+      "Retaining the device's SNMP community strings for reuse on its replacement",
+      "Physically leaving the device racked and powered as a spare without recording it"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Sanitizing the device protects the information it holds, and updating the records keeps the documentation trustworthy. Reusing old community strings and leaving undocumented powered hardware in a rack both create risks that outlive the device's service."
+  },
+  {
+    "id": "netplus-d3-multi-008",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO conditions would a performance monitoring system flag that a purely availability-based check would miss?",
+    "choices": [
+      "A WAN link that is up but running at 95 percent utilization",
+      "An interface that is up but accumulating CRC errors",
+      "A router that has stopped responding to ICMP entirely",
+      "A switch that has lost power completely",
+      "A circuit that the provider has disconnected"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Availability checks only distinguish up from down, so a saturated or error-prone but reachable link passes them. Performance monitoring watches the quality of a working service, which is where most user-visible degradation actually lives."
+  },
+  {
+    "id": "netplus-d3-multi-009",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO are direct benefits of using an IPAM system rather than a spreadsheet?",
+    "choices": [
+      "Address conflicts are detected before an address is assigned twice",
+      "Assignments stay synchronized with DHCP and DNS records automatically",
+      "Link utilization on WAN circuits is reduced",
+      "Spanning tree convergence time is shortened",
+      "Wireless coverage gaps are identified automatically"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "IPAM's value is authoritative, live address tracking integrated with the services that hand addresses out. It has no influence on link capacity, switching topology, or radio coverage."
+  },
+  {
+    "id": "netplus-d3-multi-010",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO DNS record types would a mail administrator configure to support delivery and anti-spoofing for a domain?",
+    "choices": [
+      "MX",
+      "TXT",
+      "PTR only in the forward zone",
+      "SRV for SMTP",
+      "CNAME at the zone apex"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "MX directs inbound mail to the right servers, and TXT records carry SPF, DKIM, and DMARC policies that receiving servers check. PTR records live in the reverse zone rather than the forward one, and a CNAME at the apex is not permitted."
+  },
+  {
+    "id": "netplus-d3-multi-011",
+    "type": "multi",
+    "domainCode": "3.0",
+    "prompt": "Which TWO practices make a disaster recovery plan trustworthy rather than theoretical?",
+    "choices": [
+      "Performing periodic failover validation tests against the recovery site",
+      "Reviewing and updating the plan whenever the environment materially changes",
+      "Storing the only copy of the plan on a file server inside the primary data center",
+      "Setting the RPO to zero regardless of the replication technology in use",
+      "Limiting knowledge of the plan to a single administrator"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "A plan is only worth what its last successful test proved, and it decays as the environment drifts away from what it describes. Keeping the sole copy inside the site that may be lost, and concentrating the knowledge in one person, are both single points of failure in the plan itself."
+  },
+  {
+    "id": "netplus-d3-order-002",
+    "type": "order",
+    "domainCode": "3.0",
+    "prompt": "Place these disaster recovery site types in order from fastest recovery to slowest.",
+    "items": [
+      "Hot site",
+      "Warm site",
+      "Cold site"
+    ],
+    "explanation": "A hot site runs current data and can take over in minutes, a warm site has hardware but needs data restored, and a cold site is essentially space and power awaiting equipment. Recovery speed and cost move together across the three."
+  },
+  {
+    "id": "netplus-d3-match-001",
+    "type": "match",
+    "domainCode": "3.0",
+    "prompt": "Match each DNS record type to what it provides.",
+    "pairs": [
+      {"left": "A", "right": "Maps a hostname to an IPv4 address"},
+      {"left": "AAAA", "right": "Maps a hostname to an IPv6 address"},
+      {"left": "MX", "right": "Identifies the mail servers that accept mail for a domain"},
+      {"left": "PTR", "right": "Resolves an address back to a hostname in a reverse zone"},
+      {"left": "SRV", "right": "Advertises the host and port providing a specific service"}
+    ],
+    "explanation": "Record types are heavily tested, and the pairs that get confused are A with AAAA and MX with SRV. Remember that PTR is the only one here that lives in a reverse lookup zone."
+  },
+  {
+    "id": "netplus-d3-match-002",
+    "type": "match",
+    "domainCode": "3.0",
+    "prompt": "Match each recovery and reliability metric to its meaning.",
+    "pairs": [
+      {"left": "RPO", "right": "The maximum amount of data loss, measured in time, that is acceptable"},
+      {"left": "RTO", "right": "The maximum time a service may remain down before it must be restored"},
+      {"left": "MTTR", "right": "The average time taken to repair a failed component and return it to service"},
+      {"left": "MTBF", "right": "The average operating time expected between failures of a component"}
+    ],
+    "explanation": "RPO and RTO are business decisions that drive the design, while MTTR and MTBF are measured properties of the equipment. RPO looks backward at data, RTO looks forward at downtime — the distinction the exam tests most often."
   }
 ]

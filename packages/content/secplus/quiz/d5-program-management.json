@@ -529,5 +529,656 @@
     ],
     "answerIndices": [0, 1],
     "explanation": "Simulations plus anomalous-behaviour recognition build and measure the human layer. The other three each dismantle a control the programme is meant to reinforce."
+  },
+  {
+    "id": "secplus-d5-mc-043",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A business impact analysis determines that an order processing system must be restored within six hours of an outage. Which metric does this define?",
+    "choices": [
+      "The recovery time objective",
+      "The recovery point objective",
+      "The mean time to repair",
+      "The annualized rate of occurrence"
+    ],
+    "answerIndex": 0,
+    "explanation": "RTO expresses how long the business can function without the system, and it drives the recovery architecture chosen. It is a business decision that the technical design must then satisfy, not a measurement of existing capability."
+  },
+  {
+    "id": "secplus-d5-mc-044",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A business impact analysis states that no more than 15 minutes of transaction data may be lost in a disaster. Which metric does this define?",
+    "choices": [
+      "The recovery point objective",
+      "The recovery time objective",
+      "The mean time between failures",
+      "The exposure factor"
+    ],
+    "answerIndex": 0,
+    "explanation": "RPO looks backward from the moment of failure and defines the tolerable data loss, which dictates backup and replication frequency. A 15-minute RPO cannot be met by nightly backups regardless of how quickly systems are restored."
+  },
+  {
+    "id": "secplus-d5-mc-045",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An asset worth $200,000 is expected to lose 25 percent of its value in a particular incident. What is the single loss expectancy?",
+    "choices": [
+      "$50,000",
+      "$200,000",
+      "$25,000",
+      "$150,000"
+    ],
+    "answerIndex": 0,
+    "explanation": "SLE is asset value multiplied by the exposure factor, so $200,000 times 0.25 gives $50,000. Multiplying that by how often the event is expected each year produces the annualized loss expectancy."
+  },
+  {
+    "id": "secplus-d5-mc-046",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "In quantitative risk analysis, what does the exposure factor represent?",
+    "choices": [
+      "The percentage of an asset's value that would be lost in a single incident",
+      "The number of times an incident is expected to occur per year",
+      "The total annual cost of all incidents combined",
+      "The maximum period of tolerable downtime"
+    ],
+    "answerIndex": 0,
+    "explanation": "The exposure factor scales the asset's value to the portion actually at risk in one event, since most incidents do not destroy an asset entirely. It is the bridge between asset value and single loss expectancy."
+  },
+  {
+    "id": "secplus-d5-mc-047",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization performs a risk assessment only when a significant change occurs, rather than on a fixed schedule. Which assessment type is this?",
+    "choices": [
+      "Ad hoc",
+      "Recurring",
+      "Continuous",
+      "One-time"
+    ],
+    "answerIndex": 0,
+    "explanation": "Ad hoc assessments are triggered by events such as an acquisition or a major architectural change. They complement recurring assessments rather than replacing them, since gradual drift between events would otherwise go unexamined."
+  },
+  {
+    "id": "secplus-d5-mc-048",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A security team ingests vulnerability, configuration, and threat data constantly, keeping risk ratings current rather than assessing periodically. Which approach is this?",
+    "choices": [
+      "Continuous risk assessment",
+      "Ad hoc risk assessment",
+      "One-time risk assessment",
+      "Qualitative risk assessment"
+    ],
+    "answerIndex": 0,
+    "explanation": "Continuous assessment keeps the risk picture aligned with an environment that changes daily. Its practical challenge is data quality, since a continuously wrong picture is worse than a periodically correct one."
+  },
+  {
+    "id": "secplus-d5-mc-049",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A document gives the incident response team specific, ordered steps to follow when ransomware is detected, including who to notify and when. What is this document called?",
+    "choices": [
+      "A playbook",
+      "A policy",
+      "A standard",
+      "A risk register"
+    ],
+    "answerIndex": 0,
+    "explanation": "Playbooks turn policy into executable steps for a specific scenario, which is what makes a response fast and consistent under pressure. Policy states intent, and standards state required specifications; neither tells you what to do at 3am."
+  },
+  {
+    "id": "secplus-d5-mc-050",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which governance document states a mandatory technical specification, such as requiring AES-256 for data at rest?",
+    "choices": [
+      "A standard",
+      "A guideline",
+      "A procedure",
+      "A policy"
+    ],
+    "answerIndex": 0,
+    "explanation": "Standards are mandatory and specific, translating a policy's general requirement into a testable technical rule. Guidelines are recommended rather than required, which is the distinction most often tested."
+  },
+  {
+    "id": "secplus-d5-mc-051",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company defines exactly which checks are performed, which accounts are created, and which equipment is issued when a new employee joins. Which governance artifact is this?",
+    "choices": [
+      "An onboarding procedure",
+      "A risk appetite statement",
+      "A business partnership agreement",
+      "A key risk indicator"
+    ],
+    "answerIndex": 0,
+    "explanation": "Onboarding procedures make provisioning consistent and auditable, and they are where identity proofing and least privilege are first applied. The mirror-image offboarding procedure is the one that prevents orphaned accounts."
+  },
+  {
+    "id": "secplus-d5-mc-052",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which offboarding step most directly reduces the risk of a departing employee retaining access?",
+    "choices": [
+      "Disabling all accounts and revoking credentials effective at the moment of departure",
+      "Conducting an exit interview about their experience",
+      "Archiving their email for the retention period",
+      "Updating the organizational chart"
+    ],
+    "answerIndex": 0,
+    "explanation": "Timely deprovisioning closes the window in which a former employee can still act, and delays here are a recurring audit finding. Recovering assets and transferring data ownership are important but secondary to revoking access."
+  },
+  {
+    "id": "secplus-d5-mc-053",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization concentrates all security decision-making authority in a single corporate team that sets policy for every business unit. Which governance structure is this?",
+    "choices": [
+      "Centralized governance",
+      "Decentralized governance",
+      "A federated identity model",
+      "A third-party assessment model"
+    ],
+    "answerIndex": 0,
+    "explanation": "Centralized governance produces consistency and clearer accountability, at the cost of responsiveness to local business needs. Decentralized structures invert that tradeoff, letting units move faster but making uniform assurance harder."
+  },
+  {
+    "id": "secplus-d5-mc-054",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A board establishes a standing group of directors and executives that meets regularly to review and approve security policy and risk decisions. What is this body?",
+    "choices": [
+      "A committee",
+      "An external regulator",
+      "A data processor",
+      "An audit finding"
+    ],
+    "answerIndex": 0,
+    "explanation": "Committees provide ongoing governance oversight between full board meetings and give security decisions executive sponsorship. Boards set direction at a higher level, while regulators are external bodies with statutory authority."
+  },
+  {
+    "id": "secplus-d5-mc-055",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Under privacy regulation, which role is responsible for maintaining the technical environment where personal data is stored, without deciding how it is used?",
+    "choices": [
+      "The data custodian or steward",
+      "The data controller",
+      "The data subject",
+      "The regulator"
+    ],
+    "answerIndex": 0,
+    "explanation": "Custodians implement and maintain the protections that owners and controllers specify. The distinction matters in an incident, when responsibility for a decision must be separated from responsibility for an implementation."
+  },
+  {
+    "id": "secplus-d5-mc-056",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization compiles a complete record of what personal data it holds, where it resides, why it was collected, and how long it will be kept. What is this called?",
+    "choices": [
+      "A data inventory",
+      "A risk register",
+      "A business impact analysis",
+      "An acceptable use policy"
+    ],
+    "answerIndex": 0,
+    "explanation": "A data inventory is the foundation for retention, subject access requests, and breach notification, all of which require knowing what you hold. Organizations that cannot answer those questions quickly usually discover it during an incident."
+  },
+  {
+    "id": "secplus-d5-mc-057",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Employees are required to read the security policy and formally record that they have done so. What is this practice called?",
+    "choices": [
+      "Acknowledgement, sometimes accompanied by formal attestation",
+      "Identity proofing of the employee",
+      "A risk transference agreement",
+      "A right-to-audit clause"
+    ],
+    "answerIndex": 0,
+    "explanation": "Acknowledgement creates a record that the individual was informed, which matters for enforceability if the policy is later breached. It is administrative rather than technical, but it underpins disciplinary and legal action."
+  },
+  {
+    "id": "secplus-d5-mc-058",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "What is the difference between due diligence and due care?",
+    "choices": [
+      "Due diligence is the investigation and assessment performed, while due care is acting reasonably on what it found",
+      "Due diligence applies only to vendors, while due care applies only to employees",
+      "Due diligence is a legal requirement, while due care is voluntary",
+      "Due diligence occurs after an incident, while due care occurs before"
+    ],
+    "answerIndex": 0,
+    "explanation": "Diligence is the research; care is the ongoing prudent action taken as a result. An organization that investigated a vendor thoroughly and then ignored the findings exercised diligence but not care."
+  },
+  {
+    "id": "secplus-d5-mc-059",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two companies sign an overarching contract establishing general terms, under which individual projects will later be defined. Which agreement type is this?",
+    "choices": [
+      "A master service agreement",
+      "A statement of work",
+      "A non-disclosure agreement",
+      "A memorandum of understanding"
+    ],
+    "answerIndex": 0,
+    "explanation": "An MSA sets the terms once so that subsequent engagements need only define their specific scope. Those specifics are then captured in a statement of work or work order beneath it."
+  },
+  {
+    "id": "secplus-d5-mc-060",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Which document specifies the exact deliverables, timeline, and acceptance criteria for one particular project under an existing contract?",
+    "choices": [
+      "A statement of work",
+      "A master service agreement",
+      "A memorandum of understanding",
+      "A business partnership agreement"
+    ],
+    "answerIndex": 0,
+    "explanation": "The SOW is where a specific engagement is defined precisely enough to be delivered and accepted. Vague statements of work are a common source of dispute about what was actually promised."
+  },
+  {
+    "id": "secplus-d5-mc-061",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Two businesses formalize a profit-sharing arrangement and define each party's contributions and liabilities in an ongoing commercial relationship. Which agreement type is this?",
+    "choices": [
+      "A business partnership agreement",
+      "A non-disclosure agreement",
+      "A service level agreement",
+      "A memorandum of understanding"
+    ],
+    "answerIndex": 0,
+    "explanation": "A BPA governs the terms of a continuing business partnership, including responsibilities and liability allocation. It is a binding commercial contract, unlike an MOU which typically expresses intent without the same enforceability."
+  },
+  {
+    "id": "secplus-d5-mc-062",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Before contracting a component supplier, a company examines that supplier's own vendors and manufacturing sources for risk. What is this assessment called?",
+    "choices": [
+      "Supply chain analysis",
+      "A right-to-audit clause",
+      "An internal self-assessment",
+      "A tabletop exercise"
+    ],
+    "answerIndex": 0,
+    "explanation": "Risk propagates through multiple tiers, so assessing only the direct supplier leaves a substantial blind spot. Several major compromises have entered through a supplier's supplier rather than the contracted vendor itself."
+  },
+  {
+    "id": "secplus-d5-mc-063",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company hires an accredited outside firm with no commercial stake in the outcome to evaluate its security controls. What is this called?",
+    "choices": [
+      "An independent third-party audit",
+      "An internal self-assessment",
+      "A regulatory examination",
+      "A penetration test"
+    ],
+    "answerIndex": 0,
+    "explanation": "Independence is what gives the result credibility with customers, insurers, and regulators. Internal reviews are valuable for improvement but carry an inherent conflict of interest when used as external assurance."
+  },
+  {
+    "id": "secplus-d5-mc-064",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A banking regulator conducts a formal, statutory review of an institution's controls, with legal authority to compel remediation. What is this called?",
+    "choices": [
+      "A regulatory examination",
+      "An independent third-party audit",
+      "An internal self-assessment",
+      "A bug bounty programme"
+    ],
+    "answerIndex": 0,
+    "explanation": "Examinations are conducted under statutory authority, so their findings carry consequences an ordinary audit does not. Participation is compulsory rather than contractual."
+  },
+  {
+    "id": "secplus-d5-mc-065",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A department reviews its own compliance with security policy and reports the results internally, without external involvement. What is this called?",
+    "choices": [
+      "A self-assessment",
+      "An independent audit",
+      "A regulatory examination",
+      "An attestation by a third party"
+    ],
+    "answerIndex": 0,
+    "explanation": "Self-assessments are inexpensive and frequent, which makes them useful for continuous improvement. They cannot substitute for independent assurance where an external party needs confidence in the result."
+  },
+  {
+    "id": "secplus-d5-mc-066",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A penetration tester is given no information about the target environment and must discover everything from the outside. Which testing approach is this?",
+    "choices": [
+      "An unknown environment test",
+      "A known environment test",
+      "A partially known environment test",
+      "A defensive engagement"
+    ],
+    "answerIndex": 0,
+    "explanation": "An unknown environment test most closely simulates an external attacker's starting position, though it spends significant time on discovery. Known environment testing trades that realism for depth of coverage within the same budget."
+  },
+  {
+    "id": "secplus-d5-mc-067",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A penetration test gives the tester limited information, such as network ranges but no credentials or architecture documents. Which approach is this?",
+    "choices": [
+      "A partially known environment test",
+      "An unknown environment test",
+      "A known environment test",
+      "A regulatory examination"
+    ],
+    "answerIndex": 0,
+    "explanation": "Partial knowledge is the usual compromise, avoiding wasted effort on discovery while preserving some realism. It is often the best value when the goal is finding exploitable weaknesses rather than testing detection."
+  },
+  {
+    "id": "secplus-d5-mc-068",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "During a security engagement, one team attempts to compromise the environment while another defends it, and the two afterwards share findings jointly. Which engagement type is this?",
+    "choices": [
+      "An integrated, or purple team, engagement",
+      "An offensive engagement conducted alone",
+      "A defensive engagement conducted alone",
+      "A regulatory examination"
+    ],
+    "answerIndex": 0,
+    "explanation": "Purple teaming pairs the offensive and defensive sides so each attack is immediately examined for whether detection worked. It produces improvement faster than a purely adversarial exercise where findings arrive only in a final report."
+  },
+  {
+    "id": "secplus-d5-mc-069",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A tester attempts to gain entry to a facility by tailgating and testing door controls, as part of an authorized engagement. Which testing type is this?",
+    "choices": [
+      "A physical penetration test",
+      "An unknown environment network test",
+      "A tabletop exercise",
+      "A vulnerability scan"
+    ],
+    "answerIndex": 0,
+    "explanation": "Physical testing evaluates controls that network testing never touches — locks, badges, reception procedures, and staff behaviour. Written authorization matters especially here, since the tester risks being detained."
+  },
+  {
+    "id": "secplus-d5-mc-070",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A tester runs port scans and service enumeration directly against the target's systems. Which reconnaissance type is this?",
+    "choices": [
+      "Active reconnaissance",
+      "Passive reconnaissance",
+      "An internal audit",
+      "A tabletop exercise"
+    ],
+    "answerIndex": 0,
+    "explanation": "Active reconnaissance interacts with the target and can therefore be detected and logged. Passive methods gather information from public sources without ever touching the target's infrastructure."
+  },
+  {
+    "id": "secplus-d5-mc-071",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "Before a penetration test, both parties agree on permitted techniques, testing hours, and systems that must not be touched. What is this document called?",
+    "choices": [
+      "The rules of engagement",
+      "The statement of work's payment schedule",
+      "The business impact analysis",
+      "The risk register"
+    ],
+    "answerIndex": 0,
+    "explanation": "Rules of engagement define the operational boundaries, protecting both the client's production systems and the tester from liability. Techniques such as denial of service and social engineering are usually addressed explicitly."
+  },
+  {
+    "id": "secplus-d5-mc-072",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization submits quarterly security metrics to its board's audit committee. Which type of reporting is this?",
+    "choices": [
+      "Internal reporting to a governance body",
+      "External regulatory reporting",
+      "Public disclosure to data subjects",
+      "A vendor questionnaire response"
+    ],
+    "answerIndex": 0,
+    "explanation": "Internal reporting informs governance decisions and resource allocation within the organization. External reporting to regulators serves a different audience and usually carries prescribed content and deadlines."
+  },
+  {
+    "id": "secplus-d5-mc-073",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company that breaches its uptime commitment to a customer must pay service credits under the contract. Which consequence of non-compliance is this?",
+    "choices": [
+      "A contractual impact",
+      "A regulatory fine",
+      "Loss of operating licence",
+      "Reputational damage"
+    ],
+    "answerIndex": 0,
+    "explanation": "Contractual consequences flow from private agreements between the parties rather than from a regulator. They frequently arrive faster than regulatory action and can be substantial at scale."
+  },
+  {
+    "id": "secplus-d5-mc-074",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A payment processor repeatedly fails its compliance obligations and is barred from processing card transactions. Which consequence does this represent?",
+    "choices": [
+      "Loss of licence or authorization to operate in that capacity",
+      "A contractual service credit",
+      "An internal audit finding",
+      "A key risk indicator breach"
+    ],
+    "answerIndex": 0,
+    "explanation": "Losing the authorization to perform a core business function is often more damaging than any fine, because it stops revenue rather than reducing it. This is the practical reason payment compliance receives such attention."
+  },
+  {
+    "id": "secplus-d5-mc-075",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A risk register entry records who is responsible for monitoring and addressing a specific risk. What is this person called?",
+    "choices": [
+      "The risk owner",
+      "The data subject",
+      "The control assessor",
+      "The external auditor"
+    ],
+    "answerIndex": 0,
+    "explanation": "Assigning a named risk owner is what converts an identified risk into managed work with accountability. Registers without owners tend to accumulate entries that are reviewed but never acted upon."
+  },
+  {
+    "id": "secplus-d5-mc-076",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization states it will not accept any risk that could result in a loss exceeding $500,000. Which concept does this express?",
+    "choices": [
+      "A risk threshold",
+      "A key risk indicator",
+      "The exposure factor",
+      "The annualized rate of occurrence"
+    ],
+    "answerIndex": 0,
+    "explanation": "A threshold sets the boundary at which a risk must be escalated or treated rather than accepted. It operationalizes the organization's broader risk appetite into a testable number."
+  },
+  {
+    "id": "secplus-d5-mc-077",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A company's security policy is reviewed annually and after any major incident or regulatory change. Which governance practice is this?",
+    "choices": [
+      "Monitoring and revision of governance documents",
+      "Attestation by individual employees",
+      "Risk transference to an insurer",
+      "Supply chain analysis of vendors"
+    ],
+    "answerIndex": 0,
+    "explanation": "Policies decay as the business, technology, and regulations move, so scheduled and event-driven review keeps them relevant. A policy nobody has revisited in five years usually describes an organization that no longer exists."
+  },
+  {
+    "id": "secplus-d5-mc-078",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "An organization must comply with rules that differ between the countries it operates in, some stricter than others. Which external consideration is this?",
+    "choices": [
+      "Varying regional and national regulatory requirements",
+      "The organization's internal risk appetite",
+      "The recovery time objective for its systems",
+      "The exposure factor of its primary assets"
+    ],
+    "answerIndex": 0,
+    "explanation": "Multinational operation means satisfying multiple, sometimes conflicting, legal regimes at once. Many organizations resolve this by adopting the strictest applicable standard globally rather than maintaining separate regimes."
+  },
+  {
+    "id": "secplus-d5-mc-079",
+    "type": "mc",
+    "domainCode": "5.0",
+    "prompt": "A software development policy requires that security requirements be defined during design and that code be reviewed before release. Which policy area is this?",
+    "choices": [
+      "The software development lifecycle policy",
+      "The acceptable use policy",
+      "The business continuity policy",
+      "The incident response policy"
+    ],
+    "answerIndex": 0,
+    "explanation": "An SDLC policy embeds security into how software is built rather than inspecting for it afterwards. Defects found at design cost a fraction of the same defects found in production."
+  },
+  {
+    "id": "secplus-d5-multi-007",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO values are needed to calculate annualized loss expectancy?",
+    "choices": [
+      "The single loss expectancy",
+      "The annualized rate of occurrence",
+      "The recovery time objective",
+      "The mean time between failures",
+      "The organization's risk appetite"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "ALE is simply SLE multiplied by ARO, expressing expected annual loss in currency. That figure is what allows a control's cost to be compared directly against the loss it prevents."
+  },
+  {
+    "id": "secplus-d5-multi-008",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO statements distinguish risk appetite from risk tolerance?",
+    "choices": [
+      "Risk appetite is the broad amount of risk an organization is willing to pursue toward its objectives",
+      "Risk tolerance is the acceptable variation around a specific risk or objective",
+      "Risk appetite is always expressed as a single dollar figure",
+      "Risk tolerance is determined solely by external regulators",
+      "The two terms are interchangeable in formal risk management"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Appetite is strategic and directional, while tolerance is the practical variance permitted on a particular risk. An expansionary appetite still coexists with tight tolerance in specific areas such as safety or regulated data."
+  },
+  {
+    "id": "secplus-d5-multi-009",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO agreements would typically be executed before a vendor is given access to sensitive internal systems?",
+    "choices": [
+      "A non-disclosure agreement covering the information they will encounter",
+      "A contract clause granting the right to audit the vendor's controls",
+      "A memorandum of understanding expressing general goodwill",
+      "A business impact analysis of the vendor's own operations",
+      "A public disclosure of the vendor relationship"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "An NDA establishes confidentiality obligations and a right-to-audit clause preserves the ability to verify rather than merely trust. An MOU carries little enforceability, which is why it is inadequate on its own for this purpose."
+  },
+  {
+    "id": "secplus-d5-multi-010",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO characteristics define a key risk indicator?",
+    "choices": [
+      "It is a measurable signal that a specific risk is trending toward its threshold",
+      "It provides early warning so action can be taken before the risk materializes",
+      "It records the financial loss after an incident has occurred",
+      "It replaces the need to assign a risk owner",
+      "It is set independently of the organization's risk thresholds"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "KRIs are leading indicators tied to a defined threshold, which is what makes them actionable rather than merely descriptive. A metric that only reports damage already done is a lagging indicator and serves a different purpose."
+  },
+  {
+    "id": "secplus-d5-multi-011",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO are appropriate elements of a formally documented risk exception?",
+    "choices": [
+      "A defined expiry date after which the exception must be reviewed or renewed",
+      "A named approver who accepted the risk on the organization's behalf",
+      "Removal of the finding from the risk register once approved",
+      "An instruction to disable monitoring of the affected system",
+      "An open-ended duration so the exception need not be revisited"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "Exceptions must expire and must be owned by someone with the authority to accept the risk. Permanent, unowned exceptions are how a temporary compromise becomes the organization's permanent security posture."
+  },
+  {
+    "id": "secplus-d5-multi-012",
+    "type": "multi",
+    "domainCode": "5.0",
+    "prompt": "Which TWO obligations do privacy regulations typically place on a data controller?",
+    "choices": [
+      "Determining and documenting the lawful purpose for which personal data is processed",
+      "Responding to data subject requests such as access or erasure",
+      "Physically maintaining the storage hardware where the data resides",
+      "Setting the retention schedule on behalf of the regulator",
+      "Certifying the security of every downstream processor without assessment"
+    ],
+    "answerIndices": [0, 1],
+    "explanation": "The controller decides why and how data is processed, which is what makes it accountable for lawful basis and for honouring subject rights. Processors act on the controller's instructions, and custodians handle the technical maintenance."
+  },
+  {
+    "id": "secplus-d5-order-001",
+    "type": "order",
+    "domainCode": "5.0",
+    "prompt": "Place these steps of a typical third-party vendor risk assessment in the order they occur.",
+    "items": [
+      "Define the requirements and the sensitivity of data the vendor will handle",
+      "Perform due diligence, including a security questionnaire and evidence of independent audits",
+      "Negotiate contractual protections such as right-to-audit and breach notification clauses",
+      "Grant access scoped to what the vendor actually needs",
+      "Monitor the vendor's performance and security posture throughout the relationship",
+      "Offboard the vendor, revoking access and confirming data return or destruction"
+    ],
+    "explanation": "The leverage to demand security commitments exists mainly before signature, which is why due diligence must precede contracting. The final step is the one most often neglected, leaving vendor accounts and copies of data active long after the relationship ends."
+  },
+  {
+    "id": "secplus-d5-match-002",
+    "type": "match",
+    "domainCode": "5.0",
+    "prompt": "Match each agreement type to what it establishes.",
+    "pairs": [
+      {"left": "NDA", "right": "Binds the parties to keep disclosed information confidential"},
+      {"left": "SLA", "right": "Commits to defined performance levels with remedies if they are missed"},
+      {"left": "MSA", "right": "Sets overarching contract terms under which specific projects are later defined"},
+      {"left": "SOW", "right": "Defines the deliverables, timeline, and acceptance criteria for one engagement"},
+      {"left": "MOU", "right": "Expresses shared intent between parties without creating strong legal obligation"}
+    ],
+    "explanation": "The pair most often confused is MSA with SOW: the master agreement sets the terms once, while each statement of work defines a specific piece of delivery beneath it. MOUs are the weakest of these instruments and should not be relied on where enforceability matters."
+  },
+  {
+    "id": "secplus-d5-match-003",
+    "type": "match",
+    "domainCode": "5.0",
+    "prompt": "Match each governance or privacy role to its responsibility.",
+    "pairs": [
+      {"left": "Data owner", "right": "Accountable for classifying a dataset and approving who may access it"},
+      {"left": "Data controller", "right": "Determines the purposes and means by which personal data is processed"},
+      {"left": "Data processor", "right": "Processes personal data only on the controller's documented instructions"},
+      {"left": "Data custodian", "right": "Maintains the systems and technical protections around the stored data"},
+      {"left": "Data subject", "right": "The individual whom the personal data identifies or describes"}
+    ],
+    "explanation": "These roles separate accountability from execution, which is what allows responsibility to be traced during an incident or audit. Controller and processor are the pair carrying the most direct legal weight under privacy regulation."
   }
 ]
