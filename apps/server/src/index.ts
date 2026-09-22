@@ -104,7 +104,7 @@ if (env.backupCron) {
   );
 }
 
-const server = app.listen(env.port, () => {
+const server = app.listen(env.port, env.host, () => {
   logger.info(
     {
       port: env.port,

@@ -15,6 +15,12 @@ function resolveDbFile(url: string): string {
 }
 
 const port = Number(process.env.PORT ?? 3001);
+/**
+ * Interface to bind. Defaults to every interface, which is what a box behind
+ * its own nginx wants. Set HOST=127.0.0.1 when a tunnel or proxy runs on the
+ * same host and the app should be unreachable from the network directly.
+ */
+const host = process.env.HOST ?? "0.0.0.0";
 const googleClientId = process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
 
@@ -22,6 +28,7 @@ export const env = {
   isProd: process.env.NODE_ENV === "production",
   isTest: process.env.NODE_ENV === "test" || !!process.env.VITEST,
   port,
+  host,
   databaseFile: resolveDbFile(process.env.DATABASE_URL ?? "file:./data/app.db"),
   /** Missing in production is a fatal boot error (checked in index.ts). */
   authSecret: process.env.BETTER_AUTH_SECRET ?? "dev-only-insecure-secret-0123456789abcdef",
